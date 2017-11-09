@@ -1,0 +1,21 @@
+{
+  "name": "pfptcustomerprofile",
+  "version": "1.0.0",
+  "description": "Proofpoint potential customer profile",
+  "main": "app.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikko0327/PfptCustomerProfile.git"
+  },
+  "author": "Nikko Lee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikko0327/PfptCustomerProfile/issues"
+  },
+  "homepage": "https://github.com/nikko0327/PfptCustomerProfile#readme"
+}
