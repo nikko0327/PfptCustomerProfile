@@ -1,8 +1,8 @@
 var express = require("express");
 var mongoose = require("mongoose");
-var bodyParser = require("bady-parser");
+var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
-var sanitizer = require("express-sanitizer");
+var expressSanitizer = require("express-sanitizer");
 var session = require("express-session");
 var MongoStore = require("connect-mongo")(session);
 var app = express();
@@ -12,6 +12,24 @@ var app = express();
 
 var databaseUrl = "mongodb://localhost/customerProfile";
 mongoose.connect(databaseUrl);
+
+var db = mongoose.connection;
+
+//handling mongo error
+db.on("error", console.error.bind(console, "Connection Error: "));
+db.once("open", function(){
+	//Connection Message?
+});
+
+//using sessions for tracking logins
+app.use(session({
+	secret: "work hard",
+	resave: true,
+	saveUninitialized: false,
+	store: new MongoStore({
+		mongooseConnection: db
+	})
+}));
 
 // set so we dont have to type .ejs all the time when routing
 app.set("view engine", "ejs");
@@ -26,6 +44,19 @@ app.use(expressSanitizer());
 // so we can use PUT request
 app.use(methodOverride("_method"));
 app.use(routes);
+
+//catch 404 and forward to error handler
+app.use(function(){
+	var err = new Error("File Not Found");
+	err.status = 404;
+});
+
+//error handler
+//defined as the last app.use callback
+app.use(function(err, req, res, next){
+	res.status(err.status || 500);
+	res.send(err.message);
+});
 
 
 app.listen(3000, function(){
