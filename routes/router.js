@@ -8,4 +8,9 @@ router.get("/", function(req, res){
 	res.render("index");
 });
 
+//SHOW ROUTE
+router.get("/show", function(req, res){
+	res.render("show");
+});
+
 module.exports = router;
