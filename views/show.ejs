@@ -40,7 +40,7 @@
 		</div>
 		<hr>
 		<div id="journaling" class=""> 
-			<h5>Journaling <a href="#journallingContainer" data-toggle="collapse"><i class="fa fa-arrows-v" aria-hidden="true"></i>
+			<h5> <a href="#journallingContainer" data-toggle="collapse">Journaling <i class="fa fa-arrows-v" aria-hidden="true"></i>
 </a></h5>
 				<br>
 			<div id="journallingContainer" class="collapse in">
@@ -71,18 +71,21 @@
 		</div>
 		<hr>
 		<div id="appliances" class="">
-			<h5>Appliances</h5>
+			<h5><a href="#applianceSizing" data-toggle="collapse">Appliances <i class="fa fa-arrows-v" aria-hidden="true"></i>
+</a></h5>
 			<br>
-				<div id="applianceSizing" class="row">
-					<div id="" class="col-4"><p><b>Messages Per Day </b> 1234332</p></div>
-					<div id="" class="col-4"><p><b>Avg. Message Size </b>100000</p></div>
-					<div id="" class="col-4"><p><b>Number of Mailboxes </b>550213</p></div>
-					<div id="" class="col-4"><p><b>Searches Per Day </b>89123</p></div>
-					<div id="" class="col-4"><p><b>UI Logins Per Day </b>12345678910</p></div>
-					<div id="" class="col-4"><p><b>Exports Per Day </b>213123112</p></div>
-					<div id="" class="col-4"><p><b>Avg. Export Size </b>1TB</p></div>
-					<div id="" class="col-4"><p><b>Active Directory Size </b>555GB</p></div>
-					<div id="forDevOnly" class="col-12"><p style="color: red;">Note for DEV: Does the customer prefer virtual or HW appliances?\n confirm the customer has a VMWare Env\n Number of Apps Recommended\n How many of each purpose(UI, Export, Archiving, Stubbing)\n DR footprint\n Archive Proxy?</p></div>
+				<div id="applianceSizing" class="collapse in">
+					<div id="appliaceDetails" class="row">
+						<div id="" class="col-4"><p><b>Messages Per Day </b> 1234332</p></div>
+						<div id="" class="col-4"><p><b>Avg. Message Size </b>100000</p></div>
+						<div id="" class="col-4"><p><b>Number of Mailboxes </b>550213</p></div>
+						<div id="" class="col-4"><p><b>Searches Per Day </b>89123</p></div>
+						<div id="" class="col-4"><p><b>UI Logins Per Day </b>12345678910</p></div>
+						<div id="" class="col-4"><p><b>Exports Per Day </b>213123112</p></div>
+						<div id="" class="col-4"><p><b>Avg. Export Size </b>1TB</p></div>
+						<div id="" class="col-4"><p><b>Active Directory Size </b>555GB</p></div>
+						<div id="forDevOnly" class="col-12"><p style="color: red;">Note for DEV: Does the customer prefer virtual or HW appliances?\n confirm the customer has a VMWare Env\n Number of Apps Recommended\n How many of each purpose(UI, Export, Archiving, Stubbing)\n DR footprint\n Archive Proxy?</p></div>			
+					</div>
 				</div>
 		</div>	
 		<hr>
@@ -91,7 +94,43 @@
 		</div>
 		<hr>
 		<div id="desktopNetworkDr" class="">
-			<h5>Desktop/Network/DR</h5>
+			<h5><a href="#desktopContent" data-toggle="collapse">Desktop/Network/DR <i class="fa fa-arrows-v" aria-hidden="true"></i>
+</a></h5>
+			<br>
+			<div id="desktopContent" class="collapse in">
+			<p>Network & Security</p>
+				<p></p>
+				<div id="networkSecurity" class="row">
+					<div id="" class="col-4"><p><b>DMZ </b>Response</p></div>
+					<div id="" class="col-4"><p><b>Fiewalls </b>Ironport</p></div>
+					<div id="" class="col-4"><p><b>VPN Connection to PFPT Required </b>Yes/No</p></div>
+					<div id="" class="col-4"><p><b>Enable access to user outside network </b>Yes/No</p></div>
+					<div id="" class="col-4"><p><b>Load Balancer/VIP </b>Response</p></div>
+					<div id="" class="col-4"><p><b>NAT IP List </b>Answer</p></div>
+					<div id="" class="col-4"><p><b>Proxy Servers </b>Response</p></div>
+				</div>
+				<p></p>
+			<p>End User Desktop Environment</p>
+				<p></p>
+				<div id="endUserEnv" class="row">
+					<div id="" class="col-4"><p><b>What browsers do user have access to </b>Chrome,IE,Firefox</p></div>
+					<div id="" class="col-4"><p><b>What versions of each available browsers are allowed</b>Version Number</p></div>
+					<div id="" class="col-4"><p><b>Do you run IE 11 </b>Yes/No</p></div>
+					<div id="" class="col-4"><p><b>Can users enable compatibility mode in IE 11 </b>Yes/No</p></div>
+					<div id="" class="col-4"><p><b>Is IE deployed in Enterprise Mode? </b>Yes/No</p></div>
+					<div id="" class="col-4"><p><b>Can users enable pop-ups for specific URLs </b>Yes/No</p></div>
+					<div id="" class="col-4"><p><b>O365(Time Line) </b>Yes/No</p></div>
+					<div id="" class="col-4"><p><b>Do users have access to: Chrome/Firefox/Edge </b>Choices</p></div>
+				</div>	
+				<p></p>
+			<p>Disaster Recovery / High Availability</p>
+				<p></p>	
+				<div id="disasterRecovery" class="row">
+					<div id="" class="col-4"><p><b>Do you have Exchange and AD being replicated to a secondary data center </b>Yes/No</p></div>
+					<div id="" class="col-4"><p><b>What is the DR/HA configuration look like </b>Response</p></div>
+					<div id="" class="col-4"><p><b>Can you provide a diagram of the Exchange environment with the DR/HA included </b>Answer</p></div>
+				</div>			
+			</div>
 		</div>
 		<hr>
 		<div id="usage" class="">
@@ -99,11 +138,42 @@
 		</div>
 		<hr>
 		<div id="import" class="">
-			<h5>Import</h5>
+			<h5><a href="#importContent" data-toggle="collapse">Import <i class="fa fa-arrows-v" aria-hidden="true"></i>
+</a></h5>
+			<br>
+			<div id="importContent" class="collapse in">
+				<div id="importDetails" class="row">
+					<div id="" class="col-4"><p><b>SoW/Service Brief </b> Answer</p></div>
+					<div id="" class="col-4"><p><b>Existing Archive </b> Response</p></div>
+					<div id="" class="col-4"><p><b>Who is Doing the Conversion </b> Answer</p></div>
+					<div id="" class="col-4"><p><b>Size </b> 5TB</p></div>
+					<div id="" class="col-4"><p><b>Storage </b> Storage Solution</p></div>
+					<div id="" class="col-4"><p><b>Format </b> PST</p></div>
+					<div id="" class="col-4"><p><b>Expected Timeline </b> Length</p></div>
+					<div id="" class="col-4"><p><b>Retention Policy </b> 7 Years</p></div>
+					<div id="" class="col-4"><p><b>Drive Encryption Type </b> Veracrypt</p></div>				
+				</div>
+			</div>
 		</div>
 		<hr>
 		<div id="poc" class="">
-			<h5>POC</h5>
+			<h5><a href="#pocContent" data-toggle="collapse">POC <i class="fa fa-arrows-v" aria-hidden="true"></i>
+</a></h5>
+			<br>
+			<div id="pocContent" class="collapse in">
+				<div id="pocDetails" class="row">
+					<div id="" class="col-4"><p><b>Sandbox POC </b> Yes/No</p></div>
+					<div id="" class="col-4"><p><b>Prod Based POC </b> Yes/No</p></div>
+					<div id="" class="col-4"><p><b>What Will Be Tested On POC </b> Reason</p></div>
+					<div id="" class="col-4"><p><b>Customer Agreement to Success Criteria </b> Yes/No</p></div>
+					<div id="" class="col-4"><p><b>Environment </b> POC/UAT</p></div>
+					<div id="" class="col-4"><p><b>Time Needed </b> 5 Months</p></div>
+					<div id="" class="col-4"><p><b>How to Convert the Environment and/or Data to PROD </b> HOW</p></div>
+					<div id="" class="col-4"><p><b>Appliance(s) Installation Location </b> Production/Lab</p></div>
+					<div id="" class="col-4"><p><b>PROD: Locations and Environments Needed </b> Answer</p></div>
+					<div id="" class="col-4"><p><b>Mailboxes that will be Journaled to POC  </b> 1234332</p></div>					
+				</div>
+			</div>
 		</div>
 		<hr>
 		<div id="rfes" class="">
