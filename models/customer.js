@@ -13,5 +13,5 @@ var CustomerSchema = new mongoose.Schema({
 	created: {type: Date, default: Date.now}
 });
 
-var Customer = mongoose.model("Cusotmer", CustomerSchema);
-model.export = Customer
+var Customer = mongoose.model("Customer", CustomerSchema);
+module.export = Customer

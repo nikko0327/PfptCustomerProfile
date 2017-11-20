@@ -13,7 +13,7 @@
 		<div id="generalInfo" class="">
 			<h5>General Information</h5>
 			<br>
-			<div id="genralInfoContent" class="row">
+			<div id="genralInfoContent1" class="row">
 				<div id="" class="col-4"><p><b>Customer Name </b>Metlife</p></div>
 				<div id="" class="col-4"><p><b>Sales Rep. </b>Salesman</p></div>
 				<div id="" class="col-4"><p><b>SE </b>Engineer</p></div>
@@ -24,19 +24,83 @@
 				<div id="" class="col-4"><p><b>NAT IP </b>IP Addr</p></div>
 				<div id="" class="col-4"><p><b>Contacts </b>Name?</p></div>
 				<div id="" class="col-4"><p><b>Status </b>Green</p></div>
-				<div id="" class="col-4"><p><b>PFPT Protection </b>Yes/No</p></div>
-				<div id="" class="col-4"><p><b>On-Prem </b>Yes/No</p></div>
-				<div id="" class="col-4"><p><b>PFPT Product(s) in Use </b>TRAP</p></div>
-				<div id="" class="col-4"><p><b>TAP URL Defense </b>Yes/No</p></div>
-				<div id="" class="col-4"><p><b>Compliance Getway Deployment </b>Yes/No</p></div>
-				<div id="" class="col-4"><p><b>PFPT Encryption </b>Yes/No</p></div>
-				<div id="" class="col-4"><p><b>Gateway/Desktop </b>Gateway/Desktop</p></div>
+			</div>
+			<p></p>
+			<div id="genralInfoContent2" class="row">
+				<div id="" class="col-4"><p><b>Are you currently using PFPT Protection? (PPS) </b>Yes/No</p></div>
+				<div id="" class="col-4"><p><b>Is your PPS POD or on-prem? </b>Yes/No</p></div>
+				<div id="" class="col-4"><p><b>What other PFPT products do you own and are using? </b>TRAP</p></div>
+				<div id="" class="col-4"><p><b>Are you using TAP URL defense? </b>Yes/No</p></div>
+				<div id="" class="col-4"><p><b>Is BATV (bounce address tag validation) enabled? </b>Yes/No</p></div>
+				<div id="" class="col-4"><p><b>Do you have Compliance Gateway deployed? </b>Yes/No</p></div>
+				<div id="" class="col-4"><p><b>Are you using PFPT Encryptiion? </b>Yes/No</p></div>
+				<div id="" class="col-4"><p><b>Gateway or Desktop plugin? </b>Gateway/Desktop</p></div>
 			</div>
 		</div>		
 		<hr>
 		<div id="emailSystem" class="">
-			<h5>Email Systems</h5>
+			<h5><a href="#emailContainer" data-toggle="collapse">Email Systems <i class="fa fa-arrows-v" aria-hidden="true"></i>
+</a></h5>
 			<br>
+			<div id="emailContainer" class="collapse in">
+			<p>On Prem Exchange w/ On Prem Appliances</p>
+				<p></p>
+				<div id="emailSystemContent1" class="row">
+					<div id="" class="col-4"><p><b>What versions of Exchange are running? </b>Version</p></div>
+					<div id="" class="col-4"><p><b>Do you have an Enterprise CAL? </b>Yes/No</p></div>
+					<div id="" class="col-4"><p><b>Please provide a diagram of your exchange infrastructure </b>DIAGRAM?</p></div>
+					<div id="" class="col-4"><p><b>No. of journal mailboxes </b>12345</p></div>
+					<div id="" class="col-4"><p><b>How are your journal rules defined (hub transport or database)? </b>Database</p></div>
+					<div id="" class="col-4"><p><b>Are journal mailboxes on their own DB? </b>Yes/No</p></div>
+					<div id="" class="col-4"><p><b>How much extra storage is available on the Journaling Mailbox Databases? </b>5TB</p></div>
+					<div id="" class="col-4"><p><b>Are DAGs being used? </b>Yes/No</p></div>
+					<div id="" class="col-4"><p><b>Multi-site redundancy </b>Yes/No</p></div>
+					<div id="" class="col-4"><p><b>Include your AD and diagram </b>HOW?</p></div>
+					<div id="" class="col-4"><p><b>Are you using RMS? </b>Yes/No</p></div>
+					<div id="" class="col-4"><p><b>Is Enable Journal Decryption set to: </b>True/False</p></div>				
+				</div>
+			<p>Active Directory Details</p>
+				<p></p>
+				<div id="emailSystemContent2" class="row">
+					<div id="" class="col-4"><p><b>Resource forest deployment? </b>Yes/No</p></div>
+					<div id="" class="col-4"><p><b>Are you using multi-forest? </b>Yes/No</p></div>
+					<div id="" class="col-4"><p><b>Are all mailboxes within a single resource forest? (this scenario only supported with SAML or Remote Auth)</b>Yes/No</p></div>
+					<div id="" class="col-4"><p><b>what is the structure of multi-domain architecture / their relationships? </b>Yes/No</p></div>
+					<div id="" class="col-4"><p><b>Do you require a secure connection to LDAP? (Note: PFPT does not support a secure LDAP)</b>Yes/No</p></div>
+					<div id="" class="col-4"><p><b>Are you using RMS? </b>Yes/No</p></div>
+				</div>
+			<p>on prem EXCH (hosted appliance)</p>
+				<p></p>
+				<div id="emailSystemContent3" class="row">
+					<div id="" class="col-4"><p><b>Are you using RMS? </b>Yes/No</p></div>
+					<div id="" class="col-4"><p><b>Is Enable Journal Decryption set to True / False? </b>True/False</p></div>
+					<div id="" class="col-4"><p><b>What versions of Exchange are running? </b>Version</p></div>
+					<div id="" class="col-4"><p><b>Does the customer have an Enterprise Exchange license? </b>Yes/No</p></div>
+					<div id="" class="col-4"><p><b>How are your journal rules defined (hub transport or database)? </b>Database</p></div>
+					<div id="" class="col-4"><p><b>Please provide a diagram of your exchange infrastructure</b>Diagram?</p></div>
+					<div id="" class="col-4"><p><b>How are your DAGs being used? </b>Yes/No</p></div>
+					<div id="" class="col-4"><p><b>Multi-site redundancy </b>Response</p></div>
+					<div id="" class="col-4"><p><b>Resource forest deployment</b>Answer</p></div>
+					<div id="" class="col-4"><p><b>Include your AD and diagram</b>HOW?</p></div>
+					<div id="" class="col-4"><p><b>are you using multi-forest? </b>Yes/No</p></div>
+					<div id="" class="col-4"><p><b>Do you require a secure connection to LDAP? (Note: PFPT does not support a secure LDAP)</b>Yes/No</p></div>
+				</div>
+			<p>O365 (Hosted Appliances)</p>
+				<p></p>
+				<div id="emailSystemContent4" class="row">
+					
+				</div>
+			<p>on prem EXCH + O365 (on prem appliance)</p>
+				<p></p>
+				<div id="emailSystemContent5" class="row">
+					
+				</div>
+			<p>on prem EXCH + O365 (hosted appliance)</p>
+				<p></p>
+				<div id="emailSystemContent6" class="row">
+					
+				</div>					
+			</div>		
 		</div>
 		<hr>
 		<div id="journaling" class=""> 
