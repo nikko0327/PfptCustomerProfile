@@ -1,6 +1,5 @@
 <% include partials/header %>
 <div class="">
-  <div>
    <br>
           <h2 style="color: #448aff;text-align: center;"> Customers </h2>
   <hr>
@@ -25,23 +24,6 @@
           </tr>
        </thead>   
        <tbody>
-          <tr class="row-content">
-             <td> <span class="label label-default"> New </span></td>
-             <td>Metlife</td>
-             <td>John Doe</td>
-             <td>Some SE</td>
-             <td>Some Manager</td>
-             <td>Somewhere</td>
-             <td>Supervision</td>
-             <td>NAT IP</td>
-             <td>Contacts</td>
-             <td>
-                <a href="/show/"><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block">More</button></a>
-                &nbsp 
-                <button data-toggle="modal" data-target="#editModal" class="btn btn-success center-block">Edit</button></div>
-             </td>
-          </tr>
-
           <% customers.forEach(function(customer){ %>
            <tr class="row-content">
              <td> <span class="label label-default"> <%= customer.status %> </span></td>
@@ -126,6 +108,5 @@
     </div>
     </div>
   </div>
-
 </div>
 <% include partials/footer %>
