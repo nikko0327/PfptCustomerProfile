@@ -25,18 +25,6 @@ var CustomerSchema = new mongoose.Schema({
 
 var Customer = mongoose.model("Customer", CustomerSchema);
 
-// Customer.create({
-// 	name: "Kearny",
-// 	status: "OLD",
-// 	salesRep: "1One",
-// 	archivingSe: "2Two",
-// 	accManager: "3Three",
-// 	location: "4Four",
-// 	supervision: "5Five",
-// 	natIp: "6Six",
-// 	contacts: "7Seven"
-// });
-
  // Customer.create({
 	// name: "Maine Health",
 	// salesRep: "TJ Lapore",
@@ -87,9 +75,20 @@ router.get("/index", function(req, res){
 	})
 });
 
-//SHOW ROUTE
-router.get("/show", function(req, res){
-	res.render("show");
+// SHOW ROUTE
+// router.get("/show", function(req, res){
+// 	res.render("show");
+// });
+
+// SHOW ROUTE
+router.get("/index/:id", function(req, res){
+	Customer.findById(req.params.id, function(err, customer){
+		if(err){
+			res.redirect("/index");
+		}else{
+			res.render("show", {customer: customer});
+		}
+	});
 });
 
 module.exports = router;

@@ -2,7 +2,7 @@
 
 <div class="container" style="border: .2px solid gray">
 	<div id="customerHeader" class="">
-		<h3>Maine Health</h3>
+		<h3><%= customer.name %></h3>
 	</div>
 	<br>
 	<div id="content" class="">
@@ -21,24 +21,23 @@
 			</div>
 			<br>
 			<div id="genralInfoContent1" class="row">
-				<div id="" class="col-4"><p><b>Sales Rep. </b>TJ Lapore</p></div>
-				<div id="" class="col-4"><p><b>SE </b>Jason Colvin</p></div>
-				<div id="" class="col-4"><p><b>Account Manager </b>Jeffey Heller</p></div>
-				<div id="" class="col-4"><p><b>TEM </b>Aimee Wheelon</p></div>
-				<div id="" class="col-4"><p><b>TAM </b>John Doe</p></div>
-				<div id="" class="col-4"><p><b>Location </b>CA</p></div>
-				<div id="" class="col-4"><p><b>Implementaion Specialist </b>Jane Doe</p></div>
+				<div id="" class="col-4"><p><b>Sales Rep. </b><%= customer.salesRep %></p></div>
+				<div id="" class="col-4"><p><b>SE </b><%= customer.archivingSe %></p></div>
+				<div id="" class="col-4"><p><b>Account Manager </b><%= customer.accManager %></p></div>
+				<div id="" class="col-4"><p><b>TEM </b><%= customer.tem %></p></div>
+				<div id="" class="col-4"><p><b>TAM </b><%= customer.tam %></p></div>
+				<div id="" class="col-4"><p><b>Location </b><%= customer.location %></p></div>
+				<div id="" class="col-4"><p><b>Implementaion Specialist </b><%= customer.impSpecialist %></p></div>
 			</div>
 			<p></p>
 			<div id="genralInfoContent2" class="row">
-				<div id="" class="col-4"><p><b>Customer Name </b>Maine Health</p></div>
-				<div id="" class="col-4"><p><b>Number of Users </b>20,050</p></div>
-				<div id="" class="col-4"><p><b>Location </b>Portland, ME</p></div>
-				<div id="" class="col-4"><p><b>Supervision </b>No</p></div>
-				<div id="" class="col-4"><p><b>Contacts </b>Paul Caron</p></div>
-				<div id="" class="col-4"><p><b>Status </b>Implementation</p></div>
-				<div id="" class="col-4"><p><b>NAT IP Address </b>63.247.60.141</p></div>
-				<div id="" class="col-4"><p><b>Incumbent Solution </b>EV</p></div>
+				<div id="" class="col-4"><p><b>Customer Name </b><%= customer.name %></p></div>
+				<div id="" class="col-4"><p><b>Number of Users </b><%= customer.numberOfUsers %></p></div>
+				<div id="" class="col-4"><p><b>Supervision </b><%= customer.supervision %></p></div>
+				<div id="" class="col-4"><p><b>Contacts </b><%= customer.contacts %></p></div>
+				<div id="" class="col-4"><p><b>Status </b><%= customer.status %></p></div>
+				<div id="" class="col-4"><p><b>NAT IP Address </b><%= customer.natIp %></p></div>
+				<div id="" class="col-4"><p><b>Incumbent Solution </b><%= customer.incumbentSolution %></p></div>
 			</div>
 		</div>		
 		<hr>
