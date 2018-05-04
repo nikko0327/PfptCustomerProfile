@@ -64,6 +64,17 @@ router.get("/new", function(req, res){
 	res.render("new");
 });
 
+//CREATE ROUTE
+router.post("/index", function(req, res){
+	Customer.create(req.body.customer, function(err, foundEntry){
+		if(err){
+			res.redirect("/new");
+		} else{
+			res.redirect("/index");
+		}
+	});
+});
+
 //INDEX ROUTE
 router.get("/index", function(req, res){
 	Customer.find({}, function(err, customers){
