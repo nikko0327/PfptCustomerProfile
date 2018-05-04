@@ -64,6 +64,17 @@ router.post("/index", function(req, res){
 	});
 });
 
+//UPDATE ROUTE
+router.put("/index/:id", function(req, res){
+	Customer.findByIdAndUpdate(req.params.id, req.body.customer, function(err, updateEntry){
+		if(err){
+			res.redirect("/index/:id");
+		} else{
+			res.redirect("/index/" + req.params.id);
+		}
+	});
+});
+
 //INDEX ROUTE
 router.get("/index", function(req, res){
 	Customer.find({}, function(err, customers){
