@@ -25,6 +25,7 @@ var CustomerSchema = new mongoose.Schema({
 
 var Customer = mongoose.model("Customer", CustomerSchema);
 
+////Test run on DB 
  // Customer.create({
 	// name: "Maine Health",
 	// salesRep: "TJ Lapore",
@@ -74,11 +75,6 @@ router.get("/index", function(req, res){
 		}
 	})
 });
-
-// SHOW ROUTE
-// router.get("/show", function(req, res){
-// 	res.render("show");
-// });
 
 // SHOW ROUTE
 router.get("/index/:id", function(req, res){
