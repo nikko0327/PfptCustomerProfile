@@ -7,7 +7,7 @@ var ApplianceQuestions = require("../models/appliances");
 var DesktopNetworkQuestions = require("../models/desktop_network");
 var EmailPSQuestions = require("../models/email_ps");
 var EmailSEQuestions = require("../models/email_se");
-var JournalingQuestions = require("../models/journaling");
+var JournallingQuestions = require("../models/journaling");
 var OtherDataSourcesQuestions = require("../models/other_data_sources");
 var UsageQuestions = require("../models/usage");
 var ImportQuestions = require("../models/import");
@@ -70,7 +70,7 @@ router.post("/index", function (req, res) {
         }
     });
 
-    JournalingQuestions.create({
+    JournallingQuestions.create({
         _id: req.body.customer["_id"]
     }, function (error, result) {
         if (error) {
