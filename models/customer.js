@@ -6,6 +6,10 @@ var CustomerSchema = new mongoose.Schema({
         unique: true,
         required: true
     },
+    impSpecialist: {
+        type: String,
+        default: null
+    },
     salesRep: {
         type: String,
         default: null
@@ -57,12 +61,7 @@ var CustomerSchema = new mongoose.Schema({
     numberOfUsers: {
         type: String,
         default: null
-    },
-    impSpecialist: {
-        type: String,
-        default: null
     }
-
 });
 
 var Customer = mongoose.model("Customer", CustomerSchema);
