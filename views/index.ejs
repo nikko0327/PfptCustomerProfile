@@ -1,112 +1,118 @@
 <% include partials/header %>
 <div class="">
-   <br>
-          <h2 style="color: #448aff;text-align: center;"> Customers </h2>
-  <hr>
-    <table class="table table-hover table-striped">
-      <div class="dropdown">
-        <a class="btn-top" style="margin-right: 15px;" href="/new/" class="btn btn-primary btn-success pull-right"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> New Customer</a>
-    </div>
     <br>
-  </div>
-       <thead>
-          <tr class="row-name">
-             <th style="width:10%">Customer Name</th>
-             <th>Status</th>
-             <th>Sales Rep</th>
-             <th>Archiving SE</th>
-             <th>Acc. Manager</th>
-             <th>TEM</th>
-             <th>TAM</th>
-             <th>Supervision</th>
-             <th>Location</th>
-             <th>Options</th>
-          </tr>
-       </thead>   
-       <tbody>
-          <% customers.forEach(function(customer){ %>
-           <tr class="row-content">
-             <td> <span class="label label-default"><b><%= customer.name %></b></span></td>
-             <td><%= customer.status %></td>
-             <td><%= customer.salesRep %></td>
-             <td><%= customer.archivingSe %></td>
-             <td><%= customer.accManager %></td>
-             <td><%= customer.tem %></td>
-             <td><%= customer.tam %></td>
-             <td><%= customer.supervision %></td>
-             <td><%= customer.location %></td>
-             <td>
-                <a href="/index/<%= customer._id %>"><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block">More</button></a>
-                &nbsp 
-                <!-- <button data-toggle="modal" data-target="#editModal" class="btn btn-success center-block">Edit</button></div> -->
-             </td>
-          </tr>
-          <% }); %>
-
-       </tbody>
-    </table>
-
-    <!-- line modal -->
-  <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-        <h3 class="modal-title" id="lineModalLabel">Customer Name Here</h3>
-      </div>
-      <div class="modal-body">
-        
-              <!-- content goes here -->
-        <form>
-                <div class="form-group">
-                  <label for="status">Status</label>
-                  <input type="text" class="form-control" id="status" placeholder="Status">
-                </div>
-                <div class="form-group">
-                  <label for="customername">Customer Name</label>
-                  <input type="text" class="form-control" id="customername" placeholder="Customer Name">
-                </div>
-                <div class="form-group">
-                  <label for="salesrep">Sales Rep.</label>
-                  <input type="text" class="form-control" id="salesrep" placeholder="Sales Rep. Name">
-                </div>
-                <div class="form-group">
-                  <label for="archivingse">Archiving SE</label>
-                  <input type="text" class="form-control" id="archivingse" placeholder="Archiving SE Name">
-                </div>
-                <div class="form-group">
-                  <label for="accmanager">Acc. Manager</label>
-                  <input type="text" class="form-control" id="accmanager" placeholder="Acc. Manager Name">
-                </div>
-                <div class="form-group">
-                  <label for="location">Location</label>
-                  <input type="text" class="form-control" id="location" placeholder="Location">
-                </div>
-                <div class="form-group">
-                  <label for="supervision">Supervision</label>
-                  <input type="text" class="form-control" id="supervision" placeholder="Supervision">
-                </div>
-                 <div class="form-group">
-                  <label for="natip">NAT IP</label>
-                  <input type="text" class="form-control" id="natip" placeholder="NAT IP">
-                </div>
-                 <div class="form-group">
-                  <label for="supervision">Contacts</label>
-                  <input type="text" class="form-control" id="contacts" placeholder="Contacts">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
-
-      </div>
-      <div class="modal-footer">
-        <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-danger" data-dismiss="modal"  role="button">Close</button>
-          </div>
+    <h2 style="color: #448aff;text-align: center;"> Customers </h2>
+    <hr>
+    <table class="table table-hover table-striped">
+        <div class="dropdown">
+            <a class="btn-top" style="margin-right: 15px;" href="/new/"
+               class="btn btn-primary btn-success pull-right"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                New Customer</a>
         </div>
-      </div>
+        <br>
+</div>
+<thead>
+<tr class="row-name">
+    <th style="width:10%">Customer Name</th>
+    <th>Status</th>
+    <th>Sales Rep</th>
+    <th>Archiving SE</th>
+    <th>Acc. Manager</th>
+    <th>TEM</th>
+    <th>TAM</th>
+    <th>Supervision</th>
+    <th>Location</th>
+    <th>Options</th>
+</tr>
+</thead>
+<tbody>
+<% customers.forEach(function(customer){ %>
+<tr class="row-content">
+    <td><span class="label label-default"><b><%= customer._id %></b></span></td>
+    <td><%= customer.status %></td>
+    <td><%= customer.salesRep %></td>
+    <td><%= customer.archivingSe %></td>
+    <td><%= customer.accManager %></td>
+    <td><%= customer.tem %></td>
+    <td><%= customer.tam %></td>
+    <td><%= customer.supervision %></td>
+    <td><%= customer.location %></td>
+    <td>
+        <a href="/index/<%= customer._id %>">
+            <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block">More
+            </button>
+        </a>
+        &nbsp
+        <!-- <button data-toggle="modal" data-target="#editModal" class="btn btn-success center-block">Edit</button></div> -->
+    </td>
+</tr>
+<% }); %>
+
+</tbody>
+</table>
+
+<!-- line modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                            class="sr-only">Close</span></button>
+                <h3 class="modal-title" id="lineModalLabel">Customer Name Here</h3>
+            </div>
+            <div class="modal-body">
+
+                <!-- content goes here -->
+                <form>
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <input type="text" class="form-control" id="status" placeholder="Status">
+                    </div>
+                    <div class="form-group">
+                        <label for="customername">Customer Name</label>
+                        <input type="text" class="form-control" id="customername" placeholder="Customer Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="salesrep">Sales Rep.</label>
+                        <input type="text" class="form-control" id="salesrep" placeholder="Sales Rep. Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="archivingse">Archiving SE</label>
+                        <input type="text" class="form-control" id="archivingse" placeholder="Archiving SE Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="accmanager">Acc. Manager</label>
+                        <input type="text" class="form-control" id="accmanager" placeholder="Acc. Manager Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" class="form-control" id="location" placeholder="Location">
+                    </div>
+                    <div class="form-group">
+                        <label for="supervision">Supervision</label>
+                        <input type="text" class="form-control" id="supervision" placeholder="Supervision">
+                    </div>
+                    <div class="form-group">
+                        <label for="natip">NAT IP</label>
+                        <input type="text" class="form-control" id="natip" placeholder="NAT IP">
+                    </div>
+                    <div class="form-group">
+                        <label for="supervision">Contacts</label>
+                        <input type="text" class="form-control" id="contacts" placeholder="Contacts">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" role="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
-  </div>
+</div>
 </div>
 <% include partials/footer %>
