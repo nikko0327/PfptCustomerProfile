@@ -17,9 +17,9 @@ var db = mongoose.connection;
 
 //handling mongo error
 db.on("error", console.error.bind(console, "Connection Error: "));
-db.once("open", function () {
-    //Connection Message?
-});
+// db.once("open", function () {
+//     //Connection Message?
+// });
 
 //using sessions for tracking logins
 app.use(session({

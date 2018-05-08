@@ -39,7 +39,9 @@ router.post("/index", function (req, res) {
     }, function (error, result) {
         if (error) {
             console.log(error);
+
             res.redirect("/new");
+
         }
     });
 
