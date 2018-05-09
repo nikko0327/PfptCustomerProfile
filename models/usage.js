@@ -1,11 +1,10 @@
 var mongoose = require('mongoose');
 
 var usage_schema = new mongoose.Schema({
-    _id: {
+    name: {
         type: String,
         required: true,
-        unique: true,
-        index: true
+        unique: true
     },
     supervision: {
         supervision_system: {

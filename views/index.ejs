@@ -28,7 +28,7 @@
 <tbody>
 <% customers.forEach(function(customer){ %>
 <tr class="row-content">
-    <td><span class="label label-default"><b><%= customer._id %></b></span></td>
+    <td><span class="label label-default"><b><%= customer.name %></b></span></td>
     <td><%= customer.status %></td>
     <td><%= customer.salesRep %></td>
     <td><%= customer.archivingSe %></td>
@@ -38,7 +38,7 @@
     <td><%= customer.supervision %></td>
     <td><%= customer.location %></td>
     <td>
-        <a href="/index/<%= customer._id %>">
+        <a href="/index/<%= customer.name %>">
             <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block">More
             </button>
         </a>

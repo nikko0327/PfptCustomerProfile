@@ -2,10 +2,9 @@ var mongoose = require("mongoose");
 //var Schema = mongoose.Schema;
 
 var email_ps_schema = new mongoose.Schema({
-    _id: {
+    name: {
         type: String,
         unique: true,
-        index: true,
         required: true
     },
     // On prem exchange w/ on prem appliances

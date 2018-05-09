@@ -2,10 +2,9 @@ var mongoose = require("mongoose");
 // var Schema = mongoose.Schema;
 
 var desktop_network_schema = new mongoose.Schema({
-    _id: {
+    name: {
         type: String,
         unique: true,
-        index: true,
         required: true
     },
     network_security: {

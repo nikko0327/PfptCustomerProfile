@@ -1,11 +1,10 @@
 var mongoose = require('mongoose');
 
 var journaling_schema = new mongoose.Schema({
-    _id: {
+    name: {
         type: String,
         unique: true,
-        required: true,
-        index: true
+        required: true
     },
     exchange: {
         exchange_on_prem: {

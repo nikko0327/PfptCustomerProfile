@@ -1,11 +1,10 @@
 var mongoose = require('mongoose');
 
 var import_schema = new mongoose.Schema({
-    _id: {
+    name: {
         type: String,
         required: true,
-        unique: true,
-        index: true
+        unique: true
     },
     need_to_migrate_legacy_data: {
         type: String,

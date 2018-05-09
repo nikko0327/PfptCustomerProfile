@@ -26,72 +26,63 @@ router.get("/new", function (req, res) {
 //CREATE ROUTE
 router.post("/index", function (req, res) {
     ApplianceQuestions.create({
-        _id: req.body.customer["_id"]
+        name: req.body.customer["name"].toLowerCase()
     }, function (error, result) {
         if (error) {
             console.log(error);
-            res.redirect("/new");
         }
     });
 
     DesktopNetworkQuestions.create({
-        _id: req.body.customer["_id"]
+        name: req.body.customer["name"].toLowerCase()
     }, function (error, result) {
         if (error) {
             console.log(error);
-
-            res.redirect("/new");
-
         }
     });
 
     EmailSEQuestions.create({
-        _id: req.body.customer["_id"]
+        name: req.body.customer["name"].toLowerCase()
     }, function (error, result) {
         if (error) {
             console.log(error);
-            res.redirect("/new");
         }
     });
 
     EmailPSQuestions.create({
-        _id: req.body.customer["_id"]
+        name: req.body.customer["name"].toLowerCase()
     }, function (error, result) {
         if (error) {
             console.log(error);
-            res.redirect("/new");
         }
     });
 
     ImportQuestions.create({
-        _id: req.body.customer["_id"]
+        name: req.body.customer["name"].toLowerCase()
     }, function (error, result) {
         if (error) {
             console.log(error);
-            res.redirect("/new");
         }
     });
 
     JournallingQuestions.create({
-        _id: req.body.customer["_id"]
+        name: req.body.customer["name"].toLowerCase()
     }, function (error, result) {
         if (error) {
             console.log(error);
-            res.redirect("/new");
         }
     });
 
     OtherDataSourcesQuestions.create({
-        _id: req.body.customer["_id"]
+        name: req.body.customer["name"].toLowerCase()
     }, function (error, result) {
         if (error) {
             console.log(error);
-            res.redirect("/new");
         }
     });
 
     POCQuestions.create({
-        _id: req.body.customer["_id"],
+        name: req.body.customer["name"].toLowerCase(),
         POC: {
             is_sandbox_poc: "Yes",
             is_prod_poc: "No"
@@ -99,23 +90,37 @@ router.post("/index", function (req, res) {
     }, function (error, result) {
         if (error) {
             console.log(error);
-            res.redirect("/new");
         }
     });
 
     UsageQuestions.create({
-        _id: req.body.customer["_id"]
+        name: req.body.customer["name"].toLowerCase()
     }, function (error, result) {
         if (error) {
             console.log(error);
-            res.redirect("/new");
         }
     });
 
-    Customer.create(req.body.customer, function (err, foundEntry) {
+    Customer.create({
+        name: req.body.customer["name"],
+        impSpecialist: req.body.customer["impSpecialist"],
+        salesRep: req.body.customer["salesRep"],
+        status: req.body.customer["status"],
+        archivingSe: req.body.customer["archivingSe"],
+        accManager: req.body.customer["accManager"],
+        location: req.body.customer["location"],
+        supervision: req.body.customer["supervision"],
+        tem: req.body.customer["tem"],
+        tam: req.body.customer["tam"],
+        natIp: req.body.customer["natIp"],
+        contacts: req.body.customer["contacts"],
+        incumbentSolution: req.body.customer["incumbentSolution"],
+        numberOfUsers: req.body.customer["numberOfUsers"]
+    }, function (err, foundEntry) {
         if (err) {
             console.log(err);
-            res.redirect("/new");
+            alert("WARNING");
+            //res.redirect("/new");
         } else {
             res.redirect("/index");
         }
@@ -124,14 +129,40 @@ router.post("/index", function (req, res) {
 
 //UPDATE ROUTE
 router.put("/index/:id", function (req, res) {
-    Customer.findByIdAndUpdate(req.params.id, req.body.customer, function (err, updateEntry) {
-        if (err) {
-            res.redirect("/index/:id");
-        } else {
-            res.redirect("/index/" + req.params.id);
-        }
-    });
-});
+
+    // Just for updating name
+    if (req.body.customer !== undefined && req.body.customer !== null) {
+        Customer.findOneAndUpdate({name: req.params.id}, req.body.customer, function (err, updateEntry) {
+            if (err) {
+                res.redirect("/index/:id");
+                console.log(err);
+            } else {
+                POCQuestions.findOneAndUpdate({"name": req.params.id}, {"name": req.body.customer["name"]}, function (err, result) {
+                    if (err) {
+                        console.log(err);
+                        res.redirect("/index");
+                    } else {
+                        res.redirect("/index/" + req.body.customer["name"]);
+                        // Nest further updates here.
+                    }
+                });
+            }
+        });
+    }
+
+
+    if (req.body.poc_questions !== undefined && req.body.poc_questions !== null) {
+        POCQuestions.findOneAndUpdate({name: req.params.id}, req.body.poc_questions, function (err, result) {
+            if (err) {
+                console.log(err);
+                res.redirect("/index");
+            } else {
+                res.redirect("/index/" + req.params.id);
+            }
+        });
+    }
+})
+;
 
 //INDEX ROUTE
 router.get("/index", function (req, res) {
@@ -147,21 +178,25 @@ router.get("/index", function (req, res) {
 
 // SHOW ROUTE
 router.get("/index/:id", function (req, res) {
-    Customer.findById(req.params.id, function (err, result) {
+    Customer.findOne({"name": req.params.id}, function (err, result) {
         if (err) {
+            console.log(err);
             res.redirect("/index");
         } else {
             var customer = result;
         }
 
-        POCQuestions.findById(req.params.id, function (err, result) {
+        POCQuestions.findOne({"name": req.params.id}, function (err, result) {
             if (err) {
+                console.log(err);
                 res.redirect("/index");
             } else {
                 var poc_questions = result;
             }
 
             res.render("show", {customer: customer, poc_questions: poc_questions});
+            console.log({customer: customer, poc_questions: poc_questions});
+            console.log("-----")
         });
     });
 });
