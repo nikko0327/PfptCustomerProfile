@@ -4,6 +4,7 @@
   "description": "Proofpoint potential customer profile",
   "main": "app.js",
   "dependencies": {
+    "ajax": "0.0.4",
     "babyparse": "^0.4.6",
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
@@ -23,7 +24,10 @@
     "type": "git",
     "url": "git+https://github.com/nikko0327/PfptCustomerProfile.git"
   },
-  "author": "Nikko Lee",
+  "author": [
+    "Nikko Lee",
+    "Michael Huang"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/nikko0327/PfptCustomerProfile/issues"

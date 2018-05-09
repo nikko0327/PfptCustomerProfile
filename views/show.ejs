@@ -45,8 +45,8 @@
         </div>
         <hr>
         <div id="emailSystemSe" class="">
-            <h5><a href="#emailContainer" data-toggle="collapse">Email Systems SE<i class="fa fa-arrows-v"
-                                                                                    aria-hidden="true"></i>
+            <h5><a href="#emailContainer" data-toggle="collapse">Email Systems SE <i class="fa fa-arrows-v"
+                                                                                     aria-hidden="true"></i>
                 </a></h5>
             <br>
             <div id="emailContainer" class="collapse in">
@@ -171,8 +171,8 @@
         </div>
         <hr>
         <div id="emailSystemPs" class="">
-            <h5><a href="#emailContainer2" data-toggle="collapse">Email Systems PS<i class="fa fa-arrows-v"
-                                                                                     aria-hidden="true"></i>
+            <h5><a href="#emailContainer2" data-toggle="collapse">Email Systems PS <i class="fa fa-arrows-v"
+                                                                                      aria-hidden="true"></i>
                 </a></h5>
             <br>
             <div id="emailContainer2" class="collapse in">
@@ -347,8 +347,8 @@
         </div>
         <hr>
         <div id="otherDataSources" class="">
-            <h5><a href="#otherDataSourcesContainer" data-toggle="collapse">Other Data Sources<i class="fa fa-arrows-v"
-                                                                                                 aria-hidden="true"></i>
+            <h5><a href="#otherDataSourcesContainer" data-toggle="collapse">Other Data Sources <i class="fa fa-arrows-v"
+                                                                                                  aria-hidden="true"></i>
                 </a></h5>
             <br>
             <div id="otherDataSourcesContainer" class="collapse in">
@@ -942,7 +942,7 @@
                                    value="<%= customer.name %>"
                                    name="poc_questions[name]">
                         </div>
-
+                        <h5 style="color: mediumvioletred">POC</h5>
                         <div class="form-group">
                             <label for="sandbox_poc">Sandbox POC</label>
                             <input type="text" class="form-control" id="sandbox_poc"
@@ -955,6 +955,82 @@
                             <input type="text" class="form-control" id="prod_based_poc"
                                    value="<%= poc_questions.POC.is_prod_poc %>"
                                    name="poc_questions[POC][is_prod_poc]">
+                        </div>
+                        <div class="form-group">
+                            <label for="prod_based_poc">What will be tested in the POC?</label>
+                            <input type="text" class="form-control" id="poc_tests"
+                                   value="<%= poc_questions.POC.poc_tests %>"
+                                   name="poc_questions[POC][poc_tests]">
+                        </div>
+                        <div class="form-group">
+                            <label for="prod_based_poc">Has the customer agreed to Success Criteria?</label>
+                            <input type="text" class="form-control" id="agreed_to_success_criteria"
+                                   value="<%= poc_questions.POC.agreed_to_success_criteria %>"
+                                   name="poc_questions[POC][agreed_to_success_criteria]">
+                        </div>
+                        <div class="form-group">
+                            <label for="prod_based_poc">Environments needed? (POC, UAT)</label>
+                            <input type="text" class="form-control" id="envs_needed"
+                                   value="<%= poc_questions.POC.envs_needed %>"
+                                   name="poc_questions[POC][envs_needed]">
+                        </div>
+                        <div class="form-group">
+                            <label for="prod_based_poc">How long do you need them for?</label>
+                            <input type="text" class="form-control" id="how_long_needed"
+                                   value="<%= poc_questions.POC.how_long_needed %>"
+                                   name="poc_questions[POC][how_long_needed]">
+                        </div>
+                        <div class="form-group">
+                            <label for="prod_based_poc">How to convert the environment and/or data to PROD?</label>
+                            <input type="text" class="form-control" id="how_to_convert_env"
+                                   value="<%= poc_questions.POC.how_to_convert_env %>"
+                                   name="poc_questions[POC][how_to_convert_env]">
+                        </div>
+                        <div class="form-group">
+                            <label for="prod_based_poc">Will you be installing appliances in production or in a
+                                lab?</label>
+                            <input type="text" class="form-control" id="installing_in_production_or_lab"
+                                   value="<%= poc_questions.POC.installing_in_production_or_lab %>"
+                                   name="poc_questions[POC][installing_in_production_or_lab]">
+                        </div>
+                        <div class="form-group">
+                            <label for="prod_based_poc">For PROD, how many environments are needed and
+                                locations?</label>
+                            <input type="text" class="form-control"
+                                   value="<%= poc_questions.POC.how_many_envs %>"
+                                   name="poc_questions[POC][how_many_envs]">
+                        </div>
+                        <div class="form-group">
+                            <label for="prod_based_poc">How many mailboxes will you journal into the POC?</label>
+                            <input type="text" class="form-control"
+                                   value="<%= poc_questions.POC.how_many_mailboxes %>"
+                                   name="poc_questions[POC][how_many_mailboxes]">
+                        </div>
+                        <h5 style="color: mediumvioletred">UAT</h5>
+                        <div class="form-group">
+                            <label for="prod_based_poc">Does the customer need/require a UAT or Testing Archive
+                                account?</label>
+                            <input type="text" class="form-control"
+                                   value="<%= poc_questions.UAT.need_UAT %>"
+                                   name="poc_questions[UAT][need_UAT]">
+                        </div>
+                        <div class="form-group">
+                            <label for="prod_based_poc">Will the UAT be forever?</label>
+                            <input type="text" class="form-control"
+                                   value="<%= poc_questions.UAT.UAT_forever %>"
+                                   name="poc_questions[UAT][UAT_forever]">
+                        </div>
+                        <div class="form-group">
+                            <label for="prod_based_poc">Will the UAT be production data, or lab data?</label>
+                            <input type="text" class="form-control"
+                                   value="<%= poc_questions.UAT.is_UAT_production_or_lab %>"
+                                   name="poc_questions[UAT][is_UAT_production_or_lab]">
+                        </div>
+                        <div class="form-group">
+                            <label for="prod_based_poc">What is the primary purpose of the UAT?</label>
+                            <input type="text" class="form-control"
+                                   value="<%= poc_questions.UAT.primary_purpose %>"
+                                   name="poc_questions[UAT][primary_purpose]">
                         </div>
                         <div class="col-4">
                             <button type="submit" class="btn btn-primary">Submit</button>

@@ -26,7 +26,7 @@ router.get("/new", function (req, res) {
 //CREATE ROUTE
 router.post("/index", function (req, res) {
     ApplianceQuestions.create({
-        name: req.body.customer["name"].toLowerCase()
+        name: req.body.customer["name"]
     }, function (error, result) {
         if (error) {
             console.log(error);
@@ -34,7 +34,7 @@ router.post("/index", function (req, res) {
     });
 
     DesktopNetworkQuestions.create({
-        name: req.body.customer["name"].toLowerCase()
+        name: req.body.customer["name"]
     }, function (error, result) {
         if (error) {
             console.log(error);
@@ -42,7 +42,7 @@ router.post("/index", function (req, res) {
     });
 
     EmailSEQuestions.create({
-        name: req.body.customer["name"].toLowerCase()
+        name: req.body.customer["name"]
     }, function (error, result) {
         if (error) {
             console.log(error);
@@ -50,7 +50,7 @@ router.post("/index", function (req, res) {
     });
 
     EmailPSQuestions.create({
-        name: req.body.customer["name"].toLowerCase()
+        name: req.body.customer["name"]
     }, function (error, result) {
         if (error) {
             console.log(error);
@@ -58,7 +58,7 @@ router.post("/index", function (req, res) {
     });
 
     ImportQuestions.create({
-        name: req.body.customer["name"].toLowerCase()
+        name: req.body.customer["name"]
     }, function (error, result) {
         if (error) {
             console.log(error);
@@ -66,7 +66,7 @@ router.post("/index", function (req, res) {
     });
 
     JournallingQuestions.create({
-        name: req.body.customer["name"].toLowerCase()
+        name: req.body.customer["name"]
     }, function (error, result) {
         if (error) {
             console.log(error);
@@ -74,7 +74,7 @@ router.post("/index", function (req, res) {
     });
 
     OtherDataSourcesQuestions.create({
-        name: req.body.customer["name"].toLowerCase()
+        name: req.body.customer["name"]
     }, function (error, result) {
         if (error) {
             console.log(error);
@@ -82,7 +82,7 @@ router.post("/index", function (req, res) {
     });
 
     POCQuestions.create({
-        name: req.body.customer["name"].toLowerCase(),
+        name: req.body.customer["name"],
         POC: {
             is_sandbox_poc: "Yes",
             is_prod_poc: "No"
@@ -94,7 +94,7 @@ router.post("/index", function (req, res) {
     });
 
     UsageQuestions.create({
-        name: req.body.customer["name"].toLowerCase()
+        name: req.body.customer["name"]
     }, function (error, result) {
         if (error) {
             console.log(error);
@@ -134,8 +134,12 @@ router.put("/index/:id", function (req, res) {
     if (req.body.customer !== undefined && req.body.customer !== null) {
         Customer.findOneAndUpdate({name: req.params.id}, req.body.customer, function (err, updateEntry) {
             if (err) {
-                res.redirect("/index/:id");
-                console.log(err);
+                if (err["codeName"] === "DuplicateKey") {
+                    res.json({already_exists: true});
+                } else {
+                    console.log(err);
+                    res.redirect("/index");
+                }
             } else {
                 POCQuestions.findOneAndUpdate({"name": req.params.id}, {"name": req.body.customer["name"]}, function (err, result) {
                     if (err) {
@@ -161,8 +165,7 @@ router.put("/index/:id", function (req, res) {
             }
         });
     }
-})
-;
+});
 
 //INDEX ROUTE
 router.get("/index", function (req, res) {
