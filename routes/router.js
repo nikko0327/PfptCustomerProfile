@@ -7,7 +7,7 @@ var ApplianceQuestions = require("../models/appliances");
 var DesktopNetworkQuestions = require("../models/desktop_network");
 var EmailPSQuestions = require("../models/email_ps");
 var EmailSEQuestions = require("../models/email_se");
-var JournallingQuestions = require("../models/journaling");
+var JournalingQuestions = require("../models/journaling");
 var OtherDataSourcesQuestions = require("../models/other_data_sources");
 var UsageQuestions = require("../models/usage");
 var ImportQuestions = require("../models/import");
@@ -65,7 +65,7 @@ router.post("/index", function (req, res) {
         }
     });
 
-    JournallingQuestions.create({
+    JournalingQuestions.create({
         name: req.body.customer["name"]
     }, function (error, result) {
         if (error) {
@@ -82,11 +82,7 @@ router.post("/index", function (req, res) {
     });
 
     POCQuestions.create({
-        name: req.body.customer["name"],
-        POC: {
-            is_sandbox_poc: "Yes",
-            is_prod_poc: "No"
-        }
+        name: req.body.customer["name"]
     }, function (error, result) {
         if (error) {
             console.log(error);
@@ -129,43 +125,65 @@ router.post("/index", function (req, res) {
 
 //UPDATE ROUTE
 router.put("/index/:id", function (req, res) {
+        // Just for updating name, needs the update to be nested.
+        if (req.body.customer !== undefined && req.body.customer !== null) {
+            Customer.findOneAndUpdate({name: req.params.id}, req.body.customer, function (err, updateEntry) {
+                    if (err) {
+                        if (err["codeName"] === "DuplicateKey") {
+                            res.json({already_exists: true});
+                        } else {
+                            console.log(err);
+                            res.redirect("/index");
+                        }
+                    } else {
 
-    // Just for updating name
-    if (req.body.customer !== undefined && req.body.customer !== null) {
-        Customer.findOneAndUpdate({name: req.params.id}, req.body.customer, function (err, updateEntry) {
-            if (err) {
-                if (err["codeName"] === "DuplicateKey") {
-                    res.json({already_exists: true});
-                } else {
+                        EmailSEQuestions.findOneAndUpdate({"name": req.params.id}, {"name": req.body.customer["name"]}, function (err, result) {
+                                if (err) {
+                                    console.log(err);
+                                    res.redirect("/index");
+                                } else
+
+                                    POCQuestions.findOneAndUpdate({"name": req.params.id}, {"name": req.body.customer["name"]}, function (err, result) {
+                                        if (err) {
+                                            console.log(err);
+                                            res.redirect("/index");
+                                        } else {
+                                            res.redirect("/index/" + req.body.customer["name"]);
+                                        }
+                                    });
+                            }
+                        );
+                    }
+                }
+            );
+        }
+
+// Updating POC questions
+        if (req.body.poc_questions !== undefined && req.body.poc_questions !== null) {
+            POCQuestions.findOneAndUpdate({name: req.params.id}, req.body.poc_questions, function (err, result) {
+                if (err) {
                     console.log(err);
                     res.redirect("/index");
+                } else {
+                    res.redirect("/index/" + req.params.id);
                 }
-            } else {
-                POCQuestions.findOneAndUpdate({"name": req.params.id}, {"name": req.body.customer["name"]}, function (err, result) {
-                    if (err) {
-                        console.log(err);
-                        res.redirect("/index");
-                    } else {
-                        res.redirect("/index/" + req.body.customer["name"]);
-                        // Nest further updates here.
-                    }
-                });
-            }
-        });
-    }
+            });
+        }
 
-
-    if (req.body.poc_questions !== undefined && req.body.poc_questions !== null) {
-        POCQuestions.findOneAndUpdate({name: req.params.id}, req.body.poc_questions, function (err, result) {
-            if (err) {
-                console.log(err);
-                res.redirect("/index");
-            } else {
-                res.redirect("/index/" + req.params.id);
-            }
-        });
+// Updating Email SE Questions
+        if (req.body.email_se_questions !== undefined && req.body.email_se_questions !== null) {
+            EmailSEQuestions.findOneAndUpdate({"name": req.params.id}, req.body.email_se_questions, function (err, result) {
+                if (err) {
+                    console.log(err);
+                    res.redirect("/index");
+                } else {
+                    res.redirect("/index/" + req.params.id);
+                }
+            });
+        }
     }
-});
+)
+;
 
 //INDEX ROUTE
 router.get("/index", function (req, res) {
@@ -179,6 +197,7 @@ router.get("/index", function (req, res) {
     });
 });
 
+
 // SHOW ROUTE
 router.get("/index/:id", function (req, res) {
     Customer.findOne({"name": req.params.id}, function (err, result) {
@@ -189,18 +208,32 @@ router.get("/index/:id", function (req, res) {
             var customer = result;
         }
 
-        POCQuestions.findOne({"name": req.params.id}, function (err, result) {
+        EmailSEQuestions.findOne({"name": req.params.id}, function (err, result) {
             if (err) {
                 console.log(err);
                 res.redirect("/index");
             } else {
-                var poc_questions = result;
+                var email_se_questions = result;
             }
 
-            res.render("show", {customer: customer, poc_questions: poc_questions});
-            console.log({customer: customer, poc_questions: poc_questions});
-            console.log("-----")
+            POCQuestions.findOne({"name": req.params.id}, function (err, result) {
+                if (err) {
+                    console.log(err);
+                    res.redirect("/index");
+                } else {
+                    var poc_questions = result;
+                }
+                res.render("show", {
+                    customer: customer,
+                    email_se_questions: email_se_questions,
+                    poc_questions: poc_questions
+                });
+                console.log({customer: customer, email_se_questions: email_se_questions, poc_questions: poc_questions});
+                console.log("-----");
+            });
+
         });
+
     });
 });
 
