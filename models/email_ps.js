@@ -11,36 +11,31 @@ var email_ps_schema = new mongoose.Schema({
     prem_exchange: {
         is_using_DAG: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         number_of_inboxes: {
             type: String,
-            default: null
+            default: "No response set"
         },
         journal_rules: {
             type: String,
-            enum: [null, "Hub transport", "Database"],
-            default: null
+            default: "No response set"
         },
         is_journal_in_own_DB: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         number_of_extra_storage: {
             type: String,
-            default: null
+            default: "No response set"
         },
         is_using_RMS: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_journal_decryption_enabled: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         }
     },
 
@@ -48,23 +43,19 @@ var email_ps_schema = new mongoose.Schema({
     hosted_O365: {
         is_using_azure_rms: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_using_IRM: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_journal_decryption_enabled: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_using_message_decryption: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         }
     },
 
@@ -73,58 +64,49 @@ var email_ps_schema = new mongoose.Schema({
         // Exchange details
         is_using_DAG: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         number_of_inboxes: {
             type: String,
-            default: null
+            default: "No response set"
         },
         journal_rules: {
             type: String,
-            enum: [null, "Hub transport", "Database"],
-            default: null
+            default: "No response set"
         },
         is_journal_in_own_DB: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         number_of_extra_storage: {
             type: String,
-            default: null
+            default: "No response set"
         },
         is_using_RMS: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_journal_decryption_enabled: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
 
         // O365 details
         is_using_azure_rms: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_using_IRM: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_O365_journal_decryption_enabled: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_using_message_decryption: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         }
     },
 
@@ -132,58 +114,50 @@ var email_ps_schema = new mongoose.Schema({
         // Exchange details
         is_using_DAG: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         number_of_inboxes: {
             type: String,
-            default: null
+            default: "No response set"
         },
         journal_rules: {
             type: String,
-            enum: [null, "Hub transport", "Database"],
-            default: null
+            default: "No response set"
         },
         is_journal_in_own_DB: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         number_of_extra_storage: {
             type: String,
-            default: null
+            default: "No response set"
         },
         is_using_RMS: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_journal_decryption_enabled: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
 
         // O365 details
         is_using_azure_rms: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_using_IRM: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         // is_journal_decryption_enabled: {
         //     type: String,
-        //     enum: [null, "Yes", "No"],
-        //     default: null
+        //     enum: ["No response set, "Yes", "No"],
+        //     default: "No response set
         // },
         is_using_message_decryption: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         }
     }
 });

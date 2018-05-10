@@ -9,114 +9,105 @@ var usage_schema = new mongoose.Schema({
     supervision: {
         supervision_system: {
             type: String,
-            default: null
+            default: "No response set"
         },
         pain_points: {
             type: String,
-            default: null
+            default: "No response set"
         },
         deficiencies: {
             type: String,
-            default: null
+            default: "No response set"
         },
         businesses_supervision_requirements: {
             type: String,
-            default: null
+            default: "No response set"
         },
         review: {
             type: String,
-            enum: [null, "Centralized", "Decentralized"],
-            default: null
+            default: "No response set"
         },
         escalation_process: {
             type: String,
-            default: null
+            default: "No response set"
         },
         system_record: {
             subject_for_review: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             responsible: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             how_is_data_loaded: {
                 type: String,
-                default: null
+                default: "No response set"
             }
         },
         evaluation_criteria: {
             type: String,
-            default: null
+            default: "No response set"
         },
         need_to_migrate_policies: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         random_sampling: {
             has_rules: {
                 type: String,
-                enum:
-                    [null, "Yes", "No"],
-                default:
-                    null
+                default: "No response set"
             }
             ,
             multi_sampling: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             sampling_intention: {
                 type: String,
-                enum: [null, "Top up", "Not top up"], // ????
-                default: null
+                enum: ["No response set", "Top up", "Not top up"], // ????
+                default: "No response set"
             },
             notify_violators: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             }
         },
         report_requirements: {
             existing_reports: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             decisions: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             roll_out_reports: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             future_reports: {
                 type: String,
-                default: null
+                default: "No response set"
             }
         }
     },
     stubbing: {
         support: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         interested_in_subbing: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         stubbing_policy: {
             type: String,
-            default: null
+            default: "No response set"
         },
         number_of_stubbing_users: { // number
             type: String,
-            default: null
+            default: "No response set"
         }
     },
     // Not sure about selective disposition
@@ -124,110 +115,103 @@ var usage_schema = new mongoose.Schema({
     content_collector_files: {
         interested_in_CC4Files: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         files_location: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         willing_to_install_agent: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         volume_of_files: { // number
             type: String,
-            default: null
+            default: "No response set"
         },
         unusual_file_types: {
             type: String,
-            default: null
+            default: "No response set"
         },
         avg_file_size: {
             type: String,
-            default: null
+            default: "No response set"
         },
         understand_legal_holds: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         }
     },
     content_collector_PST: {
         interested_in_CC4FPST: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         avg_file_size: {
             type: String,
-            default: null
+            default: "No response set"
         },
         frequency: {
             type: String,
-            default: null
+            default: "No response set"
         },
         use_case: {
             type: String,
-            default: null
+            default: "No response set"
         }
     },
     legal_holds: {
         custodian_or_ad_hoc: {
             type: String,
-            default: null
+            default: "No response set"
         },
         number_of_legal_holds: {
             type: String,
-            default: null
+            default: "No response set"
         },
         number_of_unique_custodians: {
             type: String,
-            default: null
+            default: "No response set"
         },
         largest_hold: {
             type: String,
-            default: null
+            default: "No response set"
         },
         notification_system: {
             type: String,
-            default: null
+            default: "No response set"
         },
         third_party_solutions: {
             type: String,
-            default: null
+            default: "No response set"
         },
         api_use_cases: {
             type: String,
-            default: null
+            default: "No response set"
         }
     },
     end_user_search: {
         number_of_user_access: {
             type: String,
-            default: null
+            default: "No response set"
         },
         need_outlook: {
             type: String,
-            default: null
+            default: "No response set"
         },
         need_mobile_apps: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         }
     },
     folder_sync: {
         interested_in_folder_sync: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         number_of_users_interested: {
             type: String,
-            default: null
+            default: "No response set"
         },
         // NOT SURE ABOUT THIS ONE
     },
@@ -236,33 +220,30 @@ var usage_schema = new mongoose.Schema({
     export: {
         volume: {
             type: String,
-            default: null
+            default: "No response set"
         },
         preferred_export_format: {
             type: String,
-            default: null
+            default: "No response set"
         },
         where_data_goes: {
             type: String,
-            default: null
+            default: "No response set"
         },
         expect_auto_upload: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         }
     },
 
     outlook_view_manager: {
         allow_users_access: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_using_OWA: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         }
     }
 });

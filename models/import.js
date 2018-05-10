@@ -8,53 +8,51 @@ var import_schema = new mongoose.Schema({
     },
     need_to_migrate_legacy_data: {
         type: String,
-        enum: [null, "Yes", "No"],
-        default: null
+        default: "No response set"
     },
     is_existing_archive: {
         type: String,
-        enum: [null, "Yes", "No"],
-        default: null
+        default: "No response set"
     },
     amount_of_data_to_migrate: {
         type: String,
-        default: null
+        default: "No response set"
     },
     expected_timeline: {
         type: String,
-        default: null
+        default: "No response set"
     },
     conversion_agent: {
         type: String,
-        default: null
+        default: "No response set"
     },
     service_brief: {
         type: String,
-        default: null
+        default: "No response set"
     },
     storage: {
         type: String,
-        default: null
+        default: "No response set"
     },
     format: {
         type: String,
-        default: null
+        default: "No response set"
     },
     retention_policy: {
         type: String,
-        default: null
+        default: "No response set"
     },
     encryption_type: {
         type: String,
-        default: null
+        default: "No response set"
     },
     oldest_data: {
         type: String,
-        default: null
+        default: "No response set"
     },
     employee_records: {
         type: String,
-        default: null
+        default: "No response set"
     }
 });
 

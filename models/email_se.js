@@ -11,51 +11,44 @@ var email_se_schema = new mongoose.Schema({
     prem_exchange: {
         exchange_version: {
             type: String,
-            enum: [null, "2010", "2011", "2012", "2013", "2014", "2015", "2016"],
-            default: null
+            default: "No response set"
         },
         number_of_mail_servers: {
             type: String,
-            default: null
+            default: "No response set"
         },
         has_enterprise_CAL: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         // !!!
         is_replicating_exchange_and_AD: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         diagram: {
             type: String,
-            default: null
+            default: "No response set"
         },
         is_multi_forest: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         exists_trusts: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_resource_forest_arrangement: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_using_multi_domains: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         structure: {
             type: String,
-            default: null
+            default: "No response set"
         }
     },
 
@@ -63,31 +56,27 @@ var email_se_schema = new mongoose.Schema({
     hosted_O365: {
         O365_version: {
             type: String,
-            default: null
+            default: "No response set"
         },
         is_maintaining_on_prem_AD: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_maintaining_azure: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_admin_in_AD_or_azure: {
             type: String,
-            enum: [null, "On-prem AD", "Azure"],
-            default: null
+            default: "No response set"
         },
         sync_tools: {
             type: String,
-            default: null
+            default: "No response set"
         },
         which_O365: {
             type: String,
-            enum: [null, "Shared", "Dedicated", "BPOS-D", "iTAR"],
-            default: null
+            default: "No response set"
         }
     },
 
@@ -96,99 +85,91 @@ var email_se_schema = new mongoose.Schema({
         // Exchange details
         exchange_version: {
             type: String,
-            enum: [null, "2010", "2011", "2012", "2013", "2014", "2015", "2016"],
-            default: null
+            default: "No response set"
         },
         number_of_mail_servers: {
             type: String,
-            default: null
+            default: "No response set"
         },
         has_enterprise_CAL: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         describe_exchange_env: {
             type: String,
-            default: null
+            default: "No response set"
         },
         diagram: {
             type: String,
-            default: null
+            default: "No response set"
         },
         is_using_DAG: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
 
         // AD details
         is_multi_forest: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         number_of_forests: {
             type: String,
-            default: null
+            default: "No response set"
         },
         exists_trusts: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_resource_forest_arrangement: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_using_multi_domains: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
+        },
+        multi_domain_structure: {
+            type: String,
+            default: "No response set"
         },
         resource_forest_deployment: {
             type: String,
-            default: null
+            default: "No response set"
         },
         AD_size: {
             type: String,
-            default: null
+            default: "No response set"
         },
         require_ldap: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
 
         // O365 details
         O365_version: {
             type: String,
-            default: null
+            default: "No response set"
         },
         is_maintaining_on_prem_AD: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_maintaining_azure: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_admin_in_AD_or_azure: {
             type: String,
-            enum: [null, "On-prem AD", "Azure"],
-            default: null
+            default: "No response set"
         },
         sync_tools: {
             type: String,
-            default: null
+            default: "No response set"
         },
         which_O365: {
             type: String,
-            enum: [null, "Shared", "Dedicated", "BPOS-D", "iTAR"],
-            default: null
+            default: "No response set"
         }
     },
 
@@ -196,104 +177,92 @@ var email_se_schema = new mongoose.Schema({
         // Exchange details
         exchange_version: {
             type: String,
-            enum: [null, "2010", "2011", "2012", "2013", "2014", "2015", "2016"],
-            default: null
+            default: "No response set"
         },
         number_of_mail_servers: {
             type: String,
-            default: null
+            default: "No response set"
         },
         has_enterprise_CAL: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         // !!!
         describe_exchange_env: {
             type: String,
-            default: null
+            default: "No response set"
         },
         diagram: {
             type: String,
-            default: null
+            default: "No response set"
         },
         is_using_DAG: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
 
         // AD details
         is_multi_forest: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         number_of_forests: {
             type: String,
-            default: null
+            default: "No response set"
         },
         exists_trusts: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_resource_forest_arrangement: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_using_multi_domains: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         structure: {
             type: String,
-            default: null
+            default: "No response set"
         },
         resource_forest_deployment: {
             type: String,
-            default: null
+            default: "No response set"
         },
         AD_size: {
             type: String,
-            default: null
+            default: "No response set"
         },
         require_ldap: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
 
         // O365 details
         O365_version: {
             type: String,
-            default: null
+            default: "No response set"
         },
         is_maintaining_on_prem_AD: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_maintaining_azure: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_admin_in_AD_or_azure: {
             type: String,
-            enum: [null, "On-prem AD", "Azure"],
-            default: null
+            default: "No response set"
         },
         sync_tools: {
             type: String,
-            default: null
+            default: "No response set"
         },
         which_O365: {
             type: String,
-            enum: [null, "Shared", "Dedicated", "BPOS-D", "iTAR"],
-            default: null
+            default: "No response set"
         }
     }
 });

@@ -9,68 +9,62 @@ var poc_schema = new mongoose.Schema({
     POC: {
         is_sandbox_poc: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_prod_poc: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         poc_tests: {
             type: String,
-            default: null
+            default: "No response set"
         },
         agreed_to_success_criteria: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         envs_needed: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         how_long_needed: {
             type: String,
-            default: null
+            default: "No response set"
         },
         how_to_convert_env: {
             type: String,
-            default: null
+            default: "No response set"
         },
         installing_in_production_or_lab: {
             type: String,
-            default: null
+            default: "No response set"
         },
         how_many_envs: { // Number
             type: String,
-            default: null
+            default: "No response set"
         },
         how_many_mailboxes: { // Number
             type: String,
-            default: null
+            default: "No response set"
         }
     },
     UAT: {
         need_UAT: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         UAT_forever: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_UAT_production_or_lab: {
             type: String,
-            //enum: [null, "Production", "Lab"],
-            default: null
+            //enum: ["No response set, "Production", "Lab"],
+            default: "No response set"
         },
         primary_purpose: {
             type: String,
-            default: null
+            default: "No response set"
         }
     }
 });

@@ -8,70 +8,67 @@ var appliance_schema = new mongoose.Schema({
     },
     messages_per_day: {
         type: String,
-        default: null
+        default: "No response set"
     },
     avg_message_size: {
         type: String,
-        default: null
+        default: "No response set"
     },
     number_of_mailboxes: {
         type: String,
-        default: null
+        default: "No response set"
     },
     searches_per_day: {
         type: String,
-        default: null
+        default: "No response set"
     },
     ui_logins_per_day: {
         type: String,
-        default: null
+        default: "No response set"
     },
     exports_per_day: {
         type: String,
-        default: null
+        default: "No response set"
     },
     avg_export_size: {
         type: String,
-        default: null
+        default: "No response set"
     },
     AD_size: {
         type: String,
-        default: null
+        default: "No response set"
     },
     appliance_preference: {
         type: String,
-        enum: [null, "Virtual", "Hardware"],
-        default: null
+        default: "No response set"
     },
     has_vmware_env: {
         type: String,
-        enum: [null, "Yes", "No"],
-        default: null
+        default: "No response set"
     },
     number_of_appliance_recommended: {
         type: String,
-        default: null
+        default: "No response set"
     },
     DR_footprint: {
         type: String,
-        default: null
+        default: "No response set"
     },
     purposes: {
-        type: [String],
-        default: null
+        type: String,
+        default: "No response set"
     },
     has_archive_proxy: {
         type: String,
-        enum: [null, "Yes", "No"],
-        default: null
+        default: "No response set"
     },
     transport_agent: {
         type: String,
-        default: null
+        default: "No response set"
     },
     outlook_view_manager: {
         type: String,
-        default: null
+        default: "No response set"
     }
 });
 

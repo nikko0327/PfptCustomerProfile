@@ -11,24 +11,23 @@ var other_data_sources_schema = new mongoose.Schema({
     custom_content_archiving: {
         need_custom_archive: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         diagram: {
             type: String,
-            default: null
+            default: "No response set"
         },
         daily_volume: {
             type: String,
-            default: null
+            default: "No response set"
         },
         avg_message_size: {
             type: String,
-            default: null
+            default: "No response set"
         },
         systems: {
             type: String,
-            default: null
+            default: "No response set"
         }
     },
 
@@ -36,24 +35,23 @@ var other_data_sources_schema = new mongoose.Schema({
     public_social_archiving: {
         need_social_media_content: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         need_to_capture: {
-            type: [String],
-            default: null
+            type: String,
+            default: "No response set"
         },
         number_of_each_account: {
-            type: [String],
-            default: null
+            type: String,
+            default: "No response set"
         },
         using_what_to_archive: {
             type: String,
-            default: null
+            default: "No response set"
         },
         digital_risk_agent: {
             type: String,
-            default: null
+            default: "No response set"
         }
     },
 
@@ -62,37 +60,35 @@ var other_data_sources_schema = new mongoose.Schema({
         general: {
             users_per_platform: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             number_of_users_to_archive: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             capture_user_activity: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             avg_daily_message_volume: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             most_active_profile: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             retention_policy: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             is_archiving_customer: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             which_archive: {
                 type: String,
-                default: null
+                default: "No response set"
             }
         },
 
@@ -100,30 +96,27 @@ var other_data_sources_schema = new mongoose.Schema({
         files: {
             need: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             storage_usage: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             files_desc: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             fill_rate: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             need_original_or_extracted: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             is_archiving_customer: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             }
         },
 
@@ -131,25 +124,23 @@ var other_data_sources_schema = new mongoose.Schema({
         skype_business: {
             need: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             deployment: {
                 type: String,
-                enum: [null, "Hybrid", "Cloud"],
-                default: null
+                default: "No response set"
             },
             license_level: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             use_holds_or_searches: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             how_active: {
                 type: String,
-                default: null
+                default: "No response set"
             }
         },
 
@@ -157,26 +148,23 @@ var other_data_sources_schema = new mongoose.Schema({
         skype_on_prem: {
             need_skype_on_prem: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             need_lync: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             deployment: {
                 type: String,
-                enum: [null, "Hybrid", "Cloud"],
-                default: null
+                default: "No response set"
             },
             number_of_lync_servers: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             retention_policy: {
                 type: String,
-                default: null
+                default: "No response set"
             }
         },
 
@@ -184,35 +172,31 @@ var other_data_sources_schema = new mongoose.Schema({
         one_drive: {
             need: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             storage_usage: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             files_desc: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             fill_rate: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             need_original_or_extracted: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             is_archiving_customer: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             auth: {
                 type: String,
-                enum: [null, "ADFS", "Azure AD"],
-                default: null
+                default: "No response set"
             }
         },
 
@@ -220,30 +204,27 @@ var other_data_sources_schema = new mongoose.Schema({
         box: {
             need: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             storage_usage: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             files_desc: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             fill_rate: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             need_original_or_extracted: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             is_archiving_customer: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             }
         },
 
@@ -251,42 +232,39 @@ var other_data_sources_schema = new mongoose.Schema({
         bloomberg: {
             need: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             users_per_platform: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             number_of_users_to_archive: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             capture_user_activity: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             avg_daily_message_volume: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             most_active_profile: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             retention_policy: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             is_archiving_customer: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             which_archive: {
                 type: String,
-                default: null
+                default: "No response set"
             }
         },
 
@@ -294,42 +272,39 @@ var other_data_sources_schema = new mongoose.Schema({
         yammer: {
             need: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             users_per_platform: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             number_of_users_to_archive: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             capture_user_activity: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             avg_daily_message_volume: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             most_active_profile: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             retention_policy: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             is_archiving_customer: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             which_archive: {
                 type: String,
-                default: null
+                default: "No response set"
             }
         },
 
@@ -337,42 +312,39 @@ var other_data_sources_schema = new mongoose.Schema({
         jive: {
             need: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             users_per_platform: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             number_of_users_to_archive: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             capture_user_activity: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             avg_daily_message_volume: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             most_active_profile: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             retention_policy: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             is_archiving_customer: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             which_archive: {
                 type: String,
-                default: null
+                default: "No response set"
             }
         },
 
@@ -380,25 +352,23 @@ var other_data_sources_schema = new mongoose.Schema({
         chatter: {
             need: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             number_of_groups: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             multi_journal: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             over_3MB: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             requirement: {
                 type: String,
-                default: null
+                default: "No response set"
             }
         },
 
@@ -406,42 +376,39 @@ var other_data_sources_schema = new mongoose.Schema({
         slack: {
             need: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             users_per_platform: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             number_of_users_to_archive: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             capture_user_activity: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             avg_daily_message_volume: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             most_active_profile: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             retention_policy: {
                 type: String,
-                default: null
+                default: "No response set"
             },
             is_archiving_customer: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             which_archive: {
                 type: String,
-                default: null
+                default: "No response set"
             }
         },
 
@@ -449,12 +416,11 @@ var other_data_sources_schema = new mongoose.Schema({
         symphony: {
             need: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: "No response set"
             },
             license: {
                 type: String,
-                default: null
+                default: "No response set"
             }
         }
     }

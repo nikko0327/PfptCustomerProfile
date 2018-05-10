@@ -1,6 +1,6 @@
 <% include partials/header %>
 
-<div class="container" style="border: .2px solid gray">
+<div class="container" style="border: .2px solid gray; padding-bottom: 25px">
     <div id="customerHeader" class="">
         <h1 style="text-align: center;"><%= customer.name %></h1>
     </div>
@@ -31,7 +31,7 @@
                 <div id="" class="col-4"><p><b>Location</b><br><%= customer.location %></p></div>
                 <div id="" class="col-4"><p><b>Implementation Specialist</b><br><%= customer.impSpecialist %></p></div>
             </div>
-            <p></p>
+
             <div id="generalInfoContent2" class="row">
                 <div id="" class="col-4"><p><b>Customer Name</b><br><%= customer.name %></p></div>
                 <div id="" class="col-4"><p><b>Number of Users</b><br><%= customer.numberOfUsers %></p></div>
@@ -43,17 +43,20 @@
             </div>
         </div>
         <hr>
+
+        <!-- Displaying Email Systems SE data -->
         <div id="emailSystemSe" class="">
-            <h5><a href="#emailContainer" data-toggle="collapse">Email Systems SE <i class="fa fa-arrows-v"
-                                                                                     aria-hidden="true"></i>
+            <h5><a href="#emailContainer" data-toggle="collapse">Email Systems SE (In-progress) <i
+                            class="fa fa-arrows-v"
+                            aria-hidden="true"></i>
                 </a></h5>
             <br>
             <div id="emailContainer" class="collapse in">
                 <div class="edit pull-right">
-                    <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
+                    <a href="#" aria-hidden="true" data-target="#editEmailSystemsSE" data-toggle="modal"><i
+                                class="fa fa-pencil-square-o"></i>Edit</a>
                 </div>
                 <h5 style="color: mediumvioletred">On-prem Exchange w/ On-prem Appliances</h5>
-                <p></p>
                 <div id="emailSystemContent1" class="row">
                     <div id="" class="col-4"><p><b>What versions of Exchange are
                                 running?</b><br><%= email_se_questions.prem_exchange.exchange_version %></p></div>
@@ -69,7 +72,7 @@
                                 Details</b><br>File upload????????</p></div>
                 </div>
                 <!--<p>Active Directory Details</p>-->
-                <p></p>
+
                 <div id="emailSystemContent2" class="row">
                     <div id="" class="col-4"><p><b>Is your AD
                                 multi-forest?</b><br><%= email_se_questions.prem_exchange.is_multi_forest %></p></div>
@@ -85,7 +88,7 @@
                                 relationships?</b><br><%= email_se_questions.prem_exchange.structure %></p></div>
                 </div>
                 <h5 style="color: mediumvioletred">O365 (Hosted Appliances)</h5>
-                <p></p>
+
                 <div id="emailSystemContent4" class="row">
                     <div id="" class="col-4"><p><b>What O365 license level do you
                                 have?</b><br><%= email_se_questions.hosted_O365.O365_version %></p></div>
@@ -104,7 +107,7 @@
                     </div>
                 </div>
                 <h5 style="color: mediumvioletred">On-prem Exchange + O365 (On-prem Appliance)</h5>
-                <p></p>
+
                 <!-- Exchange Details -->
                 <div id="emailSystemContent5" class="row">
                     <div id="" class="col-4"><p><b>What versions of Exchange are
@@ -125,7 +128,7 @@
                     <div id="" class="col-4"><p><b>Are DAGs being
                                 used?</b><br><%= email_se_questions.prem_exchange_prem_O365.is_using_DAG %></p></div>
                 </div>
-                <p></p>
+
                 <!-- Active Directory Details -->
                 <div id="emailSystemContent6" class="row">
                     <div id="" class="col-4"><p><b>Is your AD
@@ -141,7 +144,8 @@
                                 multi-domains?</b><br><%= email_se_questions.prem_exchange_prem_O365.is_using_multi_domains %>
                         </p></div>
                     <div id="" class="col-4"><p><b>if yes, what is the structure of multi-domain architecture / their
-                                relationships?</b><br><%= email_se_questions.prem_exchange_prem_O365.structure %></p>
+                                relationships?</b><br><%= email_se_questions.prem_exchange_prem_O365.multi_domain_structure %>
+                        </p>
                     </div>
                     <div id="" class="col-4"><p><b>Resource forest
                                 deployment?</b><br><%= email_se_questions.prem_exchange_prem_O365.resource_forest_deployment %>
@@ -151,7 +155,7 @@
                     <div id="" class="col-4"><p><b>Do you require a secure connection to
                                 LDAP?</b><br><%= email_se_questions.prem_exchange_prem_O365.require_ldap %></p></div>
                 </div>
-                <p></p>
+
                 <!-- O365 Details -->
                 <div id="emailSystemContent7" class="row">
                     <div id="" class="col-4"><p><b>What O365 license level do you
@@ -169,15 +173,17 @@
                                 AD, or in
                                 Azure?</b><br><%= email_se_questions.prem_exchange_prem_O365.is_admin_in_AD_or_azure %>
                         </p></div>
-                    <div id="" class="col-4"><p><b>Sync tools used to
+                    <div id="" class="col-4"><p><b>Sync tools used on
                                 Azure?</b><br><%= email_se_questions.prem_exchange_prem_O365.sync_tools %></p></div>
                     <div id="" class="col-4"><p><b>Which O365 version (shared,
                                 dedicated/BPOS-D/iTAR)?</b><br><%= email_se_questions.prem_exchange_prem_O365.which_O365 %>
                         </p>
                     </div>
                 </div>
+
+
                 <h5 style="color: mediumvioletred">On-prem Exchange + O365 (Hosted Appliance)</h5>
-                <p></p>
+
                 <!-- Exchange Details -->
                 <div id="emailSystemContent8" class="row">
                     <div id="" class="col-4"><p><b>What versions of Exchange are
@@ -198,7 +204,7 @@
                     <div id="" class="col-4"><p><b>Are DAGs being
                                 used?</b><br><%= email_se_questions.prem_exchange_hosted_O365.is_using_DAG %></p></div>
                 </div>
-                <p></p>
+
                 <!-- Active Directory Details -->
                 <div id="emailSystemContent9" class="row">
                     <div id="" class="col-4"><p><b>Is your AD
@@ -214,14 +220,15 @@
                                 multi-domains?</b><br><%= email_se_questions.prem_exchange_hosted_O365.is_using_multi_domains %>
                         </p></div>
                     <div id="" class="col-4"><p><b>If yes, what is the structure of multi-domain architecture / their
-                                relationships?</b><br><%= email_se_questions.prem_exchange_hosted_O365.structure %></p></div>
+                                relationships?</b><br><%= email_se_questions.prem_exchange_hosted_O365.structure %></p>
+                    </div>
                     <div id="" class="col-4"><p><b>Resource forest
                                 deployment?</b><br><%= email_se_questions.prem_exchange_hosted_O365.resource_forest_deployment %>
                         </p></div>
                     <div id="" class="col-4"><p><b>How big is your AD? How many
                                 objects?</b><br><%= email_se_questions.prem_exchange_hosted_O365.AD_size %></p></div>
                 </div>
-                <p></p>
+
                 <!-- O365 Details -->
                 <div id="emailSystemContent10" class="row">
                     <div id="" class="col-4"><p><b>What O365 license level do you
@@ -231,9 +238,6 @@
                         </p></div>
                     <div id="" class="col-4"><p><b>Are you maintaining AD in
                                 Azure?</b><br><%= email_se_questions.prem_exchange_hosted_O365.is_maintaining_azure %>
-                        </p></div>
-                    <div id="" class="col-4"><p><b>Are you using
-                                multi-domains?</b><br><%= email_se_questions.prem_exchange_hosted_O365.is_using_multi_domains %>
                         </p></div>
                     <div id="" class="col-4"><p><b>When you create and admin mailboxes, do you do that in the on-prem
                                 AD, or in
@@ -248,6 +252,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Email System PS questions -->
         <hr>
         <div id="emailSystemPs" class="">
             <h5><a href="#emailContainer2" data-toggle="collapse">Email Systems PS <i class="fa fa-arrows-v"
@@ -259,7 +265,7 @@
                     <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
                 </div>
                 <h5 style="color: mediumvioletred">On-prem Exchange w/ On-prem Appliances</h5>
-                <p></p>
+
                 <div id="emailSystemContent1" class="row">
                     <div id="" class="col-4"><p><b>Are DAGs being used?</b><br>Yes/No</p></div>
                     <div id="" class="col-4"><p><b>No. of journal mailboxes</b><br>Number</p></div>
@@ -272,7 +278,7 @@
                     </div>
                 </div>
                 <h5 style="color: mediumvioletred">O365 (Hosted Appliances)</h5>
-                <p></p>
+
                 <div id="emailSystemContent4" class="row">
                     <div id="" class="col-4"><p><b>Are you using Azure RMS?</b><br>Yes/No</p></div>
                     <div id="" class="col-4"><p><b>Are you using IRM?</b><br>Yes/No</p></div>
@@ -285,14 +291,14 @@
                     </div>
                 </div>
                 <h5 style="color: mediumvioletred">On-prem Exchange + O365 (On-prem Appliance)</h5>
-                <p></p>
+
                 <!-- Exchange Details -->
                 <div id="emailSystemContent5" class="row">
                     <div id="" class="col-4"><p><b>Are DAGs being used?</b><br>Yes/No</p></div>
                     <div id="" class="col-4"><p><b>No. of journal mailboxes</b><br>Number</p></div>
                     <div id="" class="col-4"><p><b>How are your journal rules defined (hub transport or
                                 database)?</b><br>Hub
-                            Transport/ Database</p></div>
+                            Transport/Database</p></div>
                     <div id="" class="col-4"><p><b>Are journal mailboxes on their own DB?</b><br>Yes/No</p></div>
                     <div id="" class="col-4"><p><b>How much extra storage is available on the Journaling Mailbox
                                 Databases?</b><br>Storage</p></div>
@@ -301,7 +307,7 @@
                         </p>
                     </div>
                 </div>
-                <p></p>
+
                 <!-- O365 Details -->
                 <div id="emailSystemContent7" class="row">
                     <div id="" class="col-4"><p><b>Are you using Azure RMS?</b><br>Yes/No</p></div>
@@ -315,7 +321,7 @@
                     </div>
                 </div>
                 <h5 style="color: mediumvioletred">On-prem Exchange + O365 (Hosted Appliance)</h5>
-                <p></p>
+
                 <!-- Exchange Details -->
                 <div id="emailSystemContent8" class="row">
                     <div id="" class="col-4"><p><b>What versions of Exchange are running?</b><br>Version</p></div>
@@ -327,21 +333,21 @@
                                 Details.</b><br>Diagram</p></div>
                     <div id="" class="col-4"><p><b>Are DAGs being used?</b><br>Yes/No</p></div>
                 </div>
-                <p></p>
+
                 <!-- Active Directory Details -->
                 <div id="emailSystemContent9" class="row">
                     <div id="" class="col-4"><p><b>Is your AD multi-forest?</b><br>Yes/No</p></div>
                     <div id="" class="col-4"><p><b>How many forests are there?</b><br>10</p></div>
                     <div id="" class="col-4"><p><b>Is this a Resource Forest arrangement?</b><br>Yes/No</p></div>
                     <div id="" class="col-4"><p><b>Are you using multi-domains?</b><br>Yes/No</p></div>
-                    <div id="" class="col-4"><p><b>if yes, what is the structure of multi-domain architecture / their
+                    <div id="" class="col-4"><p><b>If yes, what is the structure of multi-domain architecture / their
                                 relationships?</b><br>Comment</p></div>
                     <div id="" class="col-4"><p><b>Resource forest deployment?</b><br>Yes/No</p></div>
                     <div id="" class="col-4"><p><b>How big is your AD? How many objects?</b><br>Yes/No</p></div>
                     <div id="" class="col-4"><p><b>Do you require a secure connection to LDAP? (Note: PFPT does not
                                 support a secure LDAP)</b><br>Yes/No</p></div>
                 </div>
-                <p></p>
+
                 <!-- O365 Details -->
                 <div id="emailSystemContent10" class="row">
                     <div id="" class="col-4"><p><b>What O365 license level do you have?</b><br>License Level</p></div>
@@ -367,7 +373,7 @@
                     <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
                 </div>
                 <h5 style="color: mediumvioletred">Exchange Details</h5>
-                <p></p>
+
                 <div id="exchangeDetails" class="row">
                     <div id="" class="col-4"><p><b>Exchange On Prem</b><br>Yes/No</p></div>
                     <div id="" class="col-4"><p><b>O365</b><br>Yes/No</p></div>
@@ -376,9 +382,9 @@
                     <div id="" class="col-4"><p><b>Average Daily Journal Msg Count</b><br>12345678910</p></div>
                     <div id="" class="col-4"><p><b>Changes in Business</b><br>Yes/No</p></div>
                 </div>
-                <p></p>
+
                 <h5 style="color: mediumvioletred">Mail volume and journaling</h5>
-                <p></p>
+
                 <div id="mailVolume" class="row">
                     <div id="" class="col-4"><p><b>Users To Be Journaled</b><br>3453345</p></div>
                     <div id="" class="col-4"><p><b>Msg Per User(Week/Month)</b><br>10000 Msg</p></div>
@@ -573,7 +579,7 @@
                     <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
                 </div>
                 <h5 style="color: mediumvioletred">Network & Security</h5>
-                <p></p>
+
                 <div id="networkSecurity" class="row">
                     <div id="" class="col-4"><p><b>Do you want users to be able to access the user interface outside of
                                 your network?</b><br>Response</p></div>
@@ -585,9 +591,9 @@
                     <div id="" class="col-4"><p><b>NAT IP List</b><br>Answer</p></div>
                     <div id="" class="col-4"><p><b>Proxy Servers</b><br>Response</p></div>
                 </div>
-                <p></p>
+
                 <h5 style="color: mediumvioletred">End User Desktop Environment</h5>
-                <p></p>
+
                 <div id="endUserEnv" class="row">
                     <div id="" class="col-4"><p><b>What browsers do user have access to</b><br>Chrome,IE,Firefox</p>
                     </div>
@@ -601,9 +607,9 @@
                     <div id="" class="col-4"><p><b>Do users have access to: Chrome/Firefox/Edge</b><br>Choices</p>
                     </div>
                 </div>
-                <p></p>
+
                 <h5 style="color: mediumvioletred">Disaster Recovery/High Probability</h5>
-                <p></p>
+
                 <div id="disasterRecovery" class="row">
                     <div id="" class="col-4"><p><b>Do you have Exchange and AD being replicated to a secondary data
                                 center</b><br>Yes/No</p></div>
@@ -612,7 +618,7 @@
                                 included</b><br>Answer</p></div>
                 </div>
                 <h5 style="color: mediumvioletred">Authentication (SAML & Remote Auth)</h5>
-                <p></p>
+
                 <div id="authentication" class="row">
                     <div id="" class="col-4"><p><b>Do you use SSO?</b><br>Yes/No</p></div>
                     <div id="" class="col-4"><p><b>Do you have an IDP (Identity Provider) that supports SAML
@@ -821,7 +827,8 @@
         <hr>
 
         <div id="poc" class="">
-            <h5><a href="#pocContent" data-toggle="collapse">POC <i class="fa fa-arrows-v" aria-hidden="true"></i>
+            <h5><a href="#pocContent" data-toggle="collapse">POC (Done) <i class="fa fa-arrows-v"
+                                                                           aria-hidden="true"></i>
                 </a></h5>
             <br>
             <div id="pocContent" class="collapse in">
@@ -852,7 +859,7 @@
                     <div id="" class="col-4"><p><b>Mailboxes that will be journalled to
                                 POC</b><br> <%= poc_questions.POC.how_many_mailboxes %></p></div>
                 </div>
-                <p></p>
+
                 <!-- UAT -->
                 <h5 style="color: mediumvioletred">UAT</h5>
                 <div id="pocDetails" class="row">
@@ -987,6 +994,297 @@
                         </div>
                         <div class="col-4">
                             <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" role="button">Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EMAIL SYSTEMS SE UPDATE -->
+    <div class="modal fade" id="editEmailSystemsSE" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="lineModalLabel"><%= customer.name %></h3>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                                class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body">
+
+                    <!-- content goes here -->
+                    <form class="" action="/index/<%= customer.name %>?_method=PUT" method="POST">
+                        <div class="form-group">
+                            <label for="customerName">Customer Name</label>
+                            <input type="text" readonly class="form-control"
+                                   value="<%= customer.name %>"
+                                   name="email_se_questions[name]">
+                        </div>
+
+                        <div class="">
+                            <h5><a href="#editEmailSystemsSE-1" style="color: mediumvioletred" data-toggle="collapse">On-prem
+                                    Exchange w/ On-prem Appliances <i
+                                            class="fa fa-arrows-v"
+                                            aria-hidden="true"></i>
+                                </a></h5>
+                            <br>
+
+                            <div id="editEmailSystemsSE-1" class="collapse in">
+                                <div class="form-group"><label>What versions of Exchange are
+                                        running?</label><input type="text" class="form-control"
+                                                               value="<%= email_se_questions.prem_exchange.exchange_version %>"
+                                                               name="email_se_questions[prem_exchange][exchange_version]">
+                                </div>
+                                <div class="form-group"><label>How many locations are mailbox servers
+                                        deployed?</label><input type="text" class="form-control"
+                                                                value="<%= email_se_questions.prem_exchange.number_of_mail_servers %>"
+                                                                name="email_se_questions[prem_exchange][number_of_mail_servers]">
+                                </div>
+                                <div class="form-group"><label>Do you have an Enterprise
+                                        CAL?</label><input type="text" class="form-control"
+                                                           value="<%= email_se_questions.prem_exchange.has_enterprise_CAL %>"
+                                                           name="email_se_questions[prem_exchange][has_enterprise_CAL]">
+                                </div>
+                                <div class="form-group"><label>Are you replicating Exchange and AD to a secondary data
+                                        center?</label><input type="text" class="form-control"
+                                                              value="<%= email_se_questions.prem_exchange.is_replicating_exchange_and_AD %>"
+                                                              name="email_se_questions[prem_exchange][is_replicating_exchange_and_AD]">
+                                </div>
+
+                                <div class="form-group"><label>Is your AD
+                                        multi-forest?</label><input type="text" class="form-control"
+                                                                    value="<%= email_se_questions.prem_exchange.is_multi_forest %>"
+                                                                    name="email_se_questions[prem_exchange][is_multi_forest]">
+                                </div>
+                                <div class="form-group"><label>Are there trusts between the
+                                        forests?</label><input type="text" class="form-control"
+                                                               value="<%= email_se_questions.prem_exchange.exists_trusts %>"
+                                                               name="email_se_questions[prem_exchange][exists_trusts]">
+                                </div>
+                                <div class="form-group"><label>Is this a Resource Forest
+                                        arrangement?</label><input type="text" class="form-control"
+                                                                   value="<%= email_se_questions.prem_exchange.is_resource_forest_arrangement %>"
+                                                                   name="email_se_questions[prem_exchange][is_resource_forest_arrangement]">
+                                </div>
+                                <div class="form-group"><label>Are you using
+                                        multi-domains?</label><input type="text" class="form-control"
+                                                                     value="<%= email_se_questions.prem_exchange.is_using_multi_domains %>"
+                                                                     name="email_se_questions[prem_exchange][is_using_multi_domains]">
+                                </div>
+                                <div class="form-group"><label>If yes, what is the structure of multi-domain
+                                        architecture / their
+                                        relationships?</label><input type="text" class="form-control"
+                                                                     value="<%= email_se_questions.prem_exchange.structure %>"
+                                                                     name="email_se_questions[prem_exchange][structure]">
+                                </div>
+                            </div>
+
+                            <h5><a href="#editEmailSystemsSE-2" style="color: mediumvioletred" data-toggle="collapse">O365
+                                    (Hosted Appliances) <i
+                                            class="fa fa-arrows-v"
+                                            aria-hidden="true"></i>
+                                </a></h5>
+                            <br>
+
+                            <div id="editEmailSystemsSE-2" class="collapse in">
+                                <!-- form groups here -->
+                                <div class="form-group"><label>What O365 license level do you have?</label>
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.hosted_O365.O365_version %>"
+                                           name="email_se_questions[hosted_O365][O365_version]">
+                                </div>
+                                <div class="form-group"><label>Are you maintaining AD on-prem?</label>
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.hosted_O365.is_maintaining_on_prem_AD %>"
+                                           name="email_se_questions[hosted_O365][is_maintaining_on_prem_AD]">
+                                </div>
+                                <div class="form-group"><label>Are you maintaining AD in Azure?</label>
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.hosted_O365.is_maintaining_azure %>"
+                                           name="email_se_questions[hosted_O365][is_maintaining_azure]">
+                                </div>
+                                <div class="form-group"><label>When you create and admin mailboxes, do you do that in
+                                        the on-prem AD, or in Azure?</label>
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.hosted_O365.is_admin_in_AD_or_azure %>"
+                                           name="email_se_questions[hosted_O365][is_admin_in_AD_or_azure]">
+                                </div>
+                                <div class="form-group"><label>Sync tools used to Azure?</label>
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.hosted_O365.sync_tools %>"
+                                           name="email_se_questions[hosted_O365][sync_tools]">
+                                </div>
+                                <div class="form-group"><label>Which O365 version (shared,
+                                        dedicated/BPOS-D/iTAR)?</label>
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.hosted_O365.which_O365 %>"
+                                           name="email_se_questions[hosted_O365][which_O365]">
+                                </div>
+                            </div>
+
+                            <h5><a href="#editEmailSystemsSE-3" style="color: mediumvioletred" data-toggle="collapse">On-prem
+                                    Exchange + O365 (On-prem Appliance) <i
+                                            class="fa fa-arrows-v"
+                                            aria-hidden="true"></i>
+                                </a></h5>
+                            <br>
+
+                            <div id="editEmailSystemsSE-3" class="collapse in">
+                                <div class="form-group"><label>What versions of Exchange are
+                                        running?</label>
+
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.prem_exchange_prem_O365.exchange_version %>"
+                                           name="email_se_questions[prem_exchange_prem_O365][exchange_version]">
+                                </div>
+                                <div class="form-group"><label>How many locations are mailbox servers
+                                        deployed?</label>
+
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.prem_exchange_prem_O365.number_of_mail_servers %>"
+                                           name="email_se_questions[prem_exchange_prem_O365][number_of_mail_servers]">
+                                </div>
+                                <div class="form-group"><label>Do you have an Enterprise
+                                        CAL?</label>
+
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.prem_exchange_prem_O365.has_enterprise_CAL %>"
+                                           name="email_se_questions[prem_exchange_prem_O365][has_enterprise_CAL]">
+                                </div>
+                                <div class="form-group"><label>Describe the HA/DR of the Exchange
+                                        environment.</label>
+
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.prem_exchange_prem_O365.describe_exchange_env %>"
+                                           name="email_se_questions[prem_exchange_prem_O365][describe_exchange_env]">
+                                </div>
+                                <div class="form-group"><label>Please provide a diagram of your exchange
+                                        infrastructure and your AD
+                                        Details.</label>
+
+                                    <input type="text" class="form-control"
+                                           value="FILE UPLOAD?"
+                                           name="email_se_questions[prem_exchange_prem_O365][diagram]">
+                                </div>
+                                <div class="form-group"><label>Are DAGs being
+                                        used?</label>
+
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.prem_exchange_prem_O365.is_using_DAG %>"
+                                           name="email_se_questions[prem_exchange_prem_O365][is_using_DAG]">
+                                </div>
+                                <div class="form-group"><label>Is your AD
+                                        multi-forest?</label>
+
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.prem_exchange_prem_O365.is_multi_forest %>"
+                                           name="email_se_questions[prem_exchange_prem_O365][is_multi_forest]">
+                                </div>
+                                <div class="form-group"><label>How many forests are
+                                        there?</label>
+
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.prem_exchange_prem_O365.number_of_forests %>"
+                                           name="email_se_questions[prem_exchange_prem_O365][number_of_forests]">
+                                </div>
+                                <div class="form-group"><label>Is this a Resource Forest
+                                        arrangement?</label>
+
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.prem_exchange_prem_O365.is_resource_forest_arrangement %>"
+                                           name="email_se_questions[prem_exchange_prem_O365][is_resource_forest_arrangement]">
+                                </div>
+                                <div class="form-group"><label>Are you using multi-domains?</label>
+
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.prem_exchange_prem_O365.is_using_multi_domains %>"
+                                           name="email_se_questions[prem_exchange_prem_O365][is_using_multi_domains]">
+                                </div>
+                                <div class="form-group"><label>If yes, what is the structure of multi-domain
+                                        architecture / their
+                                        relationships?</label>
+
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.prem_exchange_prem_O365.multi_domain_structure %>"
+                                           name="email_se_questions[prem_exchange_prem_O365][multi_domain_structure]">
+                                </div>
+                                <div class="form-group"><label>Resource forest
+                                        deployment?</label>
+
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.prem_exchange_prem_O365.resource_forest_deployment %>"
+                                           name="email_se_questions[prem_exchange_prem_O365][resource_forest_deployment]">
+                                </div>
+                                <div class="form-group"><label>How big is your AD? How many
+                                        objects?</label>
+
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.prem_exchange_prem_O365.AD_size %>"
+                                           name="email_se_questions[prem_exchange_prem_O365][AD_size]">
+                                </div>
+                                <div class="form-group"><label>Do you require a secure connection to
+                                        LDAP?</label>
+
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.prem_exchange_prem_O365.require_ldap %>"
+                                           name="email_se_questions[prem_exchange_prem_O365][require_ldap]">
+                                </div>
+                                <div class="form-group"><label>What O365 license level do you
+                                        have?</label>
+
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.prem_exchange_prem_O365.O365_version %>"
+                                           name="email_se_questions[prem_exchange_prem_O365][O365_version]">
+                                </div>
+                                <div class="form-group"><label>Are you maintaining AD
+                                        on-prem?</label>
+
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.prem_exchange_prem_O365.is_maintaining_on_prem_AD %>"
+                                           name="email_se_questions[prem_exchange_prem_O365][is_maintaining_on_prem_AD]">
+                                </div>
+                                <div class="form-group"><label>Are you maintaining AD in
+                                        Azure?</label>
+
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.prem_exchange_prem_O365.is_maintaining_azure %>"
+                                           name="email_se_questions[prem_exchange_prem_O365][is_maintaining_azure]">
+                                </div>
+                                <div class="form-group">
+                                    <label>When you create and admin mailboxes, do you do that in the on-premAD, or in
+                                        Azure?</label>
+
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.prem_exchange_prem_O365.is_admin_in_AD_or_azure %>"
+                                           name="email_se_questions[prem_exchange_prem_O365][is_admin_in_AD_or_azure]">
+                                </div>
+                                <div class="form-group"><label>Sync tools used on
+                                        Azure?</label>
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.prem_exchange_prem_O365.sync_tools %>"
+                                           name="email_se_questions[prem_exchange_prem_O365][sync_tools]">
+                                </div>
+                                <div class="form-group"><label>Which O365 version (shared,
+                                        dedicated/BPOS-D/iTAR)?</label>
+
+                                    <input type="text" class="form-control"
+                                           value="<%= email_se_questions.prem_exchange_prem_O365.which_O365 %>"
+                                           name="email_se_questions[prem_exchange_prem_O365][which_O365]">
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
                         </div>
                     </form>
                 </div>

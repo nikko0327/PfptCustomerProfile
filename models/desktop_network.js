@@ -10,88 +10,79 @@ var desktop_network_schema = new mongoose.Schema({
     network_security: {
         allow_outside_access: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         DMZ: {
             type: String,
-            default: null
+            default: "No response set"
         },
         firewalls: {
             type: String,
-            default: null
+            default: "No response set"
         },
         require_vpn: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         load_balancer_VIP: {
             type: String,
-            default: null
+            default: "No response set"
         },
         nat_IP_list: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         proxy_servers: {
             type: String,
-            default: null
+            default: "No response set"
         }
     },
     end_user_desktop_env: {
         browsers: { // One or more strings, Chrome/Firefox/IE/Edge
-            type: [String],
-            default: null
+            type: String,
+            default: "No response set"
         },
         browser_versions: {
-            type: [String],
-            default: null
+            type: String,
+            default: "No response set"
         },
         ie11: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         ie11_compatibility: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_ie11_enterprise: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_popups_enabled: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         is_OWA_used: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
+        },
+        browsers_access: { // One or more strings, Chrome/Firefox/IE/Edge
+            type: String,
+            default: "No response set"
         }
-        // browsers_access: { // One or more strings, Chrome/Firefox/IE/Edge
-        //     type: [String],
-        //     default: null
-        // },
     },
     disaster_recovery: {
         is_replicating_exchange_and_AD: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: "No response set"
         },
         config_description: {
             type: String,
-            default: null
+            default: "No response set"
         },
         diagram: {
             type: String,
-            default: null
+            default: "No response set"
         }
     }
     // Authentication (SAML & Remote Auth) not shown in page
