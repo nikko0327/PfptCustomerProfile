@@ -2,6 +2,8 @@ var express = require("express");
 var router = express.Router();
 // var User = require("../models/user");
 var mongoose = require("mongoose");
+mongoose.Promise = Promise;
+
 var Customer = require("../models/customer");
 var ApplianceQuestions = require("../models/appliances");
 var DesktopNetworkQuestions = require("../models/desktop_network");
@@ -135,27 +137,33 @@ router.put("/index/:id", function (req, res) {
                             console.log(err);
                             res.redirect("/index");
                         }
-                    } else {
-
-                        EmailSEQuestions.findOneAndUpdate({"name": req.params.id}, {"name": req.body.customer["name"]}, function (err, result) {
-                                if (err) {
-                                    console.log(err);
-                                    res.redirect("/index");
-                                } else
-
-                                    POCQuestions.findOneAndUpdate({"name": req.params.id}, {"name": req.body.customer["name"]}, function (err, result) {
-                                        if (err) {
-                                            console.log(err);
-                                            res.redirect("/index");
-                                        } else {
-                                            res.redirect("/index/" + req.body.customer["name"]);
-                                        }
-                                    });
-                            }
-                        );
                     }
                 }
             );
+
+            EmailSEQuestions.findOneAndUpdate({"name": req.params.id}, {"name": req.body.customer["name"]}, function (err, result) {
+                    if (err) {
+                        console.log(err);
+                        res.redirect("/index");
+                    }
+                }
+            );
+
+            POCQuestions.findOneAndUpdate({"name": req.params.id}, {"name": req.body.customer["name"]}, function (err, result) {
+                if (err) {
+                    console.log(err);
+                    res.redirect("/index");
+                }
+            });
+
+            JournalingQuestions.findOneAndUpdate({"name": req.params.id}, {"name": req.body.customer["name"]}, function (err, result) {
+                if (err) {
+                    console.log(err);
+                    res.redirect("/index");
+                }
+            });
+
+            res.redirect("/index/" + req.body.customer["name"]);
         }
 
 // Updating POC questions
@@ -173,6 +181,19 @@ router.put("/index/:id", function (req, res) {
 // Updating Email SE Questions
         if (req.body.email_se_questions !== undefined && req.body.email_se_questions !== null) {
             EmailSEQuestions.findOneAndUpdate({"name": req.params.id}, req.body.email_se_questions, function (err, result) {
+                if (err) {
+                    console.log(err);
+                    res.redirect("/index");
+                } else {
+                    res.redirect("/index/" + req.params.id);
+                }
+            });
+        }
+
+
+// Updating journaling questions
+        if (req.body.journaling_questions !== undefined && req.body.journaling_questions !== null) {
+            POCQuestions.findOneAndUpdate({name: req.params.id}, req.body.journaling_questions, function (err, result) {
                 if (err) {
                     console.log(err);
                     res.redirect("/index");
@@ -200,40 +221,106 @@ router.get("/index", function (req, res) {
 
 // SHOW ROUTE
 router.get("/index/:id", function (req, res) {
-    Customer.findOne({"name": req.params.id}, function (err, result) {
-        if (err) {
-            console.log(err);
-            res.redirect("/index");
-        } else {
-            var customer = result;
-        }
+    // CALLBACK HELL BOIS
 
-        EmailSEQuestions.findOne({"name": req.params.id}, function (err, result) {
-            if (err) {
-                console.log(err);
-                res.redirect("/index");
-            } else {
-                var email_se_questions = result;
+    // Customer.findOne({"name": req.params.id}, function (err, result) {
+    //     if (err) {
+    //         console.log(err);
+    //         res.redirect("/index");
+    //     } else {
+    //         var customer = result;
+    //     }
+    //
+    //     EmailSEQuestions.findOne({"name": req.params.id}, function (err, result) {
+    //         if (err) {
+    //             console.log(err);
+    //             res.redirect("/index");
+    //         } else {
+    //             var email_se_questions = result;
+    //         }
+    //
+    //         JournalingQuestions.findOne({"name": req.params.id}, function (err, result) {
+    //                 if (err) {
+    //                     console.log(err);
+    //                     res.redirect("/index");
+    //                 } else {
+    //                     var journaling_questions = result;
+    //
+    //                     POCQuestions.findOne({"name": req.params.id}, function (err, result) {
+    //                         if (err) {
+    //                             console.log(err);
+    //                             res.redirect("/index");
+    //                         } else {
+    //                             var poc_questions = result;
+    //                         }
+    //
+    //                         res.render("show", {
+    //                             customer: customer,
+    //                             email_se_questions: email_se_questions,
+    //                             poc_questions: poc_questions,
+    //                             journaling_questions: journaling_questions
+    //                         });
+    //                         console.log({
+    //                             customer: customer,
+    //                             email_se_questions: email_se_questions,
+    //                             poc_questions: poc_questions,
+    //                             journaling_questions: journaling_questions
+    //                         });
+    //                         console.log("-----");
+    //                     });
+    //                 }
+    //             }
+    //         );
+    //     });
+    // });
+
+    // ATTEMPTING TO ESCAPE CALLBACK HELL
+
+    // Make a shit ton of promises, but be careful, we're not catching any errors.
+    var appliances_query = ApplianceQuestions.findOne({"name": req.params.id}).exec();
+    var customer_query = Customer.findOne({"name": req.params.id}).exec();
+    var desktop_network_query = DesktopNetworkQuestions.findOne({"name": req.params.id}).exec();
+    var email_ps_questions_query = EmailPSQuestions.findOne({"name": req.params.id}).exec();
+    var email_se_questions_query = EmailSEQuestions.findOne({"name": req.params.id}).exec();
+    var import_query = ImportQuestions.findOne({"name": req.params.id}).exec();
+    var journaling_query = JournalingQuestions.findOne({"name": req.params.id}).exec();
+    var poc_query = POCQuestions.findOne({"name": req.params.id}).exec();
+    var usage_query = UsageQuestions.findOne({"name": req.params.id}).exec();
+
+    // Needs to fulfill all promises and queries before we render the page, otherwise
+    // the page borks because it can't find certain query values because they have not ben completed yet.
+    Promise.all([
+        appliances_query,
+        customer_query,
+        desktop_network_query,
+        email_ps_questions_query,
+        email_se_questions_query,
+        import_query,
+        journaling_query,
+        poc_query,
+        usage_query
+    ]).then((result) => {
+        // Although async by nature, Promise.all aggregates the output to the order of the promises in the list.
+
+        var responses = {
+            appliance_questions: result[0],
+            customer: result[1],
+            desktop_network_questions: result[2],
+            email_ps_questions: result[3],
+            email_se_questions: result[4],
+            import_questions: result[5],
+            journaling_questions: result[6],
+            poc_questions: result[7],
+            usage_questions: result[8]
+        };
+
+        res.render("show", responses);
+        for (var key in responses) {
+            if (responses.hasOwnProperty(key) && (responses[key] == undefined || responses[key] == null)) {
+                console.log("%s is %s", key, responses[key]);
             }
-
-            POCQuestions.findOne({"name": req.params.id}, function (err, result) {
-                if (err) {
-                    console.log(err);
-                    res.redirect("/index");
-                } else {
-                    var poc_questions = result;
-                }
-                res.render("show", {
-                    customer: customer,
-                    email_se_questions: email_se_questions,
-                    poc_questions: poc_questions
-                });
-                console.log({customer: customer, email_se_questions: email_se_questions, poc_questions: poc_questions});
-                console.log("-----");
-            });
-
-        });
-
+        }
+        console.log("---");
     });
 });
 
