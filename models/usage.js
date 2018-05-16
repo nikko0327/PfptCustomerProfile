@@ -53,6 +53,10 @@ var usage_schema = new mongoose.Schema({
             type: String,
             default: ""
         },
+        whitelists: {
+            type: String,
+            default: ""
+        },
         random_sampling: {
             has_rules: {
                 type: String,
@@ -65,7 +69,6 @@ var usage_schema = new mongoose.Schema({
             },
             sampling_intention: {
                 type: String,
-                enum: ["", "Top up", "Not top up"], // ????
                 default: ""
             },
             notify_violators: {
@@ -111,6 +114,16 @@ var usage_schema = new mongoose.Schema({
         }
     },
     // Not sure about selective disposition
+    selective_disposition: {
+        scenarios: {
+            type: String,
+            default: ""
+        },
+        messages_to_dispose: {
+            type: String,
+            default: ""
+        }
+    },
 
     content_collector_files: {
         interested_in_CC4Files: {
@@ -213,6 +226,10 @@ var usage_schema = new mongoose.Schema({
             type: String,
             default: ""
         },
+        service_account: {
+            type: String,
+            default: ""
+        }
         // NOT SURE ABOUT THIS ONE
     },
     // Transport agent has no questions
