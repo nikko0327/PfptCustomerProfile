@@ -115,6 +115,7 @@ router.post("/index", function (req, res) {
             if (error["code"] == 11000) {
                 console.log("Duplicate entry for customer: " + req.body.customer["name"]);
                 // Send pop up alert to HTML here
+                res.render("new", {success: false});
             } else {
                 console.log(error);
             }
@@ -209,7 +210,7 @@ router.put("/index/:id", function (req, res) {
 
         // Updating Journaling questions
         if (req.body.journaling_questions !== undefined && req.body.journaling_questions !== null) {
-            JournalingQuestions.findOneAndUpdate({"name": req.params.id}, req.body.email_se_questions).then(() => {
+            JournalingQuestions.findOneAndUpdate({"name": req.params.id}, req.body.journaling_questions).then(() => {
                 res.redirect("/index/" + req.params.id);
             }).catch((error) => {
                 console.log(error);
@@ -219,7 +220,7 @@ router.put("/index/:id", function (req, res) {
 
         // Updating Other Data Sources Questions
         if (req.body.other_data_source_questions !== undefined && req.body.other_data_source_questions !== null) {
-            POCQuestions.findOneAndUpdate({name: req.params.id}, req.body.other_data_source_questions).then(() => {
+            OtherDataSourcesQuestions.findOneAndUpdate({name: req.params.id}, req.body.other_data_source_questions).then(() => {
                 res.redirect("/index/" + req.params.id);
             }).catch((error) => {
                 console.log(error);
@@ -239,7 +240,7 @@ router.put("/index/:id", function (req, res) {
 
         // Updating Usage Questions
         if (req.body.usage_questions !== undefined && req.body.usage_questions !== null) {
-            POCQuestions.findOneAndUpdate({name: req.params.id}, req.body.usage_questions).then(() => {
+            UsageQuestions.findOneAndUpdate({name: req.params.id}, req.body.usage_questions).then(() => {
                 res.redirect("/index/" + req.params.id);
             }).catch((error) => {
                 console.log(error);

@@ -11,31 +11,31 @@ var email_ps_schema = new mongoose.Schema({
     prem_exchange: {
         is_using_DAG: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         number_of_inboxes: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         journal_rules: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_journal_in_own_DB: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         number_of_extra_storage: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_using_RMS: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_journal_decryption_enabled: {
             type: String,
-            default: "No response set"
+            default: ""
         }
     },
 
@@ -43,19 +43,19 @@ var email_ps_schema = new mongoose.Schema({
     hosted_O365: {
         is_using_azure_rms: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_using_IRM: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_journal_decryption_enabled: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_using_message_decryption: {
             type: String,
-            default: "No response set"
+            default: ""
         }
     },
 
@@ -64,49 +64,49 @@ var email_ps_schema = new mongoose.Schema({
         // Exchange details
         is_using_DAG: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         number_of_inboxes: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         journal_rules: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_journal_in_own_DB: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         number_of_extra_storage: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_using_RMS: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_journal_decryption_enabled: {
             type: String,
-            default: "No response set"
+            default: ""
         },
 
         // O365 details
         is_using_azure_rms: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_using_IRM: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_O365_journal_decryption_enabled: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_using_message_decryption: {
             type: String,
-            default: "No response set"
+            default: ""
         }
     },
 
@@ -114,50 +114,50 @@ var email_ps_schema = new mongoose.Schema({
         // Exchange details
         is_using_DAG: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         number_of_inboxes: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         journal_rules: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_journal_in_own_DB: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         number_of_extra_storage: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_using_RMS: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_journal_decryption_enabled: {
             type: String,
-            default: "No response set"
+            default: ""
         },
 
         // O365 details
         is_using_azure_rms: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_using_IRM: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         // is_journal_decryption_enabled: {
         //     type: String,
-        //     enum: ["No response set, "Yes", "No"],
-        //     default: "No response set
+        //     enum: [", "Yes", "No"],
+        //     default: "
         // },
         is_using_message_decryption: {
             type: String,
-            default: "No response set"
+            default: ""
         }
     }
 });

@@ -9,62 +9,62 @@ var poc_schema = new mongoose.Schema({
     POC: {
         is_sandbox_poc: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_prod_poc: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         poc_tests: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         agreed_to_success_criteria: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         envs_needed: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         how_long_needed: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         how_to_convert_env: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         installing_in_production_or_lab: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         how_many_envs: { // Number
             type: String,
-            default: "No response set"
+            default: ""
         },
         how_many_mailboxes: { // Number
             type: String,
-            default: "No response set"
+            default: ""
         }
     },
     UAT: {
         need_UAT: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         UAT_forever: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_UAT_production_or_lab: {
             type: String,
-            //enum: ["No response set, "Production", "Lab"],
-            default: "No response set"
+            //enum: [", "Production", "Lab"],
+            default: ""
         },
         primary_purpose: {
             type: String,
-            default: "No response set"
+            default: ""
         }
     }
 });

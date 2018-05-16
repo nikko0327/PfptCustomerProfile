@@ -48,7 +48,7 @@
 
         <!-- Displaying Email Systems SE questions -->
         <div id="emailSystemSe" class="">
-            <h5><a href="#emailContainer" data-toggle="collapse">Email Systems SE (Done) <i
+            <h5><a href="#emailContainer" data-toggle="collapse">Email Systems SE (DONE, MAYBE MISSING QUESTIONS) <i
                             class="fa fa-arrows-v"
                             aria-hidden="true"></i>
                 </a></h5>
@@ -415,13 +415,14 @@
 
         <!-- Displaying journaling questions-->
         <div id="journaling" class="">
-            <h5><a href="#journalingContainer" data-toggle="collapse">Journaling (To-do: edit)<i class="fa fa-arrows-v"
-                                                                                                 aria-hidden="true"></i>
+            <h5><a href="#journalingContainer" data-toggle="collapse">Journaling (DONE)<i class="fa fa-arrows-v"
+                                                                                          aria-hidden="true"></i>
                 </a></h5>
             <br>
             <div id="journalingContainer" class="collapse in">
                 <div class="edit pull-right">
-                    <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
+                    <a href="#" aria-hidden="true" data-target="#editJournaling" data-toggle="modal"><i class="fa fa-pencil-square-o"
+                                                                                                        aria-hidden="true"></i>Edit</a>
                 </div>
                 <h5 style="color: mediumvioletred">Exchange Details</h5>
 
@@ -470,13 +471,14 @@
 
         <!-- Displaying appliance questions -->
         <div id="appliances" class="">
-            <h5><a href="#applianceSizing" data-toggle="collapse">Appliances (To-do: edit)<i class="fa fa-arrows-v"
-                                                                                             aria-hidden="true"></i>
+            <h5><a href="#applianceSizing" data-toggle="collapse">Appliances (DONE)<i class="fa fa-arrows-v"
+                                                                                      aria-hidden="true"></i>
                 </a></h5>
             <br>
             <div id="applianceSizing" class="collapse in">
                 <div class="edit pull-right">
-                    <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
+                    <a href="#" aria-hidden="true" data-target="#editAppliances" data-toggle="modal"><i class="fa fa-pencil-square-o"
+                                                                                                        aria-hidden="true"></i>Edit</a>
                 </div>
                 <div id="appliaceDetails" class="row">
                     <div id="" class="col-4"><p><b>Messages Per Day</b><br><%= appliance_questions.messages_per_day %>
@@ -507,7 +509,7 @@
                     <div id="" class="col-4"><p><b>How many of each purpose (UI, export, archiving,
                                 stubbing)</b><br><%= appliance_questions.purposes %>
                         </p></div>
-                    <div id="" class="col-4"><p><b>Archive Proxy?</b><br><%= appliance_questions.has_archive_proxy %>
+                    <div id="" class="col-4"><p><b>Archive Proxy?</b><br><%= appliance_questions.archive_proxy %>
                         </p></div>
                     <div id="" class="col-4"><p><b>Transport Agent</b><br><%= appliance_questions.transport_agent %></p>
                     </div>
@@ -909,33 +911,38 @@
 
         <!-- Displaying import questions -->
         <div id="import" class="">
-            <h5><a href="#importContent" data-toggle="collapse">Import (To-do: edit) <i class="fa fa-arrows-v" aria-hidden="true"></i></a></h5>
+            <h5><a href="#importContent" data-toggle="collapse">Import (DONE) <i class="fa fa-arrows-v" aria-hidden="true"></i></a></h5>
             <br>
             <div id="importContent" class="collapse in">
                 <div class="edit pull-right">
-                    <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
+                    <a href="#" aria-hidden="true" data-target="#editImport" data-toggle="modal">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
                 </div>
                 <div id="importDetails" class="row">
-                    <div id="" class="col-4"><p><b>Do you need to migrate Legacy Data?</b><br><%= import_questions.need_to_migrate_legacy_data %></p>
-                    </div>
-                    <div id="" class="col-4"><p><b>Existing Archive</b><br><%= import_questions.is_existing_archive %></p></div>
-                    <div id="" class="col-4"><p><b>Amount of data to be
-                                migrated</b><br> <%= import_questions.amount_of_data_to_migrate %></p></div>
-                    <div id="" class="col-4"><p><b>Expected Timeline</b><br> <%= import_questions.expected_timeline %></p></div>
-                    <div id="" class="col-4"><p><b>Who's doing the
-                                conversion?</b><br> <%= import_questions.conversion_agent %></p></div>
-                    <div id="" class="col-4"><p><b>SoW / Service Brief</b><br><%= import_questions.service_brief %></p>
-                    </div>
-                    <div id="" class="col-4"><p><b>Storage</b><br><%= import_questions.storage %></p></div>
-                    <div id="" class="col-4"><p><b>Format</b><br><%= import_questions.format %></p></div>
-                    <div id="" class="col-4"><p><b>Retention policy for Import
-                                Data</b><br><%= import_questions.retention_policy %></p></div>
-                    <div id="" class="col-4"><p><b>Encryption Type for
-                                Drives</b><br><%= import_questions.encryption_type %></p></div>
-                    <div id="" class="col-4"><p><b>How old is the oldest data you
-                                have?</b><br><%= import_questions.oldest_data %></p></div>
-                    <div id="" class="col-4"><p><b>Do you have a record of former employees and their email addresses
-                                and aliases?</b><br><%= import_questions.employee_records %></p></div>
+                    <div id="" class="col-4"><p><b>Do you need to migrate Legacy Data?</b>
+                            <br><%= import_questions.need_to_migrate_legacy_data %></p></div>
+                    <div id="" class="col-4"><p><b>Existing Archive</b>
+                            <br><%= import_questions.is_existing_archive %></p></div>
+                    <div id="" class="col-4"><p><b>Amount of data to be migrated</b>
+                            <br><%= import_questions.amount_of_data_to_migrate %></p></div>
+                    <div id="" class="col-4"><p><b>Expected Timeline</b>
+                            <br> <%= import_questions.expected_timeline %></p></div>
+                    <div id="" class="col-4"><p><b>Who's doing the conversion?</b>
+                            <br> <%= import_questions.conversion_agent %></p></div>
+                    <div id="" class="col-4"><p><b>SoW / Service Brief</b>
+                            <br><%= import_questions.service_brief %></p></div>
+                    <div id="" class="col-4"><p><b>Storage</b>
+                            <br><%= import_questions.storage %></p></div>
+                    <div id="" class="col-4"><p><b>Format</b>
+                            <br><%= import_questions.format %></p></div>
+                    <div id="" class="col-4"><p><b>Retention policy for Import Data</b>
+                            <br><%= import_questions.retention_policy %></p></div>
+                    <div id="" class="col-4"><p><b>Encryption Type for Drives</b>
+                            <br><%= import_questions.encryption_type %></p></div>
+                    <div id="" class="col-4"><p><b>How old is the oldest data you have?</b>
+                            <br><%= import_questions.oldest_data %></p></div>
+                    <div id="" class="col-4"><p><b>Do you have a record of former employees and their email addresses and aliases?</b>
+                            <br><%= import_questions.employee_records %></p></div>
                 </div>
             </div>
         </div>
@@ -943,7 +950,7 @@
 
         <!-- Displaying POC questions -->
         <div id="poc" class="">
-            <h5><a href="#pocContent" data-toggle="collapse">POC (Done) <i class="fa fa-arrows-v"
+            <h5><a href="#pocContent" data-toggle="collapse">POC (DONE) <i class="fa fa-arrows-v"
                                                                            aria-hidden="true"></i>
                 </a></h5>
             <br>
@@ -1036,7 +1043,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="lineModalLabel"><%= customer.name %></h3>
+                    <h3 class="modal-title" id="lineModalLabel">Customer information</h3>
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
                                 class="sr-only">Close</span></button>
                 </div>
@@ -1046,75 +1053,78 @@
                     <form class="" action="/index/<%= customer.name %>?_method=PUT" method="POST">
                         <div class="form-group">
                             <label for="customerName">Customer Name</label>
-                            <input type="text" class="form-control" id="customerName" value="<%= customer.name %>"
+                            <input type="text" class="form-control" placeholder="No response set"  id="customerName" value="<%= customer.name %>"
                                    name="customer[name]">
                         </div>
                         <div class="form-group">
                             <label for="salesRep">Sales Rep.</label>
-                            <input type="text" class="form-control" id="salesRep" value="<%= customer.salesRep %>"
+                            <input type="text" class="form-control" placeholder="No response set"  id="salesRep" value="<%= customer.salesRep %>"
                                    name="customer[salesRep]">
                         </div>
                         <div class="form-group">
                             <label for="archivingSe">Archiving SE</label>
-                            <input type="text" class="form-control" id="archivingSe" value="<%= customer.archivingSe %>"
+                            <input type="text" class="form-control" placeholder="No response set"  id="archivingSe" value="<%= customer.archivingSe
+                            %>"
                                    name="customer[archivingSe]">
                         </div>
                         <div class="form-group">
                             <label for="accManager">Acc. Manager</label>
-                            <input type="text" class="form-control" id="accManager" value="<%= customer.accManager %>"
+                            <input type="text" class="form-control" placeholder="No response set"  id="accManager" value="<%= customer.accManager %>"
                                    name="customer[accManager]">
                         </div>
                         <div class="form-group">
                             <label for="archivingSe">TEM</label>
-                            <input type="text" class="form-control" id="tme" value="<%= customer.tem %>"
+                            <input type="text" class="form-control" placeholder="No response set"  id="tme" value="<%= customer.tem %>"
                                    name="customer[tem]">
                         </div>
                         <div class="form-group">
                             <label for="archivingSe">TAM</label>
-                            <input type="text" class="form-control" id="tam" value="<%= customer.tam %>"
+                            <input type="text" class="form-control" placeholder="No response set"  id="tam" value="<%= customer.tam %>"
                                    name="customer[tam]">
                         </div>
                         <div class="form-group">
                             <label for="archivingSe">Implementation Specialist</label>
-                            <input type="text" class="form-control" id="implementationSpecialist "
+                            <input type="text" class="form-control" placeholder="No response set"  id="implementationSpecialist "
                                    value="<%= customer.impSpecialist %>" name="customer[impSpecialist]">
                         </div>
                         <div class="form-group">
                             <label for="archivingSe">Number of Users</label>
-                            <input type="text" class="form-control" id="numberOfUsers"
+                            <input type="text" class="form-control" placeholder="No response set"  id="numberOfUsers"
                                    value="<%= customer.numberOfUsers %>"
                                    name="customer[numberOfUsers]">
                         </div>
                         <div class="form-group">
                             <label for="location">Location</label>
-                            <input type="text" class="form-control" id="location" value="<%= customer.location %>"
+                            <input type="text" class="form-control" placeholder="No response set"  id="location" value="<%= customer.location %>"
                                    name="customer[location]">
                         </div>
                         <div class="form-group">
                             <label for="supervision">Supervision</label>
-                            <input type="text" class="form-control" id="supervision" value="<%= customer.supervision %>"
+                            <input type="text" class="form-control" placeholder="No response set"  id="supervision" value="<%= customer.supervision
+                            %>"
                                    name="customer[supervision]">
                         </div>
                         <div class="form-group">
                             <label for="contacts">Contacts</label>
-                            <input type="text" class="form-control" id="contacts" value="<%= customer.contacts %>"
+                            <input type="text" class="form-control" placeholder="No response set"  id="contacts" value="<%= customer.contacts %>"
                                    name="customer[contacts]">
                         </div>
                         <div class="form-group">
                             <label for="status">Status</label>
-                            <input type="text" class="form-control" id="status" value="<%= customer.status %>"
+                            <input type="text" class="form-control" placeholder="No response set"  id="status" value="<%= customer.status %>"
                                    name="customer[status]">
                         </div>
                         <div class="form-group">
                             <label for="natIp">NAT IP</label>
-                            <input type="text" class="form-control" id="natIp" value="<%= customer.natIp %>"
+                            <input type="text" class="form-control" placeholder="No response set"  id="natIp" value="<%= customer.natIp %>"
                                    name="customer[natIp]">
                         </div>
                         <div class="form-group">
                             <label for="contacts">Incumbent Solution</label>
-                            <input type="text" class="form-control" id="incumbentSolution"
+                            <input type="text" class="form-control" placeholder="No response set"  id="incumbentSolution"
                                    value="<%= customer.incumbentSolution %>" name="customer[incumbentSolution]">
                         </div>
+
                         <div class="col-4">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
@@ -1138,7 +1148,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="lineModalLabel"><%= customer.name %></h3>
+                    <h3 class="modal-title" id="lineModalLabel">Email system details (SE)</h3>
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
                                 class="sr-only">Close</span></button>
                 </div>
@@ -1148,7 +1158,7 @@
                     <form class="" action="/index/<%= customer.name %>?_method=PUT" method="POST">
                         <div class="form-group">
                             <label for="customerName">Customer Name</label>
-                            <input type="text" readonly class="form-control"
+                            <input type="text" readonly class="form-control" placeholder="No response set"
                                    value="<%= customer.name %>"
                                    name="email_se_questions[name]">
                         </div>
@@ -1164,56 +1174,56 @@
                             <div id="editEmailSystemsSE-1" class="collapse in">
                                 <h5 style="color: lightseagreen">Exchange Details</h5>
                                 <div class="form-group"><label>What versions of Exchange are
-                                        running?</label><input type="text" class="form-control"
+                                        running?</label><input type="text" class="form-control" placeholder="No response set"
                                                                value="<%= email_se_questions.prem_exchange.exchange_version %>"
                                                                name="email_se_questions[prem_exchange][exchange_version]">
                                 </div>
                                 <div class="form-group"><label>How many locations are mailbox servers
-                                        deployed?</label><input type="text" class="form-control"
+                                        deployed?</label><input type="text" class="form-control" placeholder="No response set"
                                                                 value="<%= email_se_questions.prem_exchange.number_of_mail_servers %>"
                                                                 name="email_se_questions[prem_exchange][number_of_mail_servers]">
                                 </div>
                                 <div class="form-group"><label>Do you have an Enterprise
-                                        CAL?</label><input type="text" class="form-control"
+                                        CAL?</label><input type="text" class="form-control" placeholder="No response set"
                                                            value="<%= email_se_questions.prem_exchange.has_enterprise_CAL %>"
                                                            name="email_se_questions[prem_exchange][has_enterprise_CAL]">
                                 </div>
                                 <div class="form-group"><label>Are you replicating Exchange and AD to a secondary data
-                                        center?</label><input type="text" class="form-control"
+                                        center?</label><input type="text" class="form-control" placeholder="No response set"
                                                               value="<%= email_se_questions.prem_exchange.is_replicating_exchange_and_AD %>"
                                                               name="email_se_questions[prem_exchange][is_replicating_exchange_and_AD]">
                                 </div>
 
                                 <div class="form-group"><label>Please provide a diagram of your exchange infrastructure
-                                        and your AD Details.</label><input type="text" class="form-control"
+                                        and your AD Details.</label><input type="text" class="form-control" placeholder="No response set"
                                                                            value="<%= email_se_questions.prem_exchange.diagram %>"
                                                                            name="email_se_questions[prem_exchange][diagram]">
                                 </div>
 
                                 <h5 style="color: lightseagreen">Active Directory Details</h5>
                                 <div class="form-group"><label>Is your AD
-                                        multi-forest?</label><input type="text" class="form-control"
+                                        multi-forest?</label><input type="text" class="form-control" placeholder="No response set"
                                                                     value="<%= email_se_questions.prem_exchange.is_multi_forest %>"
                                                                     name="email_se_questions[prem_exchange][is_multi_forest]">
                                 </div>
                                 <div class="form-group"><label>Are there trusts between the
-                                        forests?</label><input type="text" class="form-control"
+                                        forests?</label><input type="text" class="form-control" placeholder="No response set"
                                                                value="<%= email_se_questions.prem_exchange.exists_trusts %>"
                                                                name="email_se_questions[prem_exchange][exists_trusts]">
                                 </div>
                                 <div class="form-group"><label>Is this a Resource Forest
-                                        arrangement?</label><input type="text" class="form-control"
+                                        arrangement?</label><input type="text" class="form-control" placeholder="No response set"
                                                                    value="<%= email_se_questions.prem_exchange.is_resource_forest_arrangement %>"
                                                                    name="email_se_questions[prem_exchange][is_resource_forest_arrangement]">
                                 </div>
                                 <div class="form-group"><label>Are you using
-                                        multi-domains?</label><input type="text" class="form-control"
+                                        multi-domains?</label><input type="text" class="form-control" placeholder="No response set"
                                                                      value="<%= email_se_questions.prem_exchange.is_using_multi_domains %>"
                                                                      name="email_se_questions[prem_exchange][is_using_multi_domains]">
                                 </div>
                                 <div class="form-group"><label>If yes, what is the structure of multi-domain
                                         architecture / their
-                                        relationships?</label><input type="text" class="form-control"
+                                        relationships?</label><input type="text" class="form-control" placeholder="No response set"
                                                                      value="<%= email_se_questions.prem_exchange.structure %>"
                                                                      name="email_se_questions[prem_exchange][structure]">
                                 </div>
@@ -1229,34 +1239,34 @@
                             <div id="editEmailSystemsSE-2" class="collapse in">
                                 <!-- form groups here -->
                                 <div class="form-group"><label>What O365 license level do you have?</label>
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.hosted_O365.O365_version %>"
                                            name="email_se_questions[hosted_O365][O365_version]">
                                 </div>
                                 <div class="form-group"><label>Are you maintaining AD on-prem?</label>
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.hosted_O365.is_maintaining_on_prem_AD %>"
                                            name="email_se_questions[hosted_O365][is_maintaining_on_prem_AD]">
                                 </div>
                                 <div class="form-group"><label>Are you maintaining AD in Azure?</label>
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.hosted_O365.is_maintaining_azure %>"
                                            name="email_se_questions[hosted_O365][is_maintaining_azure]">
                                 </div>
                                 <div class="form-group"><label>When you create and admin mailboxes, do you do that in
                                         the on-prem AD, or in Azure?</label>
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.hosted_O365.is_admin_in_AD_or_azure %>"
                                            name="email_se_questions[hosted_O365][is_admin_in_AD_or_azure]">
                                 </div>
                                 <div class="form-group"><label>Sync tools used to Azure?</label>
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.hosted_O365.sync_tools %>"
                                            name="email_se_questions[hosted_O365][sync_tools]">
                                 </div>
                                 <div class="form-group"><label>Which O365 version (shared,
                                         dedicated/BPOS-D/iTAR)?</label>
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.hosted_O365.which_O365 %>"
                                            name="email_se_questions[hosted_O365][which_O365]">
                                 </div>
@@ -1274,28 +1284,28 @@
                                 <div class="form-group"><label>What versions of Exchange are
                                         running?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_prem_O365.exchange_version %>"
                                            name="email_se_questions[prem_exchange_prem_O365][exchange_version]">
                                 </div>
                                 <div class="form-group"><label>How many locations are mailbox servers
                                         deployed?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_prem_O365.number_of_mail_servers %>"
                                            name="email_se_questions[prem_exchange_prem_O365][number_of_mail_servers]">
                                 </div>
                                 <div class="form-group"><label>Do you have an Enterprise
                                         CAL?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_prem_O365.has_enterprise_CAL %>"
                                            name="email_se_questions[prem_exchange_prem_O365][has_enterprise_CAL]">
                                 </div>
                                 <div class="form-group"><label>Describe the HA/DR of the Exchange
                                         environment.</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_prem_O365.describe_exchange_env %>"
                                            name="email_se_questions[prem_exchange_prem_O365][describe_exchange_env]">
                                 </div>
@@ -1303,7 +1313,7 @@
                                         infrastructure and your AD
                                         Details.</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_prem_O365.diagram %>"
                                            name="email_se_questions[prem_exchange_prem_O365][diagram]">
                                 </div>
@@ -1311,62 +1321,62 @@
                                         used?</label>
 
                                     <h5 style="color: lightseagreen">Active Directory Details</h5>
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_prem_O365.is_using_DAG %>"
                                            name="email_se_questions[prem_exchange_prem_O365][is_using_DAG]">
                                 </div>
                                 <div class="form-group"><label>Is your AD
                                         multi-forest?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_prem_O365.is_multi_forest %>"
                                            name="email_se_questions[prem_exchange_prem_O365][is_multi_forest]">
                                 </div>
                                 <div class="form-group"><label>How many forests are
                                         there?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_prem_O365.number_of_forests %>"
                                            name="email_se_questions[prem_exchange_prem_O365][number_of_forests]">
                                 </div>
                                 <div class="form-group"><label>Is this a Resource Forest
                                         arrangement?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_prem_O365.is_resource_forest_arrangement %>"
                                            name="email_se_questions[prem_exchange_prem_O365][is_resource_forest_arrangement]">
                                 </div>
                                 <div class="form-group"><label>Are you using multi-domains?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_prem_O365.is_using_multi_domains %>"
                                            name="email_se_questions[prem_exchange_prem_O365][is_using_multi_domains]">
                                 </div>
                                 <div class="form-group"><label>If yes, what is the structure of multi-domain
                                         architecture / their relationships?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_prem_O365.multi_domain_structure %>"
                                            name="email_se_questions[prem_exchange_prem_O365][multi_domain_structure]">
                                 </div>
                                 <div class="form-group"><label>Resource forest
                                         deployment?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_prem_O365.resource_forest_deployment %>"
                                            name="email_se_questions[prem_exchange_prem_O365][resource_forest_deployment]">
                                 </div>
                                 <div class="form-group"><label>How big is your AD? How many
                                         objects?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_prem_O365.AD_size %>"
                                            name="email_se_questions[prem_exchange_prem_O365][AD_size]">
                                 </div>
                                 <div class="form-group"><label>Do you require a secure connection to
                                         LDAP?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_prem_O365.require_ldap %>"
                                            name="email_se_questions[prem_exchange_prem_O365][require_ldap]">
                                 </div>
@@ -1374,21 +1384,21 @@
                                 <div class="form-group"><label>What O365 license level do you
                                         have?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_prem_O365.O365_version %>"
                                            name="email_se_questions[prem_exchange_prem_O365][O365_version]">
                                 </div>
                                 <div class="form-group"><label>Are you maintaining AD
                                         on-prem?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_prem_O365.is_maintaining_on_prem_AD %>"
                                            name="email_se_questions[prem_exchange_prem_O365][is_maintaining_on_prem_AD]">
                                 </div>
                                 <div class="form-group"><label>Are you maintaining AD in
                                         Azure?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_prem_O365.is_maintaining_azure %>"
                                            name="email_se_questions[prem_exchange_prem_O365][is_maintaining_azure]">
                                 </div>
@@ -1396,20 +1406,20 @@
                                     <label>When you create and admin mailboxes, do you do that in the on-premAD, or in
                                         Azure?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_prem_O365.is_admin_in_AD_or_azure %>"
                                            name="email_se_questions[prem_exchange_prem_O365][is_admin_in_AD_or_azure]">
                                 </div>
                                 <div class="form-group"><label>Sync tools used on
                                         Azure?</label>
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_prem_O365.sync_tools %>"
                                            name="email_se_questions[prem_exchange_prem_O365][sync_tools]">
                                 </div>
                                 <div class="form-group"><label>Which O365 version (shared,
                                         dedicated/BPOS-D/iTAR)?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_prem_O365.which_O365 %>"
                                            name="email_se_questions[prem_exchange_prem_O365][which_O365]">
                                 </div>
@@ -1427,27 +1437,27 @@
                                 <div class="form-group"><label>What versions of Exchange are
                                         running?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_hosted_O365.exchange_version %>"
                                            name="email_se_questions[prem_exchange_hosted_O365][exchange_version]">
                                 </div>
                                 <div class="form-group"><label>How many locations are mailbox servers
                                         deployed?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_hosted_O365.number_of_mail_servers %>"
                                            name="email_se_questions[prem_exchange_hosted_O365][number_of_mail_servers]">
                                 </div>
                                 <div class="form-group"><label>Do you have an Enterprise CAL?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_hosted_O365.has_enterprise_CAL %>"
                                            name="email_se_questions[prem_exchange_hosted_O365][has_enterprise_CAL]">
                                 </div>
                                 <div class="form-group"><label>Describe the HA/DR of the Exchange
                                         environment.</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_hosted_O365.describe_exchange_env %>"
                                            name="email_se_questions[prem_exchange_hosted_O365][describe_exchange_env]">
                                 </div>
@@ -1455,14 +1465,14 @@
                                         infrastructure and your AD
                                         Details.</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_hosted_O365.diagram %>"
                                            name="email_se_questions[prem_exchange_hosted_O365][diagram]">
                                 </div>
                                 <div class="form-group"><label>Are DAGs being
                                         used?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_hosted_O365.is_using_DAG %>"
                                            name="email_se_questions[prem_exchange_hosted_O365][is_using_DAG]">
                                 </div>
@@ -1471,28 +1481,28 @@
                                 <div class="form-group"><label>Is your AD
                                         multi-forest?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_hosted_O365.is_multi_forest %>"
                                            name="email_se_questions[prem_exchange_hosted_O365][is_multi_forest]">
                                 </div>
                                 <div class="form-group"><label>How many forests are
                                         there?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_hosted_O365.number_of_forests %>"
                                            name="email_se_questions[prem_exchange_hosted_O365][number_of_forests]">
                                 </div>
                                 <div class="form-group"><label>Is this a Resource Forest
                                         arrangement?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_hosted_O365.is_resource_forest_arrangement %>"
                                            name="email_se_questions[prem_exchange_hosted_O365][is_resource_forest_arrangement]">
                                 </div>
                                 <div class="form-group"><label>Are you using
                                         multi-domains?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_hosted_O365.is_using_multi_domains %>"
                                            name="email_se_questions[prem_exchange_hosted_O365][is_using_multi_domains]">
                                 </div>
@@ -1500,21 +1510,21 @@
                                         architecture / their
                                         relationships?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_hosted_O365.structure %>"
                                            name="email_se_questions[prem_exchange_hosted_O365][structure]">
                                 </div>
                                 <div class="form-group"><label>Resource forest
                                         deployment?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_hosted_O365.resource_forest_deployment %>"
                                            name="email_se_questions[prem_exchange_hosted_O365][resource_forest_deployment]">
                                 </div>
                                 <div class="form-group"><label>How big is your AD? How many
                                         objects?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_hosted_O365.AD_size %>"
                                            name="email_se_questions[prem_exchange_hosted_O365][AD_size]">
                                 </div>
@@ -1523,21 +1533,21 @@
                                 <div class="form-group"><label>What O365 license level do you
                                         have?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_hosted_O365.O365_version %>"
                                            name="email_se_questions[prem_exchange_hosted_O365][O365_version]">
                                 </div>
                                 <div class="form-group"><label>Are you maintaining AD
                                         on-prem?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_hosted_O365.is_maintaining_on_prem_AD %>"
                                            name="email_se_questions[prem_exchange_hosted_O365][is_maintaining_on_prem_AD]">
                                 </div>
                                 <div class="form-group"><label>Are you maintaining AD in
                                         Azure?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_hosted_O365.is_maintaining_azure %>"
                                            name="email_se_questions[prem_exchange_hosted_O365][is_maintaining_azure]">
                                 </div>
@@ -1546,21 +1556,21 @@
                                         AD, or in
                                         Azure?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_hosted_O365.is_admin_in_AD_or_azure %>"
                                            name="email_se_questions[prem_exchange_hosted_O365][is_admin_in_AD_or_azure]">
                                 </div>
                                 <div class="form-group"><label>Sync tools used to
                                         Azure?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_hosted_O365.sync_tools %>"
                                            name="email_se_questions[prem_exchange_hosted_O365][sync_tools]">
                                 </div>
                                 <div class="form-group"><label>Which O365 version (shared,
                                         dedicated/BPOS-D/iTAR)?</label>
 
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control" placeholder="No response set"
                                            value="<%= email_se_questions.prem_exchange_hosted_O365.which_O365 %>"
                                            name="email_se_questions[prem_exchange_hosted_O365][which_O365]">
                                 </div>
@@ -1585,12 +1595,12 @@
         </div>
     </div>
 
-    <!-- POC UPDATE -->
-    <div class="modal fade" id="editPOC" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <!-- JOURNALING UPDATE -->
+    <div class="modal fade" id="editJournaling" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="lineModalLabel"><%= customer.name %></h3>
+                    <h3 class="modal-title" id="lineModalLabel">Journaling configuration</h3>
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
                                 class="sr-only">Close</span></button>
                 </div>
@@ -1600,97 +1610,477 @@
                     <form class="" action="/index/<%= customer.name %>?_method=PUT" method="POST">
                         <div class="form-group">
                             <label for="customerName">Customer Name</label>
-                            <input type="text" readonly class="form-control"
+                            <input type="text" readonly class="form-control" placeholder="No response set"
+                                   value="<%= customer.name %>"
+                                   name="journaling_questions[name]">
+                        </div>
+
+                        <h5 style="color: mediumvioletred">Exchange Details</h5>
+                        <div class="form-group">
+                            <label>Exchange on-prem</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.exchange.exchange_on_prem %>"
+                                   name="journaling_questions[exchange][exchange_on_prem]">
+                        </div>
+                        <div class="form-group">
+                            <label>O365</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.exchange.has_O365 %>"
+                                   name="journaling_questions[exchange][has_O365]">
+                        </div>
+                        <div class="form-group">
+                            <label>Mixed mode</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.exchange.is_mixed_mode %>"
+                                   name="journaling_questions[exchange][is_mixed_mode]">
+                        </div>
+                        <div class="form-group">
+                            <label>Number of mailboxes</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.exchange.number_of_mailboxes %>"
+                                   name="journaling_questions[exchange][number_of_mailboxes]">
+                        </div>
+                        <div class="form-group">
+                            <label>Average message count</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.exchange.avg_message_count %>"
+                                   name="journaling_questions[exchange][avg_message_count]">
+                        </div>
+                        <div class="form-group">
+                            <label>Changes in business?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.exchange.change_in_business %>"
+                                   name="journaling_questions[exchange][change_in_business]">
+                        </div>
+                        <div class="form-group">
+                            <label>Has Enterprise CAL?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.exchange.has_enterprise_CAL %>"
+                                   name="journaling_questions[exchange][has_enterprise_CAL]">
+                        </div>
+
+
+                        <h5 style="color: mediumvioletred">Mail volume and journaling</h5>
+                        <div class="form-group">
+                            <label>Users to be journaled</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.mail_volume_metrics.users_journaled %>"
+                                   name="journaling_questions[mail_volume_metrics][users_journaled]">
+                        </div>
+                        <div class="form-group">
+                            <label>Messages per user (weekly/monthly)</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.mail_volume_metrics.user_messages %>"
+                                   name="journaling_questions[mail_volume_metrics][user_messages]">
+                        </div>
+                        <div class="form-group">
+                            <label>Message volume derivation method</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.mail_volume_metrics.message_derive %>"
+                                   name="journaling_questions[mail_volume_metrics][message_derive]">
+                        </div>
+                        <div class="form-group">
+                            <label>Average message size</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.mail_volume_metrics.avg_message_size %>"
+                                   name="journaling_questions[mail_volume_metrics][avg_message_size]">
+                        </div>
+                        <div class="form-group">
+                            <label>Average daily journal message count</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.mail_volume_metrics.avg_message_count %>"
+                                   name="journaling_questions[mail_volume_metrics][avg_message_count]">
+                        </div>
+                        <div class="form-group">
+                            <label>Will all users be journaled?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.mail_volume_metrics.all_user_journaling %>"
+                                   name="journaling_questions[mail_volume_metrics][all_user_journaling]">
+                        </div>
+                        <div class="form-group">
+                            <label>Plans to move to O365? (Timeline?)</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.mail_volume_metrics.move_to_O365 %>"
+                                   name="journaling_questions[mail_volume_metrics][move_to_O365]">
+                        </div>
+                        <div class="form-group">
+                            <label>Any custom configuration notes?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.mail_volume_metrics.custom_config %>"
+                                   name="journaling_questions[mail_volume_metrics][custom_config]">
+                        </div>
+
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" role="button">Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- APPLIANCE UPDATE -->
+    <div class="modal fade" id="editAppliances" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="lineModalLabel">Appliance information</h3>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                                class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body">
+
+                    <!-- content goes here -->
+                    <form class="" action="/index/<%= customer.name %>?_method=PUT" method="POST">
+                        <div class="form-group">
+                            <label for="customerName">Customer Name</label>
+                            <input type="text" readonly class="form-control" placeholder="No response set"
+                                   value="<%= customer.name %>"
+                                   name="appliance_questions[name]">
+                        </div>
+
+                        <h5 style="color: mediumvioletred">Appliance sizing</h5>
+                        <div class="form-group">
+                            <label>Messages per day</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.messages_per_day %>"
+                                   name="appliance_questions[messages_per_day]">
+                        </div>
+                        <div class="form-group">
+                            <label>Average message size</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.avg_message_size %>"
+                                   name="appliance_questions[avg_message_size]">
+                        </div>
+                        <div class="form-group">
+                            <label>Number of mailboxes</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.number_of_mailboxes %>"
+                                   name="appliance_questions[number_of_mailboxes]">
+                        </div>
+                        <div class="form-group">
+                            <label>Searches per day</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.searches_per_day %>"
+                                   name="appliance_questions[searches_per_day]">
+                        </div>
+                        <div class="form-group">
+                            <label>UI logins per day</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.ui_logins_per_day %>"
+                                   name="appliance_questions[ui_logins_per_day]">
+                        </div>
+                        <div class="form-group">
+                            <label>Exports per day</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.exports_per_day %>"
+                                   name="appliance_questions[exports_per_day]">
+                        </div>
+                        <div class="form-group">
+                            <label>Average export size</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.avg_export_size %>"
+                                   name="appliance_questions[avg_export_size]">
+                        </div>
+                        <div class="form-group">
+                            <label>Active directory size</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.AD_size %>"
+                                   name="appliance_questions[AD_size]">
+                        </div>
+                        <div class="form-group">
+                            <label>Virtual or physical hardware appliance preference?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.appliance_preference %>"
+                                   name="appliance_questions[appliance_preference]">
+                        </div>
+                        <div class="form-group">
+                            <label>Does the customer have a VMWare environment?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.has_vmware_env %>"
+                                   name="appliance_questions[has_vmware_env]">
+                        </div>
+                        <div class="form-group">
+                            <label>Number of appliances recommended?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.number_of_appliance_recommended %>"
+                                   name="appliance_questions[number_of_appliance_recommended]">
+                        </div>
+                        <div class="form-group">
+                            <label>DR footprint?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.DR_footprint %>"
+                                   name="appliance_questions[DR_footprint]">
+                        </div>
+
+                        <h5 style="color: mediumvioletred">For SE</h5>
+                        <div class="form-group">
+                            <label>How many of each purpose (UI, export, archiving, stubbing)?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.purposes %>"
+                                   name="appliance_questions[purposes]">
+                        </div>
+                        <div class="form-group">
+                            <label>Archive proxy?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.archive_proxy %>"
+                                   name="appliance_questions[archive_proxy]">
+                        </div>
+                        <div class="form-group">
+                            <label>Transport agent</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.transport_agent %>"
+                                   name="appliance_questions[transport_agent]">
+                        </div>
+                        <div class="form-group">
+                            <label>Outlook view manager</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.outlook_view_manager %>"
+                                   name="appliance_questions[outlook_view_manager]">
+                        </div>
+
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" role="button">Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- IMPORT UPDATE -->
+    <div class="modal fade" id="editImport" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="lineModalLabel">Import project information</h3>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                                class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body">
+
+                    <!-- content goes here -->
+                    <form class="" action="/index/<%= customer.name %>?_method=PUT" method="POST">
+                        <div class="form-group">
+                            <label for="customerName">Customer Name</label>
+                            <input type="text" readonly class="form-control" placeholder="No response set"
+                                   value="<%= customer.name %>"
+                                   name="import_questions[name]">
+                        </div>
+
+                        <h5 style="color: mediumvioletred">Import Project</h5>
+                        <div class="form-group">
+                            <label>Need to migrate legacy data?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= import_questions.need_to_migrate_legacy_data %>"
+                                   name="import_questions[need_to_migrate_legacy_data]">
+                        </div>
+                        <div class="form-group">
+                            <label>Existing archive?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= import_questions.is_existing_archive %>"
+                                   name="import_questions[is_existing_archive]">
+                        </div>
+                        <div class="form-group">
+                            <label>Amount of data to be migrated?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= import_questions.amount_of_data_to_migrate %>"
+                                   name="import_questions[amount_of_data_to_migrate]">
+                        </div>
+                        <div class="form-group">
+                            <label>Expected timeline?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= import_questions.expected_timeline %>"
+                                   name="import_questions[expected_timeline]">
+                        </div>
+                        <div class="form-group">
+                            <label>Who is doing the conversion?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= import_questions.conversion_agent %>"
+                                   name="import_questions[conversion_agent]">
+                        </div>
+                        <div class="form-group">
+                            <label>SoW / Service brief?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= import_questions.service_brief %>"
+                                   name="import_questions[service_brief]">
+                        </div>
+                        <div class="form-group">
+                            <label>Storage</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= import_questions.storage %>"
+                                   name="import_questions[storage]">
+                        </div>
+                        <div class="form-group">
+                            <label>Format</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= import_questions.format %>"
+                                   name="import_questions[format]">
+                        </div>
+                        <div class="form-group">
+                            <label>Retention policy for import data?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= import_questions.retention_policy %>"
+                                   name="import_questions[retention_policy]">
+                        </div>
+                        <div class="form-group">
+                            <label>Encryption type for drives?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= import_questions.encryption_type %>"
+                                   name="import_questions[encryption_type]">
+                        </div>
+                        <div class="form-group">
+                            <label>How old is the oldest data you have?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= import_questions.oldest_data %>"
+                                   name="import_questions[oldest_data]">
+                        </div>
+                        <div class="form-group">
+                            <label>Do you have a record of former employees and their email addresses and aliases?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= import_questions.employee_records %>"
+                                   name="import_questions[employee_records]">
+                        </div>
+
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" role="button">Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- POC UPDATE -->
+    <div class="modal fade" id="editPOC" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="lineModalLabel">POC/UAT information</h3>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                                class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body">
+
+                    <!-- content goes here -->
+                    <form class="" action="/index/<%= customer.name %>?_method=PUT" method="POST">
+                        <div class="form-group">
+                            <label for="customerName">Customer Name</label>
+                            <input type="text" readonly class="form-control" placeholder="No response set"
                                    value="<%= customer.name %>"
                                    name="poc_questions[name]">
                         </div>
                         <h5 style="color: mediumvioletred">POC</h5>
                         <div class="form-group">
                             <label for="sandbox_poc">Sandbox POC</label>
-                            <input type="text" class="form-control" id="sandbox_poc"
+                            <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= poc_questions.POC.is_sandbox_poc %>"
                                    name="poc_questions[POC][is_sandbox_poc]">
                         </div>
 
                         <div class="form-group">
-                            <label for="prod_based_poc">Prod Based POC</label>
-                            <input type="text" class="form-control" id="prod_based_poc"
+                            <label>Prod Based POC</label>
+                            <input type="text" class="form-control" placeholder="No response set"  id="prod_based_poc"
                                    value="<%= poc_questions.POC.is_prod_poc %>"
                                    name="poc_questions[POC][is_prod_poc]">
                         </div>
                         <div class="form-group">
-                            <label for="prod_based_poc">What will be tested in the POC?</label>
-                            <input type="text" class="form-control" id="poc_tests"
+                            <label>What will be tested in the POC?</label>
+                            <input type="text" class="form-control" placeholder="No response set"  id="poc_tests"
                                    value="<%= poc_questions.POC.poc_tests %>"
                                    name="poc_questions[POC][poc_tests]">
                         </div>
                         <div class="form-group">
-                            <label for="prod_based_poc">Has the customer agreed to Success Criteria?</label>
-                            <input type="text" class="form-control" id="agreed_to_success_criteria"
+                            <label>Has the customer agreed to Success Criteria?</label>
+                            <input type="text" class="form-control" placeholder="No response set"  id="agreed_to_success_criteria"
                                    value="<%= poc_questions.POC.agreed_to_success_criteria %>"
                                    name="poc_questions[POC][agreed_to_success_criteria]">
                         </div>
                         <div class="form-group">
-                            <label for="prod_based_poc">Environments needed? (POC, UAT)</label>
-                            <input type="text" class="form-control" id="envs_needed"
+                            <label>Environments needed? (POC, UAT)</label>
+                            <input type="text" class="form-control" placeholder="No response set"  id="envs_needed"
                                    value="<%= poc_questions.POC.envs_needed %>"
                                    name="poc_questions[POC][envs_needed]">
                         </div>
                         <div class="form-group">
-                            <label for="prod_based_poc">How long do you need them for?</label>
-                            <input type="text" class="form-control" id="how_long_needed"
+                            <label>How long do you need them for?</label>
+                            <input type="text" class="form-control" placeholder="No response set"  id="how_long_needed"
                                    value="<%= poc_questions.POC.how_long_needed %>"
                                    name="poc_questions[POC][how_long_needed]">
                         </div>
                         <div class="form-group">
-                            <label for="prod_based_poc">How to convert the environment and/or data to PROD?</label>
-                            <input type="text" class="form-control" id="how_to_convert_env"
+                            <label>How to convert the environment and/or data to PROD?</label>
+                            <input type="text" class="form-control" placeholder="No response set"  id="how_to_convert_env"
                                    value="<%= poc_questions.POC.how_to_convert_env %>"
                                    name="poc_questions[POC][how_to_convert_env]">
                         </div>
                         <div class="form-group">
-                            <label for="prod_based_poc">Will you be installing appliances in production or in a
+                            <label>Will you be installing appliances in production or in a
                                 lab?</label>
-                            <input type="text" class="form-control" id="installing_in_production_or_lab"
+                            <input type="text" class="form-control" placeholder="No response set"  id="installing_in_production_or_lab"
                                    value="<%= poc_questions.POC.installing_in_production_or_lab %>"
                                    name="poc_questions[POC][installing_in_production_or_lab]">
                         </div>
                         <div class="form-group">
-                            <label for="prod_based_poc">For PROD, how many environments are needed and
+                            <label>For PROD, how many environments are needed and
                                 locations?</label>
-                            <input type="text" class="form-control"
+                            <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= poc_questions.POC.how_many_envs %>"
                                    name="poc_questions[POC][how_many_envs]">
                         </div>
                         <div class="form-group">
-                            <label for="prod_based_poc">How many mailboxes will you journal into the POC?</label>
-                            <input type="text" class="form-control"
+                            <label>How many mailboxes will you journal into the POC?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= poc_questions.POC.how_many_mailboxes %>"
                                    name="poc_questions[POC][how_many_mailboxes]">
                         </div>
                         <h5 style="color: mediumvioletred">UAT</h5>
                         <div class="form-group">
-                            <label for="prod_based_poc">Does the customer need/require a UAT or Testing Archive
+                            <label>Does the customer need/require a UAT or Testing Archive
                                 account?</label>
-                            <input type="text" class="form-control"
+                            <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= poc_questions.UAT.need_UAT %>"
                                    name="poc_questions[UAT][need_UAT]">
                         </div>
                         <div class="form-group">
-                            <label for="prod_based_poc">Will the UAT be forever?</label>
-                            <input type="text" class="form-control"
+                            <label>Will the UAT be forever?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= poc_questions.UAT.UAT_forever %>"
                                    name="poc_questions[UAT][UAT_forever]">
                         </div>
                         <div class="form-group">
-                            <label for="prod_based_poc">Will the UAT be production data, or lab data?</label>
-                            <input type="text" class="form-control"
+                            <label>Will the UAT be production data, or lab data?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= poc_questions.UAT.is_UAT_production_or_lab %>"
                                    name="poc_questions[UAT][is_UAT_production_or_lab]">
                         </div>
                         <div class="form-group">
-                            <label for="prod_based_poc">What is the primary purpose of the UAT?</label>
-                            <input type="text" class="form-control"
+                            <label>What is the primary purpose of the UAT?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= poc_questions.UAT.primary_purpose %>"
                                    name="poc_questions[UAT][primary_purpose]">
                         </div>

@@ -8,67 +8,67 @@ var appliance_schema = new mongoose.Schema({
     },
     messages_per_day: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     avg_message_size: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     number_of_mailboxes: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     searches_per_day: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     ui_logins_per_day: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     exports_per_day: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     avg_export_size: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     AD_size: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     appliance_preference: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     has_vmware_env: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     number_of_appliance_recommended: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     DR_footprint: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     purposes: {
         type: String,
-        default: "No response set"
+        default: ""
     },
-    has_archive_proxy: {
+    archive_proxy: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     transport_agent: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     outlook_view_manager: {
         type: String,
-        default: "No response set"
+        default: ""
     }
 });
 

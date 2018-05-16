@@ -9,105 +9,105 @@ var usage_schema = new mongoose.Schema({
     supervision: {
         supervision_system: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         pain_points: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         deficiencies: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         businesses_supervision_requirements: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         review: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         escalation_process: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         system_record: {
             subject_for_review: {
                 type: String,
-                default: "No response set"
+                default: ""
             },
             responsible: {
                 type: String,
-                default: "No response set"
+                default: ""
             },
             how_is_data_loaded: {
                 type: String,
-                default: "No response set"
+                default: ""
             }
         },
         evaluation_criteria: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         need_to_migrate_policies: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         random_sampling: {
             has_rules: {
                 type: String,
-                default: "No response set"
+                default: ""
             }
             ,
             multi_sampling: {
                 type: String,
-                default: "No response set"
+                default: ""
             },
             sampling_intention: {
                 type: String,
-                enum: ["No response set", "Top up", "Not top up"], // ????
-                default: "No response set"
+                enum: ["", "Top up", "Not top up"], // ????
+                default: ""
             },
             notify_violators: {
                 type: String,
-                default: "No response set"
+                default: ""
             }
         },
         report_requirements: {
             existing_reports: {
                 type: String,
-                default: "No response set"
+                default: ""
             },
             decisions: {
                 type: String,
-                default: "No response set"
+                default: ""
             },
             roll_out_reports: {
                 type: String,
-                default: "No response set"
+                default: ""
             },
             future_reports: {
                 type: String,
-                default: "No response set"
+                default: ""
             }
         }
     },
     stubbing: {
         support: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         interested_in_subbing: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         stubbing_policy: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         number_of_stubbing_users: { // number
             type: String,
-            default: "No response set"
+            default: ""
         }
     },
     // Not sure about selective disposition
@@ -115,103 +115,103 @@ var usage_schema = new mongoose.Schema({
     content_collector_files: {
         interested_in_CC4Files: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         files_location: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         willing_to_install_agent: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         volume_of_files: { // number
             type: String,
-            default: "No response set"
+            default: ""
         },
         unusual_file_types: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         avg_file_size: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         understand_legal_holds: {
             type: String,
-            default: "No response set"
+            default: ""
         }
     },
     content_collector_PST: {
         interested_in_CC4FPST: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         avg_file_size: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         frequency: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         use_case: {
             type: String,
-            default: "No response set"
+            default: ""
         }
     },
     legal_holds: {
         custodian_or_ad_hoc: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         number_of_legal_holds: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         number_of_unique_custodians: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         largest_hold: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         notification_system: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         third_party_solutions: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         api_use_cases: {
             type: String,
-            default: "No response set"
+            default: ""
         }
     },
     end_user_search: {
         number_of_user_access: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         need_outlook: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         need_mobile_apps: {
             type: String,
-            default: "No response set"
+            default: ""
         }
     },
     folder_sync: {
         interested_in_folder_sync: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         number_of_users_interested: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         // NOT SURE ABOUT THIS ONE
     },
@@ -220,30 +220,30 @@ var usage_schema = new mongoose.Schema({
     export: {
         volume: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         preferred_export_format: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         where_data_goes: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         expect_auto_upload: {
             type: String,
-            default: "No response set"
+            default: ""
         }
     },
 
     outlook_view_manager: {
         allow_users_access: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_using_OWA: {
             type: String,
-            default: "No response set"
+            default: ""
         }
     }
 });

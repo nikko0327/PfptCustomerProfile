@@ -11,44 +11,44 @@ var email_se_schema = new mongoose.Schema({
     prem_exchange: {
         exchange_version: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         number_of_mail_servers: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         has_enterprise_CAL: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         // !!!
         is_replicating_exchange_and_AD: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         diagram: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_multi_forest: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         exists_trusts: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_resource_forest_arrangement: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_using_multi_domains: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         structure: {
             type: String,
-            default: "No response set"
+            default: ""
         }
     },
 
@@ -56,27 +56,27 @@ var email_se_schema = new mongoose.Schema({
     hosted_O365: {
         O365_version: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_maintaining_on_prem_AD: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_maintaining_azure: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_admin_in_AD_or_azure: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         sync_tools: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         which_O365: {
             type: String,
-            default: "No response set"
+            default: ""
         }
     },
 
@@ -85,91 +85,91 @@ var email_se_schema = new mongoose.Schema({
         // Exchange details
         exchange_version: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         number_of_mail_servers: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         has_enterprise_CAL: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         describe_exchange_env: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         diagram: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_using_DAG: {
             type: String,
-            default: "No response set"
+            default: ""
         },
 
         // AD details
         is_multi_forest: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         number_of_forests: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         exists_trusts: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_resource_forest_arrangement: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_using_multi_domains: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         multi_domain_structure: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         resource_forest_deployment: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         AD_size: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         require_ldap: {
             type: String,
-            default: "No response set"
+            default: ""
         },
 
         // O365 details
         O365_version: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_maintaining_on_prem_AD: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_maintaining_azure: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_admin_in_AD_or_azure: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         sync_tools: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         which_O365: {
             type: String,
-            default: "No response set"
+            default: ""
         }
     },
 
@@ -177,92 +177,92 @@ var email_se_schema = new mongoose.Schema({
         // Exchange details
         exchange_version: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         number_of_mail_servers: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         has_enterprise_CAL: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         // !!!
         describe_exchange_env: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         diagram: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_using_DAG: {
             type: String,
-            default: "No response set"
+            default: ""
         },
 
         // AD details
         is_multi_forest: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         number_of_forests: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         exists_trusts: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_resource_forest_arrangement: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_using_multi_domains: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         structure: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         resource_forest_deployment: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         AD_size: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         require_ldap: {
             type: String,
-            default: "No response set"
+            default: ""
         },
 
         // O365 details
         O365_version: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_maintaining_on_prem_AD: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_maintaining_azure: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_admin_in_AD_or_azure: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         sync_tools: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         which_O365: {
             type: String,
-            default: "No response set"
+            default: ""
         }
     }
 });

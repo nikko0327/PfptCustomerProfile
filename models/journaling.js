@@ -9,65 +9,65 @@ var journaling_schema = new mongoose.Schema({
     exchange: {
         exchange_on_prem: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         has_O365: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         is_mixed_mode: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         number_of_mailboxes: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         avg_message_count: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         change_in_business: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         has_enterprise_CAL: {
             type: String,
-            default: "No response set"
+            default: ""
         }
     },
     mail_volume_metrics: {
         users_journaled: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         user_messages: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         message_derive: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         avg_message_size: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         avg_message_count: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         all_user_journaling: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         move_to_O365: {
             type: String,
-            default: "No response set"
+            default: ""
         },
         custom_config: {
             type: String,
-            default: "No response set"
+            default: ""
         }
     }
 });

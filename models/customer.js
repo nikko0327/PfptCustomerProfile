@@ -10,47 +10,47 @@ var CustomerSchema = new mongoose.Schema({
     },
     impSpecialist: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     salesRep: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     status: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     archivingSe: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     accManager: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     location: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     supervision: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     tem: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     tam: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     natIp: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     contacts: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     created: {
         type: Date,
@@ -58,11 +58,11 @@ var CustomerSchema = new mongoose.Schema({
     },
     incumbentSolution: {
         type: String,
-        default: "No response set"
+        default: ""
     },
     numberOfUsers: {
         type: String,
-        default: "No response set"
+        default: ""
     }
 });
 
