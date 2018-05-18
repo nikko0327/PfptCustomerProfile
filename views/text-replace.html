@@ -1,482 +1,194 @@
-<!-- Supervision -->
-<h5><a href="#usage-supervision" style="color: mediumvioletred" data-toggle="collapse">Supervision
-    <i class="fa fa-arrows-v" aria-hidden="true"></i>
-</a></h5>
-
-<div id="usage-supervision" class="collapse in">
-    <h5><a href="#usage-supervision-notes" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse">Notes / Details
-        <i class="fa fa-arrows-v" aria-hidden="true"></i>
-    </a></h5>
-
-    <div id="usage-supervision-notes" class="collapse in">
-        <div id="usageSupervision-notes" class="row">
-            <!-- Notes/Details -->
-            <div class="form-group">
-                <label>What supervision system are you currently running?</label>
-                <input type="text" class="form-control"
-                       placeholder="No response set"
-                       value="<%= usage_questions.supervision.supervision_system %>"
-                       name="usage_questions[supervision][supervision_system]">
-            </div>
-            <div class="form-group">
-                <label>What are your current pain-points?</label>
-                <input type="text" class="form-control" placeholder="No response set"
-                       value="<%= usage_questions.supervision.pain_points %>"
-                       name="usage_questions[supervision][pain_points]">
-            </div>
-            <div class="form-group">
-                <label>Are there deficiencies in your current process that put you at risk?</label>
-                <input type="text" class="form-control"
-                       placeholder="No response set"
-                       value="<%= usage_questions.supervision.deficiencies %>"
-                       name="usage_questions[supervision][deficiencies]">
-            </div>
-            <div class="form-group">
-                <label>What are the customer's lines of business that has different Supervision requirements?</label>
-                <input type="text"
-                       class="form-control" placeholder="No response set"
-                       value="<%= usage_questions.supervision.businesses_supervision_requirements %>"
-                       name="usage_questions[supervision][business_supervision_requirements]">
-            </div>
-            <div class="form-group">
-                <label>Is review Centralized / De-centralized?</label>
-                <input type="text" class="form-control" placeholder="No response set"
-                       value="<%= usage_questions.supervision.review %>"
-                       name="usage_questions[supervision][review]">
-            </div>
-            <div class="form-group">
-                <label>What is the escalation process when issues / violations are found?</label>
-                <input type="text" class="form-control"
-                       placeholder="No response set"
-                       value="<%= usage_questions.supervision.escalation_process %>"
-                       name="usage_questions[supervision][escalation_process]">
-            </div>
-            <div class="form-group">
-                <label>Who is responsible for reviewing which group / user</label>
-                <input type="text" class="form-control"
-                       placeholder="No response set"
-                       value="<%= usage_questions.supervision.system_record.responsible %>"
-                       name="usage_questions[supervision][system_record][responsible]">
-            </div>
-            <div class="form-group">
-                <label>How is this data loaded into your current system?</label>
-                <input type="text" class="form-control"
-                       placeholder="No response set"
-                       value="<%= usage_questions.supervision.system_record.how_is_data_loaded %>"
-                       name="usage_questions[supervision][system_record]">
-            </div>
-            <div class="form-group">
-                <label>Do you need to migrate your existing policies?</label>
-                <input type="text" class="form-control" placeholder="No response set"
-                       value="<%= usage_questions.supervision.need_to_migrate_policies %>"
-                       name="usage_questions[supervision][need_to_migrate_policies]">
-            </div>
-            <div class="form-group">
-                <label>Do you already have whitelists, disclaimers headers, etc...
-                    (pre-approved content) that needs to be excluded?</label>
-                <input type="text" class="form-control" placeholder="No response set"
-                       value="<%= usage_questions.supervision.whitelists %>"
-                       name="usage_questions[supervision][whitelists]">
-            </div>
-        </div>
-    </div>
-
-    <!-- Random Sampling -->
-    <h5><a href="#usage-supervision-random" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse">Random Sampling
-        <i class="fa fa-arrows-v" aria-hidden="true"></i>
-    </a></h5>
-
-    <div id="usage-supervision-random" class="collapse in">
-        <div id="usageSupervision-random_sampling" class="row">
-            <br>
-            <div class="form-group">
-                <label>Do you have sampling rules?</label>
-                <input type="text" class="form-control" placeholder="No response set"
-                       value="<%= usage_questions.supervision.random_sampling.has_rules %>"
-                       name="usage_questions[supervision][random_sampling][has_rules]">
-            </div>
-            <div class="form-group">
-                <label>Do you have multiple sampling rates that apply to a given person (i.e. different message
-                    types, internal vs external)?</label>
-                <input type="text" class="form-control" placeholder="No response set"
-                       value="<%= usage_questions.supervision.random_sampling.multi_sampling %>"
-                       name="usage_questions[supervision][random_sampling][multi_sampling]">
-            </div>
-            <div class="form-group">
-                <label>Intention of sampling: top up or not?</label>
-                <input type="text" class="form-control" placeholder="No response set"
-                       value="<%= usage_questions.supervision.random_sampling.sampling_intention %>"
-                       name="usage_questions[supervision][random_sampling][sampling_intention]">
-            </div>
-            <div class="form-group">
-                <label>Do you directly notify violators for certain types of offenses?</label>
-                <input type="text" class="form-control"
-                       placeholder="No response set"
-                       value="<%= usage_questions.supervision.random_sampling.notify_violators %>"
-                       name="usage_questions[supervision][random_sampling][notify_violators]">
-            </div>
-        </div>
-    </div>
-
-    <!-- Reporting Requirements -->
-    <h5><a href="#usage-supervision-req" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse">Reporting
-        Requirements
-        <i class="fa fa-arrows-v" aria-hidden="true"></i>
-    </a></h5>
-
-    <div id="usage-supervision-req" class="collapse in">
-        <div id="usageSupervision-reporting_requirements" class="row">
-            <div class="form-group">
-                <label>What decisions are made based on these reports?</label>
-                <input type="text" class="form-control" placeholder="No response set"
-                       value="<%= usage_questions.supervision.report_requirements.decisions %>"
-                       name="usage_questions[supervision][report_requirements][decisions]">
-            </div>
-            <div class="form-group">
-                <label>What reports are required for roll-out? Please provide samples.</label>
-                <input type="text" class="form-control"
-                       placeholder="No response set"
-                       value="<%= usage_questions.supervision.report_requirements.roll_out_reports %>"
-                       name="usage_questions[supervision][report_requirements][roll_out_reports]">
-            </div>
-            <div class="form-group">
-                <label>What reports are nice to have in the future?</label>
-                <input type="text" class="form-control" placeholder="No response set"
-                       value="<%= usage_questions.supervision.report_requirements.future_reports %>"
-                       name="usage_questions[supervision][report_requirements][future_reports]">
-            </div>
-        </div>
-    </div>
+<h5 style="color: mediumvioletred">Network & Security</h5>
+<div class="form-group">
+    <label>Do you want users to be able to access the user interface outside of your network?</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.network_security.allow_outside_access %>"
+           name="desktop_network_questions[network_security][allow_outside_access]">
 </div>
-<br>
-
-<!-- Stubbing -->
-<h5><a href="#usage-stubbing" style="color: mediumvioletred" data-toggle="collapse">Stubbing
-    <i class="fa fa-arrows-v" aria-hidden="true"></i>
-</a></h5>
-
-<div id="usage-stubbing" class="collapse in">
-    <div id="usageStubbing" class="row">
-        <div class="form-group">
-            <label>Is the customer interested in Stubbing?</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.stubbing.interested_in_subbing %>"
-                   name="usage_questions[stubbing][interested_in_stubbing]">
-        </div>
-        <div class="form-group">
-            <label>If within these boundaries, and if you intend to use it, what’s your stubbing policy?</label>
-            <input type="text"
-                   class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.stubbing.stubbing_policy %>"
-                   name="usage_questions[stubbing][stubbing_policy]">
-        </div>
-        <div class="form-group">
-            <label>How many users is the customer going to stub for?</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.stubbing.number_of_stubbing_users %>"
-                   name="usage_questions[stubbing][number_of_stubbing_users]">
-        </div>
-    </div>
+<div class="form-group">
+    <label>DMZ</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.network_security.DMZ %>"
+           name="desktop_network_questions[network_security][DMZ]">
 </div>
-<br>
-
-<!-- Selective Disposition -->
-<h5><a href="#usage-selective" style="color: mediumvioletred" data-toggle="collapse">Selective Disposition
-    <i class="fa fa-arrows-v" aria-hidden="true"></i>
-</a></h5>
-
-<div id="usage-selective" class="collapse in">
-    <div id="usageSelectiveDisposition" class="row">
-        <div class="form-group">
-            <label>What are the scenarios would you need to apply it?</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.selective_disposition.scenarios %>"
-                   name="usage_questions[selective_disposition][scenarios]">
-        </div>
-        <div class="form-group">
-            <label>How many messages would you want to selectively dispose?</label>
-            <input type="text" class="form-control"
-                   placeholder="No response set"
-                   value="<%= usage_questions.selective_disposition.messages_to_dispose %>"
-                   name="usage_questions[selective_disposition][messages_to_dispose]">
-        </div>
-    </div>
+<div class="form-group">
+    <label>Firewalls</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.network_security.firewalls %>"
+           name="desktop_network_questions[network_security][firewalls]">
 </div>
-<br>
-
-<!-- Content Collector - Files -->
-<h5><a href="#usage-files" style="color: mediumvioletred" data-toggle="collapse">Content Collector - Files
-    <i class="fa fa-arrows-v" aria-hidden="true"></i>
-</a></h5>
-
-<div id="usage-files" class="collapse in">
-    <div id="usageContentCollectorFiles" class="row">
-        <div class="form-group">
-            <label>Is the customer interested in CC4Files?</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.content_collector_files.interested_in_CC4Files %>"
-                   name="usage_questions[content_collector_files][interested_in_CC4Files]">
-        </div>
-        <div class="form-group">
-            <label>Where are the files located that you want to collect? (We only support Windows based file
-                servers and on-prem Sharepoint.)</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.content_collector_files.files_location %>"
-                   name="usage_questions[content_collector_files][files_location]">
-        </div>
-        <div class="form-group">
-            <label>Is the customer willing to install an agent on each machine they want to collect data from?</label>
-            <input type="text"
-                   class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.content_collector_files.willing_to_install_agent %>"
-                   name="usage_questions[content_collector_files][willing_to_install_agent]">
-        </div>
-        <div class="form-group">
-            <label>What's the volume of files?</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.content_collector_files.volume_of_files %>"
-                   name="usage_questions[content_collector_files][volume_of_files]">
-        </div>
-        <div class="form-group">
-            <label>Are there unusual File types?</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.content_collector_files.unusual_file_types %>"
-                   name="usage_questions[content_collector_files][unusual_file_types]">
-        </div>
-        <div class="form-group">
-            <label>Average and largest file expected to capture?</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.content_collector_files.avg_file_size %>"
-                   name="usage_questions[content_collector_files][avg_file_size]">
-        </div>
-        <div class="form-group">
-            <label>Customer understands this is for People Based Legal Holds only?</label>
-            <input type="text" class="form-control"
-                   placeholder="No response set"
-                   value="<%= usage_questions.content_collector_files.understand_legal_holds %>"
-                   name="usage_questions[content_collector_files][understand_legal_holds]">
-        </div>
-    </div>
+<div class="form-group">
+    <label>VPN Connection to PFPT Required</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.network_security.require_vpn %>"
+           name="desktop_network_questions[network_security][require_vpn]">
 </div>
-<br>
-
-<!-- Content Collector - PSTs -->
-<h5><a href="#usage-pst" style="color: mediumvioletred" data-toggle="collapse">Content Collector - PSTs
-    <i class="fa fa-arrows-v" aria-hidden="true"></i>
-</a></h5>
-
-<div id="usage-pst" class="collapse in">
-    <div id="usageContentCollectorPsts" class="row">
-        <div class="form-group">
-            <label>Is the customer interested in CC4PSTs?</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.content_collector_PST.interested_in_CC4FPST %>"
-                   name="usage_questions[content_collector_PST][interested_in_CC4FPST]">
-        </div>
-        <div class="form-group">
-            <label>Average size?</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.content_collector_PST.avg_file_size %>"
-                   name="usage_questions[content_collector_PST][avg_file_size]">
-        </div>
-        <div class="form-group">
-            <label>Frequency?</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.content_collector_PST.frequency %>"
-                   name="usage_questions[content_collector_PST][frequency]">
-        </div>
-        <div class="form-group">
-            <label>Use case?</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.content_collector_PST.use_case %>"
-                   name="usage_questions[content_collector_PST][use_case]">
-        </div>
-    </div>
+<div class="form-group">
+    <label>Enable access to user outside network</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.network_security.enable_outside_access %>"
+           name="desktop_network_questions[network_security][enable_outside_access]">
 </div>
-<br>
-
-<!-- Legal holds -->
-<h5><a href="#usage-legal" style="color: mediumvioletred" data-toggle="collapse">Legal Holds
-    <i class="fa fa-arrows-v" aria-hidden="true"></i>
-</a></h5>
-
-<div id="usage-legal" class="collapse in">
-    <div id="usageLegalHolds" class="row">
-        <div class="form-group">
-            <label>Custodian based or Ad hoc, or both?</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.legal_holds.custodian_or_ad_hoc %>"
-                   name="usage_questions[legal_holds][custodian_or_ad_hoc]">
-        </div>
-        <div class="form-group">
-            <label>Count of LH's in current solution</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.legal_holds.number_of_legal_holds %>"
-                   name="usage_questions[legal_holds][number_of_legal_holds]">
-        </div>
-        <div class="form-group">
-            <label>Number of unique custodians</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.legal_holds.number_of_unique_custodians %>"
-                   name="usage_questions[legal_holds][number_of_unique_custodians]">
-        </div>
-        <div class="form-group">
-            <label>Largest hold (in terms of custodians)</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.legal_holds.largest_hold %>"
-                   name="usage_questions[legal_holds][largest_hold]">
-        </div>
-        <div class="form-group">
-            <label>What LH Notification system is being used today?</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.legal_holds.notification_system %>"
-                   name="usage_questions[legal_holds][notification_system]">
-        </div>
-        <div class="form-group">
-            <label>Third Party Solutions for LH Management?</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.legal_holds.third_party_solutions %>"
-                   name="usage_questions[legal_holds][third_party_solutions]">
-        </div>
-        <div class="form-group">
-            <label>API interest? What use cases?</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.legal_holds.api_use_cases %>"
-                   name="usage_questions[legal_holds][api_use_cases]">
-        </div>
-    </div>
+<div class="form-group">
+    <label>Load Balancer/VIP</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.network_security.load_balancer_VIP %>"
+           name="desktop_network_questions[network_security][load_balancer_VIP]">
 </div>
-<br>
-
-<!-- End user search -->
-<h5><a href="#usage-search" style="color: mediumvioletred" data-toggle="collapse">End User Search
-    <i class="fa fa-arrows-v" aria-hidden="true"></i>
-</a></h5>
-
-<div id="usage-search" class="collapse in">
-    <div id="usageEndUserSearch" class="row">
-        <div class="form-group">
-            <label>How many end users will have access to their own mailbox?</label>
-            <input type="text" class="form-control"
-                   placeholder="No response set"
-                   value="<%= usage_questions.end_user_search.number_of_user_access %>"
-                   name="usage_questions[end_user_search][number_of_user_access]">
-        </div>
-        <div class="form-group">
-            <label>Do end users need to have access to Archive within Outlook? What versions of Outlook?</label>
-            <input type="text"
-                   class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.end_user_search.need_outlook %>"
-                   name="usage_questions[end_user_search][need_outlook]">
-        </div>
-        <div class="form-group">
-            <label>Do you want access archive through Mobile Apps?</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.end_user_search.need_mobile_apps %>"
-                   name="usage_questions[end_user_search][need_mobile_apps]">
-        </div>
-    </div>
+<div class="form-group">
+    <label>NAT IP List</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.network_security.nat_IP_list %>"
+           name="desktop_network_questions[network_security][nat_IP_list]">
 </div>
-<br>
-
-<!-- Folder Sync -->
-<h5><a href="#usage-sync" style="color: mediumvioletred" data-toggle="collapse">Folder Sync
-    <i class="fa fa-arrows-v" aria-hidden="true"></i>
-</a></h5>
-
-<div id="usage-sync" class="collapse in">
-    <div id="usageFolderSync" class="row">
-        <div class="form-group">
-            <label>Is the customer interested in Folder Sync?</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.folder_sync.interested_in_folder_sync %>"
-                   name="usage_questions[folder_sync][interested_in_folder_sync]">
-        </div>
-        <div class="form-group">
-            <label>For how many users?</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.folder_sync.number_of_users_interested %>"
-                   name="usage_questions[folder_sync][number_of_users_interested]">
-        </div>
-        <div class="form-group">
-            <label>Service Account?</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.folder_sync.service_account %>"
-                   name="usage_questions[folder_sync][service_account]">
-        </div>
-    </div>
+<div class="form-group">
+    <label>Proxy Servers</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.network_security.proxy_servers %>"
+           name="desktop_network_questions[network_security][proxy_servers]">
 </div>
-<br>
 
-<!-- Transport agent -->
-<h5><a href="#usage-transport" style="color: mediumvioletred" data-toggle="collapse">Transport Agent
-    <i class="fa fa-arrows-v" aria-hidden="true"></i>
-</a></h5>
-
-<div id="usage-transport" class="collapse in">
-    <div id="usageTransportAgent" class="row">
-        <div class="col">
-            <p>Note: This feature requires customer to have .NET 3.5 installed (Transport agent is currently empty)</p>
-        </div>
-    </div>
+<h5 style="color: mediumvioletred">End User Desktop Environment</h5>
+<div class="form-group">
+    <label>What browsers do user have access to (Chrome, IE, Edge, Firefox, etc.)?</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.end_user_desktop_env.browsers %>"
+           name="desktop_network_questions[end_user_desktop_env][browsers]">
 </div>
-<br>
-
-<!-- Export -->
-<h5><a href="#usage-export" style="color: mediumvioletred" data-toggle="collapse">Export
-    <i class="fa fa-arrows-v" aria-hidden="true"></i>
-</a></h5>
-
-<div id="usage-export" class="collapse in">
-    <div id="usageExport" class="row">
-        <div class="form-group">
-            <label>Volume / average size and frequency</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.export.volume %>"
-                   name="usage_questions[export][volume]">
-        </div>
-        <div class="form-group">
-            <label>Preferred Export formats?</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.export.preferred_export_format %>"
-                   name="usage_questions[export][preferred_export_format]">
-        </div>
-        <div class="form-group">
-            <label>Where does the data typically go?</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.export.where_data_goes %>"
-                   name="usage_questions[export][where_data_goes]">
-        </div>
-        <div class="form-group">
-            <label>Does customer expect to auto upload data?</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.export.expect_auto_upload %>"
-                   name="usage_questions[export][expect_auto_upload]">
-        </div>
-    </div>
+<div class="form-group">
+    <label>What versions of each available browsers are allowed</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.end_user_desktop_env.browser_versions %>"
+           name="desktop_network_questions[end_user_desktop_env][browser_versions]">
 </div>
-<br>
-
-<!-- Outlook view manager -->
-<h5><a href="#usage-outlook" style="color: mediumvioletred" data-toggle="collapse">Outlook View Manager
-    <i class="fa fa-arrows-v" aria-hidden="true"></i>
-</a></h5>
-
-<div id="usage-outlook" class="collapse in">
-    <div id="usageExportViewManager" class="row">
-        <div class="form-group">
-            <label>Do you want to allow end users to access the archive?</label>
-            <input type="text" class="form-control"
-                   placeholder="No response set"
-                   value="<%= usage_questions.outlook_view_manager.allow_users_access %>"
-                   name="usage_questions[outlook_view_manager][allow_users_access]">
-        </div>
-        <div class="form-group">
-            <label>Do you use OWA?</label>
-            <input type="text" class="form-control" placeholder="No response set"
-                   value="<%= usage_questions.outlook_view_manager.is_using_OWA %>"
-                   name="usage_questions[outlook_view_manager][is_using_OWA]">
-        </div>
-    </div>
+<div class="form-group">
+    <label>Do you run IE 11</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.end_user_desktop_env.ie11 %>"
+           name="desktop_network_questions[end_user_desktop_env][ie11]">
 </div>
-<br>
+<div class="form-group">
+    <label>Can users enable compatibility mode in IE 11</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.end_user_desktop_env.ie11_compatibility %>"
+           name="desktop_network_questions[end_user_desktop_env][ie11_compatibility]">
+</div>
+<div class="form-group">
+    <label>Is IE deployed in Enterprise Mode?</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.end_user_desktop_env.is_ie11_enterprise %>"
+           name="desktop_network_questions[end_user_desktop_env][is_ie11_enterprise]">
+</div>
+<div class="form-group">
+    <label>Can users enable pop-ups for specific URLs</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.end_user_desktop_env.is_popups_enabled %>"
+           name="desktop_network_questions[end_user_desktop_env][is_popups_enabled]">
+</div>
+<div class="form-group">
+    <label>Do users use OWA?</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.end_user_desktop_env.is_OWA_used %>"
+           name="desktop_network_questions[end_user_desktop_env][is_OWA_used]">
+</div>
+<div class="form-group">
+    <label>Do users have access to: Chrome/Firefox/Edge (Not sure about question)</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.end_user_desktop_env.browsers_access %>"
+           name="desktop_network_questions[end_user_desktop_env][browsers_access]">
+</div>
+
+<h5 style="color: mediumvioletred">Disaster Recovery/High Probability</h5>
+<div class="form-group">
+    <label>Do you have Exchange and AD being replicated to a secondary data center</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.disaster_recovery.is_replicating_exchange_and_AD %>"
+           name="desktop_network_questions[disaster_recovery][is_replicating_exchange_and_AD]">
+</div>
+<div class="form-group">
+    <label>Describe what does the DR/HA configuration look like.</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.disaster_recovery.config_description %>"
+           name="desktop_network_questions[disaster_recovery][config_description]">
+</div>
+<div class="form-group">
+    <label>Can you provide a diagram of the Exchange environment with the DR/HA included. (File upload???)</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.disaster_recovery.diagram %>"
+           name="desktop_network_questions[disaster_recovery][diagram]">
+</div>
+
+<h5 style="color: mediumvioletred">Authentication (SAML & Remote Auth) -- MISSING SCHEMA</h5>
+<div class="form-group">
+    <label>Do you use SSO?</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.authentication.use_SSO %>"
+           name="desktop_network_questions[authentication][use_SSO]">
+</div>
+<div class="form-group">
+    <label>Do you have an IDP (Identity Provider) that supports SAML 2.0?</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.authentication.have_IDP %>"
+           name="desktop_network_questions[authentication][have_IDP]">
+</div>
+<div class="form-group">
+    <label>Where will the PFPT AD security groups be maintained? (On prem deployments require universal
+        groups containing all users that need to log in, in the resource forest)</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.authentication.where_security_group %>"
+           name="desktop_network_questions[authentication][where_security_group]">
+</div>
+<div class="form-group">
+    <label>Service provider or IDP (Identity Provider) initiated? (we only support Service Provider initiated)</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.authentication.intiated_IDP %>"
+           name="desktop_network_questions[authentication][intiated_IDP]">
+</div>
+<div class="form-group">
+    <label>Do you require request encryption? (we don't support it)</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.authentication.require_request_encryption %>"
+           name="desktop_network_questions[authentication][require_request_encryption]">
+</div>
+<div class="form-group">
+    <label>Do you require response signing? (we support it)</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.authentication.require_response_signing %>"
+           name="desktop_network_questions[authentication][require_response_signing]">
+</div>
+<div class="form-group">
+    <label>Do you require response encryption? (we support it)</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.authentication.require_response_encryption %>"
+           name="desktop_network_questions[authentication][require_response_encryption]">
+</div>
+<div class="form-group">
+    <label>If the response is to be encrypted, do you require a 3rd party cert or is a self-signed cert sufficient? We support both</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.authentication.require_third_party_cert %>"
+           name="desktop_network_questions[authentication][require_third_party_cert]">
+</div>
+<div class="form-group">
+    <label>What attribute will you be sending as part of the response? (we only support UPN, email, and SID)</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.authentication.response_attributes %>"
+           name="desktop_network_questions[authentication][response_attributes]">
+</div>
+<div class="form-group">
+    <label>Do you intend to deploy PFPT's remote authentication?</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.authentication.intend_to_deploy_remote_auth %>"
+           name="desktop_network_questions[authentication][intend_to_deploy_remote_auth]">
+</div>
+<div class="form-group">
+    <label>Are all user accounts on trusted forests?</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.authentication.all_users_trusted %>"
+           name="desktop_network_questions[authentication][all_users_trusted]">
+</div>
+<div class="form-group">
+    <label>Are all domain controllers accessible on the same network as the server that Remote Auth will be installed?</label>
+    <input type="text" class="form-control" placeholder="No response set"
+           value="<%= desktop_network_questions.authentication.domain_controllers %>"
+           name="desktop_network_questions[authentication][domain_controllers]">
+</div>

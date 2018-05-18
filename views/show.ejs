@@ -54,13 +54,12 @@
 
             <div id="emailContainer" class="collapse in">
                 <div class="edit pull-right">
-                    <a href="#" aria-hidden="true" data-target="#editEmailSystemsSE" data-toggle="modal"><i
-                                class="fa fa-pencil-square-o"></i>Edit</a>
+                    <a href="#" aria-hidden="true" data-target="#editEmailSystemsSE" data-toggle="modal">
+                        <i class="fa fa-pencil-square-o"></i>Edit</a>
                 </div>
                 <h5><a href="#emailSystemsSE-1" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange w/ On-prem Appliances
-                        <i class="fa fa-arrows-v" aria-hidden="true"></i>
-                    </a></h5>
-                <br>
+                        <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                </h5>
 
                 <div id="emailSystemsSE-1" class="collapse in">
                     <h5 style="color: lightseagreen">Exchange Details</h5>
@@ -81,7 +80,6 @@
                     </div>
 
                     <h5 style="color: lightseagreen">Active Directory Details</h5>
-
                     <div id="emailSystemContent2" class="row">
                         <div id="" class="col-4"><p><b>Is your AD
                                     multi-forest?</b><br><%= email_se_questions.prem_exchange.is_multi_forest %></p>
@@ -106,10 +104,8 @@
                                 class="fa fa-arrows-v"
                                 aria-hidden="true"></i>
                     </a></h5>
-                <br>
 
                 <div id="emailSystemsSE-2" class="collapse in">
-
                     <div id="emailSystemContent4" class="row">
                         <div id="" class="col-4"><p><b>What O365 license level do you
                                     have?</b><br><%= email_se_questions.hosted_O365.O365_version %></p></div>
@@ -129,6 +125,7 @@
                                     dedicated/BPOS-D/iTAR)?</b><br><%= email_se_questions.hosted_O365.which_O365 %></p>
                         </div>
                     </div>
+                    <br>
                 </div>
 
                 <h5><a href="#emailSystemsSE-3" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange +
@@ -136,10 +133,8 @@
                                 class="fa fa-arrows-v"
                                 aria-hidden="true"></i>
                     </a></h5>
-                <br>
 
                 <div id="emailSystemsSE-3" class="collapse in">
-
                     <h5 style="color: lightseagreen">Exchange details</h5>
                     <div id="emailSystemContent5" class="row">
                         <div id="" class="col-4"><p><b>What versions of Exchange are
@@ -222,17 +217,14 @@
                             </p>
                         </div>
                     </div>
+                    <br>
                 </div>
 
-                <h5><a href="#emailSystemsSE-4" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange +
-                        O365 (Hosted Appliance) <i
-                                class="fa fa-arrows-v"
-                                aria-hidden="true"></i>
-                    </a></h5>
-                <br>
+                <h5><a href="#emailSystemsSE-4" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange + O365 (Hosted Appliance)
+                        <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                </h5>
 
                 <div id="emailSystemsSE-4" class="collapse in">
-
                     <h5 style="color: lightseagreen">Exchange Details</h5>
                     <div id="emailSystemContent8" class="row">
                         <div id="" class="col-4"><p><b>What versions of Exchange are
@@ -312,12 +304,13 @@
                             </p>
                         </div>
                     </div>
+                    <br>
                 </div>
             </div>
         </div>
+        <hr>
 
         <!-- Email System PS questions -->
-        <hr>
         <div id="emailSystemPs" class="">
             <h5><a href="#emailContainer2" data-toggle="collapse">Email Systems PS (To-do: EVERYTHING LOL)
                     <i class="fa fa-arrows-v" aria-hidden="true"></i></a></h5>
@@ -412,7 +405,7 @@
 
         <!-- Displaying journaling questions-->
         <div id="journaling" class="">
-            <h5><a href="#journalingContainer" data-toggle="collapse">Journaling (DONE)<i class="fa fa-arrows-v"
+            <h5><a href="#journalingContainer" data-toggle="collapse">Journaling (DONE) <i class="fa fa-arrows-v"
                                                                                           aria-hidden="true"></i>
                 </a></h5>
             <br>
@@ -468,7 +461,7 @@
 
         <!-- Displaying appliance questions -->
         <div id="appliances" class="">
-            <h5><a href="#applianceSizing" data-toggle="collapse">Appliances (DONE)<i class="fa fa-arrows-v"
+            <h5><a href="#applianceSizing" data-toggle="collapse">Appliances (DONE) <i class="fa fa-arrows-v"
                                                                                       aria-hidden="true"></i>
                 </a></h5>
             <br>
@@ -672,100 +665,127 @@
 
         <!-- Displaying desktop network questions -->
         <div id="desktopNetworkDr" class="">
-            <h5><a href="#desktopContent" data-toggle="collapse">Desktop/Network/DR (To-do: EVERYTHING, ADD MISSING SCHEMA FOR AUTH) <i
-                            class="fa fa-arrows-v"
-                            aria-hidden="true"></i>
-                </a></h5>
+            <h5><a href="#desktopContent" data-toggle="collapse">Desktop/Network/DR (DONE)
+                    <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+            </h5>
             <br>
+
             <div id="desktopContent" class="collapse in">
                 <div class="edit pull-right">
                     <a href="#" aria-hidden="true" data-target="#editDesktopNetwork" data-toggle="modal"><i class="fa fa-pencil-square-o"
                                                                                                             aria-hidden="true"></i>Edit</a>
                 </div>
-                <h5 style="color: mediumvioletred">Network & Security</h5>
 
-                <div id="networkSecurity" class="row">
-                    <div id="" class="col-4"><p><b>Do you want users to be able to access the user interface outside of your network?</b>
-                            <br><%= desktop_network_questions.network_security.allow_outside_access %></p></div>
-                    <div id="" class="col-4"><p><b>DMZ</b>
-                            <br><%= desktop_network_questions.network_security.DMZ %></p></div>
-                    <div id="" class="col-4"><p><b>Firewalls</b>
-                            <br><%= desktop_network_questions.network_security.firewalls %></p></div>
-                    <div id="" class="col-4"><p><b>VPN Connection to PFPT Required</b>
-                            <br><%= desktop_network_questions.network_security.require_vpn %></p></div>
-                    <div id="" class="col-4"><p><b>Enable access to user outside network</b>
-                            <br>WHAT IS THIS???????</p></div>
-                    <div id="" class="col-4"><p><b>Load Balancer/VIP</b>
-                            <br><%= desktop_network_questions.network_security.load_balancer_VIP %></p></div>
-                    <div id="" class="col-4"><p><b>NAT IP List</b>
-                            <br><%= desktop_network_questions.network_security.nat_IP_list %></p></div>
-                    <div id="" class="col-4"><p><b>Proxy Servers</b>
-                            <br><%= desktop_network_questions.network_security.proxy_servers %></p></div>
+                <h5><a href="#desktop-Network" style="color: mediumvioletred" data-toggle="collapse">Network & Security
+                        <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                </h5>
+
+                <!-- Network and security -->
+                <div id="desktop-Network" class="collapse in">
+                    <div id="networkSecurity" class="row">
+                        <div id="" class="col-4"><p><b>Do you want users to be able to access the user interface outside of your network?</b>
+                                <br><%= desktop_network_questions.network_security.allow_outside_access %></p></div>
+                        <div id="" class="col-4"><p><b>DMZ</b>
+                                <br><%= desktop_network_questions.network_security.DMZ %></p></div>
+                        <div id="" class="col-4"><p><b>Firewalls</b>
+                                <br><%= desktop_network_questions.network_security.firewalls %></p></div>
+                        <div id="" class="col-4"><p><b>VPN Connection to PFPT Required</b>
+                                <br><%= desktop_network_questions.network_security.require_vpn %></p></div>
+                        <div id="" class="col-4"><p><b>Enable access to user outside network</b>
+                                <br><%= desktop_network_questions.network_security.enable_outside_access %> </p></div>
+                        <div id="" class="col-4"><p><b>Load Balancer/VIP</b>
+                                <br><%= desktop_network_questions.network_security.load_balancer_VIP %></p></div>
+                        <div id="" class="col-4"><p><b>NAT IP List</b>
+                                <br><%= desktop_network_questions.network_security.nat_IP_list %></p></div>
+                        <div id="" class="col-4"><p><b>Proxy Servers</b>
+                                <br><%= desktop_network_questions.network_security.proxy_servers %></p></div>
+                    </div>
+                    <br>
                 </div>
 
-                <h5 style="color: mediumvioletred">End User Desktop Environment</h5>
+                <!-- End user desktop env -->
+                <h5><a href="#desktop-End-User" style="color: mediumvioletred" data-toggle="collapse">End User Desktop Environment
+                        <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                </h5>
 
-                <div id="endUserEnv" class="row">
-                    <div id="" class="col-4"><p><b>What browsers do user have access to (Chrome, IE, Edge, Firefox, etc.)?</b>
-                            <br><%= desktop_network_questions.end_user_desktop_env.browsers %></p></div>
-                    <div id="" class="col-4"><p><b>What versions of each available browsers are allowed</b>
-                            <br><%= desktop_network_questions.end_user_desktop_env.browser_versions %></p></div>
-                    <div id="" class="col-4"><p><b>Do you run IE 11</b>
-                            <br><%= desktop_network_questions.end_user_desktop_env.ie11 %></p></div>
-                    <div id="" class="col-4"><p><b>Can users enable compatibility mode in IE 11</b>
-                            <br><%= desktop_network_questions.end_user_desktop_env.ie11_compatibility %></p></div>
-                    <div id="" class="col-4"><p><b>Is IE deployed in Enterprise Mode?</b>
-                            <br><%= desktop_network_questions.end_user_desktop_env.is_ie11_enterprise %></p></div>
-                    <div id="" class="col-4"><p><b>Can users enable pop-ups for specific URLs</b>
-                            <br><%= desktop_network_questions.end_user_desktop_env.is_popups_enabled %></p></div>
-                    <div id="" class="col-4"><p><b>Do users use OWA?</b>
-                            <br><%= desktop_network_questions.end_user_desktop_env.is_OWA_used %></p></div>
-                    <div id="" class="col-4"><p><b>Do users have access to: Chrome/Firefox/Edge (Not sure about question)</b>
-                            <br><%= desktop_network_questions.end_user_desktop_env.browsers_access %></p>
+                <div id="desktop-End-User" class="collapse in">
+                    <div id="endUserEnv" class="row">
+                        <div id="" class="col-4"><p><b>What browsers do user have access to (Chrome, IE, Edge, Firefox, etc.)?</b>
+                                <br><%= desktop_network_questions.end_user_desktop_env.browsers %></p></div>
+                        <div id="" class="col-4"><p><b>What versions of each available browsers are allowed</b>
+                                <br><%= desktop_network_questions.end_user_desktop_env.browser_versions %></p></div>
+                        <div id="" class="col-4"><p><b>Do you run IE 11</b>
+                                <br><%= desktop_network_questions.end_user_desktop_env.ie11 %></p></div>
+                        <div id="" class="col-4"><p><b>Can users enable compatibility mode in IE 11</b>
+                                <br><%= desktop_network_questions.end_user_desktop_env.ie11_compatibility %></p></div>
+                        <div id="" class="col-4"><p><b>Is IE deployed in Enterprise Mode?</b>
+                                <br><%= desktop_network_questions.end_user_desktop_env.is_ie11_enterprise %></p></div>
+                        <div id="" class="col-4"><p><b>Can users enable pop-ups for specific URLs</b>
+                                <br><%= desktop_network_questions.end_user_desktop_env.is_popups_enabled %></p></div>
+                        <div id="" class="col-4"><p><b>Do users use OWA?</b>
+                                <br><%= desktop_network_questions.end_user_desktop_env.is_OWA_used %></p></div>
+                        <div id="" class="col-4"><p><b>Do users have access to: Chrome/Firefox/Edge (Not sure about question)</b>
+                                <br><%= desktop_network_questions.end_user_desktop_env.browsers_access %></p>
+                        </div>
                     </div>
+                    <br>
                 </div>
 
-                <h5 style="color: mediumvioletred">Disaster Recovery/High Probability</h5>
-                <div id="disasterRecovery" class="row">
-                    <div id="" class="col-4"><p><b>Do you have Exchange and AD being replicated to a secondary data center</b>
-                            <br><%= desktop_network_questions.disaster_recovery.is_replicating_exchange_and_AD %></p></div>
-                    <div id="" class="col-4"><p><b>Describe what does the DR/HA configuration look like.</b>
-                            <br><%= desktop_network_questions.disaster_recovery.config_description %></p></div>
-                    <div id="" class="col-4"><p><b>Can you provide a diagram of the Exchange environment with the DR/HA included. (File upload???)</b>
-                            <br><%= desktop_network_questions.disaster_recovery.diagram %></p></div>
+                <!-- Disaster Recovery -->
+                <h5><a href="#desktop-Disaster" style="color: mediumvioletred" data-toggle="collapse">Disaster Recovery / High Probability
+                        <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                </h5>
+
+                <div id="desktop-Disaster" class="collapse in">
+                    <div id="disasterRecovery" class="row">
+                        <div id="" class="col-4"><p><b>Do you have Exchange and AD being replicated to a secondary data center</b>
+                                <br><%= desktop_network_questions.disaster_recovery.is_replicating_exchange_and_AD %></p></div>
+                        <div id="" class="col-4"><p><b>Describe what does the DR/HA configuration look like.</b>
+                                <br><%= desktop_network_questions.disaster_recovery.config_description %></p></div>
+                        <div id="" class="col-4"><p><b>Can you provide a diagram of the Exchange environment with the DR/HA included. (File
+                                    upload???)</b>
+                                <br><%= desktop_network_questions.disaster_recovery.diagram %></p></div>
+                    </div>
+                    <br>
                 </div>
 
-                <h5 style="color: mediumvioletred">Authentication (SAML & Remote Auth) -- MISSING SCHEMA</h5>
-                <div id="authentication" class="row">
-                    <div id="" class="col-4"><p><b>Do you use SSO?</b><br>Yes/No</p></div>
-                    <div id="" class="col-4"><p><b>Do you have an IDP (Identity Provider) that supports SAML
-                                2.0?</b><br>Response
-                        </p></div>
-                    <div id="" class="col-4"><p><b>Where will the PFPT AD security groups be maintained? (On prem
-                                deployments require universal groups containing all users that need to log in, in the
-                                resource forest)</b><br>Answer</p></div>
-                    <div id="" class="col-4"><p><b>Service provider or IDP (Identity Provider) initiated? (we only
-                                support Service Provider initiated)</b><br>Yes/No</p></div>
-                    <div id="" class="col-4"><p><b>Do you require request encryption? (we don't support it)</b><br>Yes/No
-                        </p></div>
-                    <div id="" class="col-4"><p><b>Do you require response signing? (we support it)</b><br>Yes/No</p>
+                <h5><a href="#desktop-Auth" style="color: mediumvioletred" data-toggle="collapse">Authentication (SAML & Remote Auth)
+                        <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                </h5>
+
+                <div id="desktop-Auth" class="collapse in">
+                    <div id="authentication" class="row">
+                        <div id="" class="col-4"><p><b>Do you use SSO?</b>
+                                <br><%= desktop_network_questions.authentication.use_SSO %></p></div>
+                        <div id="" class="col-4"><p><b>Do you have an IDP (Identity Provider) that supports SAML 2.0?</b>
+                                <br><%= desktop_network_questions.authentication.have_IDP %></p></div>
+                        <div id="" class="col-4"><p><b>Where will the PFPT AD security groups be maintained? (On prem deployments require universal
+                                    groups containing all users that need to log in, in the resource forest)</b>
+                                <br><%= desktop_network_questions.authentication.where_security_group %></p></div>
+                        <div id="" class="col-4"><p><b>Service provider or IDP (Identity Provider) initiated? (we only support Service Provider
+                                    initiated)</b>
+                                <br><%= desktop_network_questions.authentication.intiated_IDP %></p></div>
+                        <div id="" class="col-4"><p><b>Do you require request encryption? (we don't support it)</b>
+                                <br><%= desktop_network_questions.authentication.require_request_encryption %></p></div>
+                        <div id="" class="col-4"><p><b>Do you require response signing? (we support it)</b>
+                                <br><%= desktop_network_questions.authentication.require_response_signing %></p></div>
+                        <div id="" class="col-4"><p><b>Do you require response encryption? (we support it)</b>
+                                <br><%= desktop_network_questions.authentication.require_response_encryption %></p></div>
+                        <div id="" class="col-4"><p><b>If the response is to be encrypted, do you require a 3rd party cert or is a self-signed cert
+                                    sufficient? We support both</b>
+                                <br><%= desktop_network_questions.authentication.require_third_party_cert %></p></div>
+                        <div id="" class="col-4"><p><b>What attribute will you be sending as part of the response? (we only support UPN, email, and
+                                    SID)</b>
+                                <br><%= desktop_network_questions.authentication.response_attributes %></p></div>
+                        <div id="" class="col-4"><p><b>Do you intend to deploy PFPT's remote authentication?</b>
+                                <br><%= desktop_network_questions.authentication.intend_to_deploy_remote_auth %></p></div>
+                        <div id="" class="col-4"><p><b>Are all user accounts on trusted forests?</b>
+                                <br><%= desktop_network_questions.authentication.all_users_trusted %></p></div>
+                        <div id="" class="col-4"><p><b>Are all domain controllers accessible on the same network as the server that Remote Auth will
+                                    be installed?</b>
+                                <br><%= desktop_network_questions.authentication.domain_controllers %></p></div>
                     </div>
-                    <div id="" class="col-4"><p><b>Do you require response encryption? (we support it)</b><br>Yes/No
-                        </p>
-                    </div>
-                    <div id="" class="col-4"><p><b>If the response is to be encrypted, do you require a 3rd party cert
-                                or is a self-signed cert sufficient? We support both</b><br>Yes/No</p></div>
-                    <div id="" class="col-4"><p><b>What attribute will you be sending as part of the response? (we only
-                                support UPN, email, and SID)</b><br>Yes/No</p></div>
-                    <div id="" class="col-4"><p><b>Do you intend to deploy PFPT's remote authentication?</b><br>Yes/No
-                        </p>
-                    </div>
-                    <div id="" class="col-4"><p><b>Are all user accounts on trusted forests?</b><br>Yes/No</p></div>
-                    <div id="" class="col-4"><p><b>Are all domain controllers accessible on the same network as the
-                                server that Remote Auth will be installed?</b><br>Yes/No</p></div>
-                    <div id="" class="col-4"><p><b>Are all user accounts on trusted forests?</b><br>Yes/No</p></div>
-                    <div id="" class="col-4"><p><b>Are all domain controllers accessible on the same network as the
-                                server that Remote Auth will be installed?</b><br>Yes/No</p></div>
+                    <br>
                 </div>
             </div>
         </div>
@@ -773,14 +793,15 @@
 
         <!-- Displaying usage questions -->
         <div id="usage" class="">
-            <h5><a href="#usageContainer" data-toggle="collapse">Usage (To-do: Edit)
-                    <i class="fa fa-arrows-v" aria-hidden="true"></i></a></h5>
+            <h5><a href="#usageContainer" data-toggle="collapse">Usage (DONE)
+                    <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+            </h5>
             <br>
 
             <div id="usageContainer" class="collapse in">
                 <div class="edit pull-right">
-                    <a href="#" aria-hidden="true" data-target="#editUsage" data-toggle="modal"><i class="fa fa-pencil-square-o"
-                                                                                                   aria-hidden="true"></i>Edit</a>
+                    <a href="#" aria-hidden="true" data-target="#editUsage" data-toggle="modal">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
                 </div>
 
                 <!-- Supervision -->
@@ -790,8 +811,8 @@
 
                 <div id="usage-supervision" class="collapse in">
                     <h5><a href="#usage-supervision-notes" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse">Notes / Details
-                            <i class="fa fa-arrows-v" aria-hidden="true"></i>
-                        </a></h5>
+                            <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                    </h5>
 
                     <div id="usage-supervision-notes" class="collapse in">
                         <div id="usageSupervision-notes" class="row">
@@ -803,7 +824,7 @@
                             <div id="" class="col-4"><p><b>Are there deficiencies in your current process that put you at risk?</b>
                                     <br><%= usage_questions.supervision.deficiencies %></p></div>
                             <div id="" class="col-4"><p><b>What are the customer's lines of business that has different Supervision requirements?</b>
-                                    <br><%= usage_questions.supervision.businesses_supervision_requirements %></p></div>
+                                    <br><%= usage_questions.supervision.business_supervision_requirements %></p></div>
                             <div id="" class="col-4"><p><b>Is review Centralized / De-centralized?</b>
                                     <br><%= usage_questions.supervision.review %></p></div>
                             <div id="" class="col-4"><p><b>What is the escalation process when issues / violations are found?</b>
@@ -818,12 +839,13 @@
                                         (pre-approved content) that needs to be excluded?</b>
                                     <br><%= usage_questions.supervision.whitelists %></p></div>
                         </div>
+                        <br>
                     </div>
 
                     <!-- Random Sampling -->
                     <h5><a href="#usage-supervision-random" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse">Random Sampling
-                            <i class="fa fa-arrows-v" aria-hidden="true"></i>
-                        </a></h5>
+                            <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                    </h5>
 
                     <div id="usage-supervision-random" class="collapse in">
                         <div id="usageSupervision-random_sampling" class="row">
@@ -838,13 +860,13 @@
                             <div id="" class="col-4"><p><b>Do you directly notify violators for certain types of offenses?</b>
                                     <br><%= usage_questions.supervision.random_sampling.notify_violators %></p></div>
                         </div>
+                        <br>
                     </div>
 
                     <!-- Reporting Requirements -->
-                    <h5><a href="#usage-supervision-req" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse">Reporting
-                            Requirements
-                            <i class="fa fa-arrows-v" aria-hidden="true"></i>
-                        </a></h5>
+                    <h5><a href="#usage-supervision-req" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse">Reporting Requirements
+                            <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                    </h5>
 
                     <div id="usage-supervision-req" class="collapse in">
                         <div id="usageSupervision-reporting_requirements" class="row">
@@ -855,9 +877,10 @@
                             <div id="" class="col-4"><p><b>What reports are nice to have in the future?</b>
                                     <br><%= usage_questions.supervision.report_requirements.future_reports %></p></div>
                         </div>
+                        <br>
                     </div>
+                    <br>
                 </div>
-                <br>
 
                 <!-- Stubbing -->
                 <h5><a href="#usage-stubbing" style="color: mediumvioletred" data-toggle="collapse">Stubbing
@@ -867,14 +890,14 @@
                 <div id="usage-stubbing" class="collapse in">
                     <div id="usageStubbing" class="row">
                         <div id="" class="col-4"><p><b>Is the customer interested in Stubbing?</b>
-                                <br><%= usage_questions.stubbing.interested_in_subbing %></p></div>
+                                <br><%= usage_questions.stubbing.interested_in_stubbing %></p></div>
                         <div id="" class="col-4"><p><b>If within these boundaries, and if you intend to use it, what's your stubbing policy?</b>
                                 <br><%= usage_questions.stubbing.stubbing_policy %></p></div>
                         <div id="" class="col-4"><p><b>How many users is the customer going to stub for?</b>
                                 <br><%= usage_questions.stubbing.number_of_stubbing_users %></p></div>
                     </div>
+                    <br>
                 </div>
-                <br>
 
                 <!-- Selective Disposition -->
                 <h5><a href="#usage-selective" style="color: mediumvioletred" data-toggle="collapse">Selective Disposition
@@ -888,8 +911,8 @@
                         <div id="" class="col-4"><p><b>How many messages would you want to selectively dispose?</b>
                                 <br><%= usage_questions.selective_disposition.messages_to_dispose %></p></div>
                     </div>
+                    <br>
                 </div>
-                <br>
 
                 <!-- Content Collector - Files -->
                 <h5><a href="#usage-files" style="color: mediumvioletred" data-toggle="collapse">Content Collector - Files
@@ -914,8 +937,8 @@
                         <div id="" class="col-4"><p><b>Customer understands this is for People Based Legal Holds only?</b>
                                 <br><%= usage_questions.content_collector_files.understand_legal_holds %></p></div>
                     </div>
+                    <br>
                 </div>
-                <br>
 
                 <!-- Content Collector - PSTs -->
                 <h5><a href="#usage-pst" style="color: mediumvioletred" data-toggle="collapse">Content Collector - PSTs
@@ -933,8 +956,8 @@
                         <div id="" class="col-4"><p><b>Use case?</b>
                                 <br><%= usage_questions.content_collector_PST.use_case %></p></div>
                     </div>
+                    <br>
                 </div>
-                <br>
 
                 <!-- Legal holds -->
                 <h5><a href="#usage-legal" style="color: mediumvioletred" data-toggle="collapse">Legal Holds
@@ -958,8 +981,8 @@
                         <div id="" class="col-4"><p><b>API interest? What use cases?</b>
                                 <br><%= usage_questions.legal_holds.api_use_cases %></p></div>
                     </div>
+                    <br>
                 </div>
-                <br>
 
                 <!-- End user search -->
                 <h5><a href="#usage-search" style="color: mediumvioletred" data-toggle="collapse">End User Search
@@ -975,8 +998,8 @@
                         <div id="" class="col-4"><p><b>Do you want access archive through Mobile Apps?</b>
                                 <br><%= usage_questions.end_user_search.need_mobile_apps %></p></div>
                     </div>
+                    <br>
                 </div>
-                <br>
 
                 <!-- Folder Sync -->
                 <h5><a href="#usage-sync" style="color: mediumvioletred" data-toggle="collapse">Folder Sync
@@ -992,8 +1015,8 @@
                         <div id="" class="col-4"><p><b>Service Account?</b>
                                 <br><%= usage_questions.folder_sync.service_account %></p></div>
                     </div>
+                    <br>
                 </div>
-                <br>
 
                 <!-- Transport agent -->
                 <h5><a href="#usage-transport" style="color: mediumvioletred" data-toggle="collapse">Transport Agent
@@ -1006,8 +1029,8 @@
                             <p>Note: This feature requires customer to have .NET 3.5 installed (Transport agent is currently empty)</p>
                         </div>
                     </div>
+                    <br>
                 </div>
-                <br>
 
                 <!-- Export -->
                 <h5><a href="#usage-export" style="color: mediumvioletred" data-toggle="collapse">Export
@@ -1025,8 +1048,8 @@
                         <div id="" class="col-4"><p><b>Does customer expect to auto upload data?</b>
                                 <br><%= usage_questions.export.expect_auto_upload %></p></div>
                     </div>
+                    <br>
                 </div>
-                <br>
 
                 <!-- Outlook view manager -->
                 <h5><a href="#usage-outlook" style="color: mediumvioletred" data-toggle="collapse">Outlook View Manager
@@ -1040,9 +1063,8 @@
                         <div id="" class="col-4"><p><b>Do you use OWA?</b>
                                 <br><%= usage_questions.outlook_view_manager.is_using_OWA %></p></div>
                     </div>
+                    <br>
                 </div>
-                <br>
-
             </div>
         </div>
         <hr>
@@ -1140,8 +1162,8 @@
 
         <!-- Displaying RFEs -->
         <div id="rfes" class="">
-            <h5><a href="#rfeContent" data-toggle="collapse">RFEs (To-do: EVERYTHING) <i class="fa fa-arrows-v"
-                                                                                         aria-hidden="true"></i>
+            <h5><a href="#rfeContent" data-toggle="collapse">RFEs (To-do: EVERYTHING)
+                    <i class="fa fa-arrows-v" aria-hidden="true"></i>
                 </a></h5>
             <div id="rfeContent" class="collapse in">
                 <div class="edit pull-right">
@@ -1154,14 +1176,14 @@
                     <div id="" class="col-4"><b><p>Nice to Haves</p></b><br>Comment</div>
                 </div>
             </div>
+            <br>
         </div>
         <hr>
 
         <!-- Displaying design summary -->
         <div id="designSummary" class="">
-            <h5><a href="#designSummaryContent" data-toggle="collapse">Design Summary (To-do: EVERYTHING) <i
-                            class="fa fa-arrows-v"
-                            aria-hidden="true"></i>
+            <h5><a href="#designSummaryContent" data-toggle="collapse">Design Summary (To-do: EVERYTHING)
+                    <i class="fa fa-arrows-v" aria-hidden="true"></i>
                 </a></h5>
             <div id="designSummaryContent" class="collapse in">
                 <div class="edit pull-right">
@@ -1171,6 +1193,7 @@
                     <div id="" class="col-4"><b><p>Mail System in Use</p></b><br>Comment</div>
                 </div>
             </div>
+            <br>
         </div>
     </div>
 
@@ -1281,8 +1304,7 @@
     </div>
 
     <!-- EMAIL SYSTEMS SE UPDATE -->
-    <div class="modal fade" id="editEmailSystemsSE" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
-         aria-hidden="true">
+    <div class="modal fade" id="editEmailSystemsSE" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1301,423 +1323,421 @@
                                    name="email_se_questions[name]">
                         </div>
 
-                        <div class="">
-                            <h5><a href="#editEmailSystemsSE-1" style="color: mediumvioletred" data-toggle="collapse">On-prem
-                                    Exchange w/ On-prem Appliances <i
-                                            class="fa fa-arrows-v"
-                                            aria-hidden="true"></i>
-                                </a></h5>
-                            <br>
+                        <h5><a href="#editEmailSystemsSE-1" style="color: mediumvioletred" data-toggle="collapse">On-prem
+                                Exchange w/ On-prem Appliances <i
+                                        class="fa fa-arrows-v"
+                                        aria-hidden="true"></i>
+                            </a></h5>
+                        <br>
 
-                            <div id="editEmailSystemsSE-1" class="collapse in">
-                                <h5 style="color: lightseagreen">Exchange Details</h5>
-                                <div class="form-group"><label>What versions of Exchange are
-                                        running?</label><input type="text" class="form-control" placeholder="No response set"
-                                                               value="<%= email_se_questions.prem_exchange.exchange_version %>"
-                                                               name="email_se_questions[prem_exchange][exchange_version]">
-                                </div>
-                                <div class="form-group"><label>How many locations are mailbox servers
-                                        deployed?</label><input type="text" class="form-control" placeholder="No response set"
-                                                                value="<%= email_se_questions.prem_exchange.number_of_mail_servers %>"
-                                                                name="email_se_questions[prem_exchange][number_of_mail_servers]">
-                                </div>
-                                <div class="form-group"><label>Do you have an Enterprise
-                                        CAL?</label><input type="text" class="form-control" placeholder="No response set"
-                                                           value="<%= email_se_questions.prem_exchange.has_enterprise_CAL %>"
-                                                           name="email_se_questions[prem_exchange][has_enterprise_CAL]">
-                                </div>
-                                <div class="form-group"><label>Are you replicating Exchange and AD to a secondary data
-                                        center?</label><input type="text" class="form-control" placeholder="No response set"
-                                                              value="<%= email_se_questions.prem_exchange.is_replicating_exchange_and_AD %>"
-                                                              name="email_se_questions[prem_exchange][is_replicating_exchange_and_AD]">
-                                </div>
+                        <div id="editEmailSystemsSE-1" class="collapse in">
+                            <h5 style="color: lightseagreen">Exchange Details</h5>
+                            <div class="form-group"><label>What versions of Exchange are
+                                    running?</label><input type="text" class="form-control" placeholder="No response set"
+                                                           value="<%= email_se_questions.prem_exchange.exchange_version %>"
+                                                           name="email_se_questions[prem_exchange][exchange_version]">
+                            </div>
+                            <div class="form-group"><label>How many locations are mailbox servers
+                                    deployed?</label><input type="text" class="form-control" placeholder="No response set"
+                                                            value="<%= email_se_questions.prem_exchange.number_of_mail_servers %>"
+                                                            name="email_se_questions[prem_exchange][number_of_mail_servers]">
+                            </div>
+                            <div class="form-group"><label>Do you have an Enterprise
+                                    CAL?</label><input type="text" class="form-control" placeholder="No response set"
+                                                       value="<%= email_se_questions.prem_exchange.has_enterprise_CAL %>"
+                                                       name="email_se_questions[prem_exchange][has_enterprise_CAL]">
+                            </div>
+                            <div class="form-group"><label>Are you replicating Exchange and AD to a secondary data
+                                    center?</label><input type="text" class="form-control" placeholder="No response set"
+                                                          value="<%= email_se_questions.prem_exchange.is_replicating_exchange_and_AD %>"
+                                                          name="email_se_questions[prem_exchange][is_replicating_exchange_and_AD]">
+                            </div>
 
-                                <div class="form-group"><label>Please provide a diagram of your exchange infrastructure
-                                        and your AD Details.</label><input type="text" class="form-control" placeholder="No response set"
-                                                                           value="<%= email_se_questions.prem_exchange.diagram %>"
-                                                                           name="email_se_questions[prem_exchange][diagram]">
-                                </div>
+                            <div class="form-group"><label>Please provide a diagram of your exchange infrastructure
+                                    and your AD Details.</label><input type="text" class="form-control" placeholder="No response set"
+                                                                       value="<%= email_se_questions.prem_exchange.diagram %>"
+                                                                       name="email_se_questions[prem_exchange][diagram]">
+                            </div>
+
+                            <h5 style="color: lightseagreen">Active Directory Details</h5>
+                            <div class="form-group"><label>Is your AD
+                                    multi-forest?</label><input type="text" class="form-control" placeholder="No response set"
+                                                                value="<%= email_se_questions.prem_exchange.is_multi_forest %>"
+                                                                name="email_se_questions[prem_exchange][is_multi_forest]">
+                            </div>
+                            <div class="form-group"><label>Are there trusts between the
+                                    forests?</label><input type="text" class="form-control" placeholder="No response set"
+                                                           value="<%= email_se_questions.prem_exchange.exists_trusts %>"
+                                                           name="email_se_questions[prem_exchange][exists_trusts]">
+                            </div>
+                            <div class="form-group"><label>Is this a Resource Forest
+                                    arrangement?</label><input type="text" class="form-control" placeholder="No response set"
+                                                               value="<%= email_se_questions.prem_exchange.is_resource_forest_arrangement %>"
+                                                               name="email_se_questions[prem_exchange][is_resource_forest_arrangement]">
+                            </div>
+                            <div class="form-group"><label>Are you using
+                                    multi-domains?</label><input type="text" class="form-control" placeholder="No response set"
+                                                                 value="<%= email_se_questions.prem_exchange.is_using_multi_domains %>"
+                                                                 name="email_se_questions[prem_exchange][is_using_multi_domains]">
+                            </div>
+                            <div class="form-group"><label>If yes, what is the structure of multi-domain
+                                    architecture / their
+                                    relationships?</label><input type="text" class="form-control" placeholder="No response set"
+                                                                 value="<%= email_se_questions.prem_exchange.structure %>"
+                                                                 name="email_se_questions[prem_exchange][structure]">
+                            </div>
+                        </div>
+
+                        <h5><a href="#editEmailSystemsSE-2" style="color: mediumvioletred" data-toggle="collapse">O365
+                                (Hosted Appliances) <i
+                                        class="fa fa-arrows-v"
+                                        aria-hidden="true"></i>
+                            </a></h5>
+                        <br>
+
+                        <div id="editEmailSystemsSE-2" class="collapse in">
+                            <!-- form groups here -->
+                            <div class="form-group"><label>What O365 license level do you have?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.hosted_O365.O365_version %>"
+                                       name="email_se_questions[hosted_O365][O365_version]">
+                            </div>
+                            <div class="form-group"><label>Are you maintaining AD on-prem?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.hosted_O365.is_maintaining_on_prem_AD %>"
+                                       name="email_se_questions[hosted_O365][is_maintaining_on_prem_AD]">
+                            </div>
+                            <div class="form-group"><label>Are you maintaining AD in Azure?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.hosted_O365.is_maintaining_azure %>"
+                                       name="email_se_questions[hosted_O365][is_maintaining_azure]">
+                            </div>
+                            <div class="form-group"><label>When you create and admin mailboxes, do you do that in
+                                    the on-prem AD, or in Azure?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.hosted_O365.is_admin_in_AD_or_azure %>"
+                                       name="email_se_questions[hosted_O365][is_admin_in_AD_or_azure]">
+                            </div>
+                            <div class="form-group"><label>Sync tools used to Azure?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.hosted_O365.sync_tools %>"
+                                       name="email_se_questions[hosted_O365][sync_tools]">
+                            </div>
+                            <div class="form-group"><label>Which O365 version (shared,
+                                    dedicated/BPOS-D/iTAR)?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.hosted_O365.which_O365 %>"
+                                       name="email_se_questions[hosted_O365][which_O365]">
+                            </div>
+                        </div>
+
+                        <h5><a href="#editEmailSystemsSE-3" style="color: mediumvioletred" data-toggle="collapse">On-prem
+                                Exchange + O365 (On-prem Appliance) <i
+                                        class="fa fa-arrows-v"
+                                        aria-hidden="true"></i>
+                            </a></h5>
+                        <br>
+
+                        <div id="editEmailSystemsSE-3" class="collapse in">
+                            <h5 style="color: lightseagreen">Exchange Details</h5>
+                            <div class="form-group"><label>What versions of Exchange are
+                                    running?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_prem_O365.exchange_version %>"
+                                       name="email_se_questions[prem_exchange_prem_O365][exchange_version]">
+                            </div>
+                            <div class="form-group"><label>How many locations are mailbox servers
+                                    deployed?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_prem_O365.number_of_mail_servers %>"
+                                       name="email_se_questions[prem_exchange_prem_O365][number_of_mail_servers]">
+                            </div>
+                            <div class="form-group"><label>Do you have an Enterprise
+                                    CAL?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_prem_O365.has_enterprise_CAL %>"
+                                       name="email_se_questions[prem_exchange_prem_O365][has_enterprise_CAL]">
+                            </div>
+                            <div class="form-group"><label>Describe the HA/DR of the Exchange
+                                    environment.</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_prem_O365.describe_exchange_env %>"
+                                       name="email_se_questions[prem_exchange_prem_O365][describe_exchange_env]">
+                            </div>
+                            <div class="form-group"><label>Please provide a diagram of your exchange
+                                    infrastructure and your AD
+                                    Details.</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_prem_O365.diagram %>"
+                                       name="email_se_questions[prem_exchange_prem_O365][diagram]">
+                            </div>
+                            <div class="form-group"><label>Are DAGs being
+                                    used?</label>
 
                                 <h5 style="color: lightseagreen">Active Directory Details</h5>
-                                <div class="form-group"><label>Is your AD
-                                        multi-forest?</label><input type="text" class="form-control" placeholder="No response set"
-                                                                    value="<%= email_se_questions.prem_exchange.is_multi_forest %>"
-                                                                    name="email_se_questions[prem_exchange][is_multi_forest]">
-                                </div>
-                                <div class="form-group"><label>Are there trusts between the
-                                        forests?</label><input type="text" class="form-control" placeholder="No response set"
-                                                               value="<%= email_se_questions.prem_exchange.exists_trusts %>"
-                                                               name="email_se_questions[prem_exchange][exists_trusts]">
-                                </div>
-                                <div class="form-group"><label>Is this a Resource Forest
-                                        arrangement?</label><input type="text" class="form-control" placeholder="No response set"
-                                                                   value="<%= email_se_questions.prem_exchange.is_resource_forest_arrangement %>"
-                                                                   name="email_se_questions[prem_exchange][is_resource_forest_arrangement]">
-                                </div>
-                                <div class="form-group"><label>Are you using
-                                        multi-domains?</label><input type="text" class="form-control" placeholder="No response set"
-                                                                     value="<%= email_se_questions.prem_exchange.is_using_multi_domains %>"
-                                                                     name="email_se_questions[prem_exchange][is_using_multi_domains]">
-                                </div>
-                                <div class="form-group"><label>If yes, what is the structure of multi-domain
-                                        architecture / their
-                                        relationships?</label><input type="text" class="form-control" placeholder="No response set"
-                                                                     value="<%= email_se_questions.prem_exchange.structure %>"
-                                                                     name="email_se_questions[prem_exchange][structure]">
-                                </div>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_prem_O365.is_using_DAG %>"
+                                       name="email_se_questions[prem_exchange_prem_O365][is_using_DAG]">
+                            </div>
+                            <div class="form-group"><label>Is your AD
+                                    multi-forest?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_prem_O365.is_multi_forest %>"
+                                       name="email_se_questions[prem_exchange_prem_O365][is_multi_forest]">
+                            </div>
+                            <div class="form-group"><label>How many forests are
+                                    there?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_prem_O365.number_of_forests %>"
+                                       name="email_se_questions[prem_exchange_prem_O365][number_of_forests]">
+                            </div>
+                            <div class="form-group"><label>Is this a Resource Forest
+                                    arrangement?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_prem_O365.is_resource_forest_arrangement %>"
+                                       name="email_se_questions[prem_exchange_prem_O365][is_resource_forest_arrangement]">
+                            </div>
+                            <div class="form-group"><label>Are you using multi-domains?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_prem_O365.is_using_multi_domains %>"
+                                       name="email_se_questions[prem_exchange_prem_O365][is_using_multi_domains]">
+                            </div>
+                            <div class="form-group"><label>If yes, what is the structure of multi-domain
+                                    architecture / their relationships?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_prem_O365.multi_domain_structure %>"
+                                       name="email_se_questions[prem_exchange_prem_O365][multi_domain_structure]">
+                            </div>
+                            <div class="form-group"><label>Resource forest
+                                    deployment?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_prem_O365.resource_forest_deployment %>"
+                                       name="email_se_questions[prem_exchange_prem_O365][resource_forest_deployment]">
+                            </div>
+                            <div class="form-group"><label>How big is your AD? How many
+                                    objects?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_prem_O365.AD_size %>"
+                                       name="email_se_questions[prem_exchange_prem_O365][AD_size]">
+                            </div>
+                            <div class="form-group"><label>Do you require a secure connection to
+                                    LDAP?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_prem_O365.require_ldap %>"
+                                       name="email_se_questions[prem_exchange_prem_O365][require_ldap]">
+                            </div>
+                            <h5 style="color: lightseagreen">O365 Details</h5>
+                            <div class="form-group"><label>What O365 license level do you
+                                    have?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_prem_O365.O365_version %>"
+                                       name="email_se_questions[prem_exchange_prem_O365][O365_version]">
+                            </div>
+                            <div class="form-group"><label>Are you maintaining AD
+                                    on-prem?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_prem_O365.is_maintaining_on_prem_AD %>"
+                                       name="email_se_questions[prem_exchange_prem_O365][is_maintaining_on_prem_AD]">
+                            </div>
+                            <div class="form-group"><label>Are you maintaining AD in
+                                    Azure?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_prem_O365.is_maintaining_azure %>"
+                                       name="email_se_questions[prem_exchange_prem_O365][is_maintaining_azure]">
+                            </div>
+                            <div class="form-group">
+                                <label>When you create and admin mailboxes, do you do that in the on-premAD, or in
+                                    Azure?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_prem_O365.is_admin_in_AD_or_azure %>"
+                                       name="email_se_questions[prem_exchange_prem_O365][is_admin_in_AD_or_azure]">
+                            </div>
+                            <div class="form-group"><label>Sync tools used on
+                                    Azure?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_prem_O365.sync_tools %>"
+                                       name="email_se_questions[prem_exchange_prem_O365][sync_tools]">
+                            </div>
+                            <div class="form-group"><label>Which O365 version (shared,
+                                    dedicated/BPOS-D/iTAR)?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_prem_O365.which_O365 %>"
+                                       name="email_se_questions[prem_exchange_prem_O365][which_O365]">
+                            </div>
+                        </div>
+
+                        <h5><a href="#editEmailSystemsSE-4" style="color: mediumvioletred" data-toggle="collapse">On-prem
+                                Exchange + O365 (Hosted Appliance) <i
+                                        class="fa fa-arrows-v"
+                                        aria-hidden="true"></i>
+                            </a></h5>
+                        <br>
+
+                        <div id="editEmailSystemsSE-4" class="collapse in">
+                            <h5 style="color: lightseagreen">Exchange Details</h5>
+                            <div class="form-group"><label>What versions of Exchange are
+                                    running?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_hosted_O365.exchange_version %>"
+                                       name="email_se_questions[prem_exchange_hosted_O365][exchange_version]">
+                            </div>
+                            <div class="form-group"><label>How many locations are mailbox servers
+                                    deployed?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_hosted_O365.number_of_mail_servers %>"
+                                       name="email_se_questions[prem_exchange_hosted_O365][number_of_mail_servers]">
+                            </div>
+                            <div class="form-group"><label>Do you have an Enterprise CAL?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_hosted_O365.has_enterprise_CAL %>"
+                                       name="email_se_questions[prem_exchange_hosted_O365][has_enterprise_CAL]">
+                            </div>
+                            <div class="form-group"><label>Describe the HA/DR of the Exchange
+                                    environment.</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_hosted_O365.describe_exchange_env %>"
+                                       name="email_se_questions[prem_exchange_hosted_O365][describe_exchange_env]">
+                            </div>
+                            <div class="form-group"><label>Please provide a diagram of your exchange
+                                    infrastructure and your AD
+                                    Details.</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_hosted_O365.diagram %>"
+                                       name="email_se_questions[prem_exchange_hosted_O365][diagram]">
+                            </div>
+                            <div class="form-group"><label>Are DAGs being
+                                    used?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_hosted_O365.is_using_DAG %>"
+                                       name="email_se_questions[prem_exchange_hosted_O365][is_using_DAG]">
                             </div>
 
-                            <h5><a href="#editEmailSystemsSE-2" style="color: mediumvioletred" data-toggle="collapse">O365
-                                    (Hosted Appliances) <i
-                                            class="fa fa-arrows-v"
-                                            aria-hidden="true"></i>
-                                </a></h5>
-                            <br>
+                            <h5 style="color: lightseagreen">Active Directory Details</h5>
+                            <div class="form-group"><label>Is your AD
+                                    multi-forest?</label>
 
-                            <div id="editEmailSystemsSE-2" class="collapse in">
-                                <!-- form groups here -->
-                                <div class="form-group"><label>What O365 license level do you have?</label>
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.hosted_O365.O365_version %>"
-                                           name="email_se_questions[hosted_O365][O365_version]">
-                                </div>
-                                <div class="form-group"><label>Are you maintaining AD on-prem?</label>
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.hosted_O365.is_maintaining_on_prem_AD %>"
-                                           name="email_se_questions[hosted_O365][is_maintaining_on_prem_AD]">
-                                </div>
-                                <div class="form-group"><label>Are you maintaining AD in Azure?</label>
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.hosted_O365.is_maintaining_azure %>"
-                                           name="email_se_questions[hosted_O365][is_maintaining_azure]">
-                                </div>
-                                <div class="form-group"><label>When you create and admin mailboxes, do you do that in
-                                        the on-prem AD, or in Azure?</label>
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.hosted_O365.is_admin_in_AD_or_azure %>"
-                                           name="email_se_questions[hosted_O365][is_admin_in_AD_or_azure]">
-                                </div>
-                                <div class="form-group"><label>Sync tools used to Azure?</label>
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.hosted_O365.sync_tools %>"
-                                           name="email_se_questions[hosted_O365][sync_tools]">
-                                </div>
-                                <div class="form-group"><label>Which O365 version (shared,
-                                        dedicated/BPOS-D/iTAR)?</label>
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.hosted_O365.which_O365 %>"
-                                           name="email_se_questions[hosted_O365][which_O365]">
-                                </div>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_hosted_O365.is_multi_forest %>"
+                                       name="email_se_questions[prem_exchange_hosted_O365][is_multi_forest]">
+                            </div>
+                            <div class="form-group"><label>How many forests are
+                                    there?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_hosted_O365.number_of_forests %>"
+                                       name="email_se_questions[prem_exchange_hosted_O365][number_of_forests]">
+                            </div>
+                            <div class="form-group"><label>Is this a Resource Forest
+                                    arrangement?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_hosted_O365.is_resource_forest_arrangement %>"
+                                       name="email_se_questions[prem_exchange_hosted_O365][is_resource_forest_arrangement]">
+                            </div>
+                            <div class="form-group"><label>Are you using
+                                    multi-domains?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_hosted_O365.is_using_multi_domains %>"
+                                       name="email_se_questions[prem_exchange_hosted_O365][is_using_multi_domains]">
+                            </div>
+                            <div class="form-group"><label>If yes, what is the structure of multi-domain
+                                    architecture / their
+                                    relationships?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_hosted_O365.structure %>"
+                                       name="email_se_questions[prem_exchange_hosted_O365][structure]">
+                            </div>
+                            <div class="form-group"><label>Resource forest
+                                    deployment?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_hosted_O365.resource_forest_deployment %>"
+                                       name="email_se_questions[prem_exchange_hosted_O365][resource_forest_deployment]">
+                            </div>
+                            <div class="form-group"><label>How big is your AD? How many
+                                    objects?</label>
+
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_hosted_O365.AD_size %>"
+                                       name="email_se_questions[prem_exchange_hosted_O365][AD_size]">
                             </div>
 
-                            <h5><a href="#editEmailSystemsSE-3" style="color: mediumvioletred" data-toggle="collapse">On-prem
-                                    Exchange + O365 (On-prem Appliance) <i
-                                            class="fa fa-arrows-v"
-                                            aria-hidden="true"></i>
-                                </a></h5>
-                            <br>
+                            <h5 style="color: lightseagreen">O365 Details</h5>
+                            <div class="form-group"><label>What O365 license level do you
+                                    have?</label>
 
-                            <div id="editEmailSystemsSE-3" class="collapse in">
-                                <h5 style="color: lightseagreen">Exchange Details</h5>
-                                <div class="form-group"><label>What versions of Exchange are
-                                        running?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_hosted_O365.O365_version %>"
+                                       name="email_se_questions[prem_exchange_hosted_O365][O365_version]">
+                            </div>
+                            <div class="form-group"><label>Are you maintaining AD
+                                    on-prem?</label>
 
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_prem_O365.exchange_version %>"
-                                           name="email_se_questions[prem_exchange_prem_O365][exchange_version]">
-                                </div>
-                                <div class="form-group"><label>How many locations are mailbox servers
-                                        deployed?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_hosted_O365.is_maintaining_on_prem_AD %>"
+                                       name="email_se_questions[prem_exchange_hosted_O365][is_maintaining_on_prem_AD]">
+                            </div>
+                            <div class="form-group"><label>Are you maintaining AD in
+                                    Azure?</label>
 
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_prem_O365.number_of_mail_servers %>"
-                                           name="email_se_questions[prem_exchange_prem_O365][number_of_mail_servers]">
-                                </div>
-                                <div class="form-group"><label>Do you have an Enterprise
-                                        CAL?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_hosted_O365.is_maintaining_azure %>"
+                                       name="email_se_questions[prem_exchange_hosted_O365][is_maintaining_azure]">
+                            </div>
+                            <div class="form-group"><label>When you create and admin mailboxes, do you do that in
+                                    the on-prem
+                                    AD, or in
+                                    Azure?</label>
 
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_prem_O365.has_enterprise_CAL %>"
-                                           name="email_se_questions[prem_exchange_prem_O365][has_enterprise_CAL]">
-                                </div>
-                                <div class="form-group"><label>Describe the HA/DR of the Exchange
-                                        environment.</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_hosted_O365.is_admin_in_AD_or_azure %>"
+                                       name="email_se_questions[prem_exchange_hosted_O365][is_admin_in_AD_or_azure]">
+                            </div>
+                            <div class="form-group"><label>Sync tools used to
+                                    Azure?</label>
 
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_prem_O365.describe_exchange_env %>"
-                                           name="email_se_questions[prem_exchange_prem_O365][describe_exchange_env]">
-                                </div>
-                                <div class="form-group"><label>Please provide a diagram of your exchange
-                                        infrastructure and your AD
-                                        Details.</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_hosted_O365.sync_tools %>"
+                                       name="email_se_questions[prem_exchange_hosted_O365][sync_tools]">
+                            </div>
+                            <div class="form-group"><label>Which O365 version (shared,
+                                    dedicated/BPOS-D/iTAR)?</label>
 
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_prem_O365.diagram %>"
-                                           name="email_se_questions[prem_exchange_prem_O365][diagram]">
-                                </div>
-                                <div class="form-group"><label>Are DAGs being
-                                        used?</label>
-
-                                    <h5 style="color: lightseagreen">Active Directory Details</h5>
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_prem_O365.is_using_DAG %>"
-                                           name="email_se_questions[prem_exchange_prem_O365][is_using_DAG]">
-                                </div>
-                                <div class="form-group"><label>Is your AD
-                                        multi-forest?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_prem_O365.is_multi_forest %>"
-                                           name="email_se_questions[prem_exchange_prem_O365][is_multi_forest]">
-                                </div>
-                                <div class="form-group"><label>How many forests are
-                                        there?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_prem_O365.number_of_forests %>"
-                                           name="email_se_questions[prem_exchange_prem_O365][number_of_forests]">
-                                </div>
-                                <div class="form-group"><label>Is this a Resource Forest
-                                        arrangement?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_prem_O365.is_resource_forest_arrangement %>"
-                                           name="email_se_questions[prem_exchange_prem_O365][is_resource_forest_arrangement]">
-                                </div>
-                                <div class="form-group"><label>Are you using multi-domains?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_prem_O365.is_using_multi_domains %>"
-                                           name="email_se_questions[prem_exchange_prem_O365][is_using_multi_domains]">
-                                </div>
-                                <div class="form-group"><label>If yes, what is the structure of multi-domain
-                                        architecture / their relationships?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_prem_O365.multi_domain_structure %>"
-                                           name="email_se_questions[prem_exchange_prem_O365][multi_domain_structure]">
-                                </div>
-                                <div class="form-group"><label>Resource forest
-                                        deployment?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_prem_O365.resource_forest_deployment %>"
-                                           name="email_se_questions[prem_exchange_prem_O365][resource_forest_deployment]">
-                                </div>
-                                <div class="form-group"><label>How big is your AD? How many
-                                        objects?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_prem_O365.AD_size %>"
-                                           name="email_se_questions[prem_exchange_prem_O365][AD_size]">
-                                </div>
-                                <div class="form-group"><label>Do you require a secure connection to
-                                        LDAP?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_prem_O365.require_ldap %>"
-                                           name="email_se_questions[prem_exchange_prem_O365][require_ldap]">
-                                </div>
-                                <h5 style="color: lightseagreen">O365 Details</h5>
-                                <div class="form-group"><label>What O365 license level do you
-                                        have?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_prem_O365.O365_version %>"
-                                           name="email_se_questions[prem_exchange_prem_O365][O365_version]">
-                                </div>
-                                <div class="form-group"><label>Are you maintaining AD
-                                        on-prem?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_prem_O365.is_maintaining_on_prem_AD %>"
-                                           name="email_se_questions[prem_exchange_prem_O365][is_maintaining_on_prem_AD]">
-                                </div>
-                                <div class="form-group"><label>Are you maintaining AD in
-                                        Azure?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_prem_O365.is_maintaining_azure %>"
-                                           name="email_se_questions[prem_exchange_prem_O365][is_maintaining_azure]">
-                                </div>
-                                <div class="form-group">
-                                    <label>When you create and admin mailboxes, do you do that in the on-premAD, or in
-                                        Azure?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_prem_O365.is_admin_in_AD_or_azure %>"
-                                           name="email_se_questions[prem_exchange_prem_O365][is_admin_in_AD_or_azure]">
-                                </div>
-                                <div class="form-group"><label>Sync tools used on
-                                        Azure?</label>
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_prem_O365.sync_tools %>"
-                                           name="email_se_questions[prem_exchange_prem_O365][sync_tools]">
-                                </div>
-                                <div class="form-group"><label>Which O365 version (shared,
-                                        dedicated/BPOS-D/iTAR)?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_prem_O365.which_O365 %>"
-                                           name="email_se_questions[prem_exchange_prem_O365][which_O365]">
-                                </div>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= email_se_questions.prem_exchange_hosted_O365.which_O365 %>"
+                                       name="email_se_questions[prem_exchange_hosted_O365][which_O365]">
                             </div>
 
-                            <h5><a href="#editEmailSystemsSE-4" style="color: mediumvioletred" data-toggle="collapse">On-prem
-                                    Exchange + O365 (Hosted Appliance) <i
-                                            class="fa fa-arrows-v"
-                                            aria-hidden="true"></i>
-                                </a></h5>
-                            <br>
+                        </div>
 
-                            <div id="editEmailSystemsSE-4" class="collapse in">
-                                <h5 style="color: lightseagreen">Exchange Details</h5>
-                                <div class="form-group"><label>What versions of Exchange are
-                                        running?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_hosted_O365.exchange_version %>"
-                                           name="email_se_questions[prem_exchange_hosted_O365][exchange_version]">
-                                </div>
-                                <div class="form-group"><label>How many locations are mailbox servers
-                                        deployed?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_hosted_O365.number_of_mail_servers %>"
-                                           name="email_se_questions[prem_exchange_hosted_O365][number_of_mail_servers]">
-                                </div>
-                                <div class="form-group"><label>Do you have an Enterprise CAL?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_hosted_O365.has_enterprise_CAL %>"
-                                           name="email_se_questions[prem_exchange_hosted_O365][has_enterprise_CAL]">
-                                </div>
-                                <div class="form-group"><label>Describe the HA/DR of the Exchange
-                                        environment.</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_hosted_O365.describe_exchange_env %>"
-                                           name="email_se_questions[prem_exchange_hosted_O365][describe_exchange_env]">
-                                </div>
-                                <div class="form-group"><label>Please provide a diagram of your exchange
-                                        infrastructure and your AD
-                                        Details.</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_hosted_O365.diagram %>"
-                                           name="email_se_questions[prem_exchange_hosted_O365][diagram]">
-                                </div>
-                                <div class="form-group"><label>Are DAGs being
-                                        used?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_hosted_O365.is_using_DAG %>"
-                                           name="email_se_questions[prem_exchange_hosted_O365][is_using_DAG]">
-                                </div>
-
-                                <h5 style="color: lightseagreen">Active Directory Details</h5>
-                                <div class="form-group"><label>Is your AD
-                                        multi-forest?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_hosted_O365.is_multi_forest %>"
-                                           name="email_se_questions[prem_exchange_hosted_O365][is_multi_forest]">
-                                </div>
-                                <div class="form-group"><label>How many forests are
-                                        there?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_hosted_O365.number_of_forests %>"
-                                           name="email_se_questions[prem_exchange_hosted_O365][number_of_forests]">
-                                </div>
-                                <div class="form-group"><label>Is this a Resource Forest
-                                        arrangement?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_hosted_O365.is_resource_forest_arrangement %>"
-                                           name="email_se_questions[prem_exchange_hosted_O365][is_resource_forest_arrangement]">
-                                </div>
-                                <div class="form-group"><label>Are you using
-                                        multi-domains?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_hosted_O365.is_using_multi_domains %>"
-                                           name="email_se_questions[prem_exchange_hosted_O365][is_using_multi_domains]">
-                                </div>
-                                <div class="form-group"><label>If yes, what is the structure of multi-domain
-                                        architecture / their
-                                        relationships?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_hosted_O365.structure %>"
-                                           name="email_se_questions[prem_exchange_hosted_O365][structure]">
-                                </div>
-                                <div class="form-group"><label>Resource forest
-                                        deployment?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_hosted_O365.resource_forest_deployment %>"
-                                           name="email_se_questions[prem_exchange_hosted_O365][resource_forest_deployment]">
-                                </div>
-                                <div class="form-group"><label>How big is your AD? How many
-                                        objects?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_hosted_O365.AD_size %>"
-                                           name="email_se_questions[prem_exchange_hosted_O365][AD_size]">
-                                </div>
-
-                                <h5 style="color: lightseagreen">O365 Details</h5>
-                                <div class="form-group"><label>What O365 license level do you
-                                        have?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_hosted_O365.O365_version %>"
-                                           name="email_se_questions[prem_exchange_hosted_O365][O365_version]">
-                                </div>
-                                <div class="form-group"><label>Are you maintaining AD
-                                        on-prem?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_hosted_O365.is_maintaining_on_prem_AD %>"
-                                           name="email_se_questions[prem_exchange_hosted_O365][is_maintaining_on_prem_AD]">
-                                </div>
-                                <div class="form-group"><label>Are you maintaining AD in
-                                        Azure?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_hosted_O365.is_maintaining_azure %>"
-                                           name="email_se_questions[prem_exchange_hosted_O365][is_maintaining_azure]">
-                                </div>
-                                <div class="form-group"><label>When you create and admin mailboxes, do you do that in
-                                        the on-prem
-                                        AD, or in
-                                        Azure?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_hosted_O365.is_admin_in_AD_or_azure %>"
-                                           name="email_se_questions[prem_exchange_hosted_O365][is_admin_in_AD_or_azure]">
-                                </div>
-                                <div class="form-group"><label>Sync tools used to
-                                        Azure?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_hosted_O365.sync_tools %>"
-                                           name="email_se_questions[prem_exchange_hosted_O365][sync_tools]">
-                                </div>
-                                <div class="form-group"><label>Which O365 version (shared,
-                                        dedicated/BPOS-D/iTAR)?</label>
-
-                                    <input type="text" class="form-control" placeholder="No response set"
-                                           value="<%= email_se_questions.prem_exchange_hosted_O365.which_O365 %>"
-                                           name="email_se_questions[prem_exchange_hosted_O365][which_O365]">
-                                </div>
-
-                            </div>
-
-                            <div class="col">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -2022,37 +2042,713 @@
                                    name="desktop_network_questions[name]">
                         </div>
 
-                        <h5 style="color: mediumvioletred">Network & Security</h5>
-                        <div class="form-group">
-                            <label>Allow access to the user interface outside of your network?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= desktop_network_questions.network_security.allow_outside_access %>"
-                                   name="desktop_network_questions[network_security][allow_outside_access]">
+                        <h5><a href="#editDesktop-Network" style="color: mediumvioletred" data-toggle="collapse">Network & Security
+                                <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                        </h5>
+
+                        <!-- Network and security -->
+                        <div id="editDesktop-Network" class="collapse in">
+                            <div class="form-group">
+                                <label>Do you want users to be able to access the user interface outside of your network?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.network_security.allow_outside_access %>"
+                                       name="desktop_network_questions[network_security][allow_outside_access]">
+                            </div>
+                            <div class="form-group">
+                                <label>DMZ</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.network_security.DMZ %>"
+                                       name="desktop_network_questions[network_security][DMZ]">
+                            </div>
+                            <div class="form-group">
+                                <label>Firewalls</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.network_security.firewalls %>"
+                                       name="desktop_network_questions[network_security][firewalls]">
+                            </div>
+                            <div class="form-group">
+                                <label>VPN Connection to PFPT Required</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.network_security.require_vpn %>"
+                                       name="desktop_network_questions[network_security][require_vpn]">
+                            </div>
+                            <div class="form-group">
+                                <label>Enable access to user outside network</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.network_security.enable_outside_access %>"
+                                       name="desktop_network_questions[network_security][enable_outside_access]">
+                            </div>
+                            <div class="form-group">
+                                <label>Load Balancer/VIP</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.network_security.load_balancer_VIP %>"
+                                       name="desktop_network_questions[network_security][load_balancer_VIP]">
+                            </div>
+                            <div class="form-group">
+                                <label>NAT IP List</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.network_security.nat_IP_list %>"
+                                       name="desktop_network_questions[network_security][nat_IP_list]">
+                            </div>
+                            <div class="form-group">
+                                <label>Proxy Servers</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.network_security.proxy_servers %>"
+                                       name="desktop_network_questions[network_security][proxy_servers]">
+                            </div>
                         </div>
 
-                        <h5 style="color: mediumvioletred">End User Desktop Environment</h5>
-                        <div class="form-group">
-                            <label>What browsers do users have access to (Chrome, IE, Edge, Firefox, etc.)?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= desktop_network_questions.end_user_desktop_env.browsers %>"
-                                   name="desktop_network_questions[end_user_desktop_env][browsers]">
+                        <!-- End user desktop env -->
+                        <h5><a href="#editDesktop-End-User" style="color: mediumvioletred" data-toggle="collapse">End User Desktop Environment
+                                <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                        </h5>
+
+                        <div id="editDesktop-End-User" class="collapse in">
+                            <div class="form-group">
+                                <label>What browsers do user have access to (Chrome, IE, Edge, Firefox, etc.)?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.end_user_desktop_env.browsers %>"
+                                       name="desktop_network_questions[end_user_desktop_env][browsers]">
+                            </div>
+                            <div class="form-group">
+                                <label>What versions of each available browsers are allowed</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.end_user_desktop_env.browser_versions %>"
+                                       name="desktop_network_questions[end_user_desktop_env][browser_versions]">
+                            </div>
+                            <div class="form-group">
+                                <label>Do you run IE 11</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.end_user_desktop_env.ie11 %>"
+                                       name="desktop_network_questions[end_user_desktop_env][ie11]">
+                            </div>
+                            <div class="form-group">
+                                <label>Can users enable compatibility mode in IE 11</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.end_user_desktop_env.ie11_compatibility %>"
+                                       name="desktop_network_questions[end_user_desktop_env][ie11_compatibility]">
+                            </div>
+                            <div class="form-group">
+                                <label>Is IE deployed in Enterprise Mode?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.end_user_desktop_env.is_ie11_enterprise %>"
+                                       name="desktop_network_questions[end_user_desktop_env][is_ie11_enterprise]">
+                            </div>
+                            <div class="form-group">
+                                <label>Can users enable pop-ups for specific URLs</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.end_user_desktop_env.is_popups_enabled %>"
+                                       name="desktop_network_questions[end_user_desktop_env][is_popups_enabled]">
+                            </div>
+                            <div class="form-group">
+                                <label>Do users use OWA?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.end_user_desktop_env.is_OWA_used %>"
+                                       name="desktop_network_questions[end_user_desktop_env][is_OWA_used]">
+                            </div>
+                            <div class="form-group">
+                                <label>Do users have access to: Chrome/Firefox/Edge (Not sure about question)</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.end_user_desktop_env.browsers_access %>"
+                                       name="desktop_network_questions[end_user_desktop_env][browsers_access]">
+                            </div>
                         </div>
 
-                        <h5 style="color: mediumvioletred">Disaster Recovery / High Probability</h5>
-                        <div class="form-group">
-                            <label>Do you have Exchange and AD being replicated to a secondary data center?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= desktop_network_questions.disaster_recovery.is_replicating_exchange_and_AD %>"
-                                   name="desktop_network_questions[disaster_recovery][is_replicating_exchange_and_AD]">
+                        <!-- Disaster Recovery -->
+                        <h5><a href="#editDesktop-Disaster" style="color: mediumvioletred" data-toggle="collapse">Disaster Recovery / High Probability
+                                <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                        </h5>
+
+                        <div id="editDesktop-Disaster" class="collapse in">
+                            <div class="form-group">
+                                <label>Do you have Exchange and AD being replicated to a secondary data center</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.disaster_recovery.is_replicating_exchange_and_AD %>"
+                                       name="desktop_network_questions[disaster_recovery][is_replicating_exchange_and_AD]">
+                            </div>
+                            <div class="form-group">
+                                <label>Describe what does the DR/HA configuration look like.</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.disaster_recovery.config_description %>"
+                                       name="desktop_network_questions[disaster_recovery][config_description]">
+                            </div>
+                            <div class="form-group">
+                                <label>Can you provide a diagram of the Exchange environment with the DR/HA included. (File upload???)</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.disaster_recovery.diagram %>"
+                                       name="desktop_network_questions[disaster_recovery][diagram]">
+                            </div>
                         </div>
 
-                        <h5 style="color: mediumvioletred">Authentication (SAML & Remote Auth) -- NEED TO ADD SCHEMA FOR THIS PART</h5>
-                        <div class="form-group">
-                            <label>Do you use SSO?</label>
+                        <h5><a href="#editDesktop-Auth" style="color: mediumvioletred" data-toggle="collapse">Authentication (SAML & Remote Auth)
+                                <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                        </h5>
 
+                        <div id="editDesktop-Auth" class="collapse in">
+                            <div class="form-group">
+                                <label>Do you use SSO?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.authentication.use_SSO %>"
+                                       name="desktop_network_questions[authentication][use_SSO]">
+                            </div>
+                            <div class="form-group">
+                                <label>Do you have an IDP (Identity Provider) that supports SAML 2.0?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.authentication.have_IDP %>"
+                                       name="desktop_network_questions[authentication][have_IDP]">
+                            </div>
+                            <div class="form-group">
+                                <label>Where will the PFPT AD security groups be maintained? (On prem deployments require universal
+                                    groups containing all users that need to log in, in the resource forest)</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.authentication.where_security_group %>"
+                                       name="desktop_network_questions[authentication][where_security_group]">
+                            </div>
+                            <div class="form-group">
+                                <label>Service provider or IDP (Identity Provider) initiated? (we only support Service Provider initiated)</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.authentication.intiated_IDP %>"
+                                       name="desktop_network_questions[authentication][intiated_IDP]">
+                            </div>
+                            <div class="form-group">
+                                <label>Do you require request encryption? (we don't support it)</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.authentication.require_request_encryption %>"
+                                       name="desktop_network_questions[authentication][require_request_encryption]">
+                            </div>
+                            <div class="form-group">
+                                <label>Do you require response signing? (we support it)</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.authentication.require_response_signing %>"
+                                       name="desktop_network_questions[authentication][require_response_signing]">
+                            </div>
+                            <div class="form-group">
+                                <label>Do you require response encryption? (we support it)</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.authentication.require_response_encryption %>"
+                                       name="desktop_network_questions[authentication][require_response_encryption]">
+                            </div>
+                            <div class="form-group">
+                                <label>If the response is to be encrypted, do you require a 3rd party cert or is a self-signed cert sufficient? We
+                                    support
+                                    both</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.authentication.require_third_party_cert %>"
+                                       name="desktop_network_questions[authentication][require_third_party_cert]">
+                            </div>
+                            <div class="form-group">
+                                <label>What attribute will you be sending as part of the response? (we only support UPN, email, and SID)</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.authentication.response_attributes %>"
+                                       name="desktop_network_questions[authentication][response_attributes]">
+                            </div>
+                            <div class="form-group">
+                                <label>Do you intend to deploy PFPT's remote authentication?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.authentication.intend_to_deploy_remote_auth %>"
+                                       name="desktop_network_questions[authentication][intend_to_deploy_remote_auth]">
+                            </div>
+                            <div class="form-group">
+                                <label>Are all user accounts on trusted forests?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.authentication.all_users_trusted %>"
+                                       name="desktop_network_questions[authentication][all_users_trusted]">
+                            </div>
+                            <div class="form-group">
+                                <label>Are all domain controllers accessible on the same network as the server that Remote Auth will be
+                                    installed?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= desktop_network_questions.authentication.domain_controllers %>"
+                                       name="desktop_network_questions[authentication][domain_controllers]">
+                            </div>
                         </div>
 
                         <div class="col-4">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" role="button">Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- USAGE QUESTIONS UPDATE -->
+    <div class="modal fade" id="editUsage" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="lineModalLabel">Usage questions</h3>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <!-- content goes here -->
+                    <form class="" action="/index/<%= customer.name %>?_method=PUT" method="POST">
+                        <div class="form-group">
+                            <label for="customerName">Customer Name</label>
+                            <input type="text" readonly class="form-control" placeholder="No response set"
+                                   value="<%= customer.name %>"
+                                   name="usage_questions[name]">
+                        </div>
+
+                        <!-- Edit layers -->
+                        <h5><a href="#editUsage-Supervision" style="color: mediumvioletred" data-toggle="collapse">Supervision
+                                <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                            </a></h5>
+
+                        <div id="editUsage-Supervision" class="collapse in">
+                            <h5><a href="#editUsage-Supervision-Notes" style="color: lightseagreen; margin-left: 3em;" data-toggle="collapse">
+                                    Notes / Details <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                                </a></h5>
+
+                            <div id="editUsage-Supervision-Notes" class="collapse in">
+                                <!-- Notes/Details -->
+                                <div class="form-group">
+                                    <label>What supervision system are you currently running?</label>
+                                    <input type="text" class="form-control"
+                                           placeholder="No response set"
+                                           value="<%= usage_questions.supervision.supervision_system %>"
+                                           name="usage_questions[supervision][supervision_system]">
+                                </div>
+                                <div class="form-group">
+                                    <label>What are your current pain-points?</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= usage_questions.supervision.pain_points %>"
+                                           name="usage_questions[supervision][pain_points]">
+                                </div>
+                                <div class="form-group">
+                                    <label>Are there deficiencies in your current process that put you at risk?</label>
+                                    <input type="text" class="form-control"
+                                           placeholder="No response set"
+                                           value="<%= usage_questions.supervision.deficiencies %>"
+                                           name="usage_questions[supervision][deficiencies]">
+                                </div>
+                                <div class="form-group">
+                                    <label>What are the customer's lines of business that has different Supervision requirements?</label>
+                                    <input type="text"
+                                           class="form-control" placeholder="No response set"
+                                           value="<%= usage_questions.supervision.business_supervision_requirements %>"
+                                           name="usage_questions[supervision][business_supervision_requirements]">
+                                </div>
+                                <div class="form-group">
+                                    <label>Is review Centralized / De-centralized?</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= usage_questions.supervision.review %>"
+                                           name="usage_questions[supervision][review]">
+                                </div>
+                                <div class="form-group">
+                                    <label>What is the escalation process when issues / violations are found?</label>
+                                    <input type="text" class="form-control"
+                                           placeholder="No response set"
+                                           value="<%= usage_questions.supervision.escalation_process %>"
+                                           name="usage_questions[supervision][escalation_process]">
+                                </div>
+                                <div class="form-group">
+                                    <label>Who is responsible for reviewing which group / user</label>
+                                    <input type="text" class="form-control"
+                                           placeholder="No response set"
+                                           value="<%= usage_questions.supervision.system_record.responsible %>"
+                                           name="usage_questions[supervision][system_record][responsible]">
+                                </div>
+                                <div class="form-group">
+                                    <label>How is this data loaded into your current system?</label>
+                                    <input type="text" class="form-control"
+                                           placeholder="No response set"
+                                           value="<%= usage_questions.supervision.system_record.how_is_data_loaded %>"
+                                           name="usage_questions[supervision][system_record][how_is_data_loaded]">
+                                </div>
+                                <div class="form-group">
+                                    <label>Do you need to migrate your existing policies?</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= usage_questions.supervision.need_to_migrate_policies %>"
+                                           name="usage_questions[supervision][need_to_migrate_policies]">
+                                </div>
+                                <div class="form-group">
+                                    <label>Do you already have whitelists, disclaimers headers, etc...
+                                        (pre-approved content) that needs to be excluded?</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= usage_questions.supervision.whitelists %>"
+                                           name="usage_questions[supervision][whitelists]">
+                                </div>
+                            </div>
+
+                            <!-- Random Sampling -->
+                            <h5><a href="#editUsage-Supervision-Random" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse">
+                                    Random Sampling <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                                </a></h5>
+
+                            <div id="editUsage-Supervision-Random" class="collapse in">
+                                <div class="form-group">
+                                    <label>Do you have sampling rules?</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= usage_questions.supervision.random_sampling.has_rules %>"
+                                           name="usage_questions[supervision][random_sampling][has_rules]">
+                                </div>
+                                <div class="form-group">
+                                    <label>Do you have multiple sampling rates that apply to a given person (i.e. different message
+                                        types, internal vs external)?</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= usage_questions.supervision.random_sampling.multi_sampling %>"
+                                           name="usage_questions[supervision][random_sampling][multi_sampling]">
+                                </div>
+                                <div class="form-group">
+                                    <label>Intention of sampling: top up or not?</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= usage_questions.supervision.random_sampling.sampling_intention %>"
+                                           name="usage_questions[supervision][random_sampling][sampling_intention]">
+                                </div>
+                                <div class="form-group">
+                                    <label>Do you directly notify violators for certain types of offenses?</label>
+                                    <input type="text" class="form-control"
+                                           placeholder="No response set"
+                                           value="<%= usage_questions.supervision.random_sampling.notify_violators %>"
+                                           name="usage_questions[supervision][random_sampling][notify_violators]">
+                                </div>
+                            </div>
+
+                            <!-- Reporting Requirements -->
+                            <h5><a href="#editUsage-Supervision-requirements" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse">Reporting
+                                    Requirements
+                                    <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                                </a></h5>
+
+                            <div id="editUsage-Supervision-requirements" class="collapse in">
+                                <div class="form-group">
+                                    <label>What decisions are made based on these reports?</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= usage_questions.supervision.report_requirements.decisions %>"
+                                           name="usage_questions[supervision][report_requirements][decisions]">
+                                </div>
+                                <div class="form-group">
+                                    <label>What reports are required for roll-out? Please provide samples.</label>
+                                    <input type="text" class="form-control"
+                                           placeholder="No response set"
+                                           value="<%= usage_questions.supervision.report_requirements.roll_out_reports %>"
+                                           name="usage_questions[supervision][report_requirements][roll_out_reports]">
+                                </div>
+                                <div class="form-group">
+                                    <label>What reports are nice to have in the future?</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= usage_questions.supervision.report_requirements.future_reports %>"
+                                           name="usage_questions[supervision][report_requirements][future_reports]">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- One edit level -->
+
+
+                        <!-- Stubbing -->
+                        <h5><a href="#editUsage-Stubbing" style="color: mediumvioletred" data-toggle="collapse">Stubbing
+                                <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                            </a></h5>
+
+                        <div id="editUsage-Stubbing" class="collapse in">
+                            <div class="form-group">
+                                <label>Is the customer interested in Stubbing?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.stubbing.interested_in_stubbing %>"
+                                       name="usage_questions[stubbing][interested_in_stubbing]">
+                            </div>
+                            <div class="form-group">
+                                <label>If within these boundaries, and if you intend to use it, what’s your stubbing policy?</label>
+                                <input type="text"
+                                       class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.stubbing.stubbing_policy %>"
+                                       name="usage_questions[stubbing][stubbing_policy]">
+                            </div>
+                            <div class="form-group">
+                                <label>How many users is the customer going to stub for?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.stubbing.number_of_stubbing_users %>"
+                                       name="usage_questions[stubbing][number_of_stubbing_users]">
+                            </div>
+                        </div>
+
+                        <!-- Selective Disposition -->
+                        <h5><a href="#editUsage-Selective" style="color: mediumvioletred" data-toggle="collapse">Selective Disposition
+                                <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                            </a></h5>
+
+                        <div id="editUsage-Selective" class="collapse in">
+                            <div class="form-group">
+                                <label>What are the scenarios would you need to apply it?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.selective_disposition.scenarios %>"
+                                       name="usage_questions[selective_disposition][scenarios]">
+                            </div>
+                            <div class="form-group">
+                                <label>How many messages would you want to selectively dispose?</label>
+                                <input type="text" class="form-control"
+                                       placeholder="No response set"
+                                       value="<%= usage_questions.selective_disposition.messages_to_dispose %>"
+                                       name="usage_questions[selective_disposition][messages_to_dispose]">
+                            </div>
+                        </div>
+
+                        <!-- Content Collector - Files -->
+                        <h5><a href="#editUsage-Files" style="color: mediumvioletred" data-toggle="collapse">Content Collector - Files
+                                <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                            </a></h5>
+
+                        <div id="editUsage-Files" class="collapse in">
+                            <div class="form-group">
+                                <label>Is the customer interested in CC4Files?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.content_collector_files.interested_in_CC4Files %>"
+                                       name="usage_questions[content_collector_files][interested_in_CC4Files]">
+                            </div>
+                            <div class="form-group">
+                                <label>Where are the files located that you want to collect? (We only support Windows based file
+                                    servers and on-prem Sharepoint.)</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.content_collector_files.files_location %>"
+                                       name="usage_questions[content_collector_files][files_location]">
+                            </div>
+                            <div class="form-group">
+                                <label>Is the customer willing to install an agent on each machine they want to collect data from?</label>
+                                <input type="text"
+                                       class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.content_collector_files.willing_to_install_agent %>"
+                                       name="usage_questions[content_collector_files][willing_to_install_agent]">
+                            </div>
+                            <div class="form-group">
+                                <label>What's the volume of files?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.content_collector_files.volume_of_files %>"
+                                       name="usage_questions[content_collector_files][volume_of_files]">
+                            </div>
+                            <div class="form-group">
+                                <label>Are there unusual File types?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.content_collector_files.unusual_file_types %>"
+                                       name="usage_questions[content_collector_files][unusual_file_types]">
+                            </div>
+                            <div class="form-group">
+                                <label>Average and largest file expected to capture?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.content_collector_files.avg_file_size %>"
+                                       name="usage_questions[content_collector_files][avg_file_size]">
+                            </div>
+                            <div class="form-group">
+                                <label>Customer understands this is for People Based Legal Holds only?</label>
+                                <input type="text" class="form-control"
+                                       placeholder="No response set"
+                                       value="<%= usage_questions.content_collector_files.understand_legal_holds %>"
+                                       name="usage_questions[content_collector_files][understand_legal_holds]">
+                            </div>
+                        </div>
+
+                        <!-- Content Collector - PSTs -->
+                        <h5><a href="#editUsage-PST" style="color: mediumvioletred" data-toggle="collapse">Content Collector - PSTs
+                                <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                            </a></h5>
+
+                        <div id="editUsage-PST" class="collapse in">
+                            <div class="form-group">
+                                <label>Is the customer interested in CC4PSTs?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.content_collector_PST.interested_in_CC4FPST %>"
+                                       name="usage_questions[content_collector_PST][interested_in_CC4FPST]">
+                            </div>
+                            <div class="form-group">
+                                <label>Average size?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.content_collector_PST.avg_file_size %>"
+                                       name="usage_questions[content_collector_PST][avg_file_size]">
+                            </div>
+                            <div class="form-group">
+                                <label>Frequency?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.content_collector_PST.frequency %>"
+                                       name="usage_questions[content_collector_PST][frequency]">
+                            </div>
+                            <div class="form-group">
+                                <label>Use case?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.content_collector_PST.use_case %>"
+                                       name="usage_questions[content_collector_PST][use_case]">
+                            </div>
+                        </div>
+
+                        <!-- Legal holds -->
+                        <h5><a href="#editUsage-Legal" style="color: mediumvioletred" data-toggle="collapse">Legal Holds
+                                <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                            </a></h5>
+
+                        <div id="editUsage-Legal" class="collapse in">
+                            <div class="form-group">
+                                <label>Custodian based or Ad hoc, or both?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.legal_holds.custodian_or_ad_hoc %>"
+                                       name="usage_questions[legal_holds][custodian_or_ad_hoc]">
+                            </div>
+                            <div class="form-group">
+                                <label>Count of LH's in current solution</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.legal_holds.number_of_legal_holds %>"
+                                       name="usage_questions[legal_holds][number_of_legal_holds]">
+                            </div>
+                            <div class="form-group">
+                                <label>Number of unique custodians</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.legal_holds.number_of_unique_custodians %>"
+                                       name="usage_questions[legal_holds][number_of_unique_custodians]">
+                            </div>
+                            <div class="form-group">
+                                <label>Largest hold (in terms of custodians)</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.legal_holds.largest_hold %>"
+                                       name="usage_questions[legal_holds][largest_hold]">
+                            </div>
+                            <div class="form-group">
+                                <label>What LH Notification system is being used today?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.legal_holds.notification_system %>"
+                                       name="usage_questions[legal_holds][notification_system]">
+                            </div>
+                            <div class="form-group">
+                                <label>Third Party Solutions for LH Management?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.legal_holds.third_party_solutions %>"
+                                       name="usage_questions[legal_holds][third_party_solutions]">
+                            </div>
+                            <div class="form-group">
+                                <label>API interest? What use cases?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.legal_holds.api_use_cases %>"
+                                       name="usage_questions[legal_holds][api_use_cases]">
+                            </div>
+                        </div>
+
+                        <!-- End user search -->
+                        <h5><a href="#editUsage-End" style="color: mediumvioletred" data-toggle="collapse">End User Search
+                                <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                            </a></h5>
+
+                        <div id="editUsage-End" class="collapse in">
+                            <div class="form-group">
+                                <label>How many end users will have access to their own mailbox?</label>
+                                <input type="text" class="form-control"
+                                       placeholder="No response set"
+                                       value="<%= usage_questions.end_user_search.number_of_user_access %>"
+                                       name="usage_questions[end_user_search][number_of_user_access]">
+                            </div>
+                            <div class="form-group">
+                                <label>Do end users need to have access to Archive within Outlook? What versions of Outlook?</label>
+                                <input type="text"
+                                       class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.end_user_search.need_outlook %>"
+                                       name="usage_questions[end_user_search][need_outlook]">
+                            </div>
+                            <div class="form-group">
+                                <label>Do you want access archive through Mobile Apps?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.end_user_search.need_mobile_apps %>"
+                                       name="usage_questions[end_user_search][need_mobile_apps]">
+                            </div>
+                        </div>
+
+                        <!-- Folder Sync -->
+                        <h5><a href="#editUsage-Sync" style="color: mediumvioletred" data-toggle="collapse">Folder Sync
+                                <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                            </a></h5>
+
+                        <div id="editUsage-Sync" class="collapse in">
+                            <div class="form-group">
+                                <label>Is the customer interested in Folder Sync?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.folder_sync.interested_in_folder_sync %>"
+                                       name="usage_questions[folder_sync][interested_in_folder_sync]">
+                            </div>
+                            <div class="form-group">
+                                <label>For how many users?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.folder_sync.number_of_users_interested %>"
+                                       name="usage_questions[folder_sync][number_of_users_interested]">
+                            </div>
+                            <div class="form-group">
+                                <label>Service Account?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.folder_sync.service_account %>"
+                                       name="usage_questions[folder_sync][service_account]">
+                            </div>
+                        </div>
+
+                        <!-- Transport agent -->
+                        <h5><a href="#editusage-transport" style="color: mediumvioletred" data-toggle="collapse">Transport Agent
+                                <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                            </a></h5>
+
+                        <div id="editusage-transport" class="collapse in">
+                            <div class="col">
+                                <p>Note: This feature requires customer to have .NET 3.5 installed (Transport agent is currently empty)</p>
+                            </div>
+                        </div>
+
+                        <!-- Export -->
+                        <h5><a href="#editusage-export" style="color: mediumvioletred" data-toggle="collapse">Export
+                                <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                            </a></h5>
+
+                        <div id="editusage-export" class="collapse in">
+                            <div class="form-group">
+                                <label>Volume / average size and frequency</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.export.volume %>"
+                                       name="usage_questions[export][volume]">
+                            </div>
+                            <div class="form-group">
+                                <label>Preferred Export formats?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.export.preferred_export_format %>"
+                                       name="usage_questions[export][preferred_export_format]">
+                            </div>
+                            <div class="form-group">
+                                <label>Where does the data typically go?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.export.where_data_goes %>"
+                                       name="usage_questions[export][where_data_goes]">
+                            </div>
+                            <div class="form-group">
+                                <label>Does customer expect to auto upload data?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.export.expect_auto_upload %>"
+                                       name="usage_questions[export][expect_auto_upload]">
+                            </div>
+                        </div>
+
+                        <!-- Outlook view manager -->
+                        <h5><a href="#editusage-outlook" style="color: mediumvioletred" data-toggle="collapse">Outlook View Manager
+                                <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                            </a></h5>
+
+                        <div id="editusage-outlook" class="collapse in">
+                            <div class="form-group">
+                                <label>Do you want to allow end users to access the archive?</label>
+                                <input type="text" class="form-control"
+                                       placeholder="No response set"
+                                       value="<%= usage_questions.outlook_view_manager.allow_users_access %>"
+                                       name="usage_questions[outlook_view_manager][allow_users_access]">
+                            </div>
+                            <div class="form-group">
+                                <label>Do you use OWA?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.outlook_view_manager.is_using_OWA %>"
+                                       name="usage_questions[outlook_view_manager][is_using_OWA]">
+                            </div>
+                        </div>
+
+                        <div class="col">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>

@@ -19,7 +19,7 @@ var usage_schema = new mongoose.Schema({
             type: String,
             default: ""
         },
-        businesses_supervision_requirements: {
+        business_supervision_requirements: {
             type: String,
             default: ""
         },
@@ -100,7 +100,7 @@ var usage_schema = new mongoose.Schema({
             type: String,
             default: ""
         },
-        interested_in_subbing: {
+        interested_in_stubbing: {
             type: String,
             default: ""
         },
