@@ -133,6 +133,21 @@ footer p {
     box-shadow: 0 1px 0 #B4B3B3;
 }
 
+hr {
+    margin: 10px;
+    border: none;
+    height: 4px;
+}
+
+hr.rainbow {
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right,
+    rgba(255, 2, 5, 0), rgba(137, 11, 138, .25), rgba(27, 123, 187, .5), rgba(47, 195, 44, .5), rgba(253, 201, 1, .5),
+    rgba(255, 91, 2, .5), #ccc 45%, #ccc 55%, rgba(255, 91, 2, .5), rgba(253, 201, 1, .5), rgba(47, 195, 44, .5), rgba(27, 123, 187, .5),
+    rgba(137, 11, 138, .25), rgba(255, 2, 5, 0));
+}
+
 -o-transition: all
 
 0.5

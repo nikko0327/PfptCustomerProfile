@@ -111,51 +111,87 @@ var email_ps_schema = new mongoose.Schema({
     },
 
     prem_exchange_hosted_O365: {
-        // Exchange details
+        exchange_version: {
+            type: String,
+            default: ""
+        },
+        mailbox_server_locations: {
+            type: String,
+            default: ""
+        },
+        has_enterprise_CAL: {
+            type: String,
+            default: ""
+        },
+        describe_env: {
+            type: String,
+            default: ""
+        },
+        diagram: {
+            type: String,
+            default: ""
+        },
         is_using_DAG: {
             type: String,
             default: ""
         },
-        number_of_inboxes: {
+        is_multi_forest: {
             type: String,
             default: ""
         },
-        journal_rules: {
+        number_of_forests: {
             type: String,
             default: ""
         },
-        is_journal_in_own_DB: {
+        exists_trusts: {
             type: String,
             default: ""
         },
-        number_of_extra_storage: {
+        is_resource_forest_arrangement: {
             type: String,
             default: ""
         },
-        is_using_RMS: {
+        is_using_multi_domains: {
             type: String,
             default: ""
         },
-        is_journal_decryption_enabled: {
+        multi_domain_structure: {
             type: String,
             default: ""
         },
-
-        // O365 details
-        is_using_azure_rms: {
+        resource_forest_deployment: {
             type: String,
             default: ""
         },
-        is_using_IRM: {
+        AD_size: {
             type: String,
             default: ""
         },
-        // is_journal_decryption_enabled: {
-        //     type: String,
-        //     enum: [", "Yes", "No"],
-        //     default: "
-        // },
-        is_using_message_decryption: {
+        require_ldap: {
+            type: String,
+            default: ""
+        },
+        O365_version: {
+            type: String,
+            default: ""
+        },
+        is_maintaining_on_prem_AD: {
+            type: String,
+            default: ""
+        },
+        is_maintaining_azure: {
+            type: String,
+            default: ""
+        },
+        is_admin_in_AD_or_azure: {
+            type: String,
+            default: ""
+        },
+        sync_tools: {
+            type: String,
+            default: ""
+        },
+        which_O365: {
             type: String,
             default: ""
         }

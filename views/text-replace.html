@@ -1,194 +1,155 @@
-<h5 style="color: mediumvioletred">Network & Security</h5>
-<div class="form-group">
-    <label>Do you want users to be able to access the user interface outside of your network?</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.network_security.allow_outside_access %>"
-           name="desktop_network_questions[network_security][allow_outside_access]">
-</div>
-<div class="form-group">
-    <label>DMZ</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.network_security.DMZ %>"
-           name="desktop_network_questions[network_security][DMZ]">
-</div>
-<div class="form-group">
-    <label>Firewalls</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.network_security.firewalls %>"
-           name="desktop_network_questions[network_security][firewalls]">
-</div>
-<div class="form-group">
-    <label>VPN Connection to PFPT Required</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.network_security.require_vpn %>"
-           name="desktop_network_questions[network_security][require_vpn]">
-</div>
-<div class="form-group">
-    <label>Enable access to user outside network</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.network_security.enable_outside_access %>"
-           name="desktop_network_questions[network_security][enable_outside_access]">
-</div>
-<div class="form-group">
-    <label>Load Balancer/VIP</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.network_security.load_balancer_VIP %>"
-           name="desktop_network_questions[network_security][load_balancer_VIP]">
-</div>
-<div class="form-group">
-    <label>NAT IP List</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.network_security.nat_IP_list %>"
-           name="desktop_network_questions[network_security][nat_IP_list]">
-</div>
-<div class="form-group">
-    <label>Proxy Servers</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.network_security.proxy_servers %>"
-           name="desktop_network_questions[network_security][proxy_servers]">
-</div>
+<!-- Email System PS questions -->
+<div id="emailSystemPs" class="">
+    <h5><a href="#emailSystemPSContainer" data-toggle="collapse">Email Systems PS (To-do: Edit)
+        <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+    </h5>
+    <br>
 
-<h5 style="color: mediumvioletred">End User Desktop Environment</h5>
-<div class="form-group">
-    <label>What browsers do user have access to (Chrome, IE, Edge, Firefox, etc.)?</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.end_user_desktop_env.browsers %>"
-           name="desktop_network_questions[end_user_desktop_env][browsers]">
-</div>
-<div class="form-group">
-    <label>What versions of each available browsers are allowed</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.end_user_desktop_env.browser_versions %>"
-           name="desktop_network_questions[end_user_desktop_env][browser_versions]">
-</div>
-<div class="form-group">
-    <label>Do you run IE 11</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.end_user_desktop_env.ie11 %>"
-           name="desktop_network_questions[end_user_desktop_env][ie11]">
-</div>
-<div class="form-group">
-    <label>Can users enable compatibility mode in IE 11</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.end_user_desktop_env.ie11_compatibility %>"
-           name="desktop_network_questions[end_user_desktop_env][ie11_compatibility]">
-</div>
-<div class="form-group">
-    <label>Is IE deployed in Enterprise Mode?</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.end_user_desktop_env.is_ie11_enterprise %>"
-           name="desktop_network_questions[end_user_desktop_env][is_ie11_enterprise]">
-</div>
-<div class="form-group">
-    <label>Can users enable pop-ups for specific URLs</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.end_user_desktop_env.is_popups_enabled %>"
-           name="desktop_network_questions[end_user_desktop_env][is_popups_enabled]">
-</div>
-<div class="form-group">
-    <label>Do users use OWA?</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.end_user_desktop_env.is_OWA_used %>"
-           name="desktop_network_questions[end_user_desktop_env][is_OWA_used]">
-</div>
-<div class="form-group">
-    <label>Do users have access to: Chrome/Firefox/Edge (Not sure about question)</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.end_user_desktop_env.browsers_access %>"
-           name="desktop_network_questions[end_user_desktop_env][browsers_access]">
-</div>
+    <div id="emailSystemPSContainer" class="collapse in">
+        <div class="edit pull-right">
+            <a href="#" aria-hidden="true" data-target="#editEmailSystemsPS" data-toggle="modal">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
+        </div>
 
-<h5 style="color: mediumvioletred">Disaster Recovery/High Probability</h5>
-<div class="form-group">
-    <label>Do you have Exchange and AD being replicated to a secondary data center</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.disaster_recovery.is_replicating_exchange_and_AD %>"
-           name="desktop_network_questions[disaster_recovery][is_replicating_exchange_and_AD]">
-</div>
-<div class="form-group">
-    <label>Describe what does the DR/HA configuration look like.</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.disaster_recovery.config_description %>"
-           name="desktop_network_questions[disaster_recovery][config_description]">
-</div>
-<div class="form-group">
-    <label>Can you provide a diagram of the Exchange environment with the DR/HA included. (File upload???)</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.disaster_recovery.diagram %>"
-           name="desktop_network_questions[disaster_recovery][diagram]">
-</div>
+        <h5><a href="#emailSystemsPS-1" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange w/ On-prem Appliances
+            <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+        </h5>
 
-<h5 style="color: mediumvioletred">Authentication (SAML & Remote Auth) -- MISSING SCHEMA</h5>
-<div class="form-group">
-    <label>Do you use SSO?</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.authentication.use_SSO %>"
-           name="desktop_network_questions[authentication][use_SSO]">
-</div>
-<div class="form-group">
-    <label>Do you have an IDP (Identity Provider) that supports SAML 2.0?</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.authentication.have_IDP %>"
-           name="desktop_network_questions[authentication][have_IDP]">
-</div>
-<div class="form-group">
-    <label>Where will the PFPT AD security groups be maintained? (On prem deployments require universal
-        groups containing all users that need to log in, in the resource forest)</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.authentication.where_security_group %>"
-           name="desktop_network_questions[authentication][where_security_group]">
-</div>
-<div class="form-group">
-    <label>Service provider or IDP (Identity Provider) initiated? (we only support Service Provider initiated)</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.authentication.intiated_IDP %>"
-           name="desktop_network_questions[authentication][intiated_IDP]">
-</div>
-<div class="form-group">
-    <label>Do you require request encryption? (we don't support it)</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.authentication.require_request_encryption %>"
-           name="desktop_network_questions[authentication][require_request_encryption]">
-</div>
-<div class="form-group">
-    <label>Do you require response signing? (we support it)</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.authentication.require_response_signing %>"
-           name="desktop_network_questions[authentication][require_response_signing]">
-</div>
-<div class="form-group">
-    <label>Do you require response encryption? (we support it)</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.authentication.require_response_encryption %>"
-           name="desktop_network_questions[authentication][require_response_encryption]">
-</div>
-<div class="form-group">
-    <label>If the response is to be encrypted, do you require a 3rd party cert or is a self-signed cert sufficient? We support both</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.authentication.require_third_party_cert %>"
-           name="desktop_network_questions[authentication][require_third_party_cert]">
-</div>
-<div class="form-group">
-    <label>What attribute will you be sending as part of the response? (we only support UPN, email, and SID)</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.authentication.response_attributes %>"
-           name="desktop_network_questions[authentication][response_attributes]">
-</div>
-<div class="form-group">
-    <label>Do you intend to deploy PFPT's remote authentication?</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.authentication.intend_to_deploy_remote_auth %>"
-           name="desktop_network_questions[authentication][intend_to_deploy_remote_auth]">
-</div>
-<div class="form-group">
-    <label>Are all user accounts on trusted forests?</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.authentication.all_users_trusted %>"
-           name="desktop_network_questions[authentication][all_users_trusted]">
-</div>
-<div class="form-group">
-    <label>Are all domain controllers accessible on the same network as the server that Remote Auth will be installed?</label>
-    <input type="text" class="form-control" placeholder="No response set"
-           value="<%= desktop_network_questions.authentication.domain_controllers %>"
-           name="desktop_network_questions[authentication][domain_controllers]">
+        <div id="emailSystemsPS-1" class="collapse in">
+            <div id="emailSystemContent1" class="row">
+                <div class="col-4"><p><b>Are DAGs being used?</b>
+                    <br><%= email_ps_questions.prem_exchange.is_using_DAG %></p></div>
+                <div class="col-4"><p><b>No. of journal mailboxes</b>
+                    <br><%= email_ps_questions.prem_exchange.number_of_inboxes %></p></div>
+                <div class="col-4"><p><b>Are journal mailboxes on their own DB?</b>
+                    <br><%= email_ps_questions.prem_exchange.is_journal_in_own_DB %></p></div>
+                <div class="col-4"><p><b>How much extra storage is available on the Journaling Mailbox Databases?</b>
+                    <br><%= email_ps_questions.prem_exchange.number_of_extra_storage %></p></div>
+                <div class="col-4"><p><b>Are you using RMS?</b>
+                    <br><%= email_ps_questions.prem_exchange.is_using_RMS %></p></div>
+                <div class="col-4"><p><b>Is Enable Journal Decryption set to True / False?</b>
+                    <br><%= email_ps_questions.prem_exchange.is_journal_decryption_enabled %></p></div>
+            </div>
+            <br>
+        </div>
+
+
+        <h5><a href="#emailSystemsPS-2" style="color: mediumvioletred" data-toggle="collapse">O365 (Hosted Appliances)
+            <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+        </h5>
+
+        <div id="emailSystemsPS-2" class="collapse in">
+            <div id="emailSystemContent4" class="row">
+                <div class="col-4"><p><b>Are you using Azure RMS?</b>
+                    <br><%= email_ps_questions.hosted_O365.is_using_azure_rms %></p></div>
+                <div class="col-4"><p><b>Are you using IRM?</b>
+                    <br><%= email_ps_questions.hosted_O365.is_using_IRM %></p></div>
+                <div class="col-4"><p><b>Is Enable Journal Decryption set to True / False?</b>
+                    <br><%= email_ps_questions.hosted_O365.is_journal_decryption_enabled %></p></div>
+                <div class="col-4"><p><b>Are you using O365 Message Encryption?</b>
+                    <br><%= email_ps_questions.hosted_O365.is_using_message_decryption %></p></div>
+            </div>
+            <br>
+        </div>
+
+
+        <h5><a href="#emailSystemsPS-3" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange + O365 (On-prem Appliance)
+            <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+        </h5>
+
+        <div id="emailSystemsPS-3" class="collapse in">
+
+            <!-- Exchange Details -->
+            <div id="emailSystemContent5" class="row">
+                <div class="col-4"><p><b>Are DAGs being used?</b>
+                    <br><%= email_ps_questions.prem_exchange_prem_O365.is_using_DAG %></p></div>
+                <div class="col-4"><p><b>No. of journal mailboxes</b>
+                    <br><%= email_ps_questions.prem_exchange_prem_O365.number_of_inboxes %></p></div>
+                <div class="col-4"><p><b>How are your journal rules defined (hub transport or database)?</b>
+                    <br><%= email_ps_questions.prem_exchange_prem_O365.journal_rules %></p></div>
+                <div class="col-4"><p><b>Are journal mailboxes on their own DB?</b>
+                    <br><%= email_ps_questions.prem_exchange_prem_O365.is_journal_in_own_DB %></p></div>
+                <div class="col-4"><p><b>How much extra storage is available on the Journaling Mailbox Databases?</b>
+                    <br><%= email_ps_questions.prem_exchange_prem_O365.number_of_extra_storage %></p></div>
+                <div class="col-4"><p><b>Are you using RMS?</b>
+                    <br><%= email_ps_questions.prem_exchange_prem_O365.is_using_RMS %></p></div>
+                <div class="col-4"><p><b>Is Enable Journal Decryption set to True / False?</b>
+                    <br><%= email_ps_questions.prem_exchange_prem_O365.is_journal_decryption_enabled %></p></div>
+            </div>
+
+            <!-- O365 Details -->
+            <div id="emailSystemContent7" class="row">
+                <div class="col-4"><p><b>Are you using Azure RMS?</b>
+                    <br><%= email_ps_questions.prem_exchange_prem_O365.is_using_azure_rms %></p></div>
+                <div class="col-4"><p><b>Are you using IRM?</b>
+                    <br><%= email_ps_questions.prem_exchange_prem_O365.is_using_IRM %></p></div>
+                <div class="col-4"><p><b>Is Enable Journal Decryption set to True / False?</b>
+                    <br><%= email_ps_questions.prem_exchange_prem_O365.is_O365_journal_decryption_enabled %></p></div>
+                <div class="col-4"><p><b>Are you using O365 Message Encryption?</b>
+                    <br><%= email_ps_questions.prem_exchange_prem_O365.is_using_message_decryption %></p></div>
+            </div>
+            <br>
+        </div>
+
+
+        <h5><a href="#emailSystemsPS-4" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange + O365 (Hosted Appliance)
+            <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+        </h5>
+
+        <div id="emailSystemsPS-4" class="collapse in">
+            <!-- Exchange Details -->
+            <div id="emailSystemContent8" class="row">
+                <div class="col-4"><p><b>What versions of Exchange are running?</b>
+                    <br><%= email_ps_questions.prem_exchange_hosted_O365.exchange_version %></p></div>
+                <div class="col-4"><p><b>How many locations are mailbox servers deployed?</b>
+                    <br><%= email_ps_questions.prem_exchange_hosted_O365.mailbox_server_locations %></p></div>
+                <div class="col-4"><p><b>Do you have an Enterprise CAL?</b>
+                    <br><%= email_ps_questions.prem_exchange_hosted_O365.has_enterprise_CAL %></p></div>
+                <div class="col-4"><p><b>Describe the HA/DR of the Exchange environment.</b>
+                    <br><%= email_ps_questions.prem_exchange_hosted_O365.describe_env %></p></div>
+                <div class="col-4"><p><b>Please provide a diagram of your exchange infrastructure and your AD Details.</b>
+                    <br><%= email_ps_questions.prem_exchange_hosted_O365.diagram %></p></div>
+                <div class="col-4"><p><b>Are DAGs being used?</b>
+                    <br><%= email_ps_questions.prem_exchange_hosted_O365.is_using_DAG %></p></div>
+            </div>
+
+            <!-- Active Directory Details -->
+            <div id="emailSystemContent9" class="row">
+                <div class="col-4"><p><b>Is your AD multi-forest?</b>
+                    <br><%= email_ps_questions.prem_exchange_hosted_O365.is_multi_forest %></p></div>
+                <div class="col-4"><p><b>How many forests are there?</b>
+                    <br><%= email_ps_questions.prem_exchange_hosted_O365.number_of_forests %></p></div>
+                <div class="col-4"><p><b>Is this a Resource Forest arrangement?</b>
+                    <br><%= email_ps_questions.prem_exchange_hosted_O365.is_resource_forest_arrangement %></p></div>
+                <div class="col-4"><p><b>Are you using multi-domains?</b>
+                    <br><%= email_ps_questions.prem_exchange_hosted_O365.is_using_multi_domains %></p></div>
+                <div class="col-4"><p><b>If yes, what is the structure of multi-domain architecture / their relationships?</b>
+                    <br><%= email_ps_questions.prem_exchange_hosted_O365.multi_domain_structure %></p></div>
+                <div class="col-4"><p><b>Resource forest deployment?</b>
+                    <br><%= email_ps_questions.prem_exchange_hosted_O365.resource_forest_deployment %></p></div>
+                <div class="col-4"><p><b>How big is your AD? How many objects?</b>
+                    <br><%= email_ps_questions.prem_exchange_hosted_O365.AD_size %></p></div>
+                <div class="col-4"><p><b>Do you require a secure connection to LDAP? (Note: PFPT does not support a secure LDAP)</b>
+                    <br><%= email_ps_questions.prem_exchange_hosted_O365.require_ldap %></p></div>
+            </div>
+
+            <!-- O365 Details -->
+            <div id="emailSystemContent10" class="row">
+                <div class="col-4"><p><b>What O365 license level do you have?</b>
+                    <br><%= email_ps_questions.prem_exchange_hosted_O365.O365_version %></p></div>
+                <div class="col-4"><p><b>Are you maintaining AD on-prem?</b>
+                    <br><%= email_ps_questions.prem_exchange_hosted_O365.is_maintaining_on_prem_AD %></p></div>
+                <div class="col-4"><p><b>Are you maintaining AD in Azure?</b>
+                    <br><%= email_ps_questions.prem_exchange_hosted_O365.is_maintaining_azure %></p></div>
+                <div class="col-4"><p><b>When you create and admin mailboxes, do you do that in the on-prem AD, or in Azure?</b>
+                    <br><%= email_ps_questions.prem_exchange_hosted_O365.is_admin_in_AD_or_azure %></p></div>
+                <div class="col-4"><p><b>Sync tools used to Azure?</b>
+                    <br><%= email_ps_questions.prem_exchange_hosted_O365.sync_tools %></p></div>
+                <div class="col-4"><p><b>Which O365 (shared, dedicated /BPOS-D/ iTAR)?</b>
+                    <br><%= email_ps_questions.prem_exchange_hosted_O365.which_O365 %></p>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
 </div>
