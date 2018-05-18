@@ -6,6 +6,7 @@ mongoose.Promise = Promise;
 
 var Customer = require("../models/customer");
 var ApplianceQuestions = require("../models/appliances");
+var DesignSummaryQuestions = require("../models/design_summary");
 var DesktopNetworkQuestions = require("../models/desktop_network");
 var EmailPSQuestions = require("../models/email_ps");
 var EmailSEQuestions = require("../models/email_se");
@@ -14,6 +15,7 @@ var OtherDataSourcesQuestions = require("../models/other_data_sources");
 var UsageQuestions = require("../models/usage");
 var ImportQuestions = require("../models/import");
 var POCQuestions = require("../models/poc");
+var RFEQuestions = require("../models/rfe");
 
 //Entry point for the app startup
 router.get("/", function (req, res) {
@@ -102,6 +104,7 @@ router.post("/index", function (req, res) {
 
         Customer.create(req.body.customer).then(() => {
             ApplianceQuestions.create({name: req.body.customer["name"]});
+            DesignSummaryQuestions.create({name: req.body.customer["name"]});
             DesktopNetworkQuestions.create({name: req.body.customer["name"]});
             EmailPSQuestions.create({name: req.body.customer["name"]});
             EmailSEQuestions.create({name: req.body.customer["name"]});
@@ -109,7 +112,9 @@ router.post("/index", function (req, res) {
             JournalingQuestions.create({name: req.body.customer["name"]});
             OtherDataSourcesQuestions.create({name: req.body.customer["name"]});
             POCQuestions.create({name: req.body.customer["name"]});
+            RFEQuestions.create({name: req.body.customer["name"]});
             UsageQuestions.create({name: req.body.customer["name"]});
+
             res.redirect("/index");
         }).catch((error) => {
             if (error["code"] == 11000) {
@@ -135,6 +140,7 @@ router.put("/index/:id", function (req, res) {
             async function updateID() {
                 await Customer.findOneAndUpdate({name: req.params.id}, req.body.customer).exec();
                 await ApplianceQuestions.findOneAndUpdate({name: req.params.id}, {"name": req.body.customer["name"]}).exec();
+                await DesignSummaryQuestions.findOneAndUpdate({name: req.params.id}, {"name": req.body.customer["name"]}).exec();
                 await DesktopNetworkQuestions.findOneAndUpdate({name: req.params.id}, {"name": req.body.customer["name"]}).exec();
                 await EmailPSQuestions.findOneAndUpdate({name: req.params.id}, {"name": req.body.customer["name"]}).exec();
                 await EmailSEQuestions.findOneAndUpdate({name: req.params.id}, {"name": req.body.customer["name"]}).exec();
@@ -142,6 +148,7 @@ router.put("/index/:id", function (req, res) {
                 await JournalingQuestions.findOneAndUpdate({name: req.params.id}, {"name": req.body.customer["name"]}).exec();
                 await OtherDataSourcesQuestions.findOneAndUpdate({name: req.params.id}, {"name": req.body.customer["name"]}).exec();
                 await POCQuestions.findOneAndUpdate({name: req.params.id}, {"name": req.body.customer["name"]}).exec();
+                await RFEQuestions.findOneAndUpdate({name: req.params.id}, {"name": req.body.customer["name"]}).exec();
                 await UsageQuestions.findOneAndUpdate({name: req.params.id}, {"name": req.body.customer["name"]}).exec();
             }
 
@@ -161,6 +168,16 @@ router.put("/index/:id", function (req, res) {
         // Updating appliance questions
         if (req.body.appliance_questions !== undefined && req.body.appliance_questions !== null) {
             ApplianceQuestions.findOneAndUpdate({name: req.params.id}, req.body.appliance_questions).then(() => {
+                res.redirect("/index/" + req.params.id);
+            }).catch((error) => {
+                console.log(error);
+                res.redirect("/index");
+            });
+        }
+
+        // Updating design summary questions
+        if (req.body.design_summary_questions !== undefined && req.body.design_summary_questions !== null) {
+            DesktopNetworkQuestions.findOneAndUpdate({name: req.params.id}, req.body.design_summary_questions).then(() => {
                 res.redirect("/index/" + req.params.id);
             }).catch((error) => {
                 console.log(error);
@@ -238,6 +255,16 @@ router.put("/index/:id", function (req, res) {
             });
         }
 
+        // Updating RFE Questions
+        if (req.body.rfe_questions !== undefined && req.body.rfe_questions !== null) {
+            POCQuestions.findOneAndUpdate({name: req.params.id}, req.body.rfe_questions).then(() => {
+                res.redirect("/index/" + req.params.id);
+            }).catch((error) => {
+                console.log(error);
+                res.redirect("/index");
+            });
+        }
+
         // Updating Usage Questions
         if (req.body.usage_questions !== undefined && req.body.usage_questions !== null) {
             UsageQuestions.findOneAndUpdate({name: req.params.id}, req.body.usage_questions).then(() => {
@@ -273,6 +300,7 @@ router.get("/index", function (req, res) {
 
 // SHOW ROUTE
 router.get("/index/:id", function (req, res) {
+
     // ATTEMPTING TO ESCAPE CALLBACK HELL: ESCAPED B O I S
 
     // var appliances_query = ApplianceQuestions.findOne({"name": req.params.id}).exec();
@@ -291,6 +319,7 @@ router.get("/index/:id", function (req, res) {
         var questionnaire = {};
         questionnaire["appliance_questions"] = await ApplianceQuestions.findOne(search_term).exec();
         questionnaire["customer"] = await Customer.findOne(search_term).exec();
+        questionnaire["design_summary_questions"] = await DesignSummaryQuestions.findOne(search_term).exec();
         questionnaire["desktop_network_questions"] = await DesktopNetworkQuestions.findOne(search_term).exec();
         questionnaire["email_ps_questions"] = await EmailPSQuestions.findOne(search_term).exec();
         questionnaire["email_se_questions"] = await EmailSEQuestions.findOne(search_term).exec();
@@ -298,6 +327,7 @@ router.get("/index/:id", function (req, res) {
         questionnaire["journaling_questions"] = await JournalingQuestions.findOne(search_term).exec();
         questionnaire["other_data_source_questions"] = await OtherDataSourcesQuestions.findOne(search_term).exec();
         questionnaire["poc_questions"] = await POCQuestions.findOne(search_term).exec();
+        questionnaire["rfe_questions"] = await RFEQuestions.findOne(search_term).exec();
         questionnaire["usage_questions"] = await UsageQuestions.findOne(search_term).exec();
         return questionnaire;
     }

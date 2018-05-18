@@ -1,155 +1,246 @@
-<!-- Email System PS questions -->
-<div id="emailSystemPs" class="">
-    <h5><a href="#emailSystemPSContainer" data-toggle="collapse">Email Systems PS (To-do: Edit)
-        <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
-    </h5>
-    <br>
-
-    <div id="emailSystemPSContainer" class="collapse in">
-        <div class="edit pull-right">
-            <a href="#" aria-hidden="true" data-target="#editEmailSystemsPS" data-toggle="modal">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
-        </div>
-
-        <h5><a href="#emailSystemsPS-1" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange w/ On-prem Appliances
-            <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
-        </h5>
-
-        <div id="emailSystemsPS-1" class="collapse in">
-            <div id="emailSystemContent1" class="row">
-                <div class="col-4"><p><b>Are DAGs being used?</b>
-                    <br><%= email_ps_questions.prem_exchange.is_using_DAG %></p></div>
-                <div class="col-4"><p><b>No. of journal mailboxes</b>
-                    <br><%= email_ps_questions.prem_exchange.number_of_inboxes %></p></div>
-                <div class="col-4"><p><b>Are journal mailboxes on their own DB?</b>
-                    <br><%= email_ps_questions.prem_exchange.is_journal_in_own_DB %></p></div>
-                <div class="col-4"><p><b>How much extra storage is available on the Journaling Mailbox Databases?</b>
-                    <br><%= email_ps_questions.prem_exchange.number_of_extra_storage %></p></div>
-                <div class="col-4"><p><b>Are you using RMS?</b>
-                    <br><%= email_ps_questions.prem_exchange.is_using_RMS %></p></div>
-                <div class="col-4"><p><b>Is Enable Journal Decryption set to True / False?</b>
-                    <br><%= email_ps_questions.prem_exchange.is_journal_decryption_enabled %></p></div>
-            </div>
-            <br>
-        </div>
-
-
-        <h5><a href="#emailSystemsPS-2" style="color: mediumvioletred" data-toggle="collapse">O365 (Hosted Appliances)
-            <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
-        </h5>
-
-        <div id="emailSystemsPS-2" class="collapse in">
-            <div id="emailSystemContent4" class="row">
-                <div class="col-4"><p><b>Are you using Azure RMS?</b>
-                    <br><%= email_ps_questions.hosted_O365.is_using_azure_rms %></p></div>
-                <div class="col-4"><p><b>Are you using IRM?</b>
-                    <br><%= email_ps_questions.hosted_O365.is_using_IRM %></p></div>
-                <div class="col-4"><p><b>Is Enable Journal Decryption set to True / False?</b>
-                    <br><%= email_ps_questions.hosted_O365.is_journal_decryption_enabled %></p></div>
-                <div class="col-4"><p><b>Are you using O365 Message Encryption?</b>
-                    <br><%= email_ps_questions.hosted_O365.is_using_message_decryption %></p></div>
-            </div>
-            <br>
-        </div>
-
-
-        <h5><a href="#emailSystemsPS-3" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange + O365 (On-prem Appliance)
-            <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
-        </h5>
-
-        <div id="emailSystemsPS-3" class="collapse in">
-
-            <!-- Exchange Details -->
-            <div id="emailSystemContent5" class="row">
-                <div class="col-4"><p><b>Are DAGs being used?</b>
-                    <br><%= email_ps_questions.prem_exchange_prem_O365.is_using_DAG %></p></div>
-                <div class="col-4"><p><b>No. of journal mailboxes</b>
-                    <br><%= email_ps_questions.prem_exchange_prem_O365.number_of_inboxes %></p></div>
-                <div class="col-4"><p><b>How are your journal rules defined (hub transport or database)?</b>
-                    <br><%= email_ps_questions.prem_exchange_prem_O365.journal_rules %></p></div>
-                <div class="col-4"><p><b>Are journal mailboxes on their own DB?</b>
-                    <br><%= email_ps_questions.prem_exchange_prem_O365.is_journal_in_own_DB %></p></div>
-                <div class="col-4"><p><b>How much extra storage is available on the Journaling Mailbox Databases?</b>
-                    <br><%= email_ps_questions.prem_exchange_prem_O365.number_of_extra_storage %></p></div>
-                <div class="col-4"><p><b>Are you using RMS?</b>
-                    <br><%= email_ps_questions.prem_exchange_prem_O365.is_using_RMS %></p></div>
-                <div class="col-4"><p><b>Is Enable Journal Decryption set to True / False?</b>
-                    <br><%= email_ps_questions.prem_exchange_prem_O365.is_journal_decryption_enabled %></p></div>
+<!-- EMAIL SYSTEMS PS UPDATE -->
+<div class="modal fade" id="editEmailSystemsPS" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="lineModalLabel">Email system details (PS)</h3>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                        class="sr-only">Close</span></button>
             </div>
 
-            <!-- O365 Details -->
-            <div id="emailSystemContent7" class="row">
-                <div class="col-4"><p><b>Are you using Azure RMS?</b>
-                    <br><%= email_ps_questions.prem_exchange_prem_O365.is_using_azure_rms %></p></div>
-                <div class="col-4"><p><b>Are you using IRM?</b>
-                    <br><%= email_ps_questions.prem_exchange_prem_O365.is_using_IRM %></p></div>
-                <div class="col-4"><p><b>Is Enable Journal Decryption set to True / False?</b>
-                    <br><%= email_ps_questions.prem_exchange_prem_O365.is_O365_journal_decryption_enabled %></p></div>
-                <div class="col-4"><p><b>Are you using O365 Message Encryption?</b>
-                    <br><%= email_ps_questions.prem_exchange_prem_O365.is_using_message_decryption %></p></div>
+            <div class="modal-body">
+                <!-- content goes here -->
+                <form class="" action="/index/<%= customer.name %>?_method=PUT" method="POST">
+                    <div class="form-group">
+                        <label for="customerName">Customer Name</label>
+                        <input type="text" readonly class="form-control" placeholder="No response set"
+                               value="<%= customer.name %>"
+                               name="email_ps_questions[name]">
+                    </div>
+
+                    <h5><a href="#editEmailSystemsPS-1" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange w/ On-prem Appliances
+                        <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                    </h5>
+
+                    <div id="editEmailSystemsPS-1" class="collapse in">
+
+                        <div class="form-group"><label>Are DAGs being used?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange.is_using_DAG %>"
+                                   name="email_ps_questions[prem_exchange][is_using_DAG]"></div>
+                        <div class="form-group"><label>No. of journal mailboxes</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange.number_of_inboxes %>"
+                                   name="email_ps_questions[prem_exchange][number_of_inboxes]"></div>
+                        <div class="form-group"><label>Are journal mailboxes on their own DB?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange.is_journal_in_own_DB %>"
+                                   name="email_ps_questions[prem_exchange][is_journal_in_own_DB]"></div>
+                        <div class="form-group"><label>How much extra storage is available on the Journaling Mailbox Databases?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange.number_of_extra_storage %>"
+                                   name="email_ps_questions[prem_exchange][number_of_extra_storage]"></div>
+                        <div class="form-group"><label>Are you using RMS?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange.is_using_RMS %>"
+                                   name="email_ps_questions[prem_exchange][is_using_RMS]"></div>
+                        <div class="form-group"><label>Is Enable Journal Decryption set to True / False?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange.is_journal_decryption_enabled %>"
+                                   name="email_ps_questions[prem_exchange][is_journal_decryption_enabled]"></div>
+                        <br>
+                    </div>
+
+
+                    <h5><a href="#editEmailSystemsPS-2" style="color: mediumvioletred" data-toggle="collapse">O365 (Hosted Appliances)
+                        <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                    </h5>
+
+                    <div id="editEmailSystemsPS-2" class="collapse in">
+                        <div class="form-group"><label>Are you using Azure RMS?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.hosted_O365.is_using_azure_rms %>"
+                                   name="email_ps_questions[hosted_O365][is_using_azure_rms]"></div>
+                        <div class="form-group"><label>Are you using IRM?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.hosted_O365.is_using_IRM %>"
+                                   name="email_ps_questions[hosted_O365][is_using_IRM]"></div>
+                        <div class="form-group"><label>Is Enable Journal Decryption set to True / False?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.hosted_O365.is_journal_decryption_enabled %>"
+                                   name="email_ps_questions[hosted_O365][is_journal_decryption_enabled]"></div>
+                        <div class="form-group"><label>Are you using O365 Message Encryption?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.hosted_O365.is_using_message_decryption %>"
+                                   name="email_ps_questions[hosted_O365][is_using_message_decryption]"></div>
+                        <br>
+                    </div>
+
+
+                    <h5><a href="#editEmailSystemsPS-3" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange + O365 (On-prem Appliance)
+                        <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                    </h5>
+
+                    <div id="editEmailSystemsPS-3" class="collapse in">
+                        <!-- Exchange Details -->
+                        <h5 style="color: lightseagreen">Exchange Details</h5>
+                        <div class="form-group"><label>Are DAGs being used?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_prem_O365.is_using_DAG %>"
+                                   name="email_ps_questions[prem_exchange_prem_O365][is_using_DAG]"></div>
+                        <div class="form-group"><label>No. of journal mailboxes</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_prem_O365.number_of_inboxes %>"
+                                   name="email_ps_questions[prem_exchange_prem_O365][number_of_inboxes]"></div>
+                        <div class="form-group"><label>How are your journal rules defined (hub transport or database)?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_prem_O365.journal_rules %>"
+                                   name="email_ps_questions[prem_exchange_prem_O365][journal_rules]"></div>
+                        <div class="form-group"><label>Are journal mailboxes on their own DB?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_prem_O365.is_journal_in_own_DB %>"
+                                   name="email_ps_questions[prem_exchange_prem_O365][is_journal_in_own_DB]"></div>
+                        <div class="form-group"><label>How much extra storage is available on the Journaling Mailbox Databases?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_prem_O365.number_of_extra_storage %>"
+                                   name="email_ps_questions[prem_exchange_prem_O365][number_of_extra_storage]"></div>
+                        <div class="form-group"><label>Are you using RMS?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_prem_O365.is_using_RMS %>"
+                                   name="email_ps_questions[prem_exchange_prem_O365][is_using_RMS]"></div>
+                        <div class="form-group"><label>Is Enable Journal Decryption set to True / False?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_prem_O365.is_journal_decryption_enabled %>"
+                                   name="email_ps_questions[prem_exchange_prem_O365][is_journal_decryption_enabled]"></div>
+
+                        <!-- O365 Details -->
+                        <div class="form-group"><label>Are you using Azure RMS?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_prem_O365.is_using_azure_rms %>"
+                                   name="email_ps_questions[prem_exchange_prem_O365][is_using_azure_rms]"></div>
+                        <div class="form-group"><label>Are you using IRM?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_prem_O365.is_using_IRM %>"
+                                   name="email_ps_questions[prem_exchange_prem_O365][is_using_IRM]"></div>
+                        <div class="form-group"><label>Is Enable Journal Decryption set to True / False?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_prem_O365.is_O365_journal_decryption_enabled %>"
+                                   name="email_ps_questions[prem_exchange_prem_O365][is_O365_journal_decryption_enabled]"></div>
+                        <div class="form-group"><label>Are you using O365 Message Encryption?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_prem_O365.is_using_message_decryption %>"
+                                   name="email_ps_questions[prem_exchange_prem_O365][is_using_message_decryption]"></div>
+                        <br>
+                    </div>
+
+
+                    <h5><a href="#editEmailSystemsPS-4" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange + O365 (Hosted
+                        Appliance)
+                        <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                    </h5>
+
+                    <div id="editEmailSystemsPS-4" class="collapse in">
+                        <!-- Exchange Details -->
+                        <div class="form-group"><label>What versions of Exchange are running?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.exchange_version %>"
+                                   name="email_ps_questions[prem_exchange_hosted_O365][exchange_version]"></div>
+                        <div class="form-group"><label>How many locations are mailbox servers deployed?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.mailbox_server_locations %>"
+                                   name="email_ps_questions[prem_exchange_hosted_O365][mailbox_server_locations]"></div>
+                        <div class="form-group"><label>Do you have an Enterprise CAL?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.has_enterprise_CAL %>"
+                                   name="email_ps_questions[prem_exchange_hosted_O365][has_enterprise_CAL]"></div>
+                        <div class="form-group"><label>Describe the HA/DR of the Exchange environment.</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.describe_env %>"
+                                   name="email_ps_questions[prem_exchange_hosted_O365][describe_env]"></div>
+                        <div class="form-group"><label>Please provide a diagram of your exchange infrastructure and your AD Details.</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.diagram %>"
+                                   name="email_ps_questions[prem_exchange_hosted_O365][diagram]"></div>
+                        <div class="form-group"><label>Are DAGs being used?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.is_using_DAG %>"
+                                   name="email_ps_questions[prem_exchange_hosted_O365][is_using_DAG]"></div>
+
+                        <!-- Active Directory Details -->
+                        <div class="form-group"><label>Is your AD multi-forest?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.is_multi_forest %>"
+                                   name="email_ps_questions[prem_exchange_hosted_O365][is_multi_forest]"></div>
+                        <div class="form-group"><label>How many forests are there?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.number_of_forests %>"
+                                   name="email_ps_questions[prem_exchange_hosted_O365][number_of_forests]"></div>
+                        <div class="form-group"><label>Is this a Resource Forest arrangement?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.is_resource_forest_arrangement %>"
+                                   name="email_ps_questions[prem_exchange_hosted_O365][is_resource_forest_arrangement]"></div>
+                        <div class="form-group"><label>Are you using multi-domains?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.is_using_multi_domains %>"
+                                   name="email_ps_questions[prem_exchange_hosted_O365][is_using_multi_domains]"></div>
+                        <div class="form-group"><label>If yes, what is the structure of multi-domain architecture / their relationships?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.multi_domain_structure %>"
+                                   name="email_ps_questions[prem_exchange_hosted_O365][multi_domain_structure]"></div>
+                        <div class="form-group"><label>Resource forest deployment?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.resource_forest_deployment %>"
+                                   name="email_ps_questions[prem_exchange_hosted_O365][resource_forest_deployment]"></div>
+                        <div class="form-group"><label>How big is your AD? How many objects?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.AD_size %>"
+                                   name="email_ps_questions[prem_exchange_hosted_O365][AD_size]"></div>
+                        <div class="form-group"><label>Do you require a secure connection to LDAP? (Note: PFPT does not support a secure
+                            LDAP)</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.require_ldap %>"
+                                   name="email_ps_questions[prem_exchange_hosted_O365][require_ldap]"></div>
+
+                        <!-- O365 Details -->
+                        <div class="form-group"><label>What O365 license level do you have?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.O365_version %>"
+                                   name="email_ps_questions[prem_exchange_hosted_O365][O365_version]"></div>
+                        <div class="form-group"><label>Are you maintaining AD on-prem?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.is_maintaining_on_prem_AD %>"
+                                   name="email_ps_questions[prem_exchange_hosted_O365][is_maintaining_on_prem_AD]"></div>
+                        <div class="form-group"><label>Are you maintaining AD in Azure?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.is_maintaining_azure %>"
+                                   name="email_ps_questions[prem_exchange_hosted_O365][is_maintaining_azure]"></div>
+                        <div class="form-group"><label>When you create and admin mailboxes, do you do that in the on-prem AD, or in Azure?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.is_admin_in_AD_or_azure %>"
+                                   name="email_ps_questions[prem_exchange_hosted_O365][is_admin_in_AD_or_azure]"></div>
+                        <div class="form-group"><label>Sync tools used to Azure?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.sync_tools %>"
+                                   name="email_ps_questions[prem_exchange_hosted_O365][sync_tools]"></div>
+                        <div class="form-group"><label>Which O365 (shared, dedicated /BPOS-D/ iTAR)?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.which_O365 %>"
+                                   name="email_ps_questions[prem_exchange_hosted_O365][which_O365]"></div>
+                        <br>
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
             </div>
-            <br>
-        </div>
-
-
-        <h5><a href="#emailSystemsPS-4" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange + O365 (Hosted Appliance)
-            <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
-        </h5>
-
-        <div id="emailSystemsPS-4" class="collapse in">
-            <!-- Exchange Details -->
-            <div id="emailSystemContent8" class="row">
-                <div class="col-4"><p><b>What versions of Exchange are running?</b>
-                    <br><%= email_ps_questions.prem_exchange_hosted_O365.exchange_version %></p></div>
-                <div class="col-4"><p><b>How many locations are mailbox servers deployed?</b>
-                    <br><%= email_ps_questions.prem_exchange_hosted_O365.mailbox_server_locations %></p></div>
-                <div class="col-4"><p><b>Do you have an Enterprise CAL?</b>
-                    <br><%= email_ps_questions.prem_exchange_hosted_O365.has_enterprise_CAL %></p></div>
-                <div class="col-4"><p><b>Describe the HA/DR of the Exchange environment.</b>
-                    <br><%= email_ps_questions.prem_exchange_hosted_O365.describe_env %></p></div>
-                <div class="col-4"><p><b>Please provide a diagram of your exchange infrastructure and your AD Details.</b>
-                    <br><%= email_ps_questions.prem_exchange_hosted_O365.diagram %></p></div>
-                <div class="col-4"><p><b>Are DAGs being used?</b>
-                    <br><%= email_ps_questions.prem_exchange_hosted_O365.is_using_DAG %></p></div>
-            </div>
-
-            <!-- Active Directory Details -->
-            <div id="emailSystemContent9" class="row">
-                <div class="col-4"><p><b>Is your AD multi-forest?</b>
-                    <br><%= email_ps_questions.prem_exchange_hosted_O365.is_multi_forest %></p></div>
-                <div class="col-4"><p><b>How many forests are there?</b>
-                    <br><%= email_ps_questions.prem_exchange_hosted_O365.number_of_forests %></p></div>
-                <div class="col-4"><p><b>Is this a Resource Forest arrangement?</b>
-                    <br><%= email_ps_questions.prem_exchange_hosted_O365.is_resource_forest_arrangement %></p></div>
-                <div class="col-4"><p><b>Are you using multi-domains?</b>
-                    <br><%= email_ps_questions.prem_exchange_hosted_O365.is_using_multi_domains %></p></div>
-                <div class="col-4"><p><b>If yes, what is the structure of multi-domain architecture / their relationships?</b>
-                    <br><%= email_ps_questions.prem_exchange_hosted_O365.multi_domain_structure %></p></div>
-                <div class="col-4"><p><b>Resource forest deployment?</b>
-                    <br><%= email_ps_questions.prem_exchange_hosted_O365.resource_forest_deployment %></p></div>
-                <div class="col-4"><p><b>How big is your AD? How many objects?</b>
-                    <br><%= email_ps_questions.prem_exchange_hosted_O365.AD_size %></p></div>
-                <div class="col-4"><p><b>Do you require a secure connection to LDAP? (Note: PFPT does not support a secure LDAP)</b>
-                    <br><%= email_ps_questions.prem_exchange_hosted_O365.require_ldap %></p></div>
-            </div>
-
-            <!-- O365 Details -->
-            <div id="emailSystemContent10" class="row">
-                <div class="col-4"><p><b>What O365 license level do you have?</b>
-                    <br><%= email_ps_questions.prem_exchange_hosted_O365.O365_version %></p></div>
-                <div class="col-4"><p><b>Are you maintaining AD on-prem?</b>
-                    <br><%= email_ps_questions.prem_exchange_hosted_O365.is_maintaining_on_prem_AD %></p></div>
-                <div class="col-4"><p><b>Are you maintaining AD in Azure?</b>
-                    <br><%= email_ps_questions.prem_exchange_hosted_O365.is_maintaining_azure %></p></div>
-                <div class="col-4"><p><b>When you create and admin mailboxes, do you do that in the on-prem AD, or in Azure?</b>
-                    <br><%= email_ps_questions.prem_exchange_hosted_O365.is_admin_in_AD_or_azure %></p></div>
-                <div class="col-4"><p><b>Sync tools used to Azure?</b>
-                    <br><%= email_ps_questions.prem_exchange_hosted_O365.sync_tools %></p></div>
-                <div class="col-4"><p><b>Which O365 (shared, dedicated /BPOS-D/ iTAR)?</b>
-                    <br><%= email_ps_questions.prem_exchange_hosted_O365.which_O365 %></p>
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" role="button">Close
+                        </button>
+                    </div>
                 </div>
             </div>
-            <br>
         </div>
     </div>
 </div>
