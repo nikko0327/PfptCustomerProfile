@@ -102,6 +102,8 @@ router.post("/index", function (req, res) {
         //     }
         // });
 
+    console.log("- Trying to create new customer...");
+
         Customer.create(req.body.customer).then(() => {
             ApplianceQuestions.create({name: req.body.customer["name"]});
             DesignSummaryQuestions.create({name: req.body.customer["name"]});
@@ -118,7 +120,7 @@ router.post("/index", function (req, res) {
             res.redirect("/index");
         }).catch((error) => {
             if (error["code"] == 11000) {
-                console.log("Duplicate entry for customer: " + req.body.customer["name"]);
+                console.log("-- Duplicate entry for customer: " + req.body.customer["name"]);
                 // Send pop up alert to HTML here
                 res.render("new", {success: false});
             } else {
@@ -130,11 +132,11 @@ router.post("/index", function (req, res) {
 
 //UPDATE ROUTE
 router.put("/index/:id", function (req, res) {
-
         // Considering changing to else ifs
 
         // For updating name, make a ton of promises and execute them, THEN render the page.
         if (req.body.customer !== undefined && req.body.customer !== null) {
+            console.log("- Trying to update customer information...")
 
             // Make a bunch of await calls and wait for the queries to finish.
             async function updateID() {
@@ -158,7 +160,7 @@ router.put("/index/:id", function (req, res) {
             }).catch((error) => {
                 // If an error occurs, catch the error.
                 if (error["code"] == 11000) { // Dupe ID
-                    console.log("Duplicate key for customer: " + req.body.customer["name"]);
+                    console.log("-- Duplicate key for customer: " + req.body.customer["name"]);
                 } else {
                     console.log(error + "\n---");
                 }
