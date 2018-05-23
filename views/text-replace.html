@@ -1,246 +1,200 @@
-<!-- EMAIL SYSTEMS PS UPDATE -->
-<div class="modal fade" id="editEmailSystemsPS" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="lineModalLabel">Email system details (PS)</h3>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
-                        class="sr-only">Close</span></button>
-            </div>
+<!-- General questions -->
+<h5><a href="#editECA-general" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse">General
+    <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+</h5>
 
-            <div class="modal-body">
-                <!-- content goes here -->
-                <form class="" action="/index/<%= customer.name %>?_method=PUT" method="POST">
-                    <div class="form-group">
-                        <label for="customerName">Customer Name</label>
-                        <input type="text" readonly class="form-control" placeholder="No response set"
-                               value="<%= customer.name %>"
-                               name="email_ps_questions[name]">
-                    </div>
-
-                    <h5><a href="#editEmailSystemsPS-1" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange w/ On-prem Appliances
-                        <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
-                    </h5>
-
-                    <div id="editEmailSystemsPS-1" class="collapse in">
-
-                        <div class="form-group"><label>Are DAGs being used?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange.is_using_DAG %>"
-                                   name="email_ps_questions[prem_exchange][is_using_DAG]"></div>
-                        <div class="form-group"><label>No. of journal mailboxes</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange.number_of_inboxes %>"
-                                   name="email_ps_questions[prem_exchange][number_of_inboxes]"></div>
-                        <div class="form-group"><label>Are journal mailboxes on their own DB?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange.is_journal_in_own_DB %>"
-                                   name="email_ps_questions[prem_exchange][is_journal_in_own_DB]"></div>
-                        <div class="form-group"><label>How much extra storage is available on the Journaling Mailbox Databases?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange.number_of_extra_storage %>"
-                                   name="email_ps_questions[prem_exchange][number_of_extra_storage]"></div>
-                        <div class="form-group"><label>Are you using RMS?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange.is_using_RMS %>"
-                                   name="email_ps_questions[prem_exchange][is_using_RMS]"></div>
-                        <div class="form-group"><label>Is Enable Journal Decryption set to True / False?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange.is_journal_decryption_enabled %>"
-                                   name="email_ps_questions[prem_exchange][is_journal_decryption_enabled]"></div>
-                        <br>
-                    </div>
-
-
-                    <h5><a href="#editEmailSystemsPS-2" style="color: mediumvioletred" data-toggle="collapse">O365 (Hosted Appliances)
-                        <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
-                    </h5>
-
-                    <div id="editEmailSystemsPS-2" class="collapse in">
-                        <div class="form-group"><label>Are you using Azure RMS?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.hosted_O365.is_using_azure_rms %>"
-                                   name="email_ps_questions[hosted_O365][is_using_azure_rms]"></div>
-                        <div class="form-group"><label>Are you using IRM?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.hosted_O365.is_using_IRM %>"
-                                   name="email_ps_questions[hosted_O365][is_using_IRM]"></div>
-                        <div class="form-group"><label>Is Enable Journal Decryption set to True / False?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.hosted_O365.is_journal_decryption_enabled %>"
-                                   name="email_ps_questions[hosted_O365][is_journal_decryption_enabled]"></div>
-                        <div class="form-group"><label>Are you using O365 Message Encryption?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.hosted_O365.is_using_message_decryption %>"
-                                   name="email_ps_questions[hosted_O365][is_using_message_decryption]"></div>
-                        <br>
-                    </div>
-
-
-                    <h5><a href="#editEmailSystemsPS-3" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange + O365 (On-prem Appliance)
-                        <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
-                    </h5>
-
-                    <div id="editEmailSystemsPS-3" class="collapse in">
-                        <!-- Exchange Details -->
-                        <h5 style="color: lightseagreen">Exchange Details</h5>
-                        <div class="form-group"><label>Are DAGs being used?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_prem_O365.is_using_DAG %>"
-                                   name="email_ps_questions[prem_exchange_prem_O365][is_using_DAG]"></div>
-                        <div class="form-group"><label>No. of journal mailboxes</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_prem_O365.number_of_inboxes %>"
-                                   name="email_ps_questions[prem_exchange_prem_O365][number_of_inboxes]"></div>
-                        <div class="form-group"><label>How are your journal rules defined (hub transport or database)?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_prem_O365.journal_rules %>"
-                                   name="email_ps_questions[prem_exchange_prem_O365][journal_rules]"></div>
-                        <div class="form-group"><label>Are journal mailboxes on their own DB?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_prem_O365.is_journal_in_own_DB %>"
-                                   name="email_ps_questions[prem_exchange_prem_O365][is_journal_in_own_DB]"></div>
-                        <div class="form-group"><label>How much extra storage is available on the Journaling Mailbox Databases?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_prem_O365.number_of_extra_storage %>"
-                                   name="email_ps_questions[prem_exchange_prem_O365][number_of_extra_storage]"></div>
-                        <div class="form-group"><label>Are you using RMS?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_prem_O365.is_using_RMS %>"
-                                   name="email_ps_questions[prem_exchange_prem_O365][is_using_RMS]"></div>
-                        <div class="form-group"><label>Is Enable Journal Decryption set to True / False?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_prem_O365.is_journal_decryption_enabled %>"
-                                   name="email_ps_questions[prem_exchange_prem_O365][is_journal_decryption_enabled]"></div>
-
-                        <!-- O365 Details -->
-                        <div class="form-group"><label>Are you using Azure RMS?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_prem_O365.is_using_azure_rms %>"
-                                   name="email_ps_questions[prem_exchange_prem_O365][is_using_azure_rms]"></div>
-                        <div class="form-group"><label>Are you using IRM?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_prem_O365.is_using_IRM %>"
-                                   name="email_ps_questions[prem_exchange_prem_O365][is_using_IRM]"></div>
-                        <div class="form-group"><label>Is Enable Journal Decryption set to True / False?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_prem_O365.is_O365_journal_decryption_enabled %>"
-                                   name="email_ps_questions[prem_exchange_prem_O365][is_O365_journal_decryption_enabled]"></div>
-                        <div class="form-group"><label>Are you using O365 Message Encryption?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_prem_O365.is_using_message_decryption %>"
-                                   name="email_ps_questions[prem_exchange_prem_O365][is_using_message_decryption]"></div>
-                        <br>
-                    </div>
-
-
-                    <h5><a href="#editEmailSystemsPS-4" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange + O365 (Hosted
-                        Appliance)
-                        <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
-                    </h5>
-
-                    <div id="editEmailSystemsPS-4" class="collapse in">
-                        <!-- Exchange Details -->
-                        <div class="form-group"><label>What versions of Exchange are running?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.exchange_version %>"
-                                   name="email_ps_questions[prem_exchange_hosted_O365][exchange_version]"></div>
-                        <div class="form-group"><label>How many locations are mailbox servers deployed?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.mailbox_server_locations %>"
-                                   name="email_ps_questions[prem_exchange_hosted_O365][mailbox_server_locations]"></div>
-                        <div class="form-group"><label>Do you have an Enterprise CAL?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.has_enterprise_CAL %>"
-                                   name="email_ps_questions[prem_exchange_hosted_O365][has_enterprise_CAL]"></div>
-                        <div class="form-group"><label>Describe the HA/DR of the Exchange environment.</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.describe_env %>"
-                                   name="email_ps_questions[prem_exchange_hosted_O365][describe_env]"></div>
-                        <div class="form-group"><label>Please provide a diagram of your exchange infrastructure and your AD Details.</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.diagram %>"
-                                   name="email_ps_questions[prem_exchange_hosted_O365][diagram]"></div>
-                        <div class="form-group"><label>Are DAGs being used?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.is_using_DAG %>"
-                                   name="email_ps_questions[prem_exchange_hosted_O365][is_using_DAG]"></div>
-
-                        <!-- Active Directory Details -->
-                        <div class="form-group"><label>Is your AD multi-forest?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.is_multi_forest %>"
-                                   name="email_ps_questions[prem_exchange_hosted_O365][is_multi_forest]"></div>
-                        <div class="form-group"><label>How many forests are there?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.number_of_forests %>"
-                                   name="email_ps_questions[prem_exchange_hosted_O365][number_of_forests]"></div>
-                        <div class="form-group"><label>Is this a Resource Forest arrangement?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.is_resource_forest_arrangement %>"
-                                   name="email_ps_questions[prem_exchange_hosted_O365][is_resource_forest_arrangement]"></div>
-                        <div class="form-group"><label>Are you using multi-domains?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.is_using_multi_domains %>"
-                                   name="email_ps_questions[prem_exchange_hosted_O365][is_using_multi_domains]"></div>
-                        <div class="form-group"><label>If yes, what is the structure of multi-domain architecture / their relationships?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.multi_domain_structure %>"
-                                   name="email_ps_questions[prem_exchange_hosted_O365][multi_domain_structure]"></div>
-                        <div class="form-group"><label>Resource forest deployment?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.resource_forest_deployment %>"
-                                   name="email_ps_questions[prem_exchange_hosted_O365][resource_forest_deployment]"></div>
-                        <div class="form-group"><label>How big is your AD? How many objects?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.AD_size %>"
-                                   name="email_ps_questions[prem_exchange_hosted_O365][AD_size]"></div>
-                        <div class="form-group"><label>Do you require a secure connection to LDAP? (Note: PFPT does not support a secure
-                            LDAP)</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.require_ldap %>"
-                                   name="email_ps_questions[prem_exchange_hosted_O365][require_ldap]"></div>
-
-                        <!-- O365 Details -->
-                        <div class="form-group"><label>What O365 license level do you have?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.O365_version %>"
-                                   name="email_ps_questions[prem_exchange_hosted_O365][O365_version]"></div>
-                        <div class="form-group"><label>Are you maintaining AD on-prem?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.is_maintaining_on_prem_AD %>"
-                                   name="email_ps_questions[prem_exchange_hosted_O365][is_maintaining_on_prem_AD]"></div>
-                        <div class="form-group"><label>Are you maintaining AD in Azure?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.is_maintaining_azure %>"
-                                   name="email_ps_questions[prem_exchange_hosted_O365][is_maintaining_azure]"></div>
-                        <div class="form-group"><label>When you create and admin mailboxes, do you do that in the on-prem AD, or in Azure?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.is_admin_in_AD_or_azure %>"
-                                   name="email_ps_questions[prem_exchange_hosted_O365][is_admin_in_AD_or_azure]"></div>
-                        <div class="form-group"><label>Sync tools used to Azure?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.sync_tools %>"
-                                   name="email_ps_questions[prem_exchange_hosted_O365][sync_tools]"></div>
-                        <div class="form-group"><label>Which O365 (shared, dedicated /BPOS-D/ iTAR)?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= email_ps_questions.prem_exchange_hosted_O365.which_O365 %>"
-                                   name="email_ps_questions[prem_exchange_hosted_O365][which_O365]"></div>
-                        <br>
-                    </div>
-                    <div class="col">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" role="button">Close
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div id="editECA-general" class="collapse">
+    <div class="form-group"><label>How many users are there on each platform?</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.general.number_of_users_per_platform %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][general][number_of_users_per_platform]">
     </div>
+    <div class="form-group"><label>How many of these users need to be archived</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.general.number_of_users_to_archive %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][general][number_of_users_to_archive]">
+    </div>
+    <div class="form-group"><label>Do you want to capture all user activity on each platform?</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.general.capture_user_activity %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][general][capture_user_activity]">
+    </div>
+    <div class="form-group"><label>Average volume of messages/day?</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.general.avg_daily_message_volume %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][general][avg_daily_message_volume]">
+    </div>
+    <div class="form-group"><label>What is the most active profile like in terms of message and file creation and updates
+        (which
+        are treated as new uploads)?</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.general.most_active_profile %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][general][most_active_profile]">
+    </div>
+    <div class="form-group"><label>What is their retention policy?</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.general.retention_policy %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][general][retention_policy]">
+    </div>
+    <div class="form-group"><label>Is the customer a PFPT archiving customer?</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.general.is_archiving_customer %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][general][is_archiving_customer]">
+    </div>
+    <div class="form-group"><label>If not, what archive are you feeding messages into?</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.general.which_archive %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][general][which_archive]">
+    </div>
+    <br>
+</div>
+
+<!-- File questions -->
+<h5><a href="#editECA-files" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse">Files
+    <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+</h5>
+
+<div id="editECA-files" class="collapse">
+    <div class="form-group"><label>What is the storage usage (how much data is in the account)</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.files.storage_usage %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][files][storage_usage]">
+    </div>
+    <div class="form-group"><label>How many new files, how many updates, how large?</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.files.files_desc %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][files][files_desc]">
+    </div>
+    <div class="form-group"><label>What is file increase rate (number of new files) per day</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.files.fill_rate %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][files][fill_rate]">
+    </div>
+    <div class="form-group"><label>Do they need to archive the original content or is text extracted content sufficient?</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.files.need_original_or_extracted %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][files][need_original_or_extracted]">
+    </div>
+    <div class="form-group"><label>Is the customer a PFPT archiving customer?</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.files.is_archiving_customer %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][files][is_archiving_customer]">
+    </div>
+    <br>
+</div>
+
+<!-- Skype for business online questions -->
+<h5><a href="#editECA-skype" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse">Skype for Business Online
+    <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+</h5>
+
+<div id="editECA-skype" class="collapse">
+    <div class="form-group"><label>What's their deployment? hybrid vs fully in cloud (hosted)</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.skype_business.deployment %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][skype_business][deployment]">
+    </div>
+    <div class="form-group"><label>Distribution of license levels for all users? (need E3 or higher)</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.skype_business.license_level %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][skype_business][license_level]">
+    </div>
+    <div class="form-group"><label>Do they have any other services that use Holds and searches</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.skype_business.use_holds_or_searches %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][skype_business][use_holds_or_searches]">
+    </div>
+    <div class="form-group"><label>If so how active are they? (how many searches and holds)</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.skype_business.how_active %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][skype_business][how_active]">
+    </div>
+    <br>
+</div>
+
+<!-- Skype for Business On-Prem (Lync) -->
+<h5><a href="#editECA-skype-lync" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse">Skype for Business On-Prem
+    (Lync)
+    <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+</h5>
+
+<div id="editECA-skype-lync" class="collapse">
+    <div class="form-group"><label>What's their deployment (hybrid vs fully in cloud/hosted)?</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.skype_on_prem.deployment %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][skype_on_prem][deployment]">
+    </div>
+    <div class="form-group"><label>How many Lync servers & Lync DBs</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.skype_on_prem.number_of_lync_servers %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][skype_on_prem][number_of_lync_servers]">
+    </div>
+    <div class="form-group"><label>What is the retention policy in the Lync DB? (we require 90 days or greater)</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.skype_on_prem.retention_policy %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][skype_on_prem][retention_policy]">
+    </div>
+    <br>
+</div>
+
+<!-- Box & OneDrive -->
+<h5><a href="#editECA-box-onedrive" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse">Box & OneDrive
+    <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+</h5>
+
+<div id="editECA-box-onedrive" class="collapse">
+    <div class="form-group"><label>For OneDrive, how do you authenticate?</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.box_one_drive.auth %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][box_one_drive][auth]">
+    </div>
+    <br>
+</div>
+
+<!-- Chatter -->
+<h5><a href="#editECA-chatter" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse">Chatter
+    <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+</h5>
+
+<div id="editECA-chatter" class="collapse">
+    <div class="form-group"><label>How many groups?</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.chatter.number_of_groups %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][chatter][number_of_groups]">
+    </div>
+    <div class="form-group"><label>Are they going to multi-journal?</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.chatter.multi_journal %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][chatter][multi_journal]">
+    </div>
+    <div class="form-group"><label>Do they send any files that are over 3 MB?</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.chatter.over_3MB %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][chatter][over_3MB]">
+    </div>
+    <div class="form-group"><label>If yes, are they comfortable relaying this content through the PFPT network?</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.chatter.comfortable %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][chatter][comfortable]">
+    </div>
+    <div class="form-group"><label>Is there a requirement to keep things in the SF environment?</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.chatter.requirement %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][chatter][requirement]">
+    </div>
+    <br>
+</div>
+
+<!-- Symphony -->
+<h5><a href="#editECA-symphony" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse">Symphony
+    <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+</h5>
+
+<div id="editECA-symphony" class="collapse">
+    <div class="form-group"><label>What license level do they have?</label>
+        <input type="text" class="form-control" placeholder="No response set"
+               value="<%= other_data_source_questions.enterprise_collaboration_archiving.symphony.license %>"
+               name="other_data_source_questions[enterprise_collaboration_archiving][symphony][license]">
+    </div>
+    <br>
 </div>

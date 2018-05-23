@@ -57,8 +57,59 @@ var other_data_sources_schema = new mongoose.Schema({
 
     // Enterprise collaborative archiving
     enterprise_collaboration_archiving: {
+        needs: {
+            files: {
+                type: Boolean,
+                default: false
+            },
+            skype_in_cloud: {
+                type: Boolean,
+                default: false
+            },
+            skype_on_prem: {
+                type: Boolean,
+                default: false
+            },
+            lync_on_prem: {
+                type: Boolean,
+                default: false
+            },
+            one_drive: {
+                type: Boolean,
+                default: false
+            },
+            box: {
+                type: Boolean,
+                default: false
+            },
+            bloomberg: {
+                type: Boolean,
+                default: false
+            },
+            yammer: {
+                type: Boolean,
+                default: false
+            },
+            jive: {
+                type: Boolean,
+                default: false
+            },
+            chatter: {
+                type: Boolean,
+                default: false
+            },
+            slack: {
+                type: Boolean,
+                default: false
+            },
+            symphony: {
+                type: Boolean,
+                default: false
+            }
+
+        },
         general: {
-            users_per_platform: {
+            number_of_users_per_platform: {
                 type: String,
                 default: ""
             },
@@ -94,10 +145,6 @@ var other_data_sources_schema = new mongoose.Schema({
 
         // files archiving
         files: {
-            need: {
-                type: String,
-                default: ""
-            },
             storage_usage: {
                 type: String,
                 default: ""
@@ -122,10 +169,6 @@ var other_data_sources_schema = new mongoose.Schema({
 
         // skype business archiving
         skype_business: {
-            need: {
-                type: String,
-                default: ""
-            },
             deployment: {
                 type: String,
                 default: ""
@@ -146,14 +189,6 @@ var other_data_sources_schema = new mongoose.Schema({
 
         // skype on prem and lync
         skype_on_prem: {
-            need_skype_on_prem: {
-                type: String,
-                default: ""
-            },
-            need_lync: {
-                type: String,
-                default: ""
-            },
             deployment: {
                 type: String,
                 default: ""
@@ -169,191 +204,24 @@ var other_data_sources_schema = new mongoose.Schema({
         },
 
         // OneDrive
-        one_drive: {
-            need: {
-                type: String,
-                default: ""
-            },
-            storage_usage: {
-                type: String,
-                default: ""
-            },
-            files_desc: {
-                type: String,
-                default: ""
-            },
-            fill_rate: {
-                type: String,
-                default: ""
-            },
-            need_original_or_extracted: {
-                type: String,
-                default: ""
-            },
-            is_archiving_customer: {
-                type: String,
-                default: ""
-            },
+        box_one_drive: {
             auth: {
                 type: String,
                 default: ""
             }
         },
 
-        // Box
-        box: {
-            need: {
-                type: String,
-                default: ""
-            },
-            storage_usage: {
-                type: String,
-                default: ""
-            },
-            files_desc: {
-                type: String,
-                default: ""
-            },
-            fill_rate: {
-                type: String,
-                default: ""
-            },
-            need_original_or_extracted: {
-                type: String,
-                default: ""
-            },
-            is_archiving_customer: {
-                type: String,
-                default: ""
-            }
-        },
+        // Bloomberg, general
+        //bloomberg: {},
 
-        // Bloomberg
-        bloomberg: {
-            need: {
-                type: String,
-                default: ""
-            },
-            users_per_platform: {
-                type: String,
-                default: ""
-            },
-            number_of_users_to_archive: {
-                type: String,
-                default: ""
-            },
-            capture_user_activity: {
-                type: String,
-                default: ""
-            },
-            avg_daily_message_volume: {
-                type: String,
-                default: ""
-            },
-            most_active_profile: {
-                type: String,
-                default: ""
-            },
-            retention_policy: {
-                type: String,
-                default: ""
-            },
-            is_archiving_customer: {
-                type: String,
-                default: ""
-            },
-            which_archive: {
-                type: String,
-                default: ""
-            }
-        },
+        // yammer, general
+        // yammer: {},
 
-        // yammer
-        yammer: {
-            need: {
-                type: String,
-                default: ""
-            },
-            users_per_platform: {
-                type: String,
-                default: ""
-            },
-            number_of_users_to_archive: {
-                type: String,
-                default: ""
-            },
-            capture_user_activity: {
-                type: String,
-                default: ""
-            },
-            avg_daily_message_volume: {
-                type: String,
-                default: ""
-            },
-            most_active_profile: {
-                type: String,
-                default: ""
-            },
-            retention_policy: {
-                type: String,
-                default: ""
-            },
-            is_archiving_customer: {
-                type: String,
-                default: ""
-            },
-            which_archive: {
-                type: String,
-                default: ""
-            }
-        },
-
-        // Jive
-        jive: {
-            need: {
-                type: String,
-                default: ""
-            },
-            users_per_platform: {
-                type: String,
-                default: ""
-            },
-            number_of_users_to_archive: {
-                type: String,
-                default: ""
-            },
-            capture_user_activity: {
-                type: String,
-                default: ""
-            },
-            avg_daily_message_volume: {
-                type: String,
-                default: ""
-            },
-            most_active_profile: {
-                type: String,
-                default: ""
-            },
-            retention_policy: {
-                type: String,
-                default: ""
-            },
-            is_archiving_customer: {
-                type: String,
-                default: ""
-            },
-            which_archive: {
-                type: String,
-                default: ""
-            }
-        },
+        // Jive, general
+        // jive: {},
 
         // Chatter
         chatter: {
-            need: {
-                type: String,
-                default: ""
-            },
             number_of_groups: {
                 type: String,
                 default: ""
@@ -366,6 +234,10 @@ var other_data_sources_schema = new mongoose.Schema({
                 type: String,
                 default: ""
             },
+            comfortable: {
+                type: String,
+                default: ""
+            },
             requirement: {
                 type: String,
                 default: ""
@@ -373,51 +245,11 @@ var other_data_sources_schema = new mongoose.Schema({
         },
 
         //Slack, not found so assuming general
-        slack: {
-            need: {
-                type: String,
-                default: ""
-            },
-            users_per_platform: {
-                type: String,
-                default: ""
-            },
-            number_of_users_to_archive: {
-                type: String,
-                default: ""
-            },
-            capture_user_activity: {
-                type: String,
-                default: ""
-            },
-            avg_daily_message_volume: {
-                type: String,
-                default: ""
-            },
-            most_active_profile: {
-                type: String,
-                default: ""
-            },
-            retention_policy: {
-                type: String,
-                default: ""
-            },
-            is_archiving_customer: {
-                type: String,
-                default: ""
-            },
-            which_archive: {
-                type: String,
-                default: ""
-            }
-        },
+        // slack: {
+        // },
 
         // Symphony
         symphony: {
-            need: {
-                type: String,
-                default: ""
-            },
             license: {
                 type: String,
                 default: ""

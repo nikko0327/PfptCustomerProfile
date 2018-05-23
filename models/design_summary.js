@@ -18,16 +18,5 @@ var design_summary_schema = new mongoose.Schema({
 
 var DesignSummaryQuestions = mongoose.model("DesignSummaryQuestions", design_summary_schema);
 
-// var sample = new ApplianceQuestions({
-//     _id: "Tesla"
-// });
-//
-// sample.save(function (error, result) {
-//     if (error) {
-//         console.log(error);
-//     } else {
-//         console.log("Successfully created appliance questions for customer: " + result["_id"]);
-//     }
-// });
 
 module.exports = DesignSummaryQuestions;

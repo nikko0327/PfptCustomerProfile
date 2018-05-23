@@ -26,16 +26,4 @@ var rfe_schema = new mongoose.Schema({
 
 var RFEQuestions = mongoose.model("RFEQuestions", rfe_schema);
 
-// var sample = new ApplianceQuestions({
-//     _id: "Tesla"
-// });
-//
-// sample.save(function (error, result) {
-//     if (error) {
-//         console.log(error);
-//     } else {
-//         console.log("Successfully created appliance questions for customer: " + result["_id"]);
-//     }
-// });
-
 module.exports = RFEQuestions;

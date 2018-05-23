@@ -1,5 +1,6 @@
 var express = require("express");
 var router = express.Router();
+var flash = require('connect-flash');
 // var User = require("../models/user");
 var mongoose = require("mongoose");
 mongoose.Promise = Promise;
@@ -24,109 +25,68 @@ router.get("/", function (req, res) {
 
 //NEW ROUTE
 router.get("/new", function (req, res) {
-    res.render("new");
+    res.render("new", {error_message: null});
 });
 
 //CREATE ROUTE
-router.post("/index", function (req, res) {
+router.post("/new", function (req, res) {
+        if (req == undefined || req == null) {
+            console.log("req is empty");
+        }
 
-        // ApplianceQuestions.create({
-        //     name: req.body.customer["name"]
-        // }, function (error, result) {
-        //     if (error) {
-        //         console.log(error);
-        //     }
-        // });
-        //
-        // DesktopNetworkQuestions.create({
-        //     name: req.body.customer["name"]
-        // }, function (error, result) {
-        //     if (error) {
-        //         console.log(error);
-        //     }
-        // });
-        //
-        // EmailSEQuestions.create({
-        //     name: req.body.customer["name"]
-        // }, function (error, result) {
-        //     if (error) {
-        //         console.log(error);
-        //     }
-        // });
-        //
-        // EmailPSQuestions.create({
-        //     name: req.body.customer["name"]
-        // }, function (error, result) {
-        //     if (error) {
-        //         console.log(error);
-        //     }
-        // });
-        //
-        // ImportQuestions.create({
-        //     name: req.body.customer["name"]
-        // }, function (error, result) {
-        //     if (error) {
-        //         console.log(error);
-        //     }
-        // });
-        //
-        // JournalingQuestions.create({
-        //     name: req.body.customer["name"]
-        // }, function (error, result) {
-        //     if (error) {
-        //         console.log(error);
-        //     }
-        // });
-        //
-        // OtherDataSourcesQuestions.create({
-        //     name: req.body.customer["name"]
-        // }, function (error, result) {
-        //     if (error) {
-        //         console.log(error);
-        //     }
-        // });
-        //
-        // POCQuestions.create({
-        //     name: req.body.customer["name"]
-        // }, function (error, result) {
-        //     if (error) {
-        //         console.log(error);
-        //     }
-        // });
-        //
-        // UsageQuestions.create({
-        //     name: req.body.customer["name"]
-        // }, function (error, result) {
-        //     if (error) {
-        //         console.log(error);
-        //     }
-        // });
+        console.log("- Trying to create new customer...");
 
-    console.log("- Trying to create new customer...");
-
-        Customer.create(req.body.customer).then(() => {
-            ApplianceQuestions.create({name: req.body.customer["name"]});
-            DesignSummaryQuestions.create({name: req.body.customer["name"]});
-            DesktopNetworkQuestions.create({name: req.body.customer["name"]});
-            EmailPSQuestions.create({name: req.body.customer["name"]});
-            EmailSEQuestions.create({name: req.body.customer["name"]});
-            ImportQuestions.create({name: req.body.customer["name"]});
-            JournalingQuestions.create({name: req.body.customer["name"]});
-            OtherDataSourcesQuestions.create({name: req.body.customer["name"]});
-            POCQuestions.create({name: req.body.customer["name"]});
-            RFEQuestions.create({name: req.body.customer["name"]});
-            UsageQuestions.create({name: req.body.customer["name"]});
-
-            res.redirect("/index");
-        }).catch((error) => {
-            if (error["code"] == 11000) {
-                console.log("-- Duplicate entry for customer: " + req.body.customer["name"]);
-                // Send pop up alert to HTML here
-                res.render("new", {success: false});
+        Customer.create(req.body.customer, (error) => {
+            if (error) {
+                if (error["code"] == 11000) {
+                    console.log("-- Duplicate entry for customer: " + req.body.customer["name"]);
+                    // Send pop up alert to HTML here
+                    res.render("new", {error_message: "Duplicate entry for customer: " + req.body.customer["name"]});
+                } else {
+                    console.log(error);
+                }
             } else {
-                console.log(error);
+                ApplianceQuestions.create({name: req.body.customer["name"]});
+                DesignSummaryQuestions.create({name: req.body.customer["name"]});
+                DesktopNetworkQuestions.create({name: req.body.customer["name"]});
+                EmailPSQuestions.create({name: req.body.customer["name"]});
+                EmailSEQuestions.create({name: req.body.customer["name"]});
+                ImportQuestions.create({name: req.body.customer["name"]});
+                JournalingQuestions.create({name: req.body.customer["name"]});
+                OtherDataSourcesQuestions.create({name: req.body.customer["name"]});
+                POCQuestions.create({name: req.body.customer["name"]});
+                RFEQuestions.create({name: req.body.customer["name"]});
+                UsageQuestions.create({name: req.body.customer["name"]});
+
+                res.redirect("/index");
+                console.log("Creation of customer " + req.body.customer["name"] + " successful.");
             }
         });
+
+        // Customer.create(req.body.customer).then(() => {
+        //     ApplianceQuestions.create({name: req.body.customer["name"]});
+        //     DesignSummaryQuestions.create({name: req.body.customer["name"]});
+        //     DesktopNetworkQuestions.create({name: req.body.customer["name"]});
+        //     EmailPSQuestions.create({name: req.body.customer["name"]});
+        //     EmailSEQuestions.create({name: req.body.customer["name"]});
+        //     ImportQuestions.create({name: req.body.customer["name"]});
+        //     JournalingQuestions.create({name: req.body.customer["name"]});
+        //     OtherDataSourcesQuestions.create({name: req.body.customer["name"]});
+        //     POCQuestions.create({name: req.body.customer["name"]});
+        //     RFEQuestions.create({name: req.body.customer["name"]});
+        //     UsageQuestions.create({name: req.body.customer["name"]});
+        //
+        //     res.redirect("/index");
+        //     console.log("Creation of customer " + req.body.customer["name"] + " successful.");
+        // }).catch((error) => {
+        //     if (error["code"] == 11000) {
+        //         console.log("-- Duplicate entry for customer: " + req.body.customer["name"]);
+        //         // Send pop up alert to HTML here
+        //         res.render("new", {error_message: "Duplicate."});
+        //     } else {
+        //         console.log(error);
+        //     }
+        // });
     }
 );
 
@@ -179,7 +139,7 @@ router.put("/index/:id", function (req, res) {
 
         // Updating design summary questions
         if (req.body.design_summary_questions !== undefined && req.body.design_summary_questions !== null) {
-            DesktopNetworkQuestions.findOneAndUpdate({name: req.params.id}, req.body.design_summary_questions).then(() => {
+            DesignSummaryQuestions.findOneAndUpdate({name: req.params.id}, req.body.design_summary_questions).then(() => {
                 res.redirect("/index/" + req.params.id);
             }).catch((error) => {
                 console.log(error);
@@ -259,7 +219,7 @@ router.put("/index/:id", function (req, res) {
 
         // Updating RFE Questions
         if (req.body.rfe_questions !== undefined && req.body.rfe_questions !== null) {
-            POCQuestions.findOneAndUpdate({name: req.params.id}, req.body.rfe_questions).then(() => {
+            RFEQuestions.findOneAndUpdate({name: req.params.id}, req.body.rfe_questions).then(() => {
                 res.redirect("/index/" + req.params.id);
             }).catch((error) => {
                 console.log(error);

@@ -17,7 +17,7 @@ var email_se_schema = new mongoose.Schema({
             type: String,
             default: ""
         },
-        has_enterprise_CAL: {
+        has_enterprise_CAL: { // dropdown
             type: String,
             default: ""
         },
@@ -26,7 +26,7 @@ var email_se_schema = new mongoose.Schema({
             type: String,
             default: ""
         },
-        diagram: {
+        diagram: { // Fileupload???
             type: String,
             default: ""
         },
@@ -74,7 +74,7 @@ var email_se_schema = new mongoose.Schema({
             type: String,
             default: ""
         },
-        which_O365: {
+        which_O365: { // dropdown
             type: String,
             default: ""
         }
