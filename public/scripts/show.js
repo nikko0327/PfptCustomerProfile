@@ -1,7 +1,11 @@
-function expand() {
-    $('.collapse').collapse('show');
-}
+var expanded = false;
 
-function collapse() {
-    $('.collapse').collapse('hide');
+function expand_collapse() {
+    if (expanded == true) {
+        $('.collapse').collapse('hide');
+        expanded = false;
+    } else if (expanded == false) {
+        $('.collapse').collapse('show');
+        expanded = true;
+    }
 }

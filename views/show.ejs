@@ -12,12 +12,8 @@
         <div id="detail" class="">
             <h4>Project Detail</h4>
             <button class="btn btn-primary" type="button" data-toggle="collapse"
-                    data-target="collapse" aria-expanded="false" onclick="expand()">
-                Expand All
-            </button>
-            <button class="btn btn-primary" type="button" data-toggle="collapse"
-                    data-target="collapse" aria-expanded="false" onclick="collapse()">
-                Collapse All
+                    data-target="collapse" aria-expanded="false" onclick="expand_collapse()">
+                Expand/Hide All
             </button>
         </div>
         <hr class="rainbow">
@@ -605,7 +601,7 @@
 
         <!-- Displaying other data sources questions -->
         <div id="otherDataSources" class="">
-            <h5><a href="#otherDataSourcesContainer" data-toggle="collapse">Other Data Sources (To-do: CLARIFY QUESTIONS)
+            <h5><a href="#otherDataSourcesContainer" data-toggle="collapse">Other Data Sources
                     <i class="fa fa-arrows-v" aria-hidden="true"></i></a></h5>
             <br>
 
@@ -662,44 +658,92 @@
                 <div id="ECA" class="collapse">
 
                     <!-- Needs -->
+                    <p>Archiving needs:<br></p>
                     <div id="ECA-needs" class="row">
-                        <!-- <p>Do you need to archive any of the following:</p> -->
-                        <div id="" class="col-4"><p><b>Files</b>
-                                <input hidden type="checkbox"
-                                       checked="<%= other_data_source_questions.enterprise_collaboration_archiving.needs.skype_in_cloud %>"></p></div>
-                        <div id="" class="col-4"><p><b>Skype in the cloud</b>
-                                <input hidden type="checkbox"
-                                       checked="<%= other_data_source_questions.enterprise_collaboration_archiving.needs.skype_in_cloud %>"></p></div>
-                        <div id="" class="col-4"><p><b>Skype on Prem</b>
-                                <input hidden type="checkbox"
-                                       checked="<%= other_data_source_questions.enterprise_collaboration_archiving.needs.skype_on_prem %>"></p></div>
-                        <div id="" class="col-4"><p><b>Lync on Prem</b>
-                                <input hidden type="checkbox"
-                                       checked="<%= other_data_source_questions.enterprise_collaboration_archiving.needs.lync_on_prem %>"></p></div>
-                        <div id="" class="col-4"><p><b>One Drive</b>
-                                <input hidden type="checkbox"
-                                       checked="<%= other_data_source_questions.enterprise_collaboration_archiving.needs.one_drive %>"></p></div>
-                        <div id="" class="col-4"><p><b>Box</b>
-                                <input hidden type="checkbox"
-                                       checked="<%= other_data_source_questions.enterprise_collaboration_archiving.needs.box %>"></p></div>
-                        <div id="" class="col-4"><p><b>Bloomberg</b>
-                                <input hidden type="checkbox"
-                                       checked="<%= other_data_source_questions.enterprise_collaboration_archiving.needs.bloomberg %>"></p></div>
-                        <div id="" class="col-4"><p><b>Yammer</b>
-                                <input hidden type="checkbox"
-                                       checked="<%= other_data_source_questions.enterprise_collaboration_archiving.needs.yammer %>"></p></div>
-                        <div id="" class="col-4"><p><b>Jive</b>
-                                <input hidden type="checkbox"
-                                       checked="<%= other_data_source_questions.enterprise_collaboration_archiving.needs.jive %>"></p></div>
-                        <div id="" class="col-4"><p><b>Chatter</b>
-                                <input hidden type="checkbox"
-                                       checked="<%= other_data_source_questions.enterprise_collaboration_archiving.needs.chatter %>"></p></div>
-                        <div id="" class="col-4"><p><b>Slack</b>
-                                <input hidden type="checkbox"
-                                       checked="<%= other_data_source_questions.enterprise_collaboration_archiving.needs.slack %>"></p></div>
-                        <div id="" class="col-4"><p><b>Symphony</b>
-                                <input hidden type="checkbox"
-                                       checked="<%= other_data_source_questions.enterprise_collaboration_archiving.needs.symphony %>"></p></div>
+                        <div class="col-4"><p><b>Files</b>
+                                <input hidden type="checkbox">
+                                <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.files) { %>
+                                <i class="fa fa-check"></i>
+                                <% } %>
+                            </p></div>
+
+                        <div class="col-4"><p><b>Skype in the cloud</b>
+                                <input hidden type="checkbox">
+                                <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.skype_in_cloud) { %>
+                                <i class="fa fa-check"></i>
+                                <% } %>
+                            </p></div>
+
+                        <div class="col-4"><p><b>Skype on Prem</b>
+                                <input hidden type="checkbox">
+                                <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.skype_on_prem) { %>
+                                <i class="fa fa-check"></i>
+                                <% } %>
+                            </p></div>
+
+                        <div class="col-4"><p><b>Lync on Prem</b>
+                                <input hidden type="checkbox">
+                                <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.lync_on_prem) { %>
+                                <i class="fa fa-check"></i>
+                                <% } %>
+                            </p></div>
+
+                        <div class="col-4"><p><b>One Drive</b>
+                                <input hidden type="checkbox">
+                                <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.one_drive) { %>
+                                <i class="fa fa-check"></i>
+                                <% } %>
+                            </p></div>
+
+                        <div class="col-4"><p><b>Box</b>
+                                <input hidden type="checkbox">
+                                <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.box) { %>
+                                <i class="fa fa-check"></i>
+                                <% } %>
+                            </p></div>
+
+                        <div class="col-4"><p><b>Bloomberg</b>
+                                <input hidden type="checkbox">
+                                <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.bloomberg) { %>
+                                <i class="fa fa-check"></i>
+                                <% } %>
+                            </p></div>
+
+                        <div class="col-4"><p><b>Yammer</b>
+                                <input hidden type="checkbox">
+                                <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.yammer) { %>
+                                <i class="fa fa-check"></i>
+                                <% } %>
+                            </p></div>
+
+                        <div class="col-4"><p><b>Jive</b>
+                                <input hidden type="checkbox">
+                                <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.jive) { %>
+                                <i class="fa fa-check"></i>
+                                <% } %>
+                            </p></div>
+
+                        <div class="col-4"><p><b>Chatter</b>
+                                <input hidden type="checkbox">
+                                <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.chatter) { %>
+                                <i class="fa fa-check"></i>
+                                <% } %>
+                            </p></div>
+
+                        <div class="col-4"><p><b>Slack</b>
+                                <input hidden type="checkbox">
+                                <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.slack) { %>
+                                <i class="fa fa-check"></i>
+                                <% } %>
+                            </p></div>
+
+                        <div class="col-4"><p><b>Symphony</b>
+                                <input hidden type="checkbox">
+                                <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.symphony) { %>
+                                <i class="fa fa-check"></i>
+                                <% } %>
+                            </p></div>
+
                     </div>
 
                     <!-- General questions -->
@@ -1434,9 +1478,9 @@
                     <div id="" class="col-4"><p><b>Mail System in Use</b>
                             <br><%= design_summary_questions.mail_system_in_use %></p></div>
                 </div>
-                <div id="comments" class="row">
-                    <div id="" class="col-4"><p><b>Other comments about project</b>
-                            <br><%= design_summary_questions.comments %></p></div>
+                <div id="finals_comments" class="row">
+                    <div style="padding: 15px; word-wrap: break-word;" id=""><p><b style="color: orangered;">Other comments about the project</b>
+                            <br><%- design_summary_questions.comments.replace(/(?:\r\n|\r|\n)/g, '<br>'); %></p></div>
                 </div>
             </div>
             <br>
@@ -3621,7 +3665,7 @@
         </div>
     </div>
 
-    <!-- OTHER DATA QUESTIONS UPDATE -->
+    <!-- OTHER DATA SOURCES QUESTIONS UPDATE -->
     <div class="modal fade" id="editOtherDataSources" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -3721,6 +3765,72 @@
                         </h5>
 
                         <div id="editOtherDataSources-enterprise" class="collapse">
+
+                            <!-- Edit needs here -->
+                            <div id="editECA-needs" class="row" style="padding: 0px;">
+                                <div id="" class="form-group, col-4" style="padding-left:11px"><p><b>Files </b>
+                                        <input type="checkbox"
+                                               name="other_data_source_questions[enterprise_collaboration_archiving][needs][files]"
+                                                <%= other_data_source_questions.enterprise_collaboration_archiving.needs.files ? "checked" : "" %> />
+                                    </p></div>
+                                <div id="" class="form-group, col-4" style="padding-left:11px"><p><b>Skype Business </b>
+                                        <input type="checkbox"
+                                               name="other_data_source_questions[enterprise_collaboration_archiving][needs][skype_in_cloud]"
+                                                <%= other_data_source_questions.enterprise_collaboration_archiving.needs.skype_in_cloud ? "checked" : "" %> />
+                                    </p></div>
+                                <div id="" class="form-group, col-4" style="padding-left:11px"><p><b>Skype On-prem </b>
+                                        <input type="checkbox"
+                                               name="other_data_source_questions[enterprise_collaboration_archiving][needs][skype_on_prem]"
+                                                <%= other_data_source_questions.enterprise_collaboration_archiving.needs.skype_on_prem ? "checked" : "" %> />
+                                    </p></div>
+                                <div id="" class="form-group, col-4" style="padding-left:11px"><p><b>Lync On-prem </b>
+                                        <input type="checkbox"
+                                               name="other_data_source_questions[enterprise_collaboration_archiving][needs][lync_on_prem]"
+                                                <%= other_data_source_questions.enterprise_collaboration_archiving.needs.lync_on_prem ? "checked" : "" %> />
+                                    </p></div>
+                                <div id="" class="form-group, col-4" style="padding-left:11px"><p><b>One Drive </b>
+                                        <input type="checkbox"
+                                               name="other_data_source_questions[enterprise_collaboration_archiving][needs][one_drive]"
+                                                <%= other_data_source_questions.enterprise_collaboration_archiving.needs.one_drive ? "checked" : "" %> />
+                                    </p></div>
+                                <div id="" class="form-group, col-4" style="padding-left:11px"><p><b>Box </b>
+                                        <input type="checkbox"
+                                               name="other_data_source_questions[enterprise_collaboration_archiving][needs][box]"
+                                                <%= other_data_source_questions.enterprise_collaboration_archiving.needs.box ? "checked" : "" %> />
+                                    </p></div>
+                                <div id="" class="form-group, col-4" style="padding-left:11px"><p><b>Bloomberg </b>
+                                        <input type="checkbox"
+                                               name="other_data_source_questions[enterprise_collaboration_archiving][needs][bloomberg]"
+                                                <%= other_data_source_questions.enterprise_collaboration_archiving.needs.bloomberg ? "checked" : "" %> />
+                                    </p></div>
+                                <div id="" class="form-group, col-4" style="padding-left:11px"><p><b>Yammer </b>
+                                        <input type="checkbox"
+                                               name="other_data_source_questions[enterprise_collaboration_archiving][needs][yammer]"
+                                                <%= other_data_source_questions.enterprise_collaboration_archiving.needs.yammer ? "checked" : "" %> />
+                                    </p></div>
+                                <div id="" class="form-group, col-4" style="padding-left:11px"><p><b>Jive </b>
+                                        <input type="checkbox"
+                                               name="other_data_source_questions[enterprise_collaboration_archiving][needs][jive]"
+                                                <%= other_data_source_questions.enterprise_collaboration_archiving.needs.jive ? "checked" : "" %> />
+                                    </p></div>
+                                <div id="" class="form-group, col-4" style="padding-left:11px"><p><b>Chatter </b>
+                                        <input type="checkbox"
+                                               name="other_data_source_questions[enterprise_collaboration_archiving][needs][chatter]"
+                                                <%= other_data_source_questions.enterprise_collaboration_archiving.needs.chatter ? "checked" : "" %> />
+                                    </p></div>
+                                <div id="" class="form-group, col-4" style="padding-left:11px"><p><b>Slack </b>
+                                        <input type="checkbox"
+                                               name="other_data_source_questions[enterprise_collaboration_archiving][needs][slack]"
+                                                <%= other_data_source_questions.enterprise_collaboration_archiving.needs.slack ? "checked" : "" %> />
+                                    </p></div>
+                                <div id="" class="form-group, col-4" style="padding-left:11px"><p><b>Symphony </b>
+                                        <input type="checkbox"
+                                               name="other_data_source_questions[enterprise_collaboration_archiving][needs][symphony]"
+                                                <%= other_data_source_questions.enterprise_collaboration_archiving.needs.symphony ? "checked" : ""
+                                                %> />
+                                    </p></div>
+                            </div>
+
                             <!-- General questions -->
                             <h5><a href="#editECA-general" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse">General
                                     <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
@@ -3922,8 +4032,8 @@
                                            value="<%= other_data_source_questions.enterprise_collaboration_archiving.symphony.license %>"
                                            name="other_data_source_questions[enterprise_collaboration_archiving][symphony][license]">
                                 </div>
-                                <br>
                             </div>
+                            <br>
                         </div>
 
                         <div class="col">
