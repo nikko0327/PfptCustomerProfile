@@ -7,7 +7,6 @@ var session = require("express-session");
 var MongoStore = require("connect-mongo")(session);
 var app = express();
 
-
 //APP CONFIGURATION
 
 var databaseUrl = "mongodb://localhost/customerProfile";
@@ -26,10 +25,24 @@ app.use(session({
     secret: "work hard",
     resave: true,
     saveUninitialized: false,
+    cookie: {
+        //maxAge: 30 * 24 * 60 * 60 * 1000 // 1 month
+    },
     store: new MongoStore({
         mongooseConnection: db
     })
 }));
+
+// Exposes the username for the header nav bar.
+app.use(function expose_username(req, res, next) {
+    res.locals.user = req.session.user;
+    next();
+});
+
+// app.use(function printSession(req, res, next) {
+//     console.log('req.session', req.session);
+//     next();
+// });
 
 // set so we dont have to type .ejs all the time when routing
 app.set("view engine", "ejs");
@@ -57,7 +70,6 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.send(err.message);
 });
-
 
 app.listen(8000, function () {
     console.log("App is running on 8000");

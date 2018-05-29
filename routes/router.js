@@ -19,13 +19,32 @@ var POCQuestions = require("../models/poc");
 var RFEQuestions = require("../models/rfe");
 var User = require("../models/user");
 
+// For authenticating cookies/sessions.
+function authenticate(req, res, next) {
+    if (req.session.user) {
+        next();
+    } else {
+        res.redirect("/login");
+    }
+}
+
+// LOGOUT AND KILL SESSION
+router.post("/logout", function (req, res) {
+    var user = req.session.user;
+    req.session.destroy(() => {
+        console.log("Logging out: " + user);
+
+    });
+    res.redirect("/login");
+});
+
 //Entry point for the app startup
 router.get("/", function (req, res) {
     res.redirect("/index");
 });
 
 //NEW ROUTE
-router.get("/new", function (req, res) {
+router.get("/new", authenticate, function (req, res) {
     res.render("new", {error_message: undefined});
 });
 
@@ -36,50 +55,70 @@ router.get("/register", function (req, res) {
 
 // POST REGISTER
 router.post("/register", function (req, res) {
-    if (req.body.registration_info["password"] == req.body.registration_info["confirm_password"]) {
-        async function register_user() {
-            var hashed_password = await bcrypt.hash(req.body.registration_info["password"], 10);
-            await User.create({username: req.body.registration_info["username"], password: hashed_password});
-        }
+    if (!req.body.registration_info["username"] || !req.body.registration_info["password"] || !req.body.registration_info["confirm_password"]) {
+        res.render("register", {error_message: "Please enter all fields."});
+    } else {
+        if (req.body.registration_info["password"] == req.body.registration_info["confirm_password"]) {
+            async function register_user() {
+                var hashed_password = await bcrypt.hash(req.body.registration_info["password"], 10);
+                await User.create({username: req.body.registration_info["username"], password: hashed_password});
+            }
 
-        register_user().then(() => {
-            res.redirect("/index");
-        }).catch((error) => {
-            if (error["code"] == 11000) {
-                console.log("-- Duplicate entry for user: " + req.body.registration_info["username"]);
-                // Send pop up alert to HTML here
-                res.render("register", {error_message: "User already exists: " + req.body.registration_info["username"]});
+            register_user().then(() => {
+                res.redirect("/login");
+            }).catch((error) => {
+                if (error["code"] == 11000) {
+                    console.log("-- Duplicate entry for user: " + req.body.registration_info["username"]);
+                    // Send pop up alert to HTML here
+                    res.render("register", {error_message: "User already exists: " + req.body.registration_info["username"]});
+                } else {
+                    console.log(error);
+                }
+            });
+        } else {
+            res.render("register", {error_message: "Passwords are not equal."});
+        }
+    }
+});
+
+// LOGIN
+router.get("/login", function (req, res) {
+    res.render("login", {fail: false});
+});
+
+// POST LOGIN
+router.post("/login", function (req, res) {
+    if (!req.body.login || req.body.login == undefined) {
+        res.render("login", {fail: true});
+    } else {
+        //console.log(req.body.login["username"]);
+        User.findOne({username: req.body.login["username"]}).then((result) => {
+            //console.log(result);
+            if (result == null) {
+                res.render("login", {fail: true});
             } else {
-                console.log(error);
+                bcrypt.compare(req.body.login["password"], result["password"], function (err, validated) {
+                    if (validated) {
+                        // Do auth/sessions here
+                        console.log("Logged in: " + req.body.login["username"]);
+                        req.session.user = req.body.login["username"];
+                        res.redirect("/index");
+                    } else {
+                        res.render("login", {fail: true});
+                    }
+                });
+            }
+        }).catch((error) => {
+            if (error) {
+                res.render("login", {fail: true});
             }
         });
-
-        // bcrypt.hash(req.body.registration_info["password"], 10, (error, result) => {
-        //     if (error) {
-        //     } else {
-        //         User.create({username: req.body.registration_info["username"], password: result}, (error) => {
-        //                 if (error) {
-        //                     if (error["code"] == 11000) {
-        //                         console.log("-- Duplicate entry for username: " + req.body.customer["name"]);
-        //                         // Send pop up alert to HTML here
-        //                         res.render("new", {error_message: "Duplicate entry for customer: " + req.body.customer["name"]});
-        //                     } else {
-        //                         console.log(error);
-        //                     }
-        //                 } else {
-        //                     res.redirect("/index");
-        //                 }
-        //             }
-        //         );
-        //     }
-        // });
-    } else {
-        res.render("register", {error_message: "Passwords are not equal."});
     }
 });
 
 //CREATE ROUTE
-router.post("/new", function (req, res) {
+router.post("/new", authenticate, function (req, res) {
+
         if (req == undefined || req == null) {
             console.log("req is empty");
         }
@@ -141,11 +180,11 @@ router.post("/new", function (req, res) {
 );
 
 //UPDATE ROUTE
-router.put("/index/:id", function (req, res) {
+router.put("/index/:id", authenticate, function (req, res) {
         // Considering changing to else ifs
 
         // For updating name, make a ton of promises and execute them, THEN render the page.
-        if (req.body.customer !== undefined && req.body.customer !== null) {
+        if (req.body.customer != undefined && req.body.customer != null) {
             console.log("- Trying to update customer information...")
 
             // Make a bunch of await calls and wait for the queries to finish.
@@ -178,7 +217,7 @@ router.put("/index/:id", function (req, res) {
         }
 
         // Updating appliance questions
-        if (req.body.appliance_questions !== undefined && req.body.appliance_questions !== null) {
+        if (req.body.appliance_questions != undefined && req.body.appliance_questions != null) {
             ApplianceQuestions.findOneAndUpdate({name: req.params.id}, req.body.appliance_questions).then(() => {
                 res.redirect("/index/" + req.params.id);
             }).catch((error) => {
@@ -188,7 +227,7 @@ router.put("/index/:id", function (req, res) {
         }
 
         // Updating design summary questions
-        if (req.body.design_summary_questions !== undefined && req.body.design_summary_questions !== null) {
+        if (req.body.design_summary_questions != undefined && req.body.design_summary_questions != null) {
             DesignSummaryQuestions.findOneAndUpdate({name: req.params.id}, req.body.design_summary_questions).then(() => {
                 res.redirect("/index/" + req.params.id);
             }).catch((error) => {
@@ -198,7 +237,7 @@ router.put("/index/:id", function (req, res) {
         }
 
         // Updating desktop network questions
-        if (req.body.desktop_network_questions !== undefined && req.body.desktop_network_questions !== null) {
+        if (req.body.desktop_network_questions != undefined && req.body.desktop_network_questions != null) {
             DesktopNetworkQuestions.findOneAndUpdate({name: req.params.id}, req.body.desktop_network_questions).then(() => {
                 res.redirect("/index/" + req.params.id);
             }).catch((error) => {
@@ -208,7 +247,7 @@ router.put("/index/:id", function (req, res) {
         }
 
         // Updating Email SE Questions
-        if (req.body.email_se_questions !== undefined && req.body.email_se_questions !== null) {
+        if (req.body.email_se_questions != undefined && req.body.email_se_questions != null) {
             EmailSEQuestions.findOneAndUpdate({"name": req.params.id}, req.body.email_se_questions).then(() => {
                 res.redirect("/index/" + req.params.id);
             }).catch((error) => {
@@ -218,7 +257,7 @@ router.put("/index/:id", function (req, res) {
         }
 
         // Updating Email PS Questions
-        if (req.body.email_ps_questions !== undefined && req.body.email_ps_questions !== null) {
+        if (req.body.email_ps_questions != undefined && req.body.email_ps_questions != null) {
             EmailPSQuestions.findOneAndUpdate({"name": req.params.id}, req.body.email_ps_questions).then(() => {
                 res.redirect("/index/" + req.params.id);
             }).catch((error) => {
@@ -228,7 +267,7 @@ router.put("/index/:id", function (req, res) {
         }
 
         // Updating Import Questions
-        if (req.body.import_questions !== undefined && req.body.import_questions !== null) {
+        if (req.body.import_questions != undefined && req.body.import_questions != null) {
             ImportQuestions.findOneAndUpdate({"name": req.params.id}, req.body.import_questions).then(() => {
                 res.redirect("/index/" + req.params.id);
             }).catch((error) => {
@@ -238,7 +277,7 @@ router.put("/index/:id", function (req, res) {
         }
 
         // Updating Journaling questions
-        if (req.body.journaling_questions !== undefined && req.body.journaling_questions !== null) {
+        if (req.body.journaling_questions != undefined && req.body.journaling_questions != null) {
             JournalingQuestions.findOneAndUpdate({"name": req.params.id}, req.body.journaling_questions).then(() => {
                 res.redirect("/index/" + req.params.id);
             }).catch((error) => {
@@ -248,7 +287,7 @@ router.put("/index/:id", function (req, res) {
         }
 
         // Updating Other Data Sources Questions
-        if (req.body.other_data_source_questions !== undefined && req.body.other_data_source_questions !== null) {
+        if (req.body.other_data_source_questions != undefined && req.body.other_data_source_questions != null) {
             OtherDataSourcesQuestions.findOneAndUpdate({name: req.params.id}, req.body.other_data_source_questions).then(() => {
                 res.redirect("/index/" + req.params.id);
             }).catch((error) => {
@@ -258,7 +297,7 @@ router.put("/index/:id", function (req, res) {
         }
 
         // Updating POC Questions
-        if (req.body.poc_questions !== undefined && req.body.poc_questions !== null) {
+        if (req.body.poc_questions != undefined && req.body.poc_questions != null) {
             POCQuestions.findOneAndUpdate({name: req.params.id}, req.body.poc_questions).then(() => {
                 res.redirect("/index/" + req.params.id);
             }).catch((error) => {
@@ -268,7 +307,7 @@ router.put("/index/:id", function (req, res) {
         }
 
         // Updating RFE Questions
-        if (req.body.rfe_questions !== undefined && req.body.rfe_questions !== null) {
+        if (req.body.rfe_questions != undefined && req.body.rfe_questions != null) {
             RFEQuestions.findOneAndUpdate({name: req.params.id}, req.body.rfe_questions).then(() => {
                 res.redirect("/index/" + req.params.id);
             }).catch((error) => {
@@ -278,7 +317,7 @@ router.put("/index/:id", function (req, res) {
         }
 
         // Updating Usage Questions
-        if (req.body.usage_questions !== undefined && req.body.usage_questions !== null) {
+        if (req.body.usage_questions != undefined && req.body.usage_questions != null) {
             UsageQuestions.findOneAndUpdate({name: req.params.id}, req.body.usage_questions).then(() => {
                 res.redirect("/index/" + req.params.id);
             }).catch((error) => {
@@ -290,7 +329,7 @@ router.put("/index/:id", function (req, res) {
 );
 
 //INDEX ROUTE
-router.get("/index", function (req, res) {
+router.get("/index", authenticate, function (req, res) {
 
     Customer.find({}).then((customers) => {
         res.render("index", {customers: customers});
@@ -311,7 +350,7 @@ router.get("/index", function (req, res) {
 
 
 // SHOW ROUTE
-router.get("/index/:id", function (req, res) {
+router.get("/index/:id", authenticate, function (req, res) {
 
     // ATTEMPTING TO ESCAPE CALLBACK HELL: ESCAPED B O I S
 
