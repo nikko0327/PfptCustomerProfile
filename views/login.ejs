@@ -22,20 +22,20 @@
 
             <br>
 
+            <% if(fail == true) { %>
+                <p id="error-message" class="text-error" style="color: red;">Invalid login credentials. Please try again.</p>
+            <% } %>
+
             <div class="control-group">
                 <div class="controls">
                     <button type="submit" class="btn btn-primary" id="sign_in">Login</button>
                 </div>
+                <br>
+                Register for a login <a href="/register">here</a>.
             </div>
             <div id="spinner" hidden>
                 <center><i class="icon-spinner icon-spin icon-3x"></i></center>
             </div>
-
-            <br>
-
-            <% if(fail == true) { %>
-                <h3 id="error-message" class="text-error" style="color: red;">Invalid login credentials</h3>
-            <% } %>
         </form>
     </fieldset>
 </div>

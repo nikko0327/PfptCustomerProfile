@@ -3,13 +3,13 @@
 <script type="text/javascript" src="/scripts/show.js"></script>
 
 <div class="container" style="border: .2px solid gray; padding-bottom: 25px">
-    <div id="customerHeader" class="">
+    <div id="customerHeader">
         <h1 style="text-align: center;"><%= customer.name %></h1>
     </div>
     <br>
     <br>
-    <div id="content" class="">
-        <div id="detail" class="">
+    <div id="content">
+        <div id="detail" class="display-header">
             <h4>Project Detail</h4>
             <button class="btn btn-primary" type="button" data-toggle="collapse"
                     data-target="collapse" aria-expanded="false" onclick="expand_collapse()">
@@ -19,7 +19,7 @@
         <hr class="rainbow">
 
         <!-- Displaying customer data -->
-        <div id="generalInfo" class="">
+        <div id="generalInfo" class="display-header">
             <div id="generalInfoHeader">
                 <div class="title">
                     <h5 style="color: mediumvioletred">General Information</h5>
@@ -31,43 +31,43 @@
             </div>
             <br>
             <div id="generalInfoContent1" class="row">
-                <div id="" class="col-4"><p><b>Customer Name</b>
+                <div id="" class="col-4 response-cell"><p><b>Customer Name</b>
                         <br><%= customer.name %></p></div>
-                <div id="" class="col-4"><p><b>Sales Rep.</b>
+                <div id="" class="col-4 response-cell"><p><b>Sales Rep.</b>
                         <br><%= customer.salesRep %></p></div>
-                <div id="" class="col-4"><p><b>SE</b>
+                <div id="" class="col-4 response-cell"><p><b>SE</b>
                         <br><%= customer.archivingSe %></p></div>
-                <div id="" class="col-4"><p><b>Account Manager</b>
+                <div id="" class="col-4 response-cell"><p><b>Account Manager</b>
                         <br><%= customer.accManager %></p></div>
-                <div id="" class="col-4"><p><b>TEM</b>
+                <div id="" class="col-4 response-cell"><p><b>TEM</b>
                         <br><%= customer.tem %></p></div>
-                <div id="" class="col-4"><p><b>TAM</b>
+                <div id="" class="col-4 response-cell"><p><b>TAM</b>
                         <br><%= customer.tam %></p></div>
-                <div id="" class="col-4"><p><b>Implementation Specialist</b>
+                <div id="" class="col-4 response-cell"><p><b>Implementation Specialist</b>
                         <br><%= customer.impSpecialist %></p></div>
             </div>
 
             <div id="generalInfoContent2" class="row">
-                <div id="" class="col-4"><p><b>Location</b>
+                <div id="" class="col-4 response-cell"><p><b>Location</b>
                         <br><%= customer.location %></p></div>
-                <div id="" class="col-4"><p><b>Number of Users</b>
+                <div id="" class="col-4 response-cell"><p><b>Number of Users</b>
                         <br><%= customer.numberOfUsers %></p></div>
-                <div id="" class="col-4"><p><b>Supervision</b>
+                <div id="" class="col-4 response-cell"><p><b>Supervision</b>
                         <br><%= customer.supervision %></p></div>
-                <div id="" class="col-4"><p><b>Contacts</b>
+                <div id="" class="col-4 response-cell"><p><b>Contacts</b>
                         <br><%= customer.contacts %></p></div>
-                <div id="" class="col-4"><p><b>Status</b>
+                <div id="" class="col-4 response-cell"><p><b>Status</b>
                         <br><%= customer.status %></p></div>
-                <div id="" class="col-4"><p><b>NAT IP Address</b>
+                <div id="" class="col-4 response-cell"><p><b>NAT IP Address</b>
                         <br><%= customer.natIp %></p></div>
-                <div id="" class="col-4"><p><b>Incumbent Solution</b>
+                <div id="" class="col-4 response-cell"><p><b>Incumbent Solution</b>
                         <br><%= customer.incumbentSolution %></p></div>
             </div>
         </div>
         <hr class="rainbow">
 
         <!-- Displaying Email Systems SE questions -->
-        <div id="emailSystemSe" class="">
+        <div id="emailSystemSe" class="display-header">
             <h5><a href="#emailContainer" data-toggle="collapse">Email Systems SE
                     <i class="fa fa-arrows-v" aria-hidden="true"></i></a></h5>
             <br>
@@ -77,6 +77,7 @@
                     <a href="#" aria-hidden="true" data-target="#editEmailSystemsSE" data-toggle="modal">
                         <i class="fa fa-pencil-square-o"></i>Edit</a>
                 </div>
+                <br>
                 <h5><a href="#emailSystemsSE-1" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange w/ On-prem Appliances
                         <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
                 </h5>
@@ -84,19 +85,19 @@
                 <div id="emailSystemsSE-1" class="collapse">
                     <h5 style="color: lightseagreen">Exchange Details</h5>
                     <div id="emailSystemContent1" class="row">
-                        <div id="" class="col-4"><p><b>What versions of Exchange are
+                        <div id="" class="col-4 response-cell"><p><b>What versions of Exchange are
                                     running?</b>
                                 <br><%= email_se_questions.prem_exchange.exchange_version %></p></div>
-                        <div id="" class="col-4"><p><b>How many locations are mailbox servers
+                        <div id="" class="col-4 response-cell"><p><b>How many locations are mailbox servers
                                     deployed?</b>
                                 <br><%= email_se_questions.prem_exchange.number_of_mail_servers %></p></div>
-                        <div id="" class="col-4"><p><b>Do you have an Enterprise
+                        <div id="" class="col-4 response-cell"><p><b>Do you have an Enterprise
                                     CAL?</b>
                                 <br><%= email_se_questions.prem_exchange.has_enterprise_CAL %></p></div>
-                        <div id="" class="col-4"><p><b>Are you replicating Exchange and AD to a secondary data
+                        <div id="" class="col-4 response-cell"><p><b>Are you replicating Exchange and AD to a secondary data
                                     center?</b>
                                 <br><%= email_se_questions.prem_exchange.is_replicating_exchange_and_AD %></p></div>
-                        <div id="" class="col-4"><p><b>Please provide a diagram of your exchange infrastructure and your
+                        <div id="" class="col-4 response-cell"><p><b>Please provide a diagram of your exchange infrastructure and your
                                     AD
                                     Details</b>
                                 <br><%= email_se_questions.prem_exchange.diagram %></p></div>
@@ -104,20 +105,20 @@
 
                     <h5 style="color: lightseagreen">Active Directory Details</h5>
                     <div id="emailSystemContent2" class="row">
-                        <div id="" class="col-4"><p><b>Is your AD
+                        <div id="" class="col-4 response-cell"><p><b>Is your AD
                                     multi-forest?</b>
                                 <br><%= email_se_questions.prem_exchange.is_multi_forest %></p></div>
-                        <div id="" class="col-4"><p><b>Are there trusts between the
+                        <div id="" class="col-4 response-cell"><p><b>Are there trusts between the
                                     forests?</b>
                                 <br><%= email_se_questions.prem_exchange.exists_trusts %></p></div>
-                        <div id="" class="col-4"><p><b>Is this a Resource Forest
+                        <div id="" class="col-4 response-cell"><p><b>Is this a Resource Forest
                                     arrangement?</b>
                                 <br><%= email_se_questions.prem_exchange.is_resource_forest_arrangement %></p></div>
-                        <div id="" class="col-4"><p><b>Are you using
+                        <div id="" class="col-4 response-cell"><p><b>Are you using
                                     multi-domains?</b>
                                 <br><%= email_se_questions.prem_exchange.is_using_multi_domains %>
                             </p></div>
-                        <div id="" class="col-4"><p><b>if yes, what is the structure of multi-domain architecture /
+                        <div id="" class="col-4 response-cell"><p><b>if yes, what is the structure of multi-domain architecture /
                                     their
                                     relationships?</b>
                                 <br><%= email_se_questions.prem_exchange.structure %></p></div>
@@ -130,17 +131,17 @@
 
                 <div id="emailSystemsSE-2" class="collapse">
                     <div id="emailSystemContent4" class="row">
-                        <div id="" class="col-4"><p><b>What O365 license level do you have?</b>
+                        <div id="" class="col-4 response-cell"><p><b>What O365 license level do you have?</b>
                                 <br><%= email_se_questions.hosted_O365.O365_version %></p></div>
-                        <div id="" class="col-4"><p><b>Are you maintaining AD on-prem?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are you maintaining AD on-prem?</b>
                                 <br><%= email_se_questions.hosted_O365.is_maintaining_on_prem_AD %></p></div>
-                        <div id="" class="col-4"><p><b>Are you maintaining AD in Azure?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are you maintaining AD in Azure?</b>
                                 <br><%= email_se_questions.hosted_O365.is_maintaining_azure %></p></div>
-                        <div id="" class="col-4"><p><b>When you create admin mailboxes, do you do that in the on-prem AD, or in Azure?</b>
+                        <div id="" class="col-4 response-cell"><p><b>When you create admin mailboxes, do you do that in the on-prem AD, or in Azure?</b>
                                 <br><%= email_se_questions.hosted_O365.is_admin_in_AD_or_azure %></p></div>
-                        <div id="" class="col-4"><p><b>Sync tools used to Azure?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Sync tools used to Azure?</b>
                                 <br><%= email_se_questions.hosted_O365.sync_tools %></p></div>
-                        <div id="" class="col-4"><p><b>Which O365 version
+                        <div id="" class="col-4 response-cell"><p><b>Which O365 version
                                     <br>(shared, dedicated/BPOS-D/iTAR)?</b>
                                 <br><%= email_se_questions.hosted_O365.which_O365 %></p></div>
                     </div>
@@ -154,85 +155,85 @@
                 <div id="emailSystemsSE-3" class="collapse">
                     <h5 style="color: lightseagreen">Exchange details</h5>
                     <div id="emailSystemContent5" class="row">
-                        <div id="" class="col-4"><p><b>What versions of Exchange are
+                        <div id="" class="col-4 response-cell"><p><b>What versions of Exchange are
                                     running?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.exchange_version %>
                             </p></div>
-                        <div id="" class="col-4"><p><b>How many locations are mailbox servers
+                        <div id="" class="col-4 response-cell"><p><b>How many locations are mailbox servers
                                     deployed?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.number_of_mail_servers %></p></div>
-                        <div id="" class="col-4"><p><b>Do you have an Enterprise
+                        <div id="" class="col-4 response-cell"><p><b>Do you have an Enterprise
                                     CAL?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.has_enterprise_CAL %></p></div>
-                        <div id="" class="col-4"><p><b>Describe the HA/DR of the Exchange
+                        <div id="" class="col-4 response-cell"><p><b>Describe the HA/DR of the Exchange
                                     environment.</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.describe_exchange_env %>
                             </p></div>
-                        <div id="" class="col-4"><p><b>Please provide a diagram of your exchange infrastructure and your
+                        <div id="" class="col-4 response-cell"><p><b>Please provide a diagram of your exchange infrastructure and your
                                     AD
                                     Details.</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.diagram %></p></div>
 
-                        <div id="" class="col-4"><p><b>Are DAGs being
+                        <div id="" class="col-4 response-cell"><p><b>Are DAGs being
                                     used?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.is_using_DAG %></p></div>
                     </div>
 
                     <h5 style="color: lightseagreen">Active Directory Details</h5>
                     <div id="emailSystemContent6" class="row">
-                        <div id="" class="col-4"><p><b>Is your AD
+                        <div id="" class="col-4 response-cell"><p><b>Is your AD
                                     multi-forest?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.is_multi_forest %></p></div>
-                        <div id="" class="col-4"><p><b>How many forests are
+                        <div id="" class="col-4 response-cell"><p><b>How many forests are
                                     there?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.number_of_forests %>
                             </p></div>
-                        <div id="" class="col-4"><p><b>Is this a Resource Forest
+                        <div id="" class="col-4 response-cell"><p><b>Is this a Resource Forest
                                     arrangement?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.is_resource_forest_arrangement %></p></div>
-                        <div id="" class="col-4"><p><b>Are you using
+                        <div id="" class="col-4 response-cell"><p><b>Are you using
                                     multi-domains?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.is_using_multi_domains %></p></div>
-                        <div id="" class="col-4"><p><b>if yes, what is the structure of multi-domain architecture /
+                        <div id="" class="col-4 response-cell"><p><b>if yes, what is the structure of multi-domain architecture /
                                     their
                                     relationships?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.multi_domain_structure %>
                             </p></div>
-                        <div id="" class="col-4"><p><b>Resource forest
+                        <div id="" class="col-4 response-cell"><p><b>Resource forest
                                     deployment?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.resource_forest_deployment %></p></div>
-                        <div id="" class="col-4"><p><b>How big is your AD? How many
+                        <div id="" class="col-4 response-cell"><p><b>How big is your AD? How many
                                     objects?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.AD_size %></p></div>
-                        <div id="" class="col-4"><p><b>Do you require a secure connection to
+                        <div id="" class="col-4 response-cell"><p><b>Do you require a secure connection to
                                     LDAP?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.require_ldap %></p></div>
                     </div>
 
                     <h5 style="color: lightseagreen">O365 Details</h5>
                     <div id="emailSystemContent7" class="row">
-                        <div id="" class="col-4"><p><b>What O365 license level do you
+                        <div id="" class="col-4 response-cell"><p><b>What O365 license level do you
                                     have?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.O365_version %></p></div>
-                        <div id="" class="col-4"><p><b>Are you maintaining AD
+                        <div id="" class="col-4 response-cell"><p><b>Are you maintaining AD
                                     on-prem?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.is_maintaining_on_prem_AD %></p></div>
-                        <div id="" class="col-4"><p><b>Are you maintaining AD in
+                        <div id="" class="col-4 response-cell"><p><b>Are you maintaining AD in
                                     Azure?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.is_maintaining_azure %>
                             </p></div>
-                        <div id="" class="col-4"><p><b>Are you using
+                        <div id="" class="col-4 response-cell"><p><b>Are you using
                                     multi-domains?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.is_using_multi_domains %></p></div>
-                        <div id="" class="col-4"><p><b>When you create and admin mailboxes, do you do that in the
+                        <div id="" class="col-4 response-cell"><p><b>When you create and admin mailboxes, do you do that in the
                                     on-prem
                                     AD, or in
                                     Azure?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.is_admin_in_AD_or_azure %></p></div>
-                        <div id="" class="col-4"><p><b>Sync tools used on
+                        <div id="" class="col-4 response-cell"><p><b>Sync tools used on
                                     Azure?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.sync_tools %></p></div>
-                        <div id="" class="col-4"><p><b>Which O365 version (shared,
+                        <div id="" class="col-4 response-cell"><p><b>Which O365 version (shared,
                                     dedicated/BPOS-D/iTAR)?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.which_O365 %>
                             </p></div>
@@ -247,72 +248,72 @@
                 <div id="emailSystemsSE-4" class="collapse">
                     <h5 style="color: lightseagreen">Exchange Details</h5>
                     <div id="emailSystemContent8" class="row">
-                        <div id="" class="col-4"><p><b>What versions of Exchange are
+                        <div id="" class="col-4 response-cell"><p><b>What versions of Exchange are
                                     running?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.exchange_version %>
                             </p></div>
-                        <div id="" class="col-4"><p><b>How many locations are mailbox servers
+                        <div id="" class="col-4 response-cell"><p><b>How many locations are mailbox servers
                                     deployed?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.number_of_mail_servers %></p></div>
-                        <div id="" class="col-4"><p><b>Do you have an Enterprise
+                        <div id="" class="col-4 response-cell"><p><b>Do you have an Enterprise
                                     CAL?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.has_enterprise_CAL %>
                             </p></div>
-                        <div id="" class="col-4"><p><b>Describe the HA/DR of the Exchange
+                        <div id="" class="col-4 response-cell"><p><b>Describe the HA/DR of the Exchange
                                     environment.</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.describe_exchange_env %>
                             </p></div>
-                        <div id="" class="col-4"><p><b>Please provide a diagram of your exchange infrastructure and your
+                        <div id="" class="col-4 response-cell"><p><b>Please provide a diagram of your exchange infrastructure and your
                                     AD
                                     Details.</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.diagram %></p></div>
 
-                        <div id="" class="col-4"><p><b>Are DAGs being
+                        <div id="" class="col-4 response-cell"><p><b>Are DAGs being
                                     used?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.is_using_DAG %></p></div>
                     </div>
 
                     <h5 style="color: lightseagreen">Active Directory Details</h5>
                     <div id="emailSystemContent9" class="row">
-                        <div id="" class="col-4"><p><b>Is your AD
+                        <div id="" class="col-4 response-cell"><p><b>Is your AD
                                     multi-forest?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.is_multi_forest %></p></div>
-                        <div id="" class="col-4"><p><b>How many forests are
+                        <div id="" class="col-4 response-cell"><p><b>How many forests are
                                     there?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.number_of_forests %>
                             </p></div>
-                        <div id="" class="col-4"><p><b>Is this a Resource Forest
+                        <div id="" class="col-4 response-cell"><p><b>Is this a Resource Forest
                                     arrangement?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.is_resource_forest_arrangement %></p></div>
-                        <div id="" class="col-4"><p><b>Are you using
+                        <div id="" class="col-4 response-cell"><p><b>Are you using
                                     multi-domains?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.is_using_multi_domains %></p></div>
-                        <div id="" class="col-4"><p><b>If yes, what is the structure of multi-domain architecture /
+                        <div id="" class="col-4 response-cell"><p><b>If yes, what is the structure of multi-domain architecture /
                                     their
                                     relationships?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.structure %>
                             </p></div>
-                        <div id="" class="col-4"><p><b>Resource forest
+                        <div id="" class="col-4 response-cell"><p><b>Resource forest
                                     deployment?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.resource_forest_deployment %></p></div>
-                        <div id="" class="col-4"><p><b>How big is your AD? How many
+                        <div id="" class="col-4 response-cell"><p><b>How big is your AD? How many
                                     objects?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.AD_size %></p></div>
                     </div>
 
                     <h5 style="color: lightseagreen">O365 Details</h5>
                     <div id="emailSystemContent10" class="row">
-                        <div id="" class="col-4"><p><b>What O365 license level do you have?</b>
+                        <div id="" class="col-4 response-cell"><p><b>What O365 license level do you have?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.O365_version %></p></div>
-                        <div id="" class="col-4"><p><b>Are you maintaining AD on-prem?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are you maintaining AD on-prem?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.is_maintaining_on_prem_AD %></p></div>
-                        <div id="" class="col-4"><p><b>Are you maintaining AD in Azure?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are you maintaining AD in Azure?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.is_maintaining_azure %></p></div>
-                        <div id="" class="col-4"><p><b>When you create and admin mailboxes, do you do that in the on-prem AD, or in Azure?</b>
+                        <div id="" class="col-4 response-cell"><p><b>When you create and admin mailboxes, do you do that in the on-prem AD, or in Azure?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.is_admin_in_AD_or_azure %></p></div>
-                        <div id="" class="col-4"><p><b>Sync tools used to Azure?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Sync tools used to Azure?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.sync_tools %></p></div>
-                        <div id="" class="col-4"><p><b>Which O365 version (shared, dedicated/BPOS-D/iTAR)?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Which O365 version (shared, dedicated/BPOS-D/iTAR)?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.which_O365 %></p></div>
                     </div>
                     <br>
@@ -322,7 +323,7 @@
         <hr class="rainbow">
 
         <!-- Email System PS questions -->
-        <div id="emailSystemPs" class="">
+        <div id="emailSystemPs" class="display-header">
             <h5><a href="#emailSystemPSContainer" data-toggle="collapse">Email Systems PS
                     <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
             </h5>
@@ -333,24 +334,24 @@
                     <a href="#" aria-hidden="true" data-target="#editEmailSystemsPS" data-toggle="modal">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
                 </div>
-
+                <br>
                 <h5><a href="#emailSystemsPS-1" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange w/ On-prem Appliances
                         <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
                 </h5>
 
                 <div id="emailSystemsPS-1" class="collapse">
                     <div id="emailSystemContent1" class="row">
-                        <div id="" class="col-4"><p><b>Are DAGs being used?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are DAGs being used?</b>
                                 <br><%= email_ps_questions.prem_exchange.is_using_DAG %></p></div>
-                        <div id="" class="col-4"><p><b>No. of journal mailboxes</b>
+                        <div id="" class="col-4 response-cell"><p><b>No. of journal mailboxes</b>
                                 <br><%= email_ps_questions.prem_exchange.number_of_inboxes %></p></div>
-                        <div id="" class="col-4"><p><b>Are journal mailboxes on their own DB?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are journal mailboxes on their own DB?</b>
                                 <br><%= email_ps_questions.prem_exchange.is_journal_in_own_DB %></p></div>
-                        <div id="" class="col-4"><p><b>How much extra storage is available on the Journaling Mailbox Databases?</b>
+                        <div id="" class="col-4 response-cell"><p><b>How much extra storage is available on the Journaling Mailbox Databases?</b>
                                 <br><%= email_ps_questions.prem_exchange.number_of_extra_storage %></p></div>
-                        <div id="" class="col-4"><p><b>Are you using RMS?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are you using RMS?</b>
                                 <br><%= email_ps_questions.prem_exchange.is_using_RMS %></p></div>
-                        <div id="" class="col-4"><p><b>Is Enable Journal Decryption set to True / False?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Is Enable Journal Decryption set to True / False?</b>
                                 <br><%= email_ps_questions.prem_exchange.is_journal_decryption_enabled %></p></div>
                     </div>
                     <br>
@@ -363,13 +364,13 @@
 
                 <div id="emailSystemsPS-2" class="collapse">
                     <div id="emailSystemContent4" class="row">
-                        <div id="" class="col-4"><p><b>Are you using Azure RMS?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are you using Azure RMS?</b>
                                 <br><%= email_ps_questions.hosted_O365.is_using_azure_rms %></p></div>
-                        <div id="" class="col-4"><p><b>Are you using IRM?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are you using IRM?</b>
                                 <br><%= email_ps_questions.hosted_O365.is_using_IRM %></p></div>
-                        <div id="" class="col-4"><p><b>Is Enable Journal Decryption set to True / False?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Is Enable Journal Decryption set to True / False?</b>
                                 <br><%= email_ps_questions.hosted_O365.is_journal_decryption_enabled %></p></div>
-                        <div id="" class="col-4"><p><b>Are you using O365 Message Encryption?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are you using O365 Message Encryption?</b>
                                 <br><%= email_ps_questions.hosted_O365.is_using_message_decryption %></p></div>
                     </div>
                     <br>
@@ -385,32 +386,32 @@
                     <!-- Exchange Details -->
                     <h5 style="color: lightseagreen">Exchange Details</h5>
                     <div id="emailSystemContent5" class="row">
-                        <div id="" class="col-4"><p><b>Are DAGs being used?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are DAGs being used?</b>
                                 <br><%= email_ps_questions.prem_exchange_prem_O365.is_using_DAG %></p></div>
-                        <div id="" class="col-4"><p><b>No. of journal mailboxes</b>
+                        <div id="" class="col-4 response-cell"><p><b>No. of journal mailboxes</b>
                                 <br><%= email_ps_questions.prem_exchange_prem_O365.number_of_inboxes %></p></div>
-                        <div id="" class="col-4"><p><b>How are your journal rules defined (hub transport or database)?</b>
+                        <div id="" class="col-4 response-cell"><p><b>How are your journal rules defined (hub transport or database)?</b>
                                 <br><%= email_ps_questions.prem_exchange_prem_O365.journal_rules %></p></div>
-                        <div id="" class="col-4"><p><b>Are journal mailboxes on their own DB?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are journal mailboxes on their own DB?</b>
                                 <br><%= email_ps_questions.prem_exchange_prem_O365.is_journal_in_own_DB %></p></div>
-                        <div id="" class="col-4"><p><b>How much extra storage is available on the Journaling Mailbox Databases?</b>
+                        <div id="" class="col-4 response-cell"><p><b>How much extra storage is available on the Journaling Mailbox Databases?</b>
                                 <br><%= email_ps_questions.prem_exchange_prem_O365.number_of_extra_storage %></p></div>
-                        <div id="" class="col-4"><p><b>Are you using RMS?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are you using RMS?</b>
                                 <br><%= email_ps_questions.prem_exchange_prem_O365.is_using_RMS %></p></div>
-                        <div id="" class="col-4"><p><b>Is Enable Journal Decryption set to True / False?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Is Enable Journal Decryption set to True / False?</b>
                                 <br><%= email_ps_questions.prem_exchange_prem_O365.is_journal_decryption_enabled %></p></div>
                     </div>
 
                     <!-- O365 Details -->
                     <h5 style="color: lightseagreen">O365 Details</h5>
                     <div id="emailSystemContent7" class="row">
-                        <div id="" class="col-4"><p><b>Are you using Azure RMS?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are you using Azure RMS?</b>
                                 <br><%= email_ps_questions.prem_exchange_prem_O365.is_using_azure_rms %></p></div>
-                        <div id="" class="col-4"><p><b>Are you using IRM?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are you using IRM?</b>
                                 <br><%= email_ps_questions.prem_exchange_prem_O365.is_using_IRM %></p></div>
-                        <div id="" class="col-4"><p><b>Is Enable Journal Decryption set to True / False?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Is Enable Journal Decryption set to True / False?</b>
                                 <br><%= email_ps_questions.prem_exchange_prem_O365.is_O365_journal_decryption_enabled %></p></div>
-                        <div id="" class="col-4"><p><b>Are you using O365 Message Encryption?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are you using O365 Message Encryption?</b>
                                 <br><%= email_ps_questions.prem_exchange_prem_O365.is_using_message_decryption %></p></div>
                     </div>
                     <br>
@@ -425,55 +426,55 @@
                     <!-- Exchange Details -->
                     <h5 style="color: lightseagreen">Exchange Details</h5>
                     <div id="emailSystemContent8" class="row">
-                        <div id="" class="col-4"><p><b>What versions of Exchange are running?</b>
+                        <div id="" class="col-4 response-cell"><p><b>What versions of Exchange are running?</b>
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.exchange_version %></p></div>
-                        <div id="" class="col-4"><p><b>How many locations are mailbox servers deployed?</b>
+                        <div id="" class="col-4 response-cell"><p><b>How many locations are mailbox servers deployed?</b>
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.mailbox_server_locations %></p></div>
-                        <div id="" class="col-4"><p><b>Do you have an Enterprise CAL?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Do you have an Enterprise CAL?</b>
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.has_enterprise_CAL %></p></div>
-                        <div id="" class="col-4"><p><b>Describe the HA/DR of the Exchange environment.</b>
+                        <div id="" class="col-4 response-cell"><p><b>Describe the HA/DR of the Exchange environment.</b>
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.describe_env %></p></div>
-                        <div id="" class="col-4"><p><b>Please provide a diagram of your exchange infrastructure and your AD Details.</b>
+                        <div id="" class="col-4 response-cell"><p><b>Please provide a diagram of your exchange infrastructure and your AD Details.</b>
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.diagram %></p></div>
-                        <div id="" class="col-4"><p><b>Are DAGs being used?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are DAGs being used?</b>
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.is_using_DAG %></p></div>
                     </div>
 
                     <!-- Active Directory Details -->
                     <h5 style="color: lightseagreen">Active Directory Details</h5>
                     <div id="emailSystemContent9" class="row">
-                        <div id="" class="col-4"><p><b>Is your AD multi-forest?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Is your AD multi-forest?</b>
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.is_multi_forest %></p></div>
-                        <div id="" class="col-4"><p><b>How many forests are there?</b>
+                        <div id="" class="col-4 response-cell"><p><b>How many forests are there?</b>
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.number_of_forests %></p></div>
-                        <div id="" class="col-4"><p><b>Is this a Resource Forest arrangement?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Is this a Resource Forest arrangement?</b>
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.is_resource_forest_arrangement %></p></div>
-                        <div id="" class="col-4"><p><b>Are you using multi-domains?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are you using multi-domains?</b>
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.is_using_multi_domains %></p></div>
-                        <div id="" class="col-4"><p><b>If yes, what is the structure of multi-domain architecture / their relationships?</b>
+                        <div id="" class="col-4 response-cell"><p><b>If yes, what is the structure of multi-domain architecture / their relationships?</b>
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.multi_domain_structure %></p></div>
-                        <div id="" class="col-4"><p><b>Resource forest deployment?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Resource forest deployment?</b>
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.resource_forest_deployment %></p></div>
-                        <div id="" class="col-4"><p><b>How big is your AD? How many objects?</b>
+                        <div id="" class="col-4 response-cell"><p><b>How big is your AD? How many objects?</b>
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.AD_size %></p></div>
-                        <div id="" class="col-4"><p><b>Do you require a secure connection to LDAP? (Note: PFPT does not support a secure LDAP)</b>
+                        <div id="" class="col-4 response-cell"><p><b>Do you require a secure connection to LDAP? (Note: PFPT does not support a secure LDAP)</b>
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.require_ldap %></p></div>
                     </div>
 
                     <!-- O365 Details -->
                     <h5 style="color: lightseagreen">O365 Details</h5>
                     <div id="emailSystemContent10" class="row">
-                        <div id="" class="col-4"><p><b>What O365 license level do you have?</b>
+                        <div id="" class="col-4 response-cell"><p><b>What O365 license level do you have?</b>
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.O365_version %></p></div>
-                        <div id="" class="col-4"><p><b>Are you maintaining AD on-prem?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are you maintaining AD on-prem?</b>
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.is_maintaining_on_prem_AD %></p></div>
-                        <div id="" class="col-4"><p><b>Are you maintaining AD in Azure?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are you maintaining AD in Azure?</b>
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.is_maintaining_azure %></p></div>
-                        <div id="" class="col-4"><p><b>When you create and admin mailboxes, do you do that in the on-prem AD, or in Azure?</b>
+                        <div id="" class="col-4 response-cell"><p><b>When you create and admin mailboxes, do you do that in the on-prem AD, or in Azure?</b>
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.is_admin_in_AD_or_azure %></p></div>
-                        <div id="" class="col-4"><p><b>Sync tools used to Azure?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Sync tools used to Azure?</b>
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.sync_tools %></p></div>
-                        <div id="" class="col-4"><p><b>Which O365 (shared, dedicated /BPOS-D/ iTAR)?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Which O365 (shared, dedicated /BPOS-D/ iTAR)?</b>
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.which_O365 %></p></div>
                     </div>
                     <br>
@@ -483,7 +484,7 @@
         <hr class="rainbow">
 
         <!-- Displaying journaling questions-->
-        <div id="journaling" class="">
+        <div id="journaling" class="display-header">
             <h5><a href="#journalingContainer" data-toggle="collapse">Journaling
                     <i class="fa fa-arrows-v" aria-hidden="true"></i>
                 </a></h5>
@@ -494,26 +495,26 @@
                     <a href="#" aria-hidden="true" data-target="#editJournaling" data-toggle="modal">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
                 </div>
-
+                <br>
                 <h5 style="color: mediumvioletred">Exchange Details</h5>
                 <div id="exchangeDetails" class="row">
-                    <div id="" class="col-4"><p><b>Exchange
+                    <div id="" class="col-4 response-cell"><p><b>Exchange
                                 On-prem</b>
                             <br><%= journaling_questions.exchange.exchange_on_prem %></p></div>
-                    <div id="" class="col-4"><p><b>O365</b>
+                    <div id="" class="col-4 response-cell"><p><b>O365</b>
                             <br><%= journaling_questions.exchange.has_O365 %></p></div>
-                    <div id="" class="col-4"><p><b>Mixed Mode</b>
+                    <div id="" class="col-4 response-cell"><p><b>Mixed Mode</b>
                             <br><%= journaling_questions.exchange.is_mixed_mode %></p></div>
-                    <div id="" class="col-4"><p><b>Number of
+                    <div id="" class="col-4 response-cell"><p><b>Number of
                                 Mailboxes</b>
                             <br><%= journaling_questions.exchange.number_of_mailboxes %></p></div>
-                    <div id="" class="col-4"><p><b>Average Daily Journal Msg
+                    <div id="" class="col-4 response-cell"><p><b>Average Daily Journal Msg
                                 Count</b>
                             <br><%= journaling_questions.exchange.avg_message_count %></p></div>
-                    <div id="" class="col-4"><p><b>Changes in
+                    <div id="" class="col-4 response-cell"><p><b>Changes in
                                 Business</b>
                             <br><%= journaling_questions.exchange.change_in_business %></p></div>
-                    <div id="" class="col-4"><p><b>Has Enterprise
+                    <div id="" class="col-4 response-cell"><p><b>Has Enterprise
                                 CAL?</b>
                             <br><%= journaling_questions.exchange.has_enterprise_CAL %></p></div>
                 </div>
@@ -521,29 +522,21 @@
                 <h5 style="color: mediumvioletred">Mail volume and journaling</h5>
 
                 <div id="mailVolume" class="row">
-                    <div id="" class="col-4"><p><b>Users To Be
-                                Journaled</b>
+                    <div id="" class="col-4 response-cell"><p><b>Users To Be Journaled</b>
                             <br><%= journaling_questions.mail_volume_metrics.users_journaled %></p></div>
-                    <div id="" class="col-4"><p><b>Msg Per
-                                User(Week/Month)</b>
+                    <div id="" class="col-4 response-cell"><p><b>Msg Per User(Week/Month)</b>
                             <br><%= journaling_questions.mail_volume_metrics.user_messages %></p></div>
-                    <div id="" class="col-4"><p><b>Message Volume Derive
-                                Method</b>
+                    <div id="" class="col-4 response-cell"><p><b>Message Volume Derive Method</b>
                             <br><%= journaling_questions.mail_volume_metrics.message_derive %></p></div>
-                    <div id="" class="col-4"><p><b>Average Message
-                                Size</b>
+                    <div id="" class="col-4 response-cell"><p><b>Average Message Size</b>
                             <br><%= journaling_questions.mail_volume_metrics.avg_message_size %></p></div>
-                    <div id="" class="col-4"><p><b>Average Daily Journal Msg
-                                Count</b>
+                    <div id="" class="col-4 response-cell"><p><b>Average Daily Journal Msg Count</b>
                             <br><%= journaling_questions.mail_volume_metrics.avg_message_count %></p></div>
-                    <div id="" class="col-4"><p><b>All User
-                                Journaling</b>
+                    <div id="" class="col-4 response-cell"><p><b>All User Journaling</b>
                             <br><%= journaling_questions.mail_volume_metrics.all_user_journaling %></p></div>
-                    <div id="" class="col-4"><p><b>O365(Time
-                                Line)</b>
+                    <div id="" class="col-4 response-cell"><p><b>O365 (Time Line)</b>
                             <br><%= journaling_questions.mail_volume_metrics.move_to_O365 %></p></div>
-                    <div id="" class="col-4"><p><b>Custom Configuration
-                                Notes</b>
+                    <div id="" class="col-4 response-cell"><p><b>Custom Configuration Notes</b>
                             <br><%= journaling_questions.mail_volume_metrics.custom_config %></p></div>
                 </div>
             </div>
@@ -551,7 +544,7 @@
         <hr class="rainbow">
 
         <!-- Displaying appliance questions -->
-        <div id="appliances" class="">
+        <div id="appliances" class="display-header">
             <h5><a href="#applianceSizing" data-toggle="collapse">Appliances
                     <i class="fa fa-arrows-v" aria-hidden="true"></i>
                 </a></h5>
@@ -561,38 +554,39 @@
                     <a href="#" aria-hidden="true" data-target="#editAppliances" data-toggle="modal">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
                 </div>
+                <br>
                 <div id="applianceDetails" class="row">
-                    <div id="" class="col-4"><p><b>Messages Per Day</b>
+                    <div id="" class="col-4 response-cell"><p><b>Messages Per Day</b>
                             <br><%= appliance_questions.messages_per_day %></p></div>
-                    <div id="" class="col-4"><p><b>Average Message Size</b>
+                    <div id="" class="col-4 response-cell"><p><b>Average Message Size</b>
                             <br><%= appliance_questions.avg_message_size %></p></div>
-                    <div id="" class="col-4"><p><b>Number of Mailboxes</b>
+                    <div id="" class="col-4 response-cell"><p><b>Number of Mailboxes</b>
                             <br><%= appliance_questions.number_of_mailboxes %></p></div>
-                    <div id="" class="col-4"><p><b>Searches Per Day</b>
+                    <div id="" class="col-4 response-cell"><p><b>Searches Per Day</b>
                             <br><%= appliance_questions.searches_per_day %></p></div>
-                    <div id="" class="col-4"><p><b>UI Logins Per Day</b>
+                    <div id="" class="col-4 response-cell"><p><b>UI Logins Per Day</b>
                             <br><%= appliance_questions.ui_logins_per_day %></p></div>
-                    <div id="" class="col-4"><p><b>Exports Per Day</b>
+                    <div id="" class="col-4 response-cell"><p><b>Exports Per Day</b>
                             <br><%= appliance_questions.exports_per_day %></p></div>
-                    <div id="" class="col-4"><p><b>Average Export Size</b>
+                    <div id="" class="col-4 response-cell"><p><b>Average Export Size</b>
                             <br><%= appliance_questions.avg_export_size %></p></div>
-                    <div id="" class="col-4"><p><b>Active Directory Size</b>
+                    <div id="" class="col-4 response-cell"><p><b>Active Directory Size</b>
                             <br><%= appliance_questions.AD_size %></p></div>
-                    <div id="" class="col-4"><p><b>Does the customer prefer virtual or hardware appliances?</b>
+                    <div id="" class="col-4 response-cell"><p><b>Does the customer prefer virtual or hardware appliances?</b>
                             <br><%= appliance_questions.appliance_preference %></p></div>
-                    <div id="" class="col-4"><p><b>Confirm the customer has a VMWare environment</b>
+                    <div id="" class="col-4 response-cell"><p><b>Confirm the customer has a VMWare environment</b>
                             <br><%= appliance_questions.has_vmware_env %></p></div>
-                    <div id="" class="col-4"><p><b># of Appliances Recommended</b>
+                    <div id="" class="col-4 response-cell"><p><b># of Appliances Recommended</b>
                             <br><%= appliance_questions.number_of_appliance_recommended %></p></div>
-                    <div id="" class="col-4"><p><b>DR footprint</b>
+                    <div id="" class="col-4 response-cell"><p><b>DR footprint</b>
                             <br><%= appliance_questions.DR_footprint %></p></div>
-                    <div id="" class="col-4"><p><b>How many of each purpose (UI, export, archiving, stubbing)</b>
+                    <div id="" class="col-4 response-cell"><p><b>How many of each purpose (UI, export, archiving, stubbing)</b>
                             <br><%= appliance_questions.purposes %></p></div>
-                    <div id="" class="col-4"><p><b>Archive Proxy?</b>
+                    <div id="" class="col-4 response-cell"><p><b>Archive Proxy?</b>
                             <br><%= appliance_questions.archive_proxy %></p></div>
-                    <div id="" class="col-4"><p><b>Transport Agent</b>
+                    <div id="" class="col-4 response-cell"><p><b>Transport Agent</b>
                             <br><%= appliance_questions.transport_agent %></p></div>
-                    <div id="" class="col-4"><p><b>Outlook View Manager</b>
+                    <div id="" class="col-4 response-cell"><p><b>Outlook View Manager</b>
                             <br><%= appliance_questions.outlook_view_manager %></p></div>
                 </div>
             </div>
@@ -600,7 +594,7 @@
         <hr class="rainbow">
 
         <!-- Displaying other data sources questions -->
-        <div id="otherDataSources" class="">
+        <div id="otherDataSources" class="display-header">
             <h5><a href="#otherDataSourcesContainer" data-toggle="collapse">Other Data Sources
                     <i class="fa fa-arrows-v" aria-hidden="true"></i></a></h5>
             <br>
@@ -610,6 +604,7 @@
                     <a href="#" aria-hidden="true" data-target="#editOtherDataSources" data-toggle="modal">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
                 </div>
+                <br>
 
                 <!-- Custom content archiving -->
                 <h5><a href="#CCA" style="color: mediumvioletred;" data-toggle="collapse">Custom content archiving
@@ -618,15 +613,15 @@
 
                 <div id="CCA" class="collapse">
                     <div id="customContentArchiving" class="row">
-                        <div id="" class="col-4"><p><b>Do you have custom applications that generate content that needs to be archived?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Do you have custom applications that generate content that needs to be archived?</b>
                                 <br><%= other_data_source_questions.custom_content_archiving.need_custom_archive %></p></div>
-                        <div id="" class="col-4"><p><b>Provide a diagram of how content is captured and submitted</b>
+                        <div id="" class="col-4 response-cell"><p><b>Provide a diagram of how content is captured and submitted</b>
                                 <br><%= other_data_source_questions.custom_content_archiving.diagram %></p></div>
-                        <div id="" class="col-4"><p><b>Daily volumes?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Daily volumes?</b>
                                 <br><%= other_data_source_questions.custom_content_archiving.daily_volume %></p></div>
-                        <div id="" class="col-4"><p><b>Average Message size?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Average Message size?</b>
                                 <br><%= other_data_source_questions.custom_content_archiving.avg_message_size %></p></div>
-                        <div id="" class="col-4"><p><b>What are these systems, and what are they sending?</b>
+                        <div id="" class="col-4 response-cell"><p><b>What are these systems, and what are they sending?</b>
                                 <br><%= other_data_source_questions.custom_content_archiving.systems %></p></div>
                     </div>
                 </div>
@@ -638,14 +633,14 @@
 
                 <div id="PSA" class="collapse">
                     <div id="publicSocialArchiving" class="row">
-                        <div id="" class="col-4"><p><b>Which of these do you need to capture?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Which of these do you need to capture?</b>
                                 <br>(FB, Linkedin, TWTTR, GOOG, YOUTUBE)
                                 <br><%= other_data_source_questions.public_social_archiving.need_to_capture %></p></div>
-                        <div id="" class="col-4"><p><b>How many accounts for each source need to be captured?</b>
+                        <div id="" class="col-4 response-cell"><p><b>How many accounts for each source need to be captured?</b>
                                 <br><%= other_data_source_questions.public_social_archiving.number_of_each_account %></p></div>
-                        <div id="" class="col-4"><p><b>What are you using to archiving this content today?</b>
+                        <div id="" class="col-4 response-cell"><p><b>What are you using to archiving this content today?</b>
                                 <br><%= other_data_source_questions.public_social_archiving.using_what_to_archive %></p></div>
-                        <div id="" class="col-4"><p><b>Who from the Digital Risk Team is involved?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Who from the Digital Risk Team is involved?</b>
                                 <br><%= other_data_source_questions.public_social_archiving.digital_risk_agent %></p></div>
                     </div>
                 </div>
@@ -660,84 +655,84 @@
                     <!-- Needs -->
                     <p>Archiving needs:<br></p>
                     <div id="ECA-needs" class="row">
-                        <div class="col-4"><p><b>Files</b>
+                        <div class="col-4 response-cell"><p><b>Files</b>
                                 <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.files) { %>
                                 <i class="fa fa-check"></i>
                                 <% } %>
                             </p></div>
 
-                        <div class="col-4"><p><b>Skype in the cloud</b>
+                        <div class="col-4 response-cell"><p><b>Skype in the cloud</b>
                                 <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.skype_in_cloud) { %>
                                 <i class="fa fa-check"></i>
                                 <% } %>
                             </p></div>
 
-                        <div class="col-4"><p><b>Skype on Prem</b>
+                        <div class="col-4 response-cell"><p><b>Skype on Prem</b>
                                 <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.skype_on_prem) { %>
                                 <i class="fa fa-check"></i>
                                 <% } %>
                             </p></div>
 
-                        <div class="col-4"><p><b>Lync on Prem</b>
+                        <div class="col-4 response-cell"><p><b>Lync on Prem</b>
                                 <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.lync_on_prem) { %>
                                 <i class="fa fa-check"></i>
                                 <% } %>
                             </p></div>
 
-                        <div class="col-4"><p><b>One Drive</b>
+                        <div class="col-4 response-cell"><p><b>One Drive</b>
                                 <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.one_drive) { %>
                                 <i class="fa fa-check"></i>
                                 <% } %>
                             </p></div>
 
-                        <div class="col-4"><p><b>Box</b>
+                        <div class="col-4 response-cell"><p><b>Box</b>
                                 <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.box) { %>
                                 <i class="fa fa-check"></i>
                                 <% } %>
                             </p></div>
 
-                        <div class="col-4"><p><b>Bloomberg</b>
+                        <div class="col-4 response-cell"><p><b>Bloomberg</b>
                                 <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.bloomberg) { %>
                                 <i class="fa fa-check"></i>
                                 <% } %>
                             </p></div>
 
-                        <div class="col-4"><p><b>Yammer</b>
+                        <div class="col-4 response-cell"><p><b>Yammer</b>
                                 <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.yammer) { %>
                                 <i class="fa fa-check"></i>
                                 <% } %>
                             </p></div>
 
-                        <div class="col-4"><p><b>Jive</b>
+                        <div class="col-4 response-cell"><p><b>Jive</b>
                                 <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.jive) { %>
                                 <i class="fa fa-check"></i>
                                 <% } %>
                             </p></div>
 
-                        <div class="col-4"><p><b>Chatter</b>
+                        <div class="col-4 response-cell"><p><b>Chatter</b>
                                 <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.chatter) { %>
                                 <i class="fa fa-check"></i>
                                 <% } %>
                             </p></div>
 
-                        <div class="col-4"><p><b>Slack</b>
+                        <div class="col-4 response-cell"><p><b>Slack</b>
                                 <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.slack) { %>
                                 <i class="fa fa-check"></i>
                                 <% } %>
                             </p></div>
 
-                        <div class="col-4"><p><b>Symphony</b>
+                        <div class="col-4 response-cell"><p><b>Symphony</b>
                                 <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.symphony) { %>
                                 <i class="fa fa-check"></i>
@@ -753,26 +748,26 @@
 
                     <div id="ECA-general" class="collapse">
                         <div id="ECA-general-row" class="row">
-                            <div id="" class="col-4"><p><b>How many users are there on each platform?</b>
+                            <div id="" class="col-4 response-cell"><p><b>How many users are there on each platform?</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.general.number_of_users_per_platform %></p>
                             </div>
-                            <div id="" class="col-4"><p><b>How many of these users need to be archived</b>
+                            <div id="" class="col-4 response-cell"><p><b>How many of these users need to be archived</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.general.number_of_users_to_archive %></p>
                             </div>
-                            <div id="" class="col-4"><p><b>Do you want to capture all user activity on each platform?</b>
+                            <div id="" class="col-4 response-cell"><p><b>Do you want to capture all user activity on each platform?</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.general.capture_user_activity %></p></div>
-                            <div id="" class="col-4"><p><b>Average volume of messages/day?</b>
+                            <div id="" class="col-4 response-cell"><p><b>Average volume of messages/day?</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.general.avg_daily_message_volume %></p>
                             </div>
-                            <div id="" class="col-4"><p><b>What is the most active profile like in terms of message and file creation and updates
+                            <div id="" class="col-4 response-cell"><p><b>What is the most active profile like in terms of message and file creation and updates
                                         (which
                                         are treated as new uploads)?</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.general.most_active_profile %></p></div>
-                            <div id="" class="col-4"><p><b>What is their retention policy?</b>
+                            <div id="" class="col-4 response-cell"><p><b>What is their retention policy?</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.general.retention_policy %></p></div>
-                            <div id="" class="col-4"><p><b>Is the customer a PFPT archiving customer?</b>
+                            <div id="" class="col-4 response-cell"><p><b>Is the customer a PFPT archiving customer?</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.general.is_archiving_customer %></p></div>
-                            <div id="" class="col-4"><p><b>If not, what archive are you feeding messages into?</b>
+                            <div id="" class="col-4 response-cell"><p><b>If not, what archive are you feeding messages into?</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.general.which_archive %></p></div>
                         </div>
                         <br>
@@ -785,20 +780,20 @@
 
                     <div id="ECA-files" class="collapse">
                         <div id="ECA-files-row" class="row">
-                            <div id="" class="col-4"><p><b>What is the storage usage (how much data is in the account)</b>
+                            <div id="" class="col-4 response-cell"><p><b>What is the storage usage (how much data is in the account)</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.files.storage_usage %></p></div>
-                            <div id="" class="col-4"><p><b>How many new files, how many updates, how large?</b>
+                            <div id="" class="col-4 response-cell"><p><b>How many new files, how many updates, how large?</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.files.files_desc %></p></div>
-                            <div id="" class="col-4"><p><b>What is file increase rate (number of new files) per day</b>
+                            <div id="" class="col-4 response-cell"><p><b>What is file increase rate (number of new files) per day</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.files.fill_rate %></p></div>
-                            <div id="" class="col-4"><p><b>Do they need to archive the original content or is text extracted content sufficient?</b>
+                            <div id="" class="col-4 response-cell"><p><b>Do they need to archive the original content or is text extracted content sufficient?</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.files.need_original_or_extracted %>
                                 </p></div>
-                            <div id="" class="col-4"><p><b>Is the customer a PFPT archiving customer?</b>
+                            <div id="" class="col-4 response-cell"><p><b>Is the customer a PFPT archiving customer?</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.files.is_archiving_customer %></p></div>
-                            <div id="" class="col-4"><p><b>Yes: Their content will be text converted if its larger then 25mb?</b>
+                            <div id="" class="col-4 response-cell"><p><b>Yes: Their content will be text converted if its larger then 25mb?</b>
                                     <br>Yes/No</p></div>
-                            <div id="" class="col-4"><p><b>No: Files larger than 25mb will not be archived but the content will be indexed and
+                            <div id="" class="col-4 response-cell"><p><b>No: Files larger than 25mb will not be archived but the content will be indexed and
                                         available for search</b>
                                     <br>Yes/No</p></div>
                         </div>
@@ -812,14 +807,14 @@
 
                     <div id="ECA-skype" class="collapse">
                         <div id="ECA-skype-row" class="row">
-                            <div id="" class="col-4"><p><b>What's their deployment? hybrid vs fully in cloud (hosted)</b>
+                            <div id="" class="col-4 response-cell"><p><b>What's their deployment? hybrid vs fully in cloud (hosted)</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.skype_business.deployment %></p></div>
-                            <div id="" class="col-4"><p><b>Distribution of license levels for all users? (need E3 or higher)</b>
+                            <div id="" class="col-4 response-cell"><p><b>Distribution of license levels for all users? (need E3 or higher)</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.skype_business.license_level %></p></div>
-                            <div id="" class="col-4"><p><b>Do they have any other services that use Holds and searches</b>
+                            <div id="" class="col-4 response-cell"><p><b>Do they have any other services that use Holds and searches</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.skype_business.use_holds_or_searches %>
                                 </p></div>
-                            <div id="" class="col-4"><p><b>If so how active are they? (how many searches and holds)</b>
+                            <div id="" class="col-4 response-cell"><p><b>If so how active are they? (how many searches and holds)</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.skype_business.how_active %></p></div>
                         </div>
                         <br>
@@ -833,12 +828,12 @@
 
                     <div id="ECA-skype-lync" class="collapse">
                         <div id="ECA-skype-lync-row" class="row">
-                            <div id="" class="col-4"><p><b>What's their deployment (hybrid vs fully in cloud/hosted)?</b>
+                            <div id="" class="col-4 response-cell"><p><b>What's their deployment (hybrid vs fully in cloud/hosted)?</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.skype_on_prem.deployment %></p></div>
-                            <div id="" class="col-4"><p><b>How many Lync servers & Lync DBs</b>
+                            <div id="" class="col-4 response-cell"><p><b>How many Lync servers & Lync DBs</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.skype_on_prem.number_of_lync_servers %>
                                 </p></div>
-                            <div id="" class="col-4"><p><b>What is the retention policy in the Lync DB? (we require 90 days or greater)</b>
+                            <div id="" class="col-4 response-cell"><p><b>What is the retention policy in the Lync DB? (we require 90 days or greater)</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.skype_on_prem.retention_policy %>
                                 </p></div>
                         </div>
@@ -853,7 +848,7 @@
                     <div id="ECA-box-onedrive" class="collapse">
                         <b style="color: orangered">Please refer to "General" and "Files" for questions about file based sources.</b>
                         <div id="ECA-box-onedrive-row" class="row">
-                            <div id="" class="col-4"><p><b>For OneDrive, how do you authenticate?</b>
+                            <div id="" class="col-4 response-cell"><p><b>For OneDrive, how do you authenticate?</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.box_one_drive.auth %></p></div>
                         </div>
                         <br>
@@ -866,15 +861,15 @@
 
                     <div id="ECA-chatter" class="collapse">
                         <div id="ECA-chatter-row" class="row">
-                            <div id="" class="col-4"><p><b>How many groups?</b>
+                            <div id="" class="col-4 response-cell"><p><b>How many groups?</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.chatter.number_of_groups %></p></div>
-                            <div id="" class="col-4"><p><b>Are they going to multi-journal?</b>
+                            <div id="" class="col-4 response-cell"><p><b>Are they going to multi-journal?</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.chatter.multi_journal %></p></div>
-                            <div id="" class="col-4"><p><b>Do they send any files that are over 3 MB?</b>
+                            <div id="" class="col-4 response-cell"><p><b>Do they send any files that are over 3 MB?</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.chatter.over_3MB %></p></div>
-                            <div id="" class="col-4"><p><b>If yes, are they comfortable relaying this content through the PFPT network?</b>
+                            <div id="" class="col-4 response-cell"><p><b>If yes, are they comfortable relaying this content through the PFPT network?</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.chatter.comfortable %></p></div>
-                            <div id="" class="col-4"><p><b>Is there a requirement to keep things in the SF environment?</b>
+                            <div id="" class="col-4 response-cell"><p><b>Is there a requirement to keep things in the SF environment?</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.chatter.requirement %></p></div>
                         </div>
                         <br>
@@ -887,7 +882,7 @@
 
                     <div id="ECA-symphony" class="collapse">
                         <div id="ECA-symphony-row" class="row">
-                            <div id="" class="col-4"><p><b>What license level do they have?</b>
+                            <div id="" class="col-4 response-cell"><p><b>What license level do they have?</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.symphony.license %></p></div>
                         </div>
                         <br>
@@ -895,25 +890,25 @@
 
                     <!-- Jive -->
                     <div id="ECA-jive" class="row">
-                        <div id="" class="col-4"><p><b>Jive</b>
+                        <div id="" class="col-4 response-cell"><p><b>Jive</b>
                                 <br>Please refer to the general questions.</p></div>
                     </div>
 
                     <!-- Yammer -->
                     <div id="ECA-yammer" class="row">
-                        <div id="" class="col-4"><p><b>Yammer</b>
+                        <div id="" class="col-4 response-cell"><p><b>Yammer</b>
                                 <br>Please refer to the general questions.</p></div>
                     </div>
 
                     <!-- Bloomberg -->
                     <div id="ECA-bloomberg" class="row">
-                        <div id="" class="col-4"><p><b>Bloomberg</b>
+                        <div id="" class="col-4 response-cell"><p><b>Bloomberg</b>
                                 <br>Please refer to the general questions.</p></div>
                     </div>
 
                     <!-- Slack -->
                     <div id="ECA-bloomberg" class="row">
-                        <div id="" class="col-4"><p><b>Slack</b>
+                        <div id="" class="col-4 response-cell"><p><b>Slack</b>
                                 <br>Please refer to the general questions.</p></div>
                     </div>
 
@@ -924,7 +919,7 @@
         <hr class="rainbow">
 
         <!-- Displaying desktop network questions -->
-        <div id="desktopNetworkDr" class="">
+        <div id="desktopNetworkDr" class="display-header">
             <h5><a href="#desktopContent" data-toggle="collapse">Desktop/Network/DR
                     <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
             </h5>
@@ -935,6 +930,7 @@
                     <a href="#" aria-hidden="true" data-target="#editDesktopNetwork" data-toggle="modal">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
                 </div>
+                <br>
 
                 <h5><a href="#desktop-Network" style="color: mediumvioletred" data-toggle="collapse">Network & Security
                         <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
@@ -943,21 +939,21 @@
                 <!-- Network and security -->
                 <div id="desktop-Network" class="collapse">
                     <div id="networkSecurity" class="row">
-                        <div id="" class="col-4"><p><b>Do you want users to be able to access the user interface outside of your network?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Do you want users to be able to access the user interface outside of your network?</b>
                                 <br><%= desktop_network_questions.network_security.allow_outside_access %></p></div>
-                        <div id="" class="col-4"><p><b>DMZ</b>
+                        <div id="" class="col-4 response-cell"><p><b>DMZ</b>
                                 <br><%= desktop_network_questions.network_security.DMZ %></p></div>
-                        <div id="" class="col-4"><p><b>Firewalls</b>
+                        <div id="" class="col-4 response-cell"><p><b>Firewalls</b>
                                 <br><%= desktop_network_questions.network_security.firewalls %></p></div>
-                        <div id="" class="col-4"><p><b>VPN Connection to PFPT Required</b>
+                        <div id="" class="col-4 response-cell"><p><b>VPN Connection to PFPT Required</b>
                                 <br><%= desktop_network_questions.network_security.require_vpn %></p></div>
-                        <div id="" class="col-4"><p><b>Enable access to user outside network</b>
+                        <div id="" class="col-4 response-cell"><p><b>Enable access to user outside network</b>
                                 <br><%= desktop_network_questions.network_security.enable_outside_access %></p></div>
-                        <div id="" class="col-4"><p><b>Load Balancer/VIP</b>
+                        <div id="" class="col-4 response-cell"><p><b>Load Balancer/VIP</b>
                                 <br><%= desktop_network_questions.network_security.load_balancer_VIP %></p></div>
-                        <div id="" class="col-4"><p><b>NAT IP List</b>
+                        <div id="" class="col-4 response-cell"><p><b>NAT IP List</b>
                                 <br><%= desktop_network_questions.network_security.nat_IP_list %></p></div>
-                        <div id="" class="col-4"><p><b>Proxy Servers</b>
+                        <div id="" class="col-4 response-cell"><p><b>Proxy Servers</b>
                                 <br><%= desktop_network_questions.network_security.proxy_servers %></p></div>
                     </div>
                     <br>
@@ -970,21 +966,21 @@
 
                 <div id="desktop-End-User" class="collapse">
                     <div id="endUserEnv" class="row">
-                        <div id="" class="col-4"><p><b>What browsers do user have access to (Chrome, IE, Edge, Firefox, etc.)?</b>
+                        <div id="" class="col-4 response-cell"><p><b>What browsers do user have access to (Chrome, IE, Edge, Firefox, etc.)?</b>
                                 <br><%= desktop_network_questions.end_user_desktop_env.browsers %></p></div>
-                        <div id="" class="col-4"><p><b>What versions of each available browsers are allowed</b>
+                        <div id="" class="col-4 response-cell"><p><b>What versions of each available browsers are allowed</b>
                                 <br><%= desktop_network_questions.end_user_desktop_env.browser_versions %></p></div>
-                        <div id="" class="col-4"><p><b>Do you run IE 11</b>
+                        <div id="" class="col-4 response-cell"><p><b>Do you run IE 11</b>
                                 <br><%= desktop_network_questions.end_user_desktop_env.ie11 %></p></div>
-                        <div id="" class="col-4"><p><b>Can users enable compatibility mode in IE 11</b>
+                        <div id="" class="col-4 response-cell"><p><b>Can users enable compatibility mode in IE 11</b>
                                 <br><%= desktop_network_questions.end_user_desktop_env.ie11_compatibility %></p></div>
-                        <div id="" class="col-4"><p><b>Is IE deployed in Enterprise Mode?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Is IE deployed in Enterprise Mode?</b>
                                 <br><%= desktop_network_questions.end_user_desktop_env.is_ie11_enterprise %></p></div>
-                        <div id="" class="col-4"><p><b>Can users enable pop-ups for specific URLs</b>
+                        <div id="" class="col-4 response-cell"><p><b>Can users enable pop-ups for specific URLs</b>
                                 <br><%= desktop_network_questions.end_user_desktop_env.is_popups_enabled %></p></div>
-                        <div id="" class="col-4"><p><b>Do users use OWA?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Do users use OWA?</b>
                                 <br><%= desktop_network_questions.end_user_desktop_env.is_OWA_used %></p></div>
-                        <div id="" class="col-4"><p><b>Do users have access to: Chrome/Firefox/Edge (Not sure about question)</b>
+                        <div id="" class="col-4 response-cell"><p><b>Do users have access to: Chrome/Firefox/Edge (Not sure about question)</b>
                                 <br><%= desktop_network_questions.end_user_desktop_env.browsers_access %></p></div>
                     </div>
                     <br>
@@ -997,11 +993,11 @@
 
                 <div id="desktop-Disaster" class="collapse">
                     <div id="disasterRecovery" class="row">
-                        <div id="" class="col-4"><p><b>Do you have Exchange and AD being replicated to a secondary data center</b>
+                        <div id="" class="col-4 response-cell"><p><b>Do you have Exchange and AD being replicated to a secondary data center</b>
                                 <br><%= desktop_network_questions.disaster_recovery.is_replicating_exchange_and_AD %></p></div>
-                        <div id="" class="col-4"><p><b>Describe what does the DR/HA configuration look like.</b>
+                        <div id="" class="col-4 response-cell"><p><b>Describe what does the DR/HA configuration look like.</b>
                                 <br><%= desktop_network_questions.disaster_recovery.config_description %></p></div>
-                        <div id="" class="col-4"><p><b>Can you provide a diagram of the Exchange environment with the DR/HA included. (File
+                        <div id="" class="col-4 response-cell"><p><b>Can you provide a diagram of the Exchange environment with the DR/HA included. (File
                                     upload???)</b>
                                 <br><%= desktop_network_questions.disaster_recovery.diagram %></p></div>
                     </div>
@@ -1014,36 +1010,36 @@
 
                 <div id="desktop-Auth" class="collapse">
                     <div id="authentication" class="row">
-                        <div id="" class="col-4"><p><b>Do you use SSO?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Do you use SSO?</b>
                                 <br><%= desktop_network_questions.authentication.use_SSO %></p></div>
-                        <div id="" class="col-4"><p><b>Do you have an IDP (Identity Provider) that supports SAML 2.0?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Do you have an IDP (Identity Provider) that supports SAML 2.0?</b>
                                 <br><%= desktop_network_questions.authentication.have_IDP %></p></div>
-                        <div id="" class="col-4"><p><b>Where will the PFPT AD security groups be maintained? (On prem deployments require
+                        <div id="" class="col-4 response-cell"><p><b>Where will the PFPT AD security groups be maintained? (On prem deployments require
                                     universal
                                     groups containing all users that need to log in, in the resource forest)</b>
                                 <br><%= desktop_network_questions.authentication.where_security_group %></p></div>
-                        <div id="" class="col-4"><p><b>Service provider or IDP (Identity Provider) initiated? (we only support Service Provider
+                        <div id="" class="col-4 response-cell"><p><b>Service provider or IDP (Identity Provider) initiated? (we only support Service Provider
                                     initiated)</b>
                                 <br><%= desktop_network_questions.authentication.intiated_IDP %></p></div>
-                        <div id="" class="col-4"><p><b>Do you require request encryption? (we don't support it)</b>
+                        <div id="" class="col-4 response-cell"><p><b>Do you require request encryption? (we don't support it)</b>
                                 <br><%= desktop_network_questions.authentication.require_request_encryption %></p></div>
-                        <div id="" class="col-4"><p><b>Do you require response signing? (we support it)</b>
+                        <div id="" class="col-4 response-cell"><p><b>Do you require response signing? (we support it)</b>
                                 <br><%= desktop_network_questions.authentication.require_response_signing %></p></div>
-                        <div id="" class="col-4"><p><b>Do you require response encryption? (we support it)</b>
+                        <div id="" class="col-4 response-cell"><p><b>Do you require response encryption? (we support it)</b>
                                 <br><%= desktop_network_questions.authentication.require_response_encryption %></p></div>
-                        <div id="" class="col-4"><p><b>If the response is to be encrypted, do you require a 3rd party cert or is a self-signed
+                        <div id="" class="col-4 response-cell"><p><b>If the response is to be encrypted, do you require a 3rd party cert or is a self-signed
                                     cert
                                     sufficient? We support both</b>
                                 <br><%= desktop_network_questions.authentication.require_third_party_cert %></p></div>
-                        <div id="" class="col-4"><p><b>What attribute will you be sending as part of the response? (we only support UPN, email,
+                        <div id="" class="col-4 response-cell"><p><b>What attribute will you be sending as part of the response? (we only support UPN, email,
                                     and
                                     SID)</b>
                                 <br><%= desktop_network_questions.authentication.response_attributes %></p></div>
-                        <div id="" class="col-4"><p><b>Do you intend to deploy PFPT's remote authentication?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Do you intend to deploy PFPT's remote authentication?</b>
                                 <br><%= desktop_network_questions.authentication.intend_to_deploy_remote_auth %></p></div>
-                        <div id="" class="col-4"><p><b>Are all user accounts on trusted forests?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are all user accounts on trusted forests?</b>
                                 <br><%= desktop_network_questions.authentication.all_users_trusted %></p></div>
-                        <div id="" class="col-4"><p><b>Are all domain controllers accessible on the same network as the server that Remote Auth
+                        <div id="" class="col-4 response-cell"><p><b>Are all domain controllers accessible on the same network as the server that Remote Auth
                                     will
                                     be installed?</b>
                                 <br><%= desktop_network_questions.authentication.domain_controllers %></p></div>
@@ -1055,7 +1051,7 @@
         <hr class="rainbow">
 
         <!-- Displaying usage questions -->
-        <div id="usage" class="">
+        <div id="usage" class="display-header">
             <h5><a href="#usageContainer" data-toggle="collapse">Usage
                     <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
             </h5>
@@ -1066,6 +1062,7 @@
                     <a href="#" aria-hidden="true" data-target="#editUsage" data-toggle="modal">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
                 </div>
+                <br>
 
                 <!-- Supervision -->
                 <h5><a href="#usage-supervision" style="color: mediumvioletred" data-toggle="collapse">Supervision
@@ -1080,26 +1077,26 @@
                     <div id="usage-supervision-notes" class="collapse">
                         <div id="usageSupervision-notes" class="row">
                             <!-- Notes/Details -->
-                            <div id="" class="col-4"><p><b>What supervision system are you currently running?</b>
+                            <div id="" class="col-4 response-cell"><p><b>What supervision system are you currently running?</b>
                                     <br><%= usage_questions.supervision.supervision_system %></p></div>
-                            <div id="" class="col-4"><p><b>What are your current pain-points?</b>
+                            <div id="" class="col-4 response-cell"><p><b>What are your current pain-points?</b>
                                     <br><%= usage_questions.supervision.pain_points %></p></div>
-                            <div id="" class="col-4"><p><b>Are there deficiencies in your current process that put you at risk?</b>
+                            <div id="" class="col-4 response-cell"><p><b>Are there deficiencies in your current process that put you at risk?</b>
                                     <br><%= usage_questions.supervision.deficiencies %></p></div>
-                            <div id="" class="col-4"><p><b>What are the customer's lines of business that has different Supervision
+                            <div id="" class="col-4 response-cell"><p><b>What are the customer's lines of business that has different Supervision
                                         requirements?</b>
                                     <br><%= usage_questions.supervision.business_supervision_requirements %></p></div>
-                            <div id="" class="col-4"><p><b>Is review Centralized / De-centralized?</b>
+                            <div id="" class="col-4 response-cell"><p><b>Is review Centralized / De-centralized?</b>
                                     <br><%= usage_questions.supervision.review %></p></div>
-                            <div id="" class="col-4"><p><b>What is the escalation process when issues / violations are found?</b>
+                            <div id="" class="col-4 response-cell"><p><b>What is the escalation process when issues / violations are found?</b>
                                     <br><%= usage_questions.supervision.escalation_process %></p></div>
-                            <div id="" class="col-4"><p><b>Who is responsible for reviewing which group / user</b>
+                            <div id="" class="col-4 response-cell"><p><b>Who is responsible for reviewing which group / user</b>
                                     <br><%= usage_questions.supervision.system_record.responsible %></p></div>
-                            <div id="" class="col-4"><p><b>How is this data loaded into your current system?</b>
+                            <div id="" class="col-4 response-cell"><p><b>How is this data loaded into your current system?</b>
                                     <br><%= usage_questions.supervision.system_record.how_is_data_loaded %></p></div>
-                            <div id="" class="col-4"><p><b>Do you need to migrate your existing policies?</b>
+                            <div id="" class="col-4 response-cell"><p><b>Do you need to migrate your existing policies?</b>
                                     <br><%= usage_questions.supervision.need_to_migrate_policies %></p></div>
-                            <div id="" class="col-4"><p><b>Do you already have whitelists, disclaimers headers, etc...
+                            <div id="" class="col-4 response-cell"><p><b>Do you already have whitelists, disclaimers headers, etc...
                                         (pre-approved content) that needs to be excluded?</b>
                                     <br><%= usage_questions.supervision.whitelists %></p></div>
                         </div>
@@ -1114,15 +1111,15 @@
                     <div id="usage-supervision-random" class="collapse">
                         <div id="usageSupervision-random_sampling" class="row">
                             <br>
-                            <div id="" class="col-4"><p><b>Do you have sampling rules?</b>
+                            <div id="" class="col-4 response-cell"><p><b>Do you have sampling rules?</b>
                                     <br><%= usage_questions.supervision.random_sampling.has_rules %></p></div>
-                            <div id="" class="col-4"><p><b>Do you have multiple sampling rates that apply to a given person (i.e. different
+                            <div id="" class="col-4 response-cell"><p><b>Do you have multiple sampling rates that apply to a given person (i.e. different
                                         message
                                         types, internal vs external)?</b>
                                     <br><%= usage_questions.supervision.random_sampling.multi_sampling %></p></div>
-                            <div id="" class="col-4"><p><b>Intention of sampling: top up or not?</b>
+                            <div id="" class="col-4 response-cell"><p><b>Intention of sampling: top up or not?</b>
                                     <br><%= usage_questions.supervision.random_sampling.sampling_intention %></p></div>
-                            <div id="" class="col-4"><p><b>Do you directly notify violators for certain types of offenses?</b>
+                            <div id="" class="col-4 response-cell"><p><b>Do you directly notify violators for certain types of offenses?</b>
                                     <br><%= usage_questions.supervision.random_sampling.notify_violators %></p></div>
                         </div>
                         <br>
@@ -1136,11 +1133,11 @@
 
                     <div id="usage-supervision-req" class="collapse">
                         <div id="usageSupervision-reporting_requirements" class="row">
-                            <div id="" class="col-4"><p><b>What decisions are made based on these reports?</b>
+                            <div id="" class="col-4 response-cell"><p><b>What decisions are made based on these reports?</b>
                                     <br><%= usage_questions.supervision.report_requirements.decisions %></p></div>
-                            <div id="" class="col-4"><p><b>What reports are required for roll-out? Please provide samples.</b>
+                            <div id="" class="col-4 response-cell"><p><b>What reports are required for roll-out? Please provide samples.</b>
                                     <br><%= usage_questions.supervision.report_requirements.roll_out_reports %></p></div>
-                            <div id="" class="col-4"><p><b>What reports are nice to have in the future?</b>
+                            <div id="" class="col-4 response-cell"><p><b>What reports are nice to have in the future?</b>
                                     <br><%= usage_questions.supervision.report_requirements.future_reports %></p></div>
                         </div>
                         <br>
@@ -1155,11 +1152,11 @@
 
                 <div id="usage-stubbing" class="collapse">
                     <div id="usageStubbing" class="row">
-                        <div id="" class="col-4"><p><b>Is the customer interested in Stubbing?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Is the customer interested in Stubbing?</b>
                                 <br><%= usage_questions.stubbing.interested_in_stubbing %></p></div>
-                        <div id="" class="col-4"><p><b>If within these boundaries, and if you intend to use it, what's your stubbing policy?</b>
+                        <div id="" class="col-4 response-cell"><p><b>If within these boundaries, and if you intend to use it, what's your stubbing policy?</b>
                                 <br><%= usage_questions.stubbing.stubbing_policy %></p></div>
-                        <div id="" class="col-4"><p><b>How many users is the customer going to stub for?</b>
+                        <div id="" class="col-4 response-cell"><p><b>How many users is the customer going to stub for?</b>
                                 <br><%= usage_questions.stubbing.number_of_stubbing_users %></p></div>
                     </div>
                     <br>
@@ -1172,9 +1169,9 @@
 
                 <div id="usage-selective" class="collapse">
                     <div id="usageSelectiveDisposition" class="row">
-                        <div id="" class="col-4"><p><b>What are the scenarios would you need to apply it?</b>
+                        <div id="" class="col-4 response-cell"><p><b>What are the scenarios would you need to apply it?</b>
                                 <br><%= usage_questions.selective_disposition.scenarios %></p></div>
-                        <div id="" class="col-4"><p><b>How many messages would you want to selectively dispose?</b>
+                        <div id="" class="col-4 response-cell"><p><b>How many messages would you want to selectively dispose?</b>
                                 <br><%= usage_questions.selective_disposition.messages_to_dispose %></p></div>
                     </div>
                     <br>
@@ -1187,21 +1184,21 @@
 
                 <div id="usage-files" class="collapse">
                     <div id="usageContentCollectorFiles" class="row">
-                        <div id="" class="col-4"><p><b>Is the customer interested in CC4Files?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Is the customer interested in CC4Files?</b>
                                 <br><%= usage_questions.content_collector_files.interested_in_CC4Files %></p></div>
-                        <div id="" class="col-4"><p><b>Where are the files located that you want to collect? (We only support Windows based file
+                        <div id="" class="col-4 response-cell"><p><b>Where are the files located that you want to collect? (We only support Windows based file
                                     servers and on-prem Sharepoint.)</b>
                                 <br><%= usage_questions.content_collector_files.files_location %></p></div>
-                        <div id="" class="col-4"><p><b>Is the customer willing to install an agent on each machine they want to collect data
+                        <div id="" class="col-4 response-cell"><p><b>Is the customer willing to install an agent on each machine they want to collect data
                                     from?</b>
                                 <br><%= usage_questions.content_collector_files.willing_to_install_agent %></p></div>
-                        <div id="" class="col-4"><p><b>What's the volume of files?</b>
+                        <div id="" class="col-4 response-cell"><p><b>What's the volume of files?</b>
                                 <br><%= usage_questions.content_collector_files.volume_of_files %></p></div>
-                        <div id="" class="col-4"><p><b>Are there unusual File types?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are there unusual File types?</b>
                                 <br><%= usage_questions.content_collector_files.unusual_file_types %></p></div>
-                        <div id="" class="col-4"><p><b>Average and largest file expected to capture?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Average and largest file expected to capture?</b>
                                 <br><%= usage_questions.content_collector_files.avg_file_size %></p></div>
-                        <div id="" class="col-4"><p><b>Customer understands this is for People Based Legal Holds only?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Customer understands this is for People Based Legal Holds only?</b>
                                 <br><%= usage_questions.content_collector_files.understand_legal_holds %></p></div>
                     </div>
                     <br>
@@ -1214,13 +1211,13 @@
 
                 <div id="usage-pst" class="collapse">
                     <div id="usageContentCollectorPsts" class="row">
-                        <div id="" class="col-4"><p><b>Is the customer interested in CC4PSTs?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Is the customer interested in CC4PSTs?</b>
                                 <br><%= usage_questions.content_collector_PST.interested_in_CC4FPST %></p></div>
-                        <div id="" class="col-4"><p><b>Average size?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Average size?</b>
                                 <br><%= usage_questions.content_collector_PST.avg_file_size %></p></div>
-                        <div id="" class="col-4"><p><b>Frequency?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Frequency?</b>
                                 <br><%= usage_questions.content_collector_PST.frequency %></p></div>
-                        <div id="" class="col-4"><p><b>Use case?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Use case?</b>
                                 <br><%= usage_questions.content_collector_PST.use_case %></p></div>
                     </div>
                     <br>
@@ -1233,19 +1230,19 @@
 
                 <div id="usage-legal" class="collapse">
                     <div id="usageLegalHolds" class="row">
-                        <div id="" class="col-4"><p><b>Custodian based or Ad hoc, or both?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Custodian based or Ad hoc, or both?</b>
                                 <br><%= usage_questions.legal_holds.custodian_or_ad_hoc %></p></div>
-                        <div id="" class="col-4"><p><b>Count of LH's in current solution</b>
+                        <div id="" class="col-4 response-cell"><p><b>Count of LH's in current solution</b>
                                 <br><%= usage_questions.legal_holds.number_of_legal_holds %></p></div>
-                        <div id="" class="col-4"><p><b>Number of unique custodians</b>
+                        <div id="" class="col-4 response-cell"><p><b>Number of unique custodians</b>
                                 <br><%= usage_questions.legal_holds.number_of_unique_custodians %></p></div>
-                        <div id="" class="col-4"><p><b>Largest hold (in terms of custodians)</b>
+                        <div id="" class="col-4 response-cell"><p><b>Largest hold (in terms of custodians)</b>
                                 <br><%= usage_questions.legal_holds.largest_hold %></p></div>
-                        <div id="" class="col-4"><p><b>What LH Notification system is being used today?</b>
+                        <div id="" class="col-4 response-cell"><p><b>What LH Notification system is being used today?</b>
                                 <br><%= usage_questions.legal_holds.notification_system %></p></div>
-                        <div id="" class="col-4"><p><b>Third Party Solutions for LH Management?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Third Party Solutions for LH Management?</b>
                                 <br><%= usage_questions.legal_holds.third_party_solutions %></p></div>
-                        <div id="" class="col-4"><p><b>API interest? What use cases?</b>
+                        <div id="" class="col-4 response-cell"><p><b>API interest? What use cases?</b>
                                 <br><%= usage_questions.legal_holds.api_use_cases %></p></div>
                     </div>
                     <br>
@@ -1258,11 +1255,11 @@
 
                 <div id="usage-search" class="collapse">
                     <div id="usageEndUserSearch" class="row">
-                        <div id="" class="col-4"><p><b>How many end users will have access to their own mailbox?</b>
+                        <div id="" class="col-4 response-cell"><p><b>How many end users will have access to their own mailbox?</b>
                                 <br><%= usage_questions.end_user_search.number_of_user_access %></p></div>
-                        <div id="" class="col-4"><p><b>Do end users need to have access to Archive within Outlook? What versions of Outlook?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Do end users need to have access to Archive within Outlook? What versions of Outlook?</b>
                                 <br><%= usage_questions.end_user_search.need_outlook %></p></div>
-                        <div id="" class="col-4"><p><b>Do you want access archive through Mobile Apps?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Do you want access archive through Mobile Apps?</b>
                                 <br><%= usage_questions.end_user_search.need_mobile_apps %></p></div>
                     </div>
                     <br>
@@ -1275,11 +1272,11 @@
 
                 <div id="usage-sync" class="collapse">
                     <div id="usageFolderSync" class="row">
-                        <div id="" class="col-4"><p><b>Is the customer interested in Folder Sync?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Is the customer interested in Folder Sync?</b>
                                 <br><%= usage_questions.folder_sync.interested_in_folder_sync %></p></div>
-                        <div id="" class="col-4"><p><b>For how many users?</b>
+                        <div id="" class="col-4 response-cell"><p><b>For how many users?</b>
                                 <br><%= usage_questions.folder_sync.number_of_users_interested %></p></div>
-                        <div id="" class="col-4"><p><b>Service Account?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Service Account?</b>
                                 <br><%= usage_questions.folder_sync.service_account %></p></div>
                     </div>
                     <br>
@@ -1305,13 +1302,13 @@
 
                 <div id="usage-export" class="collapse">
                     <div id="usageExport" class="row">
-                        <div id="" class="col-4"><p><b>Volume / average size and frequency</b>
+                        <div id="" class="col-4 response-cell"><p><b>Volume / average size and frequency</b>
                                 <br><%= usage_questions.export.volume %></p></div>
-                        <div id="" class="col-4"><p><b>Preferred Export formats?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Preferred Export formats?</b>
                                 <br><%= usage_questions.export.preferred_export_format %></p></div>
-                        <div id="" class="col-4"><p><b>Where does the data typically go?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Where does the data typically go?</b>
                                 <br><%= usage_questions.export.where_data_goes %></p></div>
-                        <div id="" class="col-4"><p><b>Does customer expect to auto upload data?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Does customer expect to auto upload data?</b>
                                 <br><%= usage_questions.export.expect_auto_upload %></p></div>
                     </div>
                     <br>
@@ -1324,9 +1321,9 @@
 
                 <div id="usage-outlook" class="collapse">
                     <div id="usageExportViewManager" class="row">
-                        <div id="" class="col-4"><p><b>Do you want to allow end users to access the archive?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Do you want to allow end users to access the archive?</b>
                                 <br><%= usage_questions.outlook_view_manager.allow_users_access %></p></div>
-                        <div id="" class="col-4"><p><b>Do you use OWA?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Do you use OWA?</b>
                                 <br><%= usage_questions.outlook_view_manager.is_using_OWA %></p></div>
                     </div>
                     <br>
@@ -1336,39 +1333,40 @@
         <hr class="rainbow">
 
         <!-- Displaying import questions -->
-        <div id="import" class="">
+        <div id="import" class="display-header">
             <h5><a href="#importContent" data-toggle="collapse">Import
-                    <i class="fa fa-arrows-v" aria-hidden="true"></i></a></h5>
-            <br>
+                    <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+            </h5><br>
             <div id="importContent" class="collapse">
                 <div class="edit pull-right">
                     <a href="#" aria-hidden="true" data-target="#editImport" data-toggle="modal">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
                 </div>
+                <br>
                 <div id="importDetails" class="row">
-                    <div id="" class="col-4"><p><b>Do you need to migrate Legacy Data?</b>
+                    <div id="" class="col-4 response-cell"><p><b>Do you need to migrate Legacy Data?</b>
                             <br><%= import_questions.need_to_migrate_legacy_data %></p></div>
-                    <div id="" class="col-4"><p><b>Existing Archive</b>
+                    <div id="" class="col-4 response-cell"><p><b>Existing Archive</b>
                             <br><%= import_questions.is_existing_archive %></p></div>
-                    <div id="" class="col-4"><p><b>Amount of data to be migrated</b>
+                    <div id="" class="col-4 response-cell"><p><b>Amount of data to be migrated</b>
                             <br><%= import_questions.amount_of_data_to_migrate %></p></div>
-                    <div id="" class="col-4"><p><b>Expected Timeline</b>
+                    <div id="" class="col-4 response-cell"><p><b>Expected Timeline</b>
                             <br><%= import_questions.expected_timeline %></p></div>
-                    <div id="" class="col-4"><p><b>Who's doing the conversion?</b>
+                    <div id="" class="col-4 response-cell"><p><b>Who's doing the conversion?</b>
                             <br><%= import_questions.conversion_agent %></p></div>
-                    <div id="" class="col-4"><p><b>SoW / Service Brief</b>
+                    <div id="" class="col-4 response-cell"><p><b>SoW / Service Brief</b>
                             <br><%= import_questions.service_brief %></p></div>
-                    <div id="" class="col-4"><p><b>Storage</b>
+                    <div id="" class="col-4 response-cell"><p><b>Storage</b>
                             <br><%= import_questions.storage %></p></div>
-                    <div id="" class="col-4"><p><b>Format</b>
+                    <div id="" class="col-4 response-cell"><p><b>Format</b>
                             <br><%= import_questions.format %></p></div>
-                    <div id="" class="col-4"><p><b>Retention policy for Import Data</b>
+                    <div id="" class="col-4 response-cell"><p><b>Retention policy for Import Data</b>
                             <br><%= import_questions.retention_policy %></p></div>
-                    <div id="" class="col-4"><p><b>Encryption Type for Drives</b>
+                    <div id="" class="col-4 response-cell"><p><b>Encryption Type for Drives</b>
                             <br><%= import_questions.encryption_type %></p></div>
-                    <div id="" class="col-4"><p><b>How old is the oldest data you have?</b>
+                    <div id="" class="col-4 response-cell"><p><b>How old is the oldest data you have?</b>
                             <br><%= import_questions.oldest_data %></p></div>
-                    <div id="" class="col-4"><p><b>Do you have a record of former employees and their email addresses and aliases?</b>
+                    <div id="" class="col-4 response-cell"><p><b>Do you have a record of former employees and their email addresses and aliases?</b>
                             <br><%= import_questions.employee_records %></p></div>
                 </div>
             </div>
@@ -1376,7 +1374,7 @@
         <hr class="rainbow">
 
         <!-- Displaying POC questions -->
-        <div id="poc" class="">
+        <div id="poc" class="display-header">
             <h5><a href="#pocContent" data-toggle="collapse">POC
                     <i class="fa fa-arrows-v" aria-hidden="true"></i></a></h5>
             <br>
@@ -1385,31 +1383,32 @@
                     <a href="#" aria-hidden="true" data-target="#editPOC" data-toggle="modal">
                         <i class="fa fa-pencil-square-o"></i>Edit</a>
                 </div>
+                <br>
 
                 <h5><a href="#pocDetails" style="color: mediumvioletred" data-toggle="collapse">POC
                         <i class="fa fa-arrows-v" aria-hidden="true"></i></a></h5>
 
                 <div id="pocDetails" class="collapse">
                     <div id="pocDetails-rows" class="row">
-                        <div id="" class="col-4"><p><b>Sandbox POC</b>
+                        <div id="" class="col-4 response-cell"><p><b>Sandbox POC</b>
                                 <br><%= poc_questions.POC.is_sandbox_poc %></p></div>
-                        <div id="" class="col-4"><p><b>Prod Based POC</b>
+                        <div id="" class="col-4 response-cell"><p><b>Prod Based POC</b>
                                 <br><%= poc_questions.POC.is_prod_poc %></p></div>
-                        <div id="" class="col-4"><p><b>What Will Be Tested On POC</b>
+                        <div id="" class="col-4 response-cell"><p><b>What Will Be Tested On POC</b>
                                 <br><%= poc_questions.POC.poc_tests %></p></div>
-                        <div id="" class="col-4"><p><b>Customer Agreement to Success Criteria</b>
+                        <div id="" class="col-4 response-cell"><p><b>Customer Agreement to Success Criteria</b>
                                 <br><%= poc_questions.POC.agreed_to_success_criteria %></p></div>
-                        <div id="" class="col-4"><p><b>Environment</b>
+                        <div id="" class="col-4 response-cell"><p><b>Environment</b>
                                 <br><%= poc_questions.POC.envs_needed %></p></div>
-                        <div id="" class="col-4"><p><b>Time Needed</b>
+                        <div id="" class="col-4 response-cell"><p><b>Time Needed</b>
                                 <br><%= poc_questions.POC.how_long_needed %></p></div>
-                        <div id="" class="col-4"><p><b>How to Convert the Environment and/or Data to PROD</b>
+                        <div id="" class="col-4 response-cell"><p><b>How to Convert the Environment and/or Data to PROD</b>
                                 <br><%= poc_questions.POC.how_to_convert_env %></p></div>
-                        <div id="" class="col-4"><p><b>Appliance(s) Installation Location</b>
+                        <div id="" class="col-4 response-cell"><p><b>Appliance(s) Installation Location</b>
                                 <br><%= poc_questions.POC.installing_in_production_or_lab %></p></div>
-                        <div id="" class="col-4"><p><b>PROD: Locations and Environments Needed</b>
+                        <div id="" class="col-4 response-cell"><p><b>PROD: Locations and Environments Needed</b>
                                 <br><%= poc_questions.POC.how_many_envs %></p></div>
-                        <div id="" class="col-4"><p><b>Mailboxes that will be journalled to POC</b>
+                        <div id="" class="col-4 response-cell"><p><b>Mailboxes that will be journalled to POC</b>
                                 <br><%= poc_questions.POC.how_many_mailboxes %></p></div>
                     </div>
                 </div>
@@ -1420,16 +1419,16 @@
 
                 <div id="uatDetails" class="collapse">
                     <div id="uatDetails-row" class="row">
-                        <div id="" class="col-4"><p><b>Does the customer need/require a UAT or Testing Archive
+                        <div id="" class="col-4 response-cell"><p><b>Does the customer need/require a UAT or Testing Archive
                                     account?</b>
                                 <br><%= poc_questions.UAT.need_UAT %></p></div>
-                        <div id="" class="col-4"><p><b>Will the UAT be
+                        <div id="" class="col-4 response-cell"><p><b>Will the UAT be
                                     forever?</b>
                                 <br><%= poc_questions.UAT.UAT_forever %></p></div>
-                        <div id="" class="col-4"><p><b>Will the UAT be production data, or Lab
+                        <div id="" class="col-4 response-cell"><p><b>Will the UAT be production data, or Lab
                                     data?</b>
                                 <br><%= poc_questions.UAT.is_UAT_production_or_lab %></p></div>
-                        <div id="" class="col-4"><p><b>What is the primary purpose of the
+                        <div id="" class="col-4 response-cell"><p><b>What is the primary purpose of the
                                     UAT?</b>
                                 <br><%= poc_questions.UAT.primary_purpose %></p></div>
                     </div>
@@ -1439,7 +1438,7 @@
         <hr class="rainbow">
 
         <!-- Displaying RFEs -->
-        <div id="rfes" class="">
+        <div id="rfes" class="display-header">
             <h5><a href="#rfeContent" data-toggle="collapse">RFEs
                     <i class="fa fa-arrows-v" aria-hidden="true"></i>
                 </a></h5>
@@ -1448,14 +1447,16 @@
                     <a href="#" aria-hidden="true" data-target="#editRFE" data-toggle="modal">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
                 </div>
+                <br>
+
                 <div id="rfeDetails" class="row">
-                    <div id="" class="col-4"><p><b>Showstoppers (Will not buy w/o)</b>
+                    <div id="" class="col-4 response-cell"><p><b>Showstoppers (Will not buy w/o)</b>
                             <br><%= rfe_questions.showstoppers_buy %></p></div>
-                    <div id="" class="col-4"><p><b>Showstoppers (Will not rollout w/o)</b>
+                    <div id="" class="col-4 response-cell"><p><b>Showstoppers (Will not rollout w/o)</b>
                             <br><%= rfe_questions.showstoppers_rollout %></p></div>
-                    <div id="" class="col-4"><p><b>Parity features</b>
+                    <div id="" class="col-4 response-cell"><p><b>Parity features</b>
                             <br><%= rfe_questions.parity_features %></p></div>
-                    <div id="" class="col-4"><p><b>Nice to haves</b>
+                    <div id="" class="col-4 response-cell"><p><b>Nice to haves</b>
                             <br><%= rfe_questions.nice_to_haves %></p></div>
                 </div>
             </div>
@@ -1464,7 +1465,7 @@
         <hr class="rainbow">
 
         <!-- Displaying design summary -->
-        <div id="designSummary" class="">
+        <div id="designSummary" class="display-header">
             <h5><a href="#designSummaryContent" data-toggle="collapse">Design Summary
                     <i class="fa fa-arrows-v" aria-hidden="true"></i>
                 </a></h5>
@@ -1474,12 +1475,15 @@
                     <a href="#" aria-hidden="true" data-target="#editDesignSummary" data-toggle="modal">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
                 </div>
+                <br>
                 <div id="refDetails" class="row">
-                    <div id="" class="col-4"><p><b>Mail System in Use</b>
+                    <div id="" class="col-4 response-cell"><p><b>Mail System in Use</b>
                             <br><%= design_summary_questions.mail_system_in_use %></p></div>
                 </div>
                 <div id="finals_comments" class="row">
-                    <div style="padding: 15px; word-wrap: break-word;" id=""><p><b style="color: orangered;">Other comments about the project</b>
+                    <div class="comment-box" style="margin-left: auto; margin-right: auto; padding: 15px; word-wrap: break-word;" id=""><p><b
+                                    style="color: orangered;">
+                                Other comments about the project</b>
                             <br><%- design_summary_questions.comments.replace(/(?:\r\n|\r|\n)/g, '<br>'); %></p></div>
                 </div>
             </div>
@@ -1502,7 +1506,7 @@
                 <div class="modal-body">
 
                     <!-- content goes here -->
-                    <form class="" action="/index/<%= customer.name %>?_method=PUT" method="POST">
+                    <form action="/index/<%= customer.name %>?_method=PUT" method="POST">
                         <div class="form-group">
                             <label for="customerName">Customer Name</label>
                             <input type="text" class="form-control" placeholder="No response set" id="customerName" value="<%= customer.name %>"
@@ -1577,7 +1581,7 @@
                                    value="<%= customer.incumbentSolution %>" name="customer[incumbentSolution]">
                         </div>
 
-                        <div class="col-4">
+                        <div class="col">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
@@ -1606,7 +1610,7 @@
                 <div class="modal-body">
 
                     <!-- content goes here -->
-                    <form class="" action="/index/<%= customer.name %>?_method=PUT" method="POST">
+                    <form action="/index/<%= customer.name %>?_method=PUT" method="POST">
                         <div class="form-group">
                             <label for="customerName">Customer Name</label>
                             <input type="text" readonly class="form-control" placeholder="No response set"
@@ -2045,7 +2049,7 @@
 
                 <div class="modal-body">
                     <!-- content goes here -->
-                    <form class="" action="/index/<%= customer.name %>?_method=PUT" method="POST">
+                    <form action="/index/<%= customer.name %>?_method=PUT" method="POST">
                         <div class="form-group">
                             <label for="customerName">Customer Name</label>
                             <input type="text" readonly class="form-control" placeholder="No response set"
@@ -2302,7 +2306,7 @@
                 <div class="modal-body">
 
                     <!-- content goes here -->
-                    <form class="" action="/index/<%= customer.name %>?_method=PUT" method="POST">
+                    <form action="/index/<%= customer.name %>?_method=PUT" method="POST">
                         <div class="form-group">
                             <label for="customerName">Customer Name</label>
                             <input type="text" readonly class="form-control" placeholder="No response set"
@@ -2405,7 +2409,7 @@
                                    name="journaling_questions[mail_volume_metrics][custom_config]">
                         </div>
 
-                        <div class="col-4">
+                        <div class="col">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
@@ -2434,7 +2438,7 @@
                 <div class="modal-body">
 
                     <!-- content goes here -->
-                    <form class="" action="/index/<%= customer.name %>?_method=PUT" method="POST">
+                    <form action="/index/<%= customer.name %>?_method=PUT" method="POST">
                         <div class="form-group">
                             <label for="customerName">Customer Name</label>
                             <input type="text" readonly class="form-control" placeholder="No response set"
@@ -2542,7 +2546,7 @@
                                    name="appliance_questions[outlook_view_manager]">
                         </div>
 
-                        <div class="col-4">
+                        <div class="col">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
@@ -2571,7 +2575,7 @@
                 <div class="modal-body">
 
                     <!-- content goes here -->
-                    <form class="" action="/index/<%= customer.name %>?_method=PUT" method="POST">
+                    <form action="/index/<%= customer.name %>?_method=PUT" method="POST">
                         <div class="form-group">
                             <label for="customerName">Customer Name</label>
                             <input type="text" readonly class="form-control" placeholder="No response set"
@@ -2801,7 +2805,7 @@
                             </div>
                         </div>
 
-                        <div class="col-4">
+                        <div class="col">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
@@ -2831,7 +2835,7 @@
 
                 <div class="modal-body">
                     <!-- content goes here -->
-                    <form class="" action="/index/<%= customer.name %>?_method=PUT" method="POST">
+                    <form action="/index/<%= customer.name %>?_method=PUT" method="POST">
                         <div class="form-group">
                             <label for="customerName">Customer Name</label>
                             <input type="text" readonly class="form-control" placeholder="No response set"
@@ -3315,7 +3319,7 @@
                 <div class="modal-body">
 
                     <!-- content goes here -->
-                    <form class=""
+                    <form
                           action="/index/<%= customer.name %>?_method=PUT" method="POST">
                         <div class="form-group">
                             <label for="customerName">Customer Name</label>
@@ -3398,7 +3402,7 @@
                                    name="import_questions[employee_records]">
                         </div>
 
-                        <div class="col-4">
+                        <div class="col">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
@@ -3427,7 +3431,7 @@
                 <div class="modal-body">
 
                     <!-- content goes here -->
-                    <form class=""
+                    <form
                           action="/index/<%= customer.name %>?_method=PUT"
                           method="POST">
                         <div class="form-group">
@@ -3539,7 +3543,7 @@
                             </div>
                             <br>
                         </div>
-                        <div class="col-4">
+                        <div class="col">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
@@ -3568,7 +3572,7 @@
                 <div class="modal-body">
 
                     <!-- content goes here -->
-                    <form class="" action="/index/<%= customer.name %>?_method=PUT" method="POST">
+                    <form action="/index/<%= customer.name %>?_method=PUT" method="POST">
                         <div class="form-group">
                             <label for="customerName">Customer Name</label>
                             <input type="text" readonly class="form-control" placeholder="No response set"
@@ -3599,7 +3603,7 @@
                                    value="<%= rfe_questions.nice_to_haves %>"
                                    name="rfe_questions[nice_to_haves]">
                         </div>
-                        <div class="col-4">
+                        <div class="col">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
@@ -3620,15 +3624,16 @@
     <div class="modal fade" id="editDesignSummary" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
+
                 <div class="modal-header">
                     <h3 class="modal-title" id="lineModalLabel">Design summary and comments</h3>
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
                                 class="sr-only">Close</span></button>
                 </div>
-                <div class="modal-body">
 
+                <div class="modal-body">
                     <!-- content goes here -->
-                    <form class="" action="/index/<%= customer.name %>?_method=PUT" method="POST" id="design_summary_form">
+                    <form action="/index/<%= customer.name %>?_method=PUT" method="POST" id="design_summary_form">
                         <div class="form-group">
                             <label for="customerName">Customer Name</label>
                             <input type="text" readonly class="form-control" placeholder="No response set"
@@ -3648,7 +3653,7 @@
                                       form="design_summary_form"><%= design_summary_questions.comments %></textarea>
                         </div>
 
-                        <div class="col-4">
+                        <div class="col">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
@@ -3677,7 +3682,7 @@
 
                 <div class="modal-body">
                     <!-- content goes here -->
-                    <form class="" action="/index/<%= customer.name %>?_method=PUT" method="POST">
+                    <form action="/index/<%= customer.name %>?_method=PUT" method="POST">
                         <div class="form-group">
                             <label for="customerName">Customer Name</label>
                             <input type="text" readonly class="form-control" placeholder="No response set"

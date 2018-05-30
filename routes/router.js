@@ -5,6 +5,11 @@ var mongoose = require("mongoose");
 var bcrypt = require("bcrypt");
 mongoose.Promise = Promise;
 
+var ldap_auth = require("ldapjs");
+var client = ldap_auth.createClient({
+    url: "ldap://ldap.corp.proofpoint.com",
+});
+
 var Customer = require("../models/customer");
 var ApplianceQuestions = require("../models/appliances");
 var DesignSummaryQuestions = require("../models/design_summary");
@@ -20,12 +25,29 @@ var RFEQuestions = require("../models/rfe");
 var User = require("../models/user");
 
 // For authenticating cookies/sessions.
-function authenticate(req, res, next) {
+function authenticate_session(req, res, next) {
     if (req.session.user) {
         next();
     } else {
         res.redirect("/login");
     }
+}
+
+function authenticate_ldap(username, password) {
+    var domain_name = "uid=" + username + ",ou=People,dc=extreme-email,dc=com";
+    console.log("Domain info: " + domain_name);
+
+    var login_result = client.bind(domain_name, password, (error) => {
+        if (error) {
+            console.log(error);
+            return false;
+        } else {
+            return false;
+        }
+    });
+
+    return login_result;
+
 }
 
 // LOGOUT AND KILL SESSION
@@ -44,7 +66,7 @@ router.get("/", function (req, res) {
 });
 
 //NEW ROUTE
-router.get("/new", authenticate, function (req, res) {
+router.get("/new", authenticate_session, function (req, res) {
     res.render("new", {error_message: undefined});
 });
 
@@ -91,33 +113,38 @@ router.post("/login", function (req, res) {
     if (!req.body.login || req.body.login == undefined) {
         res.render("login", {fail: true});
     } else {
-        //console.log(req.body.login["username"]);
-        User.findOne({username: req.body.login["username"]}).then((result) => {
-            //console.log(result);
-            if (result == null) {
-                res.render("login", {fail: true});
-            } else {
-                bcrypt.compare(req.body.login["password"], result["password"], function (err, validated) {
-                    if (validated) {
-                        // Do auth/sessions here
-                        console.log("Logged in: " + req.body.login["username"]);
-                        req.session.user = req.body.login["username"];
-                        res.redirect("/index");
-                    } else {
-                        res.render("login", {fail: true});
-                    }
-                });
-            }
-        }).catch((error) => {
-            if (error) {
-                res.render("login", {fail: true});
-            }
-        });
+        if (authenticate_ldap(req.body.login["username"], req.body.login["password"]) == true) {
+            req.session.user = req.body.login["username"];
+            res.redirect("/index");
+        } else {
+            res.render("login", {fail: true});
+        }
+
+        // User.findOne({username: req.body.login["username"]}).then((result) => {
+        //     if (result == null) {
+        //         res.render("login", {fail: true});
+        //     } else {
+        //         bcrypt.compare(req.body.login["password"], result["password"], function (err, validated) {
+        //             if (validated) {
+        //                 // Do auth/sessions here
+        //                 console.log("Logged in: " + req.body.login["username"]);
+        //                 req.session.user = req.body.login["username"];
+        //                 res.redirect("/index");
+        //             } else {
+        //                 res.render("login", {fail: true});
+        //             }
+        //         });
+        //     }
+        // }).catch((error) => {
+        //     if (error) {
+        //         res.render("login", {fail: true});
+        //     }
+        // });
     }
 });
 
 //CREATE ROUTE
-router.post("/new", authenticate, function (req, res) {
+router.post("/new", authenticate_session, function (req, res) {
 
         if (req == undefined || req == null) {
             console.log("req is empty");
@@ -180,7 +207,7 @@ router.post("/new", authenticate, function (req, res) {
 );
 
 //UPDATE ROUTE
-router.put("/index/:id", authenticate, function (req, res) {
+router.put("/index/:id", authenticate_session, function (req, res) {
         // Considering changing to else ifs
 
         // For updating name, make a ton of promises and execute them, THEN render the page.
@@ -329,7 +356,7 @@ router.put("/index/:id", authenticate, function (req, res) {
 );
 
 //INDEX ROUTE
-router.get("/index", authenticate, function (req, res) {
+router.get("/index", authenticate_session, function (req, res) {
 
     Customer.find({}).then((customers) => {
         res.render("index", {customers: customers});
@@ -350,7 +377,7 @@ router.get("/index", authenticate, function (req, res) {
 
 
 // SHOW ROUTE
-router.get("/index/:id", authenticate, function (req, res) {
+router.get("/index/:id", authenticate_session, function (req, res) {
 
     // ATTEMPTING TO ESCAPE CALLBACK HELL: ESCAPED B O I S
 
