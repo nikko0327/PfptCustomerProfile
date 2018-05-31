@@ -163,6 +163,15 @@ hr.rainbow {
     margin-bottom: 2px;
 }
 
+/* Borderless */
+.response-checkbox {
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+    vertical-align: top;
+    margin-bottom: 0px;
+}
+
 .comment-box {
     border: 1px solid black;
     display: flex;
@@ -172,16 +181,10 @@ hr.rainbow {
 
 }
 
--o-transition: all
-
-0.5
-s ease
-
-0
-s
-
-;
+{
+    -o-transition: all 0.5s ease 0s;
 }
+
 .footer-bottom {
     background: #E3E3E3;
     border-top: 1px solid #DDDDDD;
@@ -193,10 +196,6 @@ s
     padding-top: 6px;
 }
 
-font-size:
-
-1.5
-em
-
-;
+{
+    font-size: 1.5em;
 }

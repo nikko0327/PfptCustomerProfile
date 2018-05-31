@@ -33,9 +33,28 @@ var other_data_sources_schema = new mongoose.Schema({
 
     // public social media archiving
     public_social_archiving: {
+        // Need to capture
         need_social_media_content: {
-            type: String,
-            default: ""
+            facebook: {
+                type: Boolean,
+                default: false
+            },
+            linkedin: {
+                type: Boolean,
+                default: false
+            },
+            twitter: {
+                type: Boolean,
+                default: false
+            },
+            google: {
+                type: Boolean,
+                default: false
+            },
+            youtube: {
+                type: Boolean,
+                default: false
+            }
         },
         need_to_capture: {
             type: String,

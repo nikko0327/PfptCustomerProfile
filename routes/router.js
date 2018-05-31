@@ -6,9 +6,6 @@ var bcrypt = require("bcrypt");
 mongoose.Promise = Promise;
 
 var ldap_auth = require("ldapjs");
-var client = ldap_auth.createClient({
-    url: "ldap://ldap.corp.proofpoint.com",
-});
 
 var Customer = require("../models/customer");
 var ApplianceQuestions = require("../models/appliances");
@@ -22,7 +19,7 @@ var UsageQuestions = require("../models/usage");
 var ImportQuestions = require("../models/import");
 var POCQuestions = require("../models/poc");
 var RFEQuestions = require("../models/rfe");
-var User = require("../models/user");
+//var User = require("../models/user");
 
 // For authenticating cookies/sessions.
 function authenticate_session(req, res, next) {
@@ -33,30 +30,15 @@ function authenticate_session(req, res, next) {
     }
 }
 
-function authenticate_ldap(username, password) {
-    var domain_name = "uid=" + username + ",ou=People,dc=extreme-email,dc=com";
-    console.log("Domain info: " + domain_name);
-
-    var login_result = client.bind(domain_name, password, (error) => {
-        if (error) {
-            console.log(error);
-            return false;
-        } else {
-            return false;
-        }
-    });
-
-    return login_result;
-
-}
-
 // LOGOUT AND KILL SESSION
 router.post("/logout", function (req, res) {
     var user = req.session.user;
     req.session.destroy(() => {
-        console.log("Logging out: " + user);
-
+        if (user) {
+            console.log("Logging out: " + user);
+        }
     });
+
     res.redirect("/login");
 });
 
@@ -71,11 +53,14 @@ router.get("/new", authenticate_session, function (req, res) {
 });
 
 // REGISTER
+/*
 router.get("/register", function (req, res) {
     res.render("register", {error_message: undefined});
 });
+*/
 
 // POST REGISTER
+/*
 router.post("/register", function (req, res) {
     if (!req.body.registration_info["username"] || !req.body.registration_info["password"] || !req.body.registration_info["confirm_password"]) {
         res.render("register", {error_message: "Please enter all fields."});
@@ -102,6 +87,7 @@ router.post("/register", function (req, res) {
         }
     }
 });
+*/
 
 // LOGIN
 router.get("/login", function (req, res) {
@@ -110,74 +96,110 @@ router.get("/login", function (req, res) {
 
 // POST LOGIN
 router.post("/login", function (req, res) {
-    if (!req.body.login || req.body.login == undefined) {
+
+    if (!req.body.login || req.body.login == null) {
         res.render("login", {fail: true});
     } else {
-        if (authenticate_ldap(req.body.login["username"], req.body.login["password"]) == true) {
-            req.session.user = req.body.login["username"];
-            res.redirect("/index");
-        } else {
-            res.render("login", {fail: true});
-        }
+        var client = ldap_auth.createClient({
+            url: "ldap://ldap.corp.proofpoint.com"
+            // url: "ldaps://ldaps.corp.proofpoint.com"
+        });
 
-        // User.findOne({username: req.body.login["username"]}).then((result) => {
-        //     if (result == null) {
-        //         res.render("login", {fail: true});
-        //     } else {
-        //         bcrypt.compare(req.body.login["password"], result["password"], function (err, validated) {
-        //             if (validated) {
-        //                 // Do auth/sessions here
-        //                 console.log("Logged in: " + req.body.login["username"]);
-        //                 req.session.user = req.body.login["username"];
-        //                 res.redirect("/index");
-        //             } else {
-        //                 res.render("login", {fail: true});
-        //             }
-        //         });
-        //     }
-        // }).catch((error) => {
-        //     if (error) {
-        //         res.render("login", {fail: true});
-        //     }
-        // });
+        var domain_name = "uid=" + req.body.login["username"] + ",ou=People,dc=extreme-email,dc=com";
+
+        // rejectUnauthorized is needed with client.starttls unless we can verify certs
+        var options = {
+            //ca: [fs.readFileSync('cert.pem')]
+            rejectUnauthorized: false
+        };
+
+        //console.log("Domain info: " + domain_name);
+
+        // Make the ldap secure, even though we need a secure network, additional safeguard.
+        client.starttls(options, [], (error) => {
+            if (error) {
+                console.log("starttls error:\n" + error);
+            } else {
+                client.bind(domain_name, req.body.login["password"], (error) => {
+
+                    // Close the connection
+                    client.unbind(function (error) {
+                        if (error) {
+                            console.log("-- LDAP unbinding error:\n" + error)
+                        }
+                    });
+
+                    if (error) {
+                        // console.log(error);
+                        console.log("Failed attempt to login using username: " + req.body.login["username"]);
+                        res.render("login", {fail: true});
+                    } else {
+                        console.log("Logged in: " + req.body.login["username"]);
+                        req.session.user = req.body.login["username"];
+                        res.redirect("/index");
+                    }
+                });
+            }
+        });
     }
+
+
+    // User.findOne({username: req.body.login["username"]}).then((result) => {
+    //     if (result == null) {
+    //         res.render("login", {fail: true});
+    //     } else {
+    //         bcrypt.compare(req.body.login["password"], result["password"], function (err, validated) {
+    //             if (validated) {
+    //                 // Do auth/sessions here
+    //                 console.log("Logged in: " + req.body.login["username"]);
+    //                 req.session.user = req.body.login["username"];
+    //                 res.redirect("/index");
+    //             } else {
+    //                 res.render("login", {fail: true});
+    //             }
+    //         });
+    //     }
+    // }).catch((error) => {
+    //     if (error) {
+    //         res.render("login", {fail: true});
+    //     }
+    // });
 });
 
 //CREATE ROUTE
 router.post("/new", authenticate_session, function (req, res) {
-
         if (req == undefined || req == null) {
             console.log("req is empty");
-        }
+        } else {
+            console.log("- Trying to create new customer...");
 
-        console.log("- Trying to create new customer...");
-
-        Customer.create(req.body.customer, (error) => {
-            if (error) {
-                if (error["code"] == 11000) {
-                    console.log("-- Duplicate entry for customer: " + req.body.customer["name"]);
-                    // Send pop up alert to HTML here
-                    res.render("new", {error_message: "Duplicate entry for customer: " + req.body.customer["name"]});
+            Customer.create(req.body.customer, (error) => {
+                if (error) {
+                    if (error["code"] == 11000) {
+                        console.log("-- Duplicate entry for customer: " + req.body.customer["name"]);
+                        // Send pop up alert to HTML here
+                        res.render("new", {error_message: "Duplicate entry for customer: " + req.body.customer["name"]});
+                    } else {
+                        console.log(error);
+                    }
                 } else {
-                    console.log(error);
-                }
-            } else {
-                ApplianceQuestions.create({name: req.body.customer["name"]});
-                DesignSummaryQuestions.create({name: req.body.customer["name"]});
-                DesktopNetworkQuestions.create({name: req.body.customer["name"]});
-                EmailPSQuestions.create({name: req.body.customer["name"]});
-                EmailSEQuestions.create({name: req.body.customer["name"]});
-                ImportQuestions.create({name: req.body.customer["name"]});
-                JournalingQuestions.create({name: req.body.customer["name"]});
-                OtherDataSourcesQuestions.create({name: req.body.customer["name"]});
-                POCQuestions.create({name: req.body.customer["name"]});
-                RFEQuestions.create({name: req.body.customer["name"]});
-                UsageQuestions.create({name: req.body.customer["name"]});
+                    ApplianceQuestions.create({name: req.body.customer["name"]});
+                    DesignSummaryQuestions.create({name: req.body.customer["name"]});
+                    DesktopNetworkQuestions.create({name: req.body.customer["name"]});
+                    EmailPSQuestions.create({name: req.body.customer["name"]});
+                    EmailSEQuestions.create({name: req.body.customer["name"]});
+                    ImportQuestions.create({name: req.body.customer["name"]});
+                    JournalingQuestions.create({name: req.body.customer["name"]});
+                    OtherDataSourcesQuestions.create({name: req.body.customer["name"]});
+                    POCQuestions.create({name: req.body.customer["name"]});
+                    RFEQuestions.create({name: req.body.customer["name"]});
+                    UsageQuestions.create({name: req.body.customer["name"]});
 
-                res.redirect("/index");
-                console.log("Creation of customer " + req.body.customer["name"] + " successful.");
-            }
-        });
+                    res.redirect("/index");
+                    console.log("Creation of customer " + req.body.customer["name"] + " successful.");
+                }
+            });
+        }
 
         // Customer.create(req.body.customer).then(() => {
         //     ApplianceQuestions.create({name: req.body.customer["name"]});

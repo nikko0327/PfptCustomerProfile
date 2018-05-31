@@ -39,12 +39,18 @@ app.use(function expose_username(req, res, next) {
     next();
 });
 
+// Disables back button from showing contents when logged out.
+app.use(function(req, res, next) {
+    res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    next();
+});
+
 // app.use(function printSession(req, res, next) {
 //     console.log('req.session', req.session);
 //     next();
 // });
 
-// set so we dont have to type .ejs all the time when routing
+// set so we don't have to type .ejs all the time when routing
 app.set("view engine", "ejs");
 // used so we can make a public folder that contains stylesheet and js, and be able to access it
 app.use(express.static(__dirname + "/public"));
