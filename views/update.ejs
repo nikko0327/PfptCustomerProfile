@@ -1,4 +1,5 @@
 <!-- EDIT/UPDATE MODALS -->
+
 <!-- CUSTOMERS UPDATE -->
 <div class="modal fade" id="editCustomer" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
      aria-hidden="true">
@@ -130,59 +131,58 @@
 
                     <div id="editEmailSystemsSE-1" class="collapse">
                         <h5 style="color: lightseagreen">Exchange Details</h5>
-                        <div class="form-group"><label>What versions of Exchange are
-                                running?</label><input type="text" class="form-control" placeholder="No response set"
-                                                       value="<%= email_se_questions.prem_exchange.exchange_version %>"
-                                                       name="email_se_questions[prem_exchange][exchange_version]">
-                        </div>
-                        <div class="form-group"><label>How many locations are mailbox servers
-                                deployed?</label><input type="text" class="form-control" placeholder="No response set"
-                                                        value="<%= email_se_questions.prem_exchange.number_of_mail_servers %>"
-                                                        name="email_se_questions[prem_exchange][number_of_mail_servers]">
-                        </div>
-                        <div class="form-group"><label>Do you have an Enterprise
-                                CAL?</label><input type="text" class="form-control" placeholder="No response set"
-                                                   value="<%= email_se_questions.prem_exchange.has_enterprise_CAL %>"
-                                                   name="email_se_questions[prem_exchange][has_enterprise_CAL]">
-                        </div>
-                        <div class="form-group"><label>Are you replicating Exchange and AD to a secondary data
-                                center?</label><input type="text" class="form-control" placeholder="No response set"
-                                                      value="<%= email_se_questions.prem_exchange.is_replicating_exchange_and_AD %>"
-                                                      name="email_se_questions[prem_exchange][is_replicating_exchange_and_AD]">
+                        <div class="form-group"><label>What versions of Exchange are running?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_se_questions.prem_exchange.exchange_version %>"
+                                   name="email_se_questions[prem_exchange][exchange_version]">
                         </div>
 
-                        <div class="form-group"><label>Please provide a diagram of your exchange infrastructure
-                                and your AD Details.</label><input type="text" class="form-control" placeholder="No response set"
-                                                                   value="<%= email_se_questions.prem_exchange.diagram %>"
-                                                                   name="email_se_questions[prem_exchange][diagram]">
+                        <div class="form-group"><label>How many locations are mailbox servers deployed?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_se_questions.prem_exchange.number_of_mail_servers %>"
+                                   name="email_se_questions[prem_exchange][number_of_mail_servers]">
+                        </div>
+
+                        <div class="form-group"><label>Do you have an Enterprise CAL?</label>
+                            <%- make_yes_no_dropdown("email_se_questions[prem_exchange][has_enterprise_CAL]",
+                                    email_se_questions.prem_exchange.has_enterprise_CAL); %>
+                        </div>
+
+                        <div class="form-group"><label>Are you replicating Exchange and AD to a secondary data center?</label>
+                            <%- make_yes_no_dropdown("email_se_questions[prem_exchange][is_replicating_exchange_and_AD]",
+                                    email_se_questions.prem_exchange.is_replicating_exchange_and_AD); %>
+                        </div>
+
+                        <div class="form-group"><label>Please provide a diagram of your exchange infrastructure and your AD Details.</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_se_questions.prem_exchange.diagram %>"
+                                   name="email_se_questions[prem_exchange][diagram]">
                         </div>
 
                         <h5 style="color: lightseagreen">Active Directory Details</h5>
-                        <div class="form-group"><label>Is your AD
-                                multi-forest?</label><input type="text" class="form-control" placeholder="No response set"
-                                                            value="<%= email_se_questions.prem_exchange.is_multi_forest %>"
-                                                            name="email_se_questions[prem_exchange][is_multi_forest]">
+
+                        <div class="form-group"><label>Is your AD multi-forest?</label>
+                            <%- make_yes_no_dropdown("email_se_questions[prem_exchange][is_multi_forest]",
+                                    email_se_questions.prem_exchange.is_multi_forest); %>
                         </div>
-                        <div class="form-group"><label>Are there trusts between the
-                                forests?</label><input type="text" class="form-control" placeholder="No response set"
-                                                       value="<%= email_se_questions.prem_exchange.exists_trusts %>"
-                                                       name="email_se_questions[prem_exchange][exists_trusts]">
+                        <div class="form-group"><label>Are there trusts between the forests?</label>
+                            <%- make_yes_no_dropdown("email_se_questions[prem_exchange][exists_trusts]",
+                                    email_se_questions.prem_exchange.exists_trusts); %>
                         </div>
-                        <div class="form-group"><label>Is this a Resource Forest
-                                arrangement?</label><input type="text" class="form-control" placeholder="No response set"
-                                                           value="<%= email_se_questions.prem_exchange.is_resource_forest_arrangement %>"
-                                                           name="email_se_questions[prem_exchange][is_resource_forest_arrangement]">
+                        <div class="form-group"><label>Is this a Resource Forest arrangement?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_se_questions.prem_exchange.is_resource_forest_arrangement %>"
+                                   name="email_se_questions[prem_exchange][is_resource_forest_arrangement]">
                         </div>
-                        <div class="form-group"><label>Are you using
-                                multi-domains?</label><input type="text" class="form-control" placeholder="No response set"
-                                                             value="<%= email_se_questions.prem_exchange.is_using_multi_domains %>"
-                                                             name="email_se_questions[prem_exchange][is_using_multi_domains]">
+                        <div class="form-group"><label>Are you using multi-domains?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_se_questions.prem_exchange.is_using_multi_domains %>"
+                                   name="email_se_questions[prem_exchange][is_using_multi_domains]">
                         </div>
-                        <div class="form-group"><label>If yes, what is the structure of multi-domain
-                                architecture / their
-                                relationships?</label><input type="text" class="form-control" placeholder="No response set"
-                                                             value="<%= email_se_questions.prem_exchange.structure %>"
-                                                             name="email_se_questions[prem_exchange][structure]">
+                        <div class="form-group"><label>If yes, what is the structure of multi-domain architecture / their relationships?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= email_se_questions.prem_exchange.structure %>"
+                                   name="email_se_questions[prem_exchange][structure]">
                         </div>
                         <br>
                     </div>
@@ -207,8 +207,7 @@
                                    value="<%= email_se_questions.hosted_O365.is_maintaining_azure %>"
                                    name="email_se_questions[hosted_O365][is_maintaining_azure]">
                         </div>
-                        <div class="form-group"><label>When you create and admin mailboxes, do you do that in
-                                the on-prem AD, or in Azure?</label>
+                        <div class="form-group"><label>When you create and admin mailboxes, do you do that in the on-prem AD, or in Azure?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.hosted_O365.is_admin_in_AD_or_azure %>"
                                    name="email_se_questions[hosted_O365][is_admin_in_AD_or_azure]">
@@ -239,137 +238,101 @@
                                    value="<%= email_se_questions.prem_exchange_prem_O365.exchange_version %>"
                                    name="email_se_questions[prem_exchange_prem_O365][exchange_version]">
                         </div>
-                        <div class="form-group"><label>How many locations are mailbox servers
-                                deployed?</label>
-
+                        <div class="form-group"><label>How many locations are mailbox servers deployed?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_prem_O365.number_of_mail_servers %>"
                                    name="email_se_questions[prem_exchange_prem_O365][number_of_mail_servers]">
                         </div>
-                        <div class="form-group"><label>Do you have an Enterprise
-                                CAL?</label>
-
+                        <div class="form-group"><label>Do you have an Enterprise CAL?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_prem_O365.has_enterprise_CAL %>"
                                    name="email_se_questions[prem_exchange_prem_O365][has_enterprise_CAL]">
                         </div>
-                        <div class="form-group"><label>Describe the HA/DR of the Exchange
-                                environment.</label>
-
+                        <div class="form-group"><label>Describe the HA/DR of the Exchange environment.</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_prem_O365.describe_exchange_env %>"
                                    name="email_se_questions[prem_exchange_prem_O365][describe_exchange_env]">
                         </div>
-                        <div class="form-group"><label>Please provide a diagram of your exchange
-                                infrastructure and your AD
-                                Details.</label>
-
+                        <div class="form-group"><label>Please provide a diagram of your exchange infrastructure and your AD Details.</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_prem_O365.diagram %>"
                                    name="email_se_questions[prem_exchange_prem_O365][diagram]">
                         </div>
-                        <div class="form-group"><label>Are DAGs being
-                                used?</label>
-
+                        <div class="form-group"><label>Are DAGs being used?</label>
                             <h5 style="color: lightseagreen">Active Directory Details</h5>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_prem_O365.is_using_DAG %>"
                                    name="email_se_questions[prem_exchange_prem_O365][is_using_DAG]">
                         </div>
-                        <div class="form-group"><label>Is your AD
-                                multi-forest?</label>
-
+                        <div class="form-group"><label>Is your AD multi-forest?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_prem_O365.is_multi_forest %>"
                                    name="email_se_questions[prem_exchange_prem_O365][is_multi_forest]">
                         </div>
-                        <div class="form-group"><label>How many forests are
-                                there?</label>
-
+                        <div class="form-group"><label>How many forests are there?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_prem_O365.number_of_forests %>"
                                    name="email_se_questions[prem_exchange_prem_O365][number_of_forests]">
                         </div>
-                        <div class="form-group"><label>Is this a Resource Forest
-                                arrangement?</label>
-
+                        <div class="form-group"><label>Is this a Resource Forest arrangement?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_prem_O365.is_resource_forest_arrangement %>"
                                    name="email_se_questions[prem_exchange_prem_O365][is_resource_forest_arrangement]">
                         </div>
                         <div class="form-group"><label>Are you using multi-domains?</label>
-
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_prem_O365.is_using_multi_domains %>"
                                    name="email_se_questions[prem_exchange_prem_O365][is_using_multi_domains]">
                         </div>
-                        <div class="form-group"><label>If yes, what is the structure of multi-domain
-                                architecture / their relationships?</label>
-
+                        <div class="form-group"><label>If yes, what is the structure of multi-domain architecture / their relationships?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_prem_O365.multi_domain_structure %>"
                                    name="email_se_questions[prem_exchange_prem_O365][multi_domain_structure]">
                         </div>
-                        <div class="form-group"><label>Resource forest
-                                deployment?</label>
-
+                        <div class="form-group"><label>Resource forest deployment?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_prem_O365.resource_forest_deployment %>"
                                    name="email_se_questions[prem_exchange_prem_O365][resource_forest_deployment]">
                         </div>
-                        <div class="form-group"><label>How big is your AD? How many
-                                objects?</label>
-
+                        <div class="form-group"><label>How big is your AD? How many objects?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_prem_O365.AD_size %>"
                                    name="email_se_questions[prem_exchange_prem_O365][AD_size]">
                         </div>
-                        <div class="form-group"><label>Do you require a secure connection to
-                                LDAP?</label>
-
+                        <div class="form-group"><label>Do you require a secure connection to LDAP?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_prem_O365.require_ldap %>"
                                    name="email_se_questions[prem_exchange_prem_O365][require_ldap]">
                         </div>
-                        <h5 style="color: lightseagreen">O365 Details</h5>
-                        <div class="form-group"><label>What O365 license level do you
-                                have?</label>
 
+                        <h5 style="color: lightseagreen">O365 Details</h5>
+                        <div class="form-group"><label>What O365 license level do you have?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_prem_O365.O365_version %>"
                                    name="email_se_questions[prem_exchange_prem_O365][O365_version]">
                         </div>
-                        <div class="form-group"><label>Are you maintaining AD
-                                on-prem?</label>
-
+                        <div class="form-group"><label>Are you maintaining AD on-prem?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_prem_O365.is_maintaining_on_prem_AD %>"
                                    name="email_se_questions[prem_exchange_prem_O365][is_maintaining_on_prem_AD]">
                         </div>
-                        <div class="form-group"><label>Are you maintaining AD in
-                                Azure?</label>
-
+                        <div class="form-group"><label>Are you maintaining AD in Azure?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_prem_O365.is_maintaining_azure %>"
                                    name="email_se_questions[prem_exchange_prem_O365][is_maintaining_azure]">
                         </div>
                         <div class="form-group">
-                            <label>When you create and admin mailboxes, do you do that in the on-premAD, or in
-                                Azure?</label>
-
+                            <label>When you create and admin mailboxes, do you do that in the on-prem AD, or in Azure?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_prem_O365.is_admin_in_AD_or_azure %>"
                                    name="email_se_questions[prem_exchange_prem_O365][is_admin_in_AD_or_azure]">
                         </div>
-                        <div class="form-group"><label>Sync tools used on
-                                Azure?</label>
+                        <div class="form-group"><label>Sync tools used on Azure?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_prem_O365.sync_tools %>"
                                    name="email_se_questions[prem_exchange_prem_O365][sync_tools]">
                         </div>
-                        <div class="form-group"><label>Which O365 version (shared,
-                                dedicated/BPOS-D/iTAR)?</label>
-
+                        <div class="form-group"><label>Which O365 version (shared, dedicated/BPOS-D/iTAR)?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_prem_O365.which_O365 %>"
                                    name="email_se_questions[prem_exchange_prem_O365][which_O365]">
@@ -383,96 +346,69 @@
 
                     <div id="editEmailSystemsSE-4" class="collapse">
                         <h5 style="color: lightseagreen">Exchange Details</h5>
-                        <div class="form-group"><label>What versions of Exchange are
-                                running?</label>
-
+                        <div class="form-group"><label>What versions of Exchange are running?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_hosted_O365.exchange_version %>"
                                    name="email_se_questions[prem_exchange_hosted_O365][exchange_version]">
                         </div>
-                        <div class="form-group"><label>How many locations are mailbox servers
-                                deployed?</label>
-
+                        <div class="form-group"><label>How many locations are mailbox servers deployed?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_hosted_O365.number_of_mail_servers %>"
                                    name="email_se_questions[prem_exchange_hosted_O365][number_of_mail_servers]">
                         </div>
                         <div class="form-group"><label>Do you have an Enterprise CAL?</label>
-
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_hosted_O365.has_enterprise_CAL %>"
                                    name="email_se_questions[prem_exchange_hosted_O365][has_enterprise_CAL]">
                         </div>
-                        <div class="form-group"><label>Describe the HA/DR of the Exchange
-                                environment.</label>
-
+                        <div class="form-group"><label>Describe the HA/DR of the Exchange environment.</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_hosted_O365.describe_exchange_env %>"
                                    name="email_se_questions[prem_exchange_hosted_O365][describe_exchange_env]">
                         </div>
-                        <div class="form-group"><label>Please provide a diagram of your exchange
-                                infrastructure and your AD
-                                Details.</label>
-
+                        <div class="form-group"><label>Please provide a diagram of your exchange infrastructure and your AD Details.</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_hosted_O365.diagram %>"
                                    name="email_se_questions[prem_exchange_hosted_O365][diagram]">
                         </div>
-                        <div class="form-group"><label>Are DAGs being
-                                used?</label>
-
+                        <div class="form-group"><label>Are DAGs being used?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_hosted_O365.is_using_DAG %>"
                                    name="email_se_questions[prem_exchange_hosted_O365][is_using_DAG]">
                         </div>
 
                         <h5 style="color: lightseagreen">Active Directory Details</h5>
-                        <div class="form-group"><label>Is your AD
-                                multi-forest?</label>
-
+                        <div class="form-group"><label>Is your AD multi-forest?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_hosted_O365.is_multi_forest %>"
                                    name="email_se_questions[prem_exchange_hosted_O365][is_multi_forest]">
                         </div>
-                        <div class="form-group"><label>How many forests are
-                                there?</label>
-
+                        <div class="form-group"><label>How many forests are there?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_hosted_O365.number_of_forests %>"
                                    name="email_se_questions[prem_exchange_hosted_O365][number_of_forests]">
                         </div>
-                        <div class="form-group"><label>Is this a Resource Forest
-                                arrangement?</label>
-
+                        <div class="form-group"><label>Is this a Resource Forest arrangement?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_hosted_O365.is_resource_forest_arrangement %>"
                                    name="email_se_questions[prem_exchange_hosted_O365][is_resource_forest_arrangement]">
                         </div>
-                        <div class="form-group"><label>Are you using
-                                multi-domains?</label>
-
+                        <div class="form-group"><label>Are you using multi-domains?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_hosted_O365.is_using_multi_domains %>"
                                    name="email_se_questions[prem_exchange_hosted_O365][is_using_multi_domains]">
                         </div>
-                        <div class="form-group"><label>If yes, what is the structure of multi-domain
-                                architecture / their
-                                relationships?</label>
-
+                        <div class="form-group"><label>If yes, what is the structure of multi-domain architecture / their relationships?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_hosted_O365.structure %>"
                                    name="email_se_questions[prem_exchange_hosted_O365][structure]">
                         </div>
-                        <div class="form-group"><label>Resource forest
-                                deployment?</label>
-
+                        <div class="form-group"><label>Resource forest deployment?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_hosted_O365.resource_forest_deployment %>"
                                    name="email_se_questions[prem_exchange_hosted_O365][resource_forest_deployment]">
                         </div>
-                        <div class="form-group"><label>How big is your AD? How many
-                                objects?</label>
-
+                        <div class="form-group"><label>How big is your AD? How many objects?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= email_se_questions.prem_exchange_hosted_O365.AD_size %>"
                                    name="email_se_questions[prem_exchange_hosted_O365][AD_size]">

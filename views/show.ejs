@@ -1,7 +1,5 @@
 <% include partials/header %>
 
-<script type="text/javascript" src="/scripts/show.js"></script>
-
 <div class="container" style="border: .2px solid gray; padding-bottom: 25px">
     <div id="customerHeader">
         <h1 style="text-align: center;"><%= customer.name %></h1>
@@ -84,42 +82,30 @@
                 <div id="emailSystemsSE-1" class="collapse">
                     <h5 style="color: lightseagreen">Exchange Details</h5>
                     <div id="emailSystemContent1" class="row">
-                        <div id="" class="col-4 response-cell"><p><b>What versions of Exchange are
-                                    running?</b>
+                        <div id="" class="col-4 response-cell"><p><b>What versions of Exchange are running?</b>
                                 <br><%= email_se_questions.prem_exchange.exchange_version %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>How many locations are mailbox servers
-                                    deployed?</b>
+                        <div id="" class="col-4 response-cell"><p><b>How many locations are mailbox servers deployed?</b>
                                 <br><%= email_se_questions.prem_exchange.number_of_mail_servers %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Do you have an Enterprise
-                                    CAL?</b>
-                                <br><%= email_se_questions.prem_exchange.has_enterprise_CAL %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Are you replicating Exchange and AD to a secondary data
-                                    center?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Do you have an Enterprise CAL?</b>
+                                <br><%= yes_no(email_se_questions.prem_exchange.has_enterprise_CAL) %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>Are you replicating Exchange and AD to a secondary data center?</b>
                                 <br><%= email_se_questions.prem_exchange.is_replicating_exchange_and_AD %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Please provide a diagram of your exchange infrastructure and your
-                                    AD
-                                    Details</b>
+                        <div id="" class="col-4 response-cell"><p><b>Please provide a diagram of your exchange infrastructure and your AD Details</b>
                                 <br><%= email_se_questions.prem_exchange.diagram %></p></div>
                     </div>
                     <br>
 
                     <h5 style="color: lightseagreen">Active Directory Details</h5>
                     <div id="emailSystemContent2" class="row">
-                        <div id="" class="col-4 response-cell"><p><b>Is your AD
-                                    multi-forest?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Is your AD multi-forest?</b>
                                 <br><%= email_se_questions.prem_exchange.is_multi_forest %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Are there trusts between the
-                                    forests?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are there trusts between the forests?</b>
                                 <br><%= email_se_questions.prem_exchange.exists_trusts %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Is this a Resource Forest
-                                    arrangement?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Is this a Resource Forest arrangement?</b>
                                 <br><%= email_se_questions.prem_exchange.is_resource_forest_arrangement %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Are you using
-                                    multi-domains?</b>
-                                <br><%= email_se_questions.prem_exchange.is_using_multi_domains %>
-                            </p></div>
-                        <div id="" class="col-4 response-cell"><p><b>if yes, what is the structure of multi-domain architecture /
-                                    their
+                        <div id="" class="col-4 response-cell"><p><b>Are you using multi-domains?</b>
+                                <br><%= email_se_questions.prem_exchange.is_using_multi_domains %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>if yes, what is the structure of multi-domain architecture / their
                                     relationships?</b>
                                 <br><%= email_se_questions.prem_exchange.structure %></p></div>
                     </div>
@@ -157,90 +143,65 @@
                 <div id="emailSystemsSE-3" class="collapse">
                     <h5 style="color: lightseagreen">Exchange details</h5>
                     <div id="emailSystemContent5" class="row">
-                        <div id="" class="col-4 response-cell"><p><b>What versions of Exchange are
-                                    running?</b>
-                                <br><%= email_se_questions.prem_exchange_prem_O365.exchange_version %>
-                            </p></div>
-                        <div id="" class="col-4 response-cell"><p><b>How many locations are mailbox servers
-                                    deployed?</b>
+                        <div id="" class="col-4 response-cell"><p><b>What versions of Exchange are running?</b>
+                                <br><%= email_se_questions.prem_exchange_prem_O365.exchange_version %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>How many locations are mailbox servers deployed?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.number_of_mail_servers %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Do you have an Enterprise
-                                    CAL?</b>
-                                <br><%= email_se_questions.prem_exchange_prem_O365.has_enterprise_CAL %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Describe the HA/DR of the Exchange
-                                    environment.</b>
-                                <br><%= email_se_questions.prem_exchange_prem_O365.describe_exchange_env %>
+                        <div id="" class="col-4 response-cell"><p><b>Do you have an Enterprise CAL?</b><br>
+                                <% if(email_se_questions.prem_exchange_prem_O365.has_enterprise_CAL) { %>
+                                Yes
+                                <% } else { %>
+                                No
+                                <% } %>
                             </p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Please provide a diagram of your exchange infrastructure and your
-                                    AD
-                                    Details.</b>
+                        <div id="" class="col-4 response-cell"><p><b>Describe the HA/DR of the Exchange environment.</b>
+                                <br><%= email_se_questions.prem_exchange_prem_O365.describe_exchange_env %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>Please provide a diagram of your exchange infrastructure and your AD Details.</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.diagram %></p></div>
-
-                        <div id="" class="col-4 response-cell"><p><b>Are DAGs being
-                                    used?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are DAGs being used?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.is_using_DAG %></p></div>
                     </div>
                     <br>
 
                     <h5 style="color: lightseagreen">Active Directory Details</h5>
                     <div id="emailSystemContent6" class="row">
-                        <div id="" class="col-4 response-cell"><p><b>Is your AD
-                                    multi-forest?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Is your AD multi-forest?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.is_multi_forest %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>How many forests are
-                                    there?</b>
-                                <br><%= email_se_questions.prem_exchange_prem_O365.number_of_forests %>
-                            </p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Is this a Resource Forest
-                                    arrangement?</b>
+                        <div id="" class="col-4 response-cell"><p><b>How many forests are there?</b>
+                                <br><%= email_se_questions.prem_exchange_prem_O365.number_of_forests %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>Is this a Resource Forest arrangement?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.is_resource_forest_arrangement %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Are you using
-                                    multi-domains?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are you using multi-domains?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.is_using_multi_domains %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>if yes, what is the structure of multi-domain architecture /
-                                    their
+                        <div id="" class="col-4 response-cell"><p><b>if yes, what is the structure of multi-domain architecture / their
                                     relationships?</b>
-                                <br><%= email_se_questions.prem_exchange_prem_O365.multi_domain_structure %>
-                            </p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Resource forest
-                                    deployment?</b>
+                                <br><%= email_se_questions.prem_exchange_prem_O365.multi_domain_structure %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>Resource forest deployment?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.resource_forest_deployment %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>How big is your AD? How many
-                                    objects?</b>
+                        <div id="" class="col-4 response-cell"><p><b>How big is your AD? How many objects?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.AD_size %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Do you require a secure connection to
-                                    LDAP?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Do you require a secure connection to LDAP?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.require_ldap %></p></div>
                     </div>
                     <br>
 
                     <h5 style="color: lightseagreen">O365 Details</h5>
                     <div id="emailSystemContent7" class="row">
-                        <div id="" class="col-4 response-cell"><p><b>What O365 license level do you
-                                    have?</b>
+                        <div id="" class="col-4 response-cell"><p><b>What O365 license level do you have?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.O365_version %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Are you maintaining AD
-                                    on-prem?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are you maintaining AD on-prem?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.is_maintaining_on_prem_AD %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Are you maintaining AD in
-                                    Azure?</b>
-                                <br><%= email_se_questions.prem_exchange_prem_O365.is_maintaining_azure %>
-                            </p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Are you using
-                                    multi-domains?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are you maintaining AD in Azure?</b>
+                                <br><%= email_se_questions.prem_exchange_prem_O365.is_maintaining_azure %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>Are you using multi-domains?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.is_using_multi_domains %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>When you create and admin mailboxes, do you do that in the
-                                    on-prem
-                                    AD, or in
+                        <div id="" class="col-4 response-cell"><p><b>When you create and admin mailboxes, do you do that in the on-prem AD, or in
                                     Azure?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.is_admin_in_AD_or_azure %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Sync tools used on
-                                    Azure?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Sync tools used on Azure?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.sync_tools %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Which O365 version (shared,
-                                    dedicated/BPOS-D/iTAR)?</b>
-                                <br><%= email_se_questions.prem_exchange_prem_O365.which_O365 %>
-                            </p></div>
+                        <div id="" class="col-4 response-cell"><p><b>Which O365 version (shared, dedicated/BPOS-D/iTAR)?</b>
+                                <br><%= email_se_questions.prem_exchange_prem_O365.which_O365 %></p></div>
                     </div>
                     <br>
                 </div>
@@ -252,57 +213,37 @@
                 <div id="emailSystemsSE-4" class="collapse">
                     <h5 style="color: lightseagreen">Exchange Details</h5>
                     <div id="emailSystemContent8" class="row">
-                        <div id="" class="col-4 response-cell"><p><b>What versions of Exchange are
-                                    running?</b>
-                                <br><%= email_se_questions.prem_exchange_hosted_O365.exchange_version %>
-                            </p></div>
-                        <div id="" class="col-4 response-cell"><p><b>How many locations are mailbox servers
-                                    deployed?</b>
+                        <div id="" class="col-4 response-cell"><p><b>What versions of Exchange are running?</b>
+                                <br><%= email_se_questions.prem_exchange_hosted_O365.exchange_version %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>How many locations are mailbox servers deployed?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.number_of_mail_servers %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Do you have an Enterprise
-                                    CAL?</b>
-                                <br><%= email_se_questions.prem_exchange_hosted_O365.has_enterprise_CAL %>
-                            </p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Describe the HA/DR of the Exchange
-                                    environment.</b>
-                                <br><%= email_se_questions.prem_exchange_hosted_O365.describe_exchange_env %>
-                            </p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Please provide a diagram of your exchange infrastructure and your
-                                    AD
-                                    Details.</b>
+                        <div id="" class="col-4 response-cell"><p><b>Do you have an Enterprise CAL?</b>
+                                <br><%= email_se_questions.prem_exchange_hosted_O365.has_enterprise_CAL %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>Describe the HA/DR of the Exchange environment.</b>
+                                <br><%= email_se_questions.prem_exchange_hosted_O365.describe_exchange_env %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>Please provide a diagram of your exchange infrastructure and your AD Details.</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.diagram %></p></div>
-
-                        <div id="" class="col-4 response-cell"><p><b>Are DAGs being
-                                    used?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are DAGs being used?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.is_using_DAG %></p></div>
                     </div>
                     <br>
 
                     <h5 style="color: lightseagreen">Active Directory Details</h5>
                     <div id="emailSystemContent9" class="row">
-                        <div id="" class="col-4 response-cell"><p><b>Is your AD
-                                    multi-forest?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Is your AD multi-forest?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.is_multi_forest %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>How many forests are
-                                    there?</b>
-                                <br><%= email_se_questions.prem_exchange_hosted_O365.number_of_forests %>
-                            </p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Is this a Resource Forest
-                                    arrangement?</b>
+                        <div id="" class="col-4 response-cell"><p><b>How many forests are there?</b>
+                                <br><%= email_se_questions.prem_exchange_hosted_O365.number_of_forests %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>Is this a Resource Forest arrangement?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.is_resource_forest_arrangement %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Are you using
-                                    multi-domains?</b>
+                        <div id="" class="col-4 response-cell"><p><b>Are you using multi-domains?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.is_using_multi_domains %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>If yes, what is the structure of multi-domain architecture /
-                                    their
+                        <div id="" class="col-4 response-cell"><p><b>If yes, what is the structure of multi-domain architecture / their
                                     relationships?</b>
-                                <br><%= email_se_questions.prem_exchange_hosted_O365.structure %>
-                            </p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Resource forest
-                                    deployment?</b>
+                                <br><%= email_se_questions.prem_exchange_hosted_O365.structure %> </p></div>
+                        <div id="" class="col-4 response-cell"><p><b>Resource forest deployment?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.resource_forest_deployment %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>How big is your AD? How many
-                                    objects?</b>
+                        <div id="" class="col-4 response-cell"><p><b>How big is your AD? How many objects?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.AD_size %></p></div>
                     </div>
                     <br>

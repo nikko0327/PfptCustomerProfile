@@ -33,6 +33,32 @@ app.use(session({
     })
 }));
 
+app.locals.yes_no = function (value) {
+    console.log(value);
+    if (value === null) {
+        return "";
+    }
+
+    if (value === true) {
+        return "Yes";
+    } else {
+        return "No";
+    }
+};
+
+// name="...["key"], value = true/false
+app.locals.make_yes_no_dropdown = function (name, value) {
+    if (value) {
+        return '<select name=' + name + '>' +
+            '<option value="true" selected>Yes</option>' +
+            '<option value="false">No</option>';
+    } else {
+        return '<select name=' + name + '>' +
+            '<option value="true">Yes</option>' +
+            '<option value="false" selected>No</option>';
+    }
+}
+
 // Exposes the username for the header nav bar.
 app.use(function expose_username(req, res, next) {
     res.locals.user = req.session.user;
@@ -40,7 +66,7 @@ app.use(function expose_username(req, res, next) {
 });
 
 // Disables back button from showing contents when logged out.
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
     next();
 });

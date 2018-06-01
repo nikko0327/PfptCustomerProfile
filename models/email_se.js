@@ -17,34 +17,34 @@ var email_se_schema = new mongoose.Schema({
             type: String,
             default: ""
         },
-        has_enterprise_CAL: { // dropdown
-            type: String,
-            default: ""
+        has_enterprise_CAL: { // checkbox
+            type: Boolean,
+            default: null
         },
         // !!!
         is_replicating_exchange_and_AD: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
         diagram: { // Fileupload???
             type: String,
             default: ""
         },
         is_multi_forest: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
         exists_trusts: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
         is_resource_forest_arrangement: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
         is_using_multi_domains: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
         structure: {
             type: String,
@@ -59,12 +59,12 @@ var email_se_schema = new mongoose.Schema({
             default: ""
         },
         is_maintaining_on_prem_AD: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
         is_maintaining_azure: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
         is_admin_in_AD_or_azure: {
             type: String,
@@ -92,8 +92,8 @@ var email_se_schema = new mongoose.Schema({
             default: ""
         },
         has_enterprise_CAL: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
         describe_exchange_env: {
             type: String,
@@ -104,30 +104,30 @@ var email_se_schema = new mongoose.Schema({
             default: ""
         },
         is_using_DAG: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
 
         // AD details
         is_multi_forest: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
         number_of_forests: {
             type: String,
             default: ""
         },
         exists_trusts: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
         is_resource_forest_arrangement: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
-        is_using_multi_domains: {
-            type: String,
-            default: ""
+        is_using_multi_domains:: {
+            type: Boolean,
+            default: null
         },
         multi_domain_structure: {
             type: String,
@@ -142,8 +142,8 @@ var email_se_schema = new mongoose.Schema({
             default: ""
         },
         require_ldap: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
 
         // O365 details
@@ -152,12 +152,12 @@ var email_se_schema = new mongoose.Schema({
             default: ""
         },
         is_maintaining_on_prem_AD: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
         is_maintaining_azure: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
         is_admin_in_AD_or_azure: {
             type: String,
@@ -184,8 +184,8 @@ var email_se_schema = new mongoose.Schema({
             default: ""
         },
         has_enterprise_CAL: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
         // !!!
         describe_exchange_env: {
@@ -197,30 +197,30 @@ var email_se_schema = new mongoose.Schema({
             default: ""
         },
         is_using_DAG: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
 
         // AD details
         is_multi_forest: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
         number_of_forests: {
             type: String,
             default: ""
         },
         exists_trusts: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
         is_resource_forest_arrangement: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
         is_using_multi_domains: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
         structure: {
             type: String,
@@ -235,8 +235,8 @@ var email_se_schema = new mongoose.Schema({
             default: ""
         },
         require_ldap: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
 
         // O365 details
@@ -245,12 +245,12 @@ var email_se_schema = new mongoose.Schema({
             default: ""
         },
         is_maintaining_on_prem_AD: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
         is_maintaining_azure: {
-            type: String,
-            default: ""
+            type: Boolean,
+            default: null
         },
         is_admin_in_AD_or_azure: {
             type: String,
