@@ -217,6 +217,10 @@ var usage_schema = new mongoose.Schema({
             default: ""
         }
     },
+    transport_agent: {
+        type: String,
+        default: ""
+    },
     folder_sync: {
         interested_in_folder_sync: {
             type: String,
