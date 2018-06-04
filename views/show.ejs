@@ -1,5 +1,7 @@
 <% include partials/header %>
 
+<script type="text/javascript" src="/scripts/show.js"></script>
+
 <div class="container" style="border: .2px solid gray; padding-bottom: 25px">
     <div id="customerHeader">
         <h1 style="text-align: center;"><%= customer.name %></h1>
@@ -87,10 +89,10 @@
                         <div id="" class="col-4 response-cell"><p><b>How many locations are mailbox servers deployed?</b>
                                 <br><%= email_se_questions.prem_exchange.number_of_mail_servers %></p></div>
                         <div id="" class="col-4 response-cell"><p><b>Do you have an Enterprise CAL?</b>
-                                <br><%= yes_no(email_se_questions.prem_exchange.has_enterprise_CAL) %></p></div>
+                                <br><%= email_se_questions.prem_exchange.has_enterprise_CAL %></p></div>
                         <div id="" class="col-4 response-cell"><p><b>Are you replicating Exchange and AD to a secondary data center?</b>
                                 <br><%= email_se_questions.prem_exchange.is_replicating_exchange_and_AD %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Please provide a diagram of your exchange infrastructure and your AD Details</b>
+                        <div id="" class="col-4 response-cell"><p><b>Please provide a diagram of your exchange infrastructure and your AD Details</b>
                                 <br><%= email_se_questions.prem_exchange.diagram %></p></div>
                     </div>
                     <br>
@@ -136,7 +138,7 @@
                     <br>
                 </div>
 
-                <h5><a href="#emailSystemsSE-3" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange + O365 (On-prem Appliance)
+                <h5><a href="#emailSystemsSE-3" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange + O365 (On-prem Appliance)
                         <i class="fa fa-arrows-v" aria-hidden="true"></i>
                     </a></h5>
 
@@ -148,15 +150,10 @@
                         <div id="" class="col-4 response-cell"><p><b>How many locations are mailbox servers deployed?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.number_of_mail_servers %></p></div>
                         <div id="" class="col-4 response-cell"><p><b>Do you have an Enterprise CAL?</b><br>
-                                <% if(email_se_questions.prem_exchange_prem_O365.has_enterprise_CAL) { %>
-                                Yes
-                                <% } else { %>
-                                No
-                                <% } %>
-                            </p></div>
+                                <br><%= email_se_questions.prem_exchange_prem_O365.has_enterprise_CAL%></p></div>
                         <div id="" class="col-4 response-cell"><p><b>Describe the HA/DR of the Exchange environment.</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.describe_exchange_env %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Please provide a diagram of your exchange infrastructure and your AD Details.</b>
+                        <div id="" class="col-4 response-cell"><p><b>Please provide a diagram of your exchange infrastructure and your AD Details.</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.diagram %></p></div>
                         <div id="" class="col-4 response-cell"><p><b>Are DAGs being used?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.is_using_DAG %></p></div>
@@ -221,7 +218,7 @@
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.has_enterprise_CAL %></p></div>
                         <div id="" class="col-4 response-cell"><p><b>Describe the HA/DR of the Exchange environment.</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.describe_exchange_env %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Please provide a diagram of your exchange infrastructure and your AD Details.</b>
+                        <div id="" class="col-4 response-cell"><p><b>Please provide a diagram of your exchange infrastructure and your AD Details.</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.diagram %></p></div>
                         <div id="" class="col-4 response-cell"><p><b>Are DAGs being used?</b>
                                 <br><%= email_se_questions.prem_exchange_hosted_O365.is_using_DAG %></p></div>
@@ -325,7 +322,7 @@
                 </div>
 
 
-                <h5><a href="#emailSystemsPS-3" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange + O365 (On-prem Appliance)
+                <h5><a href="#emailSystemsPS-3" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange + O365 (On-prem Appliance)
                         <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
                 </h5>
 
@@ -383,7 +380,7 @@
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.has_enterprise_CAL %></p></div>
                         <div id="" class="col-4 response-cell"><p><b>Describe the HA/DR of the Exchange environment.</b>
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.describe_env %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Please provide a diagram of your exchange infrastructure and your AD Details.</b>
+                        <div id="" class="col-4 response-cell"><p><b>Please provide a diagram of your exchange infrastructure and your AD Details.</b>
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.diagram %></p></div>
                         <div id="" class="col-4 response-cell"><p><b>Are DAGs being used?</b>
                                 <br><%= email_ps_questions.prem_exchange_hosted_O365.is_using_DAG %></p></div>

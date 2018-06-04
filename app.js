@@ -46,18 +46,51 @@ app.locals.yes_no = function (value) {
     }
 };
 
-// name="...["key"], value = true/false
+// Used in update
+// name="...[key]", value = true/false from DB
 app.locals.make_yes_no_dropdown = function (name, value) {
-    if (value) {
-        return '<select name=' + name + '>' +
+
+    var dropdown = '<select name="' + name + '">';
+
+    if (value == true) {
+        dropdown +=
+            '<option value="null">No response</option>' +
             '<option value="true" selected>Yes</option>' +
             '<option value="false">No</option>';
-    } else {
-        return '<select name=' + name + '>' +
+    } else if (value == null) {
+        dropdown +=
+            '<option value="false" selected>No response</option>' +
+            '<option value="true">Yes</option>' +
+            '<option value="false">No</option>';
+    } else if (value == false) {
+        dropdown +=
+            '<option value="null">No response</option>' +
             '<option value="true">Yes</option>' +
             '<option value="false" selected>No</option>';
     }
-}
+
+    dropdown += '</select>';
+    return dropdown;
+};
+
+// Used in update
+app.locals.make_custom_dropdown = function (name, value, list) {
+    var dropdown = '<select name="' + name + '">';
+
+    dropdown += '<option value="">No response</option>';
+
+    for (var i = 0; i < list.length; i++) {
+        if (value == list[i]) {
+            dropdown += '<option value="' + list[i] + '" selected>' + list[i] + '</option>'
+        } else {
+            dropdown += '<option value="' + list[i] + '">' + list[i] + '</option>'
+        }
+    }
+
+    dropdown += '</select>';
+
+    return dropdown;
+};
 
 // Exposes the username for the header nav bar.
 app.use(function expose_username(req, res, next) {

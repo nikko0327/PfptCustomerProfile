@@ -11,4 +11,3 @@ function expand_collapse() {
         expanded = true;
     }
 }
-
