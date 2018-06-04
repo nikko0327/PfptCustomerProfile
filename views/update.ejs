@@ -730,99 +730,108 @@
                                name="journaling_questions[name]">
                     </div>
 
-                    <h5 style="color: mediumvioletred">Exchange Details</h5>
-                    <div class="form-group">
-                        <label>Exchange on-prem</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= journaling_questions.exchange.exchange_on_prem %>"
-                               name="journaling_questions[exchange][exchange_on_prem]">
-                    </div>
-                    <div class="form-group">
-                        <label>O365</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= journaling_questions.exchange.has_O365 %>"
-                               name="journaling_questions[exchange][has_O365]">
-                    </div>
-                    <div class="form-group">
-                        <label>Mixed mode</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= journaling_questions.exchange.is_mixed_mode %>"
-                               name="journaling_questions[exchange][is_mixed_mode]">
-                    </div>
-                    <div class="form-group">
-                        <label>Number of mailboxes</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= journaling_questions.exchange.number_of_mailboxes %>"
-                               name="journaling_questions[exchange][number_of_mailboxes]">
-                    </div>
-                    <div class="form-group">
-                        <label>Average message count</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= journaling_questions.exchange.avg_message_count %>"
-                               name="journaling_questions[exchange][avg_message_count]">
-                    </div>
-                    <div class="form-group">
-                        <label>Changes in business?</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= journaling_questions.exchange.change_in_business %>"
-                               name="journaling_questions[exchange][change_in_business]">
-                    </div>
-                    <div class="form-group">
-                        <label>Has Enterprise CAL?</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= journaling_questions.exchange.has_enterprise_CAL %>"
-                               name="journaling_questions[exchange][has_enterprise_CAL]">
+                    <h5><a href="#editExchangeDetails" style="color: mediumvioletred" data-toggle="collapse">Exchange Details
+                            Appliances
+                            <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                    </h5>
+
+                    <div id="editExchangeDetails" class="collapse">
+                        <div class="form-group">
+                            <label>Exchange on-prem</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.exchange.exchange_on_prem %>"
+                                   name="journaling_questions[exchange][exchange_on_prem]">
+                        </div>
+                        <div class="form-group">
+                            <label>O365</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.exchange.has_O365 %>"
+                                   name="journaling_questions[exchange][has_O365]">
+                        </div>
+                        <div class="form-group">
+                            <label>Mixed mode</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.exchange.is_mixed_mode %>"
+                                   name="journaling_questions[exchange][is_mixed_mode]">
+                        </div>
+                        <div class="form-group">
+                            <label>Number of mailboxes</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.exchange.number_of_mailboxes %>"
+                                   name="journaling_questions[exchange][number_of_mailboxes]">
+                        </div>
+                        <div class="form-group">
+                            <label>Average message count</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.exchange.avg_message_count %>"
+                                   name="journaling_questions[exchange][avg_message_count]">
+                        </div>
+                        <div class="form-group">
+                            <label>Changes in business?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.exchange.change_in_business %>"
+                                   name="journaling_questions[exchange][change_in_business]">
+                        </div>
+                        <div class="form-group">
+                            <label>Has Enterprise CAL?</label>
+                            <%- make_custom_dropdown("journaling_questions[exchange][has_enterprise_CAL]",
+                                    journaling_questions.exchange.has_enterprise_CAL, ["Yes", "No"]) %>
+                        </div>
                     </div>
 
+                    <h5><a href="#editMailVol" style="color: mediumvioletred" data-toggle="collapse">Mail volume and journaling
+                            Appliances
+                            <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                    </h5>
 
-                    <h5 style="color: mediumvioletred">Mail volume and journaling</h5>
-                    <div class="form-group">
-                        <label>Users to be journaled</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= journaling_questions.mail_volume_metrics.users_journaled %>"
-                               name="journaling_questions[mail_volume_metrics][users_journaled]">
-                    </div>
-                    <div class="form-group">
-                        <label>Messages per user (weekly/monthly)</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= journaling_questions.mail_volume_metrics.user_messages %>"
-                               name="journaling_questions[mail_volume_metrics][user_messages]">
-                    </div>
-                    <div class="form-group">
-                        <label>Message volume derivation method</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= journaling_questions.mail_volume_metrics.message_derive %>"
-                               name="journaling_questions[mail_volume_metrics][message_derive]">
-                    </div>
-                    <div class="form-group">
-                        <label>Average message size</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= journaling_questions.mail_volume_metrics.avg_message_size %>"
-                               name="journaling_questions[mail_volume_metrics][avg_message_size]">
-                    </div>
-                    <div class="form-group">
-                        <label>Average daily journal message count</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= journaling_questions.mail_volume_metrics.avg_message_count %>"
-                               name="journaling_questions[mail_volume_metrics][avg_message_count]">
-                    </div>
-                    <div class="form-group">
-                        <label>Will all users be journaled?</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= journaling_questions.mail_volume_metrics.all_user_journaling %>"
-                               name="journaling_questions[mail_volume_metrics][all_user_journaling]">
-                    </div>
-                    <div class="form-group">
-                        <label>Plans to move to O365? (Timeline?)</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= journaling_questions.mail_volume_metrics.move_to_O365 %>"
-                               name="journaling_questions[mail_volume_metrics][move_to_O365]">
-                    </div>
-                    <div class="form-group">
-                        <label>Any custom configuration notes?</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= journaling_questions.mail_volume_metrics.custom_config %>"
-                               name="journaling_questions[mail_volume_metrics][custom_config]">
+                    <div id="editMailVol" class="collapse">
+                        <div class="form-group">
+                            <label>Users to be journaled</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.mail_volume_metrics.users_journaled %>"
+                                   name="journaling_questions[mail_volume_metrics][users_journaled]">
+                        </div>
+                        <div class="form-group">
+                            <label>Messages per user (weekly/monthly)</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.mail_volume_metrics.user_messages %>"
+                                   name="journaling_questions[mail_volume_metrics][user_messages]">
+                        </div>
+                        <div class="form-group">
+                            <label>Message volume derivation method</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.mail_volume_metrics.message_derive %>"
+                                   name="journaling_questions[mail_volume_metrics][message_derive]">
+                        </div>
+                        <div class="form-group">
+                            <label>Average message size</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.mail_volume_metrics.avg_message_size %>"
+                                   name="journaling_questions[mail_volume_metrics][avg_message_size]">
+                        </div>
+                        <div class="form-group">
+                            <label>Average daily journal message count</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.mail_volume_metrics.avg_message_count %>"
+                                   name="journaling_questions[mail_volume_metrics][avg_message_count]">
+                        </div>
+                        <div class="form-group">
+                            <label>Will all users be journaled?</label>
+                            <%- make_custom_dropdown("journaling_questions[mail_volume_metrics][all_user_journaling]",
+                                    journaling_questions.mail_volume_metrics.all_user_journaling, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group">
+                            <label>Plans to move to O365? (Timeline?)</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.mail_volume_metrics.move_to_O365 %>"
+                                   name="journaling_questions[mail_volume_metrics][move_to_O365]">
+                        </div>
+                        <div class="form-group">
+                            <label>Any custom configuration notes?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.mail_volume_metrics.custom_config %>"
+                                   name="journaling_questions[mail_volume_metrics][custom_config]">
+                        </div>
                     </div>
 
                     <div class="col">
@@ -862,104 +871,111 @@
                                name="appliance_questions[name]">
                     </div>
 
-                    <h5 style="color: mediumvioletred">Appliance sizing</h5>
-                    <div class="form-group">
-                        <label>Messages per day</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= appliance_questions.messages_per_day %>"
-                               name="appliance_questions[messages_per_day]">
-                    </div>
-                    <div class="form-group">
-                        <label>Average message size</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= appliance_questions.avg_message_size %>"
-                               name="appliance_questions[avg_message_size]">
-                    </div>
-                    <div class="form-group">
-                        <label>Number of mailboxes</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= appliance_questions.number_of_mailboxes %>"
-                               name="appliance_questions[number_of_mailboxes]">
-                    </div>
-                    <div class="form-group">
-                        <label>Searches per day</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= appliance_questions.searches_per_day %>"
-                               name="appliance_questions[searches_per_day]">
-                    </div>
-                    <div class="form-group">
-                        <label>UI logins per day</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= appliance_questions.ui_logins_per_day %>"
-                               name="appliance_questions[ui_logins_per_day]">
-                    </div>
-                    <div class="form-group">
-                        <label>Exports per day</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= appliance_questions.exports_per_day %>"
-                               name="appliance_questions[exports_per_day]">
-                    </div>
-                    <div class="form-group">
-                        <label>Average export size</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= appliance_questions.avg_export_size %>"
-                               name="appliance_questions[avg_export_size]">
-                    </div>
-                    <div class="form-group">
-                        <label>Active directory size</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= appliance_questions.AD_size %>"
-                               name="appliance_questions[AD_size]">
-                    </div>
-                    <div class="form-group">
-                        <label>Virtual or physical hardware appliance preference?</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= appliance_questions.appliance_preference %>"
-                               name="appliance_questions[appliance_preference]">
-                    </div>
-                    <div class="form-group">
-                        <label>Does the customer have a VMWare environment?</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= appliance_questions.has_vmware_env %>"
-                               name="appliance_questions[has_vmware_env]">
-                    </div>
-                    <div class="form-group">
-                        <label>Number of appliances recommended?</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= appliance_questions.number_of_appliance_recommended %>"
-                               name="appliance_questions[number_of_appliance_recommended]">
-                    </div>
-                    <div class="form-group">
-                        <label>DR footprint?</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= appliance_questions.DR_footprint %>"
-                               name="appliance_questions[DR_footprint]">
+                    <h5><a href="#editapplianceDetails-ApplianceSizing" style="color: mediumvioletred" data-toggle="collapse">Appliance Sizing
+                            <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                    </h5>
+
+                    <div id="editapplianceDetails-ApplianceSizing" class="collapse">
+                        <div class="form-group">
+                            <label>Messages per day</label>
+                            <input type="number" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.messages_per_day %>"
+                                   name="appliance_questions[messages_per_day]">
+                        </div>
+                        <div class="form-group">
+                            <label>Average message size</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.avg_message_size %>"
+                                   name="appliance_questions[avg_message_size]">
+                        </div>
+                        <div class="form-group">
+                            <label>Number of mailboxes</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.number_of_mailboxes %>"
+                                   name="appliance_questions[number_of_mailboxes]">
+                        </div>
+                        <div class="form-group">
+                            <label>Searches per day</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.searches_per_day %>"
+                                   name="appliance_questions[searches_per_day]">
+                        </div>
+                        <div class="form-group">
+                            <label>UI logins per day</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.ui_logins_per_day %>"
+                                   name="appliance_questions[ui_logins_per_day]">
+                        </div>
+                        <div class="form-group">
+                            <label>Exports per day</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.exports_per_day %>"
+                                   name="appliance_questions[exports_per_day]">
+                        </div>
+                        <div class="form-group">
+                            <label>Average export size</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.avg_export_size %>"
+                                   name="appliance_questions[avg_export_size]">
+                        </div>
+                        <div class="form-group">
+                            <label>Active directory size</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.AD_size %>"
+                                   name="appliance_questions[AD_size]">
+                        </div>
+                        <div class="form-group">
+                            <label>Virtual or physical hardware appliance preference?</label>
+                            <%- make_custom_dropdown("appliance_questions[appliance_preference]",
+                                    appliance_questions.appliance_preference, ["Physical", "Virtual"]) %>
+                        </div>
+                        <div class="form-group">
+                            <label>Does the customer have a VMWare environment?</label>
+                            <%- make_custom_dropdown("appliance_questions[has_vmware_env]",
+                                    appliance_questions.has_vmware_env, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group">
+                            <label>Number of appliances recommended?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.number_of_appliance_recommended %>"
+                                   name="appliance_questions[number_of_appliance_recommended]">
+                        </div>
+                        <div class="form-group">
+                            <label>DR footprint?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.DR_footprint %>"
+                                   name="appliance_questions[DR_footprint]">
+                        </div>
                     </div>
 
-                    <h5 style="color: mediumvioletred">For SE</h5>
-                    <div class="form-group">
-                        <label>How many of each purpose (UI, export, archiving, stubbing)?</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= appliance_questions.purposes %>"
-                               name="appliance_questions[purposes]">
-                    </div>
-                    <div class="form-group">
-                        <label>Archive proxy?</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= appliance_questions.archive_proxy %>"
-                               name="appliance_questions[archive_proxy]">
-                    </div>
-                    <div class="form-group">
-                        <label>Transport agent</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= appliance_questions.transport_agent %>"
-                               name="appliance_questions[transport_agent]">
-                    </div>
-                    <div class="form-group">
-                        <label>Outlook view manager</label>
-                        <input type="text" class="form-control" placeholder="No response set"
-                               value="<%= appliance_questions.outlook_view_manager %>"
-                               name="appliance_questions[outlook_view_manager]">
+                    <h5><a href="#editapplianceDetails-ForSE" style="color: mediumvioletred" data-toggle="collapse">For SE
+                            <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                    </h5>
+
+                    <div id="editapplianceDetails-ForSE" class="collapse">
+                        <div class="form-group">
+                            <label>How many of each purpose (UI, export, archiving, stubbing)?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.purposes %>"
+                                   name="appliance_questions[purposes]">
+                        </div>
+                        <div class="form-group">
+                            <label>Archive proxy?</label>
+                            <%- make_custom_dropdown("appliance_questions[archive_proxy]",
+                                    appliance_questions.archive_proxy, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group">
+                            <label>Transport agent</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.transport_agent %>"
+                                   name="appliance_questions[transport_agent]">
+                        </div>
+                        <div class="form-group">
+                            <label>Outlook view manager</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= appliance_questions.outlook_view_manager %>"
+                                   name="appliance_questions[outlook_view_manager]">
+                        </div>
                     </div>
 
                     <div class="col">
@@ -1007,9 +1023,8 @@
                     <div id="editDesktop-Network" class="collapse">
                         <div class="form-group">
                             <label>Do you want users to be able to access the user interface outside of your network?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= desktop_network_questions.network_security.allow_outside_access %>"
-                                   name="desktop_network_questions[network_security][allow_outside_access]">
+                            <%- make_custom_dropdown("desktop_network_questions[network_security][allow_outside_access]",
+                                    desktop_network_questions.network_security.allow_outside_access, ["Yes", "No"]) %>
                         </div>
                         <div class="form-group">
                             <label>DMZ</label>
@@ -1025,15 +1040,13 @@
                         </div>
                         <div class="form-group">
                             <label>VPN Connection to PFPT Required</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= desktop_network_questions.network_security.require_vpn %>"
-                                   name="desktop_network_questions[network_security][require_vpn]">
+                            <%- make_custom_dropdown("desktop_network_questions[network_security][require_vpn]",
+                                    desktop_network_questions.network_security.require_vpn, ["Yes", "No"]) %>
                         </div>
                         <div class="form-group">
                             <label>Enable access to user outside network</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= desktop_network_questions.network_security.enable_outside_access %>"
-                                   name="desktop_network_questions[network_security][enable_outside_access]">
+                            <%- make_custom_dropdown("desktop_network_questions[network_security][enable_outside_access]",
+                                    desktop_network_questions.network_security.enable_outside_access, ["Yes", "No"]) %>
                         </div>
                         <div class="form-group">
                             <label>Load Balancer/VIP</label>
@@ -2113,8 +2126,7 @@
                     </h5>
 
                     <div id="editOtherDataSources-Custom" class="collapse">
-                        <div class="form-group"><label>Do you have custom applications that generate content that needs to be
-                                archived?</label>
+                        <div class="form-group"><label>Do you have custom applications that generate content that needs to be archived?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= other_data_source_questions.custom_content_archiving.need_custom_archive %>"
                                    name="other_data_source_questions[custom_content_archiving][need_custom_archive]">

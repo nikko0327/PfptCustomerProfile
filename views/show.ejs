@@ -77,6 +77,7 @@
                         <i class="fa fa-pencil-square-o"></i>Edit</a>
                 </div>
                 <br>
+
                 <h5><a href="#emailSystemsSE-1" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange w/ On-prem Appliances
                         <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
                 </h5>
@@ -150,7 +151,7 @@
                         <div id="" class="col-4 response-cell"><p><b>How many locations are mailbox servers deployed?</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.number_of_mail_servers %></p></div>
                         <div id="" class="col-4 response-cell"><p><b>Do you have an Enterprise CAL?</b><br>
-                                <br><%= email_se_questions.prem_exchange_prem_O365.has_enterprise_CAL%></p></div>
+                                <br><%= email_se_questions.prem_exchange_prem_O365.has_enterprise_CAL %></p></div>
                         <div id="" class="col-4 response-cell"><p><b>Describe the HA/DR of the Exchange environment.</b>
                                 <br><%= email_se_questions.prem_exchange_prem_O365.describe_exchange_env %></p></div>
                         <div id="" class="col-4 response-cell"><p><b>Please provide a diagram of your exchange infrastructure and your AD Details.</b>
@@ -280,6 +281,7 @@
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
                 </div>
                 <br>
+
                 <h5><a href="#emailSystemsPS-1" style="color: mediumvioletred" data-toggle="collapse">On-prem Exchange w/ On-prem Appliances
                         <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
                 </h5>
@@ -501,45 +503,61 @@
                     <i class="fa fa-arrows-v" aria-hidden="true"></i>
                 </a></h5>
             <br>
+
             <div id="applianceSizing" class="collapse">
                 <div class="edit pull-right">
                     <a href="#" aria-hidden="true" data-target="#editAppliances" data-toggle="modal">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
                 </div>
-                <br>
-                <div id="applianceDetails" class="row">
-                    <div id="" class="col-4 response-cell"><p><b>Messages Per Day</b>
-                            <br><%= appliance_questions.messages_per_day %></p></div>
-                    <div id="" class="col-4 response-cell"><p><b>Average Message Size</b>
-                            <br><%= appliance_questions.avg_message_size %></p></div>
-                    <div id="" class="col-4 response-cell"><p><b>Number of Mailboxes</b>
-                            <br><%= appliance_questions.number_of_mailboxes %></p></div>
-                    <div id="" class="col-4 response-cell"><p><b>Searches Per Day</b>
-                            <br><%= appliance_questions.searches_per_day %></p></div>
-                    <div id="" class="col-4 response-cell"><p><b>UI Logins Per Day</b>
-                            <br><%= appliance_questions.ui_logins_per_day %></p></div>
-                    <div id="" class="col-4 response-cell"><p><b>Exports Per Day</b>
-                            <br><%= appliance_questions.exports_per_day %></p></div>
-                    <div id="" class="col-4 response-cell"><p><b>Average Export Size</b>
-                            <br><%= appliance_questions.avg_export_size %></p></div>
-                    <div id="" class="col-4 response-cell"><p><b>Active Directory Size</b>
-                            <br><%= appliance_questions.AD_size %></p></div>
-                    <div id="" class="col-4 response-cell"><p><b>Does the customer prefer virtual or hardware appliances?</b>
-                            <br><%= appliance_questions.appliance_preference %></p></div>
-                    <div id="" class="col-4 response-cell"><p><b>Confirm the customer has a VMWare environment</b>
-                            <br><%= appliance_questions.has_vmware_env %></p></div>
-                    <div id="" class="col-4 response-cell"><p><b># of Appliances Recommended</b>
-                            <br><%= appliance_questions.number_of_appliance_recommended %></p></div>
-                    <div id="" class="col-4 response-cell"><p><b>DR footprint</b>
-                            <br><%= appliance_questions.DR_footprint %></p></div>
-                    <div id="" class="col-4 response-cell"><p><b>How many of each purpose (UI, export, archiving, stubbing)</b>
-                            <br><%= appliance_questions.purposes %></p></div>
-                    <div id="" class="col-4 response-cell"><p><b>Archive Proxy?</b>
-                            <br><%= appliance_questions.archive_proxy %></p></div>
-                    <div id="" class="col-4 response-cell"><p><b>Transport Agent</b>
-                            <br><%= appliance_questions.transport_agent %></p></div>
-                    <div id="" class="col-4 response-cell"><p><b>Outlook View Manager</b>
-                            <br><%= appliance_questions.outlook_view_manager %></p></div>
+                <h5><a href="#applianceDetails-ApplianceSizing" style="color: mediumvioletred" data-toggle="collapse">Appliance sizing
+                        <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                </h5>
+
+                <div id="applianceDetails-ApplianceSizing" class="collapse">
+                    <div class="row">
+                        <div id="" class="col-4 response-cell"><p><b>Messages Per Day</b>
+                                <br><%= appliance_questions.messages_per_day %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>Average Message Size</b>
+                                <br><%= appliance_questions.avg_message_size %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>Number of Mailboxes</b>
+                                <br><%= appliance_questions.number_of_mailboxes %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>Searches Per Day</b>
+                                <br><%= appliance_questions.searches_per_day %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>UI Logins Per Day</b>
+                                <br><%= appliance_questions.ui_logins_per_day %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>Exports Per Day</b>
+                                <br><%= appliance_questions.exports_per_day %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>Average Export Size</b>
+                                <br><%= appliance_questions.avg_export_size %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>Active Directory Size</b>
+                                <br><%= appliance_questions.AD_size %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>Does the customer prefer virtual or hardware appliances?</b>
+                                <br><%= appliance_questions.appliance_preference %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>Confirm the customer has a VMWare environment</b>
+                                <br><%= appliance_questions.has_vmware_env %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b># of Appliances Recommended</b>
+                                <br><%= appliance_questions.number_of_appliance_recommended %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>DR footprint</b>
+                                <br><%= appliance_questions.DR_footprint %></p></div>
+                    </div>
+                    <br>
+                </div>
+
+                <h5><a href="#applianceDetails-ForSE" style="color: mediumvioletred" data-toggle="collapse">For SE
+                        <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                </h5>
+
+                <div id="applianceDetails-ForSE" class="collapse">
+                    <div class="row">
+                        <div id="" class="col-4 response-cell"><p><b>How many of each purpose (UI, export, archiving, stubbing)</b>
+                                <br><%= appliance_questions.purposes %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>Archive Proxy?</b>
+                                <br><%= appliance_questions.archive_proxy %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>Transport Agent</b>
+                                <br><%= appliance_questions.transport_agent %></p></div>
+                        <div id="" class="col-4 response-cell"><p><b>Outlook View Manager</b>
+                                <br><%= appliance_questions.outlook_view_manager %></p></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -742,26 +760,32 @@
                     <div id="ECA-general" class="collapse">
                         <div id="ECA-general-row" class="row">
                             <div id="" class="col-4 response-cell"><p><b>How many users are there on each platform?</b>
-                                    <br><%= other_data_source_questions.enterprise_collaboration_archiving.general.number_of_users_per_platform %></p>
+                                    <br><%= other_data_source_questions.enterprise_collaboration_archiving.general.number_of_users_per_platform %>
+                                </p>
                             </div>
                             <div id="" class="col-4 response-cell"><p><b>How many of these users need to be archived</b>
-                                    <br><%= other_data_source_questions.enterprise_collaboration_archiving.general.number_of_users_to_archive %></p>
+                                    <br><%= other_data_source_questions.enterprise_collaboration_archiving.general.number_of_users_to_archive %>
+                                </p>
                             </div>
                             <div id="" class="col-4 response-cell"><p><b>Do you want to capture all user activity on each platform?</b>
-                                    <br><%= other_data_source_questions.enterprise_collaboration_archiving.general.capture_user_activity %></p></div>
+                                    <br><%= other_data_source_questions.enterprise_collaboration_archiving.general.capture_user_activity %></p>
+                            </div>
                             <div id="" class="col-4 response-cell"><p><b>Average volume of messages/day?</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.general.avg_daily_message_volume %></p>
                             </div>
-                            <div id="" class="col-4 response-cell"><p><b>What is the most active profile like in terms of message and file creation
+                            <div id="" class="col-4 response-cell"><p><b>What is the most active profile like in terms of message and file
+                                        creation
                                         and
                                         updates
                                         (which
                                         are treated as new uploads)?</b>
-                                    <br><%= other_data_source_questions.enterprise_collaboration_archiving.general.most_active_profile %></p></div>
+                                    <br><%= other_data_source_questions.enterprise_collaboration_archiving.general.most_active_profile %></p>
+                            </div>
                             <div id="" class="col-4 response-cell"><p><b>What is their retention policy?</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.general.retention_policy %></p></div>
                             <div id="" class="col-4 response-cell"><p><b>Is the customer a PFPT archiving customer?</b>
-                                    <br><%= other_data_source_questions.enterprise_collaboration_archiving.general.is_archiving_customer %></p></div>
+                                    <br><%= other_data_source_questions.enterprise_collaboration_archiving.general.is_archiving_customer %></p>
+                            </div>
                             <div id="" class="col-4 response-cell"><p><b>If not, what archive are you feeding messages into?</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.general.which_archive %></p></div>
                         </div>
@@ -786,7 +810,8 @@
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.files.need_original_or_extracted %>
                                 </p></div>
                             <div id="" class="col-4 response-cell"><p><b>Is the customer a PFPT archiving customer?</b>
-                                    <br><%= other_data_source_questions.enterprise_collaboration_archiving.files.is_archiving_customer %></p></div>
+                                    <br><%= other_data_source_questions.enterprise_collaboration_archiving.files.is_archiving_customer %></p>
+                            </div>
                             <div id="" class="col-4 response-cell"><p><b>Yes: Their content will be text converted if its larger then 25mb?</b>
                                     <br>Yes/No</p></div>
                             <div id="" class="col-4 response-cell"><p><b>No: Files larger than 25mb will not be archived but the content will be
@@ -808,7 +833,8 @@
                             <div id="" class="col-4 response-cell"><p><b>What's their deployment? hybrid vs fully in cloud (hosted)</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.skype_business.deployment %></p></div>
                             <div id="" class="col-4 response-cell"><p><b>Distribution of license levels for all users? (need E3 or higher)</b>
-                                    <br><%= other_data_source_questions.enterprise_collaboration_archiving.skype_business.license_level %></p></div>
+                                    <br><%= other_data_source_questions.enterprise_collaboration_archiving.skype_business.license_level %></p>
+                            </div>
                             <div id="" class="col-4 response-cell"><p><b>Do they have any other services that use Holds and searches</b>
                                     <br><%= other_data_source_questions.enterprise_collaboration_archiving.skype_business.use_holds_or_searches %>
                                 </p></div>
@@ -998,7 +1024,8 @@
                                 <br><%= desktop_network_questions.disaster_recovery.is_replicating_exchange_and_AD %></p></div>
                         <div id="" class="col-4 response-cell"><p><b>Describe what does the DR/HA configuration look like.</b>
                                 <br><%= desktop_network_questions.disaster_recovery.config_description %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Can you provide a diagram of the Exchange environment with the DR/HA included.
+                        <div id="" class="col-4 response-cell"><p><b>Can you provide a diagram of the Exchange environment with the DR/HA
+                                    included.
                                     (File
                                     upload???)</b>
                                 <br><%= desktop_network_questions.disaster_recovery.diagram %></p></div>
@@ -1021,7 +1048,8 @@
                                     universal
                                     groups containing all users that need to log in, in the resource forest)</b>
                                 <br><%= desktop_network_questions.authentication.where_security_group %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Service provider or IDP (Identity Provider) initiated? (we only support Service
+                        <div id="" class="col-4 response-cell"><p><b>Service provider or IDP (Identity Provider) initiated? (we only support
+                                    Service
                                     Provider
                                     initiated)</b>
                                 <br><%= desktop_network_questions.authentication.intiated_IDP %></p></div>
@@ -1036,7 +1064,8 @@
                                     cert
                                     sufficient? We support both</b>
                                 <br><%= desktop_network_questions.authentication.require_third_party_cert %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>What attribute will you be sending as part of the response? (we only support UPN,
+                        <div id="" class="col-4 response-cell"><p><b>What attribute will you be sending as part of the response? (we only support
+                                    UPN,
                                     email,
                                     and
                                     SID)</b>
@@ -1196,12 +1225,14 @@
                     <div id="usageContentCollectorFiles" class="row">
                         <div id="" class="col-4 response-cell"><p><b>Is the customer interested in CC4Files?</b>
                                 <br><%= usage_questions.content_collector_files.interested_in_CC4Files %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Where are the files located that you want to collect? (We only support Windows
+                        <div id="" class="col-4 response-cell"><p><b>Where are the files located that you want to collect? (We only support
+                                    Windows
                                     based
                                     file
                                     servers and on-prem Sharepoint.)</b>
                                 <br><%= usage_questions.content_collector_files.files_location %></p></div>
-                        <div id="" class="col-4 response-cell"><p><b>Is the customer willing to install an agent on each machine they want to collect
+                        <div id="" class="col-4 response-cell"><p><b>Is the customer willing to install an agent on each machine they want to
+                                    collect
                                     data
                                     from?</b>
                                 <br><%= usage_questions.content_collector_files.willing_to_install_agent %></p></div>
@@ -1351,12 +1382,14 @@
             <h5><a href="#importContent" data-toggle="collapse">Import
                     <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
             </h5><br>
+
             <div id="importContent" class="collapse">
                 <div class="edit pull-right">
                     <a href="#" aria-hidden="true" data-target="#editImport" data-toggle="modal">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
                 </div>
                 <br>
+
                 <div id="importDetails" class="row">
                     <div id="" class="col-4 response-cell"><p><b>Do you need to migrate Legacy Data?</b>
                             <br><%= import_questions.need_to_migrate_legacy_data %></p></div>
@@ -1380,7 +1413,8 @@
                             <br><%= import_questions.encryption_type %></p></div>
                     <div id="" class="col-4 response-cell"><p><b>How old is the oldest data you have?</b>
                             <br><%= import_questions.oldest_data %></p></div>
-                    <div id="" class="col-4 response-cell"><p><b>Do you have a record of former employees and their email addresses and aliases?</b>
+                    <div id="" class="col-4 response-cell"><p><b>Do you have a record of former employees and their email addresses and
+                                aliases?</b>
                             <br><%= import_questions.employee_records %></p></div>
                 </div>
             </div>

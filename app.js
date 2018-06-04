@@ -33,45 +33,6 @@ app.use(session({
     })
 }));
 
-app.locals.yes_no = function (value) {
-    console.log(value);
-    if (value === null) {
-        return "";
-    }
-
-    if (value === true) {
-        return "Yes";
-    } else {
-        return "No";
-    }
-};
-
-// Used in update
-// name="...[key]", value = true/false from DB
-app.locals.make_yes_no_dropdown = function (name, value) {
-
-    var dropdown = '<select name="' + name + '">';
-
-    if (value == true) {
-        dropdown +=
-            '<option value="null">No response</option>' +
-            '<option value="true" selected>Yes</option>' +
-            '<option value="false">No</option>';
-    } else if (value == null) {
-        dropdown +=
-            '<option value="false" selected>No response</option>' +
-            '<option value="true">Yes</option>' +
-            '<option value="false">No</option>';
-    } else if (value == false) {
-        dropdown +=
-            '<option value="null">No response</option>' +
-            '<option value="true">Yes</option>' +
-            '<option value="false" selected>No</option>';
-    }
-
-    dropdown += '</select>';
-    return dropdown;
-};
 
 // Used in update
 app.locals.make_custom_dropdown = function (name, value, list) {
