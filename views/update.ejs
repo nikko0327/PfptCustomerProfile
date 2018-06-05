@@ -13,7 +13,7 @@
             <div class="modal-body">
 
                 <!-- content goes here -->
-                <form action="/index/<%= customer.name %>?_method=PUT" method="POST">
+                <form id="customerForm" action="/index/<%= customer.name %>?_method=PUT" method="POST">
                     <div class="form-group">
                         <label for="customerName">Customer Name</label>
                         <input type="text" class="form-control" placeholder="No response set" id="customerName" value="<%= customer.name %>"
@@ -148,7 +148,7 @@
                                     email_se_questions.prem_exchange.has_enterprise_CAL, ["Yes", "No"]) %>
                         </div>
 
-                        <div class="form-group"><label>Are you replicating Exchange and AD to a secondary data center?</label>
+                        <div class="form-group"><label style="color: red;">Are you replicating Exchange and AD to a secondary data center?</label>
                             <%- make_custom_dropdown("email_se_questions[prem_exchange][is_replicating_exchange_and_AD]",
                                     email_se_questions.prem_exchange.is_replicating_exchange_and_AD, ["Yes", "No"]) %>
                         </div>

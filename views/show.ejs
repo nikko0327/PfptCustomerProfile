@@ -24,42 +24,47 @@
                     <h5 style="color: mediumvioletred">General Information</h5>
                 </div>
                 <div class="edit pull-right">
-                    <a href="#" aria-hidden="true" data-target="#editCustomer" data-toggle="modal"><i
+                    <a href="#" id="editCustomerLink" aria-hidden="true" data-toggle="modal"><i
                                 class="fa fa-pencil-square-o"></i>Edit</a>
+                    <a href="#" data-target="#editCustomer" aria-hidden="true" data-toggle="modal"><i
+                                class="fa fa-pencil-square-o"></i>Modal</a>
                 </div>
             </div>
             <br>
             <div id="generalInfoContent1" class="row">
-                <div id="" class="col-4 response-cell"><p><b>Customer Name</b>
-                        <br><%= customer.name %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Sales Rep.</b>
-                        <br><%= customer.salesRep %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>SE</b>
+                <div class="col-4 response-cell"><label><b>Customer Name</b></label><br>
+                    <div class="edit-customer"><%= customer.name %></div>
+                </div>
+                <div class="col-4 response-cell"><label><b>Sales Rep.</b></label><br>
+                    <div class="edit-customer"><%= customer.salesRep %></div>
+                </div>
+                <div class="col-4 response-cell"><p><b>SE</b>
                         <br><%= customer.archivingSe %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Account Manager</b>
+                <div class="col-4 response-cell"><p><b>Account Manager</b>
                         <br><%= customer.accManager %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>TEM</b>
+                <div class="col-4 response-cell"><p><b>TEM</b>
                         <br><%= customer.tem %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>TAM</b>
+                <div class="col-4 response-cell"><p><b>TAM</b>
                         <br><%= customer.tam %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Implementation Specialist</b>
+                <div class="col-4 response-cell"><p><b>Implementation Specialist</b>
                         <br><%= customer.impSpecialist %></p></div>
             </div>
+            <br>
 
             <div id="generalInfoContent2" class="row">
-                <div id="" class="col-4 response-cell"><p><b>Location</b>
+                <div class="col-4 response-cell"><p><b>Location</b>
                         <br><%= customer.location %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Number of Users</b>
+                <div class="col-4 response-cell"><p><b>Number of Users</b>
                         <br><%= customer.numberOfUsers %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Supervision</b>
+                <div class="col-4 response-cell"><p><b>Supervision</b>
                         <br><%= customer.supervision %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Contacts</b>
+                <div class="col-4 response-cell"><p><b>Contacts</b>
                         <br><%= customer.contacts %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Status</b>
+                <div class="col-4 response-cell"><p><b>Status</b>
                         <br><%= customer.status %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>NAT IP Address</b>
+                <div class="col-4 response-cell"><p><b>NAT IP Address</b>
                         <br><%= customer.natIp %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Incumbent Solution</b>
+                <div class="col-4 response-cell"><p><b>Incumbent Solution</b>
                         <br><%= customer.incumbentSolution %></p></div>
             </div>
         </div>
