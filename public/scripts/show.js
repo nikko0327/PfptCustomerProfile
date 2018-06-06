@@ -158,4 +158,41 @@ $(document).ready(() => {
             alert("Customer name is empty.");
         }
     });
+
+    var editing_appliances= false;
+    $('#editAppliancesLink').click(function () {
+        var customer_name = $("#unique-customer-name").val();
+        if (editing_appliances == true && customer_name) {
+            // END EDITING
+
+            var form = $("#appliancesForm");
+
+            var json = {
+                type: "POST",
+                url: form.attr('action'),
+                data: form.serialize(),
+                success: function (res) {
+
+                }
+            };
+            //console.log(json);
+
+            // POST here.
+            $.ajax(json);
+
+            // Locks the form's fieldset
+            $("#appliancesFormFieldset").prop('disabled', true);
+            editing_journaling = false;
+
+        } else if (editing_appliances == false) {
+            // BEGIN EDITING
+
+            // Unlocks the form's fieldset
+            $("#appliancesFormFieldset").prop('disabled', false);
+
+            editing_appliances = true;
+        } else {
+            alert("Customer name is empty.");
+        }
+    });
 });
