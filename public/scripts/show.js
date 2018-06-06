@@ -121,4 +121,41 @@ $(document).ready(() => {
             alert("Customer name is empty.");
         }
     });
+
+    var editing_journaling = false;
+    $('#editJournalingLink').click(function () {
+        var customer_name = $("#unique-customer-name").val();
+        if (editing_journaling == true && customer_name) {
+            // END EDITING
+
+            var form = $("#journalingForm");
+
+            var json = {
+                type: "POST",
+                url: form.attr('action'),
+                data: form.serialize(),
+                success: function (res) {
+
+                }
+            };
+            //console.log(json);
+
+            // POST here.
+            $.ajax(json);
+
+            // Locks the form's fieldset
+            $("#journalingFormFieldset").prop('disabled', true);
+            editing_journaling = false;
+
+        } else if (editing_journaling == false) {
+            // BEGIN EDITING
+
+            // Unlocks the form's fieldset
+            $("#journalingFormFieldset").prop('disabled', false);
+
+            editing_journaling = true;
+        } else {
+            alert("Customer name is empty.");
+        }
+    });
 });
