@@ -14,36 +14,38 @@ function expand_collapse() {
 
 var editing = false;
 $(document).ready(() => {
-        $('#editCustomerLink').click(function () {
-            if (editing == true) {
-                // END EDITING
-                editing = false;
+    $('#editCustomerLink').click(function () {
+        var customer_name = $("#unique-customer-name").val();
+        if (editing == true && customer_name) {
+            // END EDITING
 
-                //$("textarea.edit-customer").each(function () {
-                $("input.edit-customer").each(function () {
-                    var contents = $(this).val();
-                    console.log("Contents to be POSTed: " + contents);
+            var form = $("#customerForm");
 
-                    if (contents == '') {
-                        // Need at least 1 character
-                        contents = " ";
-                    }
-                    $(this).html(contents);
-                    $(this).contents().unwrap();
-                });
+            var json = {
+                type: "POST",
+                url: form.attr('action'),
+                data: form.serialize(),
+                success: function (res) {
+                    location.href = "/index/" + encodeURIComponent(customer_name);
+                }
+            };
+            //console.log(json);
 
-                // alert(editing);
-            } else {
-                // BEGIN EDITING
-                editing = true;
+            // POST here.
+            $.ajax(json);
 
-                $(".edit-customer").each(function () {
-                    var contents = $(this).html().trim();
-                    //$(this).html('<textarea class="edit-customer">' + contents + '</textarea>');
-                    $(this).html('<input class="edit-customer" placeholder="No response" value="' + contents + '"/>');
-                });
-                // alert(editing);
-            }
-        });
-    }
-);
+            // Locks the form's fieldset
+            $("#customerFormFieldset").prop('disabled', true);
+            editing = false;
+        } else if (editing == false) {
+            // BEGIN EDITING
+
+            // Unlocks the form's fieldset
+            $("#customerFormFieldset").prop('disabled', false);
+
+            editing = true;
+        } else {
+            alert("Customer name is empty.");
+        }
+    });
+});

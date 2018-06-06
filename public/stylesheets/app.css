@@ -185,12 +185,17 @@ hr.rainbow {
     display: flex;
 }
 
+label {
+    font-weight: bold;
+}
+
 .display-header {
 
 }
 
 {
-    -o-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s
+;
 }
 
 .footer-bottom {
@@ -205,5 +210,6 @@ hr.rainbow {
 }
 
 {
-    font-size: 1.5em;
+    font-size: 1.5em
+;
 }

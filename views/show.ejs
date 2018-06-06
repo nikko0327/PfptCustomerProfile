@@ -31,42 +31,107 @@
                 </div>
             </div>
             <br>
-            <div id="generalInfoContent1" class="row">
-                <div class="col-4 response-cell"><label><b>Customer Name</b></label><br>
-                    <div class="edit-customer"><%= customer.name %></div>
-                </div>
-                <div class="col-4 response-cell"><label><b>Sales Rep.</b></label><br>
-                    <div class="edit-customer"><%= customer.salesRep %></div>
-                </div>
-                <div class="col-4 response-cell"><p><b>SE</b>
-                        <br><%= customer.archivingSe %></p></div>
-                <div class="col-4 response-cell"><p><b>Account Manager</b>
-                        <br><%= customer.accManager %></p></div>
-                <div class="col-4 response-cell"><p><b>TEM</b>
-                        <br><%= customer.tem %></p></div>
-                <div class="col-4 response-cell"><p><b>TAM</b>
-                        <br><%= customer.tam %></p></div>
-                <div class="col-4 response-cell"><p><b>Implementation Specialist</b>
-                        <br><%= customer.impSpecialist %></p></div>
-            </div>
-            <br>
 
-            <div id="generalInfoContent2" class="row">
-                <div class="col-4 response-cell"><p><b>Location</b>
-                        <br><%= customer.location %></p></div>
-                <div class="col-4 response-cell"><p><b>Number of Users</b>
-                        <br><%= customer.numberOfUsers %></p></div>
-                <div class="col-4 response-cell"><p><b>Supervision</b>
-                        <br><%= customer.supervision %></p></div>
-                <div class="col-4 response-cell"><p><b>Contacts</b>
-                        <br><%= customer.contacts %></p></div>
-                <div class="col-4 response-cell"><p><b>Status</b>
-                        <br><%= customer.status %></p></div>
-                <div class="col-4 response-cell"><p><b>NAT IP Address</b>
-                        <br><%= customer.natIp %></p></div>
-                <div class="col-4 response-cell"><p><b>Incumbent Solution</b>
-                        <br><%= customer.incumbentSolution %></p></div>
-            </div>
+            <form id="customerForm" autocomplete="off" action="/index/<%= customer.name %>?_method=PUT" method="POST">
+                <fieldset id="customerFormFieldset" disabled>
+                    <div id="generalInfoContent1" class="row">
+                        <div class="form-group col-4 response-cell">
+                            <label>Customer Name </label>
+                            <input id="unique-customer-name" required type="text" class="form-control edit-customer" placeholder="No response set"
+                                   id="customerName" value="<%=
+                            customer.name %>" name="customer[name]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Sales Rep.</label>
+                            <input type="text" class="form-control edit-customer" placeholder="No response set" id="salesRep"
+                                   value="<%= customer.salesRep %>"
+                                   name="customer[salesRep]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Archiving SE </label>
+                            <input type="text" class="form-control edit-customer" placeholder="No response set" id="archivingSe"
+                                   value="<%= customer.archivingSe %>" name="customer[archivingSe]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Acc. Manager </label>
+                            <input type="text" class="form-control edit-customer" placeholder="No response set" id="accManager"
+                                   value="<%= customer.accManager %>"
+                                   name="customer[accManager]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>TEM </label>
+                            <input type="text" class="form-control edit-customer" placeholder="No response set" id="tme"
+                                   value="<%= customer.tem
+                                   %>"
+                                   name="customer[tem]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>TAM </label>
+                            <input type="text" class="form-control edit-customer" placeholder="No response set" id="tam"
+                                   value="<%= customer.tam
+                                   %>"
+                                   name="customer[tam]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Implementation Specialist </label>
+                            <input type="text" class="form-control edit-customer" placeholder="No response set"
+                                   id="implementationSpecialist "
+                                   value="<%= customer.impSpecialist %>" name="customer[impSpecialist]">
+                        </div>
+                    </div>
+                    <br>
+
+                    <div id="generalInfoContent2" class="row">
+                        <div class="form-group col-4 response-cell">
+                            <label>Number of Users </label>
+                            <input type="text" class="form-control edit-customer" placeholder="No response set" id="numberOfUsers"
+                                   value="<%= customer.numberOfUsers %>"
+                                   name="customer[numberOfUsers]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Location </label>
+                            <input type="text" class="form-control edit-customer" placeholder="No response set" id="location"
+                                   value="<%= customer
+                                           .location %>"
+                                   name="customer[location]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Supervision </label>
+                            <input type="text" class="form-control edit-customer" placeholder="No response set" id="supervision"
+                                   value="<%= customer.supervision %>"
+                                   name="customer[supervision]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Contacts </label>
+                            <input type="text" class="form-control edit-customer" placeholder="No response set" id="contacts"
+                                   value="<%= customer
+                                           .contacts %>"
+                                   name="customer[contacts]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Status </label>
+                            <input type="text" class="form-control edit-customer" placeholder="No response set" id="status"
+                                   value="<%= customer
+                                           .status
+                                   %>"
+                                   name="customer[status]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>NAT IP </label>
+                            <input type="text" class="form-control edit-customer" placeholder="No response set" id="natIp"
+                                   value="<%= customer
+                                           .natIp
+                                   %>"
+                                   name="customer[natIp]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Incumbent Solution </label>
+                            <input type="text" class="form-control edit-customer" placeholder="No response set" id="incumbentSolution"
+                                   value="<%= customer.incumbentSolution %>" name="customer[incumbentSolution]">
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
         </div>
         <hr class="rainbow">
 
@@ -613,35 +678,30 @@
                     <div id="publicSocialArchivingNeeds" class="row">
                         <div class="col-4, response-checkbox"><p>
                                 <b>Facebook </b>
-                                <input hidden type="checkbox">
                                 <% if(other_data_source_questions.public_social_archiving.need_social_media_content.facebook) { %>
                                 <i class="fa fa-check" style="color: red;"></i>
                                 <% } %>
                             </p></div>
                         <div class="col-4, response-checkbox"><p>
                                 <b>Linkedin </b>
-                                <input hidden type="checkbox">
                                 <% if(other_data_source_questions.public_social_archiving.need_social_media_content.linkedin) { %>
                                 <i class="fa fa-check" style="color: red;"></i>
                                 <% } %>
                             </p></div>
                         <div class="col-4, response-checkbox"><p>
                                 <b>Twitter </b>
-                                <input hidden type="checkbox">
                                 <% if(other_data_source_questions.public_social_archiving.need_social_media_content.twitter) { %>
                                 <i class="fa fa-check" style="color: red;"></i>
                                 <% } %>
                             </p></div>
                         <div class="col-4, response-checkbox"><p>
                                 <b>Google </b>
-                                <input hidden type="checkbox">
                                 <% if(other_data_source_questions.public_social_archiving.need_social_media_content.google) { %>
                                 <i class="fa fa-check" style="color: red;"></i>
                                 <% } %>
                             </p></div>
                         <div class="col-4, response-checkbox"><p>
                                 <b>YouTube </b>
-                                <input hidden type="checkbox">
                                 <% if(other_data_source_questions.public_social_archiving.need_social_media_content.youtube) { %>
                                 <i class="fa fa-check" style="color: red;"></i>
                                 <% } %>
@@ -671,84 +731,72 @@
                     <p>Archiving needs:<br></p>
                     <div id="ECA-needs" class="row">
                         <div class="col-4 response-cell"><p><b>Files</b>
-                                <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.files) { %>
                                 <i class="fa fa-check" style="color: red;"></i>
                                 <% } %>
                             </p></div>
 
                         <div class="col-4 response-cell"><p><b>Skype in the cloud</b>
-                                <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.skype_in_cloud) { %>
                                 <i class="fa fa-check" style="color: red;"></i>
                                 <% } %>
                             </p></div>
 
                         <div class="col-4 response-cell"><p><b>Skype on Prem</b>
-                                <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.skype_on_prem) { %>
                                 <i class="fa fa-check" style="color: red;"></i>
                                 <% } %>
                             </p></div>
 
                         <div class="col-4 response-cell"><p><b>Lync on Prem</b>
-                                <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.lync_on_prem) { %>
                                 <i class="fa fa-check" style="color: red;"></i>
                                 <% } %>
                             </p></div>
 
                         <div class="col-4 response-cell"><p><b>One Drive</b>
-                                <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.one_drive) { %>
                                 <i class="fa fa-check" style="color: red;"></i>
                                 <% } %>
                             </p></div>
 
                         <div class="col-4 response-cell"><p><b>Box</b>
-                                <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.box) { %>
                                 <i class="fa fa-check" style="color: red;"></i>
                                 <% } %>
                             </p></div>
 
                         <div class="col-4 response-cell"><p><b>Bloomberg</b>
-                                <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.bloomberg) { %>
                                 <i class="fa fa-check" style="color: red;"></i>
                                 <% } %>
                             </p></div>
 
                         <div class="col-4 response-cell"><p><b>Yammer</b>
-                                <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.yammer) { %>
                                 <i class="fa fa-check" style="color: red;"></i>
                                 <% } %>
                             </p></div>
 
                         <div class="col-4 response-cell"><p><b>Jive</b>
-                                <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.jive) { %>
                                 <i class="fa fa-check" style="color: red;"></i>
                                 <% } %>
                             </p></div>
 
                         <div class="col-4 response-cell"><p><b>Chatter</b>
-                                <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.chatter) { %>
                                 <i class="fa fa-check" style="color: red;"></i>
                                 <% } %>
                             </p></div>
 
                         <div class="col-4 response-cell"><p><b>Slack</b>
-                                <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.slack) { %>
                                 <i class="fa fa-check" style="color: red;"></i>
                                 <% } %>
                             </p></div>
 
                         <div class="col-4 response-cell"><p><b>Symphony</b>
-                                <input hidden type="checkbox">
                                 <% if(other_data_source_questions.enterprise_collaboration_archiving.needs.symphony) { %>
                                 <i class="fa fa-check" style="color: red;"></i>
                                 <% } %>
