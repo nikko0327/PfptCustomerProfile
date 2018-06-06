@@ -1,0 +1,201 @@
+<!-- Displaying journaling questions-->
+<div id="journaling" class="display-header">
+    <h5><a href="#journalingContainer" data-toggle="collapse">Journaling
+            <i class="fa fa-arrows-v" aria-hidden="true"></i>
+        </a></h5>
+    <br>
+
+    <div id="journalingContainer" class="collapse">
+        <div class="edit pull-right">
+            <a href="#" aria-hidden="true" data-target="#editJournaling" data-toggle="modal">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
+        </div>
+        <br>
+        <h5 style="color: mediumvioletred">Exchange Details</h5>
+        <div id="exchangeDetails" class="row">
+            <div id="" class="col-4 response-cell"><p><b>Exchange
+                        On-prem</b>
+                    <br><%= journaling_questions.exchange.exchange_on_prem %></p></div>
+            <div id="" class="col-4 response-cell"><p><b>O365</b>
+                    <br><%= journaling_questions.exchange.has_O365 %></p></div>
+            <div id="" class="col-4 response-cell"><p><b>Mixed Mode</b>
+                    <br><%= journaling_questions.exchange.is_mixed_mode %></p></div>
+            <div id="" class="col-4 response-cell"><p><b>Number of
+                        Mailboxes</b>
+                    <br><%= journaling_questions.exchange.number_of_mailboxes %></p></div>
+            <div id="" class="col-4 response-cell"><p><b>Average Daily Journal Msg
+                        Count</b>
+                    <br><%= journaling_questions.exchange.avg_message_count %></p></div>
+            <div id="" class="col-4 response-cell"><p><b>Changes in
+                        Business</b>
+                    <br><%= journaling_questions.exchange.change_in_business %></p></div>
+            <div id="" class="col-4 response-cell"><p><b>Has Enterprise
+                        CAL?</b>
+                    <br><%= journaling_questions.exchange.has_enterprise_CAL %></p></div>
+        </div>
+        <br>
+
+        <h5 style="color: mediumvioletred">Mail volume and journaling</h5>
+
+        <div id="mailVolume" class="row">
+            <div id="" class="col-4 response-cell"><p><b>Users To Be Journaled</b>
+                    <br><%= journaling_questions.mail_volume_metrics.users_journaled %></p></div>
+            <div id="" class="col-4 response-cell"><p><b>Msg Per User(Week/Month)</b>
+                    <br><%= journaling_questions.mail_volume_metrics.user_messages %></p></div>
+            <div id="" class="col-4 response-cell"><p><b>Message Volume Derive Method</b>
+                    <br><%= journaling_questions.mail_volume_metrics.message_derive %></p></div>
+            <div id="" class="col-4 response-cell"><p><b>Average Message Size</b>
+                    <br><%= journaling_questions.mail_volume_metrics.avg_message_size %></p></div>
+            <div id="" class="col-4 response-cell"><p><b>Average Daily Journal Msg Count</b>
+                    <br><%= journaling_questions.mail_volume_metrics.avg_message_count %></p></div>
+            <div id="" class="col-4 response-cell"><p><b>All User Journaling</b>
+                    <br><%= journaling_questions.mail_volume_metrics.all_user_journaling %></p></div>
+            <div id="" class="col-4 response-cell"><p><b>O365 (Time Line)</b>
+                    <br><%= journaling_questions.mail_volume_metrics.move_to_O365 %></p></div>
+            <div id="" class="col-4 response-cell"><p><b>Custom Configuration Notes</b>
+                    <br><%= journaling_questions.mail_volume_metrics.custom_config %></p></div>
+        </div>
+    </div>
+</div>
+<hr class="rainbow">
+
+<!-- JOURNALING UPDATE -->
+<div class="modal fade" id="editJournaling" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="lineModalLabel">Journaling configuration</h3>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                            class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+
+                <!-- content goes here -->
+                <form action="/index/<%= customer.name %>?_method=PUT" method="POST">
+                    <div class="form-group">
+                        <label for="customerName">Customer Name</label>
+                        <input type="text" readonly class="form-control" placeholder="No response set"
+                               value="<%= customer.name %>"
+                               name="journaling_questions[name]">
+                    </div>
+
+                    <h5><a href="#editExchangeDetails" style="color: mediumvioletred" data-toggle="collapse">Exchange Details
+                            Appliances
+                            <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                    </h5>
+
+                    <div id="editExchangeDetails" class="collapse">
+                        <div class="form-group">
+                            <label>Exchange on-prem</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.exchange.exchange_on_prem %>"
+                                   name="journaling_questions[exchange][exchange_on_prem]">
+                        </div>
+                        <div class="form-group">
+                            <label>O365</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.exchange.has_O365 %>"
+                                   name="journaling_questions[exchange][has_O365]">
+                        </div>
+                        <div class="form-group">
+                            <label>Mixed mode</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.exchange.is_mixed_mode %>"
+                                   name="journaling_questions[exchange][is_mixed_mode]">
+                        </div>
+                        <div class="form-group">
+                            <label>Number of mailboxes</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.exchange.number_of_mailboxes %>"
+                                   name="journaling_questions[exchange][number_of_mailboxes]">
+                        </div>
+                        <div class="form-group">
+                            <label>Average message count</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.exchange.avg_message_count %>"
+                                   name="journaling_questions[exchange][avg_message_count]">
+                        </div>
+                        <div class="form-group">
+                            <label>Changes in business?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.exchange.change_in_business %>"
+                                   name="journaling_questions[exchange][change_in_business]">
+                        </div>
+                        <div class="form-group">
+                            <label>Has Enterprise CAL?</label>
+                            <%- make_custom_dropdown("journaling_questions[exchange][has_enterprise_CAL]",
+                                    journaling_questions.exchange.has_enterprise_CAL, ["Yes", "No"]) %>
+                        </div>
+                    </div>
+
+                    <h5><a href="#editMailVol" style="color: mediumvioletred" data-toggle="collapse">Mail volume and journaling
+                            Appliances
+                            <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                    </h5>
+
+                    <div id="editMailVol" class="collapse">
+                        <div class="form-group">
+                            <label>Users to be journaled</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.mail_volume_metrics.users_journaled %>"
+                                   name="journaling_questions[mail_volume_metrics][users_journaled]">
+                        </div>
+                        <div class="form-group">
+                            <label>Messages per user (weekly/monthly)</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.mail_volume_metrics.user_messages %>"
+                                   name="journaling_questions[mail_volume_metrics][user_messages]">
+                        </div>
+                        <div class="form-group">
+                            <label>Message volume derivation method</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.mail_volume_metrics.message_derive %>"
+                                   name="journaling_questions[mail_volume_metrics][message_derive]">
+                        </div>
+                        <div class="form-group">
+                            <label>Average message size</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.mail_volume_metrics.avg_message_size %>"
+                                   name="journaling_questions[mail_volume_metrics][avg_message_size]">
+                        </div>
+                        <div class="form-group">
+                            <label>Average daily journal message count</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.mail_volume_metrics.avg_message_count %>"
+                                   name="journaling_questions[mail_volume_metrics][avg_message_count]">
+                        </div>
+                        <div class="form-group">
+                            <label>Will all users be journaled?</label>
+                            <%- make_custom_dropdown("journaling_questions[mail_volume_metrics][all_user_journaling]",
+                                    journaling_questions.mail_volume_metrics.all_user_journaling, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group">
+                            <label>Plans to move to O365? (Timeline?)</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.mail_volume_metrics.move_to_O365 %>"
+                                   name="journaling_questions[mail_volume_metrics][move_to_O365]">
+                        </div>
+                        <div class="form-group">
+                            <label>Any custom configuration notes?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= journaling_questions.mail_volume_metrics.custom_config %>"
+                                   name="journaling_questions[mail_volume_metrics][custom_config]">
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" role="button">Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

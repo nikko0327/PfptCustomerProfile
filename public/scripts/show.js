@@ -12,8 +12,8 @@ function expand_collapse() {
     }
 }
 
-var editing = false;
 $(document).ready(() => {
+    var editing = false;
     $('#editCustomerLink').click(function () {
         var customer_name = $("#unique-customer-name").val();
         if (editing == true && customer_name) {
@@ -42,6 +42,41 @@ $(document).ready(() => {
 
             // Unlocks the form's fieldset
             $("#customerFormFieldset").prop('disabled', false);
+
+            editing = true;
+        } else {
+            alert("Customer name is empty.");
+        }
+    });
+
+    $('#editEmailSystemSELink').click(function () {
+        var customer_name = $("#unique-customer-name").val();
+        if (editing == true && customer_name) {
+            // END EDITING
+
+            var form = $("#emailSystemSEForm");
+
+            var json = {
+                type: "POST",
+                url: form.attr('action'),
+                data: form.serialize(),
+                success: function (res) {
+
+                }
+            };
+            //console.log(json);
+
+            // POST here.
+            $.ajax(json);
+
+            // Locks the form's fieldset
+            $("#emailSystemSEFormFieldset").prop('disabled', true);
+            editing = false;
+        } else if (editing == false) {
+            // BEGIN EDITING
+
+            // Unlocks the form's fieldset
+            $("#emailSystemSEFormFieldset").prop('disabled', false);
 
             editing = true;
         } else {

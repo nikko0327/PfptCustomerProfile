@@ -1,0 +1,75 @@
+<!-- Displaying design summary -->
+<div id="designSummary" class="display-header">
+    <h5><a href="#designSummaryContent" data-toggle="collapse">Design Summary
+            <i class="fa fa-arrows-v" aria-hidden="true"></i>
+        </a></h5>
+
+    <div id="designSummaryContent" class="collapse">
+        <div class="edit pull-right">
+            <a href="#" aria-hidden="true" data-target="#editDesignSummary" data-toggle="modal">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
+        </div>
+        <br>
+        <div id="refDetails" class="row">
+            <div id="" class="col-4 response-cell"><p><b>Mail System in Use</b>
+                    <br><%= design_summary_questions.mail_system_in_use %></p></div>
+        </div>
+        <div id="finals_comments" class="row">
+            <div class="comment-box" style="margin-left: auto; margin-right: auto; padding: 15px; word-wrap: break-word;" id=""><p><b
+                            style="color: orangered;">
+                        Other comments about the project</b>
+                    <br><%- design_summary_questions.comments.replace(/(?:\r\n|\r|\n)/g, '<br>'); %></p></div>
+        </div>
+    </div>
+    <br>
+</div>
+
+<!-- DESIGN SUMMARY UPDATE -->
+<div class="modal fade" id="editDesignSummary" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h3 class="modal-title" id="lineModalLabel">Design summary and comments</h3>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                            class="sr-only">Close</span></button>
+            </div>
+
+            <div class="modal-body">
+                <!-- content goes here -->
+                <form action="/index/<%= customer.name %>?_method=PUT" method="POST" id="design_summary_form">
+                    <div class="form-group">
+                        <label for="customerName">Customer Name</label>
+                        <input type="text" readonly class="form-control" placeholder="No response set"
+                               value="<%= customer.name %>"
+                               name="design_summary_questions[name]">
+                    </div>
+                    <div class="form-group">
+                        <label>Mail system currently in use</label>
+                        <input type="text" class="form-control" placeholder="No response set"
+                               value="<%= design_summary_questions.mail_system_in_use %>"
+                               name="design_summary_questions[mail_system_in_use]">
+                    </div>
+                    <div class="form-group">
+                        <label>Comments</label>
+                        <br>
+                        <textarea rows="10" cols="55" name="design_summary_questions[comments]" placeholder="No comments"
+                                  form="design_summary_form"><%= design_summary_questions.comments %></textarea>
+                    </div>
+
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" role="button">Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

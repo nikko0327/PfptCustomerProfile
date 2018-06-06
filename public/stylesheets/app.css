@@ -133,8 +133,9 @@ footer p {
     box-shadow: 0 1px 0 #B4B3B3;
 }
 
-div.container {
-    width: 2000px !important;
+.container {
+    /*width: 3000px !important;*/
+    max-width: 90% !important;
 }
 
 .edit-field {

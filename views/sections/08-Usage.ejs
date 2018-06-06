@@ -1,0 +1,755 @@
+<!-- Displaying usage questions -->
+<div id="usage" class="display-header">
+    <h5><a href="#usageContainer" data-toggle="collapse">Usage
+            <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+    </h5>
+    <br>
+
+    <div id="usageContainer" class="collapse">
+        <div class="edit pull-right">
+            <a href="#" aria-hidden="true" data-target="#editUsage" data-toggle="modal">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
+        </div>
+        <br>
+
+        <!-- Supervision -->
+        <h5><a href="#usage-supervision" style="color: mediumvioletred" data-toggle="collapse">Supervision
+                <i class="fa fa-arrows-v" aria-hidden="true"></i>
+            </a></h5>
+
+        <div id="usage-supervision" class="collapse">
+            <h5><a href="#usage-supervision-notes" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse">Notes / Details
+                    <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+            </h5>
+
+            <div id="usage-supervision-notes" class="collapse">
+                <div id="usageSupervision-notes" class="row">
+                    <!-- Notes/Details -->
+                    <div id="" class="col-4 response-cell"><p><b>What supervision system are you currently running?</b>
+                            <br><%= usage_questions.supervision.supervision_system %></p></div>
+                    <div id="" class="col-4 response-cell"><p><b>What are your current pain-points?</b>
+                            <br><%= usage_questions.supervision.pain_points %></p></div>
+                    <div id="" class="col-4 response-cell"><p><b>Are there deficiencies in your current process that put you at risk?</b>
+                            <br><%= usage_questions.supervision.deficiencies %></p></div>
+                    <div id="" class="col-4 response-cell"><p><b>What are the customer's lines of business that has different Supervision
+                                requirements?</b>
+                            <br><%= usage_questions.supervision.business_supervision_requirements %></p></div>
+                    <div id="" class="col-4 response-cell"><p><b>Is review Centralized / De-centralized?</b>
+                            <br><%= usage_questions.supervision.review %></p></div>
+                    <div id="" class="col-4 response-cell"><p><b>What is the escalation process when issues / violations are found?</b>
+                            <br><%= usage_questions.supervision.escalation_process %></p></div>
+                    <div id="" class="col-4 response-cell"><p><b>Who is responsible for reviewing which group / user</b>
+                            <br><%= usage_questions.supervision.system_record.responsible %></p></div>
+                    <div id="" class="col-4 response-cell"><p><b>How is this data loaded into your current system?</b>
+                            <br><%= usage_questions.supervision.system_record.how_is_data_loaded %></p></div>
+                    <div id="" class="col-4 response-cell"><p><b>Do you need to migrate your existing policies?</b>
+                            <br><%= usage_questions.supervision.need_to_migrate_policies %></p></div>
+                    <div id="" class="col-4 response-cell"><p><b>Do you already have whitelists, disclaimers headers, etc...
+                                (pre-approved content) that needs to be excluded?</b>
+                            <br><%= usage_questions.supervision.whitelists %></p></div>
+                </div>
+                <br>
+            </div>
+
+            <!-- Random Sampling -->
+            <h5><a href="#usage-supervision-random" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse">Random Sampling
+                    <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+            </h5>
+
+            <div id="usage-supervision-random" class="collapse">
+                <div id="usageSupervision-random_sampling" class="row">
+                    <br>
+                    <div id="" class="col-4 response-cell"><p><b>Do you have sampling rules?</b>
+                            <br><%= usage_questions.supervision.random_sampling.has_rules %></p></div>
+                    <div id="" class="col-4 response-cell"><p><b>Do you have multiple sampling rates that apply to a given person (i.e.
+                                different
+                                message
+                                types, internal vs external)?</b>
+                            <br><%= usage_questions.supervision.random_sampling.multi_sampling %></p></div>
+                    <div id="" class="col-4 response-cell"><p><b>Intention of sampling: top up or not?</b>
+                            <br><%= usage_questions.supervision.random_sampling.sampling_intention %></p></div>
+                    <div id="" class="col-4 response-cell"><p><b>Do you directly notify violators for certain types of offenses?</b>
+                            <br><%= usage_questions.supervision.random_sampling.notify_violators %></p></div>
+                </div>
+                <br>
+            </div>
+
+            <!-- Reporting Requirements -->
+            <h5><a href="#usage-supervision-req" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse">Reporting
+                    Requirements
+                    <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+            </h5>
+
+            <div id="usage-supervision-req" class="collapse">
+                <div id="usageSupervision-reporting_requirements" class="row">
+                    <div id="" class="col-4 response-cell"><p><b>What decisions are made based on these reports?</b>
+                            <br><%= usage_questions.supervision.report_requirements.decisions %></p></div>
+                    <div id="" class="col-4 response-cell"><p><b>What reports are required for roll-out? Please provide samples.</b>
+                            <br><%= usage_questions.supervision.report_requirements.roll_out_reports %></p></div>
+                    <div id="" class="col-4 response-cell"><p><b>What reports are nice to have in the future?</b>
+                            <br><%= usage_questions.supervision.report_requirements.future_reports %></p></div>
+                </div>
+                <br>
+            </div>
+            <br>
+        </div>
+
+        <!-- Stubbing -->
+        <h5><a href="#usage-stubbing" style="color: mediumvioletred" data-toggle="collapse">Stubbing
+                <i class="fa fa-arrows-v" aria-hidden="true"></i>
+            </a></h5>
+
+        <div id="usage-stubbing" class="collapse">
+            <div id="usageStubbing" class="row">
+                <div id="" class="col-4 response-cell"><p><b>Is the customer interested in Stubbing?</b>
+                        <br><%= usage_questions.stubbing.interested_in_stubbing %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>If within these boundaries, and if you intend to use it, what's your stubbing
+                            policy?</b>
+                        <br><%= usage_questions.stubbing.stubbing_policy %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>How many users is the customer going to stub for?</b>
+                        <br><%= usage_questions.stubbing.number_of_stubbing_users %></p></div>
+            </div>
+            <br>
+        </div>
+
+        <!-- Selective Disposition -->
+        <h5><a href="#usage-selective" style="color: mediumvioletred" data-toggle="collapse">Selective Disposition
+                <i class="fa fa-arrows-v" aria-hidden="true"></i>
+            </a></h5>
+
+        <div id="usage-selective" class="collapse">
+            <div id="usageSelectiveDisposition" class="row">
+                <div id="" class="col-4 response-cell"><p><b>What are the scenarios would you need to apply it?</b>
+                        <br><%= usage_questions.selective_disposition.scenarios %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>How many messages would you want to selectively dispose?</b>
+                        <br><%= usage_questions.selective_disposition.messages_to_dispose %></p></div>
+            </div>
+            <br>
+        </div>
+
+        <!-- Content Collector - Files -->
+        <h5><a href="#usage-files" style="color: mediumvioletred" data-toggle="collapse">Content Collector - Files
+                <i class="fa fa-arrows-v" aria-hidden="true"></i>
+            </a></h5>
+
+        <div id="usage-files" class="collapse">
+            <div id="usageContentCollectorFiles" class="row">
+                <div id="" class="col-4 response-cell"><p><b>Is the customer interested in CC4Files?</b>
+                        <br><%= usage_questions.content_collector_files.interested_in_CC4Files %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>Where are the files located that you want to collect? (We only support
+                            Windows
+                            based
+                            file
+                            servers and on-prem Sharepoint.)</b>
+                        <br><%= usage_questions.content_collector_files.files_location %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>Is the customer willing to install an agent on each machine they want to
+                            collect
+                            data
+                            from?</b>
+                        <br><%= usage_questions.content_collector_files.willing_to_install_agent %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>What's the volume of files?</b>
+                        <br><%= usage_questions.content_collector_files.volume_of_files %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>Are there unusual File types?</b>
+                        <br><%= usage_questions.content_collector_files.unusual_file_types %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>Average and largest file expected to capture?</b>
+                        <br><%= usage_questions.content_collector_files.avg_file_size %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>Customer understands this is for People Based Legal Holds only?</b>
+                        <br><%= usage_questions.content_collector_files.understand_legal_holds %></p></div>
+            </div>
+            <br>
+        </div>
+
+        <!-- Content Collector - PSTs -->
+        <h5><a href="#usage-pst" style="color: mediumvioletred" data-toggle="collapse">Content Collector - PSTs
+                <i class="fa fa-arrows-v" aria-hidden="true"></i>
+            </a></h5>
+
+        <div id="usage-pst" class="collapse">
+            <div id="usageContentCollectorPsts" class="row">
+                <div id="" class="col-4 response-cell"><p><b>Is the customer interested in CC4PSTs?</b>
+                        <br><%= usage_questions.content_collector_PST.interested_in_CC4FPST %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>Average size?</b>
+                        <br><%= usage_questions.content_collector_PST.avg_file_size %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>Frequency?</b>
+                        <br><%= usage_questions.content_collector_PST.frequency %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>Use case?</b>
+                        <br><%= usage_questions.content_collector_PST.use_case %></p></div>
+            </div>
+            <br>
+        </div>
+
+        <!-- Legal holds -->
+        <h5><a href="#usage-legal" style="color: mediumvioletred" data-toggle="collapse">Legal Holds
+                <i class="fa fa-arrows-v" aria-hidden="true"></i>
+            </a></h5>
+
+        <div id="usage-legal" class="collapse">
+            <div id="usageLegalHolds" class="row">
+                <div id="" class="col-4 response-cell"><p><b>Custodian based or Ad hoc, or both?</b>
+                        <br><%= usage_questions.legal_holds.custodian_or_ad_hoc %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>Count of LH's in current solution</b>
+                        <br><%= usage_questions.legal_holds.number_of_legal_holds %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>Number of unique custodians</b>
+                        <br><%= usage_questions.legal_holds.number_of_unique_custodians %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>Largest hold (in terms of custodians)</b>
+                        <br><%= usage_questions.legal_holds.largest_hold %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>What LH Notification system is being used today?</b>
+                        <br><%= usage_questions.legal_holds.notification_system %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>Third Party Solutions for LH Management?</b>
+                        <br><%= usage_questions.legal_holds.third_party_solutions %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>API interest? What use cases?</b>
+                        <br><%= usage_questions.legal_holds.api_use_cases %></p></div>
+            </div>
+            <br>
+        </div>
+
+        <!-- End user search -->
+        <h5><a href="#usage-search" style="color: mediumvioletred" data-toggle="collapse">End User Search
+                <i class="fa fa-arrows-v" aria-hidden="true"></i>
+            </a></h5>
+
+        <div id="usage-search" class="collapse">
+            <div id="usageEndUserSearch" class="row">
+                <div id="" class="col-4 response-cell"><p><b>How many end users will have access to their own mailbox?</b>
+                        <br><%= usage_questions.end_user_search.number_of_user_access %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>Do end users need to have access to Archive within Outlook? What versions of
+                            Outlook?</b>
+                        <br><%= usage_questions.end_user_search.need_outlook %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>Do you want access archive through Mobile Apps?</b>
+                        <br><%= usage_questions.end_user_search.need_mobile_apps %></p></div>
+            </div>
+            <br>
+        </div>
+
+        <!-- Folder Sync -->
+        <h5><a href="#usage-sync" style="color: mediumvioletred" data-toggle="collapse">Folder Sync
+                <i class="fa fa-arrows-v" aria-hidden="true"></i>
+            </a></h5>
+
+        <div id="usage-sync" class="collapse">
+            <div id="usageFolderSync" class="row">
+                <div id="" class="col-4 response-cell"><p><b>Is the customer interested in Folder Sync?</b>
+                        <br><%= usage_questions.folder_sync.interested_in_folder_sync %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>For how many users?</b>
+                        <br><%= usage_questions.folder_sync.number_of_users_interested %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>Service Account?</b>
+                        <br><%= usage_questions.folder_sync.service_account %></p></div>
+            </div>
+            <br>
+        </div>
+
+        <!-- Transport agent -->
+        <h5><a href="#usage-transport" style="color: mediumvioletred" data-toggle="collapse">Transport Agent
+                <i class="fa fa-arrows-v" aria-hidden="true"></i>
+            </a></h5>
+
+        <div id="usage-transport" class="collapse">
+            <div id="usageTransportAgent" class="row">
+                <div class="col">
+                    <p>Note: This feature requires customer to have .NET 3.5 installed (Transport agent is currently empty)</p></div>
+            </div>
+            <br>
+        </div>
+
+        <!-- Export -->
+        <h5><a href="#usage-export" style="color: mediumvioletred" data-toggle="collapse">Export
+                <i class="fa fa-arrows-v" aria-hidden="true"></i>
+            </a></h5>
+
+        <div id="usage-export" class="collapse">
+            <div id="usageExport" class="row">
+                <div id="" class="col-4 response-cell"><p><b>Volume / average size and frequency</b>
+                        <br><%= usage_questions.export.volume %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>Preferred Export formats?</b>
+                        <br><%= usage_questions.export.preferred_export_format %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>Where does the data typically go?</b>
+                        <br><%= usage_questions.export.where_data_goes %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>Does customer expect to auto upload data?</b>
+                        <br><%= usage_questions.export.expect_auto_upload %></p></div>
+            </div>
+            <br>
+        </div>
+
+        <!-- Outlook view manager -->
+        <h5><a href="#usage-outlook" style="color: mediumvioletred" data-toggle="collapse">Outlook View Manager
+                <i class="fa fa-arrows-v" aria-hidden="true"></i>
+            </a></h5>
+
+        <div id="usage-outlook" class="collapse">
+            <div id="usageExportViewManager" class="row">
+                <div id="" class="col-4 response-cell"><p><b>Do you want to allow end users to access the archive?</b>
+                        <br><%= usage_questions.outlook_view_manager.allow_users_access %></p></div>
+                <div id="" class="col-4 response-cell"><p><b>Do you use OWA?</b>
+                        <br><%= usage_questions.outlook_view_manager.is_using_OWA %></p></div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+<hr class="rainbow">
+
+<!-- USAGE QUESTIONS UPDATE -->
+<div class="modal fade" id="editUsage" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="lineModalLabel">Usage questions</h3>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <!-- content goes here -->
+                <form action="/index/<%= customer.name %>?_method=PUT" method="POST">
+                    <div class="form-group">
+                        <label for="customerName">Customer Name</label>
+                        <input type="text" readonly class="form-control" placeholder="No response set"
+                               value="<%= customer.name %>"
+                               name="usage_questions[name]">
+                    </div>
+
+                    <!-- Edit layers -->
+                    <h5><a href="#editUsage-Supervision" style="color: mediumvioletred" data-toggle="collapse">Supervision
+                            <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                        </a></h5>
+
+                    <div id="editUsage-Supervision" class="collapse">
+                        <h5><a href="#editUsage-Supervision-Notes" style="color: lightseagreen; margin-left: 3em;" data-toggle="collapse">
+                                Notes / Details <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                            </a></h5>
+
+                        <div id="editUsage-Supervision-Notes" class="collapse">
+                            <!-- Notes/Details -->
+                            <div class="form-group">
+                                <label>What supervision system are you currently running?</label>
+                                <input type="text" class="form-control"
+                                       placeholder="No response set"
+                                       value="<%= usage_questions.supervision.supervision_system %>"
+                                       name="usage_questions[supervision][supervision_system]">
+                            </div>
+                            <div class="form-group">
+                                <label>What are your current pain-points?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.supervision.pain_points %>"
+                                       name="usage_questions[supervision][pain_points]">
+                            </div>
+                            <div class="form-group">
+                                <label>Are there deficiencies in your current process that put you at risk?</label>
+                                <input type="text" class="form-control"
+                                       placeholder="No response set"
+                                       value="<%= usage_questions.supervision.deficiencies %>"
+                                       name="usage_questions[supervision][deficiencies]">
+                            </div>
+                            <div class="form-group">
+                                <label>What are the customer's lines of business that has different Supervision requirements?</label>
+                                <input type="text"
+                                       class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.supervision.business_supervision_requirements %>"
+                                       name="usage_questions[supervision][business_supervision_requirements]">
+                            </div>
+                            <div class="form-group">
+                                <label>Is review centralized / decentralized?</label>
+                                <%- make_custom_dropdown("usage_questions[supervision][review]",
+                                        usage_questions.supervision.review, ["Centralized", "Decentralized"]) %>
+                            </div>
+                            <div class="form-group">
+                                <label>What is the escalation process when issues / violations are found?</label>
+                                <input type="text" class="form-control"
+                                       placeholder="No response set"
+                                       value="<%= usage_questions.supervision.escalation_process %>"
+                                       name="usage_questions[supervision][escalation_process]">
+                            </div>
+                            <div class="form-group">
+                                <label>Who is responsible for reviewing which group / user?</label>
+                                <input type="text" class="form-control"
+                                       placeholder="No response set"
+                                       value="<%= usage_questions.supervision.system_record.responsible %>"
+                                       name="usage_questions[supervision][system_record][responsible]">
+                            </div>
+                            <div class="form-group">
+                                <label>How is this data loaded into your current system?</label>
+                                <input type="text" class="form-control"
+                                       placeholder="No response set"
+                                       value="<%= usage_questions.supervision.system_record.how_is_data_loaded %>"
+                                       name="usage_questions[supervision][system_record][how_is_data_loaded]">
+                            </div>
+                            <div class="form-group">
+                                <label>Do you need to migrate your existing policies?</label>
+                                <%- make_custom_dropdown("usage_questions[supervision][need_to_migrate_policies]",
+                                        usage_questions.supervision.need_to_migrate_policies, ["Yes", "No"]) %>
+                            </div>
+                            <div class="form-group">
+                                <label>Do you already have whitelists, disclaimers headers, etc.
+                                    (pre-approved content) that needs to be excluded?</label>
+                                <%- make_custom_dropdown("usage_questions[supervision][whitelists]",
+                                        usage_questions.supervision.whitelists, ["Yes", "No"]) %>
+                            </div>
+                        </div>
+
+                        <!-- Random Sampling -->
+                        <h5><a href="#editUsage-Supervision-Random" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse">
+                                Random Sampling <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                            </a></h5>
+
+                        <div id="editUsage-Supervision-Random" class="collapse">
+                            <div class="form-group">
+                                <label>Do you have sampling rules?</label>
+                                <%- make_custom_dropdown("usage_questions[supervision][random_sampling][has_rules]",
+                                        usage_questions.supervision.random_sampling.has_rules, ["Yes", "No"]) %>
+                            </div>
+                            <div class="form-group">
+                                <label>Do you have multiple sampling rates that apply to a given person
+                                    (i.e. different message types, internal vs external)?</label>
+                                <%- make_custom_dropdown("usage_questions[supervision][random_sampling][multi_sampling]",
+                                        usage_questions.supervision.random_sampling.multi_sampling, ["Yes", "No"]) %>
+                            </div>
+                            <div class="form-group">
+                                <label>Intention of sampling: top up or not?</label>
+                                <%- make_custom_dropdown("usage_questions[supervision][random_sampling][sampling_intention]",
+                                        usage_questions.supervision.random_sampling.sampling_intention, ["Top up", "Not"]) %>
+                            </div>
+                            <div class="form-group">
+                                <label>Do you directly notify violators for certain types of offenses?</label>
+                                <%- make_custom_dropdown("usage_questions[supervision][random_sampling][notify_violators]",
+                                        usage_questions.supervision.random_sampling.notify_violators, ["Yes", "No"]) %>
+                            </div>
+                        </div>
+
+                        <!-- Reporting Requirements -->
+                        <h5><a href="#editUsage-Supervision-requirements" style="color: lightseagreen; margin-left:3em;"
+                               data-toggle="collapse">Reporting
+                                Requirements
+                                <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                            </a></h5>
+
+                        <div id="editUsage-Supervision-requirements" class="collapse">
+                            <div class="form-group">
+                                <label>What decisions are made based on these reports?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.supervision.report_requirements.decisions %>"
+                                       name="usage_questions[supervision][report_requirements][decisions]">
+                            </div>
+                            <div class="form-group">
+                                <label>What reports are required for roll-out? Please provide samples.</label>
+                                <input type="text" class="form-control"
+                                       placeholder="No response set"
+                                       value="<%= usage_questions.supervision.report_requirements.roll_out_reports %>"
+                                       name="usage_questions[supervision][report_requirements][roll_out_reports]">
+                            </div>
+                            <div class="form-group">
+                                <label>What reports are nice to have in the future?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= usage_questions.supervision.report_requirements.future_reports %>"
+                                       name="usage_questions[supervision][report_requirements][future_reports]">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- One edit level -->
+
+
+                    <!-- Stubbing -->
+                    <h5><a href="#editUsage-Stubbing" style="color: mediumvioletred" data-toggle="collapse">Stubbing
+                            <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                        </a></h5>
+
+                    <div id="editUsage-Stubbing" class="collapse">
+                        <div class="form-group">
+                            <label>Is the customer interested in Stubbing?</label>
+                            <%- make_custom_dropdown("usage_questions[stubbing][interested_in_stubbing]",
+                                    usage_questions.stubbing.interested_in_stubbing, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group">
+                            <label>If within these boundaries, and if you intend to use it, what’s your stubbing policy?</label>
+                            <input type="text"
+                                   class="form-control" placeholder="No response set"
+                                   value="<%= usage_questions.stubbing.stubbing_policy %>"
+                                   name="usage_questions[stubbing][stubbing_policy]">
+                        </div>
+                        <div class="form-group">
+                            <label>How many users is the customer going to stub for?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= usage_questions.stubbing.number_of_stubbing_users %>"
+                                   name="usage_questions[stubbing][number_of_stubbing_users]">
+                        </div>
+                    </div>
+
+                    <!-- Selective Disposition -->
+                    <h5><a href="#editUsage-Selective" style="color: mediumvioletred" data-toggle="collapse">Selective Disposition
+                            <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                        </a></h5>
+
+                    <div id="editUsage-Selective" class="collapse">
+                        <div class="form-group">
+                            <label>What are the scenarios would you need to apply it?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= usage_questions.selective_disposition.scenarios %>"
+                                   name="usage_questions[selective_disposition][scenarios]">
+                        </div>
+                        <div class="form-group">
+                            <label>How many messages would you want to selectively dispose?</label>
+                            <input type="text" class="form-control"
+                                   placeholder="No response set"
+                                   value="<%= usage_questions.selective_disposition.messages_to_dispose %>"
+                                   name="usage_questions[selective_disposition][messages_to_dispose]">
+                        </div>
+                    </div>
+
+                    <!-- Content Collector - Files -->
+                    <h5><a href="#editUsage-Files" style="color: mediumvioletred" data-toggle="collapse">Content Collector - Files
+                            <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                        </a></h5>
+
+                    <div id="editUsage-Files" class="collapse">
+                        <div class="form-group">
+                            <label>Is the customer interested in CC4Files?</label>
+                            <%- make_custom_dropdown("usage_questions[content_collector_files][interested_in_CC4Files]",
+                                    usage_questions.content_collector_files.interested_in_CC4Files, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group">
+                            <label>Where are the files located that you want to collect?
+                                (We only support Windows based file servers and on-prem Sharepoint.)</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= usage_questions.content_collector_files.files_location %>"
+                                   name="usage_questions[content_collector_files][files_location]">
+                        </div>
+                        <div class="form-group">
+                            <label>Is the customer willing to install an agent on each machine they want to collect data from?</label>
+                            <%- make_custom_dropdown("usage_questions[content_collector_files][willing_to_install_agent]",
+                                    usage_questions.content_collector_files.willing_to_install_agent, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group">
+                            <label>What's the volume of files?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= usage_questions.content_collector_files.volume_of_files %>"
+                                   name="usage_questions[content_collector_files][volume_of_files]">
+                        </div>
+                        <div class="form-group">
+                            <label>Are there unusual File types?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= usage_questions.content_collector_files.unusual_file_types %>"
+                                   name="usage_questions[content_collector_files][unusual_file_types]">
+                        </div>
+                        <div class="form-group">
+                            <label>Average and largest file expected to capture?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= usage_questions.content_collector_files.avg_file_size %>"
+                                   name="usage_questions[content_collector_files][avg_file_size]">
+                        </div>
+                        <div class="form-group">
+                            <label>Customer understands this is for People Based Legal Holds only?</label>
+                            <%- make_custom_dropdown("usage_questions[content_collector_files][understand_legal_holds]",
+                                    usage_questions.content_collector_files.understand_legal_holds, ["Yes", "No"]) %>
+                        </div>
+                    </div>
+
+                    <!-- Content Collector - PSTs -->
+                    <h5><a href="#editUsage-PST" style="color: mediumvioletred" data-toggle="collapse">Content Collector - PSTs
+                            <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                        </a></h5>
+
+                    <div id="editUsage-PST" class="collapse">
+                        <div class="form-group">
+                            <label>Is the customer interested in CC4PSTs?</label>
+                            <%- make_custom_dropdown("usage_questions[content_collector_PST][interested_in_CC4FPST]",
+                                    usage_questions.content_collector_PST.interested_in_CC4FPST, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group">
+                            <label>Average size?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= usage_questions.content_collector_PST.avg_file_size %>"
+                                   name="usage_questions[content_collector_PST][avg_file_size]">
+                        </div>
+                        <div class="form-group">
+                            <label>Frequency?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= usage_questions.content_collector_PST.frequency %>"
+                                   name="usage_questions[content_collector_PST][frequency]">
+                        </div>
+                        <div class="form-group">
+                            <label>Use case?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= usage_questions.content_collector_PST.use_case %>"
+                                   name="usage_questions[content_collector_PST][use_case]">
+                        </div>
+                    </div>
+
+                    <!-- Legal holds -->
+                    <h5><a href="#editUsage-Legal" style="color: mediumvioletred" data-toggle="collapse">Legal Holds
+                            <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                        </a></h5>
+
+                    <div id="editUsage-Legal" class="collapse">
+                        <div class="form-group">
+                            <label>Custodian based, ad-hoc, or both?</label>
+                            <%- make_custom_dropdown("usage_questions[legal_holds][custodian_or_ad_hoc]",
+                                    usage_questions.legal_holds.custodian_or_ad_hoc, ["Custodian-based", "Ad-hoc", "Custodian-based and Ad-hoc"]) %>
+                        </div>
+                        <div class="form-group">
+                            <label>Count of LH's in current solution</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= usage_questions.legal_holds.number_of_legal_holds %>"
+                                   name="usage_questions[legal_holds][number_of_legal_holds]">
+                        </div>
+                        <div class="form-group">
+                            <label>Number of unique custodians</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= usage_questions.legal_holds.number_of_unique_custodians %>"
+                                   name="usage_questions[legal_holds][number_of_unique_custodians]">
+                        </div>
+                        <div class="form-group">
+                            <label>Largest hold (in terms of custodians)</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= usage_questions.legal_holds.largest_hold %>"
+                                   name="usage_questions[legal_holds][largest_hold]">
+                        </div>
+                        <div class="form-group">
+                            <label>What LH Notification system is being used today?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= usage_questions.legal_holds.notification_system %>"
+                                   name="usage_questions[legal_holds][notification_system]">
+                        </div>
+                        <div class="form-group">
+                            <label>Third Party Solutions for LH Management?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= usage_questions.legal_holds.third_party_solutions %>"
+                                   name="usage_questions[legal_holds][third_party_solutions]">
+                        </div>
+                        <div class="form-group">
+                            <label>API interests? What are some of the use cases?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= usage_questions.legal_holds.api_use_cases %>"
+                                   name="usage_questions[legal_holds][api_use_cases]">
+                        </div>
+                    </div>
+
+                    <!-- End user search -->
+                    <h5><a href="#editUsage-End" style="color: mediumvioletred" data-toggle="collapse">End User Search
+                            <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                        </a></h5>
+
+                    <div id="editUsage-End" class="collapse">
+                        <div class="form-group">
+                            <label>How many end users will have access to their own mailbox?</label>
+                            <input type="text" class="form-control"
+                                   placeholder="No response set"
+                                   value="<%= usage_questions.end_user_search.number_of_user_access %>"
+                                   name="usage_questions[end_user_search][number_of_user_access]">
+                        </div>
+                        <div class="form-group">
+                            <label>Do end users need to have access to Archive within Outlook? What versions of Outlook?</label>
+                            <input type="text"
+                                   class="form-control" placeholder="No response set"
+                                   value="<%= usage_questions.end_user_search.need_outlook %>"
+                                   name="usage_questions[end_user_search][need_outlook]">
+                        </div>
+                        <div class="form-group">
+                            <label>Do you want to access archives through Mobile Apps?</label>
+                            <%- make_custom_dropdown("usage_questions[end_user_search][need_mobile_apps]",
+                                    usage_questions.end_user_search.need_mobile_apps, ["Yes", "No"]) %>
+                        </div>
+                    </div>
+
+                    <!-- Folder Sync -->
+                    <h5><a href="#editUsage-Sync" style="color: mediumvioletred" data-toggle="collapse">Folder Sync
+                            <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                        </a></h5>
+
+                    <div id="editUsage-Sync" class="collapse">
+                        <div class="form-group">
+                            <label>Is the customer interested in Folder Sync?</label>
+                            <%- make_custom_dropdown("usage_questions[folder_sync][interested_in_folder_sync]",
+                                    usage_questions.folder_sync.interested_in_folder_sync, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group">
+                            <label>For how many users?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= usage_questions.folder_sync.number_of_users_interested %>"
+                                   name="usage_questions[folder_sync][number_of_users_interested]">
+                        </div>
+                        <div class="form-group">
+                            <label>Service Account?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= usage_questions.folder_sync.service_account %>"
+                                   name="usage_questions[folder_sync][service_account]">
+                        </div>
+                    </div>
+
+                    <!-- Transport agent -->
+                    <h5><a href="#editusage-transport" style="color: mediumvioletred" data-toggle="collapse">Transport Agent
+                            <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                        </a></h5>
+
+                    <div id="editusage-transport" class="collapse">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= usage_questions.transport_agent %>"
+                                   name="usage_questions[transport_agent]">
+                            <p>Note: This feature requires customer to have .NET 3.5 installed.</p>
+                        </div>
+                    </div>
+
+                    <!-- Export -->
+                    <h5><a href="#editusage-export" style="color: mediumvioletred" data-toggle="collapse">Export
+                            <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                        </a></h5>
+
+                    <div id="editusage-export" class="collapse">
+                        <div class="form-group">
+                            <label>Volume / average size and frequency</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= usage_questions.export.volume %>"
+                                   name="usage_questions[export][volume]">
+                        </div>
+                        <div class="form-group">
+                            <label>Preferred Export formats?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= usage_questions.export.preferred_export_format %>"
+                                   name="usage_questions[export][preferred_export_format]">
+                        </div>
+                        <div class="form-group">
+                            <label>Where does the data typically go?</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= usage_questions.export.where_data_goes %>"
+                                   name="usage_questions[export][where_data_goes]">
+                        </div>
+                        <div class="form-group">
+                            <label>Does customer expect to auto upload data?</label>
+                            <%- make_custom_dropdown("usage_questions[export][expect_auto_upload]",
+                                    usage_questions.export.expect_auto_upload, ["Yes", "No"]) %>
+                        </div>
+                    </div>
+
+                    <!-- Outlook view manager -->
+                    <h5><a href="#editusage-outlook" style="color: mediumvioletred" data-toggle="collapse">Outlook View Manager
+                            <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                        </a></h5>
+
+                    <div id="editusage-outlook" class="collapse">
+                        <div class="form-group">
+                            <label>Do you want to allow end users to access the archive? </label>
+                            <%- make_custom_dropdown("usage_questions[outlook_view_manager][allow_users_access]",
+                                    usage_questions.outlook_view_manager.allow_users_access, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group">
+                            <label>Do you use OWA?</label>
+                            <%- make_custom_dropdown("usage_questions[outlook_view_manager][is_using_OWA]",
+                                    usage_questions.outlook_view_manager.is_using_OWA, ["Yes", "No"]) %>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" role="button">Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

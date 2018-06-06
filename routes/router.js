@@ -234,7 +234,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
 
         // For updating name, make a ton of promises and execute them, THEN render the page.
         if (req.body.customer != undefined && req.body.customer != null) {
-            console.log("- Trying to update customer information...");
+            console.log("- Attempting to update customer information...");
 
             // Make a bunch of await calls and wait for the queries to finish.
             async function updateID() {
@@ -267,6 +267,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
 
         // Updating appliance questions
         if (req.body.appliance_questions != undefined && req.body.appliance_questions != null) {
+            console.log("- Attempting to update Appliance Questions...");
             ApplianceQuestions.findOneAndUpdate({name: req.params.id}, req.body.appliance_questions).then(() => {
                 res.redirect("/index/" + encodeURIComponent(req.params.id));
             }).catch((error) => {
@@ -277,6 +278,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
 
         // Updating design summary questions
         if (req.body.design_summary_questions != undefined && req.body.design_summary_questions != null) {
+            console.log("- Attempting to update Design Summary...");
             DesignSummaryQuestions.findOneAndUpdate({name: req.params.id}, req.body.design_summary_questions).then(() => {
                 res.redirect("/index/" + encodeURIComponent(req.params.id));
             }).catch((error) => {
@@ -287,6 +289,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
 
         // Updating desktop network questions
         if (req.body.desktop_network_questions != undefined && req.body.desktop_network_questions != null) {
+            console.log("- Attempting to update Desktop Network Questions...");
             DesktopNetworkQuestions.findOneAndUpdate({name: req.params.id}, req.body.desktop_network_questions).then(() => {
                 res.redirect("/index/" + encodeURIComponent(req.params.id));
             }).catch((error) => {
@@ -297,6 +300,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
 
         // Updating Email SE Questions
         if (req.body.email_se_questions != undefined && req.body.email_se_questions != null) {
+            console.log("- Attempting to update Email Systems SE Questions...");
             EmailSEQuestions.findOneAndUpdate({"name": req.params.id}, req.body.email_se_questions).then(() => {
                 res.redirect("/index/" + encodeURIComponent(req.params.id));
             }).catch((error) => {
@@ -307,6 +311,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
 
         // Updating Email PS Questions
         if (req.body.email_ps_questions != undefined && req.body.email_ps_questions != null) {
+            console.log("- Attempting to update Email Systems PS Questions...");
             EmailPSQuestions.findOneAndUpdate({"name": req.params.id}, req.body.email_ps_questions).then(() => {
                 res.redirect("/index/" + encodeURIComponent(req.params.id));
             }).catch((error) => {
@@ -317,6 +322,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
 
         // Updating Import Questions
         if (req.body.import_questions != undefined && req.body.import_questions != null) {
+            console.log("- Attempting to update Import information...");
             ImportQuestions.findOneAndUpdate({"name": req.params.id}, req.body.import_questions).then(() => {
                 res.redirect("/index/" + encodeURIComponent(req.params.id));
             }).catch((error) => {
@@ -327,6 +333,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
 
         // Updating Journaling questions
         if (req.body.journaling_questions != undefined && req.body.journaling_questions != null) {
+            console.log("- Attempting to update Journalling information...");
             JournalingQuestions.findOneAndUpdate({"name": req.params.id}, req.body.journaling_questions).then(() => {
                 res.redirect("/index/" + encodeURIComponent(req.params.id));
             }).catch((error) => {
@@ -337,6 +344,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
 
         // Updating Other Data Sources Questions
         if (req.body.other_data_source_questions != undefined && req.body.other_data_source_questions != null) {
+            console.log("- Attempting to update Other Data Sources Questions...");
             OtherDataSourcesQuestions.findOneAndUpdate({name: req.params.id}, req.body.other_data_source_questions).then(() => {
                 res.redirect("/index/" + encodeURIComponent(req.params.id));
             }).catch((error) => {
@@ -347,6 +355,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
 
         // Updating POC Questions
         if (req.body.poc_questions != undefined && req.body.poc_questions != null) {
+            console.log("- Attempting to update POC information...");
             POCQuestions.findOneAndUpdate({name: req.params.id}, req.body.poc_questions).then(() => {
                 res.redirect("/index/" + encodeURIComponent(req.params.id));
             }).catch((error) => {
@@ -357,6 +366,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
 
         // Updating RFE Questions
         if (req.body.rfe_questions != undefined && req.body.rfe_questions != null) {
+            console.log("- Attempting to update RFE information...");
             RFEQuestions.findOneAndUpdate({name: req.params.id}, req.body.rfe_questions).then(() => {
                 res.redirect("/index/" + encodeURIComponent(req.params.id));
             }).catch((error) => {
@@ -367,6 +377,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
 
         // Updating Usage Questions
         if (req.body.usage_questions != undefined && req.body.usage_questions != null) {
+            console.log("- Attempting to update Usage Questions...");
             UsageQuestions.findOneAndUpdate({name: req.params.id}, req.body.usage_questions).then(() => {
                 res.redirect("/index/" + encodeURIComponent(req.params.id));
             }).catch((error) => {
