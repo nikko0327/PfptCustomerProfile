@@ -13,10 +13,10 @@ function expand_collapse() {
 }
 
 $(document).ready(() => {
-    var editing = false;
+    var editing_customer = false;
     $('#editCustomerLink').click(function () {
         var customer_name = $("#unique-customer-name").val();
-        if (editing == true && customer_name) {
+        if (editing_customer == true && customer_name) {
             // END EDITING
 
             var form = $("#customerForm");
@@ -36,22 +36,23 @@ $(document).ready(() => {
 
             // Locks the form's fieldset
             $("#customerFormFieldset").prop('disabled', true);
-            editing = false;
-        } else if (editing == false) {
+            editing_customer = false;
+        } else if (editing_customer == false) {
             // BEGIN EDITING
 
             // Unlocks the form's fieldset
             $("#customerFormFieldset").prop('disabled', false);
 
-            editing = true;
+            editing_customer = true;
         } else {
             alert("Customer name is empty.");
         }
     });
 
+    var editing_email_systems_se = false;
     $('#editEmailSystemSELink').click(function () {
         var customer_name = $("#unique-customer-name").val();
-        if (editing == true && customer_name) {
+        if (editing_email_systems_se == true && customer_name) {
             // END EDITING
 
             var form = $("#emailSystemSEForm");
@@ -71,14 +72,51 @@ $(document).ready(() => {
 
             // Locks the form's fieldset
             $("#emailSystemSEFormFieldset").prop('disabled', true);
-            editing = false;
-        } else if (editing == false) {
+            editing_email_systems_se = false;
+        } else if (editing_email_systems_se == false) {
             // BEGIN EDITING
 
             // Unlocks the form's fieldset
             $("#emailSystemSEFormFieldset").prop('disabled', false);
 
-            editing = true;
+            editing_email_systems_se = true;
+        } else {
+            alert("Customer name is empty.");
+        }
+    });
+
+    var editing_email_systems_ps = false;
+    $('#editEmailSystemPSLink').click(function () {
+        var customer_name = $("#unique-customer-name").val();
+        if (editing_email_systems_ps == true && customer_name) {
+            // END EDITING
+
+            var form = $("#emailSystemPSForm");
+
+            var json = {
+                type: "POST",
+                url: form.attr('action'),
+                data: form.serialize(),
+                success: function (res) {
+
+                }
+            };
+            //console.log(json);
+
+            // POST here.
+            $.ajax(json);
+
+            // Locks the form's fieldset
+            $("#emailSystemPSFormFieldset").prop('disabled', true);
+            editing_email_systems_ps = false;
+
+        } else if (editing_email_systems_ps == false) {
+            // BEGIN EDITING
+
+            // Unlocks the form's fieldset
+            $("#emailSystemPSFormFieldset").prop('disabled', false);
+
+            editing_email_systems_ps = true;
         } else {
             alert("Customer name is empty.");
         }
