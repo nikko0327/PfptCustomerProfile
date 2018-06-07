@@ -7,136 +7,231 @@
 
     <div id="desktopContent" class="collapse">
         <div class="edit pull-right">
-            <a href="#" aria-hidden="true" data-target="#editDesktopNetwork" data-toggle="modal">
+            <a href="#" aria-hidden="true" id="editDesktopNetworkLink" data-toggle="modal">
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
+            <a href="#" aria-hidden="true" data-target="#editDesktopNetwork" data-toggle="modal">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Modal</a>
         </div>
         <br>
 
-        <h5><a href="#desktop-Network" style="color: mediumvioletred" data-toggle="collapse">Network & Security
-                <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
-        </h5>
+        <form id="desktopNetworkForm" autocomplete="off" action="/index/<%= encodeURIComponent(customer.name) %>?_method=PUT" method="POST">
+            <fieldset id="desktopNetworkFormFieldset" disabled>
+                <div class="form-group col-4 response-cell" hidden>
+                    <label for="customerName">Customer Name</label>
+                    <input type="text" readonly class="form-control" placeholder="No response set"
+                           value="<%= customer.name %>"
+                           name="desktop_network_questions[name]">
+                </div>
 
-        <!-- Network and security -->
-        <div id="desktop-Network" class="collapse">
-            <div id="networkSecurity" class="row">
-                <div id="" class="col-4 response-cell"><p><b>Do you want users to be able to access the user interface outside of your
-                            network?</b>
-                        <br><%= desktop_network_questions.network_security.allow_outside_access %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>DMZ</b>
-                        <br><%= desktop_network_questions.network_security.DMZ %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Firewalls</b>
-                        <br><%= desktop_network_questions.network_security.firewalls %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>VPN Connection to PFPT Required</b>
-                        <br><%= desktop_network_questions.network_security.require_vpn %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Enable access to user outside network</b>
-                        <br><%= desktop_network_questions.network_security.enable_outside_access %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Load Balancer/VIP</b>
-                        <br><%= desktop_network_questions.network_security.load_balancer_VIP %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>NAT IP List</b>
-                        <br><%= desktop_network_questions.network_security.nat_IP_list %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Proxy Servers</b>
-                        <br><%= desktop_network_questions.network_security.proxy_servers %></p></div>
-            </div>
-            <br>
-        </div>
+                <h5><a href="#editDesktop-Network" style="color: mediumvioletred" data-toggle="collapse">Network & Security
+                        <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                </h5>
 
-        <!-- End user desktop env -->
-        <h5><a href="#desktop-End-User" style="color: mediumvioletred" data-toggle="collapse">End User Desktop Environment
-                <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
-        </h5>
+                <!-- Network and security -->
+                <div id="editDesktop-Network" class="collapse">
+                    <div class="row">
+                        <div class="form-group col-4 response-cell">
+                            <label>Do you want users to be able to access the user interface outside of your network?</label>
+                            <%- make_custom_dropdown("desktop_network_questions[network_security][allow_outside_access]",
+                                    desktop_network_questions.network_security.allow_outside_access, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>DMZ</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= desktop_network_questions.network_security.DMZ %>"
+                                   name="desktop_network_questions[network_security][DMZ]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Firewalls</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= desktop_network_questions.network_security.firewalls %>"
+                                   name="desktop_network_questions[network_security][firewalls]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>VPN Connection to PFPT Required</label>
+                            <%- make_custom_dropdown("desktop_network_questions[network_security][require_vpn]",
+                                    desktop_network_questions.network_security.require_vpn, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Enable access to user outside network</label>
+                            <%- make_custom_dropdown("desktop_network_questions[network_security][enable_outside_access]",
+                                    desktop_network_questions.network_security.enable_outside_access, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Load Balancer/VIP</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= desktop_network_questions.network_security.load_balancer_VIP %>"
+                                   name="desktop_network_questions[network_security][load_balancer_VIP]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>NAT IP List</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= desktop_network_questions.network_security.nat_IP_list %>"
+                                   name="desktop_network_questions[network_security][nat_IP_list]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Proxy Servers</label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= desktop_network_questions.network_security.proxy_servers %>"
+                                   name="desktop_network_questions[network_security][proxy_servers]">
+                        </div>
+                    </div>
+                    <br>
+                </div>
 
-        <div id="desktop-End-User" class="collapse">
-            <div id="endUserEnv" class="row">
-                <div id="" class="col-4 response-cell"><p><b>What browsers do user have access to (Chrome, IE, Edge, Firefox, etc.)?</b>
-                        <br><%= desktop_network_questions.end_user_desktop_env.browsers %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>What versions of each available browsers are allowed</b>
-                        <br><%= desktop_network_questions.end_user_desktop_env.browser_versions %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Do you run IE 11</b>
-                        <br><%= desktop_network_questions.end_user_desktop_env.ie11 %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Can users enable compatibility mode in IE 11</b>
-                        <br><%= desktop_network_questions.end_user_desktop_env.ie11_compatibility %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Is IE deployed in Enterprise Mode?</b>
-                        <br><%= desktop_network_questions.end_user_desktop_env.is_ie11_enterprise %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Can users enable pop-ups for specific URLs</b>
-                        <br><%= desktop_network_questions.end_user_desktop_env.is_popups_enabled %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Do users use OWA?</b>
-                        <br><%= desktop_network_questions.end_user_desktop_env.is_OWA_used %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Do users have access to: Chrome/Firefox/Edge (Not sure about question)</b>
-                        <br><%= desktop_network_questions.end_user_desktop_env.browsers_access %></p></div>
-            </div>
-            <br>
-        </div>
+                <!-- End user desktop env -->
+                <h5><a href="#editDesktop-End-User" style="color: mediumvioletred" data-toggle="collapse">End User Desktop Environment
+                        <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                </h5>
 
-        <!-- Disaster Recovery -->
-        <h5><a href="#desktop-Disaster" style="color: mediumvioletred" data-toggle="collapse">Disaster Recovery / High Probability
-                <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
-        </h5>
+                <div id="editDesktop-End-User" class="collapse">
+                    <div class="row">
+                        <div class="form-group col-4 response-cell">
+                            <label>What browsers do user have access to (Chrome, IE, Edge, Firefox, etc.)? </label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= desktop_network_questions.end_user_desktop_env.browsers %>"
+                                   name="desktop_network_questions[end_user_desktop_env][browsers]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>What versions of each available browsers are allowed? </label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= desktop_network_questions.end_user_desktop_env.browser_versions %>"
+                                   name="desktop_network_questions[end_user_desktop_env][browser_versions]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Do you run IE 11? </label>
+                            <%- make_custom_dropdown("desktop_network_questions[end_user_desktop_env][ie11]",
+                                    desktop_network_questions.end_user_desktop_env.ie11, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Can users enable compatibility mode in IE 11? </label>
+                            <%- make_custom_dropdown("desktop_network_questions[end_user_desktop_env][ie11_compatibility]",
+                                    desktop_network_questions.end_user_desktop_env.ie11_compatibility, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Is IE deployed in Enterprise Mode? </label>
+                            <%- make_custom_dropdown("desktop_network_questions[end_user_desktop_env][is_ie11_enterprise]",
+                                    desktop_network_questions.end_user_desktop_env.is_ie11_enterprise, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Can users enable pop-ups for specific URLs? </label>
+                            <%- make_custom_dropdown("desktop_network_questions[end_user_desktop_env][is_popups_enabled]",
+                                    desktop_network_questions.end_user_desktop_env.is_popups_enabled, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Do users use OWA? </label>
+                            <%- make_custom_dropdown("desktop_network_questions[end_user_desktop_env][is_OWA_used]",
+                                    desktop_network_questions.end_user_desktop_env.is_OWA_used, ["Yes", "No"]) %>
+                        </div>
+                    </div>
+                    <br>
+                </div>
 
-        <div id="desktop-Disaster" class="collapse">
-            <div id="disasterRecovery" class="row">
-                <div id="" class="col-4 response-cell"><p><b>Do you have Exchange and AD being replicated to a secondary data center</b>
-                        <br><%= desktop_network_questions.disaster_recovery.is_replicating_exchange_and_AD %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Describe what does the DR/HA configuration look like.</b>
-                        <br><%= desktop_network_questions.disaster_recovery.config_description %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Can you provide a diagram of the Exchange environment with the DR/HA
-                            included.
-                            (File
-                            upload???)</b>
-                        <br><%= desktop_network_questions.disaster_recovery.diagram %></p></div>
-            </div>
-            <br>
-        </div>
+                <!-- Disaster Recovery -->
+                <h5><a href="#editDesktop-Disaster" style="color: mediumvioletred" data-toggle="collapse">Disaster Recovery / High Probability
+                        <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                </h5>
 
-        <h5><a href="#desktop-Auth" style="color: mediumvioletred" data-toggle="collapse">Authentication (SAML & Remote Auth)
-                <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
-        </h5>
+                <div id="editDesktop-Disaster" class="collapse">
+                    <div class="row">
+                        <div class="form-group col-4 response-cell">
+                            <label>Do you have Exchange and AD being replicated to a secondary data center? </label>
+                            <%- make_custom_dropdown("desktop_network_questions[disaster_recovery][is_replicating_exchange_and_AD]",
+                                    desktop_network_questions.disaster_recovery.is_replicating_exchange_and_AD, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Describe what does the DR/HA configuration look like. </label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= desktop_network_questions.disaster_recovery.config_description %>"
+                                   name="desktop_network_questions[disaster_recovery][config_description]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Can you provide a diagram of the Exchange environment with the DR/HA included. (File upload) </label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= desktop_network_questions.disaster_recovery.diagram %>"
+                                   name="desktop_network_questions[disaster_recovery][diagram]">
+                        </div>
+                    </div>
+                    <br>
+                </div>
 
-        <div id="desktop-Auth" class="collapse">
-            <div id="authentication" class="row">
-                <div id="" class="col-4 response-cell"><p><b>Do you use SSO?</b>
-                        <br><%= desktop_network_questions.authentication.use_SSO %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Do you have an IDP (Identity Provider) that supports SAML 2.0?</b>
-                        <br><%= desktop_network_questions.authentication.have_IDP %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Where will the PFPT AD security groups be maintained? (On prem deployments
-                            require
-                            universal
-                            groups containing all users that need to log in, in the resource forest)</b>
-                        <br><%= desktop_network_questions.authentication.where_security_group %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Service provider or IDP (Identity Provider) initiated? (we only support
-                            Service
-                            Provider
-                            initiated)</b>
-                        <br><%= desktop_network_questions.authentication.intiated_IDP %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Do you require request encryption? (we don't support it)</b>
-                        <br><%= desktop_network_questions.authentication.require_request_encryption %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Do you require response signing? (we support it)</b>
-                        <br><%= desktop_network_questions.authentication.require_response_signing %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Do you require response encryption? (we support it)</b>
-                        <br><%= desktop_network_questions.authentication.require_response_encryption %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>If the response is to be encrypted, do you require a 3rd party cert or is a
-                            self-signed
-                            cert
-                            sufficient? We support both</b>
-                        <br><%= desktop_network_questions.authentication.require_third_party_cert %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>What attribute will you be sending as part of the response? (we only support
-                            UPN,
-                            email,
-                            and
-                            SID)</b>
-                        <br><%= desktop_network_questions.authentication.response_attributes %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Do you intend to deploy PFPT's remote authentication?</b>
-                        <br><%= desktop_network_questions.authentication.intend_to_deploy_remote_auth %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Are all user accounts on trusted forests?</b>
-                        <br><%= desktop_network_questions.authentication.all_users_trusted %></p></div>
-                <div id="" class="col-4 response-cell"><p><b>Are all domain controllers accessible on the same network as the server that
-                            Remote
-                            Auth
-                            will
-                            be installed?</b>
-                        <br><%= desktop_network_questions.authentication.domain_controllers %></p></div>
-            </div>
-            <br>
-        </div>
+                <h5><a href="#editDesktop-Auth" style="color: mediumvioletred" data-toggle="collapse">Authentication (SAML & Remote Auth)
+                        <i class="fa fa-arrows-v" aria-hidden="true"></i></a>
+                </h5>
+
+                <div id="editDesktop-Auth" class="collapse">
+                    <div class="row">
+                        <div class="form-group col-4 response-cell">
+                            <label>Do you use SSO?</label>
+                            <%- make_custom_dropdown("desktop_network_questions[authentication][use_SSO]",
+                                    desktop_network_questions.authentication.use_SSO, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Do you have an IDP (Identity Provider) that supports SAML 2.0? </label>
+                            <%- make_custom_dropdown("desktop_network_questions[authentication][have_IDP]",
+                                    desktop_network_questions.authentication.have_IDP, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Where will the PFPT AD security groups be maintained? (On prem deployments require universal
+                                groups containing all users that need to log in, in the resource forest.) </label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= desktop_network_questions.authentication.where_security_group %>"
+                                   name="desktop_network_questions[authentication][where_security_group]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Service provider or IDP (Identity Provider) initiated? (We only support Service Provider initiated) </label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= desktop_network_questions.authentication.intiated_IDP %>"
+                                   name="desktop_network_questions[authentication][intiated_IDP]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Do you require request encryption? (We don't support it.) </label>
+                            <%- make_custom_dropdown("desktop_network_questions[authentication][require_request_encryption]",
+                                    desktop_network_questions.authentication.require_request_encryption, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Do you require response signing? (We support it.) </label>
+                            <%- make_custom_dropdown("desktop_network_questions[authentication][require_response_signing]",
+                                    desktop_network_questions.authentication.require_response_signing, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Do you require response encryption? (We support it.) </label>
+                            <%- make_custom_dropdown("desktop_network_questions[authentication][require_response_encryption]",
+                                    desktop_network_questions.authentication.require_response_encryption, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>If the response is to be encrypted, do you require a 3rd party cert or is a self-signed cert sufficient?
+                                (We support both.) </label>
+                            <%- make_custom_dropdown("desktop_network_questions[authentication][require_third_party_cert]",
+                                    desktop_network_questions.authentication.require_third_party_cert, ["3rd party cert", "Self-signed cert"]) %>
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>What attribute will you be sending as part of the response? (We only support UPN, email, and SID.) </label>
+                            <input type="text" class="form-control" placeholder="No response set"
+                                   value="<%= desktop_network_questions.authentication.response_attributes %>"
+                                   name="desktop_network_questions[authentication][response_attributes]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Do you intend to deploy PFPT's remote authentication? </label>
+                            <%- make_custom_dropdown("desktop_network_questions[authentication][intend_to_deploy_remote_auth]",
+                                    desktop_network_questions.authentication.intend_to_deploy_remote_auth, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Are all user accounts on trusted forests? </label>
+                            <%- make_custom_dropdown("desktop_network_questions[authentication][all_users_trusted]",
+                                    desktop_network_questions.authentication.all_users_trusted, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Are all domain controllers accessible on the same network as the server that Remote Auth will be installed?
+                            </label>
+                            <%- make_custom_dropdown("desktop_network_questions[authentication][domain_controllers]",
+                                    desktop_network_questions.authentication.domain_controllers, ["Yes", "No"]) %>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
     </div>
 </div>
 <hr class="rainbow">

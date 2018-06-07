@@ -232,4 +232,79 @@ $(document).ready(() => {
             alert("Customer name is empty.");
         }
     });
+
+    var editing_desktop_network = false;
+    $('#editDesktopNetworkLink').click(function () {
+        var customer_name = $("#unique-customer-name").val();
+        if (editing_desktop_network == true && customer_name) {
+            // END EDITING
+
+            var form = $("#desktopNetworkForm");
+
+            var json = {
+                type: "POST",
+                url: form.attr('action'),
+                data: form.serialize(),
+                success: function (res) {
+
+                }
+            };
+            //console.log(json);
+
+            // POST here.
+            $.ajax(json);
+
+            // Locks the form's fieldset
+            $("#desktopNetworkFormFieldset").prop('disabled', true);
+            editing_desktop_network = false;
+
+        } else if (editing_desktop_network == false) {
+            // BEGIN EDITING
+
+            // Unlocks the form's fieldset
+            $("#desktopNetworkFormFieldset").prop('disabled', false);
+
+            editing_desktop_network = true;
+        } else {
+            alert("Customer name is empty.");
+        }
+    });
+
+    var editing_usage = false;
+    $('#editUsageLink').click(function () {
+        var customer_name = $("#unique-customer-name").val();
+        if (editing_usage == true && customer_name) {
+            // END EDITING
+
+            var form = $("#usageForm");
+
+            var json = {
+                type: "POST",
+                url: form.attr('action'),
+                data: form.serialize(),
+                success: function (res) {
+
+                }
+            };
+            //console.log(json);
+
+            // POST here.
+            $.ajax(json);
+
+            // Locks the form's fieldset
+            $("#usageFormFieldset").prop('disabled', true);
+            editing_usage = false;
+
+        } else if (editing_usage == false) {
+            // BEGIN EDITING
+
+            // Unlocks the form's fieldset
+            $("#usageFormFieldset").prop('disabled', false);
+
+            editing_usage = true;
+        } else {
+            alert("Customer name is empty.");
+        }
+    });
+
 });
