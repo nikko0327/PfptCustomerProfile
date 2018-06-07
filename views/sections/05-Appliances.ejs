@@ -12,8 +12,9 @@
             <a href="#" aria-hidden="true" data-target="#editAppliances" data-toggle="modal">
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Modal</a>
         </div>
+        <br>
 
-        <form id="appliancesForm" action="/index/<%= encodeURIComponent(customer.name) %>?_method=PUT" method="POST">
+        <form id="appliancesForm" autocomplete="off" action="/index/<%= encodeURIComponent(customer.name) %>?_method=PUT" method="POST">
             <fieldset id="appliancesFormFieldset" disabled>
                 <div class="form-group col-4 response-cell" hidden>
                     <label for="customerName">Customer Name</label>
@@ -28,71 +29,71 @@
 
                 <div id="editapplianceDetails-ApplianceSizing" class="collapse">
                     <div class="row">
-                        <div class="form-group col-4 response-cell">
+                        <div class="form-group, col-4 response-cell">
                             <label>Messages per day</label>
                             <input type="number" class="form-control" placeholder="No response set"
                                    value="<%= appliance_questions.messages_per_day %>"
                                    name="appliance_questions[messages_per_day]">
                         </div>
-                        <div class="form-group col-4 response-cell">
+                        <div class="form-group, col-4 response-cell">
                             <label>Average message size</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= appliance_questions.avg_message_size %>"
                                    name="appliance_questions[avg_message_size]">
                         </div>
-                        <div class="form-group col-4 response-cell">
+                        <div class="form-group, col-4 response-cell">
                             <label>Number of mailboxes</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= appliance_questions.number_of_mailboxes %>"
                                    name="appliance_questions[number_of_mailboxes]">
                         </div>
-                        <div class="form-group col-4 response-cell">
+                        <div class="form-group, col-4 response-cell">
                             <label>Searches per day</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= appliance_questions.searches_per_day %>"
                                    name="appliance_questions[searches_per_day]">
                         </div>
-                        <div class="form-group col-4 response-cell">
+                        <div class="form-group, col-4 response-cell">
                             <label>UI logins per day</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= appliance_questions.ui_logins_per_day %>"
                                    name="appliance_questions[ui_logins_per_day]">
                         </div>
-                        <div class="form-group col-4 response-cell">
+                        <div class="form-group, col-4 response-cell">
                             <label>Exports per day</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= appliance_questions.exports_per_day %>"
                                    name="appliance_questions[exports_per_day]">
                         </div>
-                        <div class="form-group col-4 response-cell">
+                        <div class="form-group, col-4 response-cell">
                             <label>Average export size</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= appliance_questions.avg_export_size %>"
                                    name="appliance_questions[avg_export_size]">
                         </div>
-                        <div class="form-group col-4 response-cell">
+                        <div class="form-group, col-4 response-cell">
                             <label>Active directory size</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= appliance_questions.AD_size %>"
                                    name="appliance_questions[AD_size]">
                         </div>
-                        <div class="form-group col-4 response-cell">
+                        <div class="form-group, col-4 response-cell">
                             <label>Virtual or physical hardware appliance preference?</label>
                             <%- make_custom_dropdown("appliance_questions[appliance_preference]",
                                     appliance_questions.appliance_preference, ["Physical", "Virtual"]) %>
                         </div>
-                        <div class="form-group col-4 response-cell">
+                        <div class="form-group, col-4 response-cell">
                             <label>Does the customer have a VMWare environment?</label>
                             <%- make_custom_dropdown("appliance_questions[has_vmware_env]",
                                     appliance_questions.has_vmware_env, ["Yes", "No"]) %>
                         </div>
-                        <div class="form-group col-4 response-cell">
+                        <div class="col-4 response-cell">
                             <label>Number of appliances recommended?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= appliance_questions.number_of_appliance_recommended %>"
                                    name="appliance_questions[number_of_appliance_recommended]">
                         </div>
-                        <div class="form-group col-4 response-cell">
+                        <div class="form-group, col-4 response-cell">
                             <label>DR footprint?</label>
                             <input type="text" class="form-control" placeholder="No response set"
                                    value="<%= appliance_questions.DR_footprint %>"

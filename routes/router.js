@@ -175,9 +175,9 @@ router.post("/new", authenticate_session, function (req, res) {
             Customer.create(req.body.customer, (error) => {
                 if (error) {
                     if (error["code"] == 11000) {
-                        console.log("-- Duplicate entry for customer: " + req.body.customer["name"]);
+                        console.log("-- Duplicate entry for customer: '" + req.body.customer["name"] + "'");
                         // Send pop up alert to HTML here
-                        res.render("new", {error_message: "Duplicate entry for customer: " + req.body.customer["name"]});
+                        res.render("new", {error_message: "Duplicate entry for customer: " + "'" + req.body.customer["name"] + "'"});
                     } else {
                         console.log(error);
                     }
@@ -195,7 +195,7 @@ router.post("/new", authenticate_session, function (req, res) {
                     UsageQuestions.create({name: req.body.customer["name"]});
 
                     res.redirect("/index");
-                    console.log("Creation of customer " + req.body.customer["name"] + " successful.");
+                    console.log("Creation of customer '" + req.body.customer["name"] + "' successful.");
                 }
             });
         }

@@ -36,7 +36,7 @@ app.use(session({
 
 // Used in update
 app.locals.make_custom_dropdown = function (name, value, list) {
-    var dropdown = '<select name="' + name + '">';
+    var dropdown = '<select class="form-control" name="' + name + '">';
 
     dropdown += '<option value="">No response</option>';
 

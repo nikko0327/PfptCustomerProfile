@@ -159,7 +159,7 @@ $(document).ready(() => {
         }
     });
 
-    var editing_appliances= false;
+    var editing_appliances = false;
     $('#editAppliancesLink').click(function () {
         var customer_name = $("#unique-customer-name").val();
         if (editing_appliances == true && customer_name) {
@@ -191,6 +191,43 @@ $(document).ready(() => {
             $("#appliancesFormFieldset").prop('disabled', false);
 
             editing_appliances = true;
+        } else {
+            alert("Customer name is empty.");
+        }
+    });
+
+    var editing_other_data_sources = false;
+    $('#editOtherDataSourcesLink').click(function () {
+        var customer_name = $("#unique-customer-name").val();
+        if (editing_other_data_sources == true && customer_name) {
+            // END EDITING
+
+            var form = $("#otherDataSourcesForm");
+
+            var json = {
+                type: "POST",
+                url: form.attr('action'),
+                data: form.serialize(),
+                success: function (res) {
+
+                }
+            };
+            //console.log(json);
+
+            // POST here.
+            $.ajax(json);
+
+            // Locks the form's fieldset
+            $("#otherDataSourcesFormFieldset").prop('disabled', true);
+            editing_other_data_sources = false;
+
+        } else if (editing_other_data_sources == false) {
+            // BEGIN EDITING
+
+            // Unlocks the form's fieldset
+            $("#otherDataSourcesFormFieldset").prop('disabled', false);
+
+            editing_other_data_sources = true;
         } else {
             alert("Customer name is empty.");
         }

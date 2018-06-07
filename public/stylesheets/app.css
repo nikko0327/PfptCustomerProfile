@@ -169,7 +169,7 @@ hr.rainbow {
     margin-right: auto;
     margin-left: auto;
     vertical-align: top;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
 }
 
 /* Borderless */
@@ -178,7 +178,7 @@ hr.rainbow {
     margin-right: auto;
     margin-left: auto;
     vertical-align: top;
-    margin-bottom: 0px;
+    margin-bottom: 2px;
 }
 
 .comment-box {
@@ -187,16 +187,17 @@ hr.rainbow {
 }
 
 label {
+    /*border: 1px solid black;*/
     font-weight: bold;
+    margin-right: 10px;
 }
 
 .display-header {
 
 }
 
-{
-    -o-transition: all 0.5s ease 0s
-;
+all {
+    -o-transition: all 0.5s ease 0s;
 }
 
 .footer-bottom {
@@ -210,7 +211,6 @@ label {
     padding-top: 6px;
 }
 
-{
-    font-size: 1.5em
-;
+all {
+    font-size: 1.5em;
 }
