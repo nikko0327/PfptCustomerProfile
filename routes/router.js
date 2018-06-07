@@ -177,7 +177,7 @@ router.post("/new", authenticate_session, function (req, res) {
                     if (error["code"] == 11000) {
                         console.log("-- Duplicate entry for customer: '" + req.body.customer["name"] + "'");
                         // Send pop up alert to HTML here
-                        res.render("new", {error_message: "Duplicate entry for customer: " + "'" + req.body.customer["name"] + "'"});
+                        res.render("new", {error_message: "Duplicate entry for customer: " + req.body.customer["name"]});
                     } else {
                         console.log(error);
                     }

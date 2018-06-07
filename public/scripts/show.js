@@ -18,6 +18,7 @@ $(document).ready(() => {
         var customer_name = $("#unique-customer-name").val();
         if (editing_customer == true && customer_name) {
             // END EDITING
+            $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"></i>' + " Edit");
 
             var form = $("#customerForm");
 
@@ -39,6 +40,7 @@ $(document).ready(() => {
             editing_customer = false;
         } else if (editing_customer == false) {
             // BEGIN EDITING
+            $(this).first().html('<i style="color: deeppink" class="fa fa-save" aria-hidden="true"></i>' + " Save");
 
             // Unlocks the form's fieldset
             $("#customerFormFieldset").prop('disabled', false);
@@ -302,6 +304,154 @@ $(document).ready(() => {
             $("#usageFormFieldset").prop('disabled', false);
 
             editing_usage = true;
+        } else {
+            alert("Customer name is empty.");
+        }
+    });
+
+    var editing_import = false;
+    $('#editImportLink').click(function () {
+        var customer_name = $("#unique-customer-name").val();
+        if (editing_import == true && customer_name) {
+            // END EDITING
+
+            var form = $("#importForm");
+
+            var json = {
+                type: "POST",
+                url: form.attr('action'),
+                data: form.serialize(),
+                success: function (res) {
+
+                }
+            };
+            //console.log(json);
+
+            // POST here.
+            $.ajax(json);
+
+            // Locks the form's fieldset
+            $("#importFormFieldset").prop('disabled', true);
+            editing_import = false;
+
+        } else if (editing_import == false) {
+            // BEGIN EDITING
+
+            // Unlocks the form's fieldset
+            $("#importFormFieldset").prop('disabled', false);
+
+            editing_import = true;
+        } else {
+            alert("Customer name is empty.");
+        }
+    });
+
+    var editing_POC = false;
+    $('#editPOCLink').click(function () {
+        var customer_name = $("#unique-customer-name").val();
+        if (editing_POC == true && customer_name) {
+            // END EDITING
+
+            var form = $("#pocForm");
+
+            var json = {
+                type: "POST",
+                url: form.attr('action'),
+                data: form.serialize(),
+                success: function (res) {
+
+                }
+            };
+            //console.log(json);
+
+            // POST here.
+            $.ajax(json);
+
+            // Locks the form's fieldset
+            $("#pocFormFieldset").prop('disabled', true);
+            editing_POC = false;
+
+        } else if (editing_POC == false) {
+            // BEGIN EDITING
+
+            // Unlocks the form's fieldset
+            $("#pocFormFieldset").prop('disabled', false);
+
+            editing_POC = true;
+        } else {
+            alert("Customer name is empty.");
+        }
+    });
+
+    var editing_RFE = false;
+    $('#editRFELink').click(function () {
+        var customer_name = $("#unique-customer-name").val();
+        if (editing_RFE == true && customer_name) {
+            // END EDITING
+
+            var form = $("#rfeForm");
+
+            var json = {
+                type: "POST",
+                url: form.attr('action'),
+                data: form.serialize(),
+                success: function (res) {
+
+                }
+            };
+            //console.log(json);
+
+            // POST here.
+            $.ajax(json);
+
+            // Locks the form's fieldset
+            $("#rfeFormFieldset").prop('disabled', true);
+            editing_RFE = false;
+
+        } else if (editing_RFE == false) {
+            // BEGIN EDITING
+
+            // Unlocks the form's fieldset
+            $("#rfeFormFieldset").prop('disabled', false);
+
+            editing_RFE = true;
+        } else {
+            alert("Customer name is empty.");
+        }
+    });
+
+    var editing_design_summary = false;
+    $('#editDesignSummaryLink').click(function () {
+        var customer_name = $("#unique-customer-name").val();
+        if (editing_design_summary == true && customer_name) {
+            // END EDITING
+
+            var form = $("#designSummaryForm");
+
+            var json = {
+                type: "POST",
+                url: form.attr('action'),
+                data: form.serialize(),
+                success: function (res) {
+
+                }
+            };
+            //console.log(json);
+
+            // POST here.
+            $.ajax(json);
+
+            // Locks the form's fieldset
+            $("#designSummaryFormFieldset").prop('disabled', true);
+            editing_design_summary = false;
+
+        } else if (editing_design_summary == false) {
+            // BEGIN EDITING
+
+            // Unlocks the form's fieldset
+            $("#designSummaryFormFieldset").prop('disabled', false);
+
+            editing_design_summary = true;
         } else {
             alert("Customer name is empty.");
         }

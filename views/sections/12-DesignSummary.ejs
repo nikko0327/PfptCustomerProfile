@@ -6,20 +6,34 @@
 
     <div id="designSummaryContent" class="collapse">
         <div class="edit pull-right">
-            <a href="#" aria-hidden="true" data-target="#editDesignSummary" data-toggle="modal">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a>
+            <a href="#" aria-hidden="true" id="editDesignSummaryLink" data-toggle="modal">
+                <i class="fa fa-pencil-square-o" aria-hidden="true">
+                </i>Edit</a>
         </div>
         <br>
-        <div id="refDetails" class="row">
-            <div id="" class="col-4 response-cell"><p><b>Mail System in Use</b>
-                    <br><%= design_summary_questions.mail_system_in_use %></p></div>
-        </div>
-        <div id="finals_comments" class="row">
-            <div class="comment-box" style="margin-left: auto; margin-right: auto; padding: 15px; word-wrap: break-word;" id=""><p><b
-                            style="color: orangered;">
-                        Other comments about the project</b>
-                    <br><%- design_summary_questions.comments.replace(/(?:\r\n|\r|\n)/g, '<br>'); %></p></div>
-        </div>
+
+        <form id="designSummaryForm" action="/index/<%= encodeURIComponent(customer.name) %>?_method=PUT" method="POST">
+            <fieldset id="designSummaryFormFieldset" disabled>
+                <div class="form-group col-4 response-cell" hidden>
+                    <label for="customerName">Customer Name</label>
+                    <input type="text" readonly class="form-control" placeholder="No response set"
+                           value="<%= customer.name %>"
+                           name="design_summary_questions[name]">
+                </div>
+                <div class="form-group col-4 response-cell">
+                    <label>Mail system currently in use</label>
+                    <input type="text" class="form-control" placeholder="No response set"
+                           value="<%= design_summary_questions.mail_system_in_use %>"
+                           name="design_summary_questions[mail_system_in_use]">
+                </div>
+                <br>
+                <div class="form-group">
+                    <label>Comments</label>
+                    <textarea rows="15" name="design_summary_questions[comments]" placeholder="No comments"
+                              form="designSummaryForm"><%= design_summary_questions.comments %></textarea>
+                </div>
+            </fieldset>
+        </form>
     </div>
     <br>
 </div>
