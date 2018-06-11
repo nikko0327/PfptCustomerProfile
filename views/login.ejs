@@ -1,13 +1,14 @@
 <% include partials/header %>
 
-<div class="container">
-    <fieldset>
+<div class="container" style="display: flex; flex-flow: column wrap; align-items: center;">
+    <fieldset >
         <form action="/login" method="post">
             <div class="control-group">
                 <h4>Login</h4>
                 <label class="control-label" for="username">Username</label>
                 <div class="controls">
-                    <input type="text" id="username" name="login[username]" placeholder="Username" required>
+                    <input type="text" style="text-align: center; display: block;" id="username" name="login[username]" placeholder="Username"
+                           required>
                 </div>
             </div>
             <br>
@@ -15,7 +16,8 @@
             <div class="control-group">
                 <label class="control-label" for="password">Password</label>
                 <div class="controls">
-                    <input type="password" id="password" name="login[password]" placeholder="Password" required>
+                    <input style="text-align: center; align: center;" type="password" id="password" name="login[password]"
+                           placeholder="Password" required>
                 </div>
             </div>
             <br>

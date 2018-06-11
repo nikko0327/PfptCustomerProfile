@@ -4,10 +4,13 @@ var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var expressSanitizer = require("express-sanitizer");
 var session = require("express-session");
+var favicon = require('serve-favicon');
 var MongoStore = require("connect-mongo")(session);
 var app = express();
 
 //APP CONFIGURATION
+app.use(favicon(__dirname + '/public/favicon.ico'));
+
 
 var databaseUrl = "mongodb://localhost/customerProfile";
 mongoose.connect(databaseUrl);

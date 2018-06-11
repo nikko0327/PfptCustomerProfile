@@ -5,10 +5,8 @@
             <h5 style="color: mediumvioletred">General Information</h5>
         </div>
         <div class="edit pull-right">
-            <a href="#" id="editCustomerLink" aria-hidden="true" data-toggle="modal"><i
-                        class="fa fa-pencil-square-o"></i>Edit</a>
-            <a href="#" data-target="#editCustomer" aria-hidden="true" data-toggle="modal"><i
-                        class="fa fa-pencil-square-o"></i>Modal</a>
+            <a href="#/" id="editCustomerLink" aria-hidden="true" data-toggle="modal">
+                <i class="fa fa-pencil-square-o"> Edit</i></a>
         </div>
     </div>
     <br>
@@ -92,6 +90,9 @@
                     <input type="text" class="form-control" placeholder="No response set" id="incumbentSolution"
                            value="<%= customer.incumbentSolution %>" name="customer[incumbentSolution]">
                 </div>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </fieldset>
     </form>

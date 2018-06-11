@@ -13,34 +13,47 @@ function expand_collapse() {
 }
 
 $(document).ready(() => {
+    $.ajaxSetup({
+        async: true
+    });
+
+    var customer_name = $("#unique-customer-name").val();
+
     var editing_customer = false;
     $('#editCustomerLink').click(function () {
-        var customer_name = $("#unique-customer-name").val();
         if (editing_customer == true && customer_name) {
             // END EDITING
-            $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"></i>' + " Edit");
 
             var form = $("#customerForm");
 
             var json = {
                 type: "POST",
+                timeout: 3000,
                 url: form.attr('action'),
                 data: form.serialize(),
                 success: function (res) {
                     location.href = "/index/" + encodeURIComponent(customer_name);
+                    // Locks the form's fieldset
+                    $("#customerFormFieldset").prop('disabled', true);
+                    editing_customer = false;
+                    $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
+                },
+                error: function (xhr, status, error) {
+                    if (error == 'Conflict') {
+                        alert("Customer already exists.");
+                    } else {
+                        alert(error);
+                    }
                 }
             };
-            //console.log(json);
+            console.log(json);
 
             // POST here.
             $.ajax(json);
 
-            // Locks the form's fieldset
-            $("#customerFormFieldset").prop('disabled', true);
-            editing_customer = false;
         } else if (editing_customer == false) {
             // BEGIN EDITING
-            $(this).first().html('<i style="color: deeppink" class="fa fa-save" aria-hidden="true"></i>' + " Save");
+            $(this).first().html('<i style="color: deeppink;" class="fa fa-save" aria-hidden="true"> Save</i>');
 
             // Unlocks the form's fieldset
             $("#customerFormFieldset").prop('disabled', false);
@@ -61,10 +74,11 @@ $(document).ready(() => {
 
             var json = {
                 type: "POST",
+                timeout: 3000,
                 url: form.attr('action'),
                 data: form.serialize(),
                 success: function (res) {
-
+                    alert("SE done.")
                 }
             };
             //console.log(json);
@@ -75,6 +89,7 @@ $(document).ready(() => {
             // Locks the form's fieldset
             $("#emailSystemSEFormFieldset").prop('disabled', true);
             editing_email_systems_se = false;
+            $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
         } else if (editing_email_systems_se == false) {
             // BEGIN EDITING
 
@@ -82,6 +97,7 @@ $(document).ready(() => {
             $("#emailSystemSEFormFieldset").prop('disabled', false);
 
             editing_email_systems_se = true;
+            $(this).first().html('<i style="color: deeppink;" class="fa fa-save" aria-hidden="true"> Save</i>');
         } else {
             alert("Customer name is empty.");
         }
@@ -97,10 +113,11 @@ $(document).ready(() => {
 
             var json = {
                 type: "POST",
+                timeout: 3000,
                 url: form.attr('action'),
                 data: form.serialize(),
                 success: function (res) {
-
+                    alert("PS done");
                 }
             };
             //console.log(json);
@@ -111,6 +128,7 @@ $(document).ready(() => {
             // Locks the form's fieldset
             $("#emailSystemPSFormFieldset").prop('disabled', true);
             editing_email_systems_ps = false;
+            $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
 
         } else if (editing_email_systems_ps == false) {
             // BEGIN EDITING
@@ -119,6 +137,7 @@ $(document).ready(() => {
             $("#emailSystemPSFormFieldset").prop('disabled', false);
 
             editing_email_systems_ps = true;
+            $(this).first().html('<i style="color: deeppink;" class="fa fa-save" aria-hidden="true"> Save</i>');
         } else {
             alert("Customer name is empty.");
         }
@@ -134,10 +153,11 @@ $(document).ready(() => {
 
             var json = {
                 type: "POST",
+                timeout: 3000,
                 url: form.attr('action'),
                 data: form.serialize(),
                 success: function (res) {
-
+                    alert("Journaling done");
                 }
             };
             //console.log(json);
@@ -148,7 +168,7 @@ $(document).ready(() => {
             // Locks the form's fieldset
             $("#journalingFormFieldset").prop('disabled', true);
             editing_journaling = false;
-
+            $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
         } else if (editing_journaling == false) {
             // BEGIN EDITING
 
@@ -156,6 +176,7 @@ $(document).ready(() => {
             $("#journalingFormFieldset").prop('disabled', false);
 
             editing_journaling = true;
+            $(this).first().html('<i style="color: deeppink;" class="fa fa-save" aria-hidden="true"> Save</i>');
         } else {
             alert("Customer name is empty.");
         }
@@ -171,6 +192,7 @@ $(document).ready(() => {
 
             var json = {
                 type: "POST",
+                timeout: 3000,
                 url: form.attr('action'),
                 data: form.serialize(),
                 success: function (res) {
@@ -184,7 +206,8 @@ $(document).ready(() => {
 
             // Locks the form's fieldset
             $("#appliancesFormFieldset").prop('disabled', true);
-            editing_journaling = false;
+            editing_appliances = false;
+            $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
 
         } else if (editing_appliances == false) {
             // BEGIN EDITING
@@ -193,6 +216,7 @@ $(document).ready(() => {
             $("#appliancesFormFieldset").prop('disabled', false);
 
             editing_appliances = true;
+            $(this).first().html('<i style="color: deeppink;" class="fa fa-save" aria-hidden="true"> Save</i>');
         } else {
             alert("Customer name is empty.");
         }
@@ -208,10 +232,11 @@ $(document).ready(() => {
 
             var json = {
                 type: "POST",
+                timeout: 3000,
                 url: form.attr('action'),
                 data: form.serialize(),
                 success: function (res) {
-
+                    alert("Other data sources done.");
                 }
             };
             //console.log(json);
@@ -222,6 +247,7 @@ $(document).ready(() => {
             // Locks the form's fieldset
             $("#otherDataSourcesFormFieldset").prop('disabled', true);
             editing_other_data_sources = false;
+            $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
 
         } else if (editing_other_data_sources == false) {
             // BEGIN EDITING
@@ -230,6 +256,7 @@ $(document).ready(() => {
             $("#otherDataSourcesFormFieldset").prop('disabled', false);
 
             editing_other_data_sources = true;
+            $(this).first().html('<i style="color: deeppink;" class="fa fa-save" aria-hidden="true"> Save</i>');
         } else {
             alert("Customer name is empty.");
         }
@@ -245,6 +272,7 @@ $(document).ready(() => {
 
             var json = {
                 type: "POST",
+                timeout: 3000,
                 url: form.attr('action'),
                 data: form.serialize(),
                 success: function (res) {
@@ -259,6 +287,7 @@ $(document).ready(() => {
             // Locks the form's fieldset
             $("#desktopNetworkFormFieldset").prop('disabled', true);
             editing_desktop_network = false;
+            $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
 
         } else if (editing_desktop_network == false) {
             // BEGIN EDITING
@@ -267,6 +296,7 @@ $(document).ready(() => {
             $("#desktopNetworkFormFieldset").prop('disabled', false);
 
             editing_desktop_network = true;
+            $(this).first().html('<i style="color: deeppink;" class="fa fa-save" aria-hidden="true"> Save</i>');
         } else {
             alert("Customer name is empty.");
         }
@@ -282,6 +312,7 @@ $(document).ready(() => {
 
             var json = {
                 type: "POST",
+                timeout: 3000,
                 url: form.attr('action'),
                 data: form.serialize(),
                 success: function (res) {
@@ -296,6 +327,7 @@ $(document).ready(() => {
             // Locks the form's fieldset
             $("#usageFormFieldset").prop('disabled', true);
             editing_usage = false;
+            $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
 
         } else if (editing_usage == false) {
             // BEGIN EDITING
@@ -304,6 +336,7 @@ $(document).ready(() => {
             $("#usageFormFieldset").prop('disabled', false);
 
             editing_usage = true;
+            $(this).first().html('<i style="color: deeppink;" class="fa fa-save" aria-hidden="true"> Save</i>');
         } else {
             alert("Customer name is empty.");
         }
@@ -319,6 +352,7 @@ $(document).ready(() => {
 
             var json = {
                 type: "POST",
+                timeout: 3000,
                 url: form.attr('action'),
                 data: form.serialize(),
                 success: function (res) {
@@ -333,6 +367,7 @@ $(document).ready(() => {
             // Locks the form's fieldset
             $("#importFormFieldset").prop('disabled', true);
             editing_import = false;
+            $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
 
         } else if (editing_import == false) {
             // BEGIN EDITING
@@ -341,6 +376,7 @@ $(document).ready(() => {
             $("#importFormFieldset").prop('disabled', false);
 
             editing_import = true;
+            $(this).first().html('<i style="color: deeppink;" class="fa fa-save" aria-hidden="true"> Save</i>');
         } else {
             alert("Customer name is empty.");
         }
@@ -356,6 +392,7 @@ $(document).ready(() => {
 
             var json = {
                 type: "POST",
+                timeout: 3000,
                 url: form.attr('action'),
                 data: form.serialize(),
                 success: function (res) {
@@ -370,6 +407,7 @@ $(document).ready(() => {
             // Locks the form's fieldset
             $("#pocFormFieldset").prop('disabled', true);
             editing_POC = false;
+            $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
 
         } else if (editing_POC == false) {
             // BEGIN EDITING
@@ -378,6 +416,7 @@ $(document).ready(() => {
             $("#pocFormFieldset").prop('disabled', false);
 
             editing_POC = true;
+            $(this).first().html('<i style="color: deeppink;" class="fa fa-save" aria-hidden="true"> Save</i>');
         } else {
             alert("Customer name is empty.");
         }
@@ -393,6 +432,7 @@ $(document).ready(() => {
 
             var json = {
                 type: "POST",
+                timeout: 3000,
                 url: form.attr('action'),
                 data: form.serialize(),
                 success: function (res) {
@@ -407,6 +447,7 @@ $(document).ready(() => {
             // Locks the form's fieldset
             $("#rfeFormFieldset").prop('disabled', true);
             editing_RFE = false;
+            $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
 
         } else if (editing_RFE == false) {
             // BEGIN EDITING
@@ -415,6 +456,7 @@ $(document).ready(() => {
             $("#rfeFormFieldset").prop('disabled', false);
 
             editing_RFE = true;
+            $(this).first().html('<i style="color: deeppink;" class="fa fa-save" aria-hidden="true"> Save</i>');
         } else {
             alert("Customer name is empty.");
         }
@@ -430,10 +472,16 @@ $(document).ready(() => {
 
             var json = {
                 type: "POST",
+                timeout: 3000,
                 url: form.attr('action'),
                 data: form.serialize(),
                 success: function (res) {
 
+                },
+                error: function(one, two, three) {
+                    console.log(one);
+                    console.log(two);
+                    console.log(three);
                 }
             };
             //console.log(json);
@@ -444,6 +492,7 @@ $(document).ready(() => {
             // Locks the form's fieldset
             $("#designSummaryFormFieldset").prop('disabled', true);
             editing_design_summary = false;
+            $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
 
         } else if (editing_design_summary == false) {
             // BEGIN EDITING
@@ -452,9 +501,9 @@ $(document).ready(() => {
             $("#designSummaryFormFieldset").prop('disabled', false);
 
             editing_design_summary = true;
+            $(this).first().html('<i style="color: deeppink;" class="fa fa-save" aria-hidden="true"> Save</i>');
         } else {
             alert("Customer name is empty.");
         }
     });
-
 });

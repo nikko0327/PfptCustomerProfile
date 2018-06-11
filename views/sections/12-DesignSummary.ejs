@@ -6,9 +6,8 @@
 
     <div id="designSummaryContent" class="collapse">
         <div class="edit pull-right">
-            <a href="#" aria-hidden="true" id="editDesignSummaryLink" data-toggle="modal">
-                <i class="fa fa-pencil-square-o" aria-hidden="true">
-                </i>Edit</a>
+            <a href="#/" aria-hidden="true" id="editDesignSummaryLink" data-toggle="modal">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i></a>
         </div>
         <br>
 
@@ -31,6 +30,9 @@
                     <label>Comments</label>
                     <textarea rows="15" name="design_summary_questions[comments]" placeholder="No comments"
                               form="designSummaryForm"><%= design_summary_questions.comments %></textarea>
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </fieldset>
         </form>

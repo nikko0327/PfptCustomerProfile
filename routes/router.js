@@ -259,6 +259,8 @@ router.put("/index/:id", authenticate_session, function (req, res) {
                 // If an error occurs, catch the error.
                 if (error["code"] == 11000) { // Dupe ID
                     console.log("-- Duplicate key for customer: " + req.body.customer["name"]);
+                    res.status(409);
+                    res.send("Dupe primary key, customer already exists.");
                 } else {
                     console.log(error + "\n---");
                 }
@@ -269,7 +271,9 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         if (req.body.appliance_questions != undefined && req.body.appliance_questions != null) {
             console.log("- Attempting to update Appliance Questions...");
             ApplianceQuestions.findOneAndUpdate({name: req.params.id}, req.body.appliance_questions).then(() => {
-                res.redirect("/index/" + encodeURIComponent(req.params.id));
+                //res.redirect("/index/" + encodeURIComponent(req.params.id));
+                console.log("Done");
+                res.status(200);
             }).catch((error) => {
                 console.log(error);
                 res.redirect("/index");
@@ -280,7 +284,9 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         if (req.body.design_summary_questions != undefined && req.body.design_summary_questions != null) {
             console.log("- Attempting to update Design Summary...");
             DesignSummaryQuestions.findOneAndUpdate({name: req.params.id}, req.body.design_summary_questions).then(() => {
-                res.redirect("/index/" + encodeURIComponent(req.params.id));
+                //res.redirect("/index/" + encodeURIComponent(req.params.id));
+                console.log("Done");
+                res.status(200);
             }).catch((error) => {
                 console.log(error);
                 res.redirect("/index");
@@ -291,7 +297,9 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         if (req.body.desktop_network_questions != undefined && req.body.desktop_network_questions != null) {
             console.log("- Attempting to update Desktop Network Questions...");
             DesktopNetworkQuestions.findOneAndUpdate({name: req.params.id}, req.body.desktop_network_questions).then(() => {
-                res.redirect("/index/" + encodeURIComponent(req.params.id));
+                //res.redirect("/index/" + encodeURIComponent(req.params.id));
+                console.log("Done");
+                res.status(200);
             }).catch((error) => {
                 console.log(error);
                 res.redirect("/index");
@@ -302,7 +310,9 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         if (req.body.email_se_questions != undefined && req.body.email_se_questions != null) {
             console.log("- Attempting to update Email Systems SE Questions...");
             EmailSEQuestions.findOneAndUpdate({"name": req.params.id}, req.body.email_se_questions).then(() => {
-                res.redirect("/index/" + encodeURIComponent(req.params.id));
+                //res.redirect("/index/" + encodeURIComponent(req.params.id));
+                console.log("Done");
+                res.status(200);
             }).catch((error) => {
                 console.log(error);
                 res.redirect("/index");
@@ -313,7 +323,9 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         if (req.body.email_ps_questions != undefined && req.body.email_ps_questions != null) {
             console.log("- Attempting to update Email Systems PS Questions...");
             EmailPSQuestions.findOneAndUpdate({"name": req.params.id}, req.body.email_ps_questions).then(() => {
-                res.redirect("/index/" + encodeURIComponent(req.params.id));
+                //res.redirect("/index/" + encodeURIComponent(req.params.id));
+                console.log("Done");
+                res.status(200);
             }).catch((error) => {
                 console.log(error);
                 res.redirect("/index");
@@ -324,7 +336,9 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         if (req.body.import_questions != undefined && req.body.import_questions != null) {
             console.log("- Attempting to update Import information...");
             ImportQuestions.findOneAndUpdate({"name": req.params.id}, req.body.import_questions).then(() => {
-                res.redirect("/index/" + encodeURIComponent(req.params.id));
+                //res.redirect("/index/" + encodeURIComponent(req.params.id));
+                console.log("Done");
+                res.status(200);
             }).catch((error) => {
                 console.log(error);
                 res.redirect("/index");
@@ -335,7 +349,9 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         if (req.body.journaling_questions != undefined && req.body.journaling_questions != null) {
             console.log("- Attempting to update Journalling information...");
             JournalingQuestions.findOneAndUpdate({"name": req.params.id}, req.body.journaling_questions).then(() => {
-                res.redirect("/index/" + encodeURIComponent(req.params.id));
+                //res.redirect("/index/" + encodeURIComponent(req.params.id));
+                console.log("Done");
+                res.status(200);
             }).catch((error) => {
                 console.log(error);
                 res.redirect("/index");
@@ -346,7 +362,9 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         if (req.body.other_data_source_questions != undefined && req.body.other_data_source_questions != null) {
             console.log("- Attempting to update Other Data Sources Questions...");
             OtherDataSourcesQuestions.findOneAndUpdate({name: req.params.id}, req.body.other_data_source_questions).then(() => {
-                res.redirect("/index/" + encodeURIComponent(req.params.id));
+                //res.redirect("/index/" + encodeURIComponent(req.params.id));
+                console.log("Done");
+                res.status(200);
             }).catch((error) => {
                 console.log(error);
                 res.redirect("/index");
@@ -357,7 +375,9 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         if (req.body.poc_questions != undefined && req.body.poc_questions != null) {
             console.log("- Attempting to update POC information...");
             POCQuestions.findOneAndUpdate({name: req.params.id}, req.body.poc_questions).then(() => {
-                res.redirect("/index/" + encodeURIComponent(req.params.id));
+                //res.redirect("/index/" + encodeURIComponent(req.params.id));
+                console.log("Done");
+                res.status(200);
             }).catch((error) => {
                 console.log(error);
                 res.redirect("/index");
@@ -368,7 +388,9 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         if (req.body.rfe_questions != undefined && req.body.rfe_questions != null) {
             console.log("- Attempting to update RFE information...");
             RFEQuestions.findOneAndUpdate({name: req.params.id}, req.body.rfe_questions).then(() => {
-                res.redirect("/index/" + encodeURIComponent(req.params.id));
+                //res.redirect("/index/" + encodeURIComponent(req.params.id));
+                console.log("Done");
+                res.status(200);
             }).catch((error) => {
                 console.log(error);
                 res.redirect("/index");
@@ -379,14 +401,17 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         if (req.body.usage_questions != undefined && req.body.usage_questions != null) {
             console.log("- Attempting to update Usage Questions...");
             UsageQuestions.findOneAndUpdate({name: req.params.id}, req.body.usage_questions).then(() => {
-                res.redirect("/index/" + encodeURIComponent(req.params.id));
+                //res.redirect("/index/" + encodeURIComponent(req.params.id));
+                console.log("Done");
+                res.status(200);
             }).catch((error) => {
                 console.log(error);
                 res.redirect("/index");
             });
         }
     }
-);
+)
+;
 
 //INDEX ROUTE
 router.get("/index", authenticate_session, function (req, res) {
