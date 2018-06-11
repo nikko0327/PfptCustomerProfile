@@ -1,61 +1,58 @@
 var mongoose = require('mongoose');
 
 var import_schema = new mongoose.Schema({
-    _id: {
+    name: {
         type: String,
         required: true,
-        unique: true,
-        index: true
+        unique: true
     },
     need_to_migrate_legacy_data: {
         type: String,
-        enum: [null, "Yes", "No"],
-        default: null
+        default: ""
     },
     is_existing_archive: {
         type: String,
-        enum: [null, "Yes", "No"],
-        default: null
+        default: ""
     },
     amount_of_data_to_migrate: {
         type: String,
-        default: null
+        default: ""
     },
     expected_timeline: {
         type: String,
-        default: null
+        default: ""
     },
     conversion_agent: {
         type: String,
-        default: null
+        default: ""
     },
     service_brief: {
         type: String,
-        default: null
+        default: ""
     },
     storage: {
         type: String,
-        default: null
+        default: ""
     },
     format: {
         type: String,
-        default: null
+        default: ""
     },
     retention_policy: {
         type: String,
-        default: null
+        default: ""
     },
     encryption_type: {
         type: String,
-        default: null
+        default: ""
     },
     oldest_data: {
         type: String,
-        default: null
+        default: ""
     },
     employee_records: {
         type: String,
-        default: null
+        default: ""
     }
 });
 

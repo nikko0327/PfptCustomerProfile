@@ -1,77 +1,74 @@
 var mongoose = require("mongoose");
 
 var appliance_schema = new mongoose.Schema({
-    _id: {
+    name: {
         type: String,
         required: true,
         unique: true
     },
     messages_per_day: {
         type: String,
-        default: null
+        default: ""
     },
     avg_message_size: {
         type: String,
-        default: null
+        default: ""
     },
     number_of_mailboxes: {
         type: String,
-        default: null
+        default: ""
     },
     searches_per_day: {
         type: String,
-        default: null
+        default: ""
     },
     ui_logins_per_day: {
         type: String,
-        default: null
+        default: ""
     },
     exports_per_day: {
         type: String,
-        default: null
+        default: ""
     },
     avg_export_size: {
         type: String,
-        default: null
+        default: ""
     },
     AD_size: {
         type: String,
-        default: null
+        default: ""
     },
     appliance_preference: {
         type: String,
-        enum: [null, "Virtual", "Hardware"],
-        default: null
+        default: ""
     },
     has_vmware_env: {
         type: String,
-        enum: [null, "Yes", "No"],
-        default: null
+        default: ""
     },
     number_of_appliance_recommended: {
         type: String,
-        default: null
+        default: ""
     },
     DR_footprint: {
         type: String,
-        default: null
+        default: ""
     },
     purposes: {
-        type: [String],
-        default: null
-    },
-    has_archive_proxy: {
         type: String,
-        enum: [null, "Yes", "No"],
-        default: null
+        default: ""
+    },
+    archive_proxy: {
+        type: String,
+        default: ""
     },
     transport_agent: {
         type: String,
-        default: null
+        default: ""
     },
     outlook_view_manager: {
         type: String,
-        default: null
+        default: ""
     }
 });
 

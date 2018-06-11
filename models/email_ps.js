@@ -2,46 +2,40 @@ var mongoose = require("mongoose");
 //var Schema = mongoose.Schema;
 
 var email_ps_schema = new mongoose.Schema({
-    _id: {
+    name: {
         type: String,
         unique: true,
-        index: true,
         required: true
     },
     // On prem exchange w/ on prem appliances
     prem_exchange: {
         is_using_DAG: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         number_of_inboxes: {
             type: String,
-            default: null
+            default: ""
         },
         journal_rules: {
             type: String,
-            enum: [null, "Hub transport", "Database"],
-            default: null
+            default: ""
         },
         is_journal_in_own_DB: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         number_of_extra_storage: {
             type: String,
-            default: null
+            default: ""
         },
         is_using_RMS: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         is_journal_decryption_enabled: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         }
     },
 
@@ -49,23 +43,19 @@ var email_ps_schema = new mongoose.Schema({
     hosted_O365: {
         is_using_azure_rms: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         is_using_IRM: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         is_journal_decryption_enabled: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         is_using_message_decryption: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         }
     },
 
@@ -74,117 +64,136 @@ var email_ps_schema = new mongoose.Schema({
         // Exchange details
         is_using_DAG: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         number_of_inboxes: {
             type: String,
-            default: null
+            default: ""
         },
         journal_rules: {
             type: String,
-            enum: [null, "Hub transport", "Database"],
-            default: null
+            default: ""
         },
         is_journal_in_own_DB: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         number_of_extra_storage: {
             type: String,
-            default: null
+            default: ""
         },
         is_using_RMS: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         is_journal_decryption_enabled: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
 
         // O365 details
         is_using_azure_rms: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         is_using_IRM: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         is_O365_journal_decryption_enabled: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         is_using_message_decryption: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         }
     },
 
     prem_exchange_hosted_O365: {
-        // Exchange details
+        exchange_version: {
+            type: String,
+            default: ""
+        },
+        mailbox_server_locations: {
+            type: String,
+            default: ""
+        },
+        has_enterprise_CAL: {
+            type: String,
+            default: ""
+        },
+        describe_env: {
+            type: String,
+            default: ""
+        },
+        diagram: {
+            type: String,
+            default: ""
+        },
         is_using_DAG: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
-        number_of_inboxes: {
+        is_multi_forest: {
             type: String,
-            default: null
+            default: ""
         },
-        journal_rules: {
+        number_of_forests: {
             type: String,
-            enum: [null, "Hub transport", "Database"],
-            default: null
+            default: ""
         },
-        is_journal_in_own_DB: {
+        exists_trusts: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
-        number_of_extra_storage: {
+        is_resource_forest_arrangement: {
             type: String,
-            default: null
+            default: ""
         },
-        is_using_RMS: {
+        is_using_multi_domains: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
-        is_journal_decryption_enabled: {
+        multi_domain_structure: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
-
-        // O365 details
-        is_using_azure_rms: {
+        resource_forest_deployment: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
-        is_using_IRM: {
+        AD_size: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
-        // is_journal_decryption_enabled: {
-        //     type: String,
-        //     enum: [null, "Yes", "No"],
-        //     default: null
-        // },
-        is_using_message_decryption: {
+        require_ldap: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
+        },
+        O365_version: {
+            type: String,
+            default: ""
+        },
+        is_maintaining_on_prem_AD: {
+            type: String,
+            default: ""
+        },
+        is_maintaining_azure: {
+            type: String,
+            default: ""
+        },
+        is_admin_in_AD_or_azure: {
+            type: String,
+            default: ""
+        },
+        sync_tools: {
+            type: String,
+            default: ""
+        },
+        which_O365: {
+            type: String,
+            default: ""
         }
     }
 });

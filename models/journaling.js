@@ -1,81 +1,73 @@
 var mongoose = require('mongoose');
 
 var journaling_schema = new mongoose.Schema({
-    _id: {
+    name: {
         type: String,
         unique: true,
-        required: true,
-        index: true
+        required: true
     },
     exchange: {
         exchange_on_prem: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         has_O365: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         is_mixed_mode: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         number_of_mailboxes: {
             type: String,
-            default: null
+            default: ""
         },
         avg_message_count: {
             type: String,
-            default: null
+            default: ""
         },
         change_in_business: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         has_enterprise_CAL: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         }
     },
     mail_volume_metrics: {
         users_journaled: {
             type: String,
-            default: null
+            default: ""
         },
         user_messages: {
             type: String,
-            default: null
+            default: ""
         },
         message_derive: {
             type: String,
-            default: null
+            default: ""
         },
         avg_message_size: {
             type: String,
-            default: null
+            default: ""
         },
         avg_message_count: {
             type: String,
-            default: null
+            default: ""
         },
         all_user_journaling: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         move_to_O365: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         custom_config: {
             type: String,
-            default: null
+            default: ""
         }
     }
 });

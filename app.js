@@ -4,11 +4,13 @@ var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var expressSanitizer = require("express-sanitizer");
 var session = require("express-session");
+var favicon = require('serve-favicon');
 var MongoStore = require("connect-mongo")(session);
 var app = express();
 
-
 //APP CONFIGURATION
+app.use(favicon(__dirname + '/public/favicon.ico'));
+
 
 var databaseUrl = "mongodb://localhost/customerProfile";
 mongoose.connect(databaseUrl);
@@ -17,21 +19,61 @@ var db = mongoose.connection;
 
 //handling mongo error
 db.on("error", console.error.bind(console, "Connection Error: "));
-db.once("open", function () {
-    //Connection Message?
-});
+// db.once("open", function () {
+//     //Connection Message?
+// });
 
 //using sessions for tracking logins
 app.use(session({
     secret: "work hard",
     resave: true,
     saveUninitialized: false,
+    cookie: {
+        //maxAge: 30 * 24 * 60 * 60 * 1000 // 1 month
+    },
     store: new MongoStore({
         mongooseConnection: db
     })
 }));
 
-// set so we dont have to type .ejs all the time when routing
+
+// Used in update
+app.locals.make_custom_dropdown = function (name, value, list) {
+    var dropdown = '<select class="form-control" name="' + name + '">';
+
+    dropdown += '<option value="">No response</option>';
+
+    for (var i = 0; i < list.length; i++) {
+        if (value == list[i]) {
+            dropdown += '<option value="' + list[i] + '" selected>' + list[i] + '</option>'
+        } else {
+            dropdown += '<option value="' + list[i] + '">' + list[i] + '</option>'
+        }
+    }
+
+    dropdown += '</select>';
+
+    return dropdown;
+};
+
+// Exposes the username for the header nav bar.
+app.use(function expose_username(req, res, next) {
+    res.locals.user = req.session.user;
+    next();
+});
+
+// Disables back button from showing contents when logged out.
+app.use(function (req, res, next) {
+    res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    next();
+});
+
+// app.use(function printSession(req, res, next) {
+//     console.log('req.session', req.session);
+//     next();
+// });
+
+// set so we don't have to type .ejs all the time when routing
 app.set("view engine", "ejs");
 // used so we can make a public folder that contains stylesheet and js, and be able to access it
 app.use(express.static(__dirname + "/public"));
@@ -58,7 +100,6 @@ app.use(function (err, req, res, next) {
     res.send(err.message);
 });
 
-
-app.listen(8080, function () {
-    console.log("App is running on 8080");
+app.listen(8000, function () {
+    console.log("App is running on 8000");
 });

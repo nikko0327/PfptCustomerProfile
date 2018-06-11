@@ -1,461 +1,277 @@
 var mongoose = require("mongoose");
 
 var other_data_sources_schema = new mongoose.Schema({
-    _id: {
+    name: {
         type: String,
         required: true,
-        unique: true,
-        index: true
+        unique: true
     },
 
     // custom content archiving
     custom_content_archiving: {
         need_custom_archive: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         diagram: {
             type: String,
-            default: null
+            default: ""
         },
         daily_volume: {
             type: String,
-            default: null
+            default: ""
         },
         avg_message_size: {
             type: String,
-            default: null
+            default: ""
         },
         systems: {
             type: String,
-            default: null
+            default: ""
         }
     },
 
     // public social media archiving
     public_social_archiving: {
+        // Need to capture
         need_social_media_content: {
-            type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            facebook: {
+                type: Boolean,
+                default: false
+            },
+            linkedin: {
+                type: Boolean,
+                default: false
+            },
+            twitter: {
+                type: Boolean,
+                default: false
+            },
+            google: {
+                type: Boolean,
+                default: false
+            },
+            youtube: {
+                type: Boolean,
+                default: false
+            }
         },
         need_to_capture: {
-            type: [String],
-            default: null
+            type: String,
+            default: ""
         },
         number_of_each_account: {
-            type: [String],
-            default: null
+            type: String,
+            default: ""
         },
         using_what_to_archive: {
             type: String,
-            default: null
+            default: ""
         },
         digital_risk_agent: {
             type: String,
-            default: null
+            default: ""
         }
     },
 
     // Enterprise collaborative archiving
     enterprise_collaboration_archiving: {
+        needs: {
+            files: {
+                type: Boolean,
+                default: false
+            },
+            skype_in_cloud: {
+                type: Boolean,
+                default: false
+            },
+            skype_on_prem: {
+                type: Boolean,
+                default: false
+            },
+            lync_on_prem: {
+                type: Boolean,
+                default: false
+            },
+            one_drive: {
+                type: Boolean,
+                default: false
+            },
+            box: {
+                type: Boolean,
+                default: false
+            },
+            bloomberg: {
+                type: Boolean,
+                default: false
+            },
+            yammer: {
+                type: Boolean,
+                default: false
+            },
+            jive: {
+                type: Boolean,
+                default: false
+            },
+            chatter: {
+                type: Boolean,
+                default: false
+            },
+            slack: {
+                type: Boolean,
+                default: false
+            },
+            symphony: {
+                type: Boolean,
+                default: false
+            }
+
+        },
         general: {
-            users_per_platform: {
+            number_of_users_per_platform: {
                 type: String,
-                default: null
+                default: ""
             },
             number_of_users_to_archive: {
                 type: String,
-                default: null
+                default: ""
             },
             capture_user_activity: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: ""
             },
             avg_daily_message_volume: {
                 type: String,
-                default: null
+                default: ""
             },
             most_active_profile: {
                 type: String,
-                default: null
+                default: ""
             },
             retention_policy: {
                 type: String,
-                default: null
+                default: ""
             },
             is_archiving_customer: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: ""
             },
             which_archive: {
                 type: String,
-                default: null
+                default: ""
             }
         },
 
         // files archiving
         files: {
-            need: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            },
             storage_usage: {
                 type: String,
-                default: null
+                default: ""
             },
             files_desc: {
                 type: String,
-                default: null
+                default: ""
             },
             fill_rate: {
                 type: String,
-                default: null
+                default: ""
             },
             need_original_or_extracted: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: ""
             },
             is_archiving_customer: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: ""
             }
         },
 
         // skype business archiving
         skype_business: {
-            need: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            },
             deployment: {
                 type: String,
-                enum: [null, "Hybrid", "Cloud"],
-                default: null
+                default: ""
             },
             license_level: {
                 type: String,
-                default: null
+                default: ""
             },
             use_holds_or_searches: {
                 type: String,
-                default: null
+                default: ""
             },
             how_active: {
                 type: String,
-                default: null
+                default: ""
             }
         },
 
         // skype on prem and lync
         skype_on_prem: {
-            need_skype_on_prem: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            },
-            need_lync: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            },
             deployment: {
                 type: String,
-                enum: [null, "Hybrid", "Cloud"],
-                default: null
+                default: ""
             },
             number_of_lync_servers: {
                 type: String,
-                default: null
+                default: ""
             },
             retention_policy: {
                 type: String,
-                default: null
+                default: ""
             }
         },
 
         // OneDrive
-        one_drive: {
-            need: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            },
-            storage_usage: {
-                type: String,
-                default: null
-            },
-            files_desc: {
-                type: String,
-                default: null
-            },
-            fill_rate: {
-                type: String,
-                default: null
-            },
-            need_original_or_extracted: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            },
-            is_archiving_customer: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            },
+        box_one_drive: {
             auth: {
                 type: String,
-                enum: [null, "ADFS", "Azure AD"],
-                default: null
+                default: ""
             }
         },
 
-        // Box
-        box: {
-            need: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            },
-            storage_usage: {
-                type: String,
-                default: null
-            },
-            files_desc: {
-                type: String,
-                default: null
-            },
-            fill_rate: {
-                type: String,
-                default: null
-            },
-            need_original_or_extracted: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            },
-            is_archiving_customer: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            }
-        },
+        // Bloomberg, general
+        //bloomberg: {},
 
-        // Bloomberg
-        bloomberg: {
-            need: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            },
-            users_per_platform: {
-                type: String,
-                default: null
-            },
-            number_of_users_to_archive: {
-                type: String,
-                default: null
-            },
-            capture_user_activity: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            },
-            avg_daily_message_volume: {
-                type: String,
-                default: null
-            },
-            most_active_profile: {
-                type: String,
-                default: null
-            },
-            retention_policy: {
-                type: String,
-                default: null
-            },
-            is_archiving_customer: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            },
-            which_archive: {
-                type: String,
-                default: null
-            }
-        },
+        // yammer, general
+        // yammer: {},
 
-        // yammer
-        yammer: {
-            need: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            },
-            users_per_platform: {
-                type: String,
-                default: null
-            },
-            number_of_users_to_archive: {
-                type: String,
-                default: null
-            },
-            capture_user_activity: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            },
-            avg_daily_message_volume: {
-                type: String,
-                default: null
-            },
-            most_active_profile: {
-                type: String,
-                default: null
-            },
-            retention_policy: {
-                type: String,
-                default: null
-            },
-            is_archiving_customer: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            },
-            which_archive: {
-                type: String,
-                default: null
-            }
-        },
-
-        // Jive
-        jive: {
-            need: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            },
-            users_per_platform: {
-                type: String,
-                default: null
-            },
-            number_of_users_to_archive: {
-                type: String,
-                default: null
-            },
-            capture_user_activity: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            },
-            avg_daily_message_volume: {
-                type: String,
-                default: null
-            },
-            most_active_profile: {
-                type: String,
-                default: null
-            },
-            retention_policy: {
-                type: String,
-                default: null
-            },
-            is_archiving_customer: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            },
-            which_archive: {
-                type: String,
-                default: null
-            }
-        },
+        // Jive, general
+        // jive: {},
 
         // Chatter
         chatter: {
-            need: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            },
             number_of_groups: {
                 type: String,
-                default: null
+                default: ""
             },
             multi_journal: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: ""
             },
             over_3MB: {
                 type: String,
-                default: null
+                default: ""
+            },
+            comfortable: {
+                type: String,
+                default: ""
             },
             requirement: {
                 type: String,
-                default: null
+                default: ""
             }
         },
 
         //Slack, not found so assuming general
-        slack: {
-            need: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            },
-            users_per_platform: {
-                type: String,
-                default: null
-            },
-            number_of_users_to_archive: {
-                type: String,
-                default: null
-            },
-            capture_user_activity: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            },
-            avg_daily_message_volume: {
-                type: String,
-                default: null
-            },
-            most_active_profile: {
-                type: String,
-                default: null
-            },
-            retention_policy: {
-                type: String,
-                default: null
-            },
-            is_archiving_customer: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            },
-            which_archive: {
-                type: String,
-                default: null
-            }
-        },
+        // slack: {
+        // },
 
         // Symphony
         symphony: {
-            need: {
-                type: String,
-                enum: [null, "Yes", "No"],
-                default: null
-            },
             license: {
                 type: String,
-                default: null
+                default: ""
             }
         }
     }

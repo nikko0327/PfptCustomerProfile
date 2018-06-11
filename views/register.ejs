@@ -1,0 +1,58 @@
+<% include partials/header %>
+
+<script type="text/javascript" src="/scripts/register.js"></script>
+<% if (error_message != undefined && error_message != null) { %>
+<script>
+    alert("<%= error_message %>");
+</script>
+<% } %>
+
+<div class="container">
+    <fieldset>
+        <form action="/register" method="post" onsubmit="return password_equality()">
+            <div class="control-group">
+                <h4>Registration</h4>
+                <label class="control-label" for="username">Username</label>
+                <div class="controls">
+                    <input type="text" id="username" name="registration_info[username]" placeholder="Username" pattern="^[a-zA-Z0-9]*"
+                           autocomplete="off"
+                           required>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="control-group">
+                <label class="control-label" for="password">Password</label>
+                <div class="controls">
+                    <input type="password" id="password" name="registration_info[password]" placeholder="Password" required>
+                    <button type="button" class="generate_pw" id="generate_pw">Generate random password</button>
+                </div>
+            </div>
+            <input type="checkbox" id="show_password"> Show password
+            <br><br>
+
+            <div class="control-group">
+                <label class="control-label" for="password">Confirm password</label>
+                <div class="controls">
+                    <input type="password" id="confirm_password" name="registration_info[confirm_password]" placeholder="Confirm password" required>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" class="btn btn-primary" id="register">Register</button>
+                </div>
+                Login <a href="/login">here</a> if you already have an account.
+            </div>
+            <div id="spinner" hidden>
+                <center><i class="icon-spinner icon-spin icon-3x"></i></center>
+            </div>
+
+        </form>
+    </fieldset>
+</div>
+
+<% include partials/footer %>

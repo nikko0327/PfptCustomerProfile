@@ -1,50 +1,56 @@
 var mongoose = require("mongoose");
 
+// Can't use joins in NoSQL, can't use foreign keys. Feelsbadman.
+
 var CustomerSchema = new mongoose.Schema({
-    _id: {
+    name: {
         type: String,
         unique: true,
         required: true
     },
+    impSpecialist: {
+        type: String,
+        default: ""
+    },
     salesRep: {
         type: String,
-        default: null
+        default: ""
     },
     status: {
         type: String,
-        default: null
+        default: ""
     },
     archivingSe: {
         type: String,
-        default: null
+        default: ""
     },
     accManager: {
         type: String,
-        default: null
+        default: ""
     },
     location: {
         type: String,
-        default: null
+        default: ""
     },
     supervision: {
         type: String,
-        default: null
+        default: ""
     },
     tem: {
         type: String,
-        default: null
+        default: ""
     },
     tam: {
         type: String,
-        default: null
+        default: ""
     },
     natIp: {
         type: String,
-        default: null
+        default: ""
     },
     contacts: {
         type: String,
-        default: null
+        default: ""
     },
     created: {
         type: Date,
@@ -52,17 +58,12 @@ var CustomerSchema = new mongoose.Schema({
     },
     incumbentSolution: {
         type: String,
-        default: null
+        default: ""
     },
     numberOfUsers: {
         type: String,
-        default: null
-    },
-    impSpecialist: {
-        type: String,
-        default: null
+        default: ""
     }
-
 });
 
 var Customer = mongoose.model("Customer", CustomerSchema);

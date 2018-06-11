@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 
 var poc_schema = new mongoose.Schema({
-    _id: {
+    name: {
         type: String,
         required: true,
         unique: true
@@ -9,68 +9,62 @@ var poc_schema = new mongoose.Schema({
     POC: {
         is_sandbox_poc: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         is_prod_poc: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         poc_tests: {
             type: String,
-            default: null
+            default: ""
         },
         agreed_to_success_criteria: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         envs_needed: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         how_long_needed: {
             type: String,
-            default: null
+            default: ""
         },
         how_to_convert_env: {
             type: String,
-            default: null
+            default: ""
         },
         installing_in_production_or_lab: {
             type: String,
-            default: null
+            default: ""
         },
         how_many_envs: { // Number
             type: String,
-            default: null
+            default: ""
         },
         how_many_mailboxes: { // Number
             type: String,
-            default: null
+            default: ""
         }
     },
     UAT: {
         need_UAT: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         UAT_forever: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         is_UAT_production_or_lab: {
             type: String,
-            //enum: [null, "Production", "Lab"],
-            default: null
+            //enum: [", "Production", "Lab"],
+            default: ""
         },
         primary_purpose: {
             type: String,
-            default: null
+            default: ""
         }
     }
 });

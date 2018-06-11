@@ -1,235 +1,239 @@
 var mongoose = require('mongoose');
 
 var usage_schema = new mongoose.Schema({
-    _id: {
+    name: {
         type: String,
         required: true,
-        unique: true,
-        index: true
+        unique: true
     },
     supervision: {
         supervision_system: {
             type: String,
-            default: null
+            default: ""
         },
         pain_points: {
             type: String,
-            default: null
+            default: ""
         },
         deficiencies: {
             type: String,
-            default: null
+            default: ""
         },
-        businesses_supervision_requirements: {
+        business_supervision_requirements: {
             type: String,
-            default: null
+            default: ""
         },
         review: {
             type: String,
-            enum: [null, "Centralized", "Decentralized"],
-            default: null
+            default: ""
         },
         escalation_process: {
             type: String,
-            default: null
+            default: ""
         },
         system_record: {
             subject_for_review: {
                 type: String,
-                default: null
+                default: ""
             },
             responsible: {
                 type: String,
-                default: null
+                default: ""
             },
             how_is_data_loaded: {
                 type: String,
-                default: null
+                default: ""
             }
         },
         evaluation_criteria: {
             type: String,
-            default: null
+            default: ""
         },
         need_to_migrate_policies: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
+        },
+        whitelists: {
+            type: String,
+            default: ""
         },
         random_sampling: {
             has_rules: {
                 type: String,
-                enum:
-                    [null, "Yes", "No"],
-                default:
-                    null
+                default: ""
             }
             ,
             multi_sampling: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: ""
             },
             sampling_intention: {
                 type: String,
-                enum: [null, "Top up", "Not top up"], // ????
-                default: null
+                default: ""
             },
             notify_violators: {
                 type: String,
-                enum: [null, "Yes", "No"],
-                default: null
+                default: ""
             }
         },
         report_requirements: {
             existing_reports: {
                 type: String,
-                default: null
+                default: ""
             },
             decisions: {
                 type: String,
-                default: null
+                default: ""
             },
             roll_out_reports: {
                 type: String,
-                default: null
+                default: ""
             },
             future_reports: {
                 type: String,
-                default: null
+                default: ""
             }
         }
     },
     stubbing: {
         support: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
-        interested_in_subbing: {
+        interested_in_stubbing: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         stubbing_policy: {
             type: String,
-            default: null
+            default: ""
         },
         number_of_stubbing_users: { // number
             type: String,
-            default: null
+            default: ""
         }
     },
     // Not sure about selective disposition
+    selective_disposition: {
+        scenarios: {
+            type: String,
+            default: ""
+        },
+        messages_to_dispose: {
+            type: String,
+            default: ""
+        }
+    },
 
     content_collector_files: {
         interested_in_CC4Files: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         files_location: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         willing_to_install_agent: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         volume_of_files: { // number
             type: String,
-            default: null
+            default: ""
         },
         unusual_file_types: {
             type: String,
-            default: null
+            default: ""
         },
         avg_file_size: {
             type: String,
-            default: null
+            default: ""
         },
         understand_legal_holds: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         }
     },
     content_collector_PST: {
         interested_in_CC4FPST: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         avg_file_size: {
             type: String,
-            default: null
+            default: ""
         },
         frequency: {
             type: String,
-            default: null
+            default: ""
         },
         use_case: {
             type: String,
-            default: null
+            default: ""
         }
     },
     legal_holds: {
         custodian_or_ad_hoc: {
             type: String,
-            default: null
+            default: ""
         },
         number_of_legal_holds: {
             type: String,
-            default: null
+            default: ""
         },
         number_of_unique_custodians: {
             type: String,
-            default: null
+            default: ""
         },
         largest_hold: {
             type: String,
-            default: null
+            default: ""
         },
         notification_system: {
             type: String,
-            default: null
+            default: ""
         },
         third_party_solutions: {
             type: String,
-            default: null
+            default: ""
         },
         api_use_cases: {
             type: String,
-            default: null
+            default: ""
         }
     },
     end_user_search: {
         number_of_user_access: {
             type: String,
-            default: null
+            default: ""
         },
         need_outlook: {
             type: String,
-            default: null
+            default: ""
         },
         need_mobile_apps: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         }
+    },
+    transport_agent: {
+        type: String,
+        default: ""
     },
     folder_sync: {
         interested_in_folder_sync: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         number_of_users_interested: {
             type: String,
-            default: null
+            default: ""
         },
+        service_account: {
+            type: String,
+            default: ""
+        }
         // NOT SURE ABOUT THIS ONE
     },
     // Transport agent has no questions
@@ -237,33 +241,30 @@ var usage_schema = new mongoose.Schema({
     export: {
         volume: {
             type: String,
-            default: null
+            default: ""
         },
         preferred_export_format: {
             type: String,
-            default: null
+            default: ""
         },
         where_data_goes: {
             type: String,
-            default: null
+            default: ""
         },
         expect_auto_upload: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         }
     },
 
     outlook_view_manager: {
         allow_users_access: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         is_using_OWA: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         }
     }
 });

@@ -2,100 +2,148 @@ var mongoose = require("mongoose");
 // var Schema = mongoose.Schema;
 
 var desktop_network_schema = new mongoose.Schema({
-    _id: {
+    name: {
         type: String,
         unique: true,
-        index: true,
         required: true
     },
     network_security: {
         allow_outside_access: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         DMZ: {
             type: String,
-            default: null
+            default: ""
         },
         firewalls: {
             type: String,
-            default: null
+            default: ""
         },
         require_vpn: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
+        },
+        enable_outside_access: {
+            type: String,
+            default: ""
         },
         load_balancer_VIP: {
             type: String,
-            default: null
+            default: ""
         },
         nat_IP_list: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         proxy_servers: {
             type: String,
-            default: null
+            default: ""
         }
     },
     end_user_desktop_env: {
         browsers: { // One or more strings, Chrome/Firefox/IE/Edge
-            type: [String],
-            default: null
+            type: String,
+            default: ""
         },
         browser_versions: {
-            type: [String],
-            default: null
+            type: String,
+            default: ""
         },
         ie11: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         ie11_compatibility: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         is_ie11_enterprise: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         is_popups_enabled: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         is_OWA_used: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
+        },
+        browsers_access: { // One or more strings, Chrome/Firefox/IE/Edge
+            type: String,
+            default: ""
         }
-        // browsers_access: { // One or more strings, Chrome/Firefox/IE/Edge
-        //     type: [String],
-        //     default: null
-        // },
     },
     disaster_recovery: {
         is_replicating_exchange_and_AD: {
             type: String,
-            enum: [null, "Yes", "No"],
-            default: null
+            default: ""
         },
         config_description: {
             type: String,
-            default: null
+            default: ""
         },
         diagram: {
             type: String,
-            default: null
+            default: ""
+        }
+    },
+    // Authentication (SAML & Remote Auth) not shown in page
+    authentication: {
+        use_SSO: {
+            type: String,
+            default: ""
+        },
+        have_IDP: {
+            type: String,
+            default: ""
+        },
+        what_IDP: {
+            type: String,
+            default: ""
+        },
+        where_security_group: {
+            type: String,
+            default: ""
+        },
+        intiated_IDP: {
+            type: String,
+            default: ""
+        },
+        require_request_encryption: { // Not supported
+            type: String,
+            default: ""
+        },
+        require_response_signing: { // supported
+            type: String,
+            default: ""
+        },
+        require_response_encryption: {
+            type: String,
+            default: ""
+        },
+        require_third_party_cert: {
+            type: String,
+            default: ""
+        },
+        response_attributes: {
+            type: String,
+            default: ""
+        },
+        intend_to_deploy_remote_auth: {
+            type: String,
+            default: ""
+        },
+        all_users_trusted: {
+            type: String,
+            default: ""
+        },
+        domain_controllers: {
+            type: String,
+            default: ""
         }
     }
-    // Authentication (SAML & Remote Auth) not shown in page
 });
 
 var DesktopNetworkQuestions = mongoose.model("DesktopNetworkQuestions", desktop_network_schema);
