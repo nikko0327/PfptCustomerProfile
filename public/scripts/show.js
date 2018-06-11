@@ -13,6 +13,7 @@ function expand_collapse() {
 }
 
 $(document).ready(() => {
+
     $.ajaxSetup({
         async: true
     });
@@ -477,7 +478,7 @@ $(document).ready(() => {
                 success: function (res) {
 
                 },
-                error: function(one, two, three) {
+                error: function (one, two, three) {
                     console.log(one);
                     console.log(two);
                     console.log(three);
@@ -503,6 +504,19 @@ $(document).ready(() => {
             $(this).first().html('<i style="color: deeppink;" class="fa fa-save" aria-hidden="true"> Save</i>');
         } else {
             alert("Customer name is empty.");
+        }
+    });
+
+    window.addEventListener("beforeunload", function (e) {
+        if (editing_customer || editing_email_systems_se || editing_appliances || editing_design_summary
+            || editing_desktop_network || editing_email_systems_ps || editing_import || editing_journaling
+            || editing_other_data_sources || editing_POC || editing_RFE || editing_usage) {
+            var confirmationMessage = "You have unsaved changes.";
+
+            e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
+            return confirmationMessage;
+        } else {
+            return '';
         }
     });
 });
