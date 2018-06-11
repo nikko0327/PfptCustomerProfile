@@ -17,10 +17,9 @@ $(document).ready(() => {
         async: true
     });
 
-    var customer_name = $("#unique-customer-name").val();
-
     var editing_customer = false;
     $('#editCustomerLink').click(function () {
+        var customer_name = $("#unique-customer-name").val();
         if (editing_customer == true && customer_name) {
             // END EDITING
 
