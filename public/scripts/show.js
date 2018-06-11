@@ -13,6 +13,18 @@ function expand_collapse() {
 }
 
 $(document).ready(() => {
+    window.addEventListener("beforeunload", function (e) {
+        if (editing_customer || editing_email_systems_se || editing_appliances || editing_design_summary
+            || editing_desktop_network || editing_email_systems_ps || editing_import || editing_journaling
+            || editing_other_data_sources || editing_POC || editing_RFE || editing_usage) {
+            var confirmationMessage = "You have unsaved changes.";
+
+            e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
+            return confirmationMessage;
+        } else {
+            return '';
+        }
+    });
 
     $.ajaxSetup({
         async: true
@@ -49,7 +61,13 @@ $(document).ready(() => {
             console.log(json);
 
             // POST here.
-            $.ajax(json);
+            if (editing_email_systems_se || editing_appliances || editing_design_summary
+                || editing_desktop_network || editing_email_systems_ps || editing_import || editing_journaling
+                || editing_other_data_sources || editing_POC || editing_RFE || editing_usage) {
+                alert("You have unsaved changes in other sections.\nPlease save those changes first.");
+            } else {
+                $.ajax(json);
+            }
 
         } else if (editing_customer == false) {
             // BEGIN EDITING
@@ -504,19 +522,6 @@ $(document).ready(() => {
             $(this).first().html('<i style="color: deeppink;" class="fa fa-save" aria-hidden="true"> Save</i>');
         } else {
             alert("Customer name is empty.");
-        }
-    });
-
-    window.addEventListener("beforeunload", function (e) {
-        if (editing_customer || editing_email_systems_se || editing_appliances || editing_design_summary
-            || editing_desktop_network || editing_email_systems_ps || editing_import || editing_journaling
-            || editing_other_data_sources || editing_POC || editing_RFE || editing_usage) {
-            var confirmationMessage = "You have unsaved changes.";
-
-            e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
-            return confirmationMessage;
-        } else {
-            return '';
         }
     });
 });
