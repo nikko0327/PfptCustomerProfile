@@ -11,7 +11,6 @@ var app = express();
 //APP CONFIGURATION
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
-
 var databaseUrl = "mongodb://localhost/customerProfile";
 mongoose.connect(databaseUrl);
 
