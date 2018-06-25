@@ -25,7 +25,13 @@ $(document).ready(() => {
             // END EDITING
 
             var form = $("#customerForm");
-            var new_customer = $('#unique-customer-name');
+            var new_customer = $('#unique-customer-name').val().trim();
+            //alert("New customer: '" + new_customer + "'");
+
+            if(!new_customer) {
+                alert("Customer name is empty.");
+                return;
+            }
 
             var json = {
                 type: "POST",
@@ -33,7 +39,7 @@ $(document).ready(() => {
                 url: form.attr('action'),
                 data: form.serialize(),
                 success: function (res) {
-                    location.href = "/index/" + encodeURIComponent(new_customer.val());
+                    location.href = "/index/" + encodeURIComponent(new_customer);
                     // Locks the form's fieldset
                     $("#customerFormFieldset").prop('disabled', true);
                     editing_customer = false;
