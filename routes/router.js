@@ -229,12 +229,12 @@ router.post("/new", authenticate_session, function (req, res) {
 
 //UPDATE ROUTE
 router.put("/index/:id", authenticate_session, function (req, res) {
-        console.log("POSTED");
         // Considering changing to else ifs
 
         // For updating name, make a ton of promises and execute them, THEN render the page.
         if (req.body.customer != undefined && req.body.customer != null) {
             console.log("- Attempting to update customer information...");
+            console.log(req.body.customer["name"]);
 
             // Make a bunch of await calls and wait for the queries to finish.
             async function updateID() {
@@ -254,6 +254,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
 
             // Only if all the queries finish, redirect the page to the new customer name.
             updateID().then(() => {
+                //console.log("Going to " + "/index/" + encodeURIComponent(req.body.customer["name"]));
                 res.redirect("/index/" + encodeURIComponent(req.body.customer["name"]));
             }).catch((error) => {
                 // If an error occurs, catch the error.
@@ -431,6 +432,33 @@ router.get("/index", authenticate_session, function (req, res) {
     //         res.render("index", {customers: customers});
     //     }
     // });
+});
+
+// Delete a customer profile
+router.delete("/index/:id", authenticate_session, function (req, res) {
+    console.log("-- Attemping to delete customer " + req.params.id);
+
+    async function delete_customer(search_term) {
+        ApplianceQuestions.findOneAndRemove(search_term).exec();
+        Customer.findOneAndRemove(search_term).exec();
+        DesignSummaryQuestions.findOneAndRemove(search_term).exec();
+        DesktopNetworkQuestions.findOneAndRemove(search_term).exec();
+        EmailPSQuestions.findOneAndRemove(search_term).exec();
+        EmailSEQuestions.findOneAndRemove(search_term).exec();
+        ImportQuestions.findOneAndRemove(search_term).exec();
+        JournalingQuestions.findOneAndRemove(search_term).exec();
+        OtherDataSourcesQuestions.findOneAndRemove(search_term).exec();
+        POCQuestions.findOneAndRemove(search_term).exec();
+        RFEQuestions.findOneAndRemove(search_term).exec();
+        UsageQuestions.findOneAndRemove(search_term).exec();
+    }
+
+    delete_customer({"name": req.params.id}).then((result) => {
+        res.redirect("/index");
+    }).catch((error) => {
+        console.log(error);
+        res.redirect("/index");
+    });
 });
 
 

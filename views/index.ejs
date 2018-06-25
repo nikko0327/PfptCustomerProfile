@@ -1,4 +1,7 @@
 <% include partials/header %>
+
+<script type="text/javascript" src="/scripts/delete.js"></script>
+
 <div class="" style="padding: 15px">
     <br>
     <h2 style="color: #448aff;text-align: center;"> Customers </h2>
@@ -26,7 +29,7 @@
 </tr>
 </thead>
 <tbody>
-<% customers.forEach(function(customer){ %>
+<% customers.forEach(function (customer) { %>
 <tr class="row-content">
     <td><span class="label label-default"><b><%= customer.name %></b></span></td>
     <td><%= customer.status %></td>
@@ -39,9 +42,12 @@
     <td><%= customer.location %></td>
     <td>
         <a href="/index/<%= encodeURIComponent(customer.name) %>">
-            <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block">More
-            </button>
+            <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block">More</button>
         </a>
+        <!-- This escape is borked. Need to fix if someone puts """ into customer name. Need to escape.
+         If \"\"\", DB will delete """ because it would cause the string to be properly escaped. Becareful of backslashes -->
+        <button class="btn btn-danger" onclick='delete_customer("<%= customer.name.replace() %>")'>Delete</button>
+
         &nbsp
         <!-- <button data-toggle="modal" data-target="#editModal" class="btn btn-success center-block">Edit</button></div> -->
     </td>

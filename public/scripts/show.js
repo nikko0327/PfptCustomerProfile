@@ -25,6 +25,7 @@ $(document).ready(() => {
             // END EDITING
 
             var form = $("#customerForm");
+            var new_customer = $('#unique-customer-name');
 
             var json = {
                 type: "POST",
@@ -32,7 +33,7 @@ $(document).ready(() => {
                 url: form.attr('action'),
                 data: form.serialize(),
                 success: function (res) {
-                    location.href = "/index/" + encodeURIComponent(customer_name);
+                    location.href = "/index/" + encodeURIComponent(new_customer.val());
                     // Locks the form's fieldset
                     $("#customerFormFieldset").prop('disabled', true);
                     editing_customer = false;
@@ -478,7 +479,7 @@ $(document).ready(() => {
                 success: function (res) {
 
                 },
-                error: function(one, two, three) {
+                error: function (one, two, three) {
                     console.log(one);
                     console.log(two);
                     console.log(three);
