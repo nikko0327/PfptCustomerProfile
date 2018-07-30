@@ -2,8 +2,7 @@ var express = require("express");
 var router = express.Router();
 // var User = require("../models/user");
 var mongoose = require("mongoose");
-var bcrypt = require("bcrypt");
-mongoose.Promise = Promise;
+mongoose.Promise = require('bluebird');
 
 var ldap_auth = require("ldapjs");
 
@@ -52,42 +51,39 @@ router.get("/new", authenticate_session, function (req, res) {
     res.render("new", {error_message: undefined});
 });
 
-// REGISTER
-/*
-router.get("/register", function (req, res) {
-    res.render("register", {error_message: undefined});
-});
-*/
-
-// POST REGISTER
-/*
-router.post("/register", function (req, res) {
-    if (!req.body.registration_info["username"] || !req.body.registration_info["password"] || !req.body.registration_info["confirm_password"]) {
-        res.render("register", {error_message: "Please enter all fields."});
-    } else {
-        if (req.body.registration_info["password"] == req.body.registration_info["confirm_password"]) {
-            async function register_user() {
-                var hashed_password = await bcrypt.hash(req.body.registration_info["password"], 10);
-                await User.create({username: req.body.registration_info["username"], password: hashed_password});
-            }
-
-            register_user().then(() => {
-                res.redirect("/login");
-            }).catch((error) => {
-                if (error["code"] == 11000) {
-                    console.log("-- Duplicate entry for user: " + req.body.registration_info["username"]);
-                    // Send pop up alert to HTML here
-                    res.render("register", {error_message: "User already exists: " + req.body.registration_info["username"]});
-                } else {
-                    console.log(error);
-                }
-            });
-        } else {
-            res.render("register", {error_message: "Passwords are not equal."});
-        }
-    }
-});
-*/
+//
+// // REGISTER
+// router.get("/register", function (req, res) {
+//     res.render("register", {error_message: undefined});
+// });
+//
+// // POST REGISTER
+// router.post("/register", function (req, res) {
+//     if (!req.body.registration_info["username"] || !req.body.registration_info["password"] || !req.body.registration_info["confirm_password"]) {
+//         res.render("register", {error_message: "Please enter all fields."});
+//     } else {
+//         if (req.body.registration_info["password"] == req.body.registration_info["confirm_password"]) {
+//             async function register_user() {
+//                 var hashed_password = await bcrypt.hash(req.body.registration_info["password"], 10);
+//                 await User.create({username: req.body.registration_info["username"], password: hashed_password});
+//             }
+//
+//             register_user().then(() => {
+//                 res.redirect("/login");
+//             }).catch((error) => {
+//                 if (error["code"] == 11000) {
+//                     console.log("-- Duplicate entry for user: " + req.body.registration_info["username"]);
+//                     // Send pop up alert to HTML here
+//                     res.render("register", {error_message: "User already exists: " + req.body.registration_info["username"]});
+//                 } else {
+//                     console.log(error);
+//                 }
+//             });
+//         } else {
+//             res.render("register", {error_message: "Passwords are not equal."});
+//         }
+//     }
+// });
 
 // LOGIN
 router.get("/login", function (req, res) {
@@ -274,7 +270,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
             ApplianceQuestions.findOneAndUpdate({name: req.params.id}, req.body.appliance_questions).then(() => {
                 //res.redirect("/index/" + encodeURIComponent(req.params.id));
                 console.log("Done");
-                res.status(200);
+                res.status(200).json("{}");
             }).catch((error) => {
                 console.log(error);
                 res.redirect("/index");
@@ -287,7 +283,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
             DesignSummaryQuestions.findOneAndUpdate({name: req.params.id}, req.body.design_summary_questions).then(() => {
                 //res.redirect("/index/" + encodeURIComponent(req.params.id));
                 console.log("Done");
-                res.status(200);
+                res.status(200).json("{}");
             }).catch((error) => {
                 console.log(error);
                 res.redirect("/index");
@@ -300,7 +296,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
             DesktopNetworkQuestions.findOneAndUpdate({name: req.params.id}, req.body.desktop_network_questions).then(() => {
                 //res.redirect("/index/" + encodeURIComponent(req.params.id));
                 console.log("Done");
-                res.status(200);
+                res.status(200).json("{}");
             }).catch((error) => {
                 console.log(error);
                 res.redirect("/index");
@@ -313,7 +309,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
             EmailSEQuestions.findOneAndUpdate({"name": req.params.id}, req.body.email_se_questions).then(() => {
                 //res.redirect("/index/" + encodeURIComponent(req.params.id));
                 console.log("Done");
-                res.status(200);
+                res.status(200).json("{}");
             }).catch((error) => {
                 console.log(error);
                 res.redirect("/index");
@@ -326,7 +322,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
             EmailPSQuestions.findOneAndUpdate({"name": req.params.id}, req.body.email_ps_questions).then(() => {
                 //res.redirect("/index/" + encodeURIComponent(req.params.id));
                 console.log("Done");
-                res.status(200);
+                res.status(200).json("{}");
             }).catch((error) => {
                 console.log(error);
                 res.redirect("/index");
@@ -339,7 +335,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
             ImportQuestions.findOneAndUpdate({"name": req.params.id}, req.body.import_questions).then(() => {
                 //res.redirect("/index/" + encodeURIComponent(req.params.id));
                 console.log("Done");
-                res.status(200);
+                res.status(200).json("{}");
             }).catch((error) => {
                 console.log(error);
                 res.redirect("/index");
@@ -352,7 +348,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
             JournalingQuestions.findOneAndUpdate({"name": req.params.id}, req.body.journaling_questions).then(() => {
                 //res.redirect("/index/" + encodeURIComponent(req.params.id));
                 console.log("Done");
-                res.status(200);
+                res.status(200).json("{}");
             }).catch((error) => {
                 console.log(error);
                 res.redirect("/index");
@@ -365,7 +361,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
             OtherDataSourcesQuestions.findOneAndUpdate({name: req.params.id}, req.body.other_data_source_questions).then(() => {
                 //res.redirect("/index/" + encodeURIComponent(req.params.id));
                 console.log("Done");
-                res.status(200);
+                res.status(200).json("{}");
             }).catch((error) => {
                 console.log(error);
                 res.redirect("/index");
@@ -378,7 +374,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
             POCQuestions.findOneAndUpdate({name: req.params.id}, req.body.poc_questions).then(() => {
                 //res.redirect("/index/" + encodeURIComponent(req.params.id));
                 console.log("Done");
-                res.status(200);
+                res.status(200).json("{}");
             }).catch((error) => {
                 console.log(error);
                 res.redirect("/index");
@@ -391,7 +387,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
             RFEQuestions.findOneAndUpdate({name: req.params.id}, req.body.rfe_questions).then(() => {
                 //res.redirect("/index/" + encodeURIComponent(req.params.id));
                 console.log("Done");
-                res.status(200);
+                res.status(200).json("{}");
             }).catch((error) => {
                 console.log(error);
                 res.redirect("/index");
@@ -404,15 +400,14 @@ router.put("/index/:id", authenticate_session, function (req, res) {
             UsageQuestions.findOneAndUpdate({name: req.params.id}, req.body.usage_questions).then(() => {
                 //res.redirect("/index/" + encodeURIComponent(req.params.id));
                 console.log("Done");
-                res.status(200);
+                res.status(200).json("{}");
             }).catch((error) => {
                 console.log(error);
                 res.redirect("/index");
             });
         }
     }
-)
-;
+);
 
 //INDEX ROUTE
 router.get("/index", authenticate_session, function (req, res) {
@@ -502,7 +497,6 @@ router.get("/index/:id", authenticate_session, function (req, res) {
     }).catch((error) => {
         console.log(error);
     });
-
 });
 
 module.exports = router;

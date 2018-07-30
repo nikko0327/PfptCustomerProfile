@@ -1,4 +1,9 @@
 /* Table css Start */
+
+a {
+    font-size: 14px;
+}
+
 a.del {
     background: #d9534f;
     border-radius: 2px;
@@ -138,16 +143,6 @@ footer p {
     max-width: 90% !important;
 }
 
-.edit-field {
-
-}
-
-hr {
-    margin: 10px;
-    border: none;
-    height: 4px;
-}
-
 hr.rainbow {
     border: 0;
     height: 2px;
@@ -158,18 +153,28 @@ hr.rainbow {
 }
 
 .col-4 {
-    -ms-flex: 0 0 33%;
-    flex: 0 0 33%;
-    max-width: 33%
+    -ms-flex: 0 0 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    text-align: left !important;
+}
+
+.general_info {
+    -ms-flex: 0 0 33% !important;
+    flex: 0 0 33% !important;
+    max-width: 33% !important;
+    text-align: center !important;
 }
 
 .response-cell {
-    border: 1px solid black;
+    font-size: 12px;
+    border: 0px solid black;
     display: flex;
     margin-right: auto;
     margin-left: auto;
     vertical-align: top;
-    margin-bottom: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 /* Borderless */
@@ -189,10 +194,19 @@ hr.rainbow {
 label {
     /*border: 1px solid black;*/
     font-weight: bold;
-    width: 100%;
-    margin-right: 10px;
-    text-align: center;
+    width: 50%;
+    margin-top: 5px;
+    margin-right: 5px;
+    text-align: left;
     display: block;
+}
+
+h5 {
+    font-size: 14px;
+}
+
+p {
+    font-size: 12px;
 }
 
 textarea {
@@ -200,10 +214,6 @@ textarea {
     display: block;
     margin-left: auto;
     margin-right: auto;
-}
-
-.display-header {
-
 }
 
 all {
@@ -221,6 +231,6 @@ all {
     padding-top: 6px;
 }
 
-all {
-    font-size: 1.5em;
+.form-control {
+    font-size: 12px !important;
 }

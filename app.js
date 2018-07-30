@@ -12,12 +12,22 @@ var app = express();
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
 var databaseUrl = "mongodb://localhost/customerProfile";
-mongoose.connect(databaseUrl);
+mongoose.Promise = require('bluebird');
+mongoose.connect(databaseUrl).then(
+    () => {
+        console.log('Database is connected');
+    },
+    err => {
+        console.log('Can not connect to the database' + err);
+    }
+);
 
+// mongoose.connect(databaseUrl);
 var db = mongoose.connection;
 
 //handling mongo error
 db.on("error", console.error.bind(console, "Connection Error: "));
+
 // db.once("open", function () {
 //     //Connection Message?
 // });
@@ -99,6 +109,8 @@ app.use(function (err, req, res, next) {
     res.send(err.message);
 });
 
-app.listen(8000, function () {
-    console.log("App is running on 8000");
+let port = process.env.PORT || 8000;
+
+app.listen(port, function () {
+    console.log(`App is running on ${port}.`);
 });

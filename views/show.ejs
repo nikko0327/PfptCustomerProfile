@@ -1,7 +1,5 @@
 <% include partials/header %>
 
-<script type="text/javascript" src="/scripts/show.js"></script>
-
 <div class="container" style="border: .2px solid gray; padding-right:25px; padding-left:25px; padding-bottom: 25px">
     <div id="customerHeader">
         <h1 style="text-align: center;"><%= customer.name %></h1>
@@ -10,38 +8,41 @@
     <br>
     <div id="content">
         <div id="detail" class="display-header">
-            <h4>Project Detail</h4>
+            <h4>Project Details</h4>
             <button type="button" value="Expand All" id="collapse-toggle" onclick="expand_collapse()" class="pull">
                 Expand All
             </button>
         </div>
         <hr class="rainbow">
 
-        <% include sections/01-General %>
+        <% include sections/01-General.ejs %>
 
-        <% include sections/02-EmailSystemsSE %>
+        <% include sections/02-EmailSystemsSE.ejs %>
 
-        <% include sections/03-EmailSystemsPS %>
+        <% include sections/03-EmailSystemsPS.ejs %>
 
-        <% include sections/04-Journaling %>
+        <% include sections/04-Journaling.ejs %>
 
-        <% include sections/05-Appliances %>
+        <% include sections/05-Appliances.ejs %>
 
-        <% include sections/06-OtherDataSources %>
+        <% include sections/06-OtherDataSources.ejs %>
 
-        <% include sections/07-DesktopNetwork %>
+        <% include sections/07-DesktopNetwork.ejs %>
 
-        <% include sections/08-Usage %>
+        <% include sections/08-Usage.ejs %>
 
-        <% include sections/09-Import %>
+        <% include sections/09-Import.ejs %>
 
-        <% include sections/10-POC %>
+        <% include sections/10-POC.ejs %>
 
-        <% include sections/11-RFE %>
+        <% include sections/11-RFE.ejs %>
 
-        <% include sections/12-DesignSummary %>
+        <% include sections/12-DesignSummary.ejs %>
 
     </div>
 </div>
+
+<script type="text/javascript" src="/scripts/show.js"></script>
+<script type="text/javascript" src="/scripts/sync_inputs.js"></script>
 
 <% include partials/footer %>

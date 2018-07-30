@@ -14,38 +14,38 @@
     <form id="customerForm" autocomplete="off" action="/index/<%= encodeURIComponent(customer.name) %>?_method=PUT" method="POST">
         <fieldset id="customerFormFieldset" disabled>
             <div class="row">
-                <div class="form-group col-4 response-cell">
-                    <label>Customer Name </label>
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">Customer Name </label>
                     <input id="unique-customer-name" required type="text" class="form-control" placeholder="No response set"
                            value="<%= customer.name %>" name="customer[name]">
                 </div>
-                <div class="form-group col-4 response-cell">
-                    <label>Sales Rep.</label>
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">Sales Rep.</label>
                     <input type="text" class="form-control" placeholder="No response set" id="salesRep"
                            value="<%= customer.salesRep %>" name="customer[salesRep]">
                 </div>
-                <div class="form-group col-4 response-cell">
-                    <label>Archiving SE </label>
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">Archiving SE </label>
                     <input type="text" class="form-control" placeholder="No response set" id="archivingSe"
                            value="<%= customer.archivingSe %>" name="customer[archivingSe]">
                 </div>
-                <div class="form-group col-4 response-cell">
-                    <label>Acc. Manager </label>
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">Acc. Manager </label>
                     <input type="text" class="form-control" placeholder="No response set" id="accManager"
                            value="<%= customer.accManager %>" name="customer[accManager]">
                 </div>
-                <div class="form-group col-4 response-cell">
-                    <label>TEM </label>
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">TEM </label>
                     <input type="text" class="form-control" placeholder="No response set" id="tme"
                            value="<%= customer.tem %>" name="customer[tem]">
                 </div>
-                <div class="form-group col-4 response-cell">
-                    <label>TAM </label>
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">TAM </label>
                     <input type="text" class="form-control" placeholder="No response set" id="tam"
                            value="<%= customer.tam %>" name="customer[tam]">
                 </div>
-                <div class="form-group col-4 response-cell">
-                    <label>Implementation Specialist </label>
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">Implementation Specialist </label>
                     <input type="text" class="form-control" placeholder="No response set"
                            id="implementationSpecialist "
                            value="<%= customer.impSpecialist %>" name="customer[impSpecialist]">
@@ -54,39 +54,39 @@
             <br>
 
             <div class="row">
-                <div class="form-group col-4 response-cell">
-                    <label>Number of Users </label>
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">Number of Users </label>
                     <input type="text" class="form-control" placeholder="No response set" id="numberOfUsers"
                            value="<%= customer.numberOfUsers %>"
                            name="customer[numberOfUsers]">
                 </div>
-                <div class="form-group col-4 response-cell">
-                    <label>Location </label>
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">Location </label>
                     <input type="text" class="form-control" placeholder="No response set" id="location"
                            value="<%= customer.location %>" name="customer[location]">
                 </div>
-                <div class="form-group col-4 response-cell">
-                    <label>Supervision </label>
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">Supervision </label>
                     <input type="text" class="form-control" placeholder="No response set" id="supervision"
                            value="<%= customer.supervision %>" name="customer[supervision]">
                 </div>
-                <div class="form-group col-4 response-cell">
-                    <label>Contacts </label>
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">Contacts </label>
                     <input type="text" class="form-control" placeholder="No response set" id="contacts"
                            value="<%= customer.contacts %>" name="customer[contacts]">
                 </div>
-                <div class="form-group col-4 response-cell">
-                    <label>Status </label>
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">Status </label>
                     <input type="text" class="form-control" placeholder="No response set" id="status"
                            value="<%= customer.status %>" name="customer[status]">
                 </div>
-                <div class="form-group col-4 response-cell">
-                    <label>NAT IP </label>
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">NAT IP </label>
                     <input type="text" class="form-control" placeholder="No response set" id="natIp"
                            value="<%= customer.natIp %>" name="customer[natIp]">
                 </div>
-                <div class="form-group col-4 response-cell">
-                    <label>Incumbent Solution </label>
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">Incumbent Solution </label>
                     <input type="text" class="form-control" placeholder="No response set" id="incumbentSolution"
                            value="<%= customer.incumbentSolution %>" name="customer[incumbentSolution]">
                 </div>
