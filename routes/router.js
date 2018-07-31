@@ -51,7 +51,6 @@ router.get("/new", authenticate_session, function (req, res) {
     res.render("new", {error_message: undefined});
 });
 
-//
 // // REGISTER
 // router.get("/register", function (req, res) {
 //     res.render("register", {error_message: undefined});
