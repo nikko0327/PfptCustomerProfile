@@ -6,8 +6,6 @@
   "dependencies": {
     "ajax": "0.0.4",
     "babyparse": "^0.4.6",
-    "bcrypt": "^3.0.0",
-    "bluebird": "^3.5.1",
     "body-parser": "^1.18.3",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^2.0.1",
