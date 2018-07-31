@@ -47,8 +47,8 @@ app.use(session({
 
 
 // Used in update
-app.locals.make_custom_dropdown = function (name, value, list) {
-    var dropdown = '<select class="form-control" name="' + name + '">';
+app.locals.make_custom_dropdown = function (name, value, list, classname) {
+    var dropdown = '<select class="form-control ' + classname + '" name="' + name + '">';
 
     dropdown += '<option value="">No response</option>';
 
@@ -89,7 +89,7 @@ app.use(express.static(__dirname + "/public"));
 //including routes. Seperating the routes to different file, so it will be cleaner.
 var routes = require("./routes/router");
 // used so we can get data from forms and etc.
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 // security. This line of code has to be always after body-parser
 app.use(expressSanitizer());
 // so we can use PUT request
