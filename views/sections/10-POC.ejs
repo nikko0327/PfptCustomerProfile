@@ -1,13 +1,16 @@
 <!-- Displaying POC questions -->
 <div id="poc" class="display-header">
-    <h5><a href="#pocContent" data-toggle="collapse">POC
-            <i class="fa fa-arrows-v" aria-hidden="true"></i></a></h5>
-    <br>
+    <h5>
+        <a href="#pocContent" data-toggle="collapse">POC
+            <i class="fa fa-arrows-v" aria-hidden="true"></i>
+        </a>
+    </h5>
 
     <div id="pocContent" class="collapse">
         <div class="edit pull-right">
             <a href="#/" aria-hidden="true" id="editPOCLink" data-toggle="modal">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i></a>
+                <i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>
+            </a>
         </div>
         <br>
 
@@ -15,13 +18,14 @@
             <fieldset id="pocFormFieldset" disabled>
                 <div class="form-group col-4 response-cell" hidden>
                     <label for="customerName">Customer Name</label>
-                    <input type="text" readonly class="form-control" placeholder="No response set"
-                           value="<%= customer.name %>"
-                           name="poc_questions[name]">
+                    <input type="text" readonly class="form-control" placeholder="No response set" value="<%= customer.name %>" name="poc_questions[name]">
                 </div>
 
-                <h5><a href="#editPOCPOC" style="color: mediumvioletred" data-toggle="collapse">POC
-                        <i class="fa fa-arrows-v" aria-hidden="true"></i></a></h5>
+                <h5>
+                    <a href="#editPOCPOC" style="color: mediumvioletred" data-toggle="collapse">POC
+                        <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                    </a>
+                </h5>
 
                 <div id="editPOCPOC" class="collapse">
                     <div class="row">
@@ -37,9 +41,8 @@
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>What will be tested in the POC?</label>
-                            <input type="text" class="form-control" placeholder="No response set" id="poc_tests"
-                                   value="<%= poc_questions.POC.poc_tests %>"
-                                   name="poc_questions[POC][poc_tests]">
+                            <input type="text" class="form-control" placeholder="No response set" id="poc_tests" value="<%= poc_questions.POC.poc_tests %>"
+                                name="poc_questions[POC][poc_tests]">
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Has the customer agreed to Success Criteria?</label>
@@ -53,15 +56,13 @@
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>How long do you need them for?</label>
-                            <input type="text" class="form-control" placeholder="No response set" id="how_long_needed"
-                                   value="<%= poc_questions.POC.how_long_needed %>"
-                                   name="poc_questions[POC][how_long_needed]">
+                            <input type="text" class="form-control" placeholder="No response set" id="how_long_needed" value="<%= poc_questions.POC.how_long_needed %>"
+                                name="poc_questions[POC][how_long_needed]">
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>How to convert the environment and/or data to PROD?</label>
-                            <input type="text" class="form-control" placeholder="No response set" id="how_to_convert_env"
-                                   value="<%= poc_questions.POC.how_to_convert_env %>"
-                                   name="poc_questions[POC][how_to_convert_env]">
+                            <input type="text" class="form-control" placeholder="No response set" id="how_to_convert_env" value="<%= poc_questions.POC.how_to_convert_env %>"
+                                name="poc_questions[POC][how_to_convert_env]">
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Will you be installing appliances in production or in a lab?</label>
@@ -70,23 +71,22 @@
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>For PROD, how many environments are needed and locations?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= poc_questions.POC.how_many_envs %>"
-                                   name="poc_questions[POC][how_many_envs]">
+                            <input type="text" class="form-control" placeholder="No response set" value="<%= poc_questions.POC.how_many_envs %>" name="poc_questions[POC][how_many_envs]">
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>How many mailboxes will you journal into the POC?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= poc_questions.POC.how_many_mailboxes %>"
-                                   name="poc_questions[POC][how_many_mailboxes]">
+                            <input type="text" class="form-control" placeholder="No response set" value="<%= poc_questions.POC.how_many_mailboxes %>"
+                                name="poc_questions[POC][how_many_mailboxes]">
                         </div>
                     </div>
-                    <br>
                 </div>
+                <hr>
 
-
-                <h5><a href="#editPOCUAT" style="color: mediumvioletred" data-toggle="collapse">UAT
-                        <i class="fa fa-arrows-v" aria-hidden="true"></i></a></h5>
+                <h5>
+                    <a href="#editPOCUAT" style="color: mediumvioletred" data-toggle="collapse">UAT
+                        <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                    </a>
+                </h5>
 
                 <div id="editPOCUAT" class="collapse">
                     <div class="row">
@@ -107,147 +107,12 @@
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>What is the primary purpose of the UAT?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= poc_questions.UAT.primary_purpose %>"
-                                   name="poc_questions[UAT][primary_purpose]">
+                            <input type="text" class="form-control" placeholder="No response set" value="<%= poc_questions.UAT.primary_purpose %>" name="poc_questions[UAT][primary_purpose]">
                         </div>
                     </div>
-                    <br>
                 </div>
             </fieldset>
         </form>
-
     </div>
 </div>
 <hr class="rainbow">
-
-<!-- POC UPDATE -->
-<div class="modal fade" id="editPOC" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="lineModalLabel">POC/UAT information</h3>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
-                            class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-
-                <!-- content goes here -->
-                <form
-                        action="/index/<%= customer.name %>?_method=PUT"
-                        method="POST">
-                    <div class="form-group">
-                        <label for="customerName">Customer Name</label>
-                        <input type="text" readonly class="form-control" placeholder="No response set"
-                               value="<%= customer.name %>"
-                               name="poc_questions[name]">
-                    </div>
-
-                    <h5><a href="#editPOCPOC" style="color: mediumvioletred" data-toggle="collapse">POC
-                            <i class="fa fa-arrows-v" aria-hidden="true"></i></a></h5>
-
-                    <div id="editPOCPOC" class="collapse">
-                        <div class="form-group">
-                            <label for="sandbox_poc">Is this a sandbox POC? </label>
-                            <%- make_custom_dropdown("poc_questions[POC][is_sandbox_poc]",
-                                    poc_questions.POC.is_sandbox_poc, ["Yes", "No"]) %>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Is this a production-based POC? </label>
-                            <%- make_custom_dropdown("poc_questions[POC][is_prod_poc]",
-                                    poc_questions.POC.is_prod_poc, ["Yes", "No"]) %>
-                        </div>
-                        <div class="form-group">
-                            <label>What will be tested in the POC?</label>
-                            <input type="text" class="form-control" placeholder="No response set" id="poc_tests"
-                                   value="<%= poc_questions.POC.poc_tests %>"
-                                   name="poc_questions[POC][poc_tests]">
-                        </div>
-                        <div class="form-group">
-                            <label>Has the customer agreed to Success Criteria?</label>
-                            <%- make_custom_dropdown("poc_questions[POC][agreed_to_success_criteria]",
-                                    poc_questions.POC.agreed_to_success_criteria, ["Yes", "No"]) %>
-                        </div>
-                        <div class="form-group">
-                            <label>Environments needed (POC, UAT)?</label>
-                            <%- make_custom_dropdown("poc_questions[POC][envs_needed]",
-                                    poc_questions.POC.envs_needed, ["POC", "UAT"]) %>
-                        </div>
-                        <div class="form-group">
-                            <label>How long do you need them for?</label>
-                            <input type="text" class="form-control" placeholder="No response set" id="how_long_needed"
-                                   value="<%= poc_questions.POC.how_long_needed %>"
-                                   name="poc_questions[POC][how_long_needed]">
-                        </div>
-                        <div class="form-group">
-                            <label>How to convert the environment and/or data to PROD?</label>
-                            <input type="text" class="form-control" placeholder="No response set" id="how_to_convert_env"
-                                   value="<%= poc_questions.POC.how_to_convert_env %>"
-                                   name="poc_questions[POC][how_to_convert_env]">
-                        </div>
-                        <div class="form-group">
-                            <label>Will you be installing appliances in production or in a lab?</label>
-                            <%- make_custom_dropdown("poc_questions[POC][installing_in_production_or_lab]",
-                                    poc_questions.POC.installing_in_production_or_lab, ["Production", "Lab"]) %>
-                        </div>
-                        <div class="form-group">
-                            <label>For PROD, how many environments are needed and locations?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= poc_questions.POC.how_many_envs %>"
-                                   name="poc_questions[POC][how_many_envs]">
-                        </div>
-                        <div class="form-group">
-                            <label>How many mailboxes will you journal into the POC?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= poc_questions.POC.how_many_mailboxes %>"
-                                   name="poc_questions[POC][how_many_mailboxes]">
-                        </div>
-                        <br>
-                    </div>
-
-
-                    <h5><a href="#editPOCUAT" style="color: mediumvioletred" data-toggle="collapse">UAT
-                            <i class="fa fa-arrows-v" aria-hidden="true"></i></a></h5>
-
-                    <div id="editPOCUAT" class="collapse">
-                        <div class="form-group">
-                            <label>Does the customer need/require a UAT or Testing Archive account?</label>
-                            <%- make_custom_dropdown("poc_questions[UAT][need_UAT]",
-                                    poc_questions.UAT.need_UAT, ["Yes", "No"]) %>
-                        </div>
-                        <div class="form-group">
-                            <label>Will the UAT be forever?</label>
-                            <%- make_custom_dropdown("poc_questions[UAT][UAT_forever]",
-                                    poc_questions.UAT.UAT_forever, ["Yes", "No"]) %>
-                        </div>
-                        <div class="form-group">
-                            <label>Will the UAT be production data, or lab data?</label>
-                            <%- make_custom_dropdown("poc_questions[UAT][is_UAT_production_or_lab]",
-                                    poc_questions.UAT.is_UAT_production_or_lab, ["Production data", "Lab data"]) %>
-                        </div>
-                        <div class="form-group">
-                            <label>What is the primary purpose of the UAT?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= poc_questions.UAT.primary_purpose %>"
-                                   name="poc_questions[UAT][primary_purpose]">
-                        </div>
-                        <br>
-                    </div>
-
-                    <div class="col">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" role="button">Close
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
