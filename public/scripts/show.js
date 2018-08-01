@@ -1,4 +1,5 @@
 var expanded = false;
+let can_click_expand = true;
 
 function expand_collapse() {
     if (expanded == true) {
@@ -9,6 +10,16 @@ function expand_collapse() {
         $('.collapse').collapse('show');
         document.getElementById("collapse-toggle").innerHTML = "Collapse All";
         expanded = true;
+    }
+}
+
+// Changes dropdown arrow directions in anchors
+function change_arrow(collapse) {
+    // let r = collapse.children(":first");
+    // alert(collapse.attr('aria-expanded'));
+
+    if (!$('.collapsing')[0]) { // If not collapsing, OK to click
+        collapse.children(":first").toggleClass('fa-caret-down').toggleClass('fa-caret-right');
     }
 }
 
@@ -28,7 +39,7 @@ $(document).ready(() => {
             var new_customer = $('#unique-customer-name').val().trim();
             //alert("New customer: '" + new_customer + "'");
 
-            if(!new_customer) {
+            if (!new_customer) {
                 alert("Customer name is empty.");
                 return;
             }

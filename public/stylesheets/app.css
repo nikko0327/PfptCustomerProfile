@@ -143,15 +143,6 @@ footer p {
     max-width: 90% !important;
 }
 
-hr.rainbow {
-    border: 0;
-    height: 2px;
-    background-image: linear-gradient(to right,
-    rgba(255, 2, 5, 0), rgba(137, 11, 138, .25), rgba(27, 123, 187, .5), rgba(47, 195, 44, .5), rgba(253, 201, 1, .5),
-    rgba(255, 91, 2, .5), #ccc 45%, #ccc 55%, rgba(255, 91, 2, .5), rgba(253, 201, 1, .5), rgba(47, 195, 44, .5), rgba(27, 123, 187, .5),
-    rgba(137, 11, 138, .25), rgba(255, 2, 5, 0));
-}
-
 .col-4 {
     -ms-flex: 0 0 100% !important;
     flex: 0 0 100% !important;
@@ -231,6 +222,25 @@ all {
     padding-top: 6px;
 }
 
-.form-control {
+input.form-control {
     font-size: 12px !important;
+}
+
+select.form-control {
+    font-size: 12px !important;
+    margin-left: -3px;
+}
+
+.collapse {
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+}
+
+.collapsing {
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+}
+
+.row {
+    padding-left: 25px !important;
 }
