@@ -142,7 +142,7 @@
                                     email_se_questions.hosted_O365.is_admin_in_AD_or_azure, ["On-prem AD", "Azure"], "is_admin_in_AD_or_azure") %>
                         </div>
                         <div class="form-group col-4 response-cell">
-                            <label>Sync tools used on Azure?</label>
+                            <label>Sync tools used in Azure?</label>
                             <input type="text" class="form-control sync_tools" placeholder="No response set" value="<%= email_se_questions.hosted_O365.sync_tools %>"
                                 name="email_se_questions[hosted_O365][sync_tools]">
                         </div>
@@ -241,7 +241,7 @@
                         <div class="form-group col-4 response-cell">
                             <label>Do you require a secure connection to LDAP?</label>
                             <%- make_custom_dropdown("email_se_questions[prem_exchange_prem_O365][require_ldap]",
-                                    email_se_questions.prem_exchange_prem_O365.require_ldap, ["Yes", "No"]) %>
+                                    email_se_questions.prem_exchange_prem_O365.require_ldap, ["Yes", "No"], "LDAP") %>
                         </div>
                     </div>
                     <hr>
@@ -270,7 +270,7 @@
                                     email_se_questions.prem_exchange_prem_O365.is_admin_in_AD_or_azure, ["On-prem AD", "Azure"], "is_admin_in_AD_or_azure") %>
                         </div>
                         <div class="form-group col-4 response-cell">
-                            <label>Sync tools used on Azure?</label>
+                            <label>Sync tools used in Azure?</label>
                             <input type="text" class="form-control sync_tools" placeholder="No response set" value="<%= email_se_questions.prem_exchange_prem_O365.sync_tools %>"
                                 name="email_se_questions[prem_exchange_prem_O365][sync_tools]">
                         </div>
@@ -391,7 +391,7 @@
                                     email_se_questions.prem_exchange_hosted_O365.is_admin_in_AD_or_azure, ["On-prem AD", "Azure"], "is_admin_in_AD_or_azure") %>
                         </div>
                         <div class="form-group col-4 response-cell">
-                            <label>Sync tools used on Azure?</label>
+                            <label>Sync tools used in Azure?</label>
                             <input type="text" class="form-control sync_tools" placeholder="No response set" value="<%= email_se_questions.prem_exchange_hosted_O365.sync_tools %>"
                                 name="email_se_questions[prem_exchange_hosted_O365][sync_tools]">
                         </div>

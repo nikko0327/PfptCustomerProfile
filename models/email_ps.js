@@ -53,7 +53,7 @@ var email_ps_schema = new mongoose.Schema({
             type: String,
             default: ""
         },
-        is_using_message_decryption: {
+        is_using_message_encryption: {
             type: String,
             default: ""
         }
@@ -104,7 +104,7 @@ var email_ps_schema = new mongoose.Schema({
             type: String,
             default: ""
         },
-        is_using_message_decryption: {
+        is_using_message_encryption: {
             type: String,
             default: ""
         }

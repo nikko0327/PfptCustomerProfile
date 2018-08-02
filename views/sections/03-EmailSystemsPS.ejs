@@ -35,33 +35,33 @@
                         <div class="form-group col-4 response-cell">
                             <label>Are DAGs being used?</label>
                             <%- make_custom_dropdown("email_ps_questions[prem_exchange][is_using_DAG]",
-                                    email_ps_questions.prem_exchange.is_using_DAG, ["Yes", "No"]) %>
+                                    email_ps_questions.prem_exchange.is_using_DAG, ["Yes", "No"], "is_using_DAG") %>
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>No. of journal mailboxes</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= email_ps_questions.prem_exchange.number_of_inboxes %>"
+                            <input type="text" class="form-control number_of_inboxes" placeholder="No response set" value="<%= email_ps_questions.prem_exchange.number_of_inboxes %>"
                                 name="email_ps_questions[prem_exchange][number_of_inboxes]">
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Are journal mailboxes on their own DB?</label>
                             <%- make_custom_dropdown("email_ps_questions[prem_exchange][is_journal_in_own_DB]",
-                                    email_ps_questions.prem_exchange.is_journal_in_own_DB, ["Yes", "No"]) %>
+                                    email_ps_questions.prem_exchange.is_journal_in_own_DB, ["Yes", "No"], "is_journal_in_own_DB") %>
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>How much extra storage is available on the Journaling Mailbox Databases?
                             </label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= email_ps_questions.prem_exchange.number_of_extra_storage %>"
+                            <input type="text" class="form-control number_of_extra_storage" placeholder="No response set" value="<%= email_ps_questions.prem_exchange.number_of_extra_storage %>"
                                 name="email_ps_questions[prem_exchange][number_of_extra_storage]">
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Are you using RMS?</label>
                             <%- make_custom_dropdown("email_ps_questions[prem_exchange][is_using_RMS]",
-                                    email_ps_questions.prem_exchange.is_using_RMS, ["Yes", "No"]) %>
+                                    email_ps_questions.prem_exchange.is_using_RMS, ["Yes", "No"], "is_using_RMS") %>
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Is Enable Journal Decryption set to True / False?</label>
                             <%- make_custom_dropdown("email_ps_questions[prem_exchange][is_journal_decryption_enabled]",
-                                    email_ps_questions.prem_exchange.is_journal_decryption_enabled, ["Yes", "No"]) %>
+                                    email_ps_questions.prem_exchange.is_journal_decryption_enabled, ["Yes", "No"], "is_journal_decryption_enabled") %>
                         </div>
                     </div>
                 </div>
@@ -80,27 +80,26 @@
                         <div class="form-group col-4 response-cell">
                             <label>Are you using Azure RMS?</label>
                             <%- make_custom_dropdown("email_ps_questions[hosted_O365][is_using_azure_rms]",
-                                    email_ps_questions.hosted_O365.is_using_azure_rms, ["Yes", "No"]) %>
+                                    email_ps_questions.hosted_O365.is_using_azure_rms, ["Yes", "No"], "is_using_azure_rms") %>
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Are you using IRM?</label>
                             <%- make_custom_dropdown("email_ps_questions[hosted_O365][is_using_IRM]",
-                                    email_ps_questions.hosted_O365.is_using_IRM, ["Yes", "No"]) %>
+                                    email_ps_questions.hosted_O365.is_using_IRM, ["Yes", "No"], "is_using_IRM") %>
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Is Enable Journal Decryption set to True / False?</label>
                             <%- make_custom_dropdown("email_ps_questions[hosted_O365][is_journal_decryption_enabled]",
-                                    email_ps_questions.hosted_O365.is_journal_decryption_enabled, ["Yes", "No"]) %>
+                                    email_ps_questions.hosted_O365.is_journal_decryption_enabled, ["Yes", "No"], "is_journal_decryption_enabled") %>
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Are you using O365 Message Encryption?</label>
-                            <%- make_custom_dropdown("email_ps_questions[hosted_O365][is_using_message_decryption]",
-                                    email_ps_questions.hosted_O365.is_using_message_decryption, ["Yes", "No"]) %>
+                            <%- make_custom_dropdown("email_ps_questions[hosted_O365][is_using_message_encryption]",
+                                    email_ps_questions.hosted_O365.is_using_message_encryption, ["Yes", "No"], "is_using_message_encryption") %>
                         </div>
                     </div>
                 </div>
                 <hr>
-
 
                 <h5>
                     <a href="#editEmailSystemsPS-3" style="color: mediumvioletred" data-toggle="collapse" onclick="change_arrow($(this));">
@@ -116,11 +115,11 @@
                         <div class="form-group col-4 response-cell">
                             <label>Are DAGs being used?</label>
                             <%- make_custom_dropdown("email_ps_questions[prem_exchange_prem_O365][is_using_DAG]",
-                                    email_ps_questions.prem_exchange_prem_O365.is_using_DAG, ["Yes", "No"]) %>
+                                    email_ps_questions.prem_exchange_prem_O365.is_using_DAG, ["Yes", "No"], "is_using_DAG") %>
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>No. of journal mailboxes</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_prem_O365.number_of_inboxes %>"
+                            <input type="text" class="form-control number_of_inboxes" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_prem_O365.number_of_inboxes %>"
                                 name="email_ps_questions[prem_exchange_prem_O365][number_of_inboxes]">
                         </div>
                         <div class="form-group col-4 response-cell">
@@ -131,23 +130,23 @@
                         <div class="form-group col-4 response-cell">
                             <label>Are journal mailboxes on their own DB?</label>
                             <%- make_custom_dropdown("email_ps_questions[prem_exchange_prem_O365][is_journal_in_own_DB]",
-                                    email_ps_questions.prem_exchange_prem_O365.is_journal_in_own_DB, ["Yes", "No"]) %>
+                                    email_ps_questions.prem_exchange_prem_O365.is_journal_in_own_DB, ["Yes", "No"], "is_journal_in_own_DB") %>
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>How much extra storage is available on the Journaling Mailbox Databases?
                             </label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_prem_O365.number_of_extra_storage %>"
+                            <input type="text" class="form-control number_of_extra_storage" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_prem_O365.number_of_extra_storage %>"
                                 name="email_ps_questions[prem_exchange_prem_O365][number_of_extra_storage]">
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Are you using RMS?</label>
                             <%- make_custom_dropdown("email_ps_questions[prem_exchange_prem_O365][is_using_RMS]",
-                                    email_ps_questions.prem_exchange_prem_O365.is_using_RMS, ["Yes", "No"]) %>
+                                    email_ps_questions.prem_exchange_prem_O365.is_using_RMS, ["Yes", "No"], "is_using_RMS") %>
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Is Enable Journal Decryption set to True / False?</label>
                             <%- make_custom_dropdown("email_ps_questions[prem_exchange_prem_O365][is_journal_decryption_enabled]",
-                                    email_ps_questions.prem_exchange_prem_O365.is_journal_decryption_enabled, ["Yes", "No"]) %>
+                                    email_ps_questions.prem_exchange_prem_O365.is_journal_decryption_enabled, ["Yes", "No"], "is_journal_decryption_enabled") %>
                         </div>
                     </div>
                     <hr>
@@ -158,22 +157,22 @@
                         <div class="form-group col-4 response-cell">
                             <label>Are you using Azure RMS?</label>
                             <%- make_custom_dropdown("email_ps_questions[prem_exchange_prem_O365][is_using_azure_rms]",
-                                    email_ps_questions.prem_exchange_prem_O365.is_using_azure_rms, ["Yes", "No"]) %>
+                                    email_ps_questions.prem_exchange_prem_O365.is_using_azure_rms, ["Yes", "No"], "is_using_azure_rms") %>
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Are you using IRM?</label>
                             <%- make_custom_dropdown("email_ps_questions[prem_exchange_prem_O365][is_using_IRM]",
-                                    email_ps_questions.prem_exchange_prem_O365.is_using_IRM, ["Yes", "No"]) %>
+                                    email_ps_questions.prem_exchange_prem_O365.is_using_IRM, ["Yes", "No"], "is_using_IRM") %>
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Is Enable Journal Decryption set to True / False?</label>
                             <%- make_custom_dropdown("email_ps_questions[prem_exchange_prem_O365][is_O365_journal_decryption_enabled]",
-                                    email_ps_questions.prem_exchange_prem_O365.is_O365_journal_decryption_enabled, ["Yes", "No"]) %>
+                                    email_ps_questions.prem_exchange_prem_O365.is_O365_journal_decryption_enabled, ["Yes", "No"], "is_journal_decryption_enabled") %>
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Are you using O365 Message Encryption?</label>
-                            <%- make_custom_dropdown("email_ps_questions[prem_exchange_prem_O365][is_using_message_decryption]",
-                                    email_ps_questions.prem_exchange_prem_O365.is_using_message_decryption, ["Yes", "No"]) %>
+                            <%- make_custom_dropdown("email_ps_questions[prem_exchange_prem_O365][is_using_message_encryption]",
+                                    email_ps_questions.prem_exchange_prem_O365.is_using_message_encryption, ["Yes", "No"], "is_using_message_encryption") %>
                         </div>
                     </div>
                 </div>
@@ -193,34 +192,34 @@
                     <div class="row">
                         <div class="form-group col-4 response-cell">
                             <label>What versions of Exchange are running?</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_hosted_O365.exchange_version %>"
+                            <input type="text" class="form-control exchange_version" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_hosted_O365.exchange_version %>"
                                 name="email_ps_questions[prem_exchange_hosted_O365][exchange_version]">
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>How many locations are mailbox servers deployed?</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_hosted_O365.mailbox_server_locations %>"
+                            <input type="text" class="form-control number_of_mail_servers" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_hosted_O365.mailbox_server_locations %>"
                                 name="email_ps_questions[prem_exchange_hosted_O365][mailbox_server_locations]">
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Do you have an Enterprise CAL?</label>
                             <%- make_custom_dropdown("email_ps_questions[prem_exchange_hosted_O365][has_enterprise_CAL]",
-                                    email_ps_questions.prem_exchange_hosted_O365.has_enterprise_CAL, ["Yes", "No"]) %>
+                                    email_ps_questions.prem_exchange_hosted_O365.has_enterprise_CAL, ["Yes", "No"], "has_enterprise_CAL") %>
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Describe the HA/DR of the Exchange environment.</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_hosted_O365.describe_env %>"
+                            <input type="text" class="form-control describe_exchange_env" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_hosted_O365.describe_env %>"
                                 name="email_ps_questions[prem_exchange_hosted_O365][describe_env]">
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Please provide a diagram of your exchange infrastructure and your AD Details.
                             </label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_hosted_O365.diagram %>"
+                            <input type="text" class="form-control diagram" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_hosted_O365.diagram %>"
                                 name="email_ps_questions[prem_exchange_hosted_O365][diagram]">
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Are DAGs being used?</label>
                             <%- make_custom_dropdown("email_ps_questions[prem_exchange_hosted_O365][is_using_DAG]",
-                                    email_ps_questions.prem_exchange_hosted_O365.is_using_DAG, ["Yes", "No"]) %>
+                                    email_ps_questions.prem_exchange_hosted_O365.is_using_DAG, ["Yes", "No"], "is_using_DAG") %>
                         </div>
                     </div>
                     <hr>
@@ -231,43 +230,43 @@
                         <div class="form-group col-4 response-cell">
                             <label>Is your AD multi-forest?</label>
                             <%- make_custom_dropdown("email_ps_questions[prem_exchange_hosted_O365][is_multi_forest]",
-                                    email_ps_questions.prem_exchange_hosted_O365.is_multi_forest, ["Yes", "No"]) %>
+                                    email_ps_questions.prem_exchange_hosted_O365.is_multi_forest, ["Yes", "No"], "is_multi_forest") %>
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>How many forests are there?</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_hosted_O365.number_of_forests %>"
+                            <input type="text" class="form-control number_of_forests" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_hosted_O365.number_of_forests %>"
                                 name="email_ps_questions[prem_exchange_hosted_O365][number_of_forests]">
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Is this a Resource Forest arrangement?</label>
                             <%- make_custom_dropdown("email_ps_questions[prem_exchange_hosted_O365][is_resource_forest_arrangement]",
-                                    email_ps_questions.prem_exchange_hosted_O365.is_resource_forest_arrangement, ["Yes", "No"]) %>
+                                    email_ps_questions.prem_exchange_hosted_O365.is_resource_forest_arrangement, ["Yes", "No"], "resource_forest_deployment") %>
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Are you using multi-domains?</label>
                             <%- make_custom_dropdown("email_ps_questions[prem_exchange_hosted_O365][is_using_multi_domains]",
-                                    email_ps_questions.prem_exchange_hosted_O365.is_using_multi_domains, ["Yes", "No"]) %>
+                                    email_ps_questions.prem_exchange_hosted_O365.is_using_multi_domains, ["Yes", "No"], "is_using_multi_domains") %>
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>If yes, what is the structure of multi-domain architecture / their relationships?
                             </label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_hosted_O365.multi_domain_structure %>"
+                            <input type="text" class="form-control structure" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_hosted_O365.multi_domain_structure %>"
                                 name="email_ps_questions[prem_exchange_hosted_O365][multi_domain_structure]">
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Resource forest deployment?</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_hosted_O365.resource_forest_deployment %>"
+                            <input type="text" class="form-control resource_forest_deployment" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_hosted_O365.resource_forest_deployment %>"
                                 name="email_ps_questions[prem_exchange_hosted_O365][resource_forest_deployment]">
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>How big is your AD? How many objects?</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_hosted_O365.AD_size %>"
+                            <input type="text" class="form-control AD_size" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_hosted_O365.AD_size %>"
                                 name="email_ps_questions[prem_exchange_hosted_O365][AD_size]">
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Do you require a secure connection to LDAP? (Note: PFPT does not support a secure LDAP)</label>
                             <%- make_custom_dropdown("email_ps_questions[prem_exchange_hosted_O365][require_ldap]",
-                                    email_ps_questions.prem_exchange_hosted_O365.require_ldap, ["Yes", "No"]) %>
+                                    email_ps_questions.prem_exchange_hosted_O365.require_ldap, ["Yes", "No"], "LDAP") %>
                         </div>
                     </div>
                     <hr>
@@ -277,34 +276,34 @@
                     <div class="row">
                         <div class="form-group col-4 response-cell">
                             <label>What O365 license level do you have?</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_hosted_O365.O365_version %>"
+                            <input type="text" class="form-control O365_version" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_hosted_O365.O365_version %>"
                                 name="email_ps_questions[prem_exchange_hosted_O365][O365_version]">
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Are you maintaining AD on-prem?</label>
                             <%- make_custom_dropdown("email_ps_questions[prem_exchange_hosted_O365][is_maintaining_on_prem_AD]",
-                                    email_ps_questions.prem_exchange_hosted_O365.is_maintaining_on_prem_AD, ["Yes", "No"]) %>
+                                    email_ps_questions.prem_exchange_hosted_O365.is_maintaining_on_prem_AD, ["Yes", "No"], "is_maintaining_on_prem_AD") %>
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Are you maintaining AD in Azure?</label>
                             <%- make_custom_dropdown("email_ps_questions[prem_exchange_hosted_O365][is_maintaining_azure]",
-                                    email_ps_questions.prem_exchange_hosted_O365.is_maintaining_azure, ["Yes", "No"]) %>
+                                    email_ps_questions.prem_exchange_hosted_O365.is_maintaining_azure, ["Yes", "No"], "is_maintaining_azure") %>
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>When you create and admin mailboxes, do you do that in the on-prem AD, or in Azure?
                             </label>
                             <%- make_custom_dropdown("email_ps_questions[prem_exchange_hosted_O365][is_admin_in_AD_or_azure]",
-                                    email_ps_questions.prem_exchange_hosted_O365.is_admin_in_AD_or_azure, ["On-prem", "Azure"]) %>
+                                    email_ps_questions.prem_exchange_hosted_O365.is_admin_in_AD_or_azure, ["On-prem", "Azure"], "is_admin_in_AD_or_azure") %>
                         </div>
                         <div class="form-group col-4 response-cell">
-                            <label>Sync tools used to Azure?</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_hosted_O365.sync_tools %>"
+                            <label>Sync tools used in Azure?</label>
+                            <input type="text" class="form-control sync_tools" placeholder="No response set" value="<%= email_ps_questions.prem_exchange_hosted_O365.sync_tools %>"
                                 name="email_ps_questions[prem_exchange_hosted_O365][sync_tools]">
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Which O365 (shared, dedicated/BPOS-D/iTAR)?</label>
                             <%- make_custom_dropdown("email_ps_questions[prem_exchange_hosted_O365][which_O365]",
-                                    email_ps_questions.prem_exchange_hosted_O365.which_O365, ["Shared", "Dedicated", "BPOS-D", "iTAR"]) %>
+                                    email_ps_questions.prem_exchange_hosted_O365.which_O365, ["Shared", "Dedicated", "BPOS-D", "iTAR"], "which_O365") %>
                         </div>
                     </div>
                 </div>
