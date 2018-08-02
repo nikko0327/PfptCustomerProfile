@@ -31,16 +31,21 @@
 
                 <div id="editPOCPOC" class="collapse">
                     <div class="row">
-                        <div class="form-group col-4 response-cell">
+                        <div hidden class="form-group col-4 response-cell">
                             <label for="sandbox_poc">Is this a sandbox POC? </label>
                             <%- make_custom_dropdown("poc_questions[POC][is_sandbox_poc]",
                                     poc_questions.POC.is_sandbox_poc, ["Yes", "No"]) %>
                         </div>
-                        <div class="form-group col-4 response-cell">
+                        <div hidden class="form-group col-4 response-cell">
                             <label>Is this a production-based POC? </label>
                             <%- make_custom_dropdown("poc_questions[POC][is_prod_poc]",
                                     poc_questions.POC.is_prod_poc, ["Yes", "No"]) %>
                         </div>
+                        <div class="form-group col-4 response-cell">
+                                <label>Is the POC sandbox or production?</label>
+                                <%- make_custom_dropdown("poc_questions[POC][poc_type]",
+                                        poc_questions.POC.poc_type, ["Sandbox", "Production"]) %>
+                            </div>
                         <div class="form-group col-4 response-cell">
                             <label>What will be tested in the POC?</label>
                             <input type="text" class="form-control" placeholder="No response set" id="poc_tests" value="<%= poc_questions.POC.poc_tests %>"

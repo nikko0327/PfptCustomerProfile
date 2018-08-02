@@ -9,6 +9,14 @@ var email_se_schema = new mongoose.Schema({
     },
     // On prem exchange w/ on prem appliances
     prem_exchange: {
+        journaling_location: {
+            type: String,
+            default: ""
+        },
+        users_per_location: {
+            type: String,
+            default: ""
+        },
         exchange_version: {
             type: String,
             default: ""

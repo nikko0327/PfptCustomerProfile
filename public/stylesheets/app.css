@@ -154,7 +154,7 @@ footer p {
     -ms-flex: 0 0 33% !important;
     flex: 0 0 33% !important;
     max-width: 33% !important;
-    text-align: center !important;
+    text-align: left !important;
 }
 
 .response-cell {

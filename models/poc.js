@@ -7,6 +7,10 @@ var poc_schema = new mongoose.Schema({
         unique: true
     },
     POC: {
+        poc_type: {
+            type: String,
+            default: ""
+        },
         is_sandbox_poc: {
             type: String,
             default: ""

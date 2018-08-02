@@ -1,42 +1,46 @@
 <% include partials/header %>
 
-<div class="container" style="display: flex; flex-flow: column wrap; align-items: center;">
-    <fieldset >
-        <form action="/login" method="post">
-            <div class="control-group">
-                <h4>Login</h4>
-                <label class="control-label" for="username">Username</label>
-                <div class="controls">
-                    <input type="text" style="text-align: center; display: block;" id="username" name="login[username]" placeholder="Username"
-                           required>
-                </div>
-            </div>
-            <br>
+    <div class="container" style="display: flex; flex-flow: column wrap; align-items: center; text-align: center;">
+        <fieldset>
+            <form action="/login" method="post">
+                <h2>Customer Profile Dashboard</h2>
+                <br>
 
-            <div class="control-group">
-                <label class="control-label" for="password">Password</label>
-                <div class="controls">
-                    <input style="text-align: center; align: center;" type="password" id="password" name="login[password]"
-                           placeholder="Password" required>
-                </div>
-            </div>
-            <br>
-
-            <% if(fail) { %>
-                <p id="error-message" class="text-error" style="color: red;">Invalid login credentials. Please try again.</p>
-            <% } %>
-
-            <div class="control-group">
-                <div class="controls">
-                    <button type="submit" class="btn btn-primary" id="sign_in">Login</button>
+                <div class="control-group">
+                    <label class="control-label" style="text-align: center;">Username</label>
+                    <div class="controls">
+                        <input type="text" style="text-align: center; align: center;" id="username" name="login[username]" placeholder="Username"
+                            required>
+                    </div>
                 </div>
                 <br>
-            </div>
-            <div id="spinner" hidden>
-                <center><i class="icon-spinner icon-spin icon-3x"></i></center>
-            </div>
-        </form>
-    </fieldset>
-</div>
 
-<% include partials/footer %>
+                <div class="control-group">
+                    <label class="control-label" style="text-align: center;">Password</label>
+                    <div class="controls">
+                        <input style="text-align: center; align: center;" type="password" id="password" name="login[password]" placeholder="Password"
+                            required>
+                    </div>
+                </div>
+                <br>
+
+                <% if(fail) { %>
+                    <p id="error-message" class="text-error" style="color: red;">Invalid login credentials. Please try again.</p>
+                    <% } %>
+
+                        <div class="control-group">
+                            <div class="controls">
+                                <button type="submit" class="btn btn-primary" id="sign_in">Login</button>
+                            </div>
+                            <br>
+                        </div>
+                        <div id="spinner" hidden>
+                            <center>
+                                <i class="icon-spinner icon-spin icon-3x"></i>
+                            </center>
+                        </div>
+            </form>
+        </fieldset>
+    </div>
+
+    <% include partials/footer %>

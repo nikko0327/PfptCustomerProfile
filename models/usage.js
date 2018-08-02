@@ -7,6 +7,10 @@ var usage_schema = new mongoose.Schema({
         unique: true
     },
     supervision: {
+        compliance_divisions: {
+            type: String,
+            default: ""
+        },
         supervision_system: {
             type: String,
             default: ""
