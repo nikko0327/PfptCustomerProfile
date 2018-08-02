@@ -141,6 +141,7 @@ footer p {
 .container {
     /*width: 3000px !important;*/
     max-width: 90% !important;
+    background-color: white;
 }
 
 .col-4 {
@@ -221,6 +222,11 @@ all {
 .footer-bottom p.pull-left {
     padding-top: 6px;
 }
+
+body {
+    background-color: lightgray;
+}
+
 
 input.form-control {
     font-size: 12px !important;
