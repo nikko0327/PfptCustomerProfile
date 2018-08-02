@@ -49,8 +49,26 @@ var CustomerSchema = new mongoose.Schema({
         default: ""
     },
     contacts: {
-        type: String,
-        default: ""
+        name: {
+            type: String,
+            default: ""
+        },
+        title: {
+            type: String,
+            default: ""
+        },
+        email: {
+            type: String,
+            default: ""
+        },
+        phone: {
+            type: String,
+            default: ""
+        },
+        primary_contact: {
+            type: String,
+            default: ""
+        }
     },
     created: {
         type: Date,

@@ -20,28 +20,34 @@
                     <input id="unique-customer-name" required type="text" class="form-control" placeholder="No response set" value="<%= customer.name %>"
                         name="customer[name]">
                 </div>
+
                 <div class="form-group general_info response-cell">
                     <label style="text-align: center !important;">Sales Rep.</label>
                     <input type="text" class="form-control" placeholder="No response set" id="salesRep" value="<%= customer.salesRep %>" name="customer[salesRep]">
                 </div>
+
                 <div class="form-group general_info response-cell">
                     <label style="text-align: center !important;">Archiving SE </label>
                     <input type="text" class="form-control" placeholder="No response set" id="archivingSe" value="<%= customer.archivingSe %>"
                         name="customer[archivingSe]">
                 </div>
+
                 <div class="form-group general_info response-cell">
                     <label style="text-align: center !important;">Acc. Manager </label>
                     <input type="text" class="form-control" placeholder="No response set" id="accManager" value="<%= customer.accManager %>"
                         name="customer[accManager]">
                 </div>
+
                 <div class="form-group general_info response-cell">
                     <label style="text-align: center !important;">TEM </label>
                     <input type="text" class="form-control" placeholder="No response set" id="tme" value="<%= customer.tem %>" name="customer[tem]">
                 </div>
+
                 <div class="form-group general_info response-cell">
                     <label style="text-align: center !important;">TAM </label>
                     <input type="text" class="form-control" placeholder="No response set" id="tam" value="<%= customer.tam %>" name="customer[tam]">
                 </div>
+
                 <div class="form-group general_info response-cell">
                     <label style="text-align: center !important;">Implementation Specialist </label>
                     <input type="text" class="form-control" placeholder="No response set" id="implementationSpecialist " value="<%= customer.impSpecialist %>"
@@ -56,130 +62,64 @@
                     <input type="text" class="form-control" placeholder="No response set" id="numberOfUsers" value="<%= customer.numberOfUsers %>"
                         name="customer[numberOfUsers]">
                 </div>
+
                 <div class="form-group general_info response-cell">
                     <label style="text-align: center !important;">Location </label>
                     <input type="text" class="form-control" placeholder="No response set" id="location" value="<%= customer.location %>" name="customer[location]">
                 </div>
+
                 <div class="form-group general_info response-cell">
                     <label style="text-align: center !important;">Supervision </label>
                     <input type="text" class="form-control" placeholder="No response set" id="supervision" value="<%= customer.supervision %>"
                         name="customer[supervision]">
                 </div>
-                <div class="form-group general_info response-cell">
-                    <label style="text-align: center !important;">Contacts </label>
-                    <input type="text" class="form-control" placeholder="No response set" id="contacts" value="<%= customer.contacts %>" name="customer[contacts]">
-                </div>
+
                 <div class="form-group general_info response-cell">
                     <label style="text-align: center !important;">Status </label>
                     <%- make_custom_dropdown("customer[status]", customer.status, 
                     ["Waiting for PDQ", "Waiting for sales", "Waiting for finance", "Waiting for ops", "Waiting for customer", "Waiting for scheduling", "Deployment started", "Deployment complete/in production"]) %>
                 </div>
+
                 <div class="form-group general_info response-cell">
                     <label style="text-align: center !important;">NAT IP </label>
                     <input type="text" class="form-control" placeholder="No response set" id="natIp" value="<%= customer.natIp %>" name="customer[natIp]">
                 </div>
+
                 <div class="form-group general_info response-cell">
                     <label style="text-align: center !important;">Incumbent Solution </label>
                     <input type="text" class="form-control" placeholder="No response set" id="incumbentSolution" value="<%= customer.incumbentSolution %>"
                         name="customer[incumbentSolution]">
                 </div>
             </div>
+            <br>
+
+            <div class="title">
+                <h5 style="color: mediumvioletred">Contacts</h5>
+            </div>
+
+            <div class="row">
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">Name </label>
+                    <input type="text" class="form-control" placeholder="Contact name" value="<%= customer.contacts.name %>" name="customer[contacts][name]">
+                </div>
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">Title </label>
+                    <input type="text" class="form-control" placeholder="Contact title" value="<%= customer.contacts.title %>" name="customer[contacts][title]">
+                </div>
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">Email </label>
+                    <input type="email" class="form-control" placeholder="Contact email" value="<%= customer.contacts.email %>" name="customer[contacts][email]">
+                </div>
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">Phone </label>
+                    <input type="text" class="form-control" placeholder="Contact phone number" value="<%= customer.contacts.phone %>" name="customer[contacts][phone]">
+                </div>
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">Primary contact </label>
+                    <%- make_custom_dropdown("customer[contacts][primary_contact]", customer.contacts.primary_contact, ["Yes", "No"]) %>
+                </div>
+            </div>
         </fieldset>
     </form>
 </div>
 <hr class="rainbow">
-
-<!-- CUSTOMERS UPDATE -->
-<div class="modal fade" id="editCustomer" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="lineModalLabel">Customer information</h3>
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">×</span>
-                    <span class="sr-only">Close</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-                <!-- content goes here -->
-                <form action="/index/<%= customer.name %>?_method=PUT" method="POST">
-                    <div class="form-group">
-                        <label for="customerName">Customer Name</label>
-                        <input type="text" class="form-control" placeholder="No response set" id="customerName" value="<%= customer.name %>" name="customer[name]">
-                    </div>
-                    <div class="form-group">
-                        <label for="salesRep">Sales Rep.</label>
-                        <input type="text" class="form-control" placeholder="No response set" id="salesRep" value="<%= customer.salesRep %>" name="customer[salesRep]">
-                    </div>
-                    <div class="form-group">
-                        <label for="archivingSe">Archiving SE</label>
-                        <input type="text" class="form-control" placeholder="No response set" id="archivingSe" value="<%= customer.archivingSe %>"
-                            name="customer[archivingSe]">
-                    </div>
-                    <div class="form-group">
-                        <label for="accManager">Acc. Manager</label>
-                        <input type="text" class="form-control" placeholder="No response set" id="accManager" value="<%= customer.accManager %>"
-                            name="customer[accManager]">
-                    </div>
-                    <div class="form-group">
-                        <label for="archivingSe">TEM</label>
-                        <input type="text" class="form-control" placeholder="No response set" id="tme" value="<%= customer.tem %>" name="customer[tem]">
-                    </div>
-                    <div class="form-group">
-                        <label for="archivingSe">TAM</label>
-                        <input type="text" class="form-control" placeholder="No response set" id="tam" value="<%= customer.tam %>" name="customer[tam]">
-                    </div>
-                    <div class="form-group">
-                        <label for="archivingSe">Implementation Specialist</label>
-                        <input type="text" class="form-control" placeholder="No response set" id="implementationSpecialist " value="<%= customer.impSpecialist %>"
-                            name="customer[impSpecialist]">
-                    </div>
-                    <div class="form-group">
-                        <label for="archivingSe">Number of Users</label>
-                        <input type="text" class="form-control" placeholder="No response set" id="numberOfUsers" value="<%= customer.numberOfUsers %>"
-                            name="customer[numberOfUsers]">
-                    </div>
-                    <div class="form-group">
-                        <label for="location">Location</label>
-                        <input type="text" class="form-control" placeholder="No response set" id="location" value="<%= customer.location %>" name="customer[location]">
-                    </div>
-                    <div class="form-group">
-                        <label for="supervision">Supervision</label>
-                        <input type="text" class="form-control" placeholder="No response set" id="supervision" value="<%= customer.supervision %>"
-                            name="customer[supervision]">
-                    </div>
-                    <div class="form-group">
-                        <label for="contacts">Contacts</label>
-                        <input type="text" class="form-control" placeholder="No response set" id="contacts" value="<%= customer.contacts %>" name="customer[contacts]">
-                    </div>
-                    <div class="form-group">
-                        <label for="status">Status</label>
-                        <input type="text" class="form-control" placeholder="No response set" id="status" value="<%= customer.status %>" name="customer[status]">
-                    </div>
-                    <div class="form-group">
-                        <label for="natIp">NAT IP</label>
-                        <input type="text" class="form-control" placeholder="No response set" id="natIp" value="<%= customer.natIp %>" name="customer[natIp]">
-                    </div>
-                    <div class="form-group">
-                        <label for="contacts">Incumbent Solution</label>
-                        <input type="text" class="form-control" placeholder="No response set" id="incumbentSolution" value="<%= customer.incumbentSolution %>"
-                            name="customer[incumbentSolution]">
-                    </div>
-
-                    <div class="col">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" role="button">Close
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>

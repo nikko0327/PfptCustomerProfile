@@ -4,11 +4,15 @@ let can_click_expand = true;
 function expand_collapse() {
     if (expanded == true) {
         $('.collapse').collapse('hide');
+        //$('.collapse').click();
         document.getElementById("collapse-toggle").innerHTML = "Expand All";
+        $('i.fa-caret-down').toggleClass('fa-caret-down').toggleClass('fa-caret-right');
         expanded = false;
     } else if (expanded == false) {
         $('.collapse').collapse('show');
+        //$('.collapse').click();
         document.getElementById("collapse-toggle").innerHTML = "Collapse All";
+        $('i.fa-caret-right').toggleClass('fa-caret-down').toggleClass('fa-caret-right');
         expanded = true;
     }
 }
@@ -24,6 +28,18 @@ function change_arrow(collapse) {
 }
 
 $(document).ready(() => {
+    window.addEventListener("beforeunload", function (e) {
+        if (editing_customer || editing_email_systems_se || editing_appliances || editing_design_summary
+            || editing_desktop_network || editing_email_systems_ps || editing_import || editing_journaling
+            || editing_other_data_sources || editing_POC || editing_RFE || editing_usage) {
+            var confirmationMessage = "You have unsaved changes.";
+            e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
+            return confirmationMessage;
+        } else {
+            return '';
+        }
+    });
+
     $.ajaxSetup({
         async: true
     });
