@@ -14,7 +14,7 @@
             </div>
     </div>
     <br>
-    
+
     <thead>
         <tr class="row-name">
             <th style="width:10%">Customer Name</th>
@@ -72,12 +72,14 @@
 
                     <!-- This escape is borked. Need to fix if someone puts """ into customer name. Need to escape.
          If \"\"\", DB will delete """ because it would cause the string to be properly escaped. Becareful of backslashes -->
-                    <button class="btn btn-danger" onclick='delete_customer("<%= customer.name %>")'>Delete</button>
-                    <!-- <button data-toggle="modal" data-target="#editModal" class="btn btn-success center-block">Edit</button></div> -->
+
+                    <% if(user == 'mihuang' || user == 'nlee') { %>
+                        <button class="btn btn-danger" onclick='delete_customer("<%= customer.name %>")'>Delete</button>
+                        <!-- <button data-toggle="modal" data-target="#editModal" class="btn btn-success center-block">Edit</button></div> -->
                 </td>
             </tr>
-            <% }); %>
-
+            <% } %>
+                <% }); %>
     </tbody>
     </table>
 
@@ -148,4 +150,4 @@
     </div>
     </div>
 
-<% include partials/footer %>
+    <% include partials/footer %>
