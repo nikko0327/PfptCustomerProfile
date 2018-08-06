@@ -140,7 +140,7 @@ footer p {
 
 .container {
     /*width: 3000px !important;*/
-    max-width: 90% !important;
+    max-width: 90%;
     background-color: white;
 }
 
@@ -226,7 +226,6 @@ all {
 body {
     background-color: lightgray;
 }
-
 
 input.form-control {
     font-size: 12px !important;

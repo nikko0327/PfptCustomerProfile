@@ -2,453 +2,493 @@
 <!-- Do not format this file in Visual Studio Code, will bork page. -->
 
 <div id="otherDataSources" class="display-header">
-    <h5><a href="#otherDataSourcesContainer" data-toggle="collapse" onclick="change_arrow($(this));">
-        Other Data Sources
-        <i class="fa fa-caret-right" aria-hidden="true"></i>
-        </a>
-    </h5>
-
-    <div id="otherDataSourcesContainer" class="collapse">
-        <div class="edit pull-right">
-            <a href="#/" aria-hidden="true" id="editOtherDataSourcesLink" data-toggle="modal">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i></a>
-        </div>
-        <br>
-
-        <form id="otherDataSourcesForm" autocomplete="off" action="/index/<%= encodeURIComponent(customer.name) %>?_method=PUT" method="POST">
-            <fieldset id="otherDataSourcesFormFieldset" disabled>
-                <div class="form-group col-4 response-cell" hidden>
-                    <label for="customerName">Customer Name</label>
-                    <input type="text" readonly class="form-control" placeholder="No response set"
-                           value="<%= customer.name %>"
-                           name="other_data_source_questions[name]">
-                </div>
-
-                <!-- Edit custom content archiving -->
-                <h5>
-                    <a href="#editOtherDataSources-Custom" style="color: mediumvioletred" data-toggle="collapse" onclick="change_arrow($(this));">
-                        Custom content archiving
-                        <i class="fa fa-caret-right" aria-hidden="true"></i></a>
-                </h5>
-
-                <div id="editOtherDataSources-Custom" class="collapse">
-                    <div class="row">
-                        <div class="form-group col-4 response-cell"><label>Do you have custom applications that generate content that needs to be
-                                archived?</label>
-                            <%- make_custom_dropdown("other_data_source_questions[custom_content_archiving][need_custom_archive]",
-                                    other_data_source_questions.custom_content_archiving.need_custom_archive, ["Yes", "No"]) %>
-                        </div>
-                        <div class="form-group col-4 response-cell"><label>Provide a diagram of how content is captured and submitted</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= other_data_source_questions.custom_content_archiving.diagram %>"
-                                   name="other_data_source_questions[custom_content_archiving][diagram]">
-                        </div>
-                        <div class="form-group col-4 response-cell"><label>Daily volumes?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= other_data_source_questions.custom_content_archiving.daily_volume %>"
-                                   name="other_data_source_questions[custom_content_archiving][daily_volume]">
-                        </div>
-                        <div class="form-group col-4 response-cell"><label>Average Message size?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= other_data_source_questions.custom_content_archiving.avg_message_size %>"
-                                   name="other_data_source_questions[custom_content_archiving][avg_message_size]">
-                        </div>
-                        <div class="form-group col-4 response-cell"><label>What are these systems, and what are they sending?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= other_data_source_questions.custom_content_archiving.systems %>"
-                                   name="other_data_source_questions[custom_content_archiving][systems]">
-                        </div>
+        <h5><a href="#otherDataSourcesContainer" data-toggle="collapse" onclick="change_arrow($(this));">
+                Other Data Sources
+                <i class="fa fa-caret-right" aria-hidden="true"></i>
+            </a>
+        </h5>
+    
+        <div id="otherDataSourcesContainer" class="collapse">
+            <div class="edit pull-right">
+                <a href="#/" aria-hidden="true" id="editOtherDataSourcesLink" data-toggle="modal">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i></a>
+            </div>
+            <br>
+    
+            <form id="otherDataSourcesForm" autocomplete="off"
+                  action="/index/<%= encodeURIComponent(customer.name) %>?_method=PUT" method="POST">
+                <fieldset id="otherDataSourcesFormFieldset" disabled>
+                    <div class="form-group col-4 response-cell" hidden>
+                        <label for="customerName">Customer Name</label>
+                        <input type="text" readonly class="form-control" placeholder="No response set"
+                               value="<%= customer.name %>"
+                               name="other_data_source_questions[name]">
                     </div>
-                </div>
-                <hr>
-
-                <!-- Edit public social archiving -->
-                <h5>
-                    <a href="#editOtherDataSources-Social" style="color: mediumvioletred" data-toggle="collapse" onclick="change_arrow($(this));">
-                        Public social archiving
-                        <i class="fa fa-caret-right" aria-hidden="true"></i>
-                    </a>
-                </h5>
-
-                <div id="editOtherDataSources-Social" class="collapse">
-                    <!-- Checkboxes below -->
-                    <div class="form-group">
-                        <label style="font-size: 12px;">Which of these do you need to capture?</label>
-                        <br>
-                        <div class="row">
-                            <div class="col-4, response-checkbox"><p>
-                                    <input type="checkbox"
-                                           name="other_data_source_questions[public_social_archiving][need_social_media_content][facebook]"
-                                            <%= other_data_source_questions.public_social_archiving.need_social_media_content.facebook ?
-                                                    "checked" : "" %> />
-                                    <b> Facebook</b>
-                                </p></div>
-                            <div class="col-4, response-checkbox"><p>
-                                    <input type="checkbox"
-                                           name="other_data_source_questions[public_social_archiving][need_social_media_content][linkedin]"
-                                            <%= other_data_source_questions.public_social_archiving.need_social_media_content.linkedin ?
-                                                    "checked" : "" %> />
-                                    <b> Linkedin</b>
-                                </p></div>
-                            <div class="col-4, response-checkbox"><p>
-                                    <input type="checkbox"
-                                           name="other_data_source_questions[public_social_archiving][need_social_media_content][twitter]"
-                                            <%= other_data_source_questions.public_social_archiving.need_social_media_content.twitter ?
-                                                    "checked" : "" %> />
-                                    <b> Twitter</b>
-                                </p></div>
-                            <div class="col-4, response-checkbox"><p>
-                                    <input type="checkbox"
-                                           name="other_data_source_questions[public_social_archiving][need_social_media_content][google]"
-                                            <%= other_data_source_questions.public_social_archiving.need_social_media_content.google ?
-                                                    "checked" : "" %> />
-                                    <b> Google</b>
-                                </p></div>
-                            <div class="col-4, response-checkbox"><p>
-                                    <input type="checkbox"
-                                           name="other_data_source_questions[public_social_archiving][need_social_media_content][youtube]"
-                                            <%= other_data_source_questions.public_social_archiving.need_social_media_content.youtube ?
-                                                    "checked" : "" %> />
-                                    <b> YouTube</b>
-                                </p></div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-4 response-cell"><label>How many accounts for each source need to be captured?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= other_data_source_questions.public_social_archiving.number_of_each_account %>"
-                                   name="other_data_source_questions[public_social_archiving][number_of_each_account]">
-                        </div>
-                        <div class="form-group col-4 response-cell"><label>What are you using to archiving this content today?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= other_data_source_questions.public_social_archiving.using_what_to_archive %>"
-                                   name="other_data_source_questions[public_social_archiving][using_what_to_archive]">
-                        </div>
-                        <div class="form-group col-4 response-cell"><label>Who from the Digital Risk Team is involved?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= other_data_source_questions.public_social_archiving.digital_risk_agent %>"
-                                   name="other_data_source_questions[public_social_archiving][digital_risk_agent]">
-                        </div>
-                    </div>
-                </div>
-                <hr>
-
-                <!-- Edit enterprise collaboration archiving -->
-                <h5>
-                    <a href="#editOtherDataSources-enterprise" style="color: mediumvioletred" data-toggle="collapse" onclick="change_arrow($(this));">
-                        Enterprise collaboration archiving
-                        <i class="fa fa-caret-right" aria-hidden="true"></i></a>
-                </h5>
-
-                <div id="editOtherDataSources-enterprise" class="collapse">
-                    <br>
-                    <!-- Edit needs here, are checkboxes -->
-                    <div id="editECA-needs" class="row">
-                        <div class="col-4, response-checkbox"><p>
-                                <input type="checkbox"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][needs][files]"
-                                        <%= other_data_source_questions.enterprise_collaboration_archiving.needs.files ? "checked" : "" %> />
-                                <b> Files</b>
-                            </p></div>
-                        <div class="col-4, response-checkbox"><p>
-                                <input type="checkbox"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][needs][skype_in_cloud]"
-                                        <%= other_data_source_questions.enterprise_collaboration_archiving.needs.skype_in_cloud ? "checked" : "" %> />
-                                <b> Skype Business</b>
-                            </p></div>
-                        <div class="col-4, response-checkbox"><p>
-                                <input type="checkbox"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][needs][skype_on_prem]"
-                                        <%= other_data_source_questions.enterprise_collaboration_archiving.needs.skype_on_prem ? "checked" : "" %> />
-                                <b> Skype On-prem</b>
-                            </p></div>
-                        <br>
-                        <div class="col-4, response-checkbox"><p>
-                                <input type="checkbox"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][needs][lync_on_prem]"
-                                        <%= other_data_source_questions.enterprise_collaboration_archiving.needs.lync_on_prem ? "checked" : "" %> />
-                                <b> Lync On-prem</b>
-                            </p></div>
-                        <div class="col-4, response-checkbox"><p>
-                                <input type="checkbox"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][needs][one_drive]"
-                                        <%= other_data_source_questions.enterprise_collaboration_archiving.needs.one_drive ? "checked" : "" %> />
-                                <b> One Drive</b>
-                            </p></div>
-                        <div class="col-4, response-checkbox"><p>
-                                <input type="checkbox"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][needs][box]"
-                                        <%= other_data_source_questions.enterprise_collaboration_archiving.needs.box ? "checked" : "" %> />
-                                <b> Box</b>
-                            </p></div>
-
-                        <div class="col-4, response-checkbox"><p>
-                                <input type="checkbox"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][needs][bloomberg]"
-                                        <%= other_data_source_questions.enterprise_collaboration_archiving.needs.bloomberg ? "checked" : "" %> />
-                                <b> Bloomberg</b>
-                            </p></div>
-                        <div class="col-4, response-checkbox"><p>
-                                <input type="checkbox"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][needs][yammer]"
-                                        <%= other_data_source_questions.enterprise_collaboration_archiving.needs.yammer ? "checked" : "" %> />
-                                <b> Yammer</b>
-                            </p></div>
-                        <div class="col-4, response-checkbox"><p>
-                                <input type="checkbox"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][needs][jive]"
-                                        <%= other_data_source_questions.enterprise_collaboration_archiving.needs.jive ? "checked" : "" %> />
-                                <b> Jive</b>
-                            </p></div>
-                        <br>
-                        <div class="col-4, response-checkbox"><p>
-                                <input type="checkbox"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][needs][chatter]"
-                                        <%= other_data_source_questions.enterprise_collaboration_archiving.needs.chatter ? "checked" : "" %> />
-                                <b> Chatter</b>
-                            </p></div>
-                        <div class="col-4, response-checkbox"><p>
-                                <input type="checkbox"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][needs][slack]"
-                                        <%= other_data_source_questions.enterprise_collaboration_archiving.needs.slack ? "checked" : "" %> />
-                                <b> Slack</b>
-                            </p></div>
-                        <div class="col-4, response-checkbox"><p>
-                                <input type="checkbox"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][needs][symphony]"
-                                        <%= other_data_source_questions.enterprise_collaboration_archiving.needs.symphony ? "checked" : "" %> />
-                                <b> Symphony</b>
-                            </p></div>
-                        <br>
-                    </div>
-
-                    <!-- General questions -->
-                    <h5><a href="#editECA-general" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse" onclick="change_arrow($(this));">
-                        General
-                            <i class="fa fa-caret-right" aria-hidden="true"></i>
-                        </a>
-                    </h5>
-
-                    <div id="editECA-general" class="collapse">
-                        <div class="row">
-                            <div class="form-group col-4 response-cell"><label>How many users are there on each platform?</label>
-                                <input type="text" class="form-control" placeholder="No response set"
-                                       value="<%= other_data_source_questions.enterprise_collaboration_archiving.general.number_of_users_per_platform %>"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][general][number_of_users_per_platform]">
-                            </div>
-                            <div class="form-group col-4 response-cell"><label>How many of these users need to be archived</label>
-                                <input type="text" class="form-control" placeholder="No response set"
-                                       value="<%= other_data_source_questions.enterprise_collaboration_archiving.general.number_of_users_to_archive %>"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][general][number_of_users_to_archive]">
-                            </div>
-                            <div class="form-group col-4 response-cell"><label>Do you want to capture all user activity on each platform?</label>
-                                <%- make_custom_dropdown("other_data_source_questions[enterprise_collaboration_archiving][general][capture_user_activity]",
-                                        other_data_source_questions.enterprise_collaboration_archiving.general.capture_user_activity, ["Yes", "No"]) %>
-                            </div>
-                            <div class="form-group col-4 response-cell"><label>Average volume of messages/day?</label>
-                                <input type="text" class="form-control" placeholder="No response set"
-                                       value="<%= other_data_source_questions.enterprise_collaboration_archiving.general.avg_daily_message_volume %>"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][general][avg_daily_message_volume]">
-                            </div>
-                            <div class="form-group col-4 response-cell"><label>What is the most active profile like in terms of message and file
-                                    creation and updates (which are treated as new uploads)?</label>
-                                <input type="text" class="form-control" placeholder="No response set"
-                                       value="<%= other_data_source_questions.enterprise_collaboration_archiving.general.most_active_profile %>"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][general][most_active_profile]">
-                            </div>
-                            <div class="form-group col-4 response-cell"><label>What is their retention policy?</label>
-                                <input type="text" class="form-control" placeholder="No response set"
-                                       value="<%= other_data_source_questions.enterprise_collaboration_archiving.general.retention_policy %>"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][general][retention_policy]">
-                            </div>
-                            <div class="form-group col-4 response-cell"><label>Is the customer a PFPT archiving customer?</label>
-                                <%- make_custom_dropdown("other_data_source_questions[enterprise_collaboration_archiving][general][is_archiving_customer]",
-                                        other_data_source_questions.enterprise_collaboration_archiving.general.is_archiving_customer, ["Yes", "No"]) %>
-                            </div>
-                            <div class="form-group col-4 response-cell"><label>If not, what archive are you feeding messages into?</label>
-                                <input type="text" class="form-control" placeholder="No response set"
-                                       value="<%= other_data_source_questions.enterprise_collaboration_archiving.general.which_archive %>"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][general][which_archive]">
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-
-                    <!-- File questions -->
-                    <h5><a href="#editECA-files" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse" onclick="change_arrow($(this));">
-                        Files
-                        <i class="fa fa-caret-right" aria-hidden="true"></i>
-                        </a>
-                    </h5>
-
-                    <div id="editECA-files" class="collapse">
-                        <div class="row">
-                            <div class="form-group col-4 response-cell"><label>What is the storage usage (how much data is in the account)</label>
-                                <input type="text" class="form-control" placeholder="No response set"
-                                       value="<%= other_data_source_questions.enterprise_collaboration_archiving.files.storage_usage %>"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][files][storage_usage]">
-                            </div>
-                            <div class="form-group col-4 response-cell"><label>How many new files, how many updates, how large?</label>
-                                <input type="text" class="form-control" placeholder="No response set"
-                                       value="<%= other_data_source_questions.enterprise_collaboration_archiving.files.files_desc %>"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][files][files_desc]">
-                            </div>
-                            <div class="form-group col-4 response-cell"><label>What is file increase rate (number of new files) per day</label>
-                                <input type="text" class="form-control" placeholder="No response set"
-                                       value="<%= other_data_source_questions.enterprise_collaboration_archiving.files.fill_rate %>"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][files][fill_rate]">
-                            </div>
-                            <div class="form-group col-4 response-cell"><label>Do they need to archive the original content or is text extracted
-                                    content sufficient?</label>
-                                <%- make_custom_dropdown("other_data_source_questions[enterprise_collaboration_archiving][files][need_original_or_extracted]",
-                                        other_data_source_questions.enterprise_collaboration_archiving.files.need_original_or_extracted,
-                                        ["Need original content", "Text-extracted"]) %>
-                            </div>
-                            <div class="form-group col-4 response-cell"><label>Is the customer a PFPT archiving customer?</label>
-                                <%- make_custom_dropdown
-                                ("other_data_source_questions[enterprise_collaboration_archiving][files][is_archiving_customer]",
-                                        other_data_source_questions.enterprise_collaboration_archiving.files.is_archiving_customer, ["Yes", "No"]) %>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-
-                    <!-- Skype for business online questions -->
-                    <h5><a href="#editECA-skype" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse" onclick="change_arrow($(this));">
-                        Skype for Business Online
+    
+                    <!-- Edit custom content archiving -->
+                    <h5>
+                        <a href="#editOtherDataSources-Custom" style="color: mediumvioletred" data-toggle="collapse"
+                           onclick="change_arrow($(this));">
+                            Custom content archiving
                             <i class="fa fa-caret-right" aria-hidden="true"></i></a>
                     </h5>
-
-                    <div id="editECA-skype" class="collapse">
+    
+                    <div id="editOtherDataSources-Custom" class="collapse">
                         <div class="row">
-                            <div class="form-group col-4 response-cell"><label>What's their deployment? Hybrid vs fully in cloud (hosted)</label>
-                                <%- make_custom_dropdown
-                                ("other_data_source_questions[enterprise_collaboration_archiving][skype_business][deployment]",
-                                        other_data_source_questions.enterprise_collaboration_archiving.skype_business.deployment,
-                                        ["Hybrid", "Fully in cloud/hosted"]) %>
+                            <div class="form-group col-4 response-cell"><label>Do you have custom applications that generate
+                                    content that needs to be
+                                    archived?</label>
+                                <%- make_custom_dropdown("other_data_source_questions[custom_content_archiving][need_custom_archive]",
+                                        other_data_source_questions.custom_content_archiving.need_custom_archive, ["Yes", "No"]) %>
                             </div>
-                            <div class="form-group col-4 response-cell"><label>Distribution of license levels for all users? (need E3 or
-                                    higher)</label>
+                            <div class="form-group col-4 response-cell"><label>Provide a diagram of how content is captured
+                                    and submitted</label>
                                 <input type="text" class="form-control" placeholder="No response set"
-                                       value="<%= other_data_source_questions.enterprise_collaboration_archiving.skype_business.license_level %>"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][skype_business][license_level]">
+                                       value="<%= other_data_source_questions.custom_content_archiving.diagram %>"
+                                       name="other_data_source_questions[custom_content_archiving][diagram]">
                             </div>
-                            <div class="form-group col-4 response-cell"><label>Do they have any other services that use Holds and searches</label>
-                                <%- make_custom_dropdown
-                                ("other_data_source_questions[enterprise_collaboration_archiving][skype_business][use_holds_or_searches]",
-                                        other_data_source_questions.enterprise_collaboration_archiving.skype_business.use_holds_or_searches,
-                                        ["Yes", "No"]) %>
-                            </div>
-                            <div class="form-group col-4 response-cell"><label>If so how active are they? (How many searches and holds)</label>
+                            <div class="form-group col-4 response-cell"><label>Daily volumes?</label>
                                 <input type="text" class="form-control" placeholder="No response set"
-                                       value="<%= other_data_source_questions.enterprise_collaboration_archiving.skype_business.how_active %>"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][skype_business][how_active]">
+                                       value="<%= other_data_source_questions.custom_content_archiving.daily_volume %>"
+                                       name="other_data_source_questions[custom_content_archiving][daily_volume]">
+                            </div>
+                            <div class="form-group col-4 response-cell"><label>Average Message size?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= other_data_source_questions.custom_content_archiving.avg_message_size %>"
+                                       name="other_data_source_questions[custom_content_archiving][avg_message_size]">
+                            </div>
+                            <div class="form-group col-4 response-cell"><label>What are these systems, and what are they
+                                    sending?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= other_data_source_questions.custom_content_archiving.systems %>"
+                                       name="other_data_source_questions[custom_content_archiving][systems]">
                             </div>
                         </div>
                     </div>
                     <hr>
-
-                    <!-- Skype for Business On-Prem (Lync) -->
-                    <h5><a href="#editECA-skype-lync" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse">
-                        Skype for Business On-Prem (Lync)
-                        <i class="fa fa-caret-right" aria-hidden="true"></i></a>
-                    </h5>
-
-                    <div id="editECA-skype-lync" class="collapse">
-                        <div class="row">
-                            <div class="form-group col-4 response-cell"><label>What's their deployment (hybrid vs fully in cloud/hosted)?</label>
-                                <%- make_custom_dropdown("other_data_source_questions[enterprise_collaboration_archiving][skype_on_prem][deployment]",
-                                        other_data_source_questions.enterprise_collaboration_archiving.skype_on_prem.deployment,
-                                        ["Hybrid", "Fully in cloud/hosted"]) %>
-                            </div>
-                            <div class="form-group col-4 response-cell"><label>How many Lync servers & Lync DBs</label>
-                                <input type="text" class="form-control" placeholder="No response set"
-                                       value="<%= other_data_source_questions.enterprise_collaboration_archiving.skype_on_prem.number_of_lync_servers %>"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][skype_on_prem][number_of_lync_servers]">
-                            </div>
-                            <div class="form-group col-4 response-cell"><label>What is the retention policy in the Lync DB?
-                                    (We require 90 days or greater.)</label>
-                                <input type="text" class="form-control" placeholder="No response set"
-                                       value="<%= other_data_source_questions.enterprise_collaboration_archiving.skype_on_prem.retention_policy %>"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][skype_on_prem][retention_policy]">
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-
-                    <!-- Box & OneDrive -->
-                    <h5><a href="#editECA-box-onedrive" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse" onclick="change_arrow($(this));">
-                        Box & OneDrive
+    
+                    <!-- Edit public social archiving -->
+                    <h5>
+                        <a href="#editOtherDataSources-Social" style="color: mediumvioletred" data-toggle="collapse"
+                           onclick="change_arrow($(this));">
+                            Public social archiving
                             <i class="fa fa-caret-right" aria-hidden="true"></i>
                         </a>
                     </h5>
-
-                    <div id="editECA-box-onedrive" class="collapse">
-                        <div class="form-group col-4 response-cell"><label>For OneDrive, how do you authenticate?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= other_data_source_questions.enterprise_collaboration_archiving.box_one_drive.auth %>"
-                                   name="other_data_source_questions[enterprise_collaboration_archiving][box_one_drive][auth]">
+    
+                    <div id="editOtherDataSources-Social" class="collapse">
+                        <!-- Checkboxes below -->
+                        <div class="form-group">
+                            <label style="font-size: 12px;">Which of these do you need to capture?</label>
+                            <br>
+                            <div class="row">
+                                <div class="col-4, response-checkbox"><p>
+                                        <input type="checkbox"
+                                               name="other_data_source_questions[public_social_archiving][need_social_media_content][facebook]"
+                                                <%= other_data_source_questions.public_social_archiving.need_social_media_content.facebook ?
+                                                        "checked" : "" %> />
+                                        <b> Facebook</b>
+                                    </p></div>
+                                <div class="col-4, response-checkbox"><p>
+                                        <input type="checkbox"
+                                               name="other_data_source_questions[public_social_archiving][need_social_media_content][linkedin]"
+                                                <%= other_data_source_questions.public_social_archiving.need_social_media_content.linkedin ?
+                                                        "checked" : "" %> />
+                                        <b> Linkedin</b>
+                                    </p></div>
+                                <div class="col-4, response-checkbox"><p>
+                                        <input type="checkbox"
+                                               name="other_data_source_questions[public_social_archiving][need_social_media_content][twitter]"
+                                                <%= other_data_source_questions.public_social_archiving.need_social_media_content.twitter ?
+                                                        "checked" : "" %> />
+                                        <b> Twitter</b>
+                                    </p></div>
+                                <div class="col-4, response-checkbox"><p>
+                                        <input type="checkbox"
+                                               name="other_data_source_questions[public_social_archiving][need_social_media_content][google]"
+                                                <%= other_data_source_questions.public_social_archiving.need_social_media_content.google ?
+                                                        "checked" : "" %> />
+                                        <b> Google</b>
+                                    </p></div>
+                                <div class="col-4, response-checkbox"><p>
+                                        <input type="checkbox"
+                                               name="other_data_source_questions[public_social_archiving][need_social_media_content][youtube]"
+                                                <%= other_data_source_questions.public_social_archiving.need_social_media_content.youtube ?
+                                                        "checked" : "" %> />
+                                        <b> YouTube</b>
+                                    </p></div>
+                            </div>
                         </div>
-                    </div>
-                    <hr>
-
-                    <!-- Chatter -->
-                    <h5><a href="#editECA-chatter" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse" onclick="change_arrow($(this));">
-                        Chatter
-                        <i class="fa fa-caret-right" aria-hidden="true"></i>
-                    </a>
-                    </h5>
-
-                    <div id="editECA-chatter" class="collapse">
+    
                         <div class="row">
-                            <div class="form-group col-4 response-cell"><label>How many groups?</label>
+                            <div class="form-group col-4 response-cell"><label>How many accounts for each source need to be
+                                    captured?</label>
                                 <input type="text" class="form-control" placeholder="No response set"
-                                       value="<%= other_data_source_questions.enterprise_collaboration_archiving.chatter.number_of_groups %>"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][chatter][number_of_groups]">
+                                       value="<%= other_data_source_questions.public_social_archiving.number_of_each_account %>"
+                                       name="other_data_source_questions[public_social_archiving][number_of_each_account]">
                             </div>
-                            <div class="form-group col-4 response-cell"><label>Are they going to multi-journal?</label>
-                                <%- make_custom_dropdown("other_data_source_questions[enterprise_collaboration_archiving][chatter][multi_journal]",
-                                        other_data_source_questions.enterprise_collaboration_archiving.chatter.multi_journal,
-                                        ["Yes", "No"]) %>
-                            </div>
-                            <div class="form-group col-4 response-cell"><label>Do they send any files that are over 3 MB?</label>
-                                <%- make_custom_dropdown("other_data_source_questions[enterprise_collaboration_archiving][chatter][over_3MB]",
-                                        other_data_source_questions.enterprise_collaboration_archiving.chatter.over_3MB,
-                                        ["Yes", "No"]) %>
-                            </div>
-                            <div class="form-group col-4 response-cell"><label>If yes, are they comfortable relaying this content through the PFPT
-                                    network?</label>
-                                <%- make_custom_dropdown("other_data_source_questions[enterprise_collaboration_archiving][chatter][comfortable]",
-                                        other_data_source_questions.enterprise_collaboration_archiving.chatter.comfortable,
-                                        ["Yes", "No"]) %>
-                            </div>
-                            <div class="form-group col-4 response-cell"><label>Is there a requirement to keep things in the SF environment?</label>
+                            <div class="form-group col-4 response-cell"><label>What are you using to archiving this content
+                                    today?</label>
                                 <input type="text" class="form-control" placeholder="No response set"
-                                       value="<%= other_data_source_questions.enterprise_collaboration_archiving.chatter.requirement %>"
-                                       name="other_data_source_questions[enterprise_collaboration_archiving][chatter][requirement]">
+                                       value="<%= other_data_source_questions.public_social_archiving.using_what_to_archive %>"
+                                       name="other_data_source_questions[public_social_archiving][using_what_to_archive]">
+                            </div>
+                            <div class="form-group col-4 response-cell"><label>Who from the Digital Risk Team is
+                                    involved?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= other_data_source_questions.public_social_archiving.digital_risk_agent %>"
+                                       name="other_data_source_questions[public_social_archiving][digital_risk_agent]">
                             </div>
                         </div>
                     </div>
                     <hr>
-
-                    <!-- Symphony -->
-                    <h5><a href="#editECA-symphony" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse" onclick="change_arrow($(this));">
-                        Symphony
-                        <i class="fa fa-caret-right" aria-hidden="true"></i>
-                        </a>
+    
+                    <!-- Edit enterprise collaboration archiving -->
+                    <h5>
+                        <a href="#editOtherDataSources-enterprise" style="color: mediumvioletred" data-toggle="collapse"
+                           onclick="change_arrow($(this));">
+                            Enterprise collaboration archiving
+                            <i class="fa fa-caret-right" aria-hidden="true"></i></a>
                     </h5>
-
-                    <div id="editECA-symphony" class="collapse">
-                        <div class="form-group col-4 response-cell"><label>What license level do they have?</label>
-                            <input type="text" class="form-control" placeholder="No response set"
-                                   value="<%= other_data_source_questions.enterprise_collaboration_archiving.symphony.license %>"
-                                   name="other_data_source_questions[enterprise_collaboration_archiving][symphony][license]">
+    
+                    <div id="editOtherDataSources-enterprise" class="collapse">
+                        <br>
+                        <!-- Edit needs here, are checkboxes -->
+                        <div id="editECA-needs" class="row">
+                            <div class="col-4, response-checkbox"><p>
+                                    <input type="checkbox"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][needs][files]"
+                                            <%= other_data_source_questions.enterprise_collaboration_archiving.needs.files ? "checked" : "" %> />
+                                    <b> Files</b>
+                                </p></div>
+                            <div class="col-4, response-checkbox"><p>
+                                    <input type="checkbox"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][needs][skype_in_cloud]"
+                                            <%= other_data_source_questions.enterprise_collaboration_archiving.needs.skype_in_cloud ? "checked" : "" %> />
+                                    <b> Skype Business</b>
+                                </p></div>
+                            <div class="col-4, response-checkbox"><p>
+                                    <input type="checkbox"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][needs][skype_on_prem]"
+                                            <%= other_data_source_questions.enterprise_collaboration_archiving.needs.skype_on_prem ? "checked" : "" %> />
+                                    <b> Skype On-prem</b>
+                                </p></div>
+                            <br>
+                            <div class="col-4, response-checkbox"><p>
+                                    <input type="checkbox"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][needs][lync_on_prem]"
+                                            <%= other_data_source_questions.enterprise_collaboration_archiving.needs.lync_on_prem ? "checked" : "" %> />
+                                    <b> Lync On-prem</b>
+                                </p></div>
+                            <div class="col-4, response-checkbox"><p>
+                                    <input type="checkbox"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][needs][one_drive]"
+                                            <%= other_data_source_questions.enterprise_collaboration_archiving.needs.one_drive ? "checked" : "" %> />
+                                    <b> One Drive</b>
+                                </p></div>
+                            <div class="col-4, response-checkbox"><p>
+                                    <input type="checkbox"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][needs][box]"
+                                            <%= other_data_source_questions.enterprise_collaboration_archiving.needs.box ? "checked" : "" %> />
+                                    <b> Box</b>
+                                </p></div>
+    
+                            <div class="col-4, response-checkbox"><p>
+                                    <input type="checkbox"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][needs][bloomberg]"
+                                            <%= other_data_source_questions.enterprise_collaboration_archiving.needs.bloomberg ? "checked" : "" %> />
+                                    <b> Bloomberg</b>
+                                </p></div>
+                            <div class="col-4, response-checkbox"><p>
+                                    <input type="checkbox"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][needs][yammer]"
+                                            <%= other_data_source_questions.enterprise_collaboration_archiving.needs.yammer ? "checked" : "" %> />
+                                    <b> Yammer</b>
+                                </p></div>
+                            <div class="col-4, response-checkbox"><p>
+                                    <input type="checkbox"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][needs][jive]"
+                                            <%= other_data_source_questions.enterprise_collaboration_archiving.needs.jive ? "checked" : "" %> />
+                                    <b> Jive</b>
+                                </p></div>
+                            <br>
+                            <div class="col-4, response-checkbox"><p>
+                                    <input type="checkbox"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][needs][chatter]"
+                                            <%= other_data_source_questions.enterprise_collaboration_archiving.needs.chatter ? "checked" : "" %> />
+                                    <b> Chatter</b>
+                                </p></div>
+                            <div class="col-4, response-checkbox"><p>
+                                    <input type="checkbox"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][needs][slack]"
+                                            <%= other_data_source_questions.enterprise_collaboration_archiving.needs.slack ? "checked" : "" %> />
+                                    <b> Slack</b>
+                                </p></div>
+                            <div class="col-4, response-checkbox"><p>
+                                    <input type="checkbox"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][needs][symphony]"
+                                            <%= other_data_source_questions.enterprise_collaboration_archiving.needs.symphony ? "checked" : "" %> />
+                                    <b> Symphony</b>
+                                </p></div>
+                            <br>
+                        </div>
+    
+                        <!-- General questions -->
+                        <h5><a href="#editECA-general" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse"
+                               onclick="change_arrow($(this));">
+                                General
+                                <i class="fa fa-caret-right" aria-hidden="true"></i>
+                            </a>
+                        </h5>
+    
+                        <div id="editECA-general" class="collapse">
+                            <div class="row">
+                                <div class="form-group col-4 response-cell"><label>How many users are there on each
+                                        platform?</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= other_data_source_questions.enterprise_collaboration_archiving.general.number_of_users_per_platform %>"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][general][number_of_users_per_platform]">
+                                </div>
+                                <div class="form-group col-4 response-cell"><label>How many of these users need to be
+                                        archived</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= other_data_source_questions.enterprise_collaboration_archiving.general.number_of_users_to_archive %>"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][general][number_of_users_to_archive]">
+                                </div>
+                                <div class="form-group col-4 response-cell"><label>Do you want to capture all user activity
+                                        on each platform?</label>
+                                    <%- make_custom_dropdown("other_data_source_questions[enterprise_collaboration_archiving][general][capture_user_activity]",
+                                            other_data_source_questions.enterprise_collaboration_archiving.general.capture_user_activity, ["Yes", "No"]) %>
+                                </div>
+                                <div class="form-group col-4 response-cell"><label>Average volume of messages/day?</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= other_data_source_questions.enterprise_collaboration_archiving.general.avg_daily_message_volume %>"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][general][avg_daily_message_volume]">
+                                </div>
+                                <div class="form-group col-4 response-cell"><label>What is the most active profile like in
+                                        terms of message and file
+                                        creation and updates (which are treated as new uploads)?</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= other_data_source_questions.enterprise_collaboration_archiving.general.most_active_profile %>"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][general][most_active_profile]">
+                                </div>
+                                <div class="form-group col-4 response-cell"><label>What is their retention policy?</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= other_data_source_questions.enterprise_collaboration_archiving.general.retention_policy %>"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][general][retention_policy]">
+                                </div>
+                                <div class="form-group col-4 response-cell"><label>Is the customer a PFPT archiving
+                                        customer?</label>
+                                    <%- make_custom_dropdown("other_data_source_questions[enterprise_collaboration_archiving][general][is_archiving_customer]",
+                                            other_data_source_questions.enterprise_collaboration_archiving.general.is_archiving_customer, ["Yes", "No"]) %>
+                                </div>
+                                <div class="form-group col-4 response-cell"><label>If not, what archive are you feeding
+                                        messages into?</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= other_data_source_questions.enterprise_collaboration_archiving.general.which_archive %>"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][general][which_archive]">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+    
+                        <!-- File questions -->
+                        <h5><a href="#editECA-files" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse"
+                               onclick="change_arrow($(this));">
+                                Files
+                                <i class="fa fa-caret-right" aria-hidden="true"></i>
+                            </a>
+                        </h5>
+    
+                        <div id="editECA-files" class="collapse">
+                            <div class="row">
+                                <div class="form-group col-4 response-cell"><label>What is the storage usage (how much data
+                                        is in the account)</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= other_data_source_questions.enterprise_collaboration_archiving.files.storage_usage %>"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][files][storage_usage]">
+                                </div>
+                                <div class="form-group col-4 response-cell"><label>How many new files, how many updates, how
+                                        large?</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= other_data_source_questions.enterprise_collaboration_archiving.files.files_desc %>"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][files][files_desc]">
+                                </div>
+                                <div class="form-group col-4 response-cell"><label>What is file increase rate (number of new
+                                        files) per day</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= other_data_source_questions.enterprise_collaboration_archiving.files.fill_rate %>"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][files][fill_rate]">
+                                </div>
+                                <div class="form-group col-4 response-cell"><label>Do they need to archive the original
+                                        content or is text extracted
+                                        content sufficient?</label>
+                                    <%- make_custom_dropdown("other_data_source_questions[enterprise_collaboration_archiving][files][need_original_or_extracted]",
+                                            other_data_source_questions.enterprise_collaboration_archiving.files.need_original_or_extracted,
+                                            ["Need original content", "Text-extracted"]) %>
+                                </div>
+                                <div class="form-group col-4 response-cell"><label>Is the customer a PFPT archiving
+                                        customer?</label>
+                                    <%- make_custom_dropdown
+                                    ("other_data_source_questions[enterprise_collaboration_archiving][files][is_archiving_customer]",
+                                            other_data_source_questions.enterprise_collaboration_archiving.files.is_archiving_customer, ["Yes", "No"]) %>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+    
+                        <!-- Skype for business online questions -->
+                        <h5><a href="#editECA-skype" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse"
+                               onclick="change_arrow($(this));">
+                                Skype for Business Online
+                                <i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                        </h5>
+    
+                        <div id="editECA-skype" class="collapse">
+                            <div class="row">
+                                <div class="form-group col-4 response-cell"><label>What's their deployment? Hybrid vs fully
+                                        in cloud (hosted)</label>
+                                    <%- make_custom_dropdown
+                                    ("other_data_source_questions[enterprise_collaboration_archiving][skype_business][deployment]",
+                                            other_data_source_questions.enterprise_collaboration_archiving.skype_business.deployment,
+                                            ["Hybrid", "Fully in cloud/hosted"]) %>
+                                </div>
+                                <div class="form-group col-4 response-cell"><label>Distribution of license levels for all
+                                        users? (need E3 or
+                                        higher)</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= other_data_source_questions.enterprise_collaboration_archiving.skype_business.license_level %>"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][skype_business][license_level]">
+                                </div>
+                                <div class="form-group col-4 response-cell"><label>Do they have any other services that use
+                                        Holds and searches</label>
+                                    <%- make_custom_dropdown
+                                    ("other_data_source_questions[enterprise_collaboration_archiving][skype_business][use_holds_or_searches]",
+                                            other_data_source_questions.enterprise_collaboration_archiving.skype_business.use_holds_or_searches,
+                                            ["Yes", "No"]) %>
+                                </div>
+                                <div class="form-group col-4 response-cell"><label>If so how active are they? (How many
+                                        searches and holds)</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= other_data_source_questions.enterprise_collaboration_archiving.skype_business.how_active %>"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][skype_business][how_active]">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+    
+                        <!-- Skype for Business On-Prem (Lync) -->
+                        <h5><a href="#editECA-skype-lync" style="color: lightseagreen; margin-left:3em;"
+                               data-toggle="collapse">
+                                Skype for Business On-Prem (Lync)
+                                <i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                        </h5>
+    
+                        <div id="editECA-skype-lync" class="collapse">
+                            <div class="row">
+                                <div class="form-group col-4 response-cell"><label>What's their deployment (hybrid vs fully
+                                        in cloud/hosted)?</label>
+                                    <%- make_custom_dropdown("other_data_source_questions[enterprise_collaboration_archiving][skype_on_prem][deployment]",
+                                            other_data_source_questions.enterprise_collaboration_archiving.skype_on_prem.deployment,
+                                            ["Hybrid", "Fully in cloud/hosted"]) %>
+                                </div>
+                                <div class="form-group col-4 response-cell"><label>How many Lync servers & Lync DBs</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= other_data_source_questions.enterprise_collaboration_archiving.skype_on_prem.number_of_lync_servers %>"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][skype_on_prem][number_of_lync_servers]">
+                                </div>
+                                <div class="form-group col-4 response-cell"><label>What is the retention policy in the Lync
+                                        DB?
+                                        (We require 90 days or greater.)</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= other_data_source_questions.enterprise_collaboration_archiving.skype_on_prem.retention_policy %>"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][skype_on_prem][retention_policy]">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+    
+                        <!-- Box & OneDrive -->
+                        <h5><a href="#editECA-box-onedrive" style="color: lightseagreen; margin-left:3em;"
+                               data-toggle="collapse" onclick="change_arrow($(this));">
+                                Box & OneDrive
+                                <i class="fa fa-caret-right" aria-hidden="true"></i>
+                            </a>
+                        </h5>
+    
+                        <div id="editECA-box-onedrive" class="collapse">
+                            <div class="row">
+                                <div class="form-group col-4 response-cell">
+                                    <label>For OneDrive, how do you authenticate?</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= other_data_source_questions.enterprise_collaboration_archiving.box_one_drive.auth %>"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][box_one_drive][auth]">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+    
+                        <!-- Chatter -->
+                        <h5><a href="#editECA-chatter" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse"
+                               onclick="change_arrow($(this));">
+                                Chatter
+                                <i class="fa fa-caret-right" aria-hidden="true"></i>
+                            </a>
+                        </h5>
+    
+                        <div id="editECA-chatter" class="collapse">
+                            <div class="row">
+                                <div class="form-group col-4 response-cell"><label>How many groups?</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= other_data_source_questions.enterprise_collaboration_archiving.chatter.number_of_groups %>"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][chatter][number_of_groups]">
+                                </div>
+                                <div class="form-group col-4 response-cell"><label>Are they going to multi-journal?</label>
+                                    <%- make_custom_dropdown("other_data_source_questions[enterprise_collaboration_archiving][chatter][multi_journal]",
+                                            other_data_source_questions.enterprise_collaboration_archiving.chatter.multi_journal,
+                                            ["Yes", "No"]) %>
+                                </div>
+                                <div class="form-group col-4 response-cell"><label>Do they send any files that are over 3
+                                        MB?</label>
+                                    <%- make_custom_dropdown("other_data_source_questions[enterprise_collaboration_archiving][chatter][over_3MB]",
+                                            other_data_source_questions.enterprise_collaboration_archiving.chatter.over_3MB,
+                                            ["Yes", "No"]) %>
+                                </div>
+                                <div class="form-group col-4 response-cell"><label>If yes, are they comfortable relaying
+                                        this content through the PFPT
+                                        network?</label>
+                                    <%- make_custom_dropdown("other_data_source_questions[enterprise_collaboration_archiving][chatter][comfortable]",
+                                            other_data_source_questions.enterprise_collaboration_archiving.chatter.comfortable,
+                                            ["Yes", "No"]) %>
+                                </div>
+                                <div class="form-group col-4 response-cell"><label>Is there a requirement to keep things in
+                                        the SF environment?</label>
+                                    <input type="text" class="form-control" placeholder="No response set"
+                                           value="<%= other_data_source_questions.enterprise_collaboration_archiving.chatter.requirement %>"
+                                           name="other_data_source_questions[enterprise_collaboration_archiving][chatter][requirement]">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+    
+                        <!-- Symphony -->
+                        <h5><a href="#editECA-symphony" style="color: lightseagreen; margin-left:3em;"
+                               data-toggle="collapse" onclick="change_arrow($(this));">
+                                Symphony
+                                <i class="fa fa-caret-right" aria-hidden="true"></i>
+                            </a>
+                        </h5>
+    
+                        <div id="editECA-symphony" class="collapse">
+                            <div class="form-group col-4 response-cell"><label>What license level do they have?</label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                       value="<%= other_data_source_questions.enterprise_collaboration_archiving.symphony.license %>"
+                                       name="other_data_source_questions[enterprise_collaboration_archiving][symphony][license]">
+                            </div>
                         </div>
                     </div>
-                </div>
-            </fieldset>
-        </form>
+                </fieldset>
+            </form>
+        </div>
     </div>
-</div>
-<hr class="rainbow">
+    <hr class="rainbow">
