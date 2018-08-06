@@ -48,12 +48,16 @@ $(document).ready(() => {
 
 function key_sync(selector) {
     $("input." + selector).keyup(function () {
-        $("input." + selector).val($(this).val());
+        if (sync_forms) {
+            $("input." + selector).val($(this).val());
+        }
     });
 }
 
 function dropdown_sync(selector) {
     $(`select.${selector}`).change(function (e) {
-        $(`select.${selector}`).val(this.value);
+        if (sync_forms) {
+            $(`select.${selector}`).val(this.value);
+        }
     });
 }

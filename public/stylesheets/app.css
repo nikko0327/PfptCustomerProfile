@@ -142,6 +142,10 @@ footer p {
     /*width: 3000px !important;*/
     max-width: 90%;
     background-color: white;
+    border: .2px solid gray; 
+    padding-right:25px; 
+    padding-left:25px; 
+    padding-bottom: 25px
 }
 
 .col-4 {

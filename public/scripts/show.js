@@ -8,11 +8,13 @@ function sync_email_systems_forms() {
     if (sync_forms) {
         document.getElementById("sync-forms").innerHTML = "Unsync Forms";
         alert("The following forms will synchronize similar questions:\n" +
-            "\u2022 Email Systems SE/PS");
+            "\u2022 Email Systems SE/PS"+
+            "\n\nPlease review your changes before saving.");
     } else {
         document.getElementById("sync-forms").innerHTML = "Sync Forms";
         alert("The following forms will not synchronize similar questions:\n" +
-            "\u2022 Email Systems SE/PS");
+            "\u2022 Email Systems SE/PS" +
+            "\n\nPlease review your changes before saving.");
     }
 }
 
