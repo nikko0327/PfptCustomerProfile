@@ -4,6 +4,15 @@ var router = express.Router();
 var mongoose = require("mongoose");
 mongoose.Promise = require('bluebird');
 
+
+/**
+*   ============================ IMPORTANT ============================
+*   Use /customerprofile in production if nginx is present, use "" locally/in localhost
+*/
+
+var append = "/customerprofile";
+// var append = "";
+
 var ldap_auth = require("ldapjs");
 
 var Customer = require("../models/customer");
@@ -25,7 +34,7 @@ function authenticate_session(req, res, next) {
     if (req.session.user) {
         next();
     } else {
-        res.redirect("/customerprofile/login");
+        res.redirect(append + "/login");
     }
 }
 
@@ -38,17 +47,17 @@ router.post("/logout", function (req, res) {
         }
     });
 
-    res.redirect("/customerprofile/login");
+    res.redirect(append + "/login");
 });
 
 //Entry point for the app startup
 router.get("/", function (req, res) {
-    res.redirect("/customerprofile/index");
+    res.redirect(append + "/index");
 });
 
 //NEW ROUTE
 router.get("/new", authenticate_session, function (req, res) {
-    res.render("new", {error_message: undefined});
+    res.render("new", { error_message: undefined });
 });
 
 //
@@ -69,7 +78,7 @@ router.get("/new", authenticate_session, function (req, res) {
 //             }
 //
 //             register_user().then(() => {
-//                 res.redirect("/customerprofile/login");
+//                 res.redirect( append + "/login");
 //             }).catch((error) => {
 //                 if (error["code"] == 11000) {
 //                     console.log("-- Duplicate entry for user: " + req.body.registration_info["username"]);
@@ -87,13 +96,13 @@ router.get("/new", authenticate_session, function (req, res) {
 
 // LOGIN
 router.get("/login", function (req, res) {
-    res.render("login", {fail: false});
+    res.render("login", { fail: false });
 });
 
 // POST LOGIN
 router.post("/login", function (req, res) {
     if (!req.body.login || req.body.login == null) {
-        res.render("login", {fail: true});
+        res.render("login", { fail: true });
     } else {
         var client = ldap_auth.createClient({
             url: "ldap://ldap.corp.proofpoint.com"
@@ -127,11 +136,11 @@ router.post("/login", function (req, res) {
                     if (error) {
                         // console.log(error);
                         console.log("Failed attempt to login using username: " + req.body.login["username"]);
-                        res.render("login", {fail: true});
+                        res.render("login", { fail: true });
                     } else {
                         console.log("Logged in: " + req.body.login["username"]);
                         req.session.user = req.body.login["username"];
-                        res.redirect("/customerprofile/index");
+                        res.redirect(append + "/index");
                     }
                 });
             }
@@ -148,7 +157,7 @@ router.post("/login", function (req, res) {
     //                 // Do auth/sessions here
     //                 console.log("Logged in: " + req.body.login["username"]);
     //                 req.session.user = req.body.login["username"];
-    //                 res.redirect("/customerprofile/index");
+    //                 res.redirect( append + "/index");
     //             } else {
     //                 res.render("login", {fail: true});
     //             }
@@ -163,257 +172,257 @@ router.post("/login", function (req, res) {
 
 //CREATE ROUTE
 router.post("/new", authenticate_session, function (req, res) {
-        if (req == undefined || req == null) {
-            console.log("req is empty");
-        } else {
-            console.log("- Trying to create new customer...");
+    if (req == undefined || req == null) {
+        console.log("req is empty");
+    } else {
+        console.log("- Trying to create new customer...");
 
-            Customer.create(req.body.customer, (error) => {
-                if (error) {
-                    if (error["code"] == 11000) {
-                        console.log("-- Duplicate entry for customer: '" + req.body.customer["name"] + "'");
-                        // Send pop up alert to HTML here
-                        res.render("new", {error_message: "Duplicate entry for customer: " + req.body.customer["name"]});
-                    } else {
-                        console.log(error);
-                    }
+        Customer.create(req.body.customer, (error) => {
+            if (error) {
+                if (error["code"] == 11000) {
+                    console.log("-- Duplicate entry for customer: '" + req.body.customer["name"] + "'");
+                    // Send pop up alert to HTML here
+                    res.render("new", { error_message: "Duplicate entry for customer: " + req.body.customer["name"] });
                 } else {
-                    ApplianceQuestions.create({name: req.body.customer["name"]});
-                    DesignSummaryQuestions.create({name: req.body.customer["name"]});
-                    DesktopNetworkQuestions.create({name: req.body.customer["name"]});
-                    EmailPSQuestions.create({name: req.body.customer["name"]});
-                    EmailSEQuestions.create({name: req.body.customer["name"]});
-                    ImportQuestions.create({name: req.body.customer["name"]});
-                    JournalingQuestions.create({name: req.body.customer["name"]});
-                    OtherDataSourcesQuestions.create({name: req.body.customer["name"]});
-                    POCQuestions.create({name: req.body.customer["name"]});
-                    RFEQuestions.create({name: req.body.customer["name"]});
-                    UsageQuestions.create({name: req.body.customer["name"]});
-
-                    res.redirect("/customerprofile/index");
-                    console.log("Creation of customer '" + req.body.customer["name"] + "' successful.");
+                    console.log(error);
                 }
-            });
-        }
+            } else {
+                ApplianceQuestions.create({ name: req.body.customer["name"] });
+                DesignSummaryQuestions.create({ name: req.body.customer["name"] });
+                DesktopNetworkQuestions.create({ name: req.body.customer["name"] });
+                EmailPSQuestions.create({ name: req.body.customer["name"] });
+                EmailSEQuestions.create({ name: req.body.customer["name"] });
+                ImportQuestions.create({ name: req.body.customer["name"] });
+                JournalingQuestions.create({ name: req.body.customer["name"] });
+                OtherDataSourcesQuestions.create({ name: req.body.customer["name"] });
+                POCQuestions.create({ name: req.body.customer["name"] });
+                RFEQuestions.create({ name: req.body.customer["name"] });
+                UsageQuestions.create({ name: req.body.customer["name"] });
 
-        // Customer.create(req.body.customer).then(() => {
-        //     ApplianceQuestions.create({name: req.body.customer["name"]});
-        //     DesignSummaryQuestions.create({name: req.body.customer["name"]});
-        //     DesktopNetworkQuestions.create({name: req.body.customer["name"]});
-        //     EmailPSQuestions.create({name: req.body.customer["name"]});
-        //     EmailSEQuestions.create({name: req.body.customer["name"]});
-        //     ImportQuestions.create({name: req.body.customer["name"]});
-        //     JournalingQuestions.create({name: req.body.customer["name"]});
-        //     OtherDataSourcesQuestions.create({name: req.body.customer["name"]});
-        //     POCQuestions.create({name: req.body.customer["name"]});
-        //     RFEQuestions.create({name: req.body.customer["name"]});
-        //     UsageQuestions.create({name: req.body.customer["name"]});
-        //
-        //     res.redirect("/customerprofile/index");
-        //     console.log("Creation of customer " + req.body.customer["name"] + " successful.");
-        // }).catch((error) => {
-        //     if (error["code"] == 11000) {
-        //         console.log("-- Duplicate entry for customer: " + req.body.customer["name"]);
-        //         // Send pop up alert to HTML here
-        //         res.render("new", {error_message: "Duplicate."});
-        //     } else {
-        //         console.log(error);
-        //     }
-        // });
+                res.redirect(append + "/index");
+                console.log("Creation of customer '" + req.body.customer["name"] + "' successful.");
+            }
+        });
     }
+
+    // Customer.create(req.body.customer).then(() => {
+    //     ApplianceQuestions.create({name: req.body.customer["name"]});
+    //     DesignSummaryQuestions.create({name: req.body.customer["name"]});
+    //     DesktopNetworkQuestions.create({name: req.body.customer["name"]});
+    //     EmailPSQuestions.create({name: req.body.customer["name"]});
+    //     EmailSEQuestions.create({name: req.body.customer["name"]});
+    //     ImportQuestions.create({name: req.body.customer["name"]});
+    //     JournalingQuestions.create({name: req.body.customer["name"]});
+    //     OtherDataSourcesQuestions.create({name: req.body.customer["name"]});
+    //     POCQuestions.create({name: req.body.customer["name"]});
+    //     RFEQuestions.create({name: req.body.customer["name"]});
+    //     UsageQuestions.create({name: req.body.customer["name"]});
+    //
+    //     res.redirect( append + "/index");
+    //     console.log("Creation of customer " + req.body.customer["name"] + " successful.");
+    // }).catch((error) => {
+    //     if (error["code"] == 11000) {
+    //         console.log("-- Duplicate entry for customer: " + req.body.customer["name"]);
+    //         // Send pop up alert to HTML here
+    //         res.render("new", {error_message: "Duplicate."});
+    //     } else {
+    //         console.log(error);
+    //     }
+    // });
+}
 );
 
 //UPDATE ROUTE
 router.put("/index/:id", authenticate_session, function (req, res) {
-        // Considering changing to else ifs
+    // Considering changing to else ifs
 
-        // For updating name, make a ton of promises and execute them, THEN render the page.
-        if (req.body.customer != undefined && req.body.customer != null) {
-            console.log("- Attempting to update customer information...");
-            //console.log(req.body.customer["name"]);
+    // For updating name, make a ton of promises and execute them, THEN render the page.
+    if (req.body.customer != undefined && req.body.customer != null) {
+        console.log("- Attempting to update customer information...");
+        //console.log(req.body.customer["name"]);
 
-            // Make a bunch of await calls and wait for the queries to finish.
-            async function updateID() {
-                await Customer.findOneAndUpdate({name: req.params.id}, req.body.customer).exec();
-                await ApplianceQuestions.findOneAndUpdate({name: req.params.id}, {"name": req.body.customer["name"]}).exec();
-                await DesignSummaryQuestions.findOneAndUpdate({name: req.params.id}, {"name": req.body.customer["name"]}).exec();
-                await DesktopNetworkQuestions.findOneAndUpdate({name: req.params.id}, {"name": req.body.customer["name"]}).exec();
-                await EmailPSQuestions.findOneAndUpdate({name: req.params.id}, {"name": req.body.customer["name"]}).exec();
-                await EmailSEQuestions.findOneAndUpdate({name: req.params.id}, {"name": req.body.customer["name"]}).exec();
-                await ImportQuestions.findOneAndUpdate({name: req.params.id}, {"name": req.body.customer["name"]}).exec();
-                await JournalingQuestions.findOneAndUpdate({name: req.params.id}, {"name": req.body.customer["name"]}).exec();
-                await OtherDataSourcesQuestions.findOneAndUpdate({name: req.params.id}, {"name": req.body.customer["name"]}).exec();
-                await POCQuestions.findOneAndUpdate({name: req.params.id}, {"name": req.body.customer["name"]}).exec();
-                await RFEQuestions.findOneAndUpdate({name: req.params.id}, {"name": req.body.customer["name"]}).exec();
-                await UsageQuestions.findOneAndUpdate({name: req.params.id}, {"name": req.body.customer["name"]}).exec();
+        // Make a bunch of await calls and wait for the queries to finish.
+        async function updateID() {
+            await Customer.findOneAndUpdate({ name: req.params.id }, req.body.customer).exec();
+            await ApplianceQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            await DesignSummaryQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            await DesktopNetworkQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            await EmailPSQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            await EmailSEQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            await ImportQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            await JournalingQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            await OtherDataSourcesQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            await POCQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            await RFEQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            await UsageQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+        }
+
+        // Only if all the queries finish, redirect the page to the new customer name.
+        updateID().then(() => {
+            //console.log("Going to " + "/index/" + encodeURIComponent(req.body.customer["name"]));
+            res.redirect(append + "/index/" + encodeURIComponent(req.body.customer["name"]));
+        }).catch((error) => {
+            // If an error occurs, catch the error.
+            if (error["code"] == 11000) { // Dupe ID
+                console.log("-- Duplicate key for customer: " + req.body.customer["name"]);
+                res.status(409);
+                res.send("Dupe primary key, customer already exists.");
+            } else {
+                console.log(error + "\n---");
             }
-
-            // Only if all the queries finish, redirect the page to the new customer name.
-            updateID().then(() => {
-                //console.log("Going to " + "/index/" + encodeURIComponent(req.body.customer["name"]));
-                res.redirect("/customerprofile/index/" + encodeURIComponent(req.body.customer["name"]));
-            }).catch((error) => {
-                // If an error occurs, catch the error.
-                if (error["code"] == 11000) { // Dupe ID
-                    console.log("-- Duplicate key for customer: " + req.body.customer["name"]);
-                    res.status(409);
-                    res.send("Dupe primary key, customer already exists.");
-                } else {
-                    console.log(error + "\n---");
-                }
-            });
-        }
-
-        // Updating appliance questions
-        if (req.body.appliance_questions != undefined && req.body.appliance_questions != null) {
-            console.log("- Attempting to update Appliance Questions...");
-            ApplianceQuestions.findOneAndUpdate({name: req.params.id}, req.body.appliance_questions).then(() => {
-                //res.redirect("/customerprofile/index/" + encodeURIComponent(req.params.id));
-                console.log("Done");
-                res.status(200).json("{}");
-            }).catch((error) => {
-                console.log(error);
-                res.redirect("/customerprofile/index");
-            });
-        }
-
-        // Updating design summary questions
-        if (req.body.design_summary_questions != undefined && req.body.design_summary_questions != null) {
-            console.log("- Attempting to update Design Summary...");
-            DesignSummaryQuestions.findOneAndUpdate({name: req.params.id}, req.body.design_summary_questions).then(() => {
-                //res.redirect("/customerprofile/index/" + encodeURIComponent(req.params.id));
-                console.log("Done");
-                res.status(200).json("{}");
-            }).catch((error) => {
-                console.log(error);
-                res.redirect("/customerprofile/index");
-            });
-        }
-
-        // Updating desktop network questions
-        if (req.body.desktop_network_questions != undefined && req.body.desktop_network_questions != null) {
-            console.log("- Attempting to update Desktop Network Questions...");
-            DesktopNetworkQuestions.findOneAndUpdate({name: req.params.id}, req.body.desktop_network_questions).then(() => {
-                //res.redirect("/customerprofile/index/" + encodeURIComponent(req.params.id));
-                console.log("Done");
-                res.status(200).json("{}");
-            }).catch((error) => {
-                console.log(error);
-                res.redirect("/customerprofile/index");
-            });
-        }
-
-        // Updating Email SE Questions
-        if (req.body.email_se_questions != undefined && req.body.email_se_questions != null) {
-            console.log("- Attempting to update Email Systems SE Questions...");
-            EmailSEQuestions.findOneAndUpdate({"name": req.params.id}, req.body.email_se_questions).then(() => {
-                //res.redirect("/customerprofile/index/" + encodeURIComponent(req.params.id));
-                console.log("Done");
-                res.status(200).json("{}");
-            }).catch((error) => {
-                console.log(error);
-                res.redirect("/customerprofile/index");
-            });
-        }
-
-        // Updating Email PS Questions
-        if (req.body.email_ps_questions != undefined && req.body.email_ps_questions != null) {
-            console.log("- Attempting to update Email Systems PS Questions...");
-            EmailPSQuestions.findOneAndUpdate({"name": req.params.id}, req.body.email_ps_questions).then(() => {
-                //res.redirect("/customerprofile/index/" + encodeURIComponent(req.params.id));
-                console.log("Done");
-                res.status(200).json("{}");
-            }).catch((error) => {
-                console.log(error);
-                res.redirect("/customerprofile/index");
-            });
-        }
-
-        // Updating Import Questions
-        if (req.body.import_questions != undefined && req.body.import_questions != null) {
-            console.log("- Attempting to update Import information...");
-            ImportQuestions.findOneAndUpdate({"name": req.params.id}, req.body.import_questions).then(() => {
-                //res.redirect("/customerprofile/index/" + encodeURIComponent(req.params.id));
-                console.log("Done");
-                res.status(200).json("{}");
-            }).catch((error) => {
-                console.log(error);
-                res.redirect("/customerprofile/index");
-            });
-        }
-
-        // Updating Journaling questions
-        if (req.body.journaling_questions != undefined && req.body.journaling_questions != null) {
-            console.log("- Attempting to update Journalling information...");
-            JournalingQuestions.findOneAndUpdate({"name": req.params.id}, req.body.journaling_questions).then(() => {
-                //res.redirect("/customerprofile/index/" + encodeURIComponent(req.params.id));
-                console.log("Done");
-                res.status(200).json("{}");
-            }).catch((error) => {
-                console.log(error);
-                res.redirect("/customerprofile/index");
-            });
-        }
-
-        // Updating Other Data Sources Questions
-        if (req.body.other_data_source_questions != undefined && req.body.other_data_source_questions != null) {
-            console.log("- Attempting to update Other Data Sources Questions...");
-            OtherDataSourcesQuestions.findOneAndUpdate({name: req.params.id}, req.body.other_data_source_questions).then(() => {
-                //res.redirect("/customerprofile/index/" + encodeURIComponent(req.params.id));
-                console.log("Done");
-                res.status(200).json("{}");
-            }).catch((error) => {
-                console.log(error);
-                res.redirect("/customerprofile/index");
-            });
-        }
-
-        // Updating POC Questions
-        if (req.body.poc_questions != undefined && req.body.poc_questions != null) {
-            console.log("- Attempting to update POC information...");
-            POCQuestions.findOneAndUpdate({name: req.params.id}, req.body.poc_questions).then(() => {
-                //res.redirect("/customerprofile/index/" + encodeURIComponent(req.params.id));
-                console.log("Done");
-                res.status(200).json("{}");
-            }).catch((error) => {
-                console.log(error);
-                res.redirect("/customerprofile/index");
-            });
-        }
-
-        // Updating RFE Questions
-        if (req.body.rfe_questions != undefined && req.body.rfe_questions != null) {
-            console.log("- Attempting to update RFE information...");
-            RFEQuestions.findOneAndUpdate({name: req.params.id}, req.body.rfe_questions).then(() => {
-                //res.redirect("/customerprofile/index/" + encodeURIComponent(req.params.id));
-                console.log("Done");
-                res.status(200).json("{}");
-            }).catch((error) => {
-                console.log(error);
-                res.redirect("/customerprofile/index");
-            });
-        }
-
-        // Updating Usage Questions
-        if (req.body.usage_questions != undefined && req.body.usage_questions != null) {
-            console.log("- Attempting to update Usage Questions...");
-            UsageQuestions.findOneAndUpdate({name: req.params.id}, req.body.usage_questions).then(() => {
-                //res.redirect("/customerprofile/index/" + encodeURIComponent(req.params.id));
-                console.log("Done");
-                res.status(200).json("{}");
-            }).catch((error) => {
-                console.log(error);
-                res.redirect("/customerprofile/index");
-            });
-        }
+        });
     }
+
+    // Updating appliance questions
+    if (req.body.appliance_questions != undefined && req.body.appliance_questions != null) {
+        console.log("- Attempting to update Appliance Questions...");
+        ApplianceQuestions.findOneAndUpdate({ name: req.params.id }, req.body.appliance_questions).then(() => {
+            //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
+            console.log("Done");
+            res.status(200).json("{}");
+        }).catch((error) => {
+            console.log(error);
+            res.redirect(append + "/index");
+        });
+    }
+
+    // Updating design summary questions
+    if (req.body.design_summary_questions != undefined && req.body.design_summary_questions != null) {
+        console.log("- Attempting to update Design Summary...");
+        DesignSummaryQuestions.findOneAndUpdate({ name: req.params.id }, req.body.design_summary_questions).then(() => {
+            //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
+            console.log("Done");
+            res.status(200).json("{}");
+        }).catch((error) => {
+            console.log(error);
+            res.redirect(append + "/index");
+        });
+    }
+
+    // Updating desktop network questions
+    if (req.body.desktop_network_questions != undefined && req.body.desktop_network_questions != null) {
+        console.log("- Attempting to update Desktop Network Questions...");
+        DesktopNetworkQuestions.findOneAndUpdate({ name: req.params.id }, req.body.desktop_network_questions).then(() => {
+            //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
+            console.log("Done");
+            res.status(200).json("{}");
+        }).catch((error) => {
+            console.log(error);
+            res.redirect(append + "/index");
+        });
+    }
+
+    // Updating Email SE Questions
+    if (req.body.email_se_questions != undefined && req.body.email_se_questions != null) {
+        console.log("- Attempting to update Email Systems SE Questions...");
+        EmailSEQuestions.findOneAndUpdate({ "name": req.params.id }, req.body.email_se_questions).then(() => {
+            //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
+            console.log("Done");
+            res.status(200).json("{}");
+        }).catch((error) => {
+            console.log(error);
+            res.redirect(append + "/index");
+        });
+    }
+
+    // Updating Email PS Questions
+    if (req.body.email_ps_questions != undefined && req.body.email_ps_questions != null) {
+        console.log("- Attempting to update Email Systems PS Questions...");
+        EmailPSQuestions.findOneAndUpdate({ "name": req.params.id }, req.body.email_ps_questions).then(() => {
+            //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
+            console.log("Done");
+            res.status(200).json("{}");
+        }).catch((error) => {
+            console.log(error);
+            res.redirect(append + "/index");
+        });
+    }
+
+    // Updating Import Questions
+    if (req.body.import_questions != undefined && req.body.import_questions != null) {
+        console.log("- Attempting to update Import information...");
+        ImportQuestions.findOneAndUpdate({ "name": req.params.id }, req.body.import_questions).then(() => {
+            //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
+            console.log("Done");
+            res.status(200).json("{}");
+        }).catch((error) => {
+            console.log(error);
+            res.redirect(append + "/index");
+        });
+    }
+
+    // Updating Journaling questions
+    if (req.body.journaling_questions != undefined && req.body.journaling_questions != null) {
+        console.log("- Attempting to update Journalling information...");
+        JournalingQuestions.findOneAndUpdate({ "name": req.params.id }, req.body.journaling_questions).then(() => {
+            //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
+            console.log("Done");
+            res.status(200).json("{}");
+        }).catch((error) => {
+            console.log(error);
+            res.redirect(append + "/index");
+        });
+    }
+
+    // Updating Other Data Sources Questions
+    if (req.body.other_data_source_questions != undefined && req.body.other_data_source_questions != null) {
+        console.log("- Attempting to update Other Data Sources Questions...");
+        OtherDataSourcesQuestions.findOneAndUpdate({ name: req.params.id }, req.body.other_data_source_questions).then(() => {
+            //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
+            console.log("Done");
+            res.status(200).json("{}");
+        }).catch((error) => {
+            console.log(error);
+            res.redirect(append + "/index");
+        });
+    }
+
+    // Updating POC Questions
+    if (req.body.poc_questions != undefined && req.body.poc_questions != null) {
+        console.log("- Attempting to update POC information...");
+        POCQuestions.findOneAndUpdate({ name: req.params.id }, req.body.poc_questions).then(() => {
+            //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
+            console.log("Done");
+            res.status(200).json("{}");
+        }).catch((error) => {
+            console.log(error);
+            res.redirect(append + "/index");
+        });
+    }
+
+    // Updating RFE Questions
+    if (req.body.rfe_questions != undefined && req.body.rfe_questions != null) {
+        console.log("- Attempting to update RFE information...");
+        RFEQuestions.findOneAndUpdate({ name: req.params.id }, req.body.rfe_questions).then(() => {
+            //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
+            console.log("Done");
+            res.status(200).json("{}");
+        }).catch((error) => {
+            console.log(error);
+            res.redirect(append + "/index");
+        });
+    }
+
+    // Updating Usage Questions
+    if (req.body.usage_questions != undefined && req.body.usage_questions != null) {
+        console.log("- Attempting to update Usage Questions...");
+        UsageQuestions.findOneAndUpdate({ name: req.params.id }, req.body.usage_questions).then(() => {
+            //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
+            console.log("Done");
+            res.status(200).json("{}");
+        }).catch((error) => {
+            console.log(error);
+            res.redirect(append + "/index");
+        });
+    }
+}
 );
 
 //INDEX ROUTE
 router.get("/index", authenticate_session, function (req, res) {
 
     Customer.find({}).then((customers) => {
-        res.render("index", {customers: customers});
+        res.render("index", { customers: customers });
     }).catch((error) => {
         console.log("An error has occurred.");
         console.log(error);
@@ -448,11 +457,11 @@ router.delete("/index/:id", authenticate_session, function (req, res) {
         UsageQuestions.findOneAndRemove(search_term).exec();
     }
 
-    delete_customer({"name": req.params.id}).then((result) => {
-        res.redirect("/customerprofile/index");
+    delete_customer({ "name": req.params.id }).then((result) => {
+        res.redirect(append + "/index");
     }).catch((error) => {
         console.log(error);
-        res.redirect("/customerprofile/index");
+        res.redirect(append + "/index");
     });
 });
 
@@ -492,7 +501,7 @@ router.get("/index/:id", authenticate_session, function (req, res) {
     }
 
     // RENDER ALL THE THINGS
-    query({"name": req.params.id}).then((result) => {
+    query({ "name": req.params.id }).then((result) => {
         res.render("show", result);
     }).catch((error) => {
         console.log(error);

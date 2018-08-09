@@ -122,7 +122,7 @@ $(document).ready(() => {
                 url: form.attr('action'),
                 data: form.serialize(),
                 success: function (res) {
-                    location.href = "/customerprofile/index/" + encodeURIComponent(new_customer);
+                    location.href = "../index/" + encodeURIComponent(new_customer);
                     // Locks the form's fieldset
                     $("#customerFormFieldset").prop('disabled', true);
                     editing_customer = false;

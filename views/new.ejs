@@ -1,6 +1,6 @@
-<% include partials/header %>
+<% include partials/show_header %>
 
-    <script type="text/javascript" src="/customerprofile/scripts/new.js"></script>
+    <!-- <script type="text/javascript" src="./scripts/new.js"></script> -->
 
     <% if (error_message != undefined && error_message != null) { %>
         <script>
@@ -15,7 +15,7 @@
                             <b>New Customer</b>
                         </h5>
                     </div>
-                    <form class="" action="/customerprofile/new" method="POST">
+                    <form class="" action="../new" method="POST">
                         <div class="form-group col-4">
                             <label for="customerName">Customer Name</label>
                             <input type="text" required class="form-control" id="customerName" placeholder="Customer Name" name="customer[name]">
