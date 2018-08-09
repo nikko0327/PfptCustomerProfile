@@ -14,8 +14,8 @@
             </a>
         </div>
         <br>
-
-        <form id="appliancesForm" autocomplete="off" action="/index/<%= encodeURIComponent(customer.name) %>?_method=PUT" method="POST">
+        
+        <form id="appliancesForm" autocomplete="off" action="/customerprofile/index/<%= encodeURIComponent(customer.name) %>?_method=PUT" method="POST">
             <fieldset id="appliancesFormFieldset" disabled>
                 <div class="form-group col-4 response-cell" hidden>
                     <label for="customerName">Customer Name</label>
@@ -122,7 +122,6 @@
                                 name="appliance_questions[outlook_view_manager]">
                         </div>
                     </div>
-                    <br>
                 </div>
             </fieldset>
         </form>

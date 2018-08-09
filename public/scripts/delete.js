@@ -5,11 +5,11 @@ function delete_customer(customer_name) {
             $.ajax({
                 type: 'POST',
                 timeout: 3000,
-                url: "/index/" + customer_name + "?_method=DELETE",
+                url: "/customerprofile/index/" + encodeURIComponent(customer_name) + "?_method=DELETE",
                 data: {},
                 success: function () {
                     alert("Customer " + customer_name + " deleted.");
-                    location.href = "/index";
+                    location.href = "/customerprofile/";
                 },
                 error: function () {
                     alert("Error deleting customer " + customer_name);

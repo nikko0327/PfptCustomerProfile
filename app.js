@@ -6,10 +6,14 @@ var expressSanitizer = require("express-sanitizer");
 var session = require("express-session");
 var favicon = require('serve-favicon');
 var MongoStore = require("connect-mongo")(session);
+var helmet = require('helmet');
 var app = express();
 
 //APP CONFIGURATION
+app.use(helmet());
 app.use(favicon(__dirname + '/public/favicon.ico'));
+
+app.enable('trust proxy');
 
 var databaseUrl = "mongodb://localhost/customerProfile";
 mongoose.Promise = require('bluebird');
@@ -115,16 +119,6 @@ app.use(function (err, req, res, next) {
 
 let port = process.env.PORT || 8000;
 
-// app.listen(port, function () {
-//     console.log(`App is running on ${port}.`);
-// });
-
-// 'http://lv-psapps01.corp.proofpoint.com/'
-
-var fs = require('fs');
-var https = require('https');
-var cert  = fs.readFileSync('certs/certificate.pem', 'utf8');
-var key = fs.readFileSync('certs/key.pem', 'utf8');
-
-let https_server = https.createServer({key: key, cert: cert}, app);
-https_server.listen(port);
+app.listen(port, function () {
+    console.log(`App is running on ${port}.`);
+});

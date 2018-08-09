@@ -25,7 +25,7 @@ function authenticate_session(req, res, next) {
     if (req.session.user) {
         next();
     } else {
-        res.redirect("/login");
+        res.redirect("/customerprofile/login");
     }
 }
 
@@ -38,12 +38,12 @@ router.post("/logout", function (req, res) {
         }
     });
 
-    res.redirect("/login");
+    res.redirect("/customerprofile/login");
 });
 
 //Entry point for the app startup
 router.get("/", function (req, res) {
-    res.redirect("/index");
+    res.redirect("/customerprofile/index");
 });
 
 //NEW ROUTE
@@ -69,7 +69,7 @@ router.get("/new", authenticate_session, function (req, res) {
 //             }
 //
 //             register_user().then(() => {
-//                 res.redirect("/login");
+//                 res.redirect("/customerprofile/login");
 //             }).catch((error) => {
 //                 if (error["code"] == 11000) {
 //                     console.log("-- Duplicate entry for user: " + req.body.registration_info["username"]);
@@ -131,7 +131,7 @@ router.post("/login", function (req, res) {
                     } else {
                         console.log("Logged in: " + req.body.login["username"]);
                         req.session.user = req.body.login["username"];
-                        res.redirect("/index");
+                        res.redirect("/customerprofile/index");
                     }
                 });
             }
@@ -148,7 +148,7 @@ router.post("/login", function (req, res) {
     //                 // Do auth/sessions here
     //                 console.log("Logged in: " + req.body.login["username"]);
     //                 req.session.user = req.body.login["username"];
-    //                 res.redirect("/index");
+    //                 res.redirect("/customerprofile/index");
     //             } else {
     //                 res.render("login", {fail: true});
     //             }
@@ -190,7 +190,7 @@ router.post("/new", authenticate_session, function (req, res) {
                     RFEQuestions.create({name: req.body.customer["name"]});
                     UsageQuestions.create({name: req.body.customer["name"]});
 
-                    res.redirect("/index");
+                    res.redirect("/customerprofile/index");
                     console.log("Creation of customer '" + req.body.customer["name"] + "' successful.");
                 }
             });
@@ -209,7 +209,7 @@ router.post("/new", authenticate_session, function (req, res) {
         //     RFEQuestions.create({name: req.body.customer["name"]});
         //     UsageQuestions.create({name: req.body.customer["name"]});
         //
-        //     res.redirect("/index");
+        //     res.redirect("/customerprofile/index");
         //     console.log("Creation of customer " + req.body.customer["name"] + " successful.");
         // }).catch((error) => {
         //     if (error["code"] == 11000) {
@@ -251,7 +251,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
             // Only if all the queries finish, redirect the page to the new customer name.
             updateID().then(() => {
                 //console.log("Going to " + "/index/" + encodeURIComponent(req.body.customer["name"]));
-                res.redirect("/index/" + encodeURIComponent(req.body.customer["name"]));
+                res.redirect("/customerprofile/index/" + encodeURIComponent(req.body.customer["name"]));
             }).catch((error) => {
                 // If an error occurs, catch the error.
                 if (error["code"] == 11000) { // Dupe ID
@@ -268,12 +268,12 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         if (req.body.appliance_questions != undefined && req.body.appliance_questions != null) {
             console.log("- Attempting to update Appliance Questions...");
             ApplianceQuestions.findOneAndUpdate({name: req.params.id}, req.body.appliance_questions).then(() => {
-                //res.redirect("/index/" + encodeURIComponent(req.params.id));
+                //res.redirect("/customerprofile/index/" + encodeURIComponent(req.params.id));
                 console.log("Done");
                 res.status(200).json("{}");
             }).catch((error) => {
                 console.log(error);
-                res.redirect("/index");
+                res.redirect("/customerprofile/index");
             });
         }
 
@@ -281,12 +281,12 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         if (req.body.design_summary_questions != undefined && req.body.design_summary_questions != null) {
             console.log("- Attempting to update Design Summary...");
             DesignSummaryQuestions.findOneAndUpdate({name: req.params.id}, req.body.design_summary_questions).then(() => {
-                //res.redirect("/index/" + encodeURIComponent(req.params.id));
+                //res.redirect("/customerprofile/index/" + encodeURIComponent(req.params.id));
                 console.log("Done");
                 res.status(200).json("{}");
             }).catch((error) => {
                 console.log(error);
-                res.redirect("/index");
+                res.redirect("/customerprofile/index");
             });
         }
 
@@ -294,12 +294,12 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         if (req.body.desktop_network_questions != undefined && req.body.desktop_network_questions != null) {
             console.log("- Attempting to update Desktop Network Questions...");
             DesktopNetworkQuestions.findOneAndUpdate({name: req.params.id}, req.body.desktop_network_questions).then(() => {
-                //res.redirect("/index/" + encodeURIComponent(req.params.id));
+                //res.redirect("/customerprofile/index/" + encodeURIComponent(req.params.id));
                 console.log("Done");
                 res.status(200).json("{}");
             }).catch((error) => {
                 console.log(error);
-                res.redirect("/index");
+                res.redirect("/customerprofile/index");
             });
         }
 
@@ -307,12 +307,12 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         if (req.body.email_se_questions != undefined && req.body.email_se_questions != null) {
             console.log("- Attempting to update Email Systems SE Questions...");
             EmailSEQuestions.findOneAndUpdate({"name": req.params.id}, req.body.email_se_questions).then(() => {
-                //res.redirect("/index/" + encodeURIComponent(req.params.id));
+                //res.redirect("/customerprofile/index/" + encodeURIComponent(req.params.id));
                 console.log("Done");
                 res.status(200).json("{}");
             }).catch((error) => {
                 console.log(error);
-                res.redirect("/index");
+                res.redirect("/customerprofile/index");
             });
         }
 
@@ -320,12 +320,12 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         if (req.body.email_ps_questions != undefined && req.body.email_ps_questions != null) {
             console.log("- Attempting to update Email Systems PS Questions...");
             EmailPSQuestions.findOneAndUpdate({"name": req.params.id}, req.body.email_ps_questions).then(() => {
-                //res.redirect("/index/" + encodeURIComponent(req.params.id));
+                //res.redirect("/customerprofile/index/" + encodeURIComponent(req.params.id));
                 console.log("Done");
                 res.status(200).json("{}");
             }).catch((error) => {
                 console.log(error);
-                res.redirect("/index");
+                res.redirect("/customerprofile/index");
             });
         }
 
@@ -333,12 +333,12 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         if (req.body.import_questions != undefined && req.body.import_questions != null) {
             console.log("- Attempting to update Import information...");
             ImportQuestions.findOneAndUpdate({"name": req.params.id}, req.body.import_questions).then(() => {
-                //res.redirect("/index/" + encodeURIComponent(req.params.id));
+                //res.redirect("/customerprofile/index/" + encodeURIComponent(req.params.id));
                 console.log("Done");
                 res.status(200).json("{}");
             }).catch((error) => {
                 console.log(error);
-                res.redirect("/index");
+                res.redirect("/customerprofile/index");
             });
         }
 
@@ -346,12 +346,12 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         if (req.body.journaling_questions != undefined && req.body.journaling_questions != null) {
             console.log("- Attempting to update Journalling information...");
             JournalingQuestions.findOneAndUpdate({"name": req.params.id}, req.body.journaling_questions).then(() => {
-                //res.redirect("/index/" + encodeURIComponent(req.params.id));
+                //res.redirect("/customerprofile/index/" + encodeURIComponent(req.params.id));
                 console.log("Done");
                 res.status(200).json("{}");
             }).catch((error) => {
                 console.log(error);
-                res.redirect("/index");
+                res.redirect("/customerprofile/index");
             });
         }
 
@@ -359,12 +359,12 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         if (req.body.other_data_source_questions != undefined && req.body.other_data_source_questions != null) {
             console.log("- Attempting to update Other Data Sources Questions...");
             OtherDataSourcesQuestions.findOneAndUpdate({name: req.params.id}, req.body.other_data_source_questions).then(() => {
-                //res.redirect("/index/" + encodeURIComponent(req.params.id));
+                //res.redirect("/customerprofile/index/" + encodeURIComponent(req.params.id));
                 console.log("Done");
                 res.status(200).json("{}");
             }).catch((error) => {
                 console.log(error);
-                res.redirect("/index");
+                res.redirect("/customerprofile/index");
             });
         }
 
@@ -372,12 +372,12 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         if (req.body.poc_questions != undefined && req.body.poc_questions != null) {
             console.log("- Attempting to update POC information...");
             POCQuestions.findOneAndUpdate({name: req.params.id}, req.body.poc_questions).then(() => {
-                //res.redirect("/index/" + encodeURIComponent(req.params.id));
+                //res.redirect("/customerprofile/index/" + encodeURIComponent(req.params.id));
                 console.log("Done");
                 res.status(200).json("{}");
             }).catch((error) => {
                 console.log(error);
-                res.redirect("/index");
+                res.redirect("/customerprofile/index");
             });
         }
 
@@ -385,12 +385,12 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         if (req.body.rfe_questions != undefined && req.body.rfe_questions != null) {
             console.log("- Attempting to update RFE information...");
             RFEQuestions.findOneAndUpdate({name: req.params.id}, req.body.rfe_questions).then(() => {
-                //res.redirect("/index/" + encodeURIComponent(req.params.id));
+                //res.redirect("/customerprofile/index/" + encodeURIComponent(req.params.id));
                 console.log("Done");
                 res.status(200).json("{}");
             }).catch((error) => {
                 console.log(error);
-                res.redirect("/index");
+                res.redirect("/customerprofile/index");
             });
         }
 
@@ -398,12 +398,12 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         if (req.body.usage_questions != undefined && req.body.usage_questions != null) {
             console.log("- Attempting to update Usage Questions...");
             UsageQuestions.findOneAndUpdate({name: req.params.id}, req.body.usage_questions).then(() => {
-                //res.redirect("/index/" + encodeURIComponent(req.params.id));
+                //res.redirect("/customerprofile/index/" + encodeURIComponent(req.params.id));
                 console.log("Done");
                 res.status(200).json("{}");
             }).catch((error) => {
                 console.log(error);
-                res.redirect("/index");
+                res.redirect("/customerprofile/index");
             });
         }
     }
@@ -449,10 +449,10 @@ router.delete("/index/:id", authenticate_session, function (req, res) {
     }
 
     delete_customer({"name": req.params.id}).then((result) => {
-        res.redirect("/index");
+        res.redirect("/customerprofile/index");
     }).catch((error) => {
         console.log(error);
-        res.redirect("/index");
+        res.redirect("/customerprofile/index");
     });
 });
 
