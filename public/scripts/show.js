@@ -253,6 +253,7 @@ $(document).ready(() => {
     let editing_POC = false;
     let editing_RFE = false;
     let editing_design_summary = false;
+    let editing_finserv_supervision = false;
     add_post_listeners(editing_journaling, '#editJournalingLink', "#journalingForm", "#journalingFormFieldset", "Journaling Questions saved.");
     add_post_listeners(editing_appliances, '#editAppliancesLink', "#appliancesForm", "#appliancesFormFieldset", "Appliances Questions saved.");
     add_post_listeners(editing_other_data_sources, '#editOtherDataSourcesLink', "#otherDataSourcesForm", "#otherDataSourcesFormFieldset", "Other Data Sources Questions saved.");
@@ -262,4 +263,5 @@ $(document).ready(() => {
     add_post_listeners(editing_POC, '#editPOCLink', "#pocForm", "#pocFormFieldset", "POC Questions saved.");
     add_post_listeners(editing_RFE, '#editRFELink', "#rfeForm", "#rfeFormFieldset", "RFE Questions saved.");
     add_post_listeners(editing_design_summary, '#editDesignSummaryLink', "#designSummaryForm", "#designSummaryFormFieldset", "Design Summary Questions saved.");
+    add_post_listeners(editing_finserv_supervision, '#editFinservSupervisionLink', "#finservSupervisionForm", "#finservSupervisionFormFieldset", "Finserv Supervision Questions saved.");
 });

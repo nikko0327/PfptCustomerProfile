@@ -17,7 +17,7 @@ app.enable('trust proxy');
 
 var databaseUrl = "mongodb://localhost/customerProfile";
 mongoose.Promise = require('bluebird');
-mongoose.connect(databaseUrl).then(
+mongoose.connect(databaseUrl, { useMongoClient: true }).then(
     () => {
         console.log('Database is connected');
     },

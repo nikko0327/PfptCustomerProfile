@@ -27,6 +27,7 @@ var UsageQuestions = require("../models/usage");
 var ImportQuestions = require("../models/import");
 var POCQuestions = require("../models/poc");
 var RFEQuestions = require("../models/rfe");
+var FinservSupervisionQuestions = require("../models/finserv_supervision");
 //var User = require("../models/user");
 
 // For authenticating cookies/sessions.
@@ -182,7 +183,7 @@ router.post("/new", authenticate_session, function (req, res) {
                 if (error["code"] == 11000) {
                     console.log("-- Duplicate entry for customer: '" + req.body.customer["name"] + "'");
                     // Send pop up alert to HTML here
-                    res.render("new", { error_message: "Duplicate entry for customer: " + req.body.customer["name"] });
+                    res.render('new', { error_message: "Duplicate entry for customer: " + req.body.customer["name"] });
                 } else {
                     console.log(error);
                 }
@@ -198,6 +199,7 @@ router.post("/new", authenticate_session, function (req, res) {
                 POCQuestions.create({ name: req.body.customer["name"] });
                 RFEQuestions.create({ name: req.body.customer["name"] });
                 UsageQuestions.create({ name: req.body.customer["name"] });
+                FinservSupervisionQuestions.create({ name: req.body.customer["name"] });
 
                 res.redirect(append + "/index");
                 console.log("Creation of customer '" + req.body.customer["name"] + "' successful.");
@@ -229,8 +231,7 @@ router.post("/new", authenticate_session, function (req, res) {
     //         console.log(error);
     //     }
     // });
-}
-);
+});
 
 //UPDATE ROUTE
 router.put("/index/:id", authenticate_session, function (req, res) {
@@ -255,6 +256,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
             await POCQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
             await RFEQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
             await UsageQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            await FinservSupervisionQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
         }
 
         // Only if all the queries finish, redirect the page to the new customer name.
@@ -409,14 +411,26 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         UsageQuestions.findOneAndUpdate({ name: req.params.id }, req.body.usage_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             console.log("Done");
+            //res.status(200).json("{}");
+        }).catch((error) => {
+            console.log(error);
+            res.redirect(append + "/index");
+        });
+    }
+
+    // Updating Finserv Supervision Questions
+    if (req.body.finserv_supervision_questions != undefined && req.body.finserv_supervision_questions != null) {
+        console.log("- Attempting to update Finserv Supervision Questions...");
+        FinservSupervisionQuestions.findOneAndUpdate({ name: req.params.id }, req.body.finserv_supervision_questions).then(() => {
+            //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
+            console.log("Done");
             res.status(200).json("{}");
         }).catch((error) => {
             console.log(error);
             res.redirect(append + "/index");
         });
     }
-}
-);
+});
 
 //INDEX ROUTE
 router.get("/index", authenticate_session, function (req, res) {
@@ -455,6 +469,7 @@ router.delete("/index/:id", authenticate_session, function (req, res) {
         POCQuestions.findOneAndRemove(search_term).exec();
         RFEQuestions.findOneAndRemove(search_term).exec();
         UsageQuestions.findOneAndRemove(search_term).exec();
+        FinservSupervisionQuestions.findOneAndRemove(search_term).exec();
     }
 
     delete_customer({ "name": req.params.id }).then((result) => {
@@ -497,6 +512,7 @@ router.get("/index/:id", authenticate_session, function (req, res) {
         questionnaire["poc_questions"] = await POCQuestions.findOne(search_term).exec();
         questionnaire["rfe_questions"] = await RFEQuestions.findOne(search_term).exec();
         questionnaire["usage_questions"] = await UsageQuestions.findOne(search_term).exec();
+        questionnaire["finserv_supervision_questions"] = await FinservSupervisionQuestions.findOne(search_term).exec();
         return questionnaire;
     }
 

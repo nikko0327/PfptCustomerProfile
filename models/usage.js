@@ -81,6 +81,36 @@ var usage_schema = new mongoose.Schema({
             }
         },
         report_requirements: {
+            types: {
+                aging_reviews: {
+                    type: Boolean,
+                    default: false
+                },
+                evidence: {
+                    type: Boolean,
+                    default: false
+                },
+                flagging_rate: {
+                    type: Boolean,
+                    default: false
+                },
+                lexicon: {
+                    type: Boolean,
+                    default: false
+                },
+                other: {
+                    type: String,
+                    default: ""
+                }
+            },
+            move_supervision: {
+                type: String,
+                default: ""
+            },
+            not_haves: {
+                type: String,
+                default: ""
+            },
             existing_reports: {
                 type: String,
                 default: ""
