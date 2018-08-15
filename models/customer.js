@@ -48,28 +48,7 @@ var CustomerSchema = new mongoose.Schema({
         type: String,
         default: ""
     },
-    contacts: {
-        name: {
-            type: String,
-            default: ""
-        },
-        title: {
-            type: String,
-            default: ""
-        },
-        email: {
-            type: String,
-            default: ""
-        },
-        phone: {
-            type: String,
-            default: ""
-        },
-        primary_contact: {
-            type: String,
-            default: ""
-        }
-    },
+    contacts: [],
     created: {
         type: Date,
         default: Date.now
@@ -79,6 +58,30 @@ var CustomerSchema = new mongoose.Schema({
         default: ""
     },
     numberOfUsers: {
+        type: String,
+        default: ""
+    },
+    comments: {
+        type: String,
+        default: ""
+    },
+    existing_archive_prospect: {
+        type: Boolean,
+        default: false
+    },
+    existing_archive_customer: {
+        type: Boolean,
+        default: false
+    },
+    existing_security_customer: {
+        type: Boolean,
+        default: false
+    },
+    is_using_DAG: {
+        type: String,
+        default: ""
+    },
+    describe_HA_DR: {
         type: String,
         default: ""
     }

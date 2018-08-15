@@ -153,29 +153,29 @@
                         <div class="row">
                             <div class="col-4, response-checkbox">
                                 <p>
-                                    <input type="checkbox" name="usage_questions[supervision][report_requirements][types][aging_reviews]" <%- usage_questions.supervision.report_requirements.types.aging_reviews
-                                        ? "checked" : "" %> />
+                                    <input type="checkbox" name="usage_questions[supervision][report_requirements][types][aging_reviews]"
+                                    <%= usage_questions.supervision.report_requirements.types.aging_reviews ? "checked" : "" %> />
                                     <b> Aging Reviews</b>
                                 </p>
                             </div>
                             <div class="col-4, response-checkbox">
                                 <p>
-                                    <input type="checkbox" name="usage_questions[supervision][report_requirements][types][evidence]" <%- usage_questions.supervision.report_requirements.types.evidence
-                                        ? "checked" : "" %> />
+                                    <input type="checkbox" name="usage_questions[supervision][report_requirements][types][evidence]"
+                                    <%= usage_questions.supervision.report_requirements.types.evidence ? "checked" : "" %> />
                                     <b> Evidence of Supervision</b>
                                 </p>
                             </div>
                             <div class="col-4, response-checkbox">
                                 <p>
-                                    <input type="checkbox" name="usage_questions[supervision][report_requirements][types][flagging_rate]" <%- usage_questions.supervision.report_requirements.types.flagging_rate
-                                        ? "checked" : "" %> />
+                                    <input type="checkbox" name="usage_questions[supervision][report_requirements][types][flagging_rate]"
+                                    <%= usage_questions.supervision.report_requirements.types.flagging_rate ? "checked" : "" %> />
                                     <b> Flagging Rate</b>
                                 </p>
                             </div>
                             <div class="col-4, response-checkbox">
                                 <p>
-                                    <input type="checkbox" name="usage_questions[supervision][report_requirements][types][lexicon]" <%- usage_questions.supervision.report_requirements.types.lexicon
-                                        ? "checked" : "" %> />
+                                    <input type="checkbox" name="usage_questions[supervision][report_requirements][types][lexicon]"
+                                    <%= usage_questions.supervision.report_requirements.types.lexicon ? "checked" : "" %> />
                                     <b> Lexicon Hit Rate</b>
                                 </p>
                             </div>
@@ -192,15 +192,15 @@
                         <div class="row">
                             <div class="form-group col-4 response-cell">
                                 <label>What current reports being used are a must to move to another supervision solution?
-                                    <br>
-                                    <b>Please provide samples.</b>
-                                </label>
-                                <input type="text" class="form-control" placeholder="No response set" value="<%= usage_questions.supervision.report_requirements.move_supervision %>"
+                                    <br><b>Please provide samples.</b></label>
+                                <input type="text" class="form-control" placeholder="No response set"
+                                    value="<%= usage_questions.supervision.report_requirements.move_supervision %>"
                                     name="usage_questions[supervision][report_requirements][move_supervision]">
                             </div>
                             <div class="form-group col-4 response-cell">
                                 <label>What report needs do you currently not have available in your solution?</label>
-                                <input type="text" class="form-control" placeholder="No response set" value="<%= usage_questions.supervision.report_requirements.not_haves %>"
+                                <input type="text" class="form-control" placeholder="No response set"
+                                    value="<%= usage_questions.supervision.report_requirements.not_haves %>"
                                     name="usage_questions[supervision][report_requirements][not_haves]">
                             </div>
                             <div class="form-group col-4 response-cell">
@@ -255,6 +255,28 @@
                 <hr>
 
                 <!-- Selective Disposition -->
+                <h5>
+                    <a href="#editUsage-Selective" style="color: mediumvioletred" data-toggle="collapse" onclick="change_arrow($(this));">
+                        Selective Disposition
+                        <i class="fa fa-caret-right" aria-hidden="true"></i>
+                    </a>
+                </h5>
+
+                <div id="editUsage-Selective" class="collapse">
+                    <div class="row">
+                        <div class="form-group col-4 response-cell">
+                            <label>What are the scenarios would you need to apply it?</label>
+                            <input type="text" class="form-control" placeholder="No response set" value="<%= usage_questions.selective_disposition.scenarios %>"
+                                name="usage_questions[selective_disposition][scenarios]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>How many messages would you want to selectively dispose?</label>
+                            <input type="text" class="form-control" placeholder="No response set" value="<%= usage_questions.selective_disposition.messages_to_dispose %>"
+                                name="usage_questions[selective_disposition][messages_to_dispose]">
+                        </div>
+                    </div>
+                </div>
+                <hr>
 
                 <!-- Content Collector - Files -->
                 <h5>
@@ -498,20 +520,32 @@
                 <hr>
 
                 <!-- Outlook view manager -->
+                <h5>
+                    <a href="#editusage-outlook" style="color: mediumvioletred" data-toggle="collapse" onclick="change_arrow($(this));">
+                        Outlook View Manager
+                        <i class="fa fa-caret-right" aria-hidden="true"></i>
+                    </a>
+                </h5>
 
-
-                <div class="row">
-                    <div class="form-group col-4 response-cell">
-                        <label>Will end user have access to their archives?</label>
-                        <%- make_custom_dropdown("usage_questions[allow_archive_access]",
-                            usage_questions.allow_archive_access, ["Yes", "No"]) %>
+                <div id="editusage-outlook" class="collapse">
+                    <div class="row">
+                        <div class="form-group col-4 response-cell">
+                            <label>Do you want to allow end users to access the archive? </label>
+                            <%- make_custom_dropdown("usage_questions[outlook_view_manager][allow_users_access]",
+                                    usage_questions.outlook_view_manager.allow_users_access, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Do you use OWA?</label>
+                            <%- make_custom_dropdown("usage_questions[outlook_view_manager][is_using_OWA]",
+                                    usage_questions.outlook_view_manager.is_using_OWA, ["Yes", "No"]) %>
+                        </div>
                     </div>
                 </div>
 
                 <br>
                 <div class="form-group">
                     <label>Comments</label>
-                    <textarea maxlength="5000" rows="5" name="usage_questions[comments]" placeholder="5000 characters max" form="usageForm"><%- usage_questions.comments %></textarea>
+                    <textarea maxlength="5000" rows="5" name="usage_questions[comments]" placeholder="5000 characters max" form="usageForm"><%= usage_questions.comments %></textarea>
                 </div>
             </fieldset>
         </form>

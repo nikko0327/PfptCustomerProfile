@@ -22,7 +22,7 @@ var import_schema = new mongoose.Schema({
         type: String,
         default: ""
     },
-    conversion_agent: {
+    extraction_agent: {
         type: String,
         default: ""
     },
@@ -51,6 +51,18 @@ var import_schema = new mongoose.Schema({
         default: ""
     },
     employee_records: {
+        type: String,
+        default: ""
+    },
+    jira: {
+        type: String,
+        default: ""
+    },
+    rfe: {
+        type: String,
+        default: ""
+    },
+    comments: {
         type: String,
         default: ""
     }

@@ -184,6 +184,10 @@ var finserv_supervision_schema = new mongoose.Schema({
             default: ""
         }
     },
+    comments: {
+        type: String,
+        default: ""
+    }
 });
 
 var FinservSupervisionQuestions = mongoose.model("FinservSupervisionQuestions", finserv_supervision_schema);

@@ -18,15 +18,11 @@ var appliance_schema = new mongoose.Schema({
         type: String,
         default: ""
     },
-    searches_per_day: {
-        type: String,
-        default: ""
-    },
-    ui_logins_per_day: {
-        type: String,
-        default: ""
-    },
-    exports_per_day: {
+    // ui_logins_per_day: {
+    //     type: String,
+    //     default: ""
+    // },
+    exports_per_month: {
         type: String,
         default: ""
     },
@@ -54,9 +50,27 @@ var appliance_schema = new mongoose.Schema({
         type: String,
         default: ""
     },
+    // purposes: {
+    //     type: String,
+    //     default: ""
+    // },
     purposes: {
-        type: String,
-        default: ""
+        ui: {
+            type: String,
+            default: ""
+        },
+        export: {
+            type: String,
+            default: ""
+        },
+        archiving: {
+            type: String,
+            default: ""
+        },
+        stubbing: {
+            type: String,
+            default: ""
+        }
     },
     archive_proxy: {
         type: String,
@@ -67,6 +81,10 @@ var appliance_schema = new mongoose.Schema({
         default: ""
     },
     outlook_view_manager: {
+        type: String,
+        default: ""
+    },
+    comments: {
         type: String,
         default: ""
     }

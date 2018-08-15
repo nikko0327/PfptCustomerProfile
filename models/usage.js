@@ -148,16 +148,16 @@ var usage_schema = new mongoose.Schema({
         }
     },
     // Not sure about selective disposition
-    selective_disposition: {
-        scenarios: {
-            type: String,
-            default: ""
-        },
-        messages_to_dispose: {
-            type: String,
-            default: ""
-        }
-    },
+    // selective_disposition: {
+    //     scenarios: {
+    //         type: String,
+    //         default: ""
+    //     },
+    //     messages_to_dispose: {
+    //         type: String,
+    //         default: ""
+    //     }
+    // },
 
     content_collector_files: {
         interested_in_CC4Files: {
@@ -263,11 +263,13 @@ var usage_schema = new mongoose.Schema({
         number_of_users_interested: {
             type: String,
             default: ""
-        },
-        service_account: {
-            type: String,
-            default: ""
         }
+        // ,
+        // service_account: {
+        //     type: String,
+        //     default: ""
+        // }
+
         // NOT SURE ABOUT THIS ONE
     },
     // Transport agent has no questions
@@ -290,16 +292,25 @@ var usage_schema = new mongoose.Schema({
             default: ""
         }
     },
+    allow_archive_access: {
+        type: String,
+        default: ""
+    },
 
-    outlook_view_manager: {
-        allow_users_access: {
-            type: String,
-            default: ""
-        },
-        is_using_OWA: {
-            type: String,
-            default: ""
-        }
+    // outlook_view_manager: {
+    //     allow_users_access: {
+    //         type: String,
+    //         default: ""
+    //     },
+    //     is_using_OWA: {
+    //         type: String,
+    //         default: ""
+    //     }
+    // },
+
+    comments: {
+        type: String,
+        default: ""
     }
 });
 

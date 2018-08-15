@@ -70,6 +70,10 @@ var poc_schema = new mongoose.Schema({
             type: String,
             default: ""
         }
+    },
+    comments: {
+        type: String,
+        default: ""
     }
 });
 

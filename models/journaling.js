@@ -27,10 +27,6 @@ var journaling_schema = new mongoose.Schema({
             type: String,
             default: ""
         },
-        change_in_business: {
-            type: String,
-            default: ""
-        },
         has_enterprise_CAL: {
             type: String,
             default: ""
@@ -69,6 +65,10 @@ var journaling_schema = new mongoose.Schema({
             type: String,
             default: ""
         }
+    },
+    comments: {
+        type: String,
+        default: ""
     }
 });
 

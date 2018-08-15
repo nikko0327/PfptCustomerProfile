@@ -240,7 +240,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
     // For updating name, make a ton of promises and execute them, THEN render the page.
     if (req.body.customer != undefined && req.body.customer != null) {
         console.log("- Attempting to update customer information...");
-        //console.log(req.body.customer["name"]);
+        //console.log(req.body.customer.contacts);
 
         // Make a bunch of await calls and wait for the queries to finish.
         async function updateID() {
@@ -411,7 +411,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         UsageQuestions.findOneAndUpdate({ name: req.params.id }, req.body.usage_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             console.log("Done");
-            //res.status(200).json("{}");
+            res.status(200).json("{}");
         }).catch((error) => {
             console.log(error);
             res.redirect(append + "/index");

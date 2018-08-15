@@ -103,18 +103,18 @@ var email_se_schema = new mongoose.Schema({
             type: String,
             default: ""
         },
-        describe_exchange_env: {
-            type: String,
-            default: ""
-        },
+        // describe_exchange_env: {
+        //     type: String,
+        //     default: ""
+        // },
         diagram: {
             type: String,
             default: ""
         },
-        is_using_DAG: {
-            type: String,
-            default: ""
-        },
+        // is_using_DAG: {
+        //     type: String,
+        //     default: ""
+        // },
 
         // AD details
         is_multi_forest: {
@@ -196,18 +196,18 @@ var email_se_schema = new mongoose.Schema({
             default: ""
         },
         // !!!
-        describe_exchange_env: {
-            type: String,
-            default: ""
-        },
+        // describe_exchange_env: {
+        //     type: String,
+        //     default: ""
+        // },
         diagram: {
             type: String,
             default: ""
         },
-        is_using_DAG: {
-            type: String,
-            default: ""
-        },
+        // is_using_DAG: {
+        //     type: String,
+        //     default: ""
+        // },
 
         // AD details
         is_multi_forest: {
@@ -272,6 +272,10 @@ var email_se_schema = new mongoose.Schema({
             type: String,
             default: ""
         }
+    },
+    comments: {
+        type: String,
+        default: ""
     }
 });
 

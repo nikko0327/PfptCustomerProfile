@@ -77,6 +77,53 @@
                 <hr>
 
                 <!-- End user desktop env -->
+                <h5 hidden disabled>
+                    <a href="#editDesktop-End-User" style="color: mediumvioletred" data-toggle="collapse" onclick="change_arrow($(this));">
+                        End User Desktop Environment
+                        <i class="fa fa-caret-right" aria-hidden="true"></i>
+                    </a>
+                </h5>
+
+                <div hidden disabled id="editDesktop-End-User" class="collapse">
+                    <div class="row">
+                        <div class="form-group col-4 response-cell">
+                            <label>What browsers do user have access to (Chrome, IE, Edge, Firefox, etc.)? </label>
+                            <input type="text" class="form-control" placeholder="No response set" value="<%= desktop_network_questions.end_user_desktop_env.browsers %>"
+                                name="desktop_network_questions[end_user_desktop_env][browsers]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>What versions of each available browsers are allowed? </label>
+                            <input type="text" class="form-control" placeholder="No response set" value="<%= desktop_network_questions.end_user_desktop_env.browser_versions %>"
+                                name="desktop_network_questions[end_user_desktop_env][browser_versions]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Do you run IE 11? </label>
+                            <%- make_custom_dropdown("desktop_network_questions[end_user_desktop_env][ie11]",
+                                    desktop_network_questions.end_user_desktop_env.ie11, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Can users enable compatibility mode in IE 11? </label>
+                            <%- make_custom_dropdown("desktop_network_questions[end_user_desktop_env][ie11_compatibility]",
+                                    desktop_network_questions.end_user_desktop_env.ie11_compatibility, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Is IE deployed in Enterprise Mode? </label>
+                            <%- make_custom_dropdown("desktop_network_questions[end_user_desktop_env][is_ie11_enterprise]",
+                                    desktop_network_questions.end_user_desktop_env.is_ie11_enterprise, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Can users enable pop-ups for specific URLs? </label>
+                            <%- make_custom_dropdown("desktop_network_questions[end_user_desktop_env][is_popups_enabled]",
+                                    desktop_network_questions.end_user_desktop_env.is_popups_enabled, ["Yes", "No"]) %>
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Do users use OWA? </label>
+                            <%- make_custom_dropdown("desktop_network_questions[end_user_desktop_env][is_OWA_used]",
+                                    desktop_network_questions.end_user_desktop_env.is_OWA_used, ["Yes", "No"]) %>
+                        </div>
+                    </div>
+                </div>
+                <hr>
 
                 <!-- Disaster Recovery -->
                 <h5>

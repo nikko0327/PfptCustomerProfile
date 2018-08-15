@@ -274,6 +274,10 @@ var other_data_sources_schema = new mongoose.Schema({
                 default: ""
             }
         }
+    },
+    comments: {
+        type: String,
+        default: ""
     }
 });
 

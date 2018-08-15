@@ -231,6 +231,16 @@ body {
     background-color: lightgray;
 }
 
+#contacts_table th {
+    font-size: 12px;
+}
+
+td input {
+    border: 1px !important;
+    width: 100%;
+    height: 70%;
+}
+
 input.form-control {
     font-size: 12px !important;
 }
