@@ -53,26 +53,50 @@ var finserv_supervision_schema = new mongoose.Schema({
         },
         message_sampling_profiles: {
             heightened_supervision: {
-                type: String,
-                default: ""
+                type: Boolean,
+                default: false
             },
             flagged_messages: {
-                type: String,
-                default: ""
+                type: Boolean,
+                default: false
             },
             clean: {
-                type: String,
-                default: ""
+                type: Boolean,
+                default: false
             },
             content_type: {
-                type: String,
-                default: ""
+                type: Boolean,
+                default: false
             },
             internal_messages: {
+                type: Boolean,
+                default: false
+            },
+            external_messages: {
+                type: Boolean,
+                default: false
+            },
+            heightened_supervision_rate: {
                 type: String,
                 default: ""
             },
-            external_messages: {
+            flagged_messages_rate: {
+                type: String,
+                default: ""
+            },
+            clean_rate: {
+                type: String,
+                default: ""
+            },
+            content_type_rate: {
+                type: String,
+                default: ""
+            },
+            internal_messages_rate: {
+                type: String,
+                default: ""
+            },
+            external_messages_rate: {
                 type: String,
                 default: ""
             }
@@ -139,15 +163,25 @@ var finserv_supervision_schema = new mongoose.Schema({
             type: String,
             default: ""
         },
-        process: {
-            whitelist_spam_updating: {
-                type: String,
-                default: ""
-            },
-            lexicon_updating: {
-                type: String,
-                default: ""
-            }
+        whitelist_spam_updating: {
+            type: String,
+            default: ""
+        },
+        // lexicon_updating: {
+        //     type: String,
+        //     default: ""
+        // },
+        false_positives: {
+            type: String,
+            default: ""
+        },
+        new_regulations: {
+            type: String,
+            default: ""
+        },
+        new_risks: {
+            type: String,
+            default: ""
         }
     },
 });

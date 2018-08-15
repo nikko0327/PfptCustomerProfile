@@ -265,3 +265,11 @@ $(document).ready(() => {
     add_post_listeners(editing_design_summary, '#editDesignSummaryLink', "#designSummaryForm", "#designSummaryFormFieldset", "Design Summary Questions saved.");
     add_post_listeners(editing_finserv_supervision, '#editFinservSupervisionLink', "#finservSupervisionForm", "#finservSupervisionFormFieldset", "Finserv Supervision Questions saved.");
 });
+
+function toggle_show_checkbox(checkbox, input_selector) {
+    if(checkbox.checked) {
+        $(`#${input_selector}`).fadeIn();
+    } else {
+        $(`#${input_selector}`).hide();
+    }
+}

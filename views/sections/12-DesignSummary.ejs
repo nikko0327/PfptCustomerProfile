@@ -29,7 +29,7 @@
                 <br>
                 <div class="form-group">
                     <label>Comments</label>
-                    <textarea rows="15" name="design_summary_questions[comments]" placeholder="No comments" form="designSummaryForm"><%= design_summary_questions.comments %></textarea>
+                    <textarea maxlength="5000" rows="15" name="design_summary_questions[comments]" placeholder="5000 characters max" form="designSummaryForm"><%= design_summary_questions.comments %></textarea>
                 </div>
             </fieldset>
         </form>
