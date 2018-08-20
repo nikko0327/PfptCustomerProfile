@@ -210,10 +210,10 @@ async function findOneOrCreate(search_term) {
         //console.log('result exists');
         return result;
     } else {
-        //console.log('result ethereal');
+        //console.log('result DNE');
         return await FinservSupervisionQuestions.create(search_term);
     }
 }
 
-module.exports.FinservSupervisionQuestions = FinservSupervisionQuestions;
+module.exports = FinservSupervisionQuestions;
 module.exports.findOneOrCreate = findOneOrCreate;
