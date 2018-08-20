@@ -256,7 +256,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
             await POCQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
             await RFEQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
             await UsageQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
-            //await FinservSupervisionQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            await FinservSupervisionQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
         }
 
         // Only if all the queries finish, redirect the page to the new customer name.
@@ -513,8 +513,6 @@ router.get("/index/:id", authenticate_session, function (req, res) {
         questionnaire["rfe_questions"] = await RFEQuestions.findOne(search_term).exec();
         questionnaire["usage_questions"] = await UsageQuestions.findOne(search_term).exec();
         questionnaire["finserv_supervision_questions"] = await FinservSupervisionQuestions.findOneOrCreate(search_term);
-
-        //console.log(questionnaire["finserv_supervision_questions"]);
         return questionnaire;
     }
 

@@ -1,6 +1,8 @@
 let expanded = false;
 let sync_forms = true;
 
+let row_count = 1;
+
 // \u2022 is a bullet point
 
 function sync_email_systems_forms() {
@@ -84,6 +86,9 @@ function change_arrow(collapse) {
 }
 
 $(document).ready(() => {
+    row_count = $('#contacts_table > tbody > tr').length;
+
+
     window.addEventListener("beforeunload", function (e) {
         if (editing_customer || editing_email_systems_se || editing_appliances || editing_design_summary
             || editing_desktop_network || editing_email_systems_ps || editing_import || editing_journaling
@@ -101,16 +106,18 @@ $(document).ready(() => {
         //console.log(table.find('tbody tr').length);
 
         table.find('tbody').append('<tr><td>' +
-            '<input type="text" class="form-control" placeholder="Contact Name" name="customer[contacts][' + table.find('tbody tr').length + '][name]" value=""/>' +
+            '<input type="text" class="form-control" placeholder="Contact Name" name="customer[contacts][' + row_count + '][name]" value=""/>' +
             '</td><td>' +
-            '<input type="text" class="form-control" placeholder="Contact Title" name="customer[contacts][' + table.find('tbody tr').length + '][title]" value=""/>' +
+            '<input type="text" class="form-control" placeholder="Contact Title" name="customer[contacts][' + row_count + '][title]" value=""/>' +
             '</td><td>' + 
-            '<input type="text" class="form-control" placeholder="Contact Email" name="customer[contacts][' + table.find('tbody tr').length + '][email]" value=""/>' +
+            '<input type="text" class="form-control" placeholder="Contact Email" name="customer[contacts][' + row_count + '][email]" value=""/>' +
             '</td><td>' + 
-            '<input type="text" class="form-control" placeholder="Contact Phone" name="customer[contacts][' + table.find('tbody tr').length + '][phone]" value=""/>' +
+            '<input type="text" class="form-control" placeholder="Contact Phone" name="customer[contacts][' + row_count + '][phone]" value=""/>' +
             '</td><td>' + 
-            '<input type="text" class="form-control" placeholder="Primary Contact" name="customer[contacts][' + table.find('tbody tr').length + '][primary_contact]" value=""/>' +
-            '</td></tr>');
+            '<input type="text" class="form-control" placeholder="Primary Contact" name="customer[contacts][' + row_count++ + '][primary_contact]" value=""/>' +
+            '</td>'+ 
+            '<td><i class="fa fa-trash" aria-hidden="true" onclick="delete_row(this);"></i></td>' +
+            '</tr>');
     });
 
     $("#delete_row").click(function (e) {
@@ -290,3 +297,10 @@ $(document).ready(() => {
     add_post_listeners(editing_design_summary, '#editDesignSummaryLink', "#designSummaryForm", "#designSummaryFormFieldset", "Design Summary Questions saved.");
     add_post_listeners(editing_finserv_supervision, '#editFinservSupervisionLink', "#finservSupervisionForm", "#finservSupervisionFormFieldset", "Finserv Supervision Questions saved.");
 });
+
+function delete_row(row) {
+    if ($('#contacts_table > tbody > tr').length > 1) {
+        //alert('delete clicked');
+        $(row).parent().parent().remove();
+    }
+}

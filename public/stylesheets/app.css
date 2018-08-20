@@ -263,3 +263,11 @@ select.form-control {
 .row {
     padding-left: 25px !important;
 }
+
+.fa.fa-trash {
+    color: black
+}
+  
+.fa.fa-trash:hover {
+    color: red;
+}
