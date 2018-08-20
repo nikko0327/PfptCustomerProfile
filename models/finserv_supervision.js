@@ -204,4 +204,16 @@ var FinservSupervisionQuestions = mongoose.model("FinservSupervisionQuestions", 
 //     }
 // });
 
-module.exports = FinservSupervisionQuestions;
+async function findOneOrCreate(search_term) {
+    let result = await FinservSupervisionQuestions.findOne(search_term);
+    if (result) {
+        //console.log('result exists');
+        return result;
+    } else {
+        //console.log('result ethereal');
+        return await FinservSupervisionQuestions.create(search_term);
+    }
+}
+
+module.exports.FinservSupervisionQuestions = FinservSupervisionQuestions;
+module.exports.findOneOrCreate = findOneOrCreate;

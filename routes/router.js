@@ -512,7 +512,9 @@ router.get("/index/:id", authenticate_session, function (req, res) {
         questionnaire["poc_questions"] = await POCQuestions.findOne(search_term).exec();
         questionnaire["rfe_questions"] = await RFEQuestions.findOne(search_term).exec();
         questionnaire["usage_questions"] = await UsageQuestions.findOne(search_term).exec();
-        questionnaire["finserv_supervision_questions"] = await FinservSupervisionQuestions.findOne(search_term).exec();
+        questionnaire["finserv_supervision_questions"] = await FinservSupervisionQuestions.findOneOrCreate(search_term);
+
+        //console.log(questionnaire["finserv_supervision_questions"]);
         return questionnaire;
     }
 
