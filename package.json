@@ -4,9 +4,7 @@
   "description": "Proofpoint potential customer profile",
   "main": "app.js",
   "dependencies": {
-    "ajax": "0.0.4",
     "babyparse": "^0.4.6",
-    "bcrypt": "^2.0.1",
     "body-parser": "^1.18.3",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^2.0.1",
@@ -14,15 +12,15 @@
     "express": "^4.16.3",
     "express-sanitizer": "^1.0.4",
     "express-session": "^1.15.6",
+    "helmet": "^3.13.0",
     "ldapauth-fork": "^4.0.2",
+    "ldapjs": "^1.0.2",
     "method-override": "^2.3.10",
     "mongoose": "^4.13.14",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "http-proxy-middleware": "^0.18.0"
   },
   "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nikko0327/PfptCustomerProfile.git"
@@ -32,5 +30,11 @@
   "bugs": {
     "url": "https://github.com/nikko0327/PfptCustomerProfile/issues"
   },
-  "homepage": "https://github.com/nikko0327/PfptCustomerProfile#readme"
+  "homepage": "https://github.com/nikko0327/PfptCustomerProfile#readme",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
 }

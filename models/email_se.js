@@ -9,6 +9,14 @@ var email_se_schema = new mongoose.Schema({
     },
     // On prem exchange w/ on prem appliances
     prem_exchange: {
+        journaling_location: {
+            type: String,
+            default: ""
+        },
+        users_per_location: {
+            type: String,
+            default: ""
+        },
         exchange_version: {
             type: String,
             default: ""
@@ -95,18 +103,18 @@ var email_se_schema = new mongoose.Schema({
             type: String,
             default: ""
         },
-        describe_exchange_env: {
-            type: String,
-            default: ""
-        },
+        // describe_exchange_env: {
+        //     type: String,
+        //     default: ""
+        // },
         diagram: {
             type: String,
             default: ""
         },
-        is_using_DAG: {
-            type: String,
-            default: ""
-        },
+        // is_using_DAG: {
+        //     type: String,
+        //     default: ""
+        // },
 
         // AD details
         is_multi_forest: {
@@ -188,18 +196,18 @@ var email_se_schema = new mongoose.Schema({
             default: ""
         },
         // !!!
-        describe_exchange_env: {
-            type: String,
-            default: ""
-        },
+        // describe_exchange_env: {
+        //     type: String,
+        //     default: ""
+        // },
         diagram: {
             type: String,
             default: ""
         },
-        is_using_DAG: {
-            type: String,
-            default: ""
-        },
+        // is_using_DAG: {
+        //     type: String,
+        //     default: ""
+        // },
 
         // AD details
         is_multi_forest: {
@@ -264,6 +272,10 @@ var email_se_schema = new mongoose.Schema({
             type: String,
             default: ""
         }
+    },
+    comments: {
+        type: String,
+        default: ""
     }
 });
 

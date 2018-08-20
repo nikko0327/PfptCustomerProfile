@@ -21,6 +21,10 @@ var rfe_schema = new mongoose.Schema({
     nice_to_haves: {
         type: String,
         default: ""
+    },
+    comments: {
+        type: String,
+        default: ""
     }
 });
 

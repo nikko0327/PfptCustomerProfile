@@ -9,10 +9,10 @@ var email_ps_schema = new mongoose.Schema({
     },
     // On prem exchange w/ on prem appliances
     prem_exchange: {
-        is_using_DAG: {
-            type: String,
-            default: ""
-        },
+        // is_using_DAG: {
+        //     type: String,
+        //     default: ""
+        // },
         number_of_inboxes: {
             type: String,
             default: ""
@@ -53,7 +53,7 @@ var email_ps_schema = new mongoose.Schema({
             type: String,
             default: ""
         },
-        is_using_message_decryption: {
+        is_using_message_encryption: {
             type: String,
             default: ""
         }
@@ -62,10 +62,10 @@ var email_ps_schema = new mongoose.Schema({
     // On-prem exchange + O365 (on prem appliance)
     prem_exchange_prem_O365: {
         // Exchange details
-        is_using_DAG: {
-            type: String,
-            default: ""
-        },
+        // is_using_DAG: {
+        //     type: String,
+        //     default: ""
+        // },
         number_of_inboxes: {
             type: String,
             default: ""
@@ -104,7 +104,7 @@ var email_ps_schema = new mongoose.Schema({
             type: String,
             default: ""
         },
-        is_using_message_decryption: {
+        is_using_message_encryption: {
             type: String,
             default: ""
         }
@@ -123,18 +123,18 @@ var email_ps_schema = new mongoose.Schema({
             type: String,
             default: ""
         },
-        describe_env: {
-            type: String,
-            default: ""
-        },
+        // describe_env: {
+        //     type: String,
+        //     default: ""
+        // },
         diagram: {
             type: String,
             default: ""
         },
-        is_using_DAG: {
-            type: String,
-            default: ""
-        },
+        // is_using_DAG: {
+        //     type: String,
+        //     default: ""
+        // },
         is_multi_forest: {
             type: String,
             default: ""
@@ -195,6 +195,10 @@ var email_ps_schema = new mongoose.Schema({
             type: String,
             default: ""
         }
+    },
+    comments: {
+        type: String,
+        default: ""
     }
 });
 

@@ -41,40 +41,40 @@ var desktop_network_schema = new mongoose.Schema({
             default: ""
         }
     },
-    end_user_desktop_env: {
-        browsers: { // One or more strings, Chrome/Firefox/IE/Edge
-            type: String,
-            default: ""
-        },
-        browser_versions: {
-            type: String,
-            default: ""
-        },
-        ie11: {
-            type: String,
-            default: ""
-        },
-        ie11_compatibility: {
-            type: String,
-            default: ""
-        },
-        is_ie11_enterprise: {
-            type: String,
-            default: ""
-        },
-        is_popups_enabled: {
-            type: String,
-            default: ""
-        },
-        is_OWA_used: {
-            type: String,
-            default: ""
-        },
-        browsers_access: { // One or more strings, Chrome/Firefox/IE/Edge
-            type: String,
-            default: ""
-        }
-    },
+    // end_user_desktop_env: {
+    //     browsers: { // One or more strings, Chrome/Firefox/IE/Edge
+    //         type: String,
+    //         default: ""
+    //     },
+    //     browser_versions: {
+    //         type: String,
+    //         default: ""
+    //     },
+    //     ie11: {
+    //         type: String,
+    //         default: ""
+    //     },
+    //     ie11_compatibility: {
+    //         type: String,
+    //         default: ""
+    //     },
+    //     is_ie11_enterprise: {
+    //         type: String,
+    //         default: ""
+    //     },
+    //     is_popups_enabled: {
+    //         type: String,
+    //         default: ""
+    //     },
+    //     is_OWA_used: {
+    //         type: String,
+    //         default: ""
+    //     },
+    //     browsers_access: { // One or more strings, Chrome/Firefox/IE/Edge
+    //         type: String,
+    //         default: ""
+    //     }
+    // },
     disaster_recovery: {
         is_replicating_exchange_and_AD: {
             type: String,
@@ -143,6 +143,10 @@ var desktop_network_schema = new mongoose.Schema({
             type: String,
             default: ""
         }
+    },
+    comments: {
+        type: String,
+        default: ""
     }
 });
 

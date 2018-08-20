@@ -176,10 +176,20 @@
                                     email_se_questions.prem_exchange_prem_O365.has_enterprise_CAL, ["Yes", "No"], "has_enterprise_CAL") %>
                         </div>
                         <div class="form-group col-4 response-cell">
+                            <label>Describe the HA/DR of the Exchange environment.</label>
+                            <input type="text" class="form-control describe_exchange_env" placeholder="No response set" value="<%= email_se_questions.prem_exchange_prem_O365.describe_exchange_env %>"
+                                name="email_se_questions[prem_exchange_prem_O365][describe_exchange_env]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
                             <label>Please provide a diagram of your exchange infrastructure and your AD Details.
                             </label>
                             <input type="text" class="form-control diagram" placeholder="No response set" value="<%= email_se_questions.prem_exchange_prem_O365.diagram %>"
                                 name="email_se_questions[prem_exchange_prem_O365][diagram]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Are DAGs being used?</label>
+                            <%- make_custom_dropdown("email_se_questions[prem_exchange_prem_O365][is_using_DAG]",
+                                    email_se_questions.prem_exchange_prem_O365.is_using_DAG, ["Yes", "No"], "is_using_DAG") %>
                         </div>
                     </div>
                     <hr>
@@ -288,10 +298,20 @@
                                     email_se_questions.prem_exchange_hosted_O365.has_enterprise_CAL, ["Yes", "No"], "has_enterprise_CAL") %>
                         </div>
                         <div class="form-group col-4 response-cell">
+                            <label>Describe the HA/DR of the Exchange environment.</label>
+                            <input type="text" class="form-control describe_exchange_env" placeholder="No response set" value="<%= email_se_questions.prem_exchange_hosted_O365.describe_exchange_env %>"
+                                name="email_se_questions[prem_exchange_hosted_O365][describe_exchange_env]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
                             <label>Please provide a diagram of your exchange infrastructure and your AD Details.
                             </label>
                             <input type="text" class="form-control diagram" placeholder="No response set" value="<%= email_se_questions.prem_exchange_hosted_O365.diagram %>"
                                 name="email_se_questions[prem_exchange_hosted_O365][diagram]">
+                        </div>
+                        <div class="form-group col-4 response-cell">
+                            <label>Are DAGs being used?</label>
+                            <%- make_custom_dropdown("email_se_questions[prem_exchange_hosted_O365][is_using_DAG]",
+                                    email_se_questions.prem_exchange_hosted_O365.is_using_DAG, ["Yes", "No"], "is_using_DAG") %>
                         </div>
                     </div>
                     <hr>

@@ -93,120 +93,35 @@
             </div>
             <br>
 
-
-            <div class="row">
-                <div class="form-group col-4 response-cell">
-                    <h5>Is the customer an:</h5>
-                    <div class="col-4, response-checkbox">
-                        <p>
-                            <input type="checkbox" name="customer[existing_archive_prospect]" <%- customer.existing_archive_prospect ? "checked" : ""
-                                %> />
-                            <b> Existing Archive Prospect</b>
-                        </p>
-                    </div>
-                    <div class="col-4, response-checkbox">
-                        <p>
-                            <input type="checkbox" name="customer[existing_archive_customer]" <%- customer.existing_archive_customer ? "checked" : ""
-                                %> />
-                            <b> Existing Archive Customer</b>
-                        </p>
-                    </div>
-                    <div class="col-4, response-checkbox">
-                        <p>
-                            <input type="checkbox" name="customer[existing_security_customer]" <%- customer.existing_security_customer ? "checked" :
-                                "" %> />
-                            <b> Existing Proofpoint Security Customer</b>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="form-group col-4 response-cell">
-                    <label>Are DAGs being used?</label>
-                    <%- make_custom_dropdown("customer[is_using_DAG]", customer.is_using_DAG, ["Yes", "No"]) %>
-                </div>
-                <div class="form-group col-4 response-cell">
-                    <label>Describe the HA/DR of the Exchange environment.</label>
-                    <input type="text" class="form-control" placeholder="No response set" value="<%= customer.describe_HA_DR %>"
-                        name="customer[describe_HA_DR]">
-                </div>
-            </div>
-            <br>
-
             <div class="title">
                 <h5 style="color: mediumvioletred">Contacts</h5>
             </div>
 
-            <button id="add_row" type="button" class="btn-primary">Add row</button>
-            <button id="delete_row" type="button" class="btn-primary">Delete row</button>
-            <br>
-            <br>
-
-            <table id="contacts_table" class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Contact name</th>
-                        <th>Title</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Primary contact</th>
-                        <th></th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <% if(customer.contacts && customer.contacts.length) {
-                        for(let i = 0; i < customer.contacts.length; i++) { %>
-                        <tr>
-                            <td>
-                                <input type="text" class="form-control" placeholder="Contact Name" name="customer[contacts][<%= i %>][name]" value="<%= customer.contacts[i].name %>"
-                                />
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" placeholder="Contact Title" name="customer[contacts][<%= i %>][title]" value="<%= customer.contacts[i].title%>"
-                                />
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" placeholder="Contact Email" name="customer[contacts][<%= i %>][email]" value="<%= customer.contacts[i].email %>"
-                                />
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" placeholder="Contact Phone" name="customer[contacts][<%= i %>][phone]" value="<%= customer.contacts[i].phone %>"
-                                />
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" placeholder="Primary Contact" name="customer[contacts][<%= i %>][primary_contact]"
-                                    value="<%= customer.contacts[i].primary_contact %>" />
-                            </td>
-                            <td>
-                                <i class="fa fa-trash" aria-hidden="true" onclick='delete_row(this);'></i>
-                            </td>
-                        </tr>
-                    <% } } else { %>
-                            <tr>
-                                <td>
-                                    <input type="text" class="form-control" placeholder="Contact Name" name="customer[contacts][0][name]" value="" />
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" placeholder="Contact Title" name="customer[contacts][0][title]" value="" />
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" placeholder="Contact Email" name="customer[contacts][0][email]" value="" />
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" placeholder="Contact Phone" name="customer[contacts][0][phone]" value="" />
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" name="customer[contacts][0][primary_contact]" value="" />
-                                </td>
-                                <td>
-                                    <i class="fa fa-trash" aria-hidden="true" onclick='delete_row(this);'></i>
-                                </td>
-                            </tr>
-                    <% } %>
-                </tbody>
-            </table>
+            <div class="row">
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">Name </label>
+                    <input type="text" class="form-control" placeholder="Contact name" value="<%= customer.contacts.name %>" name="customer[contacts][name]">
+                </div>
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">Title </label>
+                    <input type="text" class="form-control" placeholder="Contact title" value="<%= customer.contacts.title %>" name="customer[contacts][title]">
+                </div>
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">Email </label>
+                    <input type="email" class="form-control" placeholder="Contact email" value="<%= customer.contacts.email %>" name="customer[contacts][email]">
+                </div>
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">Phone </label>
+                    <input type="text" class="form-control" placeholder="Contact phone number" value="<%= customer.contacts.phone %>" name="customer[contacts][phone]">
+                </div>
+                <div class="form-group general_info response-cell">
+                    <label style="text-align: center !important;">Primary contact </label>
+                    <%- make_custom_dropdown("customer[contacts][primary_contact]", customer.contacts.primary_contact, ["Yes", "No"]) %>
+                </div>
+            </div>
 
             <br>
+
             <div class="form-group">
                 <label>Comments</label>
                 <textarea maxlength="5000" rows="5" name="customer[comments]" placeholder="5000 characters max" form="customerForm"><%= customer.comments %></textarea>

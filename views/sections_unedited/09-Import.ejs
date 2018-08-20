@@ -24,16 +24,6 @@
 
                 <div class="row">
                     <div class="form-group col-4 response-cell">
-                        <label>RFE</label>
-                        <input type="text" class="form-control" placeholder="No response set" value="<%= import_questions.rfe%>"
-                            name="import_questions[rfe]">
-                    </div>
-                    <div class="form-group col-4 response-cell">
-                        <label>JIRA ticket</label>
-                        <input type="text" class="form-control" placeholder="No response set" value="<%= import_questions.jira%>"
-                            name="import_questions[jira]">
-                    </div>
-                    <div class="form-group col-4 response-cell">
                         <label>Need to migrate legacy data?</label>
                         <%- make_custom_dropdown("import_questions[need_to_migrate_legacy_data]",
                                 import_questions.need_to_migrate_legacy_data, ["Yes", "No"]) %>
@@ -53,8 +43,8 @@
                         <input type="text" class="form-control" placeholder="No response set" value="<%= import_questions.expected_timeline %>" name="import_questions[expected_timeline]">
                     </div>
                     <div class="form-group col-4 response-cell">
-                        <label>Who is doing the extraction?</label>
-                        <input type="text" class="form-control" placeholder="No response set" value="<%= import_questions.extraction_agent %>" name="import_questions[extraction_agent]">
+                        <label>Who is doing the conversion?</label>
+                        <input type="text" class="form-control" placeholder="No response set" value="<%= import_questions.conversion_agent %>" name="import_questions[conversion_agent]">
                     </div>
                     <div class="form-group col-4 response-cell">
                         <label>SoW / Service brief?</label>
@@ -66,8 +56,7 @@
                     </div>
                     <div class="form-group col-4 response-cell">
                         <label>Format</label>
-                        <%- make_custom_dropdown("import_questions[format]",
-                                import_questions.import, ["EML", "PST"]) %>
+                        <input type="text" class="form-control" placeholder="No response set" value="<%= import_questions.format %>" name="import_questions[format]">
                     </div>
                     <div class="form-group col-4 response-cell">
                         <label>Retention policy for import data?</label>

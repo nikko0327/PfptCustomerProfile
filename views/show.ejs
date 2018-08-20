@@ -1,47 +1,55 @@
-<% include partials/header %>
+<% include partials/show_header %>
 
-<script type="text/javascript" src="/scripts/show.js"></script>
-
-<div class="container" style="border: .2px solid gray; padding-right:25px; padding-left:25px; padding-bottom: 25px">
-    <div id="customerHeader">
-        <h1 style="text-align: center;"><%= customer.name %></h1>
-    </div>
-    <br>
-    <br>
-    <div id="content">
-        <div id="detail" class="display-header">
-            <h4>Project Detail</h4>
-            <button type="button" value="Expand All" id="collapse-toggle" onclick="expand_collapse()" class="pull">
-                Expand All
-            </button>
+    <div class="container" style="border: .2px solid gray; padding-right:25px; padding-left:25px; padding-bottom: 25px">
+        <div id="customerHeader">
+            <h1 style="text-align: center; padding-top:15px; font-size: 70px;">
+                <%= customer.name %>
+            </h1>
         </div>
-        <hr class="rainbow">
 
-        <% include sections/01-General %>
+        <div id="content">
+            <div id="detail" class="display-header">
+                <h4>Project Details</h4>
+                <button type="button" value="Expand All" id="collapse-toggle" onclick="expand_collapse()" class="pull btn-primary">
+                    Expand All
+                </button>
 
-        <% include sections/02-EmailSystemsSE %>
+                <button type="button" value="true" id="sync-forms" onclick="sync_email_systems_forms()" class="pull btn-primary">
+                    Unsync Forms
+                </button>
+            </div>
+            <hr class="rainbow">
 
-        <% include sections/03-EmailSystemsPS %>
+            <% include sections/01-General.ejs %>
 
-        <% include sections/04-Journaling %>
+                <% include sections/02-EmailSystemsSE.ejs %>
 
-        <% include sections/05-Appliances %>
+                    <% include sections/03-EmailSystemsPS.ejs %>
 
-        <% include sections/06-OtherDataSources %>
+                        <% include sections/04-Journaling.ejs %>
 
-        <% include sections/07-DesktopNetwork %>
+                            <% include sections/05-Appliances.ejs %>
 
-        <% include sections/08-Usage %>
+                                <% include sections/06-OtherDataSources.ejs %>
 
-        <% include sections/09-Import %>
+                                    <% include sections/07-DesktopNetwork.ejs %>
 
-        <% include sections/10-POC %>
+                                        <% include sections/08-Usage.ejs %>
 
-        <% include sections/11-RFE %>
+                                            <% include sections/09-Import.ejs %>
 
-        <% include sections/12-DesignSummary %>
+                                                <% include sections/10-POC.ejs %>
 
+                                                    <% include sections/11-RFE.ejs %>
+
+                                                        <% include sections/13-FinservSupervision.ejs %>
+
+                                                            <% include sections/12-DesignSummary.ejs %>
+
+        </div>
     </div>
-</div>
 
-<% include partials/footer %>
+    <script type="text/javascript" src="../scripts/show.js"></script>
+    <script type="text/javascript" src="../scripts/sync_inputs.js"></script>
+
+    <% include partials/footer %>

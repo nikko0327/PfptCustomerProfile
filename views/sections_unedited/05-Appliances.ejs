@@ -14,7 +14,7 @@
             </a>
         </div>
         <br>
-
+        
         <form id="appliancesForm" autocomplete="off" action="../index/<%= encodeURIComponent(customer.name) %>?_method=PUT" method="POST">
             <fieldset id="appliancesFormFieldset" disabled>
                 <div class="form-group col-4 response-cell" hidden>
@@ -46,7 +46,11 @@
                             <input type="text" class="form-control" placeholder="No response set" value="<%= appliance_questions.number_of_mailboxes %>"
                                 name="appliance_questions[number_of_mailboxes]">
                         </div>
-
+                        <div class="form-group, col-4 response-cell">
+                            <label>UI logins per day</label>
+                            <input type="text" class="form-control" placeholder="No response set" value="<%= appliance_questions.ui_logins_per_day %>"
+                                name="appliance_questions[ui_logins_per_day]">
+                        </div>
                         <div class="form-group, col-4 response-cell">
                             <label>Exports per month</label>
                             <input type="text" class="form-control" placeholder="No response set" value="<%= appliance_questions.exports_per_month %>"
@@ -69,7 +73,7 @@
                         <div class="form-group, col-4 response-cell">
                             <label>Does the customer have a VMWare environment?</label>
                             <%- make_custom_dropdown("appliance_questions[has_vmware_env]",
-                                    appliance_questions.has_vmware_env, ["Virtual", "Physical", "None"]) %>
+                                    appliance_questions.has_vmware_env, ["Yes", "No"]) %>
                         </div>
                         <div class="col-4 response-cell">
                             <label>Number of appliances recommended?</label>
@@ -94,23 +98,8 @@
                 <div id="editapplianceDetails-ForSE" class="collapse">
                     <div class="row">
                         <div class="form-group col-4 response-cell">
-                            <label>How many of each purpose:</label>
-                        </div>
-                        <div class="form-group col-4 response-cell">
-                            <label style="margin-left: 3em;">UI</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= appliance_questions.purposes.ui %>" name="appliance_questions[purposes][ui]">
-                        </div>
-                        <div class="form-group col-4 response-cell">
-                            <label style="margin-left: 3em;">Export</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= appliance_questions.purposes.export %>" name="appliance_questions[purposes][export]">
-                        </div>
-                        <div class="form-group col-4 response-cell">
-                            <label style="margin-left: 3em;">Archiving</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= appliance_questions.purposes.archiving %>" name="appliance_questions[purposes][archiving]">
-                        </div>
-                        <div class="form-group col-4 response-cell">
-                            <label style="margin-left: 3em;">Stubbing</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= appliance_questions.purposes.stubbing %>" name="appliance_questions[purposes][stubbing]">
+                            <label>How many of each purpose (UI, export, archiving, stubbing)?</label>
+                            <input type="text" class="form-control" placeholder="No response set" value="<%= appliance_questions.purposes %>" name="appliance_questions[purposes]">
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Archive proxy?</label>
