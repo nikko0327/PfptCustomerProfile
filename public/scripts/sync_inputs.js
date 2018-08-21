@@ -9,7 +9,7 @@ $(document).ready(() => {
         // "sync_tools",
         "number_of_forests",
         "resource_forest_deployment",
-        "diagram",
+        //"diagram",
         "AD_size",
         // PS
         "number_of_inboxes",

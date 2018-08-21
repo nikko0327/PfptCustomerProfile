@@ -84,7 +84,16 @@ var CustomerSchema = new mongoose.Schema({
     describe_HA_DR: {
         type: String,
         default: ""
-    }
+    },
+    pso: {
+        type: String,
+        default: ""
+    },
+    shipreq: {
+        type: String,
+        default: ""
+    },
+    
 });
 
 var Customer = mongoose.model("Customer", CustomerSchema);

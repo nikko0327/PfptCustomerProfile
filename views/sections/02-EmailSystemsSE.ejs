@@ -15,7 +15,7 @@
         </div>
         <br>
 
-        <form autocomplete="off" id="emailSystemSEForm" action="../index/<%= encodeURIComponent(customer.name) %>?_method=PUT" method="POST">
+        <form autocomplete="off" id="emailSystemSEForm" action="../index/<%= encodeURIComponent(customer.name) %>?_method=PUT" method="POST" enctype="multipart/form-data">
             <fieldset id="emailSystemSEFormFieldset" disabled>
                 <div class="form-group col-4 response-cell" hidden>
                     <label>Customer Name</label>
@@ -74,7 +74,7 @@
 
                         <div class="form-group col-4 response-cell">
                             <label>Please provide a diagram of your exchange infrastructure and your AD Details.</label>
-                            <input type="text" class="form-control diagram" placeholder="No response set" value="<%= email_se_questions.prem_exchange.diagram %>"
+                            <input type="file" class="form-control diagram" placeholder="No response set" value="<%= email_se_questions.prem_exchange.diagram %>"
                                 name="email_se_questions[prem_exchange][diagram]">
                         </div>
                     </div>

@@ -34,9 +34,9 @@ var email_se_schema = new mongoose.Schema({
             type: String,
             default: ""
         },
-        diagram: { // Fileupload???
-            type: String,
-            default: ""
+        diagram: { // TESTING
+            data: Buffer,
+            contentType: String
         },
         is_multi_forest: {
             type: String,

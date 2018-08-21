@@ -59,6 +59,7 @@ function add_post_listeners(flag, link, qform, fieldset, message) {
     });
 }
 
+// Expands/collapse all sections
 function expand_collapse() {
     if (expanded == true) {
         $('.collapse').collapse('hide');
@@ -84,6 +85,8 @@ function change_arrow(collapse) {
         collapse.children(":first").toggleClass('fa-caret-down').toggleClass('fa-caret-right');
     }
 }
+
+var editing_customer = false;
 
 $(document).ready(() => {
     row_count = $('#contacts_table > tbody > tr').length;
@@ -134,7 +137,7 @@ $(document).ready(() => {
 
     let customer_name = $("#unique-customer-name").val();
 
-    let editing_customer = false;
+    //var editing_customer = false;
     $('#editCustomerLink').click(function () {
         if (editing_customer == true && customer_name) {
             // END EDITING
@@ -299,7 +302,7 @@ $(document).ready(() => {
 });
 
 function delete_row(row) {
-    if ($('#contacts_table > tbody > tr').length > 1) {
+    if ($('#contacts_table > tbody > tr').length > 1 && editing_customer) {
         //alert('delete clicked');
         $(row).parent().parent().remove();
     }

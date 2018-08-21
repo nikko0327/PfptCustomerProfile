@@ -2,7 +2,10 @@ var express = require("express");
 var router = express.Router();
 // var User = require("../models/user");
 var mongoose = require("mongoose");
-mongoose.Promise = require('bluebird');
+
+// var jwt = require('jsonwebtoken');
+// var jwt_secret = 'Just like the stars that have faded, we too, will fade one day and become one with the stars.';
+
 
 
 /**
@@ -138,6 +141,8 @@ router.post("/login", function (req, res) {
                         // console.log(error);
                         console.log("Failed attempt to login using username: " + req.body.login["username"]);
                         res.render("login", { fail: true });
+
+
                     } else {
                         console.log("Logged in: " + req.body.login["username"]);
                         req.session.user = req.body.login["username"];
@@ -237,6 +242,7 @@ router.post("/new", authenticate_session, function (req, res) {
 router.put("/index/:id", authenticate_session, function (req, res) {
     // Considering changing to else ifs
 
+
     // For updating name, make a ton of promises and execute them, THEN render the page.
     if (req.body.customer != undefined && req.body.customer != null) {
         console.log("- Attempting to update customer information...");
@@ -319,6 +325,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         console.log("- Attempting to update Email Systems SE Questions...");
         EmailSEQuestions.findOneAndUpdate({ "name": req.params.id }, req.body.email_se_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
+            console.log(req.body.email_se_questions);
             console.log("Done");
             res.status(200).json("{}");
         }).catch((error) => {
@@ -479,7 +486,6 @@ router.delete("/index/:id", authenticate_session, function (req, res) {
         res.redirect(append + "/index");
     });
 });
-
 
 // SHOW ROUTE
 router.get("/index/:id", authenticate_session, function (req, res) {
