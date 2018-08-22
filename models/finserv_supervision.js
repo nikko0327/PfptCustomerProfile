@@ -207,10 +207,10 @@ var FinservSupervisionQuestions = mongoose.model("FinservSupervisionQuestions", 
 async function findOneOrCreate(search_term) {
     let result = await FinservSupervisionQuestions.findOne(search_term);
     if (result) {
-        //console.log('result exists');
+        console.log('result exists');
         return result;
     } else {
-        //console.log('result DNE');
+        console.log('result DNE, making new one');
         return await FinservSupervisionQuestions.create(search_term);
     }
 }
