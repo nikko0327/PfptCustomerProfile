@@ -9,14 +9,30 @@ function delete_customer(customer_name) {
                 data: {},
                 success: function () {
                     alert("Customer " + customer_name + " deleted.");
-                    location.href = "./";
                 },
                 error: function () {
-                    alert("Error deleting customer " + customer_name);
+                    alert("Error deleting profile for customer " + customer_name);
+                }
+            });
+
+            $.ajax({
+                type: 'POST',
+                timeout: 3000,
+                url: "./files/" + encodeURIComponent(customer_name) + "?_method=DELETE",
+                data: {
+                    delete_customer: true
+                },
+                success: function () {
+                    alert("Uploaded files for customer " + customer_name + " deleted.");
+                },
+                error: function () {
+                    alert("Error deleting files for customer " + customer_name);
                 }
             });
         } else {
-            alert("Incorrect customer name.");
+            alert('Incorrect customer name.')
         }
     }
+
+    window.location.reload();
 }

@@ -172,9 +172,9 @@ app.get('/uploads', authenticate_session, (req, res) => {
 });
 
 // @route GET /
-// @desc Gets all uploaded files
+// @desc Gets all uploaded files for a given customer
 app.get('/uploads/:id', authenticate_session, (req, res) => {
-    gfs.files.find({"metadata.customer": req.params.id}).toArray((err, files) => {
+    gfs.files.find({ "metadata.customer": req.params.id }).toArray((err, files) => {
         // Check if files
         if (!files || files.length === 0) {
             res.json([]);
@@ -197,8 +197,8 @@ app.get('/uploads/:id', authenticate_session, (req, res) => {
 app.post('/uploads', authenticate_session, upload.single('file'), (req, res) => {
     //console.log(req.body.customername);
     //res.redirect(req.headers.referer);
-    //res.json({ file: req.file });
-    res.redirect('/customerprofile/files/');
+    res.json(req.file);
+    //res.redirect('/customerprofile/files/');
     // res.status(200).json("{}");
 });
 
@@ -268,13 +268,31 @@ app.get('/image/:filename', (req, res) => {
 // @desc  Delete file
 app.delete('/files/:id', (req, res) => {
     //console.log('delete reached')
-    // console.log(req.params.id)
-    gfs.remove({ _id: req.params.id, root: 'uploads' }, (err, gridStore) => {
-        if (err) {
-            return res.status(404).json({ err: err });
-        }
-        res.redirect('/customerprofile/files/');
-    });
+    //console.log(`'${req.params.id}'`);
+    if (req.body.delete_customer) {
+        //console.log('Wiping customer ' + req.params.id)
+        gfs.files.find({ "metadata.customer": req.params.id }).toArray((err, files) => {
+            files.forEach(file => {
+                gfs.remove({ _id: file._id, root: 'uploads' }, (err, gridStore) => {
+                    if (err) {
+                        //console.log(err);
+                        return res.status(404).json({ err: err });
+                    }
+                    //res.redirect('/customerprofile/files/');
+                });
+            });
+            res.status(200).json("{}");
+        });
+    } else {
+        gfs.remove({ _id: req.params.id, root: 'uploads' }, (err, gridStore) => {
+            if (err) {
+                //console.log(err);
+                return res.status(404).json({ err: err });
+            }
+            //res.redirect('/customerprofile/files/');
+            res.status(200).json("{}");
+        });
+    }
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
