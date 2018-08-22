@@ -140,7 +140,8 @@
                     <input type="text" class="form-control" placeholder="No response set" value="<%= customer.shipreq %>" name="customer[shipreq]">
                 </div>
             </div>
-            <br>
+
+            <hr>
 
             <div class="title">
                 <h5 style="color: mediumvioletred">Contacts</h5>
@@ -215,7 +216,6 @@
                             <% } %>
                 </tbody>
             </table>
-            <br>
 
             <div class="form-group">
                 <label>Comments</label>
@@ -225,12 +225,53 @@
     </form>
     <hr>
 
-    <form action="../uploads" method="POST" enctype="multipart/form-data">
-        <div class="custom-file">
-            <input type="text" hidden readonly value="<%= customer.name %>" name="customername">
-            <input type="file" name="file">
-            <input type="submit" value="Submit" class="btn btn-primary">
+    <h5 style="color: mediumvioletred">Diagrams for Exchange infrastructure and AD details</h5>
+    <div class="row">
+        <div class="form-group general_info response-cell">
+            <label style="font-size: 12px; text-align: center;">On-prem Exchange
+                <br>(On-prem Appliance)</label>
+            <div>
+                <div id="diagram1">
+
+                </div>
+                <form action="../uploads" method="POST" enctype="multipart/form-data">
+                    <input type="text" hidden readonly value="<%= customer.name %>" name="customername">
+                    <input type="text" hidden readonly value="1" name="diagram">
+                    <input type="file" name="file">
+                    <input id="fileupload" type="submit" value="Upload" class="btn-primary">
+                </form>
+            </div>
         </div>
-    </form>
+        <div class="form-group general_info response-cell">
+            <label style="font-size: 12px; text-align: center;">On-prem Exchange + O365
+                <br>(On-prem Appliance)</label>
+            <div>
+                <div id="diagram2">
+
+                </div>
+                <form action="../uploads" method="POST" enctype="multipart/form-data">
+                    <input type="text" hidden readonly value="<%= customer.name %>" name="customername">
+                    <input type="text" hidden readonly value="2" name="diagram">
+                    <input type="file" name="file">
+                    <input id="fileupload" type="submit" value="Upload" class="btn-primary">
+                </form>
+            </div>
+        </div>
+        <div class="form-group general_info response-cell">
+            <label style="font-size: 12px; text-align: center;">On-prem Exchange + O365
+                <br>(Hosted Appliance)</label>
+            <div>
+                <div id="diagram3">
+
+                </div>
+                <form action="../uploads" method="POST" enctype="multipart/form-data">
+                    <input type="text" hidden readonly value="<%= customer.name %>" name="customername">
+                    <input type="text" hidden readonly value="3" name="diagram">
+                    <input type="file" name="file">
+                    <input id="fileupload" type="submit" value="Upload" class="btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 <hr class="rainbow">

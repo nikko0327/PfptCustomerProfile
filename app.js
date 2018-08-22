@@ -15,6 +15,16 @@ var multer = require('multer');
 var GridFSStorage = require('multer-gridfs-storage');
 var gridfs_stream = require('gridfs-stream');
 
+// For authenticating cookies/sessions.
+function authenticate_session(req, res, next) {
+    let append = '/customerprofile'
+    if (req.session.user) {
+        next();
+    } else {
+        res.redirect(append + "/login");
+    }
+}
+
 //APP CONFIGURATION
 app.use(helmet());
 app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -56,7 +66,11 @@ const storage = new GridFSStorage({
                 const filename = buf.toString('hex') + path.extname(file.originalname);
                 const fileInfo = {
                     filename: filename,
-                    metadata: req.body.customername,
+                    metadata: {
+                        customer: (req.body.customername) ? req.body.customername : null,
+                        diagram: (req.body.diagram) ? req.body.diagram : null,
+                        originalname: (file) ? file.originalname : null
+                    },
                     bucketName: 'uploads'
                 };
                 resolve(fileInfo);
@@ -137,45 +151,64 @@ app.use(routes);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // @route GET /
-// @desc Loads form
-app.get('/uploads', (req, res) => {
+// @desc Gets all uploaded files
+app.get('/uploads', authenticate_session, (req, res) => {
     gfs.files.find().toArray((err, files) => {
         // Check if files
         if (!files || files.length === 0) {
-            res.render('uploads', { files: false });
+            res.json([]);
         } else {
-            files.map(file => {
-                if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
-                    file.isImage = true;
-                } else {
-                    file.isImage = false;
-                }
-            });
+            // files.map(file => {
+            //     if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
+            //         file.isImage = true;
+            //     } else {
+            //         file.isImage = false;
+            //     }
+            // });
             //console.log(files);
-            res.render('uploads', {files: files});
+            res.json(files);
+        }
+    });
+});
+
+// @route GET /
+// @desc Gets all uploaded files
+app.get('/uploads/:id', authenticate_session, (req, res) => {
+    gfs.files.find({"metadata.customer": req.params.id}).toArray((err, files) => {
+        // Check if files
+        if (!files || files.length === 0) {
+            res.json([]);
+        } else {
+            // files.map(file => {
+            //     if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
+            //         file.isImage = true;
+            //     } else {
+            //         file.isImage = false;
+            //     }
+            // });
+            //console.log(files);
+            res.json(files);
         }
     });
 });
 
 // @route POST /upload
 // @desc  Uploads file to DB
-app.post('/uploads', upload.single('file'), (req, res) => {
+app.post('/uploads', authenticate_session, upload.single('file'), (req, res) => {
     //console.log(req.body.customername);
     //res.redirect(req.headers.referer);
     //res.json({ file: req.file });
-    res.redirect('/customerprofile/image/' + req.file.filename);
-    // res.status(200);
+    res.redirect('/customerprofile/files/');
+    // res.status(200).json("{}");
 });
 
 // @route GET /files
 // @desc  Display all files in JSON
-app.get('/files', (req, res) => {
+app.get('/files', authenticate_session, (req, res) => {
     gfs.files.find().toArray((err, files) => {
         // Check if files
         if (!files || files.length === 0) {
-            return res.status(404).json({
-                err: 'No files exist'
-            });
+            return res.render('uploads', { files: false });
         }
 
         // Files exist
@@ -185,7 +218,7 @@ app.get('/files', (req, res) => {
 
 // @route GET /files/:filename
 // @desc  Downloads the file
-app.get('/files/:filename', (req, res) => {
+app.get('/files/:filename', authenticate_session, (req, res) => {
     gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
         // Check if file
         if (!file || file.length === 0) {
@@ -224,9 +257,9 @@ app.get('/image/:filename', (req, res) => {
             const readstream = gfs.createReadStream(file.filename);
             readstream.pipe(res);
         } else {
-            // res.status(404).json({
-            //     err: 'Not an image'
-            // });
+            res.status(404).json({
+                err: 'Not an image'
+            });
         }
     });
 });
@@ -234,13 +267,13 @@ app.get('/image/:filename', (req, res) => {
 // @route DELETE /files/:id
 // @desc  Delete file
 app.delete('/files/:id', (req, res) => {
-    // console.log('delete reached')
+    //console.log('delete reached')
     // console.log(req.params.id)
     gfs.remove({ _id: req.params.id, root: 'uploads' }, (err, gridStore) => {
         if (err) {
             return res.status(404).json({ err: err });
         }
-        res.redirect('/customerprofile/uploads');
+        res.redirect('/customerprofile/files/');
     });
 });
 

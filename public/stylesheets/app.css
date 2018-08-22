@@ -271,3 +271,12 @@ select.form-control {
 .fa.fa-trash:hover {
     color: red;
 }
+
+.truncate {
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0px;
+    margin: 0px;
+  }

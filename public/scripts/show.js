@@ -10,7 +10,7 @@ function sync_email_systems_forms() {
     if (sync_forms) {
         document.getElementById("sync-forms").innerHTML = "Unsync Forms";
         alert("The following forms will synchronize similar questions:\n" +
-            "\u2022 Email Systems SE/PS"+
+            "\u2022 Email Systems SE/PS" +
             "\n\nPlease review your changes before saving.");
     } else {
         document.getElementById("sync-forms").innerHTML = "Sync Forms";
@@ -91,7 +91,6 @@ var editing_customer = false;
 $(document).ready(() => {
     row_count = $('#contacts_table > tbody > tr').length;
 
-
     window.addEventListener("beforeunload", function (e) {
         if (editing_customer || editing_email_systems_se || editing_appliances || editing_design_summary
             || editing_desktop_network || editing_email_systems_ps || editing_import || editing_journaling
@@ -112,13 +111,13 @@ $(document).ready(() => {
             '<input type="text" class="form-control" placeholder="Contact Name" name="customer[contacts][' + row_count + '][name]" value=""/>' +
             '</td><td>' +
             '<input type="text" class="form-control" placeholder="Contact Title" name="customer[contacts][' + row_count + '][title]" value=""/>' +
-            '</td><td>' + 
+            '</td><td>' +
             '<input type="text" class="form-control" placeholder="Contact Email" name="customer[contacts][' + row_count + '][email]" value=""/>' +
-            '</td><td>' + 
+            '</td><td>' +
             '<input type="text" class="form-control" placeholder="Contact Phone" name="customer[contacts][' + row_count + '][phone]" value=""/>' +
-            '</td><td>' + 
+            '</td><td>' +
             '<input type="text" class="form-control" placeholder="Primary Contact" name="customer[contacts][' + row_count++ + '][primary_contact]" value=""/>' +
-            '</td>'+ 
+            '</td>' +
             '<td><i class="fa fa-trash" aria-hidden="true" onclick="delete_row(this);"></i></td>' +
             '</tr>');
     });
@@ -137,13 +136,72 @@ $(document).ready(() => {
 
     let customer_name = $("#unique-customer-name").val();
 
+    //alert(window.location.host);
+
+    // This one is for loading uploaded diagrams
+    $.ajax({
+        type: "GET",
+        timeout: 3000,
+        url: 'http://localhost/customerprofile/uploads/' + encodeURIComponent(customer_name),
+        success: function (res) {
+            res.forEach(item => {
+                console.log(item);
+                switch (item.metadata.diagram) {
+                    case '1': {
+                        $('#diagram1').append(`
+                            <div class="row">
+                                <a href="../files/${item.filename}">
+                                    <p class="truncate">${item.metadata.originalname}</p>
+                                </a>&emsp;&emsp;
+                                <div style="float: right !important;">
+                                    <i class="fa fa-trash" aria-hidden="true"
+                                        onclick="delete_diagram(this, '../files/${item._id}?_method=DELETE');"></i>
+                                </div>
+                            </div>`);
+                        break;
+                    }
+                    case '2': {
+                        $('#diagram2').append(`
+                            <div class="row">
+                                <a href="../files/${item.filename}">
+                                    <p class="truncate">${item.metadata.originalname}</p>
+                                </a>&emsp;&emsp;
+                                <div style="float: right !important;">
+                                <i class="fa fa-trash" aria-hidden="true"
+                                    onclick="delete_diagram(this, '../files/${item._id}?_method=DELETE');"></i>
+                                </div>
+                            </div>`);
+                        break;
+                    }
+                    case '3': {
+                        $('#diagram3').append(`
+                            <div class="row">
+                                <a href="../files/${item.filename}">
+                                    <p class="truncate">${item.metadata.originalname}</p>
+                                </a>&emsp;&emsp;
+                                <div style="float: right !important;">
+                                    <i class="fa fa-trash" aria-hidden="true"
+                                        onclick="delete_diagram(this, '../files/${item._id}?_method=DELETE');"></i>
+                                </div>
+                            </div>`);
+                        break;
+                    }
+                    default: break;
+                }
+            })
+        },
+        error: function (xhr, status, error) {
+            alert(error);
+        }
+    });
+
     //var editing_customer = false;
     $('#editCustomerLink').click(function () {
         if (editing_customer == true && customer_name) {
             // END EDITING
 
             let form = $("#customerForm");
-            let new_customer = $('#unique-customer-name').val().trim();
+            let new_customer = $('#unique-customer-name').val();
             //alert("New customer: '" + new_customer + "'");
 
             if (!new_customer) {
@@ -305,5 +363,25 @@ function delete_row(row) {
     if ($('#contacts_table > tbody > tr').length > 1 && editing_customer) {
         //alert('delete clicked');
         $(row).parent().parent().remove();
+    }
+}
+
+function delete_diagram(row, url) {
+    if (prompt("Delete this file? Type 'yes'.").toLowerCase() == 'yes') {
+
+        let json = {
+            type: "POST",
+            timeout: 3000,
+            url: url,
+            success: function (res) {
+                $(row).parent().parent().remove();
+            },
+            error: function (xhr, status, error) {
+                alert('failed to delete')
+            }
+        };
+
+        // POST here.
+        $.ajax(json);
     }
 }
