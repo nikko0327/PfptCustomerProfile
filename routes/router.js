@@ -204,7 +204,7 @@ router.post("/new", authenticate_session, function (req, res) {
                 POCQuestions.create({ name: req.body.customer["name"] });
                 RFEQuestions.create({ name: req.body.customer["name"] });
                 UsageQuestions.create({ name: req.body.customer["name"] });
-                //FinservSupervisionQuestions.create({ name: req.body.customer["name"] });
+                FinservSupervisionQuestions.create({ name: req.body.customer["name"] });
 
                 res.redirect(append + "/index");
                 console.log("Creation of customer '" + req.body.customer["name"] + "' successful.");
@@ -241,7 +241,6 @@ router.post("/new", authenticate_session, function (req, res) {
 //UPDATE ROUTE
 router.put("/index/:id", authenticate_session, function (req, res) {
     // Considering changing to else ifs
-
 
     // For updating name, make a ton of promises and execute them, THEN render the page.
     if (req.body.customer != undefined && req.body.customer != null) {
@@ -525,9 +524,14 @@ router.get("/index/:id", authenticate_session, function (req, res) {
 
     // RENDER ALL THE THINGS
     query({ "name": req.params.id }).then((result) => {
-        res.render("show", result);
+        if (result["customer"]) {
+            res.render("show", result);
+        } else {
+            res.redirect(append + "/");
+        }
     }).catch((error) => {
         console.log(error);
+        res.redirect(append + "/")
     });
 });
 
