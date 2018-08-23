@@ -142,7 +142,7 @@ $(document).ready(() => {
     $.ajax({
         type: "GET",
         //timeout: 3000,
-        url: `${window.location.hostname}/customerprofile/uploads/` + encodeURIComponent(customer_name),
+        url: `http://${window.location.hostname}/customerprofile/uploads/` + encodeURIComponent(customer_name),
         success: function (res) {
             console.log(res);
             if (Array.isArray(res)) {
