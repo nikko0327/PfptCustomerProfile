@@ -150,6 +150,12 @@ app.use(routes);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
+app.all('/uploads', function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+});
+
 // @route GET /
 // @desc Gets all uploaded files
 app.get('/uploads', authenticate_session, (req, res) => {
@@ -214,6 +220,12 @@ app.get('/files', authenticate_session, (req, res) => {
         // Files exist
         return res.render('uploads', { files: files });
     });
+});
+
+app.all('/files/:filename', function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
 });
 
 // @route GET /files/:filename

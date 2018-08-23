@@ -204,7 +204,7 @@ router.post("/new", authenticate_session, function (req, res) {
                 POCQuestions.create({ name: req.body.customer["name"] });
                 RFEQuestions.create({ name: req.body.customer["name"] });
                 UsageQuestions.create({ name: req.body.customer["name"] });
-                FinservSupervisionQuestions.create({ name: req.body.customer["name"] });
+                //FinservSupervisionQuestions.create({ name: req.body.customer["name"] });
 
                 res.redirect(append + "/index");
                 console.log("Creation of customer '" + req.body.customer["name"] + "' successful.");
