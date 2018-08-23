@@ -141,7 +141,7 @@ $(document).ready(() => {
     // This one is for loading uploaded diagrams
     $.ajax({
         type: "GET",
-        timeout: 3000,
+        //timeout: 3000,
         url: `${window.location.hostname}/customerprofile/uploads/` + encodeURIComponent(customer_name),
         success: function (res) {
             console.log(res);
@@ -191,6 +191,8 @@ $(document).ready(() => {
                         default: break;
                     }
                 });
+            } else {
+                console.log("GET received no array of items");
             }
         },
         error: function (xhr, status, error) {
