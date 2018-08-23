@@ -9,7 +9,6 @@ var MongoStore = require("connect-mongo")(session);
 var helmet = require('helmet');
 var path = require('path');
 var app = express();
-var cors = require('cors');
 
 var crypto = require('crypto');
 var multer = require('multer');
@@ -28,7 +27,6 @@ function authenticate_session(req, res, next) {
 
 //APP CONFIGURATION
 app.use(helmet());
-app.use(cors({credentials: true, origin: true}));
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
 app.enable('trust proxy');
