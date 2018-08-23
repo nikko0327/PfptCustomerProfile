@@ -144,11 +144,12 @@ $(document).ready(() => {
         timeout: 3000,
         url: 'http://localhost/customerprofile/uploads/' + encodeURIComponent(customer_name),
         success: function (res) {
-            res.forEach(item => {
-                console.log(item);
-                switch (item.metadata.diagram) {
-                    case '1': {
-                        $('#diagram1').append(`
+            if (Array.isArray(res)) {
+                res.forEach(item => {
+                    console.log(item);
+                    switch (item.metadata.diagram) {
+                        case '1': {
+                            $('#diagram1').append(`
                             <div class="row">
                                 <a href="../files/${item.filename}">
                                     <p class="truncate">${item.metadata.originalname}</p>
@@ -158,10 +159,10 @@ $(document).ready(() => {
                                         onclick="delete_diagram(this, '../files/${item._id}?_method=DELETE');"></i>
                                 </div>
                             </div>`);
-                        break;
-                    }
-                    case '2': {
-                        $('#diagram2').append(`
+                            break;
+                        }
+                        case '2': {
+                            $('#diagram2').append(`
                             <div class="row">
                                 <a href="../files/${item.filename}">
                                     <p class="truncate">${item.metadata.originalname}</p>
@@ -171,10 +172,10 @@ $(document).ready(() => {
                                     onclick="delete_diagram(this, '../files/${item._id}?_method=DELETE');"></i>
                                 </div>
                             </div>`);
-                        break;
-                    }
-                    case '3': {
-                        $('#diagram3').append(`
+                            break;
+                        }
+                        case '3': {
+                            $('#diagram3').append(`
                             <div class="row">
                                 <a href="../files/${item.filename}">
                                     <p class="truncate">${item.metadata.originalname}</p>
@@ -184,14 +185,15 @@ $(document).ready(() => {
                                         onclick="delete_diagram(this, '../files/${item._id}?_method=DELETE');"></i>
                                 </div>
                             </div>`);
-                        break;
+                            break;
+                        }
+                        default: break;
                     }
-                    default: break;
-                }
-            })
+                });
+            }
         },
         error: function (xhr, status, error) {
-            alert(error);
+            console.log(error);
         }
     });
 

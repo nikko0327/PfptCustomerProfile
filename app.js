@@ -9,6 +9,7 @@ var MongoStore = require("connect-mongo")(session);
 var helmet = require('helmet');
 var path = require('path');
 var app = express();
+var cors = require('cors');
 
 var crypto = require('crypto');
 var multer = require('multer');
@@ -27,6 +28,7 @@ function authenticate_session(req, res, next) {
 
 //APP CONFIGURATION
 app.use(helmet());
+app.use(cors({credentials: true, origin: true}));
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
 app.enable('trust proxy');
@@ -150,12 +152,6 @@ app.use(routes);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-app.all('/uploads', function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next();
-});
-
 // @route GET /
 // @desc Gets all uploaded files
 app.get('/uploads', authenticate_session, (req, res) => {
@@ -220,12 +216,6 @@ app.get('/files', authenticate_session, (req, res) => {
         // Files exist
         return res.render('uploads', { files: files });
     });
-});
-
-app.all('/files/:filename', function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next();
 });
 
 // @route GET /files/:filename
