@@ -17,7 +17,7 @@ var gridfs_stream = require('gridfs-stream');
 
 // For authenticating cookies/sessions.
 function authenticate_session(req, res, next) {
-    let append = '/customerprofile'
+    var append = '/customerprofile'
     if (req.session.user) {
         next();
     } else {
@@ -48,7 +48,7 @@ var db = mongoose.connection;
 //handling mongo error
 db.on("error", console.error.bind(console, "Connection Error: "));
 
-let gfs;
+var gfs;
 db.once("open", function () {
     gfs = gridfs_stream(db.db, mongoose.mongo);
     gfs.collection('uploads');
@@ -78,7 +78,12 @@ const storage = new GridFSStorage({
         });
     }
 });
-const upload = multer({ storage });
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 2097152 // 2 MB
+    }
+});
 
 //using sessions for tracking logins
 app.use(session({
@@ -150,7 +155,7 @@ app.use(routes);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// @route GET /
+// @route GET /uploads
 // @desc Gets all uploaded files
 app.get('/uploads', authenticate_session, (req, res) => {
     gfs.files.find().toArray((err, files) => {
@@ -171,7 +176,7 @@ app.get('/uploads', authenticate_session, (req, res) => {
     });
 });
 
-// @route GET /
+// @route GET /uploads/:id
 // @desc Gets all uploaded files for a given customer
 app.get('/uploads/:id', authenticate_session, (req, res) => {
     gfs.files.find({ "metadata.customer": req.params.id }).toArray((err, files) => {
@@ -192,15 +197,27 @@ app.get('/uploads/:id', authenticate_session, (req, res) => {
     });
 });
 
+// @route GET /uploads/:id
+// @desc Gets all uploaded files for a given customer
+app.post('/uploads/:id', authenticate_session, (req, res) => {
+    gfs.files.find({ "metadata.customer": req.params.id }).toArray((err, files) => {
+        if(req.body) {
+            console.log(req.body.new_name);
+        }
+    });
+});
+
+
 // @route POST /upload
 // @desc  Uploads file to DB
 app.post('/uploads', authenticate_session, upload.single('file'), (req, res) => {
     //console.log(req.body.customername);
-    //res.redirect(req.headers.referer);
-    res.json(req.file);
-    //res.redirect('/customerprofile/files/');
+    //res.status(200).json((req.file) ? req.file : {});
+    res.redirect(req.headers.referer);
     // res.status(200).json("{}");
+    //res.redirect(req.headers.referer);
 });
+
 
 // @route GET /files
 // @desc  Display all files in JSON
@@ -310,7 +327,7 @@ app.use(function (err, req, res, next) {
     res.send(err.message);
 });
 
-let port = process.env.PORT || 8000;
+var port = process.env.PORT || 8000;
 
 app.listen(port, function () {
     console.log(`App is running on ${port}.`);

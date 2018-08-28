@@ -130,9 +130,9 @@ $(document).ready(() => {
         }
     });
 
-    $.ajaxSetup({
-        async: true
-    });
+    // $.ajaxSetup({
+    //     async: true
+    // });
 
     let customer_name = $("#unique-customer-name").val();
 
@@ -144,10 +144,9 @@ $(document).ready(() => {
         //timeout: 3000,
         url: `http://${window.location.hostname}/customerprofile/uploads/` + encodeURIComponent(customer_name),
         success: function (res) {
-            console.log(res);
             if (Array.isArray(res)) {
                 res.forEach(item => {
-                    console.log(item);
+                    //console.log(item);
                     switch (item.metadata.diagram) {
                         case '1': {
                             $('#diagram1').append(`
@@ -221,12 +220,25 @@ $(document).ready(() => {
                 data: form.serialize(),
                 success: function (res) {
                     location.href = "../index/" + encodeURIComponent(new_customer);
+
                     // Locks the form's fieldset
                     $("#customerFormFieldset").prop('disabled', true);
                     editing_customer = false;
                     $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
+
+                    // $.ajax({
+                    //     type: "POST",
+                    //     timeout: 30000,
+                    //     url: `http://${window.location.hostname}/customerprofile/uploads/` + encodeURIComponent(customer_name),
+                    //     data: {new_name: new_customer},
+                    //     success: function (res) {
+                    //         alert('files updated');
+                    //         location.href = "../index/" + encodeURIComponent(new_customer);
+                    //     }
+                    // });
                 },
                 error: function (xhr, status, error) {
+                    console.log(error);
                     if (error == 'Conflict') {
                         alert("Customer already exists.");
                     } else {
@@ -234,7 +246,7 @@ $(document).ready(() => {
                     }
                 }
             };
-            console.log(json);
+            //console.log(json);
 
             // POST here.
             $.ajax(json);
@@ -342,6 +354,7 @@ $(document).ready(() => {
         }
     });
 
+
     let editing_journaling = false;
     let editing_appliances = false;
     let editing_other_data_sources = false;
@@ -382,7 +395,7 @@ function delete_diagram(row, url) {
                 $(row).parent().parent().remove();
             },
             error: function (xhr, status, error) {
-                alert('failed to delete')
+                alert('Failed to delete file.')
             }
         };
 
@@ -390,3 +403,4 @@ function delete_diagram(row, url) {
         $.ajax(json);
     }
 }
+

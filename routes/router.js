@@ -269,6 +269,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
             //console.log("Going to " + "/index/" + encodeURIComponent(req.body.customer["name"]));
             res.redirect(append + "/index/" + encodeURIComponent(req.body.customer["name"]));
         }).catch((error) => {
+            console.log(error);
             // If an error occurs, catch the error.
             if (error["code"] == 11000) { // Dupe ID
                 console.log("-- Duplicate key for customer: " + req.body.customer["name"]);
@@ -505,20 +506,23 @@ router.get("/index/:id", authenticate_session, function (req, res) {
     // Query every table and grab the results in a blocking manner
     async function query(search_term) {
         var questionnaire = {};
-        questionnaire["appliance_questions"] = await ApplianceQuestions.findOne(search_term).exec();
         questionnaire["customer"] = await Customer.findOne(search_term).exec();
-        questionnaire["design_summary_questions"] = await DesignSummaryQuestions.findOne(search_term).exec();
-        questionnaire["desktop_network_questions"] = await DesktopNetworkQuestions.findOne(search_term).exec();
-        questionnaire["email_ps_questions"] = await EmailPSQuestions.findOne(search_term).exec();
-        questionnaire["email_se_questions"] = await EmailSEQuestions.findOne(search_term).exec();
-        questionnaire["import_questions"] = await ImportQuestions.findOne(search_term).exec();
-        questionnaire["journaling_questions"] = await JournalingQuestions.findOne(search_term).exec();
-        questionnaire["other_data_source_questions"] = await OtherDataSourcesQuestions.findOne(search_term).exec();
-        questionnaire["poc_questions"] = await POCQuestions.findOne(search_term).exec();
-        questionnaire["rfe_questions"] = await RFEQuestions.findOne(search_term).exec();
-        questionnaire["usage_questions"] = await UsageQuestions.findOne(search_term).exec();
-        //questionnaire["finserv_supervision_questions"] = await FinservSupervisionQuestions.findOne(search_term);
-        questionnaire["finserv_supervision_questions"] = await FinservSupervisionQuestions.findOneOrCreate(search_term);
+        if (questionnaire["customer"]) {
+            questionnaire["appliance_questions"] = await ApplianceQuestions.findOne(search_term).exec();
+            //questionnaire["customer"] = await Customer.findOne(search_term).exec();
+            questionnaire["design_summary_questions"] = await DesignSummaryQuestions.findOne(search_term).exec();
+            questionnaire["desktop_network_questions"] = await DesktopNetworkQuestions.findOne(search_term).exec();
+            questionnaire["email_ps_questions"] = await EmailPSQuestions.findOne(search_term).exec();
+            questionnaire["email_se_questions"] = await EmailSEQuestions.findOne(search_term).exec();
+            questionnaire["import_questions"] = await ImportQuestions.findOne(search_term).exec();
+            questionnaire["journaling_questions"] = await JournalingQuestions.findOne(search_term).exec();
+            questionnaire["other_data_source_questions"] = await OtherDataSourcesQuestions.findOne(search_term).exec();
+            questionnaire["poc_questions"] = await POCQuestions.findOne(search_term).exec();
+            questionnaire["rfe_questions"] = await RFEQuestions.findOne(search_term).exec();
+            questionnaire["usage_questions"] = await UsageQuestions.findOne(search_term).exec();
+            //questionnaire["finserv_supervision_questions"] = await FinservSupervisionQuestions.findOne(search_term).exec();
+            questionnaire["finserv_supervision_questions"] = await FinservSupervisionQuestions.findOneOrCreate(search_term);
+        }
         return questionnaire;
     }
 

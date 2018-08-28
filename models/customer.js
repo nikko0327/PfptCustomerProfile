@@ -86,14 +86,19 @@ var CustomerSchema = new mongoose.Schema({
         default: ""
     },
     pso: {
-        type: String,
-        default: ""
+        ticket: {
+            type: String,
+            default: ""
+        },
+        location: {
+            type: String,
+            default: "Salesforce"
+        }
     },
     shipreq: {
         type: String,
         default: ""
-    },
-    
+    }
 });
 
 var Customer = mongoose.model("Customer", CustomerSchema);

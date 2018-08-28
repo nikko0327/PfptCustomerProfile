@@ -127,10 +127,10 @@ var email_ps_schema = new mongoose.Schema({
         //     type: String,
         //     default: ""
         // },
-        diagram: {
-            type: String,
-            default: ""
-        },
+        // diagram: {
+        //     type: String,
+        //     default: ""
+        // },
         // is_using_DAG: {
         //     type: String,
         //     default: ""

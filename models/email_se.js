@@ -34,10 +34,10 @@ var email_se_schema = new mongoose.Schema({
             type: String,
             default: ""
         },
-        diagram: { // TESTING
-            data: Buffer,
-            contentType: String
-        },
+        // diagram: { // TESTING
+        //     data: Buffer,
+        //     contentType: String
+        // },
         is_multi_forest: {
             type: String,
             default: ""
@@ -107,10 +107,10 @@ var email_se_schema = new mongoose.Schema({
         //     type: String,
         //     default: ""
         // },
-        diagram: {
-            type: String,
-            default: ""
-        },
+        // diagram: {
+        //     type: String,
+        //     default: ""
+        // },
         // is_using_DAG: {
         //     type: String,
         //     default: ""
@@ -200,10 +200,10 @@ var email_se_schema = new mongoose.Schema({
         //     type: String,
         //     default: ""
         // },
-        diagram: {
-            type: String,
-            default: ""
-        },
+        // diagram: {
+        //     type: String,
+        //     default: ""
+        // },
         // is_using_DAG: {
         //     type: String,
         //     default: ""
