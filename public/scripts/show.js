@@ -219,23 +219,23 @@ $(document).ready(() => {
                 url: form.attr('action'),
                 data: form.serialize(),
                 success: function (res) {
-                    location.href = "../index/" + encodeURIComponent(new_customer);
+                    alert('Customer information updated.');
 
-                    // Locks the form's fieldset
-                    $("#customerFormFieldset").prop('disabled', true);
-                    editing_customer = false;
-                    $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
+                    $.ajax({
+                        type: "POST",
+                        timeout: 30000,
+                        url: `http://${window.location.hostname}/customerprofile/uploads/` + encodeURIComponent(customer_name),
+                        data: { new_name: new_customer },
+                        success: function (res) {
+                            alert('files updated');
+                            location.href = "../index/" + encodeURIComponent(new_customer);
 
-                    // $.ajax({
-                    //     type: "POST",
-                    //     timeout: 30000,
-                    //     url: `http://${window.location.hostname}/customerprofile/uploads/` + encodeURIComponent(customer_name),
-                    //     data: {new_name: new_customer},
-                    //     success: function (res) {
-                    //         alert('files updated');
-                    //         location.href = "../index/" + encodeURIComponent(new_customer);
-                    //     }
-                    // });
+                            // Locks the form's fieldset
+                            $("#customerFormFieldset").prop('disabled', true);
+                            editing_customer = false;
+                            $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
+                        }
+                    });
                 },
                 error: function (xhr, status, error) {
                     console.log(error);

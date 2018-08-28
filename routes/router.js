@@ -269,14 +269,14 @@ router.put("/index/:id", authenticate_session, function (req, res) {
             //console.log("Going to " + "/index/" + encodeURIComponent(req.body.customer["name"]));
             res.redirect(append + "/index/" + encodeURIComponent(req.body.customer["name"]));
         }).catch((error) => {
-            console.log(error);
+            //console.log(error);
             // If an error occurs, catch the error.
             if (error["code"] == 11000) { // Dupe ID
                 console.log("-- Duplicate key for customer: " + req.body.customer["name"]);
                 res.status(409);
                 res.send("Dupe primary key, customer already exists.");
             } else {
-                console.log(error + "\n---");
+                console.log(error.error_message + "\n---");
             }
         });
     }
