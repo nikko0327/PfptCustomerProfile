@@ -193,6 +193,7 @@ router.post("/new", authenticate_session, function (req, res) {
                     console.log(error);
                 }
             } else {
+
                 ApplianceQuestions.create({ name: req.body.customer["name"] });
                 DesignSummaryQuestions.create({ name: req.body.customer["name"] });
                 DesktopNetworkQuestions.create({ name: req.body.customer["name"] });
@@ -325,7 +326,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         console.log("- Attempting to update Email Systems SE Questions...");
         EmailSEQuestions.findOneAndUpdate({ "name": req.params.id }, req.body.email_se_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
-            console.log(req.body.email_se_questions);
+            //console.log(req.body.email_se_questions);
             console.log("Done");
             res.status(200).json("{}");
         }).catch((error) => {
