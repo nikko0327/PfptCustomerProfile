@@ -227,7 +227,11 @@ $(document).ready(() => {
                         url: `http://${window.location.hostname}/customerprofile/uploads/` + encodeURIComponent(customer_name),
                         data: { new_name: new_customer },
                         success: function (res) {
-                            alert('Files updated.');
+                            if (res.success) {
+                                alert('Files updated.');
+                            } else {
+                                alert('No files updated.\nEither a server error has occurred or an improper request was sent.')
+                            }
                             location.href = "../index/" + encodeURIComponent(new_customer);
 
                             // Locks the form's fieldset
@@ -235,7 +239,7 @@ $(document).ready(() => {
                             editing_customer = false;
                             $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
                         },
-                        error: function(xhr, status, error) {
+                        error: function (xhr, status, error) {
                             alert("Error updating files uploaded.");
                         }
                     });

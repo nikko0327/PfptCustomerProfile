@@ -200,19 +200,7 @@ app.get('/uploads/:id', authenticate_session, (req, res) => {
 // @route POST /uploads/:id
 // @desc Updates all files for a given customer if they changed their name.
 app.post('/uploads/:id', authenticate_session, (req, res) => {
-    // if (req.body && req.body.new_name) {
-    //     gfs.files.update({ "metadata.customer": req.params.id }, {
-    //         $set: { "metadata.customer": req.body.new_name }
-    //     }).then(res.status(200).json("{}"))
-    //         .catch(error => {
-    //             console.log("failed changing filenames");
-    //             res.status(500).json("{}");
-    //         });
-    // } else {
-    //     console.log("No new customer name to change to.");
-    //     res.status(500).json("{}");
-    // }
-
+    let updated = { success: true };
     gfs.files.find({ "metadata.customer": req.params.id }).toArray((err, files) => {
         if (req.body && req.body.new_name) {
             files.forEach(file => {
@@ -221,14 +209,15 @@ app.post('/uploads/:id', authenticate_session, (req, res) => {
                     $set: { "metadata.customer": req.body.new_name }
                 }).catch(error => {
                     console.log("Failed changing customer name.");
-                    res.status(500).json("{}");
+                    updated.success = false;
                 });
-            })
+            });
         } else {
             console.log("No new customer name to change to.");
-            res.status(500).json("{}");
+            updated.success = false;
+            res.status(500).json(updated.toString());
         }
-        res.status(200).json("{}");
+        res.status(200).json(updated);
     });
 });
 
@@ -236,11 +225,7 @@ app.post('/uploads/:id', authenticate_session, (req, res) => {
 // @route POST /upload
 // @desc  Uploads file to DB
 app.post('/uploads', authenticate_session, upload.single('file'), (req, res) => {
-    //console.log(req.body.customername);
-    //res.status(200).json((req.file) ? req.file : {});
     res.redirect(req.headers.referer);
-    // res.status(200).json("{}");
-    //res.redirect(req.headers.referer);
 });
 
 

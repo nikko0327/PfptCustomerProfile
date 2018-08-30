@@ -1,7 +1,6 @@
 var express = require("express");
 var router = express.Router();
 // var User = require("../models/user");
-var mongoose = require("mongoose");
 
 // var jwt = require('jsonwebtoken');
 // var jwt_secret = 'Just like the stars that have faded, we too, will fade one day and become one with the stars.';
