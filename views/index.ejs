@@ -1,17 +1,56 @@
 <% include partials/header %>
 
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+</style>
+
     <script type="text/javascript" src="./scripts/delete.js"></script>
 
     <div class="container" style="padding: 15px; max-width: 95%;">
         <br>
         <h2 style="color: #448aff;text-align: center;"> Customers </h2>
         <br>
-        <table class="table table-hover table-striped">
+        <table class="table table-hover table-striped" id="myTable">
             <div class="dropdown">
                 <a class="btn-top" style="margin-right: 15px;" href="./new/" class="btn btn-primary btn-success pull-right">
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     New Customer</a>
             </div>
+            <br>
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search customer name..." title="Type in a name">
     </div>
     <br>
 
@@ -149,5 +188,26 @@
         </div>
     </div>
     </div>
+
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
 
     <% include partials/footer %>
