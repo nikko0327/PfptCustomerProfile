@@ -22,118 +22,13 @@
                     <input type="text" readonly class="form-control" placeholder="No response set" value="<%= customer.name %>" name="appliance_questions[name]">
                 </div>
 
-                <h5>
-                    <a href="#editapplianceDetails-ApplianceSizing" style="color: mediumvioletred" data-toggle="collapse" onclick="change_arrow($(this));">
-                        Appliance Sizing
-                        <i class="fa fa-caret-right" aria-hidden="true"></i>
-                    </a>
-                </h5>
-
-                <div id="editapplianceDetails-ApplianceSizing" class="collapse">
-                    <div class="row">
-                        <div class="form-group, col-4 response-cell">
-                            <label>Messages per day</label>
-                            <input type="number" class="form-control" placeholder="No response set" value="<%= appliance_questions.messages_per_day %>"
-                                name="appliance_questions[messages_per_day]">
-                        </div>
-                        <div class="form-group, col-4 response-cell">
-                            <label>Average message size</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= appliance_questions.avg_message_size %>"
-                                name="appliance_questions[avg_message_size]">
-                        </div>
-                        <div class="form-group, col-4 response-cell">
-                            <label>Number of mailboxes</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= appliance_questions.number_of_mailboxes %>"
-                                name="appliance_questions[number_of_mailboxes]">
-                        </div>
-
-                        <div class="form-group, col-4 response-cell">
-                            <label>Exports per month</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= appliance_questions.exports_per_month %>"
-                                name="appliance_questions[exports_per_month]">
-                        </div>
-                        <div class="form-group, col-4 response-cell">
-                            <label>Average export size</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= appliance_questions.avg_export_size %>"
-                                name="appliance_questions[avg_export_size]">
-                        </div>
-                        <div class="form-group, col-4 response-cell">
-                            <label>Active directory size</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= appliance_questions.AD_size %>" name="appliance_questions[AD_size]">
-                        </div>
-                        <div class="form-group, col-4 response-cell">
-                            <label>Virtual or physical hardware appliance preference?</label>
-                            <%- make_custom_dropdown("appliance_questions[appliance_preference]",
-                                    appliance_questions.appliance_preference, ["Physical", "Virtual"]) %>
-                        </div>
-                        <div class="form-group, col-4 response-cell">
-                            <label>Does the customer have a VMWare environment?</label>
-                            <%- make_custom_dropdown("appliance_questions[has_vmware_env]",
-                                    appliance_questions.has_vmware_env, ["Virtual", "Physical", "None"]) %>
-                        </div>
-                        <div class="col-4 response-cell">
-                            <label>Number of appliances recommended?</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= appliance_questions.number_of_appliance_recommended %>"
-                                name="appliance_questions[number_of_appliance_recommended]">
-                        </div>
-                        <div class="form-group, col-4 response-cell">
-                            <label>DR footprint?</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= appliance_questions.DR_footprint %>" name="appliance_questions[DR_footprint]">
-                        </div>
-                    </div>
-                </div>
-                <hr>
-
-                <h5>
-                    <a href="#editapplianceDetails-ForSE" style="color: mediumvioletred" data-toggle="collapse" onclick="change_arrow($(this));">
-                        For SE
-                        <i class="fa fa-caret-right" aria-hidden="true"></i>
-                    </a>
-                </h5>
-
-                <div id="editapplianceDetails-ForSE" class="collapse">
-                    <div class="row">
-                        <div class="form-group col-4 response-cell">
-                            <label>How many of each purpose:</label>
-                        </div>
-                        <div class="form-group col-4 response-cell">
-                            <label style="margin-left: 3em;">UI</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= appliance_questions.purposes.ui %>" name="appliance_questions[purposes][ui]">
-                        </div>
-                        <div class="form-group col-4 response-cell">
-                            <label style="margin-left: 3em;">Export</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= appliance_questions.purposes.export %>" name="appliance_questions[purposes][export]">
-                        </div>
-                        <div class="form-group col-4 response-cell">
-                            <label style="margin-left: 3em;">Archiving</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= appliance_questions.purposes.archiving %>" name="appliance_questions[purposes][archiving]">
-                        </div>
-                        <div class="form-group col-4 response-cell">
-                            <label style="margin-left: 3em;">Stubbing</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= appliance_questions.purposes.stubbing %>" name="appliance_questions[purposes][stubbing]">
-                        </div>
-                        <div class="form-group col-4 response-cell">
-                            <label>Archive proxy?</label>
-                            <%- make_custom_dropdown("appliance_questions[archive_proxy]",
-                                    appliance_questions.archive_proxy, ["Yes", "No"]) %>
-                        </div>
-                        <div class="form-group col-4 response-cell">
-                            <label>Transport agent</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= appliance_questions.transport_agent %>"
-                                name="appliance_questions[transport_agent]">
-                        </div>
-                        <div class="form-group col-4 response-cell">
-                            <label>Outlook view manager</label>
-                            <input type="text" class="form-control" placeholder="No response set" value="<%= appliance_questions.outlook_view_manager %>"
-                                name="appliance_questions[outlook_view_manager]">
-                        </div>
-                    </div>
-                </div>
+                <% include Appliances/EditApplianceDetailsApplianceSizing.ejs %>
+                <% include Appliances/EditApplianceDetailsForSE.ejs %>
 
                 <br>
                 <div class="form-group">
                     <label>Comments</label>
-                    <textarea maxlength="5000" rows="5" name="appliance_questions[comments]" placeholder="5000 characters max" form="appliancesForm"><%= appliance_questions.comments %></textarea>
+                    <textarea class="form-control" maxlength="5000" rows="5" name="appliance_questions[comments]" placeholder="5000 characters max" form="appliancesForm"><%= appliance_questions.comments %></textarea>
                 </div>
             </fieldset>
         </form>

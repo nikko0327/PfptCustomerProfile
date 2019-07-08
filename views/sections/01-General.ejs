@@ -28,8 +28,7 @@
 
                 <div class="form-group general_info response-cell">
                     <label style="text-align: center !important;">Archiving SE </label>
-                    <input type="text" class="form-control" placeholder="No response set" id="archivingSe" value="<%= customer.archivingSe %>"
-                        name="customer[archivingSe]">
+                    <%- make_custom_dropdown("customer[archivingSe]", customer.archivingSe, ["Ben Chapman", "Brad Cope", "Coleem Chestnut", "Davin Stilson", "Jason Colvin", "Micah Wyenn", "Mike Fenili", "Terry McMahon"]) %>
                 </div>
 
                 <div class="form-group general_info response-cell">
@@ -39,28 +38,27 @@
                 </div>
 
                 <div class="form-group general_info response-cell">
-                    <label style="text-align: center !important;">TEM </label>
-                    <%- make_custom_dropdown("customer[tem]", customer.tem, ["Aimee Wheelon", "Khoj Ladha", "Joan Noble", "John Dettori", "Greg Eagle", "Susan Chmelir", "Denise Samudio"]) %>
+                    <label style="text-align: center !important;">TPM </label>
+                    <%- make_custom_dropdown("customer[tpm]", customer.tpm, ["Jama Parikh", "Joan Noble", "Khoj Ladha", "Lorraine Lamb", "Sara Lints", "Aimee Wheelon"]) %>
                 </div>
 
                 <div class="form-group general_info response-cell">
                     <label style="text-align: center !important;">TAM </label>
-                    <input type="text" class="form-control" placeholder="No response set" id="tam" value="<%= customer.tam %>" name="customer[tam]">
+                    <%- make_custom_dropdown("customer[tam]", customer.tam, ["Drew Fox", "Eric Pfefferie", "Jason Medina", "Jeremy Wagner", "Liliana Valdivia", "Nicole Dawson", "Wolfgang Rebhan"]) %>
                 </div>
 
                 <div class="form-group general_info response-cell">
-                    <label style="text-align: center !important;">Implementation Specialist </label>
-                    <input type="text" class="form-control" placeholder="No response set" id="implementationSpecialist " value="<%= customer.impSpecialist %>"
-                        name="customer[impSpecialist]">
+                    <label style="text-align: center !important;">Solution Architect </label>
+                    <%- make_custom_dropdown("customer[solutionArchitect]", customer.solutionArchitect, ["Robert Kreuscher"]) %>
                 </div>
             </div>
             <br>
 
             <div class="row">
                 <div class="form-group general_info response-cell">
-                    <label style="text-align: center !important;">Number of Users </label>
-                    <input type="text" class="form-control" placeholder="No response set" id="numberOfUsers" value="<%= customer.numberOfUsers %>"
-                        name="customer[numberOfUsers]">
+                    <label style="text-align: center !important;">Number of Mailboxes </label>
+                    <input type="text" class="form-control" placeholder="No response set" id="numberOfMailboxes" value="<%= customer.numberOfMailboxes %>"
+                        name="customer[numberOfMailboxes]">
                 </div>
 
                 <div class="form-group general_info response-cell">
@@ -70,13 +68,12 @@
 
                 <div class="form-group general_info response-cell">
                     <label style="text-align: center !important;">Supervision </label>
-                    <input type="text" class="form-control" placeholder="No response set" id="supervision" value="<%= customer.supervision %>"
-                        name="customer[supervision]">
+                    <%- make_custom_dropdown("customer[supervision]", customer.supervision, ["Ray McGrath", "Alex Boyd", "Regina Rodriguez"]) %>
                 </div>
 
                 <div class="form-group general_info response-cell">
                     <label style="text-align: center !important;">Status </label>
-                    <%- make_custom_dropdown("customer[status]", customer.status, 
+                    <%- make_custom_dropdown("customer[status]", customer.status,
                     ["Waiting for PDQ", "Waiting for sales", "Waiting for finance", "Waiting for ops", "Waiting for customer", "Waiting for scheduling", "Deployment started", "Deployment complete/in production"]) %>
                 </div>
 
@@ -119,17 +116,21 @@
                         </p>
                     </div>
                 </div>
+            </div>
 
-                <div class="form-group col-4 response-cell">
+            <div class="row">
+                <div class="form-group col response-cell">
                     <label>Are DAGs being used?</label>
                     <%- make_custom_dropdown("customer[is_using_DAG]", customer.is_using_DAG, ["Yes", "No"]) %>
                 </div>
-                <div class="form-group col-4 response-cell">
+                <div class="form-group col response-cell">
                     <label>Describe the HA/DR of the Exchange environment.</label>
                     <input type="text" class="form-control" placeholder="No response set" value="<%= customer.describe_HA_DR %>" name="customer[describe_HA_DR]">
                 </div>
+            </div>
 
-                <div class="form-group col-4 response-cell">
+            <div class="row">
+                <div class="form-group col response-cell">
                     <label>
                         <a href="#" onclick="window.open( (($('#pso_ticket_location').val() == 'CTS') ? 'https://support.proofpoint.com/show_call.cgi?id=' : 'https://na33.salesforce.com/')  + $('#pso').val());">
                             PSO
@@ -143,7 +144,7 @@
                         <input id="pso" type="text" class="form-control" placeholder="No response set" value="<%= customer.pso.ticket %>" name="customer[pso][ticket]">
                     </div>
                 </div>
-                <div class="form-group col-4 response-cell">
+                <div class="form-group col response-cell">
                     <label>
                         <a href="#" onclick="window.open('https://cts-pp.proofpoint.com/show_call.cgi?id=' + $('#shipreq').val());">
                             Shipment request
@@ -159,8 +160,8 @@
                 <h5 style="color: mediumvioletred">Contacts</h5>
             </div>
 
-            <button id="add_row" type="button" class="btn-primary">Add row</button>
-            <button id="delete_row" type="button" class="btn-primary">Delete row</button>
+            <button id="add_row" type="button" class="btn btn-primary">Add row</button>
+            <button id="delete_row" type="button" class="btn btn-primary">Delete row</button>
             <br>
             <br>
 
@@ -231,7 +232,7 @@
 
             <div class="form-group">
                 <label>Comments</label>
-                <textarea maxlength="5000" rows="5" name="customer[comments]" placeholder="5000 characters max" form="customerForm"><%= customer.comments %></textarea>
+                <textarea class="form-control" maxlength="5000" rows="5" name="customer[comments]" placeholder="5000 characters max" form="customerForm"><%= customer.comments %></textarea>
             </div>
         </fieldset>
     </form>
@@ -250,7 +251,7 @@
                     <input type="text" hidden readonly value="<%= customer.name %>" name="customername">
                     <input type="text" hidden readonly value="1" name="diagram">
                     <input type="file" name="file" required>
-                    <button type="submit" class="btn-primary">Upload</button>
+                    <button class="btn btn-outline-secondary" type="submit">Upload</button>
                 </form>
             </div>
         </div>
@@ -265,7 +266,7 @@
                     <input type="text" hidden readonly value="<%= customer.name %>" name="customername">
                     <input type="text" hidden readonly value="2" name="diagram">
                     <input type="file" name="file" required>
-                    <button type="submit" class="btn-primary">Upload</button>
+                    <button class="btn btn-outline-secondary" type="submit">Upload</button>
                 </form>
             </div>
         </div>
@@ -279,7 +280,7 @@
                     <input type="text" hidden readonly value="<%= customer.name %>" name="customername">
                     <input type="text" hidden readonly value="3" name="diagram">
                     <input type="file" name="file" required>
-                    <button type="submit" value="Upload" class="btn-primary">Upload</button>
+                    <button class="btn btn-outline-secondary" type="submit">Upload</button>
                 </form>
             </div>
         </div>

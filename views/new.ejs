@@ -12,86 +12,96 @@
             <div class="container">
                 <div>
                     <div class="title" style="padding-top: 20px;">
-                        <h5 style="color: mediumvioletred; font-size: 16px;">
+                        <h5 style="font-size: 16px;">
                             <b>New Customer</b>
                         </h5>
                     </div>
                     <form class="" action="../new" method="POST">
-                        <div class="form-group col-4">
-                            <label for="customerName">Customer Name</label>
-                            <input type="text" required class="form-control" id="customerName" placeholder="Customer Name" name="customer[name]">
+                        <div class="row">
+                            <div class="col">
+                                <label for="customerName">Customer Name</label>
+                                <input type="text" required class="form-control" id="customerName" placeholder="Customer Name" name="customer[name]">
+                            </div>
+                            <div class="col">
+                                <label for="salesRep">Sales Rep.</label>
+                                <input type="text" class="form-control" id="salesRep" placeholder="Sales Rep." name="customer[salesRep]">
+                            </div>
+                            <div class="col">
+                                <label for="archivingSe">Archiving SE</label>
+                                <input type="text" class="form-control" id="archivingSe" placeholder="Archiving SE" name="customer[archivingSe]">
+                            </div>
                         </div>
-                        <div class="form-group col-4">
-                            <label for="salesRep">Sales Rep.</label>
-                            <input type="text" class="form-control" id="salesRep" placeholder="Sales Rep." name="customer[salesRep]">
+                        <div class="row">
+                            <div class="col">
+                                <label for="accManager">Acc. Manager</label>
+                                <input type="text" class="form-control" id="accManager" placeholder="Acc. Manager" name="customer[accManager]">
+                            </div>
+                            <div class="col">
+                                <label for="exampleFormControlSelect1">TEM</label>
+                                <select class="form-control" id="exampleFormControlSelect1" name="customer[tem]">
+                                  <option>TEM</option>
+                                  <option>Aimee Wheelon</option>
+                                  <option>Khoj Ladha</option>
+                                  <option>Joan Noble</option>
+                                  <option>Jhon Dettori</option>
+                                  <option>Greg Eagle</option>
+                                  <option>Susan Chmelir</option>
+                                  <option>Denise Samudio</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="archivingSe">TAM</label>
+                                <input type="text" class="form-control" id="tam" placeholder="TAM" name="customer[tam]">
+                            </div>
                         </div>
-                        <div class="form-group col-4">
-                            <label for="archivingSe">Archiving SE</label>
-                            <input type="text" class="form-control" id="archivingSe" placeholder="Archiving SE" name="customer[archivingSe]">
+                        <div class="row">
+                            <div class="col">
+                                <label for="archivingSe">Implementation Specialist</label>
+                                <input type="text" class="form-control" id="implementationSpecialist " placeholder="Implementation Specialist" name="customer[impSpecialist]">
+                            </div>
+                            <div class="col">
+                                <label for="archivingSe">Number of Users</label>
+                                <input type="text" class="form-control" id="numberOfUsers" placeholder="Number of Users" name="customer[numberOfUsers]">
+                            </div>
+                            <div class="col">
+                                <label for="location">Location</label>
+                                <input type="text" class="form-control" id="location" placeholder="Location" name="customer[location]">
+                            </div>
                         </div>
-                        <div class="form-group col-4">
-                            <label for="accManager">Acc. Manager</label>
-                            <input type="text" class="form-control" id="accManager" placeholder="Acc. Manager" name="customer[accManager]">
+                        <div class="row">
+                            <div class="col">
+                                <label for="supervision">Supervision</label>
+                                <input type="text" class="form-control" id="supervision" placeholder="Supervision" name="customer[supervision]">
+                            </div>
+                            <div class="col">
+                                <label for="status">Status</label>
+                                <%- make_custom_dropdown("customer[status]", '',
+                        ["Waiting for PDQ", "Waiting for sales", "Waiting for finance", "Waiting for ops", "Waiting for customer", "Waiting for scheduling", "Deployment started", "Deployment complete/in production"]) %>
+                            </div>
+                            <div class="col">
+                                <label for="natIp">NAT IP</label>
+                                <input type="text" class="form-control" id="natIp" placeholder="NAT IP" name="customer[natIp]">
+                            </div>
                         </div>
-                        <div class="form-group col-4">
-                           <!--  <label for="archivingSe">TEM</label> -->
-                            <!-- <input type="text" class="form-control" id="tme" placeholder="TEM" name="customer[tem]"> -->
-                          <div class="form-group">
-                            <label for="exampleFormControlSelect1">TEM</label>
-                            <select class="form-control" id="exampleFormControlSelect1" name="customer[tem]">
-                              <option>TEM</option>
-                              <option>Aimee Wheelon</option>
-                              <option>Khoj Ladha</option>
-                              <option>Joan Noble</option>
-                              <option>Jhon Dettori</option>
-                              <option>Greg Eagle</option>
-                              <option>Susan Chmelir</option>
-                              <option>Denise Samudio</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="form-group col-4">
-                            <label for="archivingSe">TAM</label>
-                            <input type="text" class="form-control" id="tam" placeholder="TAM" name="customer[tam]">
-                        </div>
-                        <div class="form-group col-4">
-                            <label for="archivingSe">Implementation Specialist</label>
-                            <input type="text" class="form-control" id="implementationSpecialist " placeholder="Implementation Specialist" name="customer[impSpecialist]">
-                        </div>
-                        <div class="form-group col-4">
-                            <label for="archivingSe">Number of Users</label>
-                            <input type="text" class="form-control" id="numberOfUsers" placeholder="Number of Users" name="customer[numberOfUsers]">
-                        </div>
-                        <div class="form-group col-4">
-                            <label for="location">Location</label>
-                            <input type="text" class="form-control" id="location" placeholder="Location" name="customer[location]">
-                        </div>
-                        <div class="form-group col-4">
-                            <label for="supervision">Supervision</label>
-                            <input type="text" class="form-control" id="supervision" placeholder="Supervision" name="customer[supervision]">
-                        </div>
-                        <div class="form-group col-4">
-                            <label for="status">Status</label>
-                            <%- make_custom_dropdown("customer[status]", '', 
-                    ["Waiting for PDQ", "Waiting for sales", "Waiting for finance", "Waiting for ops", "Waiting for customer", "Waiting for scheduling", "Deployment started", "Deployment complete/in production"]) %>
-                        </div>
-                        <div class="form-group col-4">
-                            <label for="natIp">NAT IP</label>
-                            <input type="text" class="form-control" id="natIp" placeholder="NAT IP" name="customer[natIp]">
-                        </div>
-                        <div class="form-group col-4">
-                            <label for="contacts">Incumbent Solution</label>
-                            <input type="text" class="form-control" id="incumbentSolution" placeholder="Incumbent Solution" name="customer[incumbentSolution]">
+                        <div class="row">
+                            <div class="col">
+                                <label for="contacts">Incumbent Solution</label>
+                                <input type="text" class="form-control" id="incumbentSolution" placeholder="Incumbent Solution" name="customer[incumbentSolution]">
+                            </div>
+                            <div class="col">
+                            </div>
+                            <div class="col">
+                            </div>
                         </div>
 
                         <div class="title">
-                            <h5 style="color: mediumvioletred; font-size: 16px;">
+                            <h5 style="font-size: 16px;">
                                 <b>Contact Info</b>
                             </h5>
                         </div>
 
-                        <button id="add_row" type="button" class="btn-primary">Add row</button>
-                        <button id="delete_row" type="button" class="btn-primary">Delete row</button>
+                        <button id="add_row" type="button" class="btn btn-primary">Add row</button>
+                        <button id="delete_row" type="button" class="btn btn-primary">Delete row</button>
                         <br>
                         <br>
 
@@ -127,9 +137,8 @@
                             </tbody>
                         </table>
 
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="reset" class="btn btn-danger" id="reset">Reset</button>
                     </form>
                 </div>
             </div>

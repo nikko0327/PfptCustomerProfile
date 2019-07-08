@@ -8,7 +8,7 @@ var CustomerSchema = new mongoose.Schema({
         unique: true,
         required: true
     },
-    impSpecialist: {
+    solutionArchitect: {
         type: String,
         default: ""
     },
@@ -36,7 +36,7 @@ var CustomerSchema = new mongoose.Schema({
         type: String,
         default: ""
     },
-    tem: {
+    tpm: {
         type: String,
         default: ""
     },
@@ -49,15 +49,15 @@ var CustomerSchema = new mongoose.Schema({
         default: ""
     },
     contacts: [],
-    created: {
-        type: Date,
-        default: Date.now
+    createdBy: {
+      type: String,
+      default: ""
     },
     incumbentSolution: {
         type: String,
         default: ""
     },
-    numberOfUsers: {
+    numberOfMailboxes: {
         type: String,
         default: ""
     },
@@ -98,7 +98,14 @@ var CustomerSchema = new mongoose.Schema({
     shipreq: {
         type: String,
         default: ""
+    },
+    updatedBy: {
+      type: String,
+      default: ""
     }
+},
+{
+  timestamps: true
 });
 
 var Customer = mongoose.model("Customer", CustomerSchema);

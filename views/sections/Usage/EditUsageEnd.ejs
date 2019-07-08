@@ -1,0 +1,27 @@
+<h5>
+    <a href="#editUsage-End" style="color: mediumvioletred" data-toggle="collapse" onclick="change_arrow($(this));">
+        End User Search
+        <i class="fa fa-caret-right" aria-hidden="true"></i>
+    </a>
+</h5>
+
+<div id="editUsage-End" class="collapse">
+    <div class="row">
+        <div class="form-group col-4 response-cell">
+            <label>How many end users will have access to their own mailbox?</label>
+            <input type="text" class="form-control" placeholder="No response set" value="<%= usage_questions.end_user_search.number_of_user_access %>"
+                name="usage_questions[end_user_search][number_of_user_access]">
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>Do end users need to have access to Archive within Outlook? What versions of Outlook?</label>
+            <input type="text" class="form-control" placeholder="No response set" value="<%= usage_questions.end_user_search.need_outlook %>"
+                name="usage_questions[end_user_search][need_outlook]">
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>Do you want to access archives through Mobile Apps?</label>
+            <%- make_custom_dropdown("usage_questions[end_user_search][need_mobile_apps]",
+                    usage_questions.end_user_search.need_mobile_apps, ["Yes", "No"]) %>
+        </div>
+    </div>
+</div>
+<hr>

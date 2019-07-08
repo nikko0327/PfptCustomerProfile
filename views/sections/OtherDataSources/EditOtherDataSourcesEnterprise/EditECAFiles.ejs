@@ -1,0 +1,41 @@
+<h5>
+    <a href="#editECA-files" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse" onclick="change_arrow($(this));">
+        Files
+        <i class="fa fa-caret-right" aria-hidden="true"></i>
+    </a>
+</h5>
+
+<div id="editECA-files" class="collapse">
+    <div class="row">
+        <div class="form-group col-4 response-cell">
+            <label>What is the storage usage (how much data is in the account)</label>
+            <input type="text" class="form-control" placeholder="No response set" value="<%= other_data_source_questions.enterprise_collaboration_archiving.files.storage_usage %>"
+                name="other_data_source_questions[enterprise_collaboration_archiving][files][storage_usage]">
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>How many new files, how many updates, how large?
+            </label>
+            <input type="text" class="form-control" placeholder="No response set" value="<%= other_data_source_questions.enterprise_collaboration_archiving.files.files_desc %>"
+                name="other_data_source_questions[enterprise_collaboration_archiving][files][files_desc]">
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>What is file increase rate (number of new files) per day</label>
+            <input type="text" class="form-control" placeholder="No response set" value="<%= other_data_source_questions.enterprise_collaboration_archiving.files.fill_rate %>"
+                name="other_data_source_questions[enterprise_collaboration_archiving][files][fill_rate]">
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>Do they need to archive the original content or is text extracted content sufficient?</label>
+            <%- make_custom_dropdown("other_data_source_questions[enterprise_collaboration_archiving][files][need_original_or_extracted]",
+                        other_data_source_questions.enterprise_collaboration_archiving.files.need_original_or_extracted,
+                        ["Need original content", "Text-extracted"]) %>
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>Is the customer a PFPT archiving customer?
+            </label>
+            <%- make_custom_dropdown
+                ("other_data_source_questions[enterprise_collaboration_archiving][files][is_archiving_customer]",
+                        other_data_source_questions.enterprise_collaboration_archiving.files.is_archiving_customer, ["Yes", "No"]) %>
+        </div>
+    </div>
+</div>
+<hr>

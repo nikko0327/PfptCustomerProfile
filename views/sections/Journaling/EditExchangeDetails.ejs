@@ -1,0 +1,47 @@
+<h5>
+    <a href="#editExchangeDetails" style="color: mediumvioletred" data-toggle="collapse" onclick="change_arrow($(this));">
+        Exchange Details Appliances
+        <i class="fa fa-caret-right" aria-hidden="true"></i>
+    </a>
+</h5>
+
+<div id="editExchangeDetails" class="collapse">
+    <div class="row">
+        <div class="form-group col-4 response-cell">
+            <label>Exchange on-prem</label>
+            <input type="text" class="form-control" placeholder="No response set" value="<%= journaling_questions.exchange.exchange_on_prem %>"
+                name="journaling_questions[exchange][exchange_on_prem]">
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>O365</label>
+            <input type="text" class="form-control" placeholder="No response set" value="<%= journaling_questions.exchange.has_O365 %>"
+                name="journaling_questions[exchange][has_O365]">
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>Mixed mode</label>
+            <input type="text" class="form-control" placeholder="No response set" value="<%= journaling_questions.exchange.is_mixed_mode %>"
+                name="journaling_questions[exchange][is_mixed_mode]">
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>Number of mailboxes</label>
+            <input type="text" class="form-control" placeholder="No response set" value="<%= journaling_questions.exchange.number_of_mailboxes %>"
+                name="journaling_questions[exchange][number_of_mailboxes]">
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>Average message count</label>
+            <input type="text" class="form-control" placeholder="No response set" value="<%= journaling_questions.exchange.avg_message_count %>"
+                name="journaling_questions[exchange][avg_message_count]">
+        </div>
+        <!-- <div class="form-group col-4 response-cell">
+            <label>Changes in business?</label>
+            <input type="text" class="form-control" placeholder="No response set" value="<%= journaling_questions.exchange.change_in_business %>"
+                name="journaling_questions[exchange][change_in_business]">
+        </div> -->
+        <div class="form-group col-4 response-cell">
+            <label>Has Enterprise CAL?</label>
+            <%- make_custom_dropdown("journaling_questions[exchange][has_enterprise_CAL]",
+                    journaling_questions.exchange.has_enterprise_CAL, ["Yes", "No"]) %>
+        </div>
+    </div>
+</div>
+<hr>

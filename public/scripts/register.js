@@ -1,14 +1,16 @@
 // Find the element by the generic btn class
 $(document).ready(() => {
-    $('input[type="checkbox"]').click(function () {
-        if (this.checked) {
-            toggle_password(true);
-            //document.getElementById("password").type = "text";
-            //document.getElementById("confirm_password").type = "text";
+    $("#show_password").click(function () {
+        if (document.getElementById("password").type == "password") {
+          document.getElementById("password").type = "text";
+          document.getElementById("show_password").classList.remove("fa-eye");
+          document.getElementById("show_password").classList.add("fa-eye-slash");
+          document.getElementById("confirm_password").type = "text";
         } else {
-            toggle_password(false);
-            //document.getElementById("password").type = "password";
-            //document.getElementById("confirm_password").type = "password";
+          document.getElementById("password").type = "password";
+          document.getElementById("show_password").classList.remove("fa-eye-slash");
+          document.getElementById("show_password").classList.add("fa-eye");
+          document.getElementById("confirm_password").type = "password";
         }
     });
 
@@ -32,16 +34,6 @@ function generate_random_pw() {
     //document.getElementById("confirm_password").value = generated_pw;
 
     return generated_pw;
-}
-
-function toggle_password(show) {
-    if (show) {
-        document.getElementById("password").type = "text";
-        //document.getElementById("confirm_password").type = "text";
-    } else {
-        document.getElementById("password").type = "password";
-        //document.getElementById("confirm_password").type = "password";
-    }
 }
 
 function password_equality() {

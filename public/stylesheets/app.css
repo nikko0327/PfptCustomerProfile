@@ -1,9 +1,5 @@
 /* Table css Start */
 
-a {
-    font-size: 14px;
-}
-
 a.del {
     background: #d9534f;
     border-radius: 2px;
@@ -21,13 +17,8 @@ a.edit {
     border: none;
 }
 
-tr.row-name {
-    font-size: 18px;
-    color: #448aff;
-}
-
-tr.row-content {
-    color: #6c7173;
+.table-container {
+  overflow: auto;
 }
 
 table {
@@ -142,9 +133,9 @@ footer p {
     /*width: 3000px !important;*/
     max-width: 90%;
     background-color: white;
-    border: .2px solid gray; 
-    padding-right:25px; 
-    padding-left:25px; 
+    border: .2px solid gray;
+    padding-right:25px;
+    padding-left:25px;
     padding-bottom: 25px
 }
 
@@ -267,7 +258,7 @@ select.form-control {
 .fa.fa-trash {
     color: black
 }
-  
+
 .fa.fa-trash:hover {
     color: red;
 }
@@ -280,3 +271,19 @@ select.form-control {
     padding: 0px;
     margin: 0px;
   }
+
+#sidebar {
+  width: 15%;
+  margin: auto;
+  position: fixed;
+  overflow: auto;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0px;
+}
+
+#content {
+  margin-left: 20%;
+}

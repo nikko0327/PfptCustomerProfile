@@ -23,4 +23,8 @@ $(document).ready((() => {
             table.find('tbody tr:last-child').remove();
         }
     });
+
+    $("#reset").click(function() {
+      return confirm("Are you sure?");
+    })
 }));

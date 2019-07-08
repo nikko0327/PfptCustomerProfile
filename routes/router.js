@@ -1,6 +1,8 @@
 var express = require("express");
+var bcrypt = require("bcrypt");
+var nodemailer = require("nodemailer");
 var router = express.Router();
-// var User = require("../models/user");
+require("dotenv").config();
 
 // var jwt = require('jsonwebtoken');
 // var jwt_secret = 'Just like the stars that have faded, we too, will fade one day and become one with the stars.';
@@ -12,8 +14,8 @@ var router = express.Router();
 *   Use /customerprofile in production if nginx is present, use "" locally/in localhost
 */
 
-var append = "/customerprofile";
-// var append = "";
+// var append = "/customerprofile";
+var append = "";
 
 var ldap_auth = require("ldapjs");
 
@@ -30,7 +32,7 @@ var ImportQuestions = require("../models/import");
 var POCQuestions = require("../models/poc");
 var RFEQuestions = require("../models/rfe");
 var FinservSupervisionQuestions = require("../models/finserv_supervision");
-//var User = require("../models/user");
+var User = require("../models/user");
 
 // For authenticating cookies/sessions.
 function authenticate_session(req, res, next) {
@@ -63,39 +65,43 @@ router.get("/new", authenticate_session, function (req, res) {
     res.render("new", { error_message: undefined });
 });
 
-//
-// // REGISTER
-// router.get("/register", function (req, res) {
-//     res.render("register", {error_message: undefined});
-// });
-//
-// // POST REGISTER
-// router.post("/register", function (req, res) {
-//     if (!req.body.registration_info["username"] || !req.body.registration_info["password"] || !req.body.registration_info["confirm_password"]) {
-//         res.render("register", {error_message: "Please enter all fields."});
-//     } else {
-//         if (req.body.registration_info["password"] == req.body.registration_info["confirm_password"]) {
-//             async function register_user() {
-//                 var hashed_password = await bcrypt.hash(req.body.registration_info["password"], 10);
-//                 await User.create({username: req.body.registration_info["username"], password: hashed_password});
-//             }
-//
-//             register_user().then(() => {
-//                 res.redirect( append + "/login");
-//             }).catch((error) => {
-//                 if (error["code"] == 11000) {
-//                     console.log("-- Duplicate entry for user: " + req.body.registration_info["username"]);
-//                     // Send pop up alert to HTML here
-//                     res.render("register", {error_message: "User already exists: " + req.body.registration_info["username"]});
-//                 } else {
-//                     console.log(error);
-//                 }
-//             });
-//         } else {
-//             res.render("register", {error_message: "Passwords are not equal."});
-//         }
-//     }
-// });
+
+// REGISTER
+router.get("/register", function (req, res) {
+    res.render("register", {error_message: undefined});
+});
+
+// POST REGISTER
+router.post("/register", function (req, res) {
+    if (!req.body.registration_info["username"] || !req.body.registration_info["password"] || !req.body.registration_info["confirm_password"]) {
+        res.render("register", {error_message: "Please enter all fields."});
+    }
+    // if (req.body.registration_info["code"] != process.env.CODE) {
+    //   res.render("register", {error_message: "Code is incorrect."})
+    // }
+    else {
+        if ((req.body.registration_info["password"] == req.body.registration_info["confirm_password"]) && (req.body.registration_info["code"] == process.env.CODE)) {
+            async function register_user() {
+                var hashed_password = await bcrypt.hash(req.body.registration_info["password"], 10);
+                await User.create({username: req.body.registration_info["username"], password: hashed_password});
+            }
+
+            register_user().then(() => {
+                res.redirect( append + "/login");
+            }).catch((error) => {
+                if (error["code"] == 11000) {
+                    console.log("-- Duplicate entry for user: " + req.body.registration_info["username"]);
+                    // Send pop up alert to HTML here
+                    res.render("register", {error_message: "User already exists: " + req.body.registration_info["username"]});
+                } else {
+                    console.log(error);
+                }
+            });
+        } else {
+            res.render("register", {error_message: "Passwords are not equal."});
+        }
+    }
+});
 
 // LOGIN
 router.get("/login", function (req, res) {
@@ -137,11 +143,26 @@ router.post("/login", function (req, res) {
                     });
 
                     if (error) {
-                        // console.log(error);
-                        console.log("Failed attempt to login using username: " + req.body.login["username"]);
-                        res.render("login", { fail: true });
-
-
+                        User.findOne({username: req.body.login["username"]}).then((result) => {
+                            if (result == null) {
+                                res.render("login", {fail: true});
+                            } else {
+                                bcrypt.compare(req.body.login["password"], result["password"], function (err, validated) {
+                                    if (validated) {
+                                        // Do auth/sessions here
+                                        console.log("Logged in: " + req.body.login["username"]);
+                                        req.session.user = req.body.login["username"];
+                                        res.redirect( append + "/index");
+                                    } else {
+                                        res.render("login", {fail: true});
+                                    }
+                                });
+                            }
+                        }).catch((error) => {
+                            if (error) {
+                                res.render("login", {fail: true});
+                            }
+                        });
                     } else {
                         console.log("Logged in: " + req.body.login["username"]);
                         req.session.user = req.body.login["username"];
@@ -151,28 +172,6 @@ router.post("/login", function (req, res) {
             }
         });
     }
-
-
-    // User.findOne({username: req.body.login["username"]}).then((result) => {
-    //     if (result == null) {
-    //         res.render("login", {fail: true});
-    //     } else {
-    //         bcrypt.compare(req.body.login["password"], result["password"], function (err, validated) {
-    //             if (validated) {
-    //                 // Do auth/sessions here
-    //                 console.log("Logged in: " + req.body.login["username"]);
-    //                 req.session.user = req.body.login["username"];
-    //                 res.redirect( append + "/index");
-    //             } else {
-    //                 res.render("login", {fail: true});
-    //             }
-    //         });
-    //     }
-    // }).catch((error) => {
-    //     if (error) {
-    //         res.render("login", {fail: true});
-    //     }
-    // });
 });
 
 //CREATE ROUTE
@@ -193,6 +192,33 @@ router.post("/new", authenticate_session, function (req, res) {
                 }
             } else {
 
+                Customer.findOneAndUpdate({ name: req.body.customer["name"] }, { createdBy: req.session.user, updatedBy: req.session.user })
+                .then(customer => {
+                  var transporter = nodemailer.createTransport({
+                    host: 'smtp.us.proofpoint.com',
+                    port: 25,
+                    auth: {
+                      user: 'DriveTracking@proofpoint.com'
+                    }
+                  });
+                  var mailOptions = {
+                    from: 'DriveTracking@proofpoint.com',
+                    to: 'anchen@proofpoint.com, nlee@proofpoint.com',
+                    subject: 'Customer Created',
+                    text: `Customer Name: ${customer.name}, Created At: ${customer.createdAt}, Created By: ${customer.createdBy}`
+                  };
+                  transporter.sendMail(mailOptions, function(error, info) {
+                    if (error) {
+                      console.log(error);
+                    }
+                    else {
+                      console.log(info.response);
+                    }
+                  });
+                })
+                .catch(e => {
+                  console.log(e);
+                })
                 ApplianceQuestions.create({ name: req.body.customer["name"] });
                 DesignSummaryQuestions.create({ name: req.body.customer["name"] });
                 DesktopNetworkQuestions.create({ name: req.body.customer["name"] });
@@ -250,6 +276,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         // Make a bunch of await calls and wait for the queries to finish.
         async function updateID() {
             await Customer.findOneAndUpdate({ name: req.params.id }, req.body.customer).exec();
+            await Customer.findOneAndUpdate({ name: req.body.customer["name"] }, { updatedBy: req.session.user }).exec();
             await ApplianceQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
             await DesignSummaryQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
             await DesktopNetworkQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
@@ -266,6 +293,33 @@ router.put("/index/:id", authenticate_session, function (req, res) {
 
         // Only if all the queries finish, redirect the page to the new customer name.
         updateID().then(() => {
+            Customer.findOne({ name: req.body.customer["name"] })
+            .then(customer => {
+              var transporter = nodemailer.createTransport({
+                host: 'smtp.us.proofpoint.com',
+                port: 25,
+                auth: {
+                  user: 'DriveTracking@proofpoint.com'
+                }
+              });
+              var mailOptions = {
+                from: 'DriveTracking@proofpoint.com',
+                to: 'anchen@proofpoint.com, nlee@proofpoint.com',
+                subject: 'Customer Updated',
+                text: `Customer Name: ${customer.name}, Updated At: ${customer.updatedAt}, Updated By: ${customer.updatedBy}`
+              };
+              transporter.sendMail(mailOptions, function(error, info) {
+                if (error) {
+                  console.log(error);
+                }
+                else {
+                  console.log(info.response);
+                }
+              });
+            })
+            .catch(e => {
+              console.log(e);
+            })
             //console.log("Going to " + "/index/" + encodeURIComponent(req.body.customer["name"]));
             res.redirect(append + "/index/" + encodeURIComponent(req.body.customer["name"]));
         }).catch((error) => {

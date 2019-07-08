@@ -1,7 +1,7 @@
-let expanded = false;
-let sync_forms = true;
+var expanded = false;
+var sync_forms = true;
 
-let row_count = 1;
+var row_count = 1;
 
 // \u2022 is a bullet point
 
@@ -20,8 +20,8 @@ function sync_email_systems_forms() {
     }
 }
 
-function add_post_listeners(flag, link, qform, fieldset, message) {
-    $(link).click(function () {
+function add_post_listeners(flag, edit, cancel, qform, fieldset, message) {
+    $(edit).click(function () {
         let customer_name = $("#unique-customer-name").val();
         if (flag == true && customer_name) {
             // END EDITING
@@ -46,6 +46,7 @@ function add_post_listeners(flag, link, qform, fieldset, message) {
             // Locks the form's fieldset
             $(fieldset).prop('disabled', true);
             $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
+            $(this).next().remove();
         } else if (flag == false) {
             // BEGIN EDITING
             flag = true;
@@ -53,6 +54,16 @@ function add_post_listeners(flag, link, qform, fieldset, message) {
             // Unlocks the form's fieldset
             $(fieldset).prop('disabled', false);
             $(this).first().html('<i style="color: deeppink;" class="fa fa-save" aria-hidden="true"> Save</i>');
+            $(this).first().after(`<a href="#/" id="${cancel.substring(1)}" aria-hidden="true" data-toggle="modal"><i style="color: deeppink;" class="fa fa-times" aria-hidden="true"> Cancel</i></a>`);
+            $(cancel).click(function() {
+              if (confirm("Are you sure?")) {
+                $(qform)[0].reset();
+                $(fieldset).prop('disabled', true);
+                editing_customer = false;
+                $(edit).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
+                $(edit).next().remove();
+              }
+            })
         } else {
             alert("Customer name is empty.");
         }
@@ -92,7 +103,7 @@ $(document).ready(() => {
     row_count = $('#contacts_table > tbody > tr').length;
 
     window.addEventListener("beforeunload", function (e) {
-        if (editing_customer || editing_email_systems_se || editing_appliances || editing_design_summary
+        if (editing_customer || editing_email_systems || editing_appliances || editing_design_summary
             || editing_desktop_network || editing_email_systems_ps || editing_import || editing_journaling
             || editing_other_data_sources || editing_POC || editing_RFE || editing_usage) {
             let confirmationMessage = "You have unsaved changes.";
@@ -233,14 +244,9 @@ $(document).ready(() => {
                                 alert('No files updated.\nEither a server error has occurred or an improper request was sent.')
                             }
                             location.href = "../index/" + encodeURIComponent(new_customer);
-
-                            // Locks the form's fieldset
-                            $("#customerFormFieldset").prop('disabled', true);
-                            editing_customer = false;
-                            $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
                         },
                         error: function (xhr, status, error) {
-                            alert("Error updating files uploaded.");
+                            console.log("Error updating files uploaded.");
                         }
                     });
                 },
@@ -257,10 +263,24 @@ $(document).ready(() => {
 
             // POST here.
             $.ajax(json);
-
+            // Locks the form's fieldset
+            $("#customerFormFieldset").prop('disabled', true);
+            editing_customer = false;
+            $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
+            $(this).next().remove();
         } else if (editing_customer == false) {
             // BEGIN EDITING
             $(this).first().html('<i style="color: deeppink;" class="fa fa-save" aria-hidden="true"> Save</i>');
+            $(this).first().after('<a href="#/" id="cancelCustomerLink" aria-hidden="true" data-toggle="modal"><i style="color: deeppink;" class="fa fa-times" aria-hidden="true"> Cancel</i></a>');
+            $("#cancelCustomerLink").click(function() {
+              if (confirm("Are you sure?")) {
+                $("#customerForm")[0].reset();
+                $("#customerFormFieldset").prop('disabled', true);
+                editing_customer = false;
+                $("#editCustomerLink").first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
+                $("#editCustomerLink").next().remove();
+              }
+            })
 
             // Unlocks the form's fieldset
             $("#customerFormFieldset").prop('disabled', false);
@@ -271,14 +291,14 @@ $(document).ready(() => {
         }
     });
 
-    let editing_email_systems_se = false;
-    $('#editEmailSystemSELink').click(function () {
+    let editing_email_systems = false;
+    $('#editEmailSystemLink').click(function () {
         let customer_name = $("#unique-customer-name").val();
-        if (editing_email_systems_se == true && customer_name) {
+        if (editing_email_systems == true && customer_name) {
             // END EDITING
-            editing_email_systems_se = false;
+            editing_email_systems = false;
 
-            let form = $("#emailSystemSEForm");
+            let form = $("#emailSystemForm");
 
             let json = {
                 type: "POST",
@@ -286,9 +306,9 @@ $(document).ready(() => {
                 url: form.attr('action'),
                 data: form.serialize(),
                 success: function (res) {
-                    if (sync_forms && editing_email_systems_ps) {
-                        $('#editEmailSystemPSLink').click();
-                    }
+                    // if (sync_forms && editing_email_systems_ps) {
+                    //     $('#editEmailSystemPSLink').click();
+                    // }
                     alert("Email SE Questions saved.")
                 }
             };
@@ -298,64 +318,29 @@ $(document).ready(() => {
             $.ajax(json);
 
             // Locks the form's fieldset
-            $("#emailSystemSEFormFieldset").prop('disabled', true);
+            $("#emailSystemFormFieldset").prop('disabled', true);
             $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
-        } else if (editing_email_systems_se == false) {
+            $(this).next().remove();
+        } else if (editing_email_systems == false) {
             // BEGIN EDITING
-            editing_email_systems_se = true;
+            editing_email_systems = true;
 
             // Unlocks the form's fieldset
-            $("#emailSystemSEFormFieldset").prop('disabled', false);
-            if (sync_forms && !editing_email_systems_ps) {
-                $('#editEmailSystemPSLink').click();
-            }
+            $("#emailSystemFormFieldset").prop('disabled', false);
+            // if (sync_forms && !editing_email_systems_ps) {
+            //     $('#editEmailSystemPSLink').click();
+            // }
             $(this).first().html('<i style="color: deeppink;" class="fa fa-save" aria-hidden="true"> Save</i>');
-        } else {
-            alert("Customer name is empty.");
-        }
-    });
-
-    let editing_email_systems_ps = false;
-    $('#editEmailSystemPSLink').click(function () {
-        let customer_name = $("#unique-customer-name").val();
-        if (editing_email_systems_ps == true && customer_name) {
-            // END EDITING
-            editing_email_systems_ps = false;
-
-            let form = $("#emailSystemPSForm");
-
-            let json = {
-                type: "POST",
-                timeout: 3000,
-                url: form.attr('action'),
-                data: form.serialize(),
-                success: function (res) {
-                    if (sync_forms && editing_email_systems_se) {
-                        $('#editEmailSystemSELink').click();
-                    }
-
-                    alert("Email PS Questions saved.");
-                }
-            };
-            //console.log(json);
-
-            // POST here.
-            $.ajax(json);
-
-            // Locks the form's fieldset
-            $("#emailSystemPSFormFieldset").prop('disabled', true);
-            $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
-
-        } else if (editing_email_systems_ps == false) {
-            // BEGIN EDITING
-            editing_email_systems_ps = true;
-
-            // Unlocks the form's fieldset
-            $("#emailSystemPSFormFieldset").prop('disabled', false);
-            if (sync_forms && !editing_email_systems_se) {
-                $('#editEmailSystemSELink').click();
-            }
-            $(this).first().html('<i style="color: deeppink;" class="fa fa-save" aria-hidden="true"> Save</i>');
+            $(this).first().after('<a href="#/" id="cancelEmailSystemLink" aria-hidden="true" data-toggle="modal"><i style="color: deeppink;" class="fa fa-times" aria-hidden="true"> Cancel</i></a>');
+            $("#cancelEmailSystemLink").click(function() {
+              if (confirm("Are you sure?")) {
+                $("#emailSystemForm")[0].reset();
+                $("#emailSystemFormFieldset").prop('disabled', true);
+                editing_email_systems = false;
+                $("#editEmailSystemLink").first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
+                $("#editEmailSystemLink").next().remove();
+              }
+            })
         } else {
             alert("Customer name is empty.");
         }
@@ -372,16 +357,444 @@ $(document).ready(() => {
     let editing_RFE = false;
     let editing_design_summary = false;
     let editing_finserv_supervision = false;
-    add_post_listeners(editing_journaling, '#editJournalingLink', "#journalingForm", "#journalingFormFieldset", "Journaling Questions saved.");
-    add_post_listeners(editing_appliances, '#editAppliancesLink', "#appliancesForm", "#appliancesFormFieldset", "Appliances Questions saved.");
-    add_post_listeners(editing_other_data_sources, '#editOtherDataSourcesLink', "#otherDataSourcesForm", "#otherDataSourcesFormFieldset", "Other Data Sources Questions saved.");
-    add_post_listeners(editing_desktop_network, '#editDesktopNetworkLink', "#desktopNetworkForm", "#desktopNetworkFormFieldset", "Desktop Network Questions saved.");
-    add_post_listeners(editing_usage, '#editUsageLink', "#usageForm", "#usageFormFieldset", "Usage Questions saved.");
-    add_post_listeners(editing_import, '#editImportLink', "#importForm", "#importFormFieldset", "Import Questions saved.");
-    add_post_listeners(editing_POC, '#editPOCLink', "#pocForm", "#pocFormFieldset", "POC Questions saved.");
-    add_post_listeners(editing_RFE, '#editRFELink', "#rfeForm", "#rfeFormFieldset", "RFE Questions saved.");
-    add_post_listeners(editing_design_summary, '#editDesignSummaryLink', "#designSummaryForm", "#designSummaryFormFieldset", "Design Summary Questions saved.");
-    add_post_listeners(editing_finserv_supervision, '#editFinservSupervisionLink', "#finservSupervisionForm", "#finservSupervisionFormFieldset", "Finserv Supervision Questions saved.");
+    add_post_listeners(editing_journaling, '#editJournalingLink', '#cancelJournalingLink', "#journalingForm", "#journalingFormFieldset", "Journaling Questions saved.");
+    add_post_listeners(editing_appliances, '#editAppliancesLink', '#cancelAppliancesLink', "#appliancesForm", "#appliancesFormFieldset", "Appliances Questions saved.");
+    add_post_listeners(editing_other_data_sources, '#editOtherDataSourcesLink', '#cancelOtherDataSourcesLink', "#otherDataSourcesForm", "#otherDataSourcesFormFieldset", "Other Data Sources Questions saved.");
+    add_post_listeners(editing_desktop_network, '#editDesktopNetworkLink', '#cancelDesktopNetworkLink', "#desktopNetworkForm", "#desktopNetworkFormFieldset", "Desktop Network Questions saved.");
+    add_post_listeners(editing_usage, '#editUsageLink', '#cancelUsageLink', "#usageForm", "#usageFormFieldset", "Usage Questions saved.");
+    add_post_listeners(editing_import, '#editImportLink', '#cancelImportLink', "#importForm", "#importFormFieldset", "Import Questions saved.");
+    add_post_listeners(editing_POC, '#editPOCLink', '#cancelPOCLink', "#pocForm", "#pocFormFieldset", "POC Questions saved.");
+    add_post_listeners(editing_RFE, '#editRFELink', '#cancelRFELink', "#rfeForm", "#rfeFormFieldset", "RFE Questions saved.");
+    add_post_listeners(editing_design_summary, '#editDesignSummaryLink', '#cancelDesignSummaryLink', "#designSummaryForm", "#designSummaryFormFieldset", "Design Summary Questions saved.");
+    add_post_listeners(editing_finserv_supervision, '#editFinservSupervisionLink', '#cancelFinservSupervisionLink', "#finservSupervisionForm", "#finservSupervisionFormFieldset", "Finserv Supervision Questions saved.");
+
+    var pills = [
+      $("a[href='#general-content']"),
+      $("a[href='#editemailsystems-1-content']"),
+      $("a[href='#editemailsystems-2-content']"),
+      $("a[href='#editemailsystems-3-content']"),
+      $("a[href='#editemailsystems-4-content']"),
+      $("a[href='#editExchangeDetails-content']"),
+      $("a[href='#editMailVol-content']"),
+      $("a[href='#editapplianceDetails-ApplianceSizing-content']"),
+      $("a[href='#editapplianceDetails-ForSE-content']"),
+      $("a[href='#editOtherDataSources-Custom-content']"),
+      $("a[href='#editOtherDataSources-Social-content']"),
+      $("a[href='#editECA-general-content']"),
+      $("a[href='#editECA-files-content']"),
+      $("a[href='#editECA-skype-content']"),
+      $("a[href='#editECA-skype-lync-content']"),
+      $("a[href='#editECA-box-onedrive-content']"),
+      $("a[href='#editECA-chatter-content']"),
+      $("a[href='#editECA-symphony-content']"),
+      $("a[href='#editDesktop-Network-content']"),
+      $("a[href='#editDesktop-Disaster-content']"),
+      $("a[href='#editDesktop-Auth-content']"),
+      $("a[href='#editUsage-Supervision-Notes-content']"),
+      $("a[href='#editUsage-Supervision-Random-content']"),
+      $("a[href='#editUsage-Supervision-requirements-content']"),
+      $("a[href='#editUsage-Stubbing-content']"),
+      $("a[href='#editUsage-PST-content']"),
+      $("a[href='#editUsage-Legal-content']"),
+      $("a[href='#editUsage-End-content']"),
+      $("a[href='#editUsage-Sync-content']"),
+      $("a[href='#editusage-transport-content']"),
+      $("a[href='#editusage-export-content']"),
+      $("a[href='#import-content']"),
+      $("a[href='#editPOCPOC-content']"),
+      $("a[href='#editPOCUAT-content']"),
+      $("a[href='#rfe-content']"),
+      $("a[href='#designsummary-content']"),
+      $("a[href='#editSupervision-MessageProfile-content']"),
+      $("a[href='#editSupervisoryWorkflow-content']"),
+      $("a[href='#editAdministrativeFunctions-content']"),
+      $("a[href='#editRuleLexiconMaintenance-content']")
+    ]
+
+    function hideDropdowns() {
+      $("#emailsystems-dropdown").hide();
+      $("#journaling-dropdown").hide();
+      $("#appliances-dropdown").hide();
+      $("#otherdatasources-dropdown").hide();
+      $("#editOtherDataSources-enterprise-dropdown").hide();
+      $("#desktopnetwork-dropdown").hide();
+      $("#usage-dropdown").hide();
+      $("#editUsage-Supervision-dropdown").hide();
+      $("#poc-dropdown").hide();
+      $("#finservsupervision-dropdown").hide();
+      $("#editSupervisionOverview-dropdown").hide();
+    }
+
+    function deactivatePills() {
+      pills.forEach(pill => {
+        if (pill != this) {
+          pill.removeClass("active");
+          pill.attr("aria-selected", "false");
+        }
+      })
+    }
+
+    hideDropdowns();
+
+    $("a[href='#general-content']").click(function() {
+      hideDropdowns();
+      deactivatePills();
+    })
+
+    $("a[href='#emailsystems-content']").click(function() {
+      hideDropdowns();
+      $("#emailsystems-dropdown").toggle();
+      $("#emailContainer").collapse("show");
+      $("#editEmailSystems-1").collapse("hide");
+      $("#editEmailSystems-2").collapse("hide");
+      $("#editEmailSystems-3").collapse("hide");
+      $("#editEmailSystems-4").collapse("hide");
+      $("a[href='#editEmailSystems-1']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editEmailSystems-2']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editEmailSystems-3']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editEmailSystems-4']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+    })
+
+    $("a[href='#editemailsystems-1-content'], a[href='#editemailsystems-2-content'], a[href='#editemailsystems-3-content'], a[href='#editemailsystems-4-content']").click(function() {
+      deactivatePills();
+    })
+
+    $("a[href='#editemailsystems-1-content']").click(function() {
+      $("a[href='#editEmailSystems-1']").click();
+    })
+
+    $("a[href='#editemailsystems-2-content']").click(function() {
+      $("a[href='#editEmailSystems-2']").click();
+    })
+
+    $("a[href='#editemailsystems-3-content']").click(function() {
+      $("a[href='#editEmailSystems-3']").click();
+    })
+
+    $("a[href='#editemailsystems-4-content']").click(function() {
+      $("a[href='#editEmailSystems-4']").click();
+    })
+
+    $("a[href='#journaling-content']").click(function() {
+      hideDropdowns();
+      $("#journaling-dropdown").toggle();
+      $("#journalingContainer").collapse("show");
+      $("#editExchangeDetails").collapse("hide");
+      $("#editMailVol").collapse("hide");
+      $("a[href='#editExchangeDetails']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editMailVol']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+    })
+
+    $("a[href='#editExchangeDetails-content'], a[href='#editMailVol-content']").click(function() {
+      deactivatePills();
+    })
+
+    $("a[href='#editExchangeDetails-content']").click(function() {
+      $("a[href='#editExchangeDetails']").click();
+    })
+
+    $("a[href='#editMailVol-content']").click(function() {
+      $("a[href='#editMailVol']").click();
+    })
+
+    $("a[href='#appliances-content']").click(function() {
+      hideDropdowns();
+      $("#appliances-dropdown").toggle();
+      $("#applianceSizing").collapse("show");
+      $("#editapplianceDetails-ApplianceSizing").collapse("hide");
+      $("#editapplianceDetails-ForSE").collapse("hide");
+      $("a[href='#editapplianceDetails-ApplianceSizing']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editapplianceDetails-ForSE']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+    })
+
+    $("a[href='#editapplianceDetails-ApplianceSizing-content'], a[href='#editapplianceDetails-ForSE-content']").click(function() {
+      deactivatePills();
+    })
+
+    $("a[href='#editapplianceDetails-ApplianceSizing-content']").click(function() {
+      $("a[href='#editapplianceDetails-ApplianceSizing']").click();
+    })
+
+    $("a[href='#editapplianceDetails-ForSE-content']").click(function() {
+      $("a[href='#editapplianceDetails-ForSE']").click();
+    })
+
+    $("a[href='#otherdatasources-content']").click(function() {
+      hideDropdowns();
+      $("#otherdatasources-dropdown").toggle();
+      $("#editOtherDataSources-enterprise-dropdown").hide();
+      $("#otherDataSourcesContainer").collapse("show");
+      $("#editOtherDataSources-Custom").collapse("hide");
+      $("#editOtherDataSources-Social").collapse("hide");
+      $("#editOtherDataSources-enterprise").collapse("hide");
+      $("#editECA-general").collapse("hide");
+      $("#editECA-files").collapse("hide");
+      $("#editECA-skype").collapse("hide");
+      $("#editECA-skype-lync").collapse("hide");
+      $("#editECA-box-onedrive").collapse("hide");
+      $("#editECA-chatter").collapse("hide");
+      $("#editECA-symphony").collapse("hide");
+      $("a[href='#editOtherDataSources-Custom']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editOtherDataSources-Social']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editOtherDataSources-enterprise']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editECA-general']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editECA-files']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editECA-skype']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editECA-skype-lync']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editECA-box-onedrive']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editECA-chatter']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editECA-symphony']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+    })
+
+    $("a[href='#editOtherDataSources-enterprise-content']").click(function() {
+      $("#editOtherDataSources-enterprise-dropdown").toggle();
+      $("a[href='#editOtherDataSources-enterprise']").click();
+    })
+
+    $("a[href='#editOtherDataSources-Custom-content'], a[href='#editOtherDataSources-Social-content'], a[href='#editECA-general-content'], a[href='#editECA-files-content'], a[href='#editECA-skype-content'], a[href='#editECA-skype-lync-content'], a[href='#editECA-box-onedrive-content'], a[href='#editECA-chatter-content'], a[href='#editECA-symphony-content']").click(function() {
+      deactivatePills();
+    })
+
+    $("a[href='#editOtherDataSources-Custom-content']").click(function() {
+      $("a[href='#editOtherDataSources-Custom']").click();
+    })
+
+    $("a[href='#editOtherDataSources-Social-content']").click(function() {
+      $("a[href='#editOtherDataSources-Social']").click();
+    })
+
+    $("a[href='#editECA-general-content']").click(function() {
+      $("a[href='#editECA-general']").click();
+    })
+
+    $("a[href='#editECA-files-content']").click(function() {
+      $("a[href='#editECA-files']").click();
+    })
+
+    $("a[href='#editECA-skype-content']").click(function() {
+      $("a[href='#editECA-skype']").click();
+    })
+
+    $("a[href='#editECA-skype-lync-content']").click(function() {
+      $("a[href='#editECA-skype-lync']").click();
+    })
+
+    $("a[href='#editECA-box-onedrive-content']").click(function() {
+      $("a[href='#editECA-box-onedrive']").click();
+    })
+
+    $("a[href='#editECA-chatter-content']").click(function() {
+      $("a[href='#editECA-chatter']").click();
+    })
+
+    $("a[href='#editECA-symphony-content']").click(function() {
+      $("a[href='#editECA-symphony']").click();
+    })
+
+    $("a[href='#desktopnetwork-content']").click(function() {
+      hideDropdowns();
+      $("#desktopnetwork-dropdown").toggle();
+      $("#desktopContent").collapse("show");
+      $("#editDesktop-Network").collapse("hide");
+      $("#editDesktop-Disaster").collapse("hide");
+      $("#editDesktop-Auth").collapse("hide");
+      $("a[href='#editDesktop-Network']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editDesktop-Disaster']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editDesktop-Auth']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+    })
+
+    $("a[href='#editDesktop-Network-content'], a[href='#editDesktop-Disaster-content'], a[href='#editDesktop-Auth-content']").click(function() {
+      deactivatePills();
+    })
+
+    $("a[href='#editDesktop-Network-content']").click(function() {
+      $("a[href='#editDesktop-Network']").click();
+    })
+
+    $("a[href='#editDesktop-Disaster-content']").click(function() {
+      $("a[href='#editDesktop-Disaster']").click();
+    })
+
+    $("a[href='#editDesktop-Auth-content']").click(function() {
+      $("a[href='#editDesktop-Auth']").click();
+    })
+
+    $("a[href='#usage-content']").click(function() {
+      hideDropdowns();
+      $("#usage-dropdown").toggle();
+      $("#editUsage-Supervision-dropdown").hide();
+      $("#usageContainer").collapse("show");
+      $("#editUsage-Supervision").collapse("hide");
+      $("#editUsage-Supervision-Notes").collapse("hide");
+      $("#editUsage-Supervision-Random").collapse("hide");
+      $("#editUsage-Supervision-requirements").collapse("hide");
+      $("#editUsage-Stubbing").collapse("hide");
+      $("#editUsage-PST").collapse("hide");
+      $("#editUsage-Legal").collapse("hide");
+      $("#editUsage-End").collapse("hide");
+      $("#editUsage-Sync").collapse("hide");
+      $("#editusage-transport").collapse("hide");
+      $("#editusage-export").collapse("hide");
+      $("a[href='#editUsage-Supervision']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editUsage-Supervision-Notes']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editUsage-Supervision-Random']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editUsage-Supervision-requirements']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editUsage-Stubbing']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editUsage-PST']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editUsage-Legal']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editUsage-End']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editUsage-Sync']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editusage-transport']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editusage-export']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+    })
+
+    $("a[href='#editUsage-Supervision-content']").click(function() {
+      $("#editUsage-Supervision-dropdown").toggle();
+      $("a[href='#editUsage-Supervision']").click();
+    })
+
+    $("a[href='#editUsage-Supervision-Notes-content'], a[href='#editUsage-Supervision-Random-content'], a[href='#editUsage-Supervision-requirements-content'], a[href='#editUsage-Stubbing-content'], a[href='#editUsage-PST-content'], a[href='#editUsage-Legal-content'], a[href='#editUsage-End-content'], a[href='#editUsage-Sync-content'], a[href='#editusage-transport-content'], a[href='#editusage-export-content']").click(function() {
+      deactivatePills();
+    })
+
+    $("a[href='#editUsage-Supervision-Notes-content']").click(function() {
+      $("a[href='#editUsage-Supervision-Notes']").click();
+    })
+
+    $("a[href='#editUsage-Supervision-Random-content']").click(function() {
+      $("a[href='#editUsage-Supervision-Random']").click();
+    })
+
+    $("a[href='#editUsage-Supervision-requirements-content']").click(function() {
+      $("a[href='#editUsage-Supervision-requirements']").click();
+    })
+
+    $("a[href='#editUsage-Stubbing-content']").click(function() {
+      $("a[href='#editUsage-Stubbing']").click();
+    })
+
+    $("a[href='#editUsage-PST-content']").click(function() {
+      $("a[href='#editUsage-PST']").click();
+    })
+
+    $("a[href='#editUsage-Legal-content']").click(function() {
+      $("a[href='#editUsage-Legal']").click();
+    })
+
+    $("a[href='#editUsage-End-content']").click(function() {
+      $("a[href='#editUsage-End']").click();
+    })
+
+    $("a[href='#editUsage-Sync-content']").click(function() {
+      $("a[href='#editUsage-Sync']").click();
+    })
+
+    $("a[href='#editusage-transport-content']").click(function() {
+      $("a[href='#editusage-transport']").click();
+    })
+
+    $("a[href='#editusage-export-content']").click(function() {
+      $("a[href='#editusage-export']").click();
+    })
+
+    $("a[href='#import-content']").click(function() {
+      hideDropdowns();
+      $("#importContent").collapse("show");
+      deactivatePills();
+    })
+
+    $("a[href='#poc-content']").click(function() {
+      hideDropdowns();
+      $("#poc-dropdown").toggle();
+      $("#pocContent").collapse("show");
+      $("#editPOCPOC").collapse("hide");
+      $("#editPOCUAT").collapse("hide");
+      $("a[href='#editPOCPOC']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editPOCUAT']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+    })
+
+    $("a[href='#editPOCPOC-content'], a[href='#editPOCUAT-content']").click(function() {
+      deactivatePills();
+    })
+
+    $("a[href='#editPOCPOC-content']").click(function() {
+      $("a[href='#editPOCPOC']").click();
+    })
+
+    $("a[href='#editPOCUAT-content']").click(function() {
+      $("a[href='#editPOCUAT']").click();
+    })
+
+    $("a[href='#rfe-content']").click(function() {
+      hideDropdowns();
+      $("#rfeContent").collapse("show");
+      deactivatePills();
+    })
+
+    $("a[href='#designsummary-content']").click(function() {
+      hideDropdowns();
+      $("#designSummaryContent").collapse("show");
+      deactivatePills();
+    })
+
+    $("a[href='#finservsupervision-content']").click(function() {
+      hideDropdowns();
+      $("#finservsupervision-dropdown").toggle();
+      $("#editSupervisionOverview-dropdown").hide();
+      $("#FinservSupervisionContent").collapse("show");
+      $("#editSupervisionOverview").collapse("hide");
+      $("#editSupervision-MessageProfile").collapse("hide");
+      $("#editSupervisoryWorkflow").collapse("hide");
+      $("#editAdministrativeFunctions").collapse("hide");
+      $("#editRuleLexiconMaintenance").collapse("hide");
+      $("a[href='#editSupervisionOverview']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editSupervision-MessageProfile']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editSupervisoryWorkflow']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editAdministrativeFunctions']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+      $("a[href='#editRuleLexiconMaintenance']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
+    })
+
+    $("a[href='#editSupervisionOverview-content']").click(function() {
+      $("#editSupervisionOverview-dropdown").toggle();
+      $("a[href='#editSupervisionOverview']").click();
+    })
+
+    $("a[href='#editSupervision-MessageProfile-content'], a[href='#editSupervisoryWorkflow-content'], a[href='#editAdministrativeFunctions-content'], a[href='#editRuleLexiconMaintenance-content']").click(function() {
+      deactivatePills();
+    })
+
+    $("a[href='#editSupervision-MessageProfile-content']").click(function() {
+      $("a[href='#editSupervision-MessageProfile']").click();
+    })
+
+    $("a[href='#editSupervisoryWorkflow-content']").click(function() {
+      $("a[href='#editSupervisoryWorkflow']").click();
+    })
+
+    $("a[href='#editAdministrativeFunctions-content']").click(function() {
+      $("a[href='#editAdministrativeFunctions']").click();
+    })
+
+    $("a[href='#editRuleLexiconMaintenance-content']").click(function() {
+      $("a[href='#editRuleLexiconMaintenance']").click();
+    })
+
+    $("#print-content").hide();
+
+    $("#print-button").click(function() {
+      $("#print-content").show();
+      expanded = false;
+      expand_collapse();
+      var print = $("#print-content").html();
+      var temp = $("body").html();
+      $("body").html(print);
+      $("button, a").remove();
+      window.print();
+      $("body").html(temp);
+      location.reload();
+    })
+
+    $("#collapse-toggle").hide();
 });
 
 function delete_row(row) {
@@ -410,4 +823,3 @@ function delete_diagram(row, url) {
         $.ajax(json);
     }
 }
-
