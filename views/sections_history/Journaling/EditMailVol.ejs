@@ -1,0 +1,51 @@
+<h5>
+    <a href="#editMailVol" style="color: mediumvioletred" data-toggle="collapse" onclick="change_arrow($(this));">
+        Mail volume and journaling Appliances
+        <i class="fa fa-caret-right" aria-hidden="true"></i>
+    </a>
+</h5>
+
+<div id="editMailVol" class="collapse">
+    <div class="row">
+        <div class="form-group col-4 response-cell">
+            <label>Users to be journaled</label>
+            <input type="text" class="form-control" placeholder="No response set" value="<%= journaling_questions.mail_volume_metrics.users_journaled %>"
+                name="journaling_questions[mail_volume_metrics][users_journaled]">
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>Messages per user (weekly/monthly)</label>
+            <input type="text" class="form-control" placeholder="No response set" value="<%= journaling_questions.mail_volume_metrics.user_messages %>"
+                name="journaling_questions[mail_volume_metrics][user_messages]">
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>Message volume derivation method</label>
+            <input type="text" class="form-control" placeholder="No response set" value="<%= journaling_questions.mail_volume_metrics.message_derive %>"
+                name="journaling_questions[mail_volume_metrics][message_derive]">
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>Average message size</label>
+            <input type="text" class="form-control" placeholder="No response set" value="<%= journaling_questions.mail_volume_metrics.avg_message_size %>"
+                name="journaling_questions[mail_volume_metrics][avg_message_size]">
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>Average daily journal message count</label>
+            <input type="text" class="form-control" placeholder="No response set" value="<%= journaling_questions.mail_volume_metrics.avg_message_count %>"
+                name="journaling_questions[mail_volume_metrics][avg_message_count]">
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>Will all users be journaled?</label>
+            <%- make_custom_dropdown("journaling_questions[mail_volume_metrics][all_user_journaling]",
+                    journaling_questions.mail_volume_metrics.all_user_journaling, ["Yes", "No"]) %>
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>Plans to move to O365? (Timeline?)</label>
+            <input type="text" class="form-control" placeholder="No response set" value="<%= journaling_questions.mail_volume_metrics.move_to_O365 %>"
+                name="journaling_questions[mail_volume_metrics][move_to_O365]">
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>Any custom configuration notes?</label>
+            <input type="text" class="form-control" placeholder="No response set" value="<%= journaling_questions.mail_volume_metrics.custom_config %>"
+                name="journaling_questions[mail_volume_metrics][custom_config]">
+        </div>
+    </div>
+</div>

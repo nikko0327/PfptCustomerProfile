@@ -201,8 +201,13 @@ var email_ps_schema = new mongoose.Schema({
         default: ""
     }
 });
+var email_ps_versions_schema = new mongoose.Schema({
+  refId: mongoose.Schema.Types.ObjectId,
+  versions: [email_ps_schema]
+});
 
 var EmailPSQuestions = mongoose.model("EmailPSQuestions", email_ps_schema);
+var EmailPSQuestionsVersions = mongoose.model("EmailPSQuestionsVersions", email_ps_versions_schema);
 
 // var newCustomer = new EmailPSQuestions({
 //     _id: "Tesla"
@@ -216,4 +221,4 @@ var EmailPSQuestions = mongoose.model("EmailPSQuestions", email_ps_schema);
 //     }
 // });
 
-module.exports = EmailPSQuestions;
+module.exports = {EmailPSQuestions, EmailPSQuestionsVersions};

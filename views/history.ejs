@@ -1,0 +1,116 @@
+<% include partials/history_header %>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+</style>
+
+<div class="container" style="padding: 15px; max-width: 95%;">
+    <br>
+    <h2 style="text-align: center;"> Customers </h2>
+    <br>
+
+    <div class="table-container">
+        <table class="table table-hover table-striped" id="myTable">
+            <thead class="thead-light">
+                <tr>
+                    <th>Version</th>
+                    <th style="width:10%">Customer Name</th>
+                    <th>Status</th>
+                    <th>Sales Rep</th>
+                    <th>Archiving SE</th>
+                    <th>Acc. Manager</th>
+                    <th>TEM</th>
+                    <th>TAM</th>
+                    <th>Supervision</th>
+                    <th>Location</th>
+                    <th>Last Updated</th>
+                    <th>Updated By</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% versions.forEach(function (version, index) { %>
+                    <tr>
+                        <td>
+                            <%= index + 1 %>
+                        </td>
+                        <td>
+                            <span class="label label-default" style="font-size: 18px !important;">
+                                <b>
+                                    <%= version.name %>
+                                </b>
+                            </span>
+                        </td>
+                        <td>
+                            <%= version.status %>
+                        </td>
+                        <td>
+                            <%= version.salesRep %>
+                        </td>
+                        <td>
+                            <%= version.archivingSe %>
+                        </td>
+                        <td>
+                            <%= version.accManager %>
+                        </td>
+                        <td>
+                            <%= version.tem %>
+                        </td>
+                        <td>
+                            <%= version.tam %>
+                        </td>
+                        <td>
+                            <%= version.supervision %>
+                        </td>
+                        <td>
+                            <%= version.location %>
+                        </td>
+                        <td>
+                          <%= version.updatedAt.getMonth() %>/<%= version.updatedAt.getDate() %>/<%= version.updatedAt.getFullYear() %>
+                        </td>
+                        <td>
+                          <%= version.updatedBy %>
+                        </td>
+                        <td>
+                            <a href="/history/<%= encodeURIComponent(versions[versions.length - 1].name) %>/<%= index %>">
+                                <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block"><i class="fa fa-info"></i></button>
+                            </a>
+                        </td>
+                    </tr>
+                        <% }); %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<% include partials/footer %>

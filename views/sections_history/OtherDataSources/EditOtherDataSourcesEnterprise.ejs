@@ -1,0 +1,110 @@
+<h5>
+    <a href="#editOtherDataSources-enterprise" style="color: mediumvioletred" data-toggle="collapse" onclick="change_arrow($(this));">
+        Enterprise collaboration archiving
+        <i class="fa fa-caret-right" aria-hidden="true"></i>
+    </a>
+</h5>
+
+<div id="editOtherDataSources-enterprise" class="collapse">
+    <div>
+        <h5 style="margin-left:3em; padding-top: 15px; padding-bottom: 15px;">Which of these do you need to capture?</h5>
+    </div>
+    <!-- Edit needs here, are checkboxes -->
+    <div id="editECA-needs" class="row">
+        <div class="col-4, response-checkbox">
+            <p>
+                <input type="checkbox" name="other_data_source_questions[enterprise_collaboration_archiving][needs][files]" <%= other_data_source_questions.enterprise_collaboration_archiving.needs.files
+                    ? "checked" : "" %> />
+                <b> Files</b>
+            </p>
+        </div>
+        <div class="col-4, response-checkbox">
+            <p>
+                <input type="checkbox" name="other_data_source_questions[enterprise_collaboration_archiving][needs][skype_in_cloud]" <%= other_data_source_questions.enterprise_collaboration_archiving.needs.skype_in_cloud ?
+                    "checked" : "" %> />
+                <b> Skype Business</b>
+            </p>
+        </div>
+        <div class="col-4, response-checkbox">
+            <p>
+                <input type="checkbox" name="other_data_source_questions[enterprise_collaboration_archiving][needs][skype_on_prem]" <%= other_data_source_questions.enterprise_collaboration_archiving.needs.skype_on_prem ?
+                    "checked" : "" %> />
+                <b> Skype On-prem</b>
+            </p>
+        </div>
+        <br>
+        <div class="col-4, response-checkbox">
+            <p>
+                <input type="checkbox" name="other_data_source_questions[enterprise_collaboration_archiving][needs][lync_on_prem]" <%= other_data_source_questions.enterprise_collaboration_archiving.needs.lync_on_prem
+                    ? "checked" : "" %> />
+                <b> Lync On-prem</b>
+            </p>
+        </div>
+        <div class="col-4, response-checkbox">
+            <p>
+                <input type="checkbox" name="other_data_source_questions[enterprise_collaboration_archiving][needs][one_drive]" <%= other_data_source_questions.enterprise_collaboration_archiving.needs.one_drive
+                    ? "checked" : "" %> />
+                <b> One Drive</b>
+            </p>
+        </div>
+        <div class="col-4, response-checkbox">
+            <p>
+                <input type="checkbox" name="other_data_source_questions[enterprise_collaboration_archiving][needs][box]" <%= other_data_source_questions.enterprise_collaboration_archiving.needs.box
+                    ? "checked" : "" %> />
+                <b> Box</b>
+            </p>
+        </div>
+
+        <div class="col-4, response-checkbox">
+            <p>
+                <input type="checkbox" name="other_data_source_questions[enterprise_collaboration_archiving][needs][bloomberg]" <%= other_data_source_questions.enterprise_collaboration_archiving.needs.bloomberg
+                    ? "checked" : "" %> />
+                <b> Bloomberg</b>
+            </p>
+        </div>
+        <div class="col-4, response-checkbox">
+            <p>
+                <input type="checkbox" name="other_data_source_questions[enterprise_collaboration_archiving][needs][yammer]" <%= other_data_source_questions.enterprise_collaboration_archiving.needs.yammer
+                    ? "checked" : "" %> />
+                <b> Yammer</b>
+            </p>
+        </div>
+        <div class="col-4, response-checkbox">
+            <p>
+                <input type="checkbox" name="other_data_source_questions[enterprise_collaboration_archiving][needs][jive]" <%= other_data_source_questions.enterprise_collaboration_archiving.needs.jive
+                    ? "checked" : "" %> />
+                <b> Jive</b>
+            </p>
+        </div>
+        <br>
+        <div class="col-4, response-checkbox">
+            <p>
+                <input type="checkbox" name="other_data_source_questions[enterprise_collaboration_archiving][needs][chatter]" <%= other_data_source_questions.enterprise_collaboration_archiving.needs.chatter
+                    ? "checked" : "" %> />
+                <b> Chatter</b>
+            </p>
+        </div>
+        <div class="col-4, response-checkbox">
+            <p>
+                <input type="checkbox" name="other_data_source_questions[enterprise_collaboration_archiving][needs][slack]" <%= other_data_source_questions.enterprise_collaboration_archiving.needs.slack
+                    ? "checked" : "" %> />
+                <b> Slack</b>
+            </p>
+        </div>
+        <div class="col-4, response-checkbox">
+            <p>
+                <input type="checkbox" name="other_data_source_questions[enterprise_collaboration_archiving][needs][symphony]" <%= other_data_source_questions.enterprise_collaboration_archiving.needs.symphony
+                    ? "checked" : "" %> />
+                <b> Symphony</b>
+            </p>
+        </div>
+        <br>
+    </div>
+    <% include EditOtherDataSourcesEnterprise/EditECAGeneral.ejs %>
+    <% include EditOtherDataSourcesEnterprise/EditECAFiles.ejs %>
+    <% include EditOtherDataSourcesEnterprise/EditECASkype.ejs %>
+    <% include EditOtherDataSourcesEnterprise/EditECASkypeLync.ejs %>
+    <% include EditOtherDataSourcesEnterprise/EditECABoxOneDrive.ejs %>
+    <% include EditOtherDataSourcesEnterprise/EditECAChatter.ejs %>
+    <% include EditOtherDataSourcesEnterprise/EditECASymphony.ejs %>
+</div>

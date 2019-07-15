@@ -67,8 +67,13 @@ var import_schema = new mongoose.Schema({
         default: ""
     }
 });
+var import_versions_schema = new mongoose.Schema({
+  refId: mongoose.Schema.Types.ObjectId,
+  versions: [import_schema]
+});
 
 var ImportQuestions = mongoose.model("ImportQuestions", import_schema);
+var ImportQuestionsVersions = mongoose.model("ImportQuestionsVersions", import_versions_schema);
 
 // var sample = new ImportQuestions({
 //     _id: "Tesla"
@@ -82,4 +87,4 @@ var ImportQuestions = mongoose.model("ImportQuestions", import_schema);
 //     }
 // });
 
-module.exports = ImportQuestions;
+module.exports = {ImportQuestions, ImportQuestionsVersions};

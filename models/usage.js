@@ -313,8 +313,13 @@ var usage_schema = new mongoose.Schema({
         default: ""
     }
 });
+var usage_versions_schema = new mongoose.Schema({
+  refId: mongoose.Schema.Types.ObjectId,
+  versions: [usage_schema]
+});
 
 var UsageQuestions = mongoose.model("UsageQuestions", usage_schema);
+var UsageQuestionsVersions = mongoose.model("UsageQuestionsVersions", usage_versions_schema);
 
 // var sample = new UsageQuestions({
 //     _id: "Tesla"
@@ -329,4 +334,4 @@ var UsageQuestions = mongoose.model("UsageQuestions", usage_schema);
 // });
 
 
-module.exports = UsageQuestions;
+module.exports = {UsageQuestions, UsageQuestionsVersions};

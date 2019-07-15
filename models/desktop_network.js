@@ -149,8 +149,13 @@ var desktop_network_schema = new mongoose.Schema({
         default: ""
     }
 });
+var desktop_network_versions_schema = new mongoose.Schema({
+  refId: mongoose.Schema.Types.ObjectId,
+  versions: [desktop_network_schema]
+});
 
 var DesktopNetworkQuestions = mongoose.model("DesktopNetworkQuestions", desktop_network_schema);
+var DesktopNetworkQuestionsVersions = mongoose.model("DesktopNetworkQuestionsVersions", desktop_network_versions_schema);
 
 // var newCustomer = new DesktopNetworkQuestions({
 //     _id: "Tesla"
@@ -164,4 +169,4 @@ var DesktopNetworkQuestions = mongoose.model("DesktopNetworkQuestions", desktop_
 //     }
 // });
 
-module.exports = DesktopNetworkQuestions;
+module.exports = {DesktopNetworkQuestions, DesktopNetworkQuestionsVersions};

@@ -280,8 +280,13 @@ var other_data_sources_schema = new mongoose.Schema({
         default: ""
     }
 });
+var other_data_sources_versions_schema = new mongoose.Schema({
+  refId: mongoose.Schema.Types.ObjectId,
+  versions: [other_data_sources_schema]
+});
 
 var OtherDataSourcesQuestions = mongoose.model("otherDataSourcesQuestions", other_data_sources_schema);
+var OtherDataSourcesQuestionsVersions = mongoose.model("otherDataSourcesQuestionsVersions", other_data_sources_versions_schema);
 
 // var sample = new OtherDataSourcesQuestions({
 //     _id: "Tesla"
@@ -296,4 +301,4 @@ var OtherDataSourcesQuestions = mongoose.model("otherDataSourcesQuestions", othe
 // });
 
 
-module.exports = OtherDataSourcesQuestions;
+module.exports = {OtherDataSourcesQuestions, OtherDataSourcesQuestionsVersions};

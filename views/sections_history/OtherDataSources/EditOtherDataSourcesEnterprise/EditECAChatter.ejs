@@ -1,0 +1,41 @@
+<h5>
+    <a href="#editECA-chatter" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse" onclick="change_arrow($(this));">
+        Chatter
+        <i class="fa fa-caret-right" aria-hidden="true"></i>
+    </a>
+</h5>
+
+<div id="editECA-chatter" class="collapse">
+    <div class="row">
+        <div class="form-group col-4 response-cell">
+            <label>How many groups?</label>
+            <input type="text" class="form-control" placeholder="No response set" value="<%= other_data_source_questions.enterprise_collaboration_archiving.chatter.number_of_groups %>"
+                name="other_data_source_questions[enterprise_collaboration_archiving][chatter][number_of_groups]">
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>Are they going to multi-journal?</label>
+            <%- make_custom_dropdown("other_data_source_questions[enterprise_collaboration_archiving][chatter][multi_journal]",
+                        other_data_source_questions.enterprise_collaboration_archiving.chatter.multi_journal,
+                        ["Yes", "No"]) %>
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>Do they send any files that are over 3 MB?
+            </label>
+            <%- make_custom_dropdown("other_data_source_questions[enterprise_collaboration_archiving][chatter][over_3MB]",
+                        other_data_source_questions.enterprise_collaboration_archiving.chatter.over_3MB,
+                        ["Yes", "No"]) %>
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>If yes, are they comfortable relaying this content through the PFPT network?</label>
+            <%- make_custom_dropdown("other_data_source_questions[enterprise_collaboration_archiving][chatter][comfortable]",
+                        other_data_source_questions.enterprise_collaboration_archiving.chatter.comfortable,
+                        ["Yes", "No"]) %>
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>Is there a requirement to keep things in the SF environment?</label>
+            <input type="text" class="form-control" placeholder="No response set" value="<%= other_data_source_questions.enterprise_collaboration_archiving.chatter.requirement %>"
+                name="other_data_source_questions[enterprise_collaboration_archiving][chatter][requirement]">
+        </div>
+    </div>
+</div>
+<hr>

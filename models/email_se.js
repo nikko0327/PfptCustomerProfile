@@ -278,8 +278,13 @@ var email_se_schema = new mongoose.Schema({
         default: ""
     }
 });
+var email_se_versions_schema = new mongoose.Schema({
+  refId: mongoose.Schema.Types.ObjectId,
+  versions: [email_se_schema]
+});
 
 var EmailSEQuestions = mongoose.model("EmailSEQuestions", email_se_schema);
+var EmailSEQuestionsVersions = mongoose.model("EmailSEQuestionsVersions", email_se_versions_schema);
 
 // var newCustomer = new EmailSEQuestions({
 //     _id: "Tesla"
@@ -293,4 +298,4 @@ var EmailSEQuestions = mongoose.model("EmailSEQuestions", email_se_schema);
 //     }
 // });
 
-module.exports = EmailSEQuestions;
+module.exports = {EmailSEQuestions, EmailSEQuestionsVersions};

@@ -1,0 +1,31 @@
+<!-- Displaying desktop network questions -->
+<div id="desktopNetworkDr" class="display-header">
+    <h5>
+        <a href="#desktopContent" data-toggle="collapse" onclick="change_arrow($(this));">
+            Desktop/Network/DR
+            <i class="fa fa-caret-right" aria-hidden="true"></i>
+        </a>
+    </h5>
+
+    <div id="desktopContent" class="collapse">
+        <form id="desktopNetworkForm" autocomplete="off" action="../index/<%= encodeURIComponent(customer.name) %>?_method=PUT" method="POST">
+            <fieldset id="desktopNetworkFormFieldset" disabled>
+                <div class="form-group col-4 response-cell" hidden>
+                    <label for="customerName">Customer Name</label>
+                    <input type="text" readonly class="form-control" placeholder="No response set" value="<%= customer.name %>" name="desktop_network_questions[name]">
+                </div>
+
+                <% include DesktopNetwork/EditDesktopNetwork.ejs %>
+                <% include DesktopNetwork/EditDesktopDisaster.ejs %>
+                <% include DesktopNetwork/EditDesktopAuth.ejs %>
+
+                <br>
+                <div class="form-group">
+                    <label>Comments</label>
+                    <textarea class="form-control" maxlength="5000" rows="5" name="desktop_network_questions[comments]" placeholder="5000 characters max" form="desktopNetworkForm"><%= desktop_network_questions.comments %></textarea>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<hr class="rainbow">

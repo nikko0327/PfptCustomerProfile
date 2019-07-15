@@ -189,8 +189,13 @@ var finserv_supervision_schema = new mongoose.Schema({
         default: ""
     }
 });
+var finserv_supervision_versions_schema = new mongoose.Schema({
+  refId: mongoose.Schema.Types.ObjectId,
+  versions: [finserv_supervision_schema]
+});
 
 var FinservSupervisionQuestions = mongoose.model("FinservSupervisionQuestions", finserv_supervision_schema);
+var FinservSupervisionQuestionsVersions = mongoose.model("FinservSupervisionQuestionsVersions", finserv_supervision_versions_schema);
 
 // var sample = new ApplianceQuestions({
 //     _id: "Tesla"
@@ -216,5 +221,5 @@ async function findOneOrCreate(search_term) {
     }
 }
 
-module.exports = FinservSupervisionQuestions;
+module.exports = {FinservSupervisionQuestions, FinservSupervisionQuestionsVersions};
 module.exports.findOneOrCreate = findOneOrCreate;

@@ -76,8 +76,13 @@ var poc_schema = new mongoose.Schema({
         default: ""
     }
 });
+var poc_versions_schema = new mongoose.Schema({
+  refId: mongoose.Schema.Types.ObjectId,
+  versions: [poc_schema]
+});
 
 var POCQuestions = mongoose.model("POCQuestions", poc_schema);
+var POCQuestionsVersions = mongoose.model("POCQuestionsVersions", poc_versions_schema);
 
 // var sample = new POCQuestions({
 //     _id: "Tesla"
@@ -91,4 +96,4 @@ var POCQuestions = mongoose.model("POCQuestions", poc_schema);
 //     }
 // });
 
-module.exports = POCQuestions;
+module.exports = {POCQuestions, POCQuestionsVersions};

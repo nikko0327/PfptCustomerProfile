@@ -1,4 +1,5 @@
 var express = require("express");
+var mongoose = require("mongoose");
 var bcrypt = require("bcrypt");
 var nodemailer = require("nodemailer");
 var router = express.Router();
@@ -19,19 +20,32 @@ var append = "";
 
 var ldap_auth = require("ldapjs");
 
-var Customer = require("../models/customer");
-var ApplianceQuestions = require("../models/appliances");
-var DesignSummaryQuestions = require("../models/design_summary");
-var DesktopNetworkQuestions = require("../models/desktop_network");
-var EmailPSQuestions = require("../models/email_ps");
-var EmailSEQuestions = require("../models/email_se");
-var JournalingQuestions = require("../models/journaling");
-var OtherDataSourcesQuestions = require("../models/other_data_sources");
-var UsageQuestions = require("../models/usage");
-var ImportQuestions = require("../models/import");
-var POCQuestions = require("../models/poc");
-var RFEQuestions = require("../models/rfe");
-var FinservSupervisionQuestions = require("../models/finserv_supervision");
+var {Customer} = require("../models/customer");
+var {CustomerVersions} = require("../models/customer");
+var {ApplianceQuestions} = require("../models/appliances");
+var {ApplianceQuestionsVersions} = require("../models/appliances");
+var {DesignSummaryQuestions} = require("../models/design_summary");
+var {DesignSummaryQuestionsVersions} = require("../models/design_summary");
+var {DesktopNetworkQuestions} = require("../models/desktop_network");
+var {DesktopNetworkQuestionsVersions} = require("../models/desktop_network");
+var {EmailPSQuestions} = require("../models/email_ps");
+var {EmailPSQuestionsVersions} = require("../models/email_ps");
+var {EmailSEQuestions} = require("../models/email_se");
+var {EmailSEQuestionsVersions} = require("../models/email_se");
+var {JournalingQuestions} = require("../models/journaling");
+var {JournalingQuestionsVersions} = require("../models/journaling");
+var {OtherDataSourcesQuestions} = require("../models/other_data_sources");
+var {OtherDataSourcesQuestionsVersions} = require("../models/other_data_sources");
+var {UsageQuestions} = require("../models/usage");
+var {UsageQuestionsVersions} = require("../models/usage");
+var {ImportQuestions} = require("../models/import");
+var {ImportQuestionsVersions} = require("../models/import");
+var {POCQuestions} = require("../models/poc");
+var {POCQuestionsVersions} = require("../models/poc");
+var {RFEQuestions} = require("../models/rfe");
+var {RFEQuestionsVersions} = require("../models/rfe");
+var {FinservSupervisionQuestions} = require("../models/finserv_supervision");
+var {FinservSupervisionQuestionsVersions} = require("../models/finserv_supervision");
 var User = require("../models/user");
 
 // For authenticating cookies/sessions.
@@ -181,87 +195,100 @@ router.post("/new", authenticate_session, function (req, res) {
     } else {
         console.log("- Trying to create new customer...");
 
-        Customer.create(req.body.customer, (error) => {
-            if (error) {
-                if (error["code"] == 11000) {
-                    console.log("-- Duplicate entry for customer: '" + req.body.customer["name"] + "'");
-                    // Send pop up alert to HTML here
-                    res.render('new', { error_message: "Duplicate entry for customer: " + req.body.customer["name"] });
-                } else {
-                    console.log(error);
-                }
-            } else {
+        Customer.create(req.body.customer)
+        .then(customer => {
+          //update the created by field and the updated by field
+          customer.createdBy = req.session.user;
+          customer.updatedBy = req.session.user;
+          customer.save();
 
-                Customer.findOneAndUpdate({ name: req.body.customer["name"] }, { createdBy: req.session.user, updatedBy: req.session.user })
-                .then(customer => {
-                  var transporter = nodemailer.createTransport({
-                    host: 'smtp.us.proofpoint.com',
-                    port: 25,
-                    auth: {
-                      user: 'DriveTracking@proofpoint.com'
-                    }
-                  });
-                  var mailOptions = {
-                    from: 'DriveTracking@proofpoint.com',
-                    to: 'anchen@proofpoint.com, nlee@proofpoint.com',
-                    subject: 'Customer Created',
-                    text: `Customer Name: ${customer.name}, Created At: ${customer.createdAt}, Created By: ${customer.createdBy}`
-                  };
-                  transporter.sendMail(mailOptions, function(error, info) {
-                    if (error) {
-                      console.log(error);
-                    }
-                    else {
-                      console.log(info.response);
-                    }
-                  });
-                })
-                .catch(e => {
-                  console.log(e);
-                })
-                ApplianceQuestions.create({ name: req.body.customer["name"] });
-                DesignSummaryQuestions.create({ name: req.body.customer["name"] });
-                DesktopNetworkQuestions.create({ name: req.body.customer["name"] });
-                EmailPSQuestions.create({ name: req.body.customer["name"] });
-                EmailSEQuestions.create({ name: req.body.customer["name"] });
-                ImportQuestions.create({ name: req.body.customer["name"] });
-                JournalingQuestions.create({ name: req.body.customer["name"] });
-                OtherDataSourcesQuestions.create({ name: req.body.customer["name"] });
-                POCQuestions.create({ name: req.body.customer["name"] });
-                RFEQuestions.create({ name: req.body.customer["name"] });
-                UsageQuestions.create({ name: req.body.customer["name"] });
-                FinservSupervisionQuestions.create({ name: req.body.customer["name"] });
+          //update the version array in the versioned collection
+          CustomerVersions.create({ refId: customer._id, versions: [customer] });
+          ApplianceQuestions.create({ name: req.body.customer["name"] })
+          .then(questions => {
+            ApplianceQuestionsVersions.create({ refId: customer._id, versions: [questions] });
+          })
+          DesignSummaryQuestions.create({ name: req.body.customer["name"] })
+          .then(questions => {
+            DesignSummaryQuestionsVersions.create({ refId: customer._id, versions: [questions] });
+          })
+          DesktopNetworkQuestions.create({ name: req.body.customer["name"] })
+          .then(questions => {
+            DesktopNetworkQuestionsVersions.create({ refId: customer._id, versions: [questions] });
+          })
+          EmailPSQuestions.create({ name: req.body.customer["name"] })
+          .then(questions => {
+            EmailPSQuestionsVersions.create({ refId: customer._id, versions: [questions] });
+          })
+          EmailSEQuestions.create({ name: req.body.customer["name"] })
+          .then(questions => {
+            EmailSEQuestionsVersions.create({ refId: customer._id, versions: [questions] });
+          })
+          ImportQuestions.create({ name: req.body.customer["name"] })
+          .then(questions => {
+            ImportQuestionsVersions.create({ refId: customer._id, versions: [questions] });
+          })
+          JournalingQuestions.create({ name: req.body.customer["name"] })
+          .then(questions => {
+            JournalingQuestionsVersions.create({ refId: customer._id, versions: [questions] });
+          })
+          OtherDataSourcesQuestions.create({ name: req.body.customer["name"] })
+          .then(questions => {
+            OtherDataSourcesQuestionsVersions.create({ refId: customer._id, versions: [questions] });
+          })
+          POCQuestions.create({ name: req.body.customer["name"] })
+          .then(questions => {
+            POCQuestionsVersions.create({ refId: customer._id, versions: [questions] });
+          })
+          RFEQuestions.create({ name: req.body.customer["name"] })
+          .then(questions => {
+            RFEQuestionsVersions.create({ refId: customer._id, versions: [questions] });
+          })
+          UsageQuestions.create({ name: req.body.customer["name"] })
+          .then(questions => {
+            UsageQuestionsVersions.create({ refId: customer._id, versions: [questions] });
+          })
+          FinservSupervisionQuestions.create({ name: req.body.customer["name"] })
+          .then(questions => {
+            FinservSupervisionQuestionsVersions.create({ refId: customer._id, versions: [questions] });
+          })
 
-                res.redirect(append + "/index");
-                console.log("Creation of customer '" + req.body.customer["name"] + "' successful.");
-            }
-        });
+          //sending emails does not work
+          // var transporter = nodemailer.createTransport({
+          //   host: 'smtp.us.proofpoint.com',
+          //   port: 25,
+          //   auth: {
+          //     user: 'DriveTracking@proofpoint.com'
+          //   }
+          // });
+          // var mailOptions = {
+          //   from: 'DriveTracking@proofpoint.com',
+          //   to: 'anchen@proofpoint.com, nlee@proofpoint.com',
+          //   subject: 'Customer Created',
+          //   text: `Customer Name: ${customer.name}, Created At: ${customer.createdAt}, Created By: ${customer.createdBy}`
+          // };
+          // transporter.sendMail(mailOptions, function(error, info) {
+          //   if (error) {
+          //     console.log(error);
+          //   }
+          //   else {
+          //     console.log(info.response);
+          //   }
+          // });
+
+          res.redirect(append + "/index");
+          console.log("Creation of customer '" + req.body.customer["name"] + "' successful.");
+        })
+        .catch(error => {
+          if (error["code"] == 11000) {
+              console.log("-- Duplicate entry for customer: '" + req.body.customer["name"] + "'");
+              // Send pop up alert to HTML here
+              res.render('new', { error_message: "Duplicate entry for customer: " + req.body.customer["name"] });
+          } else {
+              console.log(error);
+          }
+        })
     }
-
-    // Customer.create(req.body.customer).then(() => {
-    //     ApplianceQuestions.create({name: req.body.customer["name"]});
-    //     DesignSummaryQuestions.create({name: req.body.customer["name"]});
-    //     DesktopNetworkQuestions.create({name: req.body.customer["name"]});
-    //     EmailPSQuestions.create({name: req.body.customer["name"]});
-    //     EmailSEQuestions.create({name: req.body.customer["name"]});
-    //     ImportQuestions.create({name: req.body.customer["name"]});
-    //     JournalingQuestions.create({name: req.body.customer["name"]});
-    //     OtherDataSourcesQuestions.create({name: req.body.customer["name"]});
-    //     POCQuestions.create({name: req.body.customer["name"]});
-    //     RFEQuestions.create({name: req.body.customer["name"]});
-    //     UsageQuestions.create({name: req.body.customer["name"]});
-    //
-    //     res.redirect( append + "/index");
-    //     console.log("Creation of customer " + req.body.customer["name"] + " successful.");
-    // }).catch((error) => {
-    //     if (error["code"] == 11000) {
-    //         console.log("-- Duplicate entry for customer: " + req.body.customer["name"]);
-    //         // Send pop up alert to HTML here
-    //         res.render("new", {error_message: "Duplicate."});
-    //     } else {
-    //         console.log(error);
-    //     }
-    // });
 });
 
 //UPDATE ROUTE
@@ -276,7 +303,6 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         // Make a bunch of await calls and wait for the queries to finish.
         async function updateID() {
             await Customer.findOneAndUpdate({ name: req.params.id }, req.body.customer).exec();
-            await Customer.findOneAndUpdate({ name: req.body.customer["name"] }, { updatedBy: req.session.user }).exec();
             await ApplianceQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
             await DesignSummaryQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
             await DesktopNetworkQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
@@ -295,27 +321,32 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         updateID().then(() => {
             Customer.findOne({ name: req.body.customer["name"] })
             .then(customer => {
-              var transporter = nodemailer.createTransport({
-                host: 'smtp.us.proofpoint.com',
-                port: 25,
-                auth: {
-                  user: 'DriveTracking@proofpoint.com'
-                }
-              });
-              var mailOptions = {
-                from: 'DriveTracking@proofpoint.com',
-                to: 'anchen@proofpoint.com, nlee@proofpoint.com',
-                subject: 'Customer Updated',
-                text: `Customer Name: ${customer.name}, Updated At: ${customer.updatedAt}, Updated By: ${customer.updatedBy}`
-              };
-              transporter.sendMail(mailOptions, function(error, info) {
-                if (error) {
-                  console.log(error);
-                }
-                else {
-                  console.log(info.response);
-                }
-              });
+              //update the updated by field
+              customer.updatedBy = req.session.user;
+              customer.save();
+
+              //sending emails does not work
+              // var transporter = nodemailer.createTransport({
+              //   host: 'smtp.us.proofpoint.com',
+              //   port: 25,
+              //   auth: {
+              //     user: 'DriveTracking@proofpoint.com'
+              //   }
+              // });
+              // var mailOptions = {
+              //   from: 'DriveTracking@proofpoint.com',
+              //   to: 'anchen@proofpoint.com, nlee@proofpoint.com',
+              //   subject: 'Customer Updated',
+              //   text: `Customer Name: ${customer.name}, Updated At: ${customer.updatedAt}, Updated By: ${customer.updatedBy}`
+              // };
+              // transporter.sendMail(mailOptions, function(error, info) {
+              //   if (error) {
+              //     console.log(error);
+              //   }
+              //   else {
+              //     console.log(info.response);
+              //   }
+              // });
             })
             .catch(e => {
               console.log(e);
@@ -491,6 +522,115 @@ router.put("/index/:id", authenticate_session, function (req, res) {
             res.redirect(append + "/index");
         });
     }
+
+    Customer.findOne({ name: req.body.customer["name"] })
+    .then(customer => {
+      //update the version array in the versioned collection
+      CustomerVersions.findOne({ refId: customer._id })
+      .then(version => {
+        version.versions.push(customer);
+        version.save();
+      })
+      ApplianceQuestions.findOne({ name: req.body.customer["name"] })
+      .then(questions => {
+        ApplianceQuestionsVersions.findOne({ refId: customer._id })
+        .then(version => {
+          version.versions.push(questions);
+          version.save();
+        })
+      })
+      DesignSummaryQuestions.findOne({ name: req.body.customer["name"] })
+      .then(questions => {
+        DesignSummaryQuestionsVersions.findOne({ refId: customer._id })
+        .then(version => {
+          version.versions.push(questions);
+          version.save();
+        })
+      })
+      DesktopNetworkQuestions.findOne({ name: req.body.customer["name"] })
+      .then(questions => {
+        DesktopNetworkQuestionsVersions.findOne({ refId: customer._id })
+        .then(version => {
+          version.versions.push(questions);
+          version.save();
+        })
+      })
+      EmailPSQuestions.findOne({ name: req.body.customer["name"] })
+      .then(questions => {
+        EmailPSQuestionsVersions.findOne({ refId: customer._id })
+        .then(version => {
+          version.versions.push(questions);
+          version.save();
+        })
+      })
+      EmailSEQuestions.findOne({ name: req.body.customer["name"] })
+      .then(questions => {
+        EmailSEQuestionsVersions.findOne({ refId: customer._id })
+        .then(version => {
+          version.versions.push(questions);
+          version.save();
+        })
+      })
+      ImportQuestions.findOne({ name: req.body.customer["name"] })
+      .then(questions => {
+        ImportQuestionsVersions.findOne({ refId: customer._id })
+        .then(version => {
+          version.versions.push(questions);
+          version.save();
+        })
+      })
+      JournalingQuestions.findOne({ name: req.body.customer["name"] })
+      .then(questions => {
+        JournalingQuestionsVersions.findOne({ refId: customer._id })
+        .then(version => {
+          version.versions.push(questions);
+          version.save();
+        })
+      })
+      OtherDataSourcesQuestions.findOne({ name: req.body.customer["name"] })
+      .then(questions => {
+        OtherDataSourcesQuestionsVersions.findOne({ refId: customer._id })
+        .then(version => {
+          version.versions.push(questions);
+          version.save();
+        })
+      })
+      POCQuestions.findOne({ name: req.body.customer["name"] })
+      .then(questions => {
+        POCQuestionsVersions.findOne({ refId: customer._id })
+        .then(version => {
+          version.versions.push(questions);
+          version.save();
+        })
+      })
+      RFEQuestions.findOne({ name: req.body.customer["name"] })
+      .then(questions => {
+        RFEQuestionsVersions.findOne({ refId: customer._id })
+        .then(version => {
+          version.versions.push(questions);
+          version.save();
+        })
+      })
+      UsageQuestions.findOne({ name: req.body.customer["name"] })
+      .then(questions => {
+        UsageQuestionsVersions.findOne({ refId: customer._id })
+        .then(version => {
+          version.versions.push(questions);
+          version.save();
+        })
+      })
+      FinservSupervisionQuestions.findOne({ name: req.body.customer["name"] })
+      .then(questions => {
+        FinservSupervisionQuestionsVersions.findOne({ refId: customer._id })
+        .then(version => {
+          version.versions.push(questions);
+          version.save();
+        })
+      })
+    })
+    .catch(e => {
+      console.log(e);
+    })
 });
 
 //INDEX ROUTE
@@ -574,8 +714,7 @@ router.get("/index/:id", authenticate_session, function (req, res) {
             questionnaire["poc_questions"] = await POCQuestions.findOne(search_term).exec();
             questionnaire["rfe_questions"] = await RFEQuestions.findOne(search_term).exec();
             questionnaire["usage_questions"] = await UsageQuestions.findOne(search_term).exec();
-            //questionnaire["finserv_supervision_questions"] = await FinservSupervisionQuestions.findOne(search_term).exec();
-            questionnaire["finserv_supervision_questions"] = await FinservSupervisionQuestions.findOneOrCreate(search_term);
+            questionnaire["finserv_supervision_questions"] = await FinservSupervisionQuestions.findOne(search_term).exec();
         }
         return questionnaire;
     }
@@ -591,6 +730,49 @@ router.get("/index/:id", authenticate_session, function (req, res) {
         console.log(error);
         res.redirect(append + "/")
     });
+});
+
+router.get("/history/:id", authenticate_session, function (req, res) {
+  Customer.findOne({ name: req.params.id })
+  .then(customer => {
+    CustomerVersions.findOne({ refId: customer._id })
+    .then(version => {
+      res.render("history", {versions: version.versions});
+    })
+  })
+});
+
+router.get("/history/:id/:version", authenticate_session, function (req, res) {
+  async function query() {
+    var questionnaire = {};
+    var refId = await Customer.findOne({ name: req.params.id });
+    if (refId) {
+      questionnaire["appliance_questions"] = await ApplianceQuestionsVersions.findOne({ refId: refId }).exec();
+      questionnaire["customer"] = await CustomerVersions.findOne({ refId: refId }).exec();
+      questionnaire["design_summary_questions"] = await DesignSummaryQuestionsVersions.findOne({ refId: refId }).exec();
+      questionnaire["desktop_network_questions"] = await DesktopNetworkQuestionsVersions.findOne({ refId: refId }).exec();
+      questionnaire["email_ps_questions"] = await EmailPSQuestionsVersions.findOne({ refId: refId }).exec();
+      questionnaire["email_se_questions"] = await EmailSEQuestionsVersions.findOne({ refId: refId }).exec();
+      questionnaire["import_questions"] = await ImportQuestionsVersions.findOne({ refId: refId }).exec();
+      questionnaire["journaling_questions"] = await JournalingQuestionsVersions.findOne({ refId: refId }).exec();
+      questionnaire["other_data_source_questions"] = await OtherDataSourcesQuestionsVersions.findOne({ refId: refId }).exec();
+      questionnaire["poc_questions"] = await POCQuestionsVersions.findOne({ refId: refId }).exec();
+      questionnaire["rfe_questions"] = await RFEQuestionsVersions.findOne({ refId: refId }).exec();
+      questionnaire["usage_questions"] = await UsageQuestionsVersions.findOne({ refId: refId }).exec();
+      questionnaire["finserv_supervision_questions"] = await FinservSupervisionQuestionsVersions.findOne({ refId: refId }).exec();
+      return questionnaire;
+    }
+  }
+  query()
+  .then(result => {
+    for (var questions in result) {
+      result[questions] = result[questions].versions[req.params.version];
+    }
+    res.render("show_history", result);
+  })
+  .catch(e => {
+    console.log(e);
+  })
 });
 
 module.exports = router;

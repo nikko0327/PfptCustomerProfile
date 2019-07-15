@@ -68,7 +68,7 @@
                         <th>Sales Rep</th>
                         <th>Archiving SE</th>
                         <th>Acc. Manager</th>
-                        <th>TEM</th>
+                        <th>TPM</th>
                         <th>TAM</th>
                         <th>Supervision</th>
                         <th>Location</th>
@@ -100,7 +100,7 @@
                                 <%= customer.accManager %>
                             </td>
                             <td>
-                                <%= customer.tem %>
+                                <%= customer.tpm %>
                             </td>
                             <td>
                                 <%= customer.tam %>
@@ -112,14 +112,15 @@
                                 <%= customer.location %>
                             </td>
                             <td>
-                              <%= customer.updatedAt.getMonth() %>/<%= customer.updatedAt.getDate() %>/<%= customer.updatedAt.getFullYear() %>
+                              <%= customer.updatedAt.getMonth() + 1 %>/<%= customer.updatedAt.getDate() %>/<%= customer.updatedAt.getFullYear() %>
                             </td>
                             <td>
                               <%= customer.updatedBy %>
                             </td>
                             <td>
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#<%= customer.name %>-editModal"><i class="fa fa-pencil-square-o"></i></button>
                                 <a href="./index/<%= encodeURIComponent(customer.name) %>">
-                                    <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block">More</button>
+                                    <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block"><i class="fa fa-info"></i></button>
                                 </a>
 
                                 &nbsp;
@@ -128,82 +129,85 @@
                      If \"\"\", DB will delete """ because it would cause the string to be properly escaped. Becareful of backslashes -->
 
                                 <% if(user == 'anchen' || user == 'nlee' || user == 'vrathee' || user == 'sprokai') { %>
-                                    <button class="btn btn-danger" onclick='delete_customer("<%= customer.name %>")'>Delete</button>
+                                    <button class="btn btn-danger" onclick='delete_customer("<%= customer.name %>")'><i class="fa fa-trash"></i></button>
+                                    <a href="./history/<%= encodeURIComponent(customer.name) %>">
+                                        <button class="btn btn-primary"><i class="fa fa-history"></i></button>
+                                    </a>
                                     <!-- <button data-toggle="modal" data-target="#editModal" class="btn btn-success center-block">Edit</button></div> -->
                             </td>
                         </tr>
                         <% } %>
+                        <!-- line modal -->
+                        <div class="modal fade" id="<%= customer.name %>-editModal" tabindex="-1" role="dialog" aria-labelledby="lineModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title" id="lineModalLabel"><%= customer.name %></h3>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <!-- content goes here -->
+                                        <form id="customerForm" action="./index/<%= encodeURIComponent(customer.name) %>?_method=PUT" method="POST">
+                                            <div class="form-group">
+                                                <label for="customername">Customer Name</label>
+                                                <input id="unique-customer-name" required type="text" class="form-control" placeholder="No response set" value="<%= customer.name %>"
+                                                    name="customer[name]">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="status">Status</label>
+                                                <%- make_custom_dropdown("customer[status]", customer.status,
+                                                ["Waiting for PDQ", "Waiting for sales", "Waiting for finance", "Waiting for ops", "Waiting for customer", "Waiting for scheduling", "Deployment started", "Deployment complete/in production"]) %>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="salesrep">Sales Rep.</label>
+                                                <input type="text" class="form-control" placeholder="No response set" id="salesRep" value="<%= customer.salesRep %>" name="customer[salesRep]">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="archivingse">Archiving SE</label>
+                                                <%- make_custom_dropdown("customer[archivingSe]", customer.archivingSe, ["Ben Chapman", "Brad Cope", "Coleem Chestnut", "Davin Stilson", "Jason Colvin", "Micah Wyenn", "Mike Fenili", "Terry McMahon"]) %>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="accmanager">Acc. Manager</label>
+                                                <input type="text" class="form-control" placeholder="No response set" id="accManager" value="<%= customer.accManager %>"
+                                                    name="customer[accManager]">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tem">TPM</label>
+                                                <%- make_custom_dropdown("customer[tpm]", customer.tpm, ["Jama Parikh", "Joan Noble", "Khoj Ladha", "Lorraine Lamb", "Sara Lints", "Aimee Wheelon"]) %>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tam">TAM</label>
+                                                <%- make_custom_dropdown("customer[tam]", customer.tam, ["Drew Fox", "Eric Pfefferie", "Jason Medina", "Jeremy Wagner", "Liliana Valdivia", "Nicole Dawson", "Wolfgang Rebhan"]) %>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="supervision">Supervision</label>
+                                                <%- make_custom_dropdown("customer[supervision]", customer.supervision, ["Ray McGrath", "Alex Boyd", "Regina Rodriguez"]) %>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="location">Location</label>
+                                                <input type="text" class="form-control" placeholder="No response set" id="location" value="<%= customer.location %>" name="customer[location]">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </form>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                                            <div class="btn-group" role="group">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal" role="button">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                             <% }); %>
                 </tbody>
             </table>
         </div>
-    </div>
-
-    <!-- line modal -->
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">×</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                    <h3 class="modal-title" id="lineModalLabel">Customer Name Here</h3>
-                </div>
-                <div class="modal-body">
-
-                    <!-- content goes here -->
-                    <form>
-                        <div class="form-group">
-                            <label for="status">Status</label>
-                            <input type="text" class="form-control" id="status" placeholder="Status">
-                        </div>
-                        <div class="form-group">
-                            <label for="customername">Customer Name</label>
-                            <input type="text" class="form-control" id="customername" placeholder="Customer Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="salesrep">Sales Rep.</label>
-                            <input type="text" class="form-control" id="salesrep" placeholder="Sales Rep. Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="archivingse">Archiving SE</label>
-                            <input type="text" class="form-control" id="archivingse" placeholder="Archiving SE Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="accmanager">Acc. Manager</label>
-                            <input type="text" class="form-control" id="accmanager" placeholder="Acc. Manager Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="location">Location</label>
-                            <input type="text" class="form-control" id="location" placeholder="Location">
-                        </div>
-                        <div class="form-group">
-                            <label for="supervision">Supervision</label>
-                            <input type="text" class="form-control" id="supervision" placeholder="Supervision">
-                        </div>
-                        <div class="form-group">
-                            <label for="natip">NAT IP</label>
-                            <input type="text" class="form-control" id="natip" placeholder="NAT IP">
-                        </div>
-                        <div class="form-group">
-                            <label for="supervision">Contacts</label>
-                            <input type="text" class="form-control" id="contacts" placeholder="Contacts">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-
-                </div>
-                <div class="modal-footer">
-                    <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal" role="button">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     </div>
 
 <script>

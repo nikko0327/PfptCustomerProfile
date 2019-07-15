@@ -71,8 +71,13 @@ var journaling_schema = new mongoose.Schema({
         default: ""
     }
 });
+var journaling_versions_schema = new mongoose.Schema({
+  refId: mongoose.Schema.Types.ObjectId,
+  versions: [journaling_schema]
+});
 
 var JournalingQuestions = mongoose.model("JournalingQuestions", journaling_schema);
+var JournalingQuestionsVersions = mongoose.model("JournalingQuestionsVersions", journaling_versions_schema);
 
 // var sample = new JournalingQuestions({
 //     _id: "Tesla"
@@ -86,4 +91,4 @@ var JournalingQuestions = mongoose.model("JournalingQuestions", journaling_schem
 //     }
 // });
 
-module.exports = JournalingQuestions;
+module.exports = {JournalingQuestions, JournalingQuestionsVersions};

@@ -1,0 +1,153 @@
+<% include partials/show_history_header %>
+
+    <div class="container" style="border: .2px solid gray; padding-right:25px; padding-left:25px; padding-bottom: 25px">
+        <div class="nav flex-column nav-pills" id="sidebar" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active" id="general-tab" data-toggle="pill" href="#general-content" role="tab" aria-controls="general-content" aria-selected="true">General</a>
+            <a class="nav-link dropdown-toggle" id="emailsystems-tab" data-toggle="pill" href="#emailsystems-content" role="tab" aria-controls="general-content" aria-selected="true">Email Systems</a>
+            <div id="emailsystems-dropdown">
+              <a class="nav-link" href="#editemailsystems-1-content" style="color: mediumvioletred">On-prem Exchange w/ On-prem Appliances</a>
+              <a class="nav-link" href="#editemailsystems-2-content" style="color: mediumvioletred">O365 (Hosted Appliances)</a>
+              <a class="nav-link" href="#editemailsystems-3-content" style="color: mediumvioletred">On-prem Exchange + O365 (On-prem Appliance)</a>
+              <a class="nav-link" href="#editemailsystems-4-content" style="color: mediumvioletred">On-prem Exchange + O365 (Hosted Appliance)</a>
+            </div>
+            <a class="nav-link dropdown-toggle" id="journaling-tab" data-toggle="pill" href="#journaling-content" role="tab" aria-controls="journaling-content" aria-selected="true">Journaling</a>
+            <div id="journaling-dropdown">
+              <a class="nav-link" href="#editExchangeDetails-content" style="color: mediumvioletred">Exchange Details Appliances</a>
+              <a class="nav-link" href="#editMailVol-content" style="color: mediumvioletred">Mail volume and journaling Appliances</a>
+            </div>
+            <a class="nav-link dropdown-toggle" id="appliances-tab" data-toggle="pill" href="#appliances-content" role="tab" aria-controls="appliances-content" aria-selected="true">Appliances</a>
+            <div id="appliances-dropdown">
+              <a class="nav-link" href="#editapplianceDetails-ApplianceSizing-content" style="color: mediumvioletred">Appliance Sizing</a>
+              <a class="nav-link" href="#editapplianceDetails-ForSE-content" style="color: mediumvioletred">For SE</a>
+            </div>
+            <a class="nav-link dropdown-toggle" id="otherdatasources-tab" data-toggle="pill" href="#otherdatasources-content" role="tab" aria-controls="otherdatasources-content" aria-selected="true">Other Data Sources</a>
+            <div id="otherdatasources-dropdown">
+              <a class="nav-link" href="#editOtherDataSources-Custom-content" style="color: mediumvioletred">Custom content archiving</a>
+              <a class="nav-link" href="#editOtherDataSources-Social-content" style="color: mediumvioletred">Public social archiving</a>
+              <a class="nav-link dropdown-toggle" href="#editOtherDataSources-enterprise-content" style="color: mediumvioletred">Enterprise collaboration archiving</a>
+              <div id="editOtherDataSources-enterprise-dropdown">
+                <a class="nav-link" href="#editECA-general-content" style="color: lightseagreen;">General</a>
+                <a class="nav-link" href="#editECA-files-content" style="color: lightseagreen;">Files</a>
+                <a class="nav-link" href="#editECA-skype-content" style="color: lightseagreen;">Skype for Business Online</a>
+                <a class="nav-link" href="#editECA-skype-lync-content" style="color: lightseagreen;">Skype for Business On-Prem (Lync)</a>
+                <a class="nav-link" href="#editECA-box-onedrive-content" style="color: lightseagreen;">Box & OneDrive</a>
+                <a class="nav-link" href="#editECA-chatter-content" style="color: lightseagreen;">Chatter</a>
+                <a class="nav-link" href="#editECA-symphony-content" style="color: lightseagreen;">Symphony</a>
+              </div>
+            </div>
+            <a class="nav-link dropdown-toggle" id="desktopnetwork-tab" data-toggle="pill" href="#desktopnetwork-content" role="tab" aria-controls="desktopnetwork-content" aria-selected="true">Desktop/Network/DR</a>
+            <div id="desktopnetwork-dropdown">
+              <a class="nav-link" href="#editDesktop-Network-content" style="color: mediumvioletred">Network & Security</a>
+              <a class="nav-link" href="#editDesktop-Disaster-content" style="color: mediumvioletred">Disaster Recovery / High Probability</a>
+              <a class="nav-link" href="#editDesktop-Auth-content" style="color: mediumvioletred">Authentication (SAML & Remote Auth)</a>
+            </div>
+            <a class="nav-link dropdown-toggle" id="usage-tab" data-toggle="pill" href="#usage-content" role="tab" aria-controls="usage-content" aria-selected="true">Usage</a>
+            <div id="usage-dropdown">
+              <a class="nav-link dropdown-toggle" href="#editUsage-Supervision-content" style="color: mediumvioletred">Supervision</a>
+              <div id="editUsage-Supervision-dropdown">
+                <a class="nav-link" href="#editUsage-Supervision-Notes-content" style="color: lightseagreen;">Notes / Details</a>
+                <a class="nav-link" href="#editUsage-Supervision-Random-content" style="color: lightseagreen;">Random Sampling</a>
+                <a class="nav-link" href="#editUsage-Supervision-requirements-content" style="color: lightseagreen;">Reporting Requirements</a>
+              </div>
+              <a class="nav-link" href="#editUsage-Stubbing-content" style="color: mediumvioletred">Stubbing</a>
+              <a class="nav-link" href="#editUsage-PST-content" style="color: mediumvioletred">Content Collector - PSTs</a>
+              <a class="nav-link" href="#editUsage-Legal-content" style="color: mediumvioletred">Legal Holds</a>
+              <a class="nav-link" href="#editUsage-End-content" style="color: mediumvioletred">End User Search</a>
+              <a class="nav-link" href="#editUsage-Sync-content" style="color: mediumvioletred">Folder Sync</a>
+              <a class="nav-link" href="#editusage-transport-content" style="color: mediumvioletred">Transport Agent</a>
+              <a class="nav-link" href="#editusage-export-content" style="color: mediumvioletred">Export</a>
+            </div>
+            <a class="nav-link" id="import-tab" data-toggle="pill" href="#import-content" role="tab" aria-controls="import-content" aria-selected="false">Import</a>
+            <a class="nav-link dropdown-toggle" id="poc-tab" data-toggle="pill" href="#poc-content" role="tab" aria-controls="poc-content" aria-selected="true">POC</a>
+            <div id="poc-dropdown">
+              <a class="nav-link" href="#editPOCPOC-content" style="color: mediumvioletred">POC</a>
+              <a class="nav-link" href="#editPOCUAT-content" style="color: mediumvioletred">UAT</a>
+            </div>
+            <a class="nav-link" id="rfe-tab" data-toggle="pill" href="#rfe-content" role="tab" aria-controls="rfe-content" aria-selected="false">RFEs</a>
+            <a class="nav-link dropdown-toggle" id="finservsupervision-tab" data-toggle="pill" href="#finservsupervision-content" role="tab" aria-controls="finservsupervision-content" aria-selected="true">FINSERV Supervision</a>
+            <div id="finservsupervision-dropdown">
+              <a class="nav-link dropdown-toggle" href="#editSupervisionOverview-content" style="color: mediumvioletred">Current Supervision Overview – Digital Communication Review</a>
+              <div id="editSupervisionOverview-dropdown">
+                <a class="nav-link" href="#editSupervision-MessageProfile-content" style="color: lightseagreen;">Message Sampling Profiles</a>
+              </div>
+              <a class="nav-link" href="#editSupervisoryWorkflow-content" style="color: mediumvioletred">Supervisory Workflow</a>
+              <a class="nav-link" href="#editAdministrativeFunctions-content" style="color: mediumvioletred">Administrative Functions</a>
+              <a class="nav-link" href="#editRuleLexiconMaintenance-content" style="color: mediumvioletred">Rule/Lexicons Maintenance</a>
+            </div>
+            <a class="nav-link" id="designsummary-tab" data-toggle="pill" href="#designsummary-content" role="tab" aria-controls="designsummary-content" aria-selected="false">Design Summary</a>
+        </div>
+        <div class="tab-content" id="content">
+          <div id="customerHeader">
+              <h1 style="text-align: center; padding-top:15px; font-size: 70px;">
+                  <%= customer.name %>
+              </h1>
+          </div>
+          <div id="detail" class="display-header">
+              <h4>Project Details</h4>
+              <button class="btn btn-primary" id="print-button">Print</button>
+              <button type="button" value="Expand All" id="collapse-toggle" onclick="expand_collapse()" class="pull btn btn-primary">
+                  Expand All
+              </button>
+    <!--
+              <button type="button" value="true" id="sync-forms" onclick="sync_email_systems_forms()" class="pull btn btn-primary">
+                  Unsync Forms
+              </button> -->
+          </div>
+          <hr class="rainbow">
+          <div class="tab-pane fade show active" id="general-content" role="tabpanel" aria-labelledby="general-tab">
+            <% include sections_history/01-General.ejs %>
+          </div>
+          <div class="tab-pane fade" id="emailsystems-content" role="tabpanel" aria-labelledby="emailsystems-tab">
+            <% include sections_history/02-EmailSystems.ejs %>
+          </div>
+          <div class="tab-pane fade" id="journaling-content" role="tabpanel" aria-labelledby="journaling-tab">
+            <% include sections_history/04-Journaling.ejs %>
+          </div>
+          <div class="tab-pane fade" id="appliances-content" role="tabpanel" aria-labelledby="appliances-tab">
+            <% include sections_history/05-Appliances.ejs %>
+          </div>
+          <div class="tab-pane fade" id="otherdatasources-content" role="tabpanel" aria-labelledby="otherdatasources-tab">
+            <% include sections_history/06-OtherDataSources.ejs %>
+          </div>
+          <div class="tab-pane fade" id="desktopnetwork-content" role="tabpanel" aria-labelledby="desktopnetwork-tab">
+            <% include sections_history/07-DesktopNetwork.ejs %>
+          </div>
+          <div class="tab-pane fade" id="usage-content" role="tabpanel" aria-labelledby="usage-tab">
+            <% include sections_history/08-Usage.ejs %>
+          </div>
+          <div class="tab-pane fade" id="import-content" role="tabpanel" aria-labelledby="import-tab">
+            <% include sections_history/09-Import.ejs %>
+          </div>
+          <div class="tab-pane fade" id="poc-content" role="tabpanel" aria-labelledby="poc-tab">
+            <% include sections_history/10-POC.ejs %>
+          </div>
+          <div class="tab-pane fade" id="rfe-content" role="tabpanel" aria-labelledby="rfe-tab">
+            <% include sections_history/11-RFE.ejs %>
+          </div>
+          <div class="tab-pane fade" id="finservsupervision-content" role="tabpanel" aria-labelledby="finservsupervision-tab">
+            <% include sections_history/13-FinservSupervision.ejs %>
+          </div>
+          <div class="tab-pane fade" id="designsummary-content" role="tabpanel" aria-labelledby="designsummary-tab">
+            <% include sections_history/12-DesignSummary.ejs %>
+          </div>
+          <div id="print-content">
+            <% include sections_history/01-General.ejs %>
+            <% include sections_history/02-EmailSystems.ejs %>
+            <% include sections_history/04-Journaling.ejs %>
+            <% include sections_history/05-Appliances.ejs %>
+            <% include sections_history/06-OtherDataSources.ejs %>
+            <% include sections_history/07-DesktopNetwork.ejs %>
+            <% include sections_history/08-Usage.ejs %>
+            <% include sections_history/09-Import.ejs %>
+            <% include sections_history/10-POC.ejs %>
+            <% include sections_history/11-RFE.ejs %>
+            <% include sections_history/13-FinservSupervision.ejs %>
+            <% include sections_history/12-DesignSummary.ejs %>
+          </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/scripts/show.js"></script>
+    <script type="text/javascript" src="/scripts/sync_inputs.js"></script>
+
+    <% include partials/footer %>

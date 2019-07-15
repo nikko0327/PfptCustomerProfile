@@ -89,8 +89,13 @@ var appliance_schema = new mongoose.Schema({
         default: ""
     }
 });
+var appliance_versions_schema = new mongoose.Schema({
+  refId: mongoose.Schema.Types.ObjectId,
+  versions: [appliance_schema]
+});
 
 var ApplianceQuestions = mongoose.model("ApplianceQuestions", appliance_schema);
+var ApplianceQuestionsVersions = mongoose.model("ApplianceQuestionsVersions", appliance_versions_schema);
 
 // var sample = new ApplianceQuestions({
 //     _id: "Tesla"
@@ -104,4 +109,4 @@ var ApplianceQuestions = mongoose.model("ApplianceQuestions", appliance_schema);
 //     }
 // });
 
-module.exports = ApplianceQuestions;
+module.exports = {ApplianceQuestions, ApplianceQuestionsVersions};

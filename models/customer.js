@@ -1,7 +1,5 @@
 var mongoose = require("mongoose");
 
-// Can't use joins in NoSQL, can't use foreign keys. Feelsbadman.
-
 var CustomerSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -107,8 +105,13 @@ var CustomerSchema = new mongoose.Schema({
 {
   timestamps: true
 });
+var CustomerVersionsSchema = new mongoose.Schema({
+  refId: mongoose.Schema.Types.ObjectId,
+  versions: [CustomerSchema]
+});
 
 var Customer = mongoose.model("Customer", CustomerSchema);
+var CustomerVersions = mongoose.model("CustomerVersions", CustomerVersionsSchema);
 
 // Customer.create({
 //     name: "Kearney",
@@ -134,4 +137,4 @@ var Customer = mongoose.model("Customer", CustomerSchema);
 //     }
 // });
 
-module.exports = Customer;
+module.exports = {Customer, CustomerVersions};

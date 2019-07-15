@@ -15,8 +15,13 @@ var design_summary_schema = new mongoose.Schema({
         default: ""
     }
 });
+var design_summary_versions_schema = new mongoose.Schema({
+  refId: mongoose.Schema.Types.ObjectId,
+  versions: [design_summary_schema]
+});
 
 var DesignSummaryQuestions = mongoose.model("DesignSummaryQuestions", design_summary_schema);
+var DesignSummaryQuestionsVersions = mongoose.model("DesignSummaryQuestionsVersions", design_summary_versions_schema);
 
 
-module.exports = DesignSummaryQuestions;
+module.exports = {DesignSummaryQuestions, DesignSummaryQuestionsVersions};

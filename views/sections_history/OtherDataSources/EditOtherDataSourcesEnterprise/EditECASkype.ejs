@@ -1,0 +1,37 @@
+<h5>
+    <a href="#editECA-skype" style="color: lightseagreen; margin-left:3em;" data-toggle="collapse" onclick="change_arrow($(this));">
+        Skype for Business Online
+        <i class="fa fa-caret-right" aria-hidden="true"></i>
+    </a>
+</h5>
+
+<div id="editECA-skype" class="collapse">
+    <div class="row">
+        <div class="form-group col-4 response-cell">
+            <label>What's their deployment? Hybrid vs fully in cloud (hosted)</label>
+            <%- make_custom_dropdown
+                ("other_data_source_questions[enterprise_collaboration_archiving][skype_business][deployment]",
+                        other_data_source_questions.enterprise_collaboration_archiving.skype_business.deployment,
+                        ["Hybrid", "Fully in cloud/hosted"]) %>
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>Distribution of license levels for all users? (need E3 or higher)
+            </label>
+            <input type="text" class="form-control" placeholder="No response set" value="<%= other_data_source_questions.enterprise_collaboration_archiving.skype_business.license_level %>"
+                name="other_data_source_questions[enterprise_collaboration_archiving][skype_business][license_level]">
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>Do they have any other services that use Holds and searches</label>
+            <%- make_custom_dropdown
+                ("other_data_source_questions[enterprise_collaboration_archiving][skype_business][use_holds_or_searches]",
+                        other_data_source_questions.enterprise_collaboration_archiving.skype_business.use_holds_or_searches,
+                        ["Yes", "No"]) %>
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>If so how active are they? (How many searches and holds)</label>
+            <input type="text" class="form-control" placeholder="No response set" value="<%= other_data_source_questions.enterprise_collaboration_archiving.skype_business.how_active %>"
+                name="other_data_source_questions[enterprise_collaboration_archiving][skype_business][how_active]">
+        </div>
+    </div>
+</div>
+<hr>
