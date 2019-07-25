@@ -104,7 +104,7 @@ $(document).ready(() => {
 
     window.addEventListener("beforeunload", function (e) {
         if (editing_customer || editing_email_systems || editing_appliances || editing_design_summary
-            || editing_desktop_network || editing_email_systems_ps || editing_import || editing_journaling
+            || editing_desktop_network || editing_import || editing_journaling
             || editing_other_data_sources || editing_POC || editing_RFE || editing_usage) {
             let confirmationMessage = "You have unsaved changes.";
             e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
@@ -368,48 +368,10 @@ $(document).ready(() => {
     add_post_listeners(editing_design_summary, '#editDesignSummaryLink', '#cancelDesignSummaryLink', "#designSummaryForm", "#designSummaryFormFieldset", "Design Summary Questions saved.");
     add_post_listeners(editing_finserv_supervision, '#editFinservSupervisionLink', '#cancelFinservSupervisionLink', "#finservSupervisionForm", "#finservSupervisionFormFieldset", "Finserv Supervision Questions saved.");
 
-    var pills = [
-      $("a[href='#general-content']"),
-      $("a[href='#editemailsystems-1-content']"),
-      $("a[href='#editemailsystems-2-content']"),
-      $("a[href='#editemailsystems-3-content']"),
-      $("a[href='#editemailsystems-4-content']"),
-      $("a[href='#editExchangeDetails-content']"),
-      $("a[href='#editMailVol-content']"),
-      $("a[href='#editapplianceDetails-ApplianceSizing-content']"),
-      $("a[href='#editapplianceDetails-ForSE-content']"),
-      $("a[href='#editOtherDataSources-Custom-content']"),
-      $("a[href='#editOtherDataSources-Social-content']"),
-      $("a[href='#editECA-general-content']"),
-      $("a[href='#editECA-files-content']"),
-      $("a[href='#editECA-skype-content']"),
-      $("a[href='#editECA-skype-lync-content']"),
-      $("a[href='#editECA-box-onedrive-content']"),
-      $("a[href='#editECA-chatter-content']"),
-      $("a[href='#editECA-symphony-content']"),
-      $("a[href='#editDesktop-Network-content']"),
-      $("a[href='#editDesktop-Disaster-content']"),
-      $("a[href='#editDesktop-Auth-content']"),
-      $("a[href='#editUsage-Supervision-Notes-content']"),
-      $("a[href='#editUsage-Supervision-Random-content']"),
-      $("a[href='#editUsage-Supervision-requirements-content']"),
-      $("a[href='#editUsage-Stubbing-content']"),
-      $("a[href='#editUsage-PST-content']"),
-      $("a[href='#editUsage-Legal-content']"),
-      $("a[href='#editUsage-End-content']"),
-      $("a[href='#editUsage-Sync-content']"),
-      $("a[href='#editusage-transport-content']"),
-      $("a[href='#editusage-export-content']"),
-      $("a[href='#import-content']"),
-      $("a[href='#editPOCPOC-content']"),
-      $("a[href='#editPOCUAT-content']"),
-      $("a[href='#rfe-content']"),
-      $("a[href='#designsummary-content']"),
-      $("a[href='#editSupervision-MessageProfile-content']"),
-      $("a[href='#editSupervisoryWorkflow-content']"),
-      $("a[href='#editAdministrativeFunctions-content']"),
-      $("a[href='#editRuleLexiconMaintenance-content']")
-    ]
+    $("#sidebar-button").click(function() {
+      $("#sidebar").toggle();
+      $(".page-content").toggleClass("toggled");
+    });
 
     function hideDropdowns() {
       $("#emailsystems-dropdown").hide();
@@ -425,20 +387,10 @@ $(document).ready(() => {
       $("#editSupervisionOverview-dropdown").hide();
     }
 
-    function deactivatePills() {
-      pills.forEach(pill => {
-        if (pill != this) {
-          pill.removeClass("active");
-          pill.attr("aria-selected", "false");
-        }
-      })
-    }
-
     hideDropdowns();
 
     $("a[href='#general-content']").click(function() {
       hideDropdowns();
-      deactivatePills();
     })
 
     $("a[href='#emailsystems-content']").click(function() {
@@ -455,24 +407,32 @@ $(document).ready(() => {
       $("a[href='#editEmailSystems-4']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
     })
 
-    $("a[href='#editemailsystems-1-content'], a[href='#editemailsystems-2-content'], a[href='#editemailsystems-3-content'], a[href='#editemailsystems-4-content']").click(function() {
-      deactivatePills();
-    })
-
     $("a[href='#editemailsystems-1-content']").click(function() {
-      $("a[href='#editEmailSystems-1']").click();
+      $("#editEmailSystems-1").collapse("show");
+      $("#editEmailSystems-2").collapse("hide");
+      $("#editEmailSystems-3").collapse("hide");
+      $("#editEmailSystems-4").collapse("hide");
     })
 
     $("a[href='#editemailsystems-2-content']").click(function() {
-      $("a[href='#editEmailSystems-2']").click();
+      $("#editEmailSystems-1").collapse("hide");
+      $("#editEmailSystems-2").collapse("show");
+      $("#editEmailSystems-3").collapse("hide");
+      $("#editEmailSystems-4").collapse("hide");
     })
 
     $("a[href='#editemailsystems-3-content']").click(function() {
-      $("a[href='#editEmailSystems-3']").click();
+      $("#editEmailSystems-1").collapse("hide");
+      $("#editEmailSystems-2").collapse("hide");
+      $("#editEmailSystems-3").collapse("show");
+      $("#editEmailSystems-4").collapse("hide");
     })
 
     $("a[href='#editemailsystems-4-content']").click(function() {
-      $("a[href='#editEmailSystems-4']").click();
+      $("#editEmailSystems-1").collapse("hide");
+      $("#editEmailSystems-2").collapse("hide");
+      $("#editEmailSystems-3").collapse("hide");
+      $("#editEmailSystems-4").collapse("show");
     })
 
     $("a[href='#journaling-content']").click(function() {
@@ -485,16 +445,14 @@ $(document).ready(() => {
       $("a[href='#editMailVol']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
     })
 
-    $("a[href='#editExchangeDetails-content'], a[href='#editMailVol-content']").click(function() {
-      deactivatePills();
-    })
-
     $("a[href='#editExchangeDetails-content']").click(function() {
-      $("a[href='#editExchangeDetails']").click();
+      $("#editExchangeDetails").collapse("show");
+      $("#editMailVol").collapse("hide");
     })
 
     $("a[href='#editMailVol-content']").click(function() {
-      $("a[href='#editMailVol']").click();
+      $("#editExchangeDetails").collapse("hide");
+      $("#editMailVol").collapse("show");
     })
 
     $("a[href='#appliances-content']").click(function() {
@@ -507,16 +465,14 @@ $(document).ready(() => {
       $("a[href='#editapplianceDetails-ForSE']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
     })
 
-    $("a[href='#editapplianceDetails-ApplianceSizing-content'], a[href='#editapplianceDetails-ForSE-content']").click(function() {
-      deactivatePills();
-    })
-
     $("a[href='#editapplianceDetails-ApplianceSizing-content']").click(function() {
-      $("a[href='#editapplianceDetails-ApplianceSizing']").click();
+      $("#editapplianceDetails-ApplianceSizing").collapse("show");
+      $("#editapplianceDetails-ForSE").collapse("hide");
     })
 
     $("a[href='#editapplianceDetails-ForSE-content']").click(function() {
-      $("a[href='#editapplianceDetails-ForSE']").click();
+      $("#editapplianceDetails-ApplianceSizing").collapse("hide");
+      $("#editapplianceDetails-ForSE").collapse("show");
     })
 
     $("a[href='#otherdatasources-content']").click(function() {
@@ -549,46 +505,135 @@ $(document).ready(() => {
     $("a[href='#editOtherDataSources-enterprise-content']").click(function() {
       $("#editOtherDataSources-enterprise-dropdown").toggle();
       $("a[href='#editOtherDataSources-enterprise']").click();
-    })
-
-    $("a[href='#editOtherDataSources-Custom-content'], a[href='#editOtherDataSources-Social-content'], a[href='#editECA-general-content'], a[href='#editECA-files-content'], a[href='#editECA-skype-content'], a[href='#editECA-skype-lync-content'], a[href='#editECA-box-onedrive-content'], a[href='#editECA-chatter-content'], a[href='#editECA-symphony-content']").click(function() {
-      deactivatePills();
+      $("#editOtherDataSources-Custom").collapse("hide");
+      $("#editOtherDataSources-Social").collapse("hide");
+      $("#editOtherDataSources-enterprise").collapse("show");
+      $("#editECA-general").collapse("hide");
+      $("#editECA-files").collapse("hide");
+      $("#editECA-skype").collapse("hide");
+      $("#editECA-skype-lync").collapse("hide");
+      $("#editECA-box-onedrive").collapse("hide");
+      $("#editECA-chatter").collapse("hide");
+      $("#editECA-symphony").collapse("hide");
     })
 
     $("a[href='#editOtherDataSources-Custom-content']").click(function() {
-      $("a[href='#editOtherDataSources-Custom']").click();
+      $("#editOtherDataSources-enterprise-dropdown").hide();
+      $("#editOtherDataSources-Custom").collapse("show");
+      $("#editOtherDataSources-Social").collapse("hide");
+      $("#editOtherDataSources-enterprise").collapse("hide");
+      $("#editECA-general").collapse("hide");
+      $("#editECA-files").collapse("hide");
+      $("#editECA-skype").collapse("hide");
+      $("#editECA-skype-lync").collapse("hide");
+      $("#editECA-box-onedrive").collapse("hide");
+      $("#editECA-chatter").collapse("hide");
+      $("#editECA-symphony").collapse("hide");
     })
 
     $("a[href='#editOtherDataSources-Social-content']").click(function() {
-      $("a[href='#editOtherDataSources-Social']").click();
+      $("#editOtherDataSources-enterprise-dropdown").hide();
+      $("#editOtherDataSources-Custom").collapse("hide");
+      $("#editOtherDataSources-Social").collapse("show");
+      $("#editOtherDataSources-enterprise").collapse("hide");
+      $("#editECA-general").collapse("hide");
+      $("#editECA-files").collapse("hide");
+      $("#editECA-skype").collapse("hide");
+      $("#editECA-skype-lync").collapse("hide");
+      $("#editECA-box-onedrive").collapse("hide");
+      $("#editECA-chatter").collapse("hide");
+      $("#editECA-symphony").collapse("hide");
     })
 
     $("a[href='#editECA-general-content']").click(function() {
-      $("a[href='#editECA-general']").click();
+      $("#editOtherDataSources-Custom").collapse("hide");
+      $("#editOtherDataSources-Social").collapse("hide");
+      $("#editOtherDataSources-enterprise").collapse("show");
+      $("#editECA-general").collapse("show");
+      $("#editECA-files").collapse("hide");
+      $("#editECA-skype").collapse("hide");
+      $("#editECA-skype-lync").collapse("hide");
+      $("#editECA-box-onedrive").collapse("hide");
+      $("#editECA-chatter").collapse("hide");
+      $("#editECA-symphony").collapse("hide");
     })
 
     $("a[href='#editECA-files-content']").click(function() {
-      $("a[href='#editECA-files']").click();
+      $("#editOtherDataSources-Custom").collapse("hide");
+      $("#editOtherDataSources-Social").collapse("hide");
+      $("#editOtherDataSources-enterprise").collapse("show");
+      $("#editECA-general").collapse("hide");
+      $("#editECA-files").collapse("show");
+      $("#editECA-skype").collapse("hide");
+      $("#editECA-skype-lync").collapse("hide");
+      $("#editECA-box-onedrive").collapse("hide");
+      $("#editECA-chatter").collapse("hide");
+      $("#editECA-symphony").collapse("hide");
     })
 
     $("a[href='#editECA-skype-content']").click(function() {
-      $("a[href='#editECA-skype']").click();
+      $("#editOtherDataSources-Custom").collapse("hide");
+      $("#editOtherDataSources-Social").collapse("hide");
+      $("#editOtherDataSources-enterprise").collapse("show");
+      $("#editECA-general").collapse("hide");
+      $("#editECA-files").collapse("hide");
+      $("#editECA-skype").collapse("show");
+      $("#editECA-skype-lync").collapse("hide");
+      $("#editECA-box-onedrive").collapse("hide");
+      $("#editECA-chatter").collapse("hide");
+      $("#editECA-symphony").collapse("hide");
     })
 
     $("a[href='#editECA-skype-lync-content']").click(function() {
-      $("a[href='#editECA-skype-lync']").click();
+      $("#editOtherDataSources-Custom").collapse("hide");
+      $("#editOtherDataSources-Social").collapse("hide");
+      $("#editOtherDataSources-enterprise").collapse("show");
+      $("#editECA-general").collapse("hide");
+      $("#editECA-files").collapse("hide");
+      $("#editECA-skype").collapse("hide");
+      $("#editECA-skype-lync").collapse("show");
+      $("#editECA-box-onedrive").collapse("hide");
+      $("#editECA-chatter").collapse("hide");
+      $("#editECA-symphony").collapse("hide");
     })
 
     $("a[href='#editECA-box-onedrive-content']").click(function() {
-      $("a[href='#editECA-box-onedrive']").click();
+      $("#editOtherDataSources-Custom").collapse("hide");
+      $("#editOtherDataSources-Social").collapse("hide");
+      $("#editOtherDataSources-enterprise").collapse("show");
+      $("#editECA-general").collapse("hide");
+      $("#editECA-files").collapse("hide");
+      $("#editECA-skype").collapse("hide");
+      $("#editECA-skype-lync").collapse("hide");
+      $("#editECA-box-onedrive").collapse("show");
+      $("#editECA-chatter").collapse("hide");
+      $("#editECA-symphony").collapse("hide");
     })
 
     $("a[href='#editECA-chatter-content']").click(function() {
-      $("a[href='#editECA-chatter']").click();
+      $("#editOtherDataSources-Custom").collapse("hide");
+      $("#editOtherDataSources-Social").collapse("hide");
+      $("#editOtherDataSources-enterprise").collapse("show");
+      $("#editECA-general").collapse("hide");
+      $("#editECA-files").collapse("hide");
+      $("#editECA-skype").collapse("hide");
+      $("#editECA-skype-lync").collapse("hide");
+      $("#editECA-box-onedrive").collapse("hide");
+      $("#editECA-chatter").collapse("show");
+      $("#editECA-symphony").collapse("hide");
     })
 
     $("a[href='#editECA-symphony-content']").click(function() {
-      $("a[href='#editECA-symphony']").click();
+      $("#editOtherDataSources-Custom").collapse("hide");
+      $("#editOtherDataSources-Social").collapse("hide");
+      $("#editOtherDataSources-enterprise").collapse("show");
+      $("#editECA-general").collapse("hide");
+      $("#editECA-files").collapse("hide");
+      $("#editECA-skype").collapse("hide");
+      $("#editECA-skype-lync").collapse("hide");
+      $("#editECA-box-onedrive").collapse("hide");
+      $("#editECA-chatter").collapse("hide");
+      $("#editECA-symphony").collapse("show");
     })
 
     $("a[href='#desktopnetwork-content']").click(function() {
@@ -603,20 +648,22 @@ $(document).ready(() => {
       $("a[href='#editDesktop-Auth']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
     })
 
-    $("a[href='#editDesktop-Network-content'], a[href='#editDesktop-Disaster-content'], a[href='#editDesktop-Auth-content']").click(function() {
-      deactivatePills();
-    })
-
     $("a[href='#editDesktop-Network-content']").click(function() {
-      $("a[href='#editDesktop-Network']").click();
+      $("#editDesktop-Network").collapse("show");
+      $("#editDesktop-Disaster").collapse("hide");
+      $("#editDesktop-Auth").collapse("hide");
     })
 
     $("a[href='#editDesktop-Disaster-content']").click(function() {
-      $("a[href='#editDesktop-Disaster']").click();
+      $("#editDesktop-Network").collapse("hide");
+      $("#editDesktop-Disaster").collapse("show");
+      $("#editDesktop-Auth").collapse("hide");
     })
 
     $("a[href='#editDesktop-Auth-content']").click(function() {
-      $("a[href='#editDesktop-Auth']").click();
+      $("#editDesktop-Network").collapse("hide");
+      $("#editDesktop-Disaster").collapse("hide");
+      $("#editDesktop-Auth").collapse("show");
     })
 
     $("a[href='#usage-content']").click(function() {
@@ -651,56 +698,169 @@ $(document).ready(() => {
     $("a[href='#editUsage-Supervision-content']").click(function() {
       $("#editUsage-Supervision-dropdown").toggle();
       $("a[href='#editUsage-Supervision']").click();
-    })
-
-    $("a[href='#editUsage-Supervision-Notes-content'], a[href='#editUsage-Supervision-Random-content'], a[href='#editUsage-Supervision-requirements-content'], a[href='#editUsage-Stubbing-content'], a[href='#editUsage-PST-content'], a[href='#editUsage-Legal-content'], a[href='#editUsage-End-content'], a[href='#editUsage-Sync-content'], a[href='#editusage-transport-content'], a[href='#editusage-export-content']").click(function() {
-      deactivatePills();
+      $("#editUsage-Supervision").collapse("show");
+      $("#editUsage-Supervision-Notes").collapse("hide");
+      $("#editUsage-Supervision-Random").collapse("hide");
+      $("#editUsage-Supervision-requirements").collapse("hide");
+      $("#editUsage-Stubbing").collapse("hide");
+      $("#editUsage-PST").collapse("hide");
+      $("#editUsage-Legal").collapse("hide");
+      $("#editUsage-End").collapse("hide");
+      $("#editUsage-Sync").collapse("hide");
+      $("#editusage-transport").collapse("hide");
+      $("#editusage-export").collapse("hide");
     })
 
     $("a[href='#editUsage-Supervision-Notes-content']").click(function() {
-      $("a[href='#editUsage-Supervision-Notes']").click();
+      $("#editUsage-Supervision").collapse("show");
+      $("#editUsage-Supervision-Notes").collapse("show");
+      $("#editUsage-Supervision-Random").collapse("hide");
+      $("#editUsage-Supervision-requirements").collapse("hide");
+      $("#editUsage-Stubbing").collapse("hide");
+      $("#editUsage-PST").collapse("hide");
+      $("#editUsage-Legal").collapse("hide");
+      $("#editUsage-End").collapse("hide");
+      $("#editUsage-Sync").collapse("hide");
+      $("#editusage-transport").collapse("hide");
+      $("#editusage-export").collapse("hide");
     })
 
     $("a[href='#editUsage-Supervision-Random-content']").click(function() {
-      $("a[href='#editUsage-Supervision-Random']").click();
+      $("#editUsage-Supervision").collapse("show");
+      $("#editUsage-Supervision-Notes").collapse("hide");
+      $("#editUsage-Supervision-Random").collapse("show");
+      $("#editUsage-Supervision-requirements").collapse("hide");
+      $("#editUsage-Stubbing").collapse("hide");
+      $("#editUsage-PST").collapse("hide");
+      $("#editUsage-Legal").collapse("hide");
+      $("#editUsage-End").collapse("hide");
+      $("#editUsage-Sync").collapse("hide");
+      $("#editusage-transport").collapse("hide");
+      $("#editusage-export").collapse("hide");
     })
 
     $("a[href='#editUsage-Supervision-requirements-content']").click(function() {
-      $("a[href='#editUsage-Supervision-requirements']").click();
+      $("#editUsage-Supervision").collapse("show");
+      $("#editUsage-Supervision-Notes").collapse("hide");
+      $("#editUsage-Supervision-Random").collapse("hide");
+      $("#editUsage-Supervision-requirements").collapse("show");
+      $("#editUsage-Stubbing").collapse("hide");
+      $("#editUsage-PST").collapse("hide");
+      $("#editUsage-Legal").collapse("hide");
+      $("#editUsage-End").collapse("hide");
+      $("#editUsage-Sync").collapse("hide");
+      $("#editusage-transport").collapse("hide");
+      $("#editusage-export").collapse("hide");
     })
 
     $("a[href='#editUsage-Stubbing-content']").click(function() {
-      $("a[href='#editUsage-Stubbing']").click();
+      $("#editUsage-Supervision-dropdown").hide();
+      $("#editUsage-Supervision").collapse("hide");
+      $("#editUsage-Supervision-Notes").collapse("hide");
+      $("#editUsage-Supervision-Random").collapse("hide");
+      $("#editUsage-Supervision-requirements").collapse("hide");
+      $("#editUsage-Stubbing").collapse("show");
+      $("#editUsage-PST").collapse("hide");
+      $("#editUsage-Legal").collapse("hide");
+      $("#editUsage-End").collapse("hide");
+      $("#editUsage-Sync").collapse("hide");
+      $("#editusage-transport").collapse("hide");
+      $("#editusage-export").collapse("hide");
     })
 
     $("a[href='#editUsage-PST-content']").click(function() {
-      $("a[href='#editUsage-PST']").click();
+      $("#editUsage-Supervision-dropdown").hide();
+      $("#editUsage-Supervision").collapse("hide");
+      $("#editUsage-Supervision-Notes").collapse("hide");
+      $("#editUsage-Supervision-Random").collapse("hide");
+      $("#editUsage-Supervision-requirements").collapse("hide");
+      $("#editUsage-Stubbing").collapse("hide");
+      $("#editUsage-PST").collapse("show");
+      $("#editUsage-Legal").collapse("hide");
+      $("#editUsage-End").collapse("hide");
+      $("#editUsage-Sync").collapse("hide");
+      $("#editusage-transport").collapse("hide");
+      $("#editusage-export").collapse("hide");
     })
 
     $("a[href='#editUsage-Legal-content']").click(function() {
-      $("a[href='#editUsage-Legal']").click();
+      $("#editUsage-Supervision-dropdown").hide();
+      $("#editUsage-Supervision").collapse("hide");
+      $("#editUsage-Supervision-Notes").collapse("hide");
+      $("#editUsage-Supervision-Random").collapse("hide");
+      $("#editUsage-Supervision-requirements").collapse("hide");
+      $("#editUsage-Stubbing").collapse("hide");
+      $("#editUsage-PST").collapse("hide");
+      $("#editUsage-Legal").collapse("show");
+      $("#editUsage-End").collapse("hide");
+      $("#editUsage-Sync").collapse("hide");
+      $("#editusage-transport").collapse("hide");
+      $("#editusage-export").collapse("hide");
     })
 
     $("a[href='#editUsage-End-content']").click(function() {
-      $("a[href='#editUsage-End']").click();
+      $("#editUsage-Supervision-dropdown").hide();
+      $("#editUsage-Supervision").collapse("hide");
+      $("#editUsage-Supervision-Notes").collapse("hide");
+      $("#editUsage-Supervision-Random").collapse("hide");
+      $("#editUsage-Supervision-requirements").collapse("hide");
+      $("#editUsage-Stubbing").collapse("hide");
+      $("#editUsage-PST").collapse("hide");
+      $("#editUsage-Legal").collapse("hide");
+      $("#editUsage-End").collapse("show");
+      $("#editUsage-Sync").collapse("hide");
+      $("#editusage-transport").collapse("hide");
+      $("#editusage-export").collapse("hide");
     })
 
     $("a[href='#editUsage-Sync-content']").click(function() {
-      $("a[href='#editUsage-Sync']").click();
+      $("#editUsage-Supervision-dropdown").hide();
+      $("#editUsage-Supervision").collapse("hide");
+      $("#editUsage-Supervision-Notes").collapse("hide");
+      $("#editUsage-Supervision-Random").collapse("hide");
+      $("#editUsage-Supervision-requirements").collapse("hide");
+      $("#editUsage-Stubbing").collapse("hide");
+      $("#editUsage-PST").collapse("hide");
+      $("#editUsage-Legal").collapse("hide");
+      $("#editUsage-End").collapse("hide");
+      $("#editUsage-Sync").collapse("show");
+      $("#editusage-transport").collapse("hide");
+      $("#editusage-export").collapse("hide");
     })
 
     $("a[href='#editusage-transport-content']").click(function() {
-      $("a[href='#editusage-transport']").click();
+      $("#editUsage-Supervision-dropdown").hide();
+      $("#editUsage-Supervision").collapse("hide");
+      $("#editUsage-Supervision-Notes").collapse("hide");
+      $("#editUsage-Supervision-Random").collapse("hide");
+      $("#editUsage-Supervision-requirements").collapse("hide");
+      $("#editUsage-Stubbing").collapse("hide");
+      $("#editUsage-PST").collapse("hide");
+      $("#editUsage-Legal").collapse("hide");
+      $("#editUsage-End").collapse("hide");
+      $("#editUsage-Sync").collapse("hide");
+      $("#editusage-transport").collapse("show");
+      $("#editusage-export").collapse("hide");
     })
 
     $("a[href='#editusage-export-content']").click(function() {
-      $("a[href='#editusage-export']").click();
+      $("#editUsage-Supervision-dropdown").hide();
+      $("#editUsage-Supervision").collapse("hide");
+      $("#editUsage-Supervision-Notes").collapse("hide");
+      $("#editUsage-Supervision-Random").collapse("hide");
+      $("#editUsage-Supervision-requirements").collapse("hide");
+      $("#editUsage-Stubbing").collapse("hide");
+      $("#editUsage-PST").collapse("hide");
+      $("#editUsage-Legal").collapse("hide");
+      $("#editUsage-End").collapse("hide");
+      $("#editUsage-Sync").collapse("hide");
+      $("#editusage-transport").collapse("hide");
+      $("#editusage-export").collapse("show");
     })
 
     $("a[href='#import-content']").click(function() {
       hideDropdowns();
       $("#importContent").collapse("show");
-      deactivatePills();
     })
 
     $("a[href='#poc-content']").click(function() {
@@ -713,28 +873,24 @@ $(document).ready(() => {
       $("a[href='#editPOCUAT']").children(":first").removeClass("fa-caret-down").addClass("fa-caret-right");
     })
 
-    $("a[href='#editPOCPOC-content'], a[href='#editPOCUAT-content']").click(function() {
-      deactivatePills();
-    })
-
     $("a[href='#editPOCPOC-content']").click(function() {
-      $("a[href='#editPOCPOC']").click();
+      $("#editPOCPOC").collapse("show");
+      $("#editPOCUAT").collapse("hide");
     })
 
     $("a[href='#editPOCUAT-content']").click(function() {
-      $("a[href='#editPOCUAT']").click();
+      $("#editPOCPOC").collapse("hide");
+      $("#editPOCUAT").collapse("show");
     })
 
     $("a[href='#rfe-content']").click(function() {
       hideDropdowns();
       $("#rfeContent").collapse("show");
-      deactivatePills();
     })
 
     $("a[href='#designsummary-content']").click(function() {
       hideDropdowns();
       $("#designSummaryContent").collapse("show");
-      deactivatePills();
     })
 
     $("a[href='#finservsupervision-content']").click(function() {
@@ -757,26 +913,46 @@ $(document).ready(() => {
     $("a[href='#editSupervisionOverview-content']").click(function() {
       $("#editSupervisionOverview-dropdown").toggle();
       $("a[href='#editSupervisionOverview']").click();
-    })
-
-    $("a[href='#editSupervision-MessageProfile-content'], a[href='#editSupervisoryWorkflow-content'], a[href='#editAdministrativeFunctions-content'], a[href='#editRuleLexiconMaintenance-content']").click(function() {
-      deactivatePills();
+      $("#editSupervisionOverview").collapse("show");
+      $("#editSupervision-MessageProfile").collapse("hide");
+      $("#editSupervisoryWorkflow").collapse("hide");
+      $("#editAdministrativeFunctions").collapse("hide");
+      $("#editRuleLexiconMaintenance").collapse("hide");
     })
 
     $("a[href='#editSupervision-MessageProfile-content']").click(function() {
-      $("a[href='#editSupervision-MessageProfile']").click();
+      $("#editSupervisionOverview").collapse("show");
+      $("#editSupervision-MessageProfile").collapse("show");
+      $("#editSupervisoryWorkflow").collapse("hide");
+      $("#editAdministrativeFunctions").collapse("hide");
+      $("#editRuleLexiconMaintenance").collapse("hide");
     })
 
     $("a[href='#editSupervisoryWorkflow-content']").click(function() {
-      $("a[href='#editSupervisoryWorkflow']").click();
+      $("#editSupervisionOverview-dropdown").hide();
+      $("#editSupervisionOverview").collapse("hide");
+      $("#editSupervision-MessageProfile").collapse("hide");
+      $("#editSupervisoryWorkflow").collapse("show");
+      $("#editAdministrativeFunctions").collapse("hide");
+      $("#editRuleLexiconMaintenance").collapse("hide");
     })
 
     $("a[href='#editAdministrativeFunctions-content']").click(function() {
-      $("a[href='#editAdministrativeFunctions']").click();
+      $("#editSupervisionOverview-dropdown").hide();
+      $("#editSupervisionOverview").collapse("hide");
+      $("#editSupervision-MessageProfile").collapse("hide");
+      $("#editSupervisoryWorkflow").collapse("hide");
+      $("#editAdministrativeFunctions").collapse("show");
+      $("#editRuleLexiconMaintenance").collapse("hide");
     })
 
     $("a[href='#editRuleLexiconMaintenance-content']").click(function() {
-      $("a[href='#editRuleLexiconMaintenance']").click();
+      $("#editSupervisionOverview-dropdown").hide();
+      $("#editSupervisionOverview").collapse("hide");
+      $("#editSupervision-MessageProfile").collapse("hide");
+      $("#editSupervisoryWorkflow").collapse("hide");
+      $("#editAdministrativeFunctions").collapse("hide");
+      $("#editRuleLexiconMaintenance").collapse("show");
     })
 
     $("#print-content").hide();

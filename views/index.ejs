@@ -130,13 +130,12 @@
 
                                 <% if(user == 'anchen' || user == 'nlee' || user == 'vrathee' || user == 'sprokai') { %>
                                     <button class="btn btn-danger" onclick='delete_customer("<%= customer.name %>")'><i class="fa fa-trash"></i></button>
-                                    <a href="./history/<%= encodeURIComponent(customer.name) %>">
-                                        <button class="btn btn-primary"><i class="fa fa-history"></i></button>
-                                    </a>
-                                    <!-- <button data-toggle="modal" data-target="#editModal" class="btn btn-success center-block">Edit</button></div> -->
+                                <% } %>
+                                <a href="./history/<%= encodeURIComponent(customer.name) %>">
+                                    <button class="btn btn-primary"><i class="fa fa-history"></i></button>
+                                </a>
                             </td>
                         </tr>
-                        <% } %>
                         <!-- line modal -->
                         <div class="modal fade" id="<%= customer.name %>-editModal" tabindex="-1" role="dialog" aria-labelledby="lineModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -153,7 +152,7 @@
                                         <form id="customerForm" action="./index/<%= encodeURIComponent(customer.name) %>?_method=PUT" method="POST">
                                             <div class="form-group">
                                                 <label for="customername">Customer Name</label>
-                                                <input id="unique-customer-name" required type="text" class="form-control" placeholder="No response set" value="<%= customer.name %>"
+                                                <input id="unique-customer-name" required disabled type="text" class="form-control" placeholder="No response set" value="<%= customer.name %>"
                                                     name="customer[name]">
                                             </div>
                                             <div class="form-group">

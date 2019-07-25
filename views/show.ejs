@@ -1,81 +1,90 @@
 <% include partials/show_header %>
 
-    <div class="container" style="border: .2px solid gray; padding-right:25px; padding-left:25px; padding-bottom: 25px">
-        <div class="nav flex-column nav-pills" id="sidebar" role="tablist" aria-orientation="vertical">
-            <a class="nav-link active" id="general-tab" data-toggle="pill" href="#general-content" role="tab" aria-controls="general-content" aria-selected="true">General</a>
-            <a class="nav-link dropdown-toggle" id="emailsystems-tab" data-toggle="pill" href="#emailsystems-content" role="tab" aria-controls="general-content" aria-selected="true">Email Systems</a>
-            <div id="emailsystems-dropdown">
-              <a class="nav-link" href="#editemailsystems-1-content" style="color: mediumvioletred">On-prem Exchange w/ On-prem Appliances</a>
-              <a class="nav-link" href="#editemailsystems-2-content" style="color: mediumvioletred">O365 (Hosted Appliances)</a>
-              <a class="nav-link" href="#editemailsystems-3-content" style="color: mediumvioletred">On-prem Exchange + O365 (On-prem Appliance)</a>
-              <a class="nav-link" href="#editemailsystems-4-content" style="color: mediumvioletred">On-prem Exchange + O365 (Hosted Appliance)</a>
-            </div>
-            <a class="nav-link dropdown-toggle" id="journaling-tab" data-toggle="pill" href="#journaling-content" role="tab" aria-controls="journaling-content" aria-selected="true">Journaling</a>
-            <div id="journaling-dropdown">
-              <a class="nav-link" href="#editExchangeDetails-content" style="color: mediumvioletred">Exchange Details Appliances</a>
-              <a class="nav-link" href="#editMailVol-content" style="color: mediumvioletred">Mail volume and journaling Appliances</a>
-            </div>
-            <a class="nav-link dropdown-toggle" id="appliances-tab" data-toggle="pill" href="#appliances-content" role="tab" aria-controls="appliances-content" aria-selected="true">Appliances</a>
-            <div id="appliances-dropdown">
-              <a class="nav-link" href="#editapplianceDetails-ApplianceSizing-content" style="color: mediumvioletred">Appliance Sizing</a>
-              <a class="nav-link" href="#editapplianceDetails-ForSE-content" style="color: mediumvioletred">For SE</a>
-            </div>
-            <a class="nav-link dropdown-toggle" id="otherdatasources-tab" data-toggle="pill" href="#otherdatasources-content" role="tab" aria-controls="otherdatasources-content" aria-selected="true">Other Data Sources</a>
-            <div id="otherdatasources-dropdown">
-              <a class="nav-link" href="#editOtherDataSources-Custom-content" style="color: mediumvioletred">Custom content archiving</a>
-              <a class="nav-link" href="#editOtherDataSources-Social-content" style="color: mediumvioletred">Public social archiving</a>
-              <a class="nav-link dropdown-toggle" href="#editOtherDataSources-enterprise-content" style="color: mediumvioletred">Enterprise collaboration archiving</a>
-              <div id="editOtherDataSources-enterprise-dropdown">
-                <a class="nav-link" href="#editECA-general-content" style="color: lightseagreen;">General</a>
-                <a class="nav-link" href="#editECA-files-content" style="color: lightseagreen;">Files</a>
-                <a class="nav-link" href="#editECA-skype-content" style="color: lightseagreen;">Skype for Business Online</a>
-                <a class="nav-link" href="#editECA-skype-lync-content" style="color: lightseagreen;">Skype for Business On-Prem (Lync)</a>
-                <a class="nav-link" href="#editECA-box-onedrive-content" style="color: lightseagreen;">Box & OneDrive</a>
-                <a class="nav-link" href="#editECA-chatter-content" style="color: lightseagreen;">Chatter</a>
-                <a class="nav-link" href="#editECA-symphony-content" style="color: lightseagreen;">Symphony</a>
-              </div>
-            </div>
-            <a class="nav-link dropdown-toggle" id="desktopnetwork-tab" data-toggle="pill" href="#desktopnetwork-content" role="tab" aria-controls="desktopnetwork-content" aria-selected="true">Desktop/Network/DR</a>
-            <div id="desktopnetwork-dropdown">
-              <a class="nav-link" href="#editDesktop-Network-content" style="color: mediumvioletred">Network & Security</a>
-              <a class="nav-link" href="#editDesktop-Disaster-content" style="color: mediumvioletred">Disaster Recovery / High Probability</a>
-              <a class="nav-link" href="#editDesktop-Auth-content" style="color: mediumvioletred">Authentication (SAML & Remote Auth)</a>
-            </div>
-            <a class="nav-link dropdown-toggle" id="usage-tab" data-toggle="pill" href="#usage-content" role="tab" aria-controls="usage-content" aria-selected="true">Usage</a>
-            <div id="usage-dropdown">
-              <a class="nav-link dropdown-toggle" href="#editUsage-Supervision-content" style="color: mediumvioletred">Supervision</a>
-              <div id="editUsage-Supervision-dropdown">
-                <a class="nav-link" href="#editUsage-Supervision-Notes-content" style="color: lightseagreen;">Notes / Details</a>
-                <a class="nav-link" href="#editUsage-Supervision-Random-content" style="color: lightseagreen;">Random Sampling</a>
-                <a class="nav-link" href="#editUsage-Supervision-requirements-content" style="color: lightseagreen;">Reporting Requirements</a>
-              </div>
-              <a class="nav-link" href="#editUsage-Stubbing-content" style="color: mediumvioletred">Stubbing</a>
-              <a class="nav-link" href="#editUsage-PST-content" style="color: mediumvioletred">Content Collector - PSTs</a>
-              <a class="nav-link" href="#editUsage-Legal-content" style="color: mediumvioletred">Legal Holds</a>
-              <a class="nav-link" href="#editUsage-End-content" style="color: mediumvioletred">End User Search</a>
-              <a class="nav-link" href="#editUsage-Sync-content" style="color: mediumvioletred">Folder Sync</a>
-              <a class="nav-link" href="#editusage-transport-content" style="color: mediumvioletred">Transport Agent</a>
-              <a class="nav-link" href="#editusage-export-content" style="color: mediumvioletred">Export</a>
-            </div>
-            <a class="nav-link" id="import-tab" data-toggle="pill" href="#import-content" role="tab" aria-controls="import-content" aria-selected="false">Import</a>
-            <a class="nav-link dropdown-toggle" id="poc-tab" data-toggle="pill" href="#poc-content" role="tab" aria-controls="poc-content" aria-selected="true">POC</a>
-            <div id="poc-dropdown">
-              <a class="nav-link" href="#editPOCPOC-content" style="color: mediumvioletred">POC</a>
-              <a class="nav-link" href="#editPOCUAT-content" style="color: mediumvioletred">UAT</a>
-            </div>
-            <a class="nav-link" id="rfe-tab" data-toggle="pill" href="#rfe-content" role="tab" aria-controls="rfe-content" aria-selected="false">RFEs</a>
-            <a class="nav-link dropdown-toggle" id="finservsupervision-tab" data-toggle="pill" href="#finservsupervision-content" role="tab" aria-controls="finservsupervision-content" aria-selected="true">FINSERV Supervision</a>
-            <div id="finservsupervision-dropdown">
-              <a class="nav-link dropdown-toggle" href="#editSupervisionOverview-content" style="color: mediumvioletred">Current Supervision Overview – Digital Communication Review</a>
-              <div id="editSupervisionOverview-dropdown">
-                <a class="nav-link" href="#editSupervision-MessageProfile-content" style="color: lightseagreen;">Message Sampling Profiles</a>
-              </div>
-              <a class="nav-link" href="#editSupervisoryWorkflow-content" style="color: mediumvioletred">Supervisory Workflow</a>
-              <a class="nav-link" href="#editAdministrativeFunctions-content" style="color: mediumvioletred">Administrative Functions</a>
-              <a class="nav-link" href="#editRuleLexiconMaintenance-content" style="color: mediumvioletred">Rule/Lexicons Maintenance</a>
-            </div>
-            <a class="nav-link" id="designsummary-tab" data-toggle="pill" href="#designsummary-content" role="tab" aria-controls="designsummary-content" aria-selected="false">Design Summary</a>
-        </div>
+<div class="page-wrapper">
+  <nav id="sidebar" class="sidebar-wrapper navbar navbar-dark bg-dark">
+    <div class="sidebar-content">
+      <div class="sidebar-menu">
+        <nav class="nav flex-column nav-pills" id="sidebar" role="tablist" aria-orientation="vertical">
+          <a class="nav-link ml-2 my-1 active" id="general-tab" data-toggle="pill" href="#general-content" role="tab" aria-controls="general-content" aria-selected="true">General</a>
+          <a class="nav-link ml-2 my-1 dropdown-toggle" id="emailsystems-tab" data-toggle="pill" href="#emailsystems-content" role="tab" aria-controls="general-content" aria-selected="true">Email Systems</a>
+          <nav class="nav flex-column nav-pills" id="emailsystems-dropdown">
+            <a class="nav-link ml-3 my-1" href="#editemailsystems-1-content" style="color: mediumvioletred">On-prem Exchange w/ On-prem Appliances</a>
+            <a class="nav-link ml-3 my-1" href="#editemailsystems-2-content" style="color: mediumvioletred">O365 (Hosted Appliances)</a>
+            <a class="nav-link ml-3 my-1" href="#editemailsystems-3-content" style="color: mediumvioletred">On-prem Exchange + O365 (On-prem Appliance)</a>
+            <a class="nav-link ml-3 my-1" href="#editemailsystems-4-content" style="color: mediumvioletred">On-prem Exchange + O365 (Hosted Appliance)</a>
+          </nav>
+          <a class="nav-link ml-2 my-1 dropdown-toggle" id="journaling-tab" data-toggle="pill" href="#journaling-content" role="tab" aria-controls="journaling-content" aria-selected="true">Journaling</a>
+          <nav class="nav flex-column nav-pills" id="journaling-dropdown">
+            <a class="nav-link ml-3 my-1" href="#editExchangeDetails-content" style="color: mediumvioletred">Exchange Details Appliances</a>
+            <a class="nav-link ml-3 my-1" href="#editMailVol-content" style="color: mediumvioletred">Mail volume and journaling Appliances</a>
+          </nav>
+          <a class="nav-link ml-2 my-1 dropdown-toggle" id="appliances-tab" data-toggle="pill" href="#appliances-content" role="tab" aria-controls="appliances-content" aria-selected="true">Appliances</a>
+          <nav class="nav flex-column nav-pills" id="appliances-dropdown">
+            <a class="nav-link ml-3 my-1" href="#editapplianceDetails-ApplianceSizing-content" style="color: mediumvioletred">Appliance Sizing</a>
+            <a class="nav-link ml-3 my-1" href="#editapplianceDetails-ForSE-content" style="color: mediumvioletred">For SE</a>
+          </nav>
+          <a class="nav-link ml-2 my-1 dropdown-toggle" id="otherdatasources-tab" data-toggle="pill" href="#otherdatasources-content" role="tab" aria-controls="otherdatasources-content" aria-selected="true">Other Data Sources</a>
+          <nav class="nav flex-column nav-pills" id="otherdatasources-dropdown">
+            <a class="nav-link ml-3 my-1" href="#editOtherDataSources-Custom-content" style="color: mediumvioletred">Custom content archiving</a>
+            <a class="nav-link ml-3 my-1" href="#editOtherDataSources-Social-content" style="color: mediumvioletred">Public social archiving</a>
+            <a class="nav-link ml-3 my-1 dropdown-toggle" href="#editOtherDataSources-enterprise-content" style="color: mediumvioletred">Enterprise collaboration archiving</a>
+            <nav class="nav flex-column nav-pills" id="editOtherDataSources-enterprise-dropdown">
+              <a class="nav-link ml-4 my-1" href="#editECA-general-content" style="color: lightseagreen;">General</a>
+              <a class="nav-link ml-4 my-1" href="#editECA-files-content" style="color: lightseagreen;">Files</a>
+              <a class="nav-link ml-4 my-1" href="#editECA-skype-content" style="color: lightseagreen;">Skype for Business Online</a>
+              <a class="nav-link ml-4 my-1" href="#editECA-skype-lync-content" style="color: lightseagreen;">Skype for Business On-Prem (Lync)</a>
+              <a class="nav-link ml-4 my-1" href="#editECA-box-onedrive-content" style="color: lightseagreen;">Box & OneDrive</a>
+              <a class="nav-link ml-4 my-1" href="#editECA-chatter-content" style="color: lightseagreen;">Chatter</a>
+              <a class="nav-link ml-4 my-1" href="#editECA-symphony-content" style="color: lightseagreen;">Symphony</a>
+            </nav>
+          </nav>
+          <a class="nav-link ml-2 my-1 dropdown-toggle" id="desktopnetwork-tab" data-toggle="pill" href="#desktopnetwork-content" role="tab" aria-controls="desktopnetwork-content" aria-selected="true">Desktop/Network/DR</a>
+          <nav class="nav flex-column nav-pills" id="desktopnetwork-dropdown">
+            <a class="nav-link ml-3 my-1" href="#editDesktop-Network-content" style="color: mediumvioletred">Network & Security</a>
+            <a class="nav-link ml-3 my-1" href="#editDesktop-Disaster-content" style="color: mediumvioletred">Disaster Recovery / High Probability</a>
+            <a class="nav-link ml-3 my-1" href="#editDesktop-Auth-content" style="color: mediumvioletred">Authentication (SAML & Remote Auth)</a>
+          </nav>
+          <a class="nav-link ml-2 my-1 dropdown-toggle" id="usage-tab" data-toggle="pill" href="#usage-content" role="tab" aria-controls="usage-content" aria-selected="true">Usage</a>
+          <nav class="nav flex-column nav-pills" id="usage-dropdown">
+            <a class="nav-link ml-3 my-1 dropdown-toggle" href="#editUsage-Supervision-content" style="color: mediumvioletred">Supervision</a>
+            <nav class="nav flex-column nav-pills" id="editUsage-Supervision-dropdown">
+              <a class="nav-link ml-4 my-1" href="#editUsage-Supervision-Notes-content" style="color: lightseagreen;">Notes / Details</a>
+              <a class="nav-link ml-4 my-1" href="#editUsage-Supervision-Random-content" style="color: lightseagreen;">Random Sampling</a>
+              <a class="nav-link ml-4 my-1" href="#editUsage-Supervision-requirements-content" style="color: lightseagreen;">Reporting Requirements</a>
+            </nav>
+            <a class="nav-link ml-3 my-1" href="#editUsage-Stubbing-content" style="color: mediumvioletred">Stubbing</a>
+            <a class="nav-link ml-3 my-1" href="#editUsage-PST-content" style="color: mediumvioletred">Content Collector - PSTs</a>
+            <a class="nav-link ml-3 my-1" href="#editUsage-Legal-content" style="color: mediumvioletred">Legal Holds</a>
+            <a class="nav-link ml-3 my-1" href="#editUsage-End-content" style="color: mediumvioletred">End User Search</a>
+            <a class="nav-link ml-3 my-1" href="#editUsage-Sync-content" style="color: mediumvioletred">Folder Sync</a>
+            <a class="nav-link ml-3 my-1" href="#editusage-transport-content" style="color: mediumvioletred">Transport Agent</a>
+            <a class="nav-link ml-3 my-1" href="#editusage-export-content" style="color: mediumvioletred">Export</a>
+          </nav>
+          <a class="nav-link ml-2 my-1" id="import-tab" data-toggle="pill" href="#import-content" role="tab" aria-controls="import-content" aria-selected="false">Import</a>
+          <a class="nav-link ml-2 my-1 dropdown-toggle" id="poc-tab" data-toggle="pill" href="#poc-content" role="tab" aria-controls="poc-content" aria-selected="true">POC</a>
+          <nav class="nav flex-column nav-pills" id="poc-dropdown">
+            <a class="nav-link ml-3 my-1" href="#editPOCPOC-content" style="color: mediumvioletred">POC</a>
+            <a class="nav-link ml-3 my-1" href="#editPOCUAT-content" style="color: mediumvioletred">UAT</a>
+          </nav>
+          <a class="nav-link ml-2 my-1" id="rfe-tab" data-toggle="pill" href="#rfe-content" role="tab" aria-controls="rfe-content" aria-selected="false">RFEs</a>
+          <a class="nav-link ml-2 my-1 dropdown-toggle" id="finservsupervision-tab" data-toggle="pill" href="#finservsupervision-content" role="tab" aria-controls="finservsupervision-content" aria-selected="true">FINSERV Supervision</a>
+          <nav class="nav flex-column nav-pills" id="finservsupervision-dropdown">
+            <a class="nav-link ml-3 my-1 dropdown-toggle" href="#editSupervisionOverview-content" style="color: mediumvioletred">Current Supervision Overview – Digital Communication Review</a>
+            <nav class="nav flex-column nav-pills" id="editSupervisionOverview-dropdown">
+              <a class="nav-link ml-4 my-1" href="#editSupervision-MessageProfile-content" style="color: lightseagreen;">Message Sampling Profiles</a>
+            </nav>
+            <a class="nav-link ml-3 my-1" href="#editSupervisoryWorkflow-content" style="color: mediumvioletred">Supervisory Workflow</a>
+            <a class="nav-link ml-3 my-1" href="#editAdministrativeFunctions-content" style="color: mediumvioletred">Administrative Functions</a>
+            <a class="nav-link ml-3 my-1" href="#editRuleLexiconMaintenance-content" style="color: mediumvioletred">Rule/Lexicons Maintenance</a>
+          </nav>
+          <a class="nav-link ml-2 my-1" id="designsummary-tab" data-toggle="pill" href="#designsummary-content" role="tab" aria-controls="designsummary-content" aria-selected="false">Design Summary</a>
+        </nav>
+      </div>
+    </div>
+  </nav>
+  <main class="page-content toggled">
+    <div class="container-fluid">
+      <div class="container" style="border: .2px solid gray; padding-right:25px; padding-left:25px; padding-bottom: 25px">
         <div class="tab-content" id="content">
           <div id="customerHeader">
               <h1 style="text-align: center; padding-top:15px; font-size: 70px;">
@@ -84,7 +93,24 @@
           </div>
           <div id="detail" class="display-header">
               <h4>Project Details</h4>
-              <button class="btn btn-primary" id="print-button">Print</button>
+              <div class="row">
+                <div class="col d-flex justify-content-around">
+                  <div>
+                    <button class="btn btn-primary" id="print-button">Print</button>
+                  </div>
+                </div>
+                <div class="col d-flex justify-content-around">
+                  <form class="form-inline" action="/import/<%= encodeURIComponent(customer.name) %>" method="POST" enctype="multipart/form-data">
+                    <input type="file" class="form-control-file" name="file" required>
+                    <button type="submit" class="btn btn-primary">Import</button>
+                  </form>
+                </div>
+                <div class="col d-flex justify-content-around">
+                  <form action="/export/<%= encodeURIComponent(customer.name) %>" method="POST">
+                    <button type="submit" class="btn btn-primary">Export</button>
+                  </form>
+                </div>
+              </div>
               <button type="button" value="Expand All" id="collapse-toggle" onclick="expand_collapse()" class="pull btn btn-primary">
                   Expand All
               </button>
@@ -145,7 +171,10 @@
             <% include sections/12-DesignSummary.ejs %>
           </div>
         </div>
+      </div>
     </div>
+  </main>
+</div>
 
     <script type="text/javascript" src="/scripts/show.js"></script>
     <script type="text/javascript" src="/scripts/sync_inputs.js"></script>

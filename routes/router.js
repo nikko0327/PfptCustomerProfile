@@ -2,6 +2,14 @@ var express = require("express");
 var mongoose = require("mongoose");
 var bcrypt = require("bcrypt");
 var nodemailer = require("nodemailer");
+var mongoxlsx = require("mongo-xlsx");
+var XlsxPopulate = require("xlsx-populate");
+var _ = require("lodash");
+var multer = require("multer");
+var upload = multer({dest: "./public/files"});
+var fs = require("fs");
+var fse = require("fs-extra");
+var glob = require("glob");
 var router = express.Router();
 require("dotenv").config();
 
@@ -315,6 +323,139 @@ router.put("/index/:id", authenticate_session, function (req, res) {
             await RFEQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
             await UsageQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
             await FinservSupervisionQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            if (req.params.id != req.body.customer["name"]) {
+              Customer.findOne({ name: req.body.customer["name"] })
+              .then(customer => {
+                //update the version array in the versioned collection
+                CustomerVersions.findOne({ refId: customer._id })
+                .then(version => {
+                  version.versions.forEach(version => {
+                    version.name = req.body.customer["name"];
+                  })
+                  version.save();
+                })
+                ApplianceQuestions.findOne({ name: req.body.customer["name"] })
+                .then(questions => {
+                  ApplianceQuestionsVersions.findOne({ refId: customer._id })
+                  .then(version => {
+                    version.versions.forEach(version => {
+                      version.name = req.body.customer["name"];
+                    })
+                    version.save();
+                  })
+                })
+                DesignSummaryQuestions.findOne({ name: req.body.customer["name"] })
+                .then(questions => {
+                  DesignSummaryQuestionsVersions.findOne({ refId: customer._id })
+                  .then(version => {
+                    version.versions.forEach(version => {
+                      version.name = req.body.customer["name"];
+                    })
+                    version.save();
+                  })
+                })
+                DesktopNetworkQuestions.findOne({ name: req.body.customer["name"] })
+                .then(questions => {
+                  DesktopNetworkQuestionsVersions.findOne({ refId: customer._id })
+                  .then(version => {
+                    version.versions.forEach(version => {
+                      version.name = req.body.customer["name"];
+                    })
+                    version.save();
+                  })
+                })
+                EmailPSQuestions.findOne({ name: req.body.customer["name"] })
+                .then(questions => {
+                  EmailPSQuestionsVersions.findOne({ refId: customer._id })
+                  .then(version => {
+                    version.versions.forEach(version => {
+                      version.name = req.body.customer["name"];
+                    })
+                    version.save();
+                  })
+                })
+                EmailSEQuestions.findOne({ name: req.body.customer["name"] })
+                .then(questions => {
+                  EmailSEQuestionsVersions.findOne({ refId: customer._id })
+                  .then(version => {
+                    version.versions.forEach(version => {
+                      version.name = req.body.customer["name"];
+                    })
+                    version.save();
+                  })
+                })
+                ImportQuestions.findOne({ name: req.body.customer["name"] })
+                .then(questions => {
+                  ImportQuestionsVersions.findOne({ refId: customer._id })
+                  .then(version => {
+                    version.versions.forEach(version => {
+                      version.name = req.body.customer["name"];
+                    })
+                    version.save();
+                  })
+                })
+                JournalingQuestions.findOne({ name: req.body.customer["name"] })
+                .then(questions => {
+                  JournalingQuestionsVersions.findOne({ refId: customer._id })
+                  .then(version => {
+                    version.versions.forEach(version => {
+                      version.name = req.body.customer["name"];
+                    })
+                    version.save();
+                  })
+                })
+                OtherDataSourcesQuestions.findOne({ name: req.body.customer["name"] })
+                .then(questions => {
+                  OtherDataSourcesQuestionsVersions.findOne({ refId: customer._id })
+                  .then(version => {
+                    version.versions.forEach(version => {
+                      version.name = req.body.customer["name"];
+                    })
+                    version.save();
+                  })
+                })
+                POCQuestions.findOne({ name: req.body.customer["name"] })
+                .then(questions => {
+                  POCQuestionsVersions.findOne({ refId: customer._id })
+                  .then(version => {
+                    version.versions.forEach(version => {
+                      version.name = req.body.customer["name"];
+                    })
+                    version.save();
+                  })
+                })
+                RFEQuestions.findOne({ name: req.body.customer["name"] })
+                .then(questions => {
+                  RFEQuestionsVersions.findOne({ refId: customer._id })
+                  .then(version => {
+                    version.versions.forEach(version => {
+                      version.name = req.body.customer["name"];
+                    })
+                    version.save();
+                  })
+                })
+                UsageQuestions.findOne({ name: req.body.customer["name"] })
+                .then(questions => {
+                  UsageQuestionsVersions.findOne({ refId: customer._id })
+                  .then(version => {
+                    version.versions.forEach(version => {
+                      version.name = req.body.customer["name"];
+                    })
+                    version.save();
+                  })
+                })
+                FinservSupervisionQuestions.findOne({ name: req.body.customer["name"] })
+                .then(questions => {
+                  FinservSupervisionQuestionsVersions.findOne({ refId: customer._id })
+                  .then(version => {
+                    version.versions.forEach(version => {
+                      version.name = req.body.customer["name"];
+                    })
+                    version.save();
+                  })
+                })
+              })
+            }
         }
 
         // Only if all the queries finish, redirect the page to the new customer name.
@@ -372,7 +513,8 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         ApplianceQuestions.findOneAndUpdate({ name: req.params.id }, req.body.appliance_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             console.log("Done");
-            res.status(200).json("{}");
+            updateVersions({ name: req.body.appliance_questions["name"] });
+            // res.status(200).json("{}");
         }).catch((error) => {
             console.log(error);
             res.redirect(append + "/index");
@@ -385,7 +527,8 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         DesignSummaryQuestions.findOneAndUpdate({ name: req.params.id }, req.body.design_summary_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             console.log("Done");
-            res.status(200).json("{}");
+            updateVersions({ name: req.body.design_summary_questions["name"] });
+            // res.status(200).json("{}");
         }).catch((error) => {
             console.log(error);
             res.redirect(append + "/index");
@@ -398,7 +541,8 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         DesktopNetworkQuestions.findOneAndUpdate({ name: req.params.id }, req.body.desktop_network_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             console.log("Done");
-            res.status(200).json("{}");
+            updateVersions({ name: req.body.desktop_network_questions["name"] });
+            // res.status(200).json("{}");
         }).catch((error) => {
             console.log(error);
             res.redirect(append + "/index");
@@ -412,7 +556,8 @@ router.put("/index/:id", authenticate_session, function (req, res) {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             //console.log(req.body.email_se_questions);
             console.log("Done");
-            res.status(200).json("{}");
+            updateVersions({ name: req.body.email_se_questions["name"] });
+            // res.status(200).json("{}");
         }).catch((error) => {
             console.log(error);
             res.redirect(append + "/index");
@@ -425,7 +570,8 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         EmailPSQuestions.findOneAndUpdate({ "name": req.params.id }, req.body.email_ps_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             console.log("Done");
-            res.status(200).json("{}");
+            updateVersions({ name: req.body.email_ps_questions["name"] });
+            // res.status(200).json("{}");
         }).catch((error) => {
             console.log(error);
             res.redirect(append + "/index");
@@ -438,7 +584,8 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         ImportQuestions.findOneAndUpdate({ "name": req.params.id }, req.body.import_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             console.log("Done");
-            res.status(200).json("{}");
+            updateVersions({ name: req.body.import_questions["name"] });
+            // res.status(200).json("{}");
         }).catch((error) => {
             console.log(error);
             res.redirect(append + "/index");
@@ -451,7 +598,8 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         JournalingQuestions.findOneAndUpdate({ "name": req.params.id }, req.body.journaling_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             console.log("Done");
-            res.status(200).json("{}");
+            updateVersions({ name: req.body.journaling_questions["name"] });
+            // res.status(200).json("{}");
         }).catch((error) => {
             console.log(error);
             res.redirect(append + "/index");
@@ -464,7 +612,8 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         OtherDataSourcesQuestions.findOneAndUpdate({ name: req.params.id }, req.body.other_data_source_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             console.log("Done");
-            res.status(200).json("{}");
+            updateVersions({ name: req.body.other_data_source_questions["name"] });
+            // res.status(200).json("{}");
         }).catch((error) => {
             console.log(error);
             res.redirect(append + "/index");
@@ -477,7 +626,8 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         POCQuestions.findOneAndUpdate({ name: req.params.id }, req.body.poc_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             console.log("Done");
-            res.status(200).json("{}");
+            updateVersions({ name: req.body.poc_questions["name"] });
+            // res.status(200).json("{}");
         }).catch((error) => {
             console.log(error);
             res.redirect(append + "/index");
@@ -490,7 +640,8 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         RFEQuestions.findOneAndUpdate({ name: req.params.id }, req.body.rfe_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             console.log("Done");
-            res.status(200).json("{}");
+            updateVersions({ name: req.body.rfe_questions["name"] });
+            // res.status(200).json("{}");
         }).catch((error) => {
             console.log(error);
             res.redirect(append + "/index");
@@ -503,7 +654,8 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         UsageQuestions.findOneAndUpdate({ name: req.params.id }, req.body.usage_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             console.log("Done");
-            res.status(200).json("{}");
+            updateVersions({ name: req.body.usage_questions["name"] });
+            // res.status(200).json("{}");
         }).catch((error) => {
             console.log(error);
             res.redirect(append + "/index");
@@ -516,121 +668,123 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         FinservSupervisionQuestions.findOneAndUpdate({ name: req.params.id }, req.body.finserv_supervision_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             console.log("Done");
-            res.status(200).json("{}");
+            updateVersions({ name: req.body.finserv_supervision_questions["name"] });
+            // res.status(200).json("{}");
         }).catch((error) => {
             console.log(error);
             res.redirect(append + "/index");
         });
     }
 
-    Customer.findOne({ name: req.body.customer["name"] })
-    .then(customer => {
-      //update the version array in the versioned collection
-      CustomerVersions.findOne({ refId: customer._id })
-      .then(version => {
-        version.versions.push(customer);
-        version.save();
-      })
-      ApplianceQuestions.findOne({ name: req.body.customer["name"] })
-      .then(questions => {
-        ApplianceQuestionsVersions.findOne({ refId: customer._id })
+    function updateVersions(search_term) {
+      Customer.findOne(search_term)
+      .then(customer => {
+        //update the version array in the versioned collection
+        CustomerVersions.findOne({ refId: customer._id })
         .then(version => {
-          version.versions.push(questions);
+          version.versions.push(customer);
           version.save();
         })
-      })
-      DesignSummaryQuestions.findOne({ name: req.body.customer["name"] })
-      .then(questions => {
-        DesignSummaryQuestionsVersions.findOne({ refId: customer._id })
-        .then(version => {
-          version.versions.push(questions);
-          version.save();
+        ApplianceQuestions.findOne(search_term)
+        .then(questions => {
+          ApplianceQuestionsVersions.findOne({ refId: customer._id })
+          .then(version => {
+            version.versions.push(questions);
+            version.save();
+          })
+        })
+        DesignSummaryQuestions.findOne(search_term)
+        .then(questions => {
+          DesignSummaryQuestionsVersions.findOne({ refId: customer._id })
+          .then(version => {
+            version.versions.push(questions);
+            version.save();
+          })
+        })
+        DesktopNetworkQuestions.findOne(search_term)
+        .then(questions => {
+          DesktopNetworkQuestionsVersions.findOne({ refId: customer._id })
+          .then(version => {
+            version.versions.push(questions);
+            version.save();
+          })
+        })
+        EmailPSQuestions.findOne(search_term)
+        .then(questions => {
+          EmailPSQuestionsVersions.findOne({ refId: customer._id })
+          .then(version => {
+            version.versions.push(questions);
+            version.save();
+          })
+        })
+        EmailSEQuestions.findOne(search_term)
+        .then(questions => {
+          EmailSEQuestionsVersions.findOne({ refId: customer._id })
+          .then(version => {
+            version.versions.push(questions);
+            version.save();
+          })
+        })
+        ImportQuestions.findOne(search_term)
+        .then(questions => {
+          ImportQuestionsVersions.findOne({ refId: customer._id })
+          .then(version => {
+            version.versions.push(questions);
+            version.save();
+          })
+        })
+        JournalingQuestions.findOne(search_term)
+        .then(questions => {
+          JournalingQuestionsVersions.findOne({ refId: customer._id })
+          .then(version => {
+            version.versions.push(questions);
+            version.save();
+          })
+        })
+        OtherDataSourcesQuestions.findOne(search_term)
+        .then(questions => {
+          OtherDataSourcesQuestionsVersions.findOne({ refId: customer._id })
+          .then(version => {
+            version.versions.push(questions);
+            version.save();
+          })
+        })
+        POCQuestions.findOne(search_term)
+        .then(questions => {
+          POCQuestionsVersions.findOne({ refId: customer._id })
+          .then(version => {
+            version.versions.push(questions);
+            version.save();
+          })
+        })
+        RFEQuestions.findOne(search_term)
+        .then(questions => {
+          RFEQuestionsVersions.findOne({ refId: customer._id })
+          .then(version => {
+            version.versions.push(questions);
+            version.save();
+          })
+        })
+        UsageQuestions.findOne(search_term)
+        .then(questions => {
+          UsageQuestionsVersions.findOne({ refId: customer._id })
+          .then(version => {
+            version.versions.push(questions);
+            version.save();
+          })
+        })
+        FinservSupervisionQuestions.findOne(search_term)
+        .then(questions => {
+          FinservSupervisionQuestionsVersions.findOne({ refId: customer._id })
+          .then(version => {
+            version.versions.push(questions);
+            version.save();
+          })
         })
       })
-      DesktopNetworkQuestions.findOne({ name: req.body.customer["name"] })
-      .then(questions => {
-        DesktopNetworkQuestionsVersions.findOne({ refId: customer._id })
-        .then(version => {
-          version.versions.push(questions);
-          version.save();
-        })
-      })
-      EmailPSQuestions.findOne({ name: req.body.customer["name"] })
-      .then(questions => {
-        EmailPSQuestionsVersions.findOne({ refId: customer._id })
-        .then(version => {
-          version.versions.push(questions);
-          version.save();
-        })
-      })
-      EmailSEQuestions.findOne({ name: req.body.customer["name"] })
-      .then(questions => {
-        EmailSEQuestionsVersions.findOne({ refId: customer._id })
-        .then(version => {
-          version.versions.push(questions);
-          version.save();
-        })
-      })
-      ImportQuestions.findOne({ name: req.body.customer["name"] })
-      .then(questions => {
-        ImportQuestionsVersions.findOne({ refId: customer._id })
-        .then(version => {
-          version.versions.push(questions);
-          version.save();
-        })
-      })
-      JournalingQuestions.findOne({ name: req.body.customer["name"] })
-      .then(questions => {
-        JournalingQuestionsVersions.findOne({ refId: customer._id })
-        .then(version => {
-          version.versions.push(questions);
-          version.save();
-        })
-      })
-      OtherDataSourcesQuestions.findOne({ name: req.body.customer["name"] })
-      .then(questions => {
-        OtherDataSourcesQuestionsVersions.findOne({ refId: customer._id })
-        .then(version => {
-          version.versions.push(questions);
-          version.save();
-        })
-      })
-      POCQuestions.findOne({ name: req.body.customer["name"] })
-      .then(questions => {
-        POCQuestionsVersions.findOne({ refId: customer._id })
-        .then(version => {
-          version.versions.push(questions);
-          version.save();
-        })
-      })
-      RFEQuestions.findOne({ name: req.body.customer["name"] })
-      .then(questions => {
-        RFEQuestionsVersions.findOne({ refId: customer._id })
-        .then(version => {
-          version.versions.push(questions);
-          version.save();
-        })
-      })
-      UsageQuestions.findOne({ name: req.body.customer["name"] })
-      .then(questions => {
-        UsageQuestionsVersions.findOne({ refId: customer._id })
-        .then(version => {
-          version.versions.push(questions);
-          version.save();
-        })
-      })
-      FinservSupervisionQuestions.findOne({ name: req.body.customer["name"] })
-      .then(questions => {
-        FinservSupervisionQuestionsVersions.findOne({ refId: customer._id })
-        .then(version => {
-          version.versions.push(questions);
-          version.save();
-        })
-      })
-    })
-    .catch(e => {
-      console.log(e);
-    })
+    }
+
+    updateVersions({ name: req.body.customer["name"] });
 });
 
 //INDEX ROUTE
@@ -658,19 +812,33 @@ router.delete("/index/:id", authenticate_session, function (req, res) {
     console.log("-- Attemping to delete customer " + req.params.id);
 
     async function delete_customer(search_term) {
+        var refId = await Customer.findOne({ name: req.params.id });
         ApplianceQuestions.findOneAndRemove(search_term).exec();
+        ApplianceQuestionsVersions.findOneAndRemove({ refId: refId }).exec();
         Customer.findOneAndRemove(search_term).exec();
+        CustomerVersions.findOneAndRemove({ refId: refId }).exec();
         DesignSummaryQuestions.findOneAndRemove(search_term).exec();
+        DesignSummaryQuestionsVersions.findOneAndRemove({ refId: refId }).exec();
         DesktopNetworkQuestions.findOneAndRemove(search_term).exec();
+        DesktopNetworkQuestionsVersions.findOneAndRemove({ refId: refId }).exec();
         EmailPSQuestions.findOneAndRemove(search_term).exec();
+        EmailPSQuestionsVersions.findOneAndRemove({ refId: refId }).exec();
         EmailSEQuestions.findOneAndRemove(search_term).exec();
+        EmailSEQuestionsVersions.findOneAndRemove({ refId: refId }).exec();
         ImportQuestions.findOneAndRemove(search_term).exec();
+        ImportQuestionsVersions.findOneAndRemove({ refId: refId }).exec();
         JournalingQuestions.findOneAndRemove(search_term).exec();
+        JournalingQuestionsVersions.findOneAndRemove({ refId: refId }).exec();
         OtherDataSourcesQuestions.findOneAndRemove(search_term).exec();
+        OtherDataSourcesQuestionsVersions.findOneAndRemove({ refId: refId }).exec();
         POCQuestions.findOneAndRemove(search_term).exec();
+        POCQuestionsVersions.findOneAndRemove({ refId: refId }).exec();
         RFEQuestions.findOneAndRemove(search_term).exec();
+        RFEQuestionsVersions.findOneAndRemove({ refId: refId }).exec();
         UsageQuestions.findOneAndRemove(search_term).exec();
+        UsageQuestionsVersions.findOneAndRemove({ refId: refId }).exec();
         FinservSupervisionQuestions.findOneAndRemove(search_term).exec();
+        FinservSupervisionQuestionsVersions.findOneAndRemove({ refId: refId }).exec();
     }
 
     delete_customer({ "name": req.params.id }).then((result) => {
@@ -683,6 +851,26 @@ router.delete("/index/:id", authenticate_session, function (req, res) {
 
 // SHOW ROUTE
 router.get("/index/:id", authenticate_session, function (req, res) {
+    //delete files created by import
+    fse.emptyDir("./public/files", function(err) {
+      if (err) {
+        console.log(err);
+      }
+    })
+
+    //delete files created by export
+    glob("*.xlsx", function(err, files) {
+      files.forEach(file => {
+        if (err) {
+          console.log(err);
+        }
+        fse.remove(file, function(err) {
+          if (err) {
+            console.log(err);
+          }
+        })
+      })
+    })
 
     // ATTEMPTING TO ESCAPE CALLBACK HELL: ESCAPED B O I S
 
@@ -732,6 +920,195 @@ router.get("/index/:id", authenticate_session, function (req, res) {
     });
 });
 
+router.post("/import/:id", authenticate_session, upload.single("file"), function (req, res) {
+  //convert Excel spreadsheets to MongoDB data
+  function convertData(collection, workbook) {
+    collection.findOne({ name: req.params.id })
+    .then(questions => {
+      var model = mongoxlsx.buildDynamicModel(questions);
+      mongoxlsx.xlsx2MongoData(workbook, model, function(err, data) {
+        if (err) {
+          console.log(err);
+        }
+        else {
+          data = data[0];
+          data = _.omit(data, ["name"]);
+          collection.findOneAndUpdate({ name: req.params.id }, data)
+          .then(questions => {
+
+          })
+          .catch(e => {
+            console.log(e);
+          })
+        }
+      })
+    })
+    .catch(e => {
+      console.log(e);
+    })
+  }
+
+  //split one workbook with multiple worksheets into multiple workbooks
+  function splitWorkbooks(collection, section) {
+    XlsxPopulate.fromFileAsync(req.file.path)
+    .then(workbook => {
+      XlsxPopulate.fromBlankAsync()
+      .then(newWorkbook => {
+        var newSheet = newWorkbook.sheet(0);
+        var usedRange = workbook.sheet(section).usedRange();
+        var oldValues = usedRange.value();
+        newSheet.range(usedRange.address()).value(oldValues);
+        newWorkbook.toFileAsync(`${section}.xlsx`)
+        .then(file => {
+          convertData(collection, `${section}.xlsx`);
+        })
+        .catch(e => {
+          console.log(e);
+        })
+      })
+      .catch(e => {
+        console.log(e);
+      })
+    })
+    .catch(e => {
+      console.log(e);
+    })
+  }
+
+  splitWorkbooks(Customer, "customer");
+  splitWorkbooks(ApplianceQuestions, "appliance");
+  splitWorkbooks(DesignSummaryQuestions, "design_summary");
+  splitWorkbooks(DesktopNetworkQuestions, "desktop_network");
+  splitWorkbooks(EmailPSQuestions, "email_ps");
+  splitWorkbooks(EmailSEQuestions, "email_se");
+  splitWorkbooks(ImportQuestions, "import");
+  splitWorkbooks(JournalingQuestions, "journaling");
+  splitWorkbooks(OtherDataSourcesQuestions, "other_data_source");
+  splitWorkbooks(POCQuestions, "poc");
+  splitWorkbooks(RFEQuestions, "rfe");
+  splitWorkbooks(UsageQuestions, "usage");
+  splitWorkbooks(FinservSupervisionQuestions, "finserv_supervision");
+
+  res.redirect(`/index/${req.params.id}`);
+})
+
+router.post("/export/:id", authenticate_session, function (req, res) {
+  //find MongoDB data
+  async function query() {
+    var data = {};
+    data["customer"] = await Customer.find({ name: req.params.id }).exec();
+    data["appliance"] = await ApplianceQuestions.find({ name: req.params.id }).exec();
+    data["design_summary"] = await DesignSummaryQuestions.find({ name: req.params.id }).exec();
+    data["desktop_network"] = await DesktopNetworkQuestions.find({ name: req.params.id }).exec();
+    data["email_ps"] = await EmailPSQuestions.find({ name: req.params.id }).exec();
+    data["email_se"] = await EmailSEQuestions.find({ name: req.params.id }).exec();
+    data["import"] = await ImportQuestions.find({ name: req.params.id }).exec();
+    data["journaling"] = await JournalingQuestions.find({ name: req.params.id }).exec();
+    data["other_data_source"] = await OtherDataSourcesQuestions.find({ name: req.params.id }).exec();
+    data["poc"] = await POCQuestions.find({ name: req.params.id }).exec();
+    data["rfe"] = await RFEQuestions.find({ name: req.params.id }).exec();
+    data["usage"] = await UsageQuestions.find({ name: req.params.id }).exec();
+    data["finserv_supervision"] = await FinservSupervisionQuestions.find({ name: req.params.id }).exec();
+    return data;
+  }
+
+  query()
+  .then(data => {
+    //convert MongoDB data to Excel spreadsheets
+    function convertData(section) {
+      if (section == "customer") {
+        data[section][0] = _.omit(data[section][0].toObject(), ["_id", "__v", "createdAt", "updatedAt", "createdBy", "updatedBy"]);
+      }
+      else {
+        data[section][0] = _.omit(data[section][0].toObject(), ["_id", "__v"]);
+      }
+      var model = mongoxlsx.buildDynamicModel(data[section]);
+      mongoxlsx.mongoData2Xlsx(data[section], model, function(err, data) {
+        if (err) {
+          console.log(err);
+        }
+        else {
+          console.log(data.fullPath);
+          return new Promise((resolve, reject) => {
+            resolve(data.fullPath);
+          })
+        }
+      })
+    }
+
+    Promise.all([
+      convertData("customer"),
+      convertData("appliance"),
+      convertData("design_summary"),
+      convertData("desktop_network"),
+      convertData("email_ps"),
+      convertData("email_se"),
+      convertData("import"),
+      convertData("journaling"),
+      convertData("other_data_source"),
+      convertData("poc"),
+      convertData("rfe"),
+      convertData("usage"),
+      convertData("finserv_supervision")
+    ])
+    .then(files => {
+      Promise.all([
+        XlsxPopulate.fromFileAsync(files[0]),
+        XlsxPopulate.fromFileAsync(files[1]),
+        XlsxPopulate.fromFileAsync(files[2]),
+        XlsxPopulate.fromFileAsync(files[3]),
+        XlsxPopulate.fromFileAsync(files[4]),
+        XlsxPopulate.fromFileAsync(files[5]),
+        XlsxPopulate.fromFileAsync(files[6]),
+        XlsxPopulate.fromFileAsync(files[7]),
+        XlsxPopulate.fromFileAsync(files[8]),
+        XlsxPopulate.fromFileAsync(files[9]),
+        XlsxPopulate.fromFileAsync(files[10]),
+        XlsxPopulate.fromFileAsync(files[11]),
+        XlsxPopulate.fromFileAsync(files[12])
+      ])
+      .then(workbooks => {
+        workbooks[0].sheet(0).name("customer");
+
+        //combine multiple workbooks into one workbook with multiple worksheets
+        function combineWorkbooks(workbook1, workbook2, section) {
+          var newSheet = workbook1.addSheet(section);
+          var usedRange = workbook2.sheets()[0].usedRange();
+          var oldValues = usedRange.value();
+          newSheet.range(usedRange.address()).value(oldValues);
+        }
+
+        combineWorkbooks(workbooks[0], workbooks[1], "appliance");
+        combineWorkbooks(workbooks[0], workbooks[2], "design_summary");
+        combineWorkbooks(workbooks[0], workbooks[3], "desktop_network");
+        combineWorkbooks(workbooks[0], workbooks[4], "email_ps");
+        combineWorkbooks(workbooks[0], workbooks[5], "email_se");
+        combineWorkbooks(workbooks[0], workbooks[6], "import");
+        combineWorkbooks(workbooks[0], workbooks[7], "journaling");
+        combineWorkbooks(workbooks[0], workbooks[8], "other_data_source");
+        combineWorkbooks(workbooks[0], workbooks[9], "poc");
+        combineWorkbooks(workbooks[0], workbooks[10], "rfe");
+        combineWorkbooks(workbooks[0], workbooks[11], "usage");
+        combineWorkbooks(workbooks[0], workbooks[12], "finserv_supervision");
+
+        workbooks[0].toFileAsync(`${data["customer"][0].name}.xlsx`)
+        .then(workbook => {
+          res.download(`${data["customer"][0].name}.xlsx`);
+        })
+        .catch(e => {
+          console.log(e);
+        })
+      })
+      .catch(e => {
+        console.log(e);
+      })
+    })
+  })
+  .catch(e => {
+    console.log(e);
+  })
+})
+
 router.get("/history/:id", authenticate_session, function (req, res) {
   Customer.findOne({ name: req.params.id })
   .then(customer => {
@@ -739,6 +1116,12 @@ router.get("/history/:id", authenticate_session, function (req, res) {
     .then(version => {
       res.render("history", {versions: version.versions});
     })
+    .catch(e => {
+      console.log(e);
+    })
+  })
+  .catch(e => {
+    console.log(e);
   })
 });
 
@@ -763,11 +1146,13 @@ router.get("/history/:id/:version", authenticate_session, function (req, res) {
       return questionnaire;
     }
   }
+
   query()
   .then(result => {
     for (var questions in result) {
       result[questions] = result[questions].versions[req.params.version];
     }
+    result["version"] = req.params.version;
     res.render("show_history", result);
   })
   .catch(e => {
