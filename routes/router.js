@@ -1014,94 +1014,83 @@ router.post("/export/:id", authenticate_session, function (req, res) {
 
   query()
   .then(data => {
-    //convert MongoDB data to Excel spreadsheets
-    function convertData(section) {
-      if (section == "customer") {
-        data[section][0] = _.omit(data[section][0].toObject(), ["_id", "__v", "createdAt", "updatedAt", "createdBy", "updatedBy"]);
-      }
-      else {
-        data[section][0] = _.omit(data[section][0].toObject(), ["_id", "__v"]);
-      }
-      var model = mongoxlsx.buildDynamicModel(data[section]);
-      mongoxlsx.mongoData2Xlsx(data[section], model, function(err, data) {
-        if (err) {
-          console.log(err);
-        }
-        else {
-          console.log(data.fullPath);
-          return new Promise((resolve, reject) => {
-            resolve(data.fullPath);
+    XlsxPopulate.fromBlankAsync()
+    .then(newWorkbook => {
+      var count = 0;
+
+      //combine multiple workbooks into one workbook with multiple worksheets
+      function combineWorkbooks(workbook1, workbook2, section) {
+        var newSheet = workbook1.addSheet(section);
+        var usedRange = workbook2.sheets()[0].usedRange();
+        var oldValues = usedRange.value();
+        newSheet.range(usedRange.address()).value(oldValues);
+        count++;
+        if (count == 13) {
+          newWorkbook.deleteSheet("Sheet1");
+          newWorkbook.moveSheet("customer", 0);
+          newWorkbook.moveSheet("appliance", 1);
+          newWorkbook.moveSheet("design_summary", 2);
+          newWorkbook.moveSheet("desktop_network", 3);
+          newWorkbook.moveSheet("email_ps", 4);
+          newWorkbook.moveSheet("email_se", 5);
+          newWorkbook.moveSheet("import", 6);
+          newWorkbook.moveSheet("journaling", 7);
+          newWorkbook.moveSheet("other_data_source", 8);
+          newWorkbook.moveSheet("poc", 9);
+          newWorkbook.moveSheet("rfe", 10);
+          newWorkbook.moveSheet("usage", 11);
+          newWorkbook.moveSheet("finserv_supervision", 12);
+          newWorkbook.toFileAsync(`${req.params.id}.xlsx`)
+          .then(file => {
+            res.download(`${req.params.id}.xlsx`);
+          })
+          .catch(e => {
+            console.log(e);
           })
         }
-      })
-    }
+      }
 
-    Promise.all([
-      convertData("customer"),
-      convertData("appliance"),
-      convertData("design_summary"),
-      convertData("desktop_network"),
-      convertData("email_ps"),
-      convertData("email_se"),
-      convertData("import"),
-      convertData("journaling"),
-      convertData("other_data_source"),
-      convertData("poc"),
-      convertData("rfe"),
-      convertData("usage"),
-      convertData("finserv_supervision")
-    ])
-    .then(files => {
-      Promise.all([
-        XlsxPopulate.fromFileAsync(files[0]),
-        XlsxPopulate.fromFileAsync(files[1]),
-        XlsxPopulate.fromFileAsync(files[2]),
-        XlsxPopulate.fromFileAsync(files[3]),
-        XlsxPopulate.fromFileAsync(files[4]),
-        XlsxPopulate.fromFileAsync(files[5]),
-        XlsxPopulate.fromFileAsync(files[6]),
-        XlsxPopulate.fromFileAsync(files[7]),
-        XlsxPopulate.fromFileAsync(files[8]),
-        XlsxPopulate.fromFileAsync(files[9]),
-        XlsxPopulate.fromFileAsync(files[10]),
-        XlsxPopulate.fromFileAsync(files[11]),
-        XlsxPopulate.fromFileAsync(files[12])
-      ])
-      .then(workbooks => {
-        workbooks[0].sheet(0).name("customer");
-
-        //combine multiple workbooks into one workbook with multiple worksheets
-        function combineWorkbooks(workbook1, workbook2, section) {
-          var newSheet = workbook1.addSheet(section);
-          var usedRange = workbook2.sheets()[0].usedRange();
-          var oldValues = usedRange.value();
-          newSheet.range(usedRange.address()).value(oldValues);
+      //convert MongoDB data to Excel spreadsheets
+      function convertData(section) {
+        if (section == "customer") {
+          data[section][0] = _.omit(data[section][0].toObject(), ["_id", "__v", "createdAt", "updatedAt", "createdBy", "updatedBy"]);
         }
-
-        combineWorkbooks(workbooks[0], workbooks[1], "appliance");
-        combineWorkbooks(workbooks[0], workbooks[2], "design_summary");
-        combineWorkbooks(workbooks[0], workbooks[3], "desktop_network");
-        combineWorkbooks(workbooks[0], workbooks[4], "email_ps");
-        combineWorkbooks(workbooks[0], workbooks[5], "email_se");
-        combineWorkbooks(workbooks[0], workbooks[6], "import");
-        combineWorkbooks(workbooks[0], workbooks[7], "journaling");
-        combineWorkbooks(workbooks[0], workbooks[8], "other_data_source");
-        combineWorkbooks(workbooks[0], workbooks[9], "poc");
-        combineWorkbooks(workbooks[0], workbooks[10], "rfe");
-        combineWorkbooks(workbooks[0], workbooks[11], "usage");
-        combineWorkbooks(workbooks[0], workbooks[12], "finserv_supervision");
-
-        workbooks[0].toFileAsync(`${data["customer"][0].name}.xlsx`)
-        .then(workbook => {
-          res.download(`${data["customer"][0].name}.xlsx`);
+        else {
+          data[section][0] = _.omit(data[section][0].toObject(), ["_id", "__v"]);
+        }
+        var model = mongoxlsx.buildDynamicModel(data[section]);
+        mongoxlsx.mongoData2Xlsx(data[section], model, function(err, data) {
+          if (err) {
+            console.log(err);
+          }
+          else {
+            XlsxPopulate.fromFileAsync(data.fullPath)
+            .then(workbook => {
+              combineWorkbooks(newWorkbook, workbook, section);
+            })
+            .catch(e => {
+              console.log(e);
+            })
+          }
         })
-        .catch(e => {
-          console.log(e);
-        })
-      })
-      .catch(e => {
-        console.log(e);
-      })
+      }
+
+      convertData("customer");
+      convertData("appliance");
+      convertData("design_summary");
+      convertData("desktop_network");
+      convertData("email_ps");
+      convertData("email_se");
+      convertData("import");
+      convertData("journaling");
+      convertData("other_data_source");
+      convertData("poc");
+      convertData("rfe");
+      convertData("usage");
+      convertData("finserv_supervision");
+    })
+    .catch(e => {
+      console.log(e);
     })
   })
   .catch(e => {
