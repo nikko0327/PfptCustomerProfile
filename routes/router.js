@@ -311,156 +311,156 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         // Make a bunch of await calls and wait for the queries to finish.
         async function updateID() {
             await Customer.findOneAndUpdate({ name: req.params.id }, req.body.customer).exec();
-            await ApplianceQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
-            await DesignSummaryQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
-            await DesktopNetworkQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
-            await EmailPSQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
-            await EmailSEQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
-            await ImportQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
-            await JournalingQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
-            await OtherDataSourcesQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
-            await POCQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
-            await RFEQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
-            await UsageQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
-            await FinservSupervisionQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
-            if (req.params.id != req.body.customer["name"]) {
-              Customer.findOne({ name: req.body.customer["name"] })
-              .then(customer => {
-                //update the version array in the versioned collection
-                CustomerVersions.findOne({ refId: customer._id })
-                .then(version => {
-                  version.versions.forEach(version => {
-                    version.name = req.body.customer["name"];
-                  })
-                  version.save();
-                })
-                ApplianceQuestions.findOne({ name: req.body.customer["name"] })
-                .then(questions => {
-                  ApplianceQuestionsVersions.findOne({ refId: customer._id })
-                  .then(version => {
-                    version.versions.forEach(version => {
-                      version.name = req.body.customer["name"];
-                    })
-                    version.save();
-                  })
-                })
-                DesignSummaryQuestions.findOne({ name: req.body.customer["name"] })
-                .then(questions => {
-                  DesignSummaryQuestionsVersions.findOne({ refId: customer._id })
-                  .then(version => {
-                    version.versions.forEach(version => {
-                      version.name = req.body.customer["name"];
-                    })
-                    version.save();
-                  })
-                })
-                DesktopNetworkQuestions.findOne({ name: req.body.customer["name"] })
-                .then(questions => {
-                  DesktopNetworkQuestionsVersions.findOne({ refId: customer._id })
-                  .then(version => {
-                    version.versions.forEach(version => {
-                      version.name = req.body.customer["name"];
-                    })
-                    version.save();
-                  })
-                })
-                EmailPSQuestions.findOne({ name: req.body.customer["name"] })
-                .then(questions => {
-                  EmailPSQuestionsVersions.findOne({ refId: customer._id })
-                  .then(version => {
-                    version.versions.forEach(version => {
-                      version.name = req.body.customer["name"];
-                    })
-                    version.save();
-                  })
-                })
-                EmailSEQuestions.findOne({ name: req.body.customer["name"] })
-                .then(questions => {
-                  EmailSEQuestionsVersions.findOne({ refId: customer._id })
-                  .then(version => {
-                    version.versions.forEach(version => {
-                      version.name = req.body.customer["name"];
-                    })
-                    version.save();
-                  })
-                })
-                ImportQuestions.findOne({ name: req.body.customer["name"] })
-                .then(questions => {
-                  ImportQuestionsVersions.findOne({ refId: customer._id })
-                  .then(version => {
-                    version.versions.forEach(version => {
-                      version.name = req.body.customer["name"];
-                    })
-                    version.save();
-                  })
-                })
-                JournalingQuestions.findOne({ name: req.body.customer["name"] })
-                .then(questions => {
-                  JournalingQuestionsVersions.findOne({ refId: customer._id })
-                  .then(version => {
-                    version.versions.forEach(version => {
-                      version.name = req.body.customer["name"];
-                    })
-                    version.save();
-                  })
-                })
-                OtherDataSourcesQuestions.findOne({ name: req.body.customer["name"] })
-                .then(questions => {
-                  OtherDataSourcesQuestionsVersions.findOne({ refId: customer._id })
-                  .then(version => {
-                    version.versions.forEach(version => {
-                      version.name = req.body.customer["name"];
-                    })
-                    version.save();
-                  })
-                })
-                POCQuestions.findOne({ name: req.body.customer["name"] })
-                .then(questions => {
-                  POCQuestionsVersions.findOne({ refId: customer._id })
-                  .then(version => {
-                    version.versions.forEach(version => {
-                      version.name = req.body.customer["name"];
-                    })
-                    version.save();
-                  })
-                })
-                RFEQuestions.findOne({ name: req.body.customer["name"] })
-                .then(questions => {
-                  RFEQuestionsVersions.findOne({ refId: customer._id })
-                  .then(version => {
-                    version.versions.forEach(version => {
-                      version.name = req.body.customer["name"];
-                    })
-                    version.save();
-                  })
-                })
-                UsageQuestions.findOne({ name: req.body.customer["name"] })
-                .then(questions => {
-                  UsageQuestionsVersions.findOne({ refId: customer._id })
-                  .then(version => {
-                    version.versions.forEach(version => {
-                      version.name = req.body.customer["name"];
-                    })
-                    version.save();
-                  })
-                })
-                FinservSupervisionQuestions.findOne({ name: req.body.customer["name"] })
-                .then(questions => {
-                  FinservSupervisionQuestionsVersions.findOne({ refId: customer._id })
-                  .then(version => {
-                    version.versions.forEach(version => {
-                      version.name = req.body.customer["name"];
-                    })
-                    version.save();
-                  })
-                })
-              })
-            }
+            // await ApplianceQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            // await DesignSummaryQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            // await DesktopNetworkQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            // await EmailPSQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            // await EmailSEQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            // await ImportQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            // await JournalingQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            // await OtherDataSourcesQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            // await POCQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            // await RFEQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            // await UsageQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            // await FinservSupervisionQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
+            // if (req.params.id != req.body.customer["name"]) {
+            //   Customer.findOne({ name: req.body.customer["name"] })
+            //   .then(customer => {
+            //     //update the version array in the versioned collection
+            //     CustomerVersions.findOne({ refId: customer._id })
+            //     .then(version => {
+            //       version.versions.forEach(version => {
+            //         version.name = req.body.customer["name"];
+            //       })
+            //       version.save();
+            //     })
+            //     ApplianceQuestions.findOne({ name: req.body.customer["name"] })
+            //     .then(questions => {
+            //       ApplianceQuestionsVersions.findOne({ refId: customer._id })
+            //       .then(version => {
+            //         version.versions.forEach(version => {
+            //           version.name = req.body.customer["name"];
+            //         })
+            //         version.save();
+            //       })
+            //     })
+            //     DesignSummaryQuestions.findOne({ name: req.body.customer["name"] })
+            //     .then(questions => {
+            //       DesignSummaryQuestionsVersions.findOne({ refId: customer._id })
+            //       .then(version => {
+            //         version.versions.forEach(version => {
+            //           version.name = req.body.customer["name"];
+            //         })
+            //         version.save();
+            //       })
+            //     })
+            //     DesktopNetworkQuestions.findOne({ name: req.body.customer["name"] })
+            //     .then(questions => {
+            //       DesktopNetworkQuestionsVersions.findOne({ refId: customer._id })
+            //       .then(version => {
+            //         version.versions.forEach(version => {
+            //           version.name = req.body.customer["name"];
+            //         })
+            //         version.save();
+            //       })
+            //     })
+            //     EmailPSQuestions.findOne({ name: req.body.customer["name"] })
+            //     .then(questions => {
+            //       EmailPSQuestionsVersions.findOne({ refId: customer._id })
+            //       .then(version => {
+            //         version.versions.forEach(version => {
+            //           version.name = req.body.customer["name"];
+            //         })
+            //         version.save();
+            //       })
+            //     })
+            //     EmailSEQuestions.findOne({ name: req.body.customer["name"] })
+            //     .then(questions => {
+            //       EmailSEQuestionsVersions.findOne({ refId: customer._id })
+            //       .then(version => {
+            //         version.versions.forEach(version => {
+            //           version.name = req.body.customer["name"];
+            //         })
+            //         version.save();
+            //       })
+            //     })
+            //     ImportQuestions.findOne({ name: req.body.customer["name"] })
+            //     .then(questions => {
+            //       ImportQuestionsVersions.findOne({ refId: customer._id })
+            //       .then(version => {
+            //         version.versions.forEach(version => {
+            //           version.name = req.body.customer["name"];
+            //         })
+            //         version.save();
+            //       })
+            //     })
+            //     JournalingQuestions.findOne({ name: req.body.customer["name"] })
+            //     .then(questions => {
+            //       JournalingQuestionsVersions.findOne({ refId: customer._id })
+            //       .then(version => {
+            //         version.versions.forEach(version => {
+            //           version.name = req.body.customer["name"];
+            //         })
+            //         version.save();
+            //       })
+            //     })
+            //     OtherDataSourcesQuestions.findOne({ name: req.body.customer["name"] })
+            //     .then(questions => {
+            //       OtherDataSourcesQuestionsVersions.findOne({ refId: customer._id })
+            //       .then(version => {
+            //         version.versions.forEach(version => {
+            //           version.name = req.body.customer["name"];
+            //         })
+            //         version.save();
+            //       })
+            //     })
+            //     POCQuestions.findOne({ name: req.body.customer["name"] })
+            //     .then(questions => {
+            //       POCQuestionsVersions.findOne({ refId: customer._id })
+            //       .then(version => {
+            //         version.versions.forEach(version => {
+            //           version.name = req.body.customer["name"];
+            //         })
+            //         version.save();
+            //       })
+            //     })
+            //     RFEQuestions.findOne({ name: req.body.customer["name"] })
+            //     .then(questions => {
+            //       RFEQuestionsVersions.findOne({ refId: customer._id })
+            //       .then(version => {
+            //         version.versions.forEach(version => {
+            //           version.name = req.body.customer["name"];
+            //         })
+            //         version.save();
+            //       })
+            //     })
+            //     UsageQuestions.findOne({ name: req.body.customer["name"] })
+            //     .then(questions => {
+            //       UsageQuestionsVersions.findOne({ refId: customer._id })
+            //       .then(version => {
+            //         version.versions.forEach(version => {
+            //           version.name = req.body.customer["name"];
+            //         })
+            //         version.save();
+            //       })
+            //     })
+            //     FinservSupervisionQuestions.findOne({ name: req.body.customer["name"] })
+            //     .then(questions => {
+            //       FinservSupervisionQuestionsVersions.findOne({ refId: customer._id })
+            //       .then(version => {
+            //         version.versions.forEach(version => {
+            //           version.name = req.body.customer["name"];
+            //         })
+            //         version.save();
+            //       })
+            //     })
+            //   })
+            // }
         }
 
         // Only if all the queries finish, redirect the page to the new customer name.
         updateID().then(() => {
-            Customer.findOne({ name: req.body.customer["name"] })
+            Customer.findOne({ name: req.params.id })
             .then(customer => {
               //update the updated by field
               customer.updatedBy = req.session.user;
@@ -784,7 +784,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
       })
     }
 
-    updateVersions({ name: req.body.customer["name"] });
+    updateVersions({ name: req.params.id });
 });
 
 //INDEX ROUTE
