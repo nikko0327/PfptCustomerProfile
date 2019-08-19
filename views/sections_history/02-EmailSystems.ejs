@@ -1,28 +1,27 @@
 <!-- Displaying Email Systems questions -->
 <div id="emailSystem" class="display-header">
-    <h5>
-        <a href="#emailContainer" data-toggle="collapse" onclick="change_arrow($(this));">
-            Email Systems
-            <i class="fa fa-caret-right" aria-hidden="true"> </i>
-        </a>
-    </h5>
+    <div id="emailContainer">
+        <div class="edit pull-right" style="float: right;">
+            <a href="#/" id="editEmailSystemLink" aria-hidden="true" data-toggle="modal">
+                <i class="fa fa-pencil-square-o"> Edit</i>
+            </a>
+        </div>
+        <br>
 
-    <div id="emailContainer" class="collapse">
         <form autocomplete="off" id="emailSystemForm" action="../index/<%= encodeURIComponent(customer.name) %>?_method=PUT" method="POST" enctype="multipart/form-data">
             <fieldset id="emailSystemFormFieldset" disabled>
                 <div class="form-group col-4 response-cell" hidden>
                     <label>Customer Name</label>
-                    <input type="text" readonly class="form-control" placeholder="No response set" value="<%= customer.name %>" name="email_se_questions[name]">
+                    <input type="text" readonly class="form-control" placeholder="No response set" value="<%= customer.name %>" name="email_questions[name]">
                 </div>
 
-                <% include EmailSystems/EditEmailSystems1.ejs %>
-                <% include EmailSystems/EditEmailSystems2.ejs %>
-                <% include EmailSystems/EditEmailSystems3.ejs %>
-                <% include EmailSystems/EditEmailSystems4.ejs %>
+                <% include EmailSystems/EditExchangeDetails.ejs %>
+                <% include EmailSystems/EditActiveDirectoryDetails.ejs %>
+                <% include EmailSystems/EditO365Details.ejs %>
 
                 <div class="form-group">
                     <label>Comments</label>
-                    <textarea class="form-control" maxlength="5000" rows="5" name="email_se_questions[comments]" placeholder="5000 characters max" form="emailSystemForm"><%= email_se_questions.comments %></textarea>
+                    <textarea class="form-control" maxlength="5000" rows="5" name="email_questions[comments]" placeholder="5000 characters max" form="emailSystemForm"><%= email_questions.comments %></textarea>
                 </div>
             </fieldset>
         </form>

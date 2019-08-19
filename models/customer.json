@@ -1,0 +1,122 @@
+[
+  {
+    "displayName": "Customer Name",
+    "access": "name",
+    "type": "string"
+  },
+  {
+    "displayName": "Sales Rep.",
+    "access": "salesRep",
+    "type": "string"
+  },
+  {
+    "displayName": "Archiving SE (Ben Chapman, Brad Cope, Coleem Chestnut, Davin Stilson, Jason Colvin, Micah Wyenn, Mike Fenili, Terry McMahon)",
+    "access": "archivingSe",
+    "type": "string"
+  },
+  {
+    "displayName": "Acc. Manager",
+    "access": "accManager",
+    "type": "string"
+  },
+  {
+    "displayName": "TPM (Jama Parikh, Joan Noble, Khoj Ladha, Lorraine Lamb, Sara Lints, Aimee Wheelon)",
+    "access": "tpm",
+    "type": "string"
+  },
+  {
+    "displayName": "TAM (Drew Fox, Eric Pfefferie, Jason Medina, Jeremy Wagner, Liliana Valdivia, Nicole Dawson, Wolfgang Rebhan)",
+    "access": "tam",
+    "type": "string"
+  },
+  {
+    "displayName": "Solution Architect (Robert Kreuscher)",
+    "access": "solutionArchitect",
+    "type": "string"
+  },
+  {
+    "displayName": "Supervision Consultant (Ray McGrath, Alex Boyd, Regina Rodriguez)",
+    "access": "supervisionConsultant",
+    "type": "string"
+  },
+  {
+    "displayName": "Number of Mailboxes",
+    "access": "numberOfMailboxes",
+    "type": "string"
+  },
+  {
+    "displayName": "Location",
+    "access": "location",
+    "type": "string"
+  },
+  {
+    "displayName": "Status (Waiting for PDQ, Waiting for sales, Waiting for finance, Waiting for ops, Waiting for customer, Waiting for scheduling, Deployment started, Deployment complete/in production)",
+    "access": "status",
+    "type": "string"
+  },
+  {
+    "displayName": "NAT IP",
+    "access": "natIp",
+    "type": "string"
+  },
+  {
+    "displayName": "Incumbent Solution",
+    "access": "incumbentSolution",
+    "type": "string"
+  },
+  {
+    "displayName": "Archiving Prospect",
+    "access": "existing_archive_prospect",
+    "type": "string"
+  },
+  {
+    "displayName": "Existing Archiving Customer",
+    "access": "existing_archive_customer",
+    "type": "string"
+  },
+  {
+    "displayName": "Existing Proofpoint Security Customer",
+    "access": "existing_security_customer",
+    "type": "string"
+  },
+  {
+    "displayName": "PSO Ticket",
+    "access": "pso[ticket]",
+    "type": "string"
+  },
+  {
+    "displayName": "PSO Location",
+    "access": "pso[location]",
+    "type": "string"
+  },
+  {
+    "displayName": "Shipment request",
+    "access": "shipreq",
+    "type": "string"
+  },
+  {
+    "displayName": "PS Opportunity",
+    "access": "ps_opportunity",
+    "type": "string"
+  },
+  {
+    "displayName": "Messaging System (Exchange On-Prem, O365, Mixed Mode)",
+    "access": "messaging_system",
+    "type": "string"
+  },
+  {
+    "displayName": "Hybrid or Hosted (Hybrid, Hosted)",
+    "access": "hybrid_or_hosted",
+    "type": "string"
+  },
+  {
+    "displayName": "Virtual or Physical (Virtual, Physical)",
+    "access": "virtual_or_physical",
+    "type": "string"
+  },
+  {
+    "displayName": "Comments",
+    "access": "comments",
+    "type": "string"
+  }
+]

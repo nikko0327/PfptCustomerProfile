@@ -1,0 +1,57 @@
+[
+  {
+    "displayName": "Customer Name",
+    "access": "name",
+    "type": "string"
+  },
+  {
+    "displayName": "Messages per day",
+    "access": "messages_per_day",
+    "type": "string"
+  },
+  {
+    "displayName": "Average message size",
+    "access": "avg_message_size",
+    "type": "string"
+  },
+  {
+    "displayName": "Number of mailboxes",
+    "access": "number_of_mailboxes",
+    "type": "string"
+  },
+  {
+    "displayName": "Exports per month",
+    "access": "exports_per_month",
+    "type": "string"
+  },
+  {
+    "displayName": "Average export size",
+    "access": "avg_export_size",
+    "type": "string"
+  },
+  {
+    "displayName": "Virtual or physical hardware appliance preference? (Physical, Virtual)",
+    "access": "appliance_preference",
+    "type": "string"
+  },
+  {
+    "displayName": "Does the customer have a VMWare environment? (Virtual, Physical, None)",
+    "access": "has_vmware_env",
+    "type": "string"
+  },
+  {
+    "displayName": "Number of appliances recommended?",
+    "access": "number_of_appliances_recommended",
+    "type": "string"
+  },
+  {
+    "displayName": "Mail system HA DR footprint?",
+    "access": "mail_system_HA_DR_footprint",
+    "type": "string"
+  },
+  {
+    "displayName": "Comments",
+    "access": "comments",
+    "type": "string"
+  }
+]

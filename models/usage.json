@@ -1,0 +1,97 @@
+[
+  {
+    "displayName": "Customer Name",
+    "access": "name",
+    "type": "string"
+  },
+  {
+    "displayName": "Advanced E-Discovery",
+    "access": "advanced_e_discovery",
+    "type": "string"
+  },
+  {
+    "displayName": "Stubbing",
+    "access": "stubbing",
+    "type": "string"
+  },
+  {
+    "displayName": "CC for PST",
+    "access": "cc_for_pst",
+    "type": "string"
+  },
+  {
+    "displayName": "Folder Sync",
+    "access": "folder_sync",
+    "type": "string"
+  },
+  {
+    "displayName": "Custodian based, ad-hoc, or both?",
+    "access": "legal_holds[custodian_or_ad_hoc]",
+    "type": "string"
+  },
+  {
+    "displayName": "Number of LH's in current solution",
+    "access": "legal_holds[number_of_legal_holds]",
+    "type": "string"
+  },
+  {
+    "displayName": "Number of unique custodians",
+    "access": "legal_holds[number_of_unique_custodians]",
+    "type": "string"
+  },
+  {
+    "displayName": "Largest hold (in terms of custodians)",
+    "access": "legal_holds[largest_hold]",
+    "type": "string"
+  },
+  {
+    "displayName": "What LH Notification system is being used today?",
+    "access": "legal_holds[notification_system]",
+    "type": "string"
+  },
+  {
+    "displayName": "Third Party Solutions for LH Management?",
+    "access": "legal_holds[third_party_solutions]",
+    "type": "string"
+  },
+  {
+    "displayName": "API interests? What are some of the use cases?",
+    "access": "legal_holds[api_use_cases]",
+    "type": "string"
+  },
+  {
+    "displayName": "Total legal hold data",
+    "access": "legal_holds[total_legal_hold_data]",
+    "type": "string"
+  },
+  {
+    "displayName": "Volume / average size and frequency",
+    "access": "export[volume]",
+    "type": "string"
+  },
+  {
+    "displayName": "Preferred Export formats?",
+    "access": "export[preferred_export_format]",
+    "type": "string"
+  },
+  {
+    "displayName": "Where does the data typically go?",
+    "access": "export[where_data_goes]",
+    "type": "string"
+  },
+  {
+    "displayName": "Does customer expect to auto upload data?",
+    "access": "export[expect_auto_upload]",
+    "type": "string"
+  },
+  {
+    "displayName": "Will end user have access to their archives? (Yes, No)",
+    "access": "allow_archive_access",
+    "type": "string"
+  },
+  {
+    "displayName": "Comments",
+    "access": "comments",
+    "type": "string"
+  }
+]

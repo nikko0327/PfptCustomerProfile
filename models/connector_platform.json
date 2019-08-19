@@ -1,0 +1,182 @@
+[
+  {
+    "displayName": "Customer Name",
+    "access": "name",
+    "type": "string"
+  },
+  {
+    "displayName": "Facebook",
+    "access": "facebook",
+    "type": "string"
+  },
+  {
+    "displayName": "Facebook Number of Users",
+    "access": "facebook_number_of_users",
+    "type": "string"
+  },
+  {
+    "displayName": "Linkedin",
+    "access": "linkedin",
+    "type": "string"
+  },
+  {
+    "displayName": "Linkedin Number of Users",
+    "access": "linkedin_number_of_users",
+    "type": "string"
+  },
+  {
+    "displayName": "Twitter",
+    "access": "twitter",
+    "type": "string"
+  },
+  {
+    "displayName": "Twitter Number of Users",
+    "access": "twitter_number_of_users",
+    "type": "string"
+  },
+  {
+    "displayName": "Google+",
+    "access": "google",
+    "type": "string"
+  },
+  {
+    "displayName": "Google+ Number of Users",
+    "access": "google_number_of_users",
+    "type": "string"
+  },
+  {
+    "displayName": "YouTube",
+    "access": "youtube",
+    "type": "string"
+  },
+  {
+    "displayName": "YouTube Number of Users",
+    "access": "youtube_number_of_users",
+    "type": "string"
+  },
+  {
+    "displayName": "Files",
+    "access": "files",
+    "type": "string"
+  },
+  {
+    "displayName": "Files Number of Users",
+    "access": "files_number_of_users",
+    "type": "string"
+  },
+  {
+    "displayName": "Skype Business",
+    "access": "skype_in_cloud",
+    "type": "string"
+  },
+  {
+    "displayName": "Skype Business Number of Users",
+    "access": "skype_in_cloud_number_of_users",
+    "type": "string"
+  },
+  {
+    "displayName": "Skype On-prem",
+    "access": "skype_on_prem",
+    "type": "string"
+  },
+  {
+    "displayName": "Skype On-prem Number of Users",
+    "access": "skype_on_prem_number_of_users",
+    "type": "string"
+  },
+  {
+    "displayName": "Lync On-prem",
+    "access": "lync_on_prem",
+    "type": "string"
+  },
+  {
+    "displayName": "Lync On-prem Number of Users",
+    "access": "lync_on_prem_number_of_users",
+    "type": "string"
+  },
+  {
+    "displayName": "One Drive",
+    "access": "one_drive",
+    "type": "string"
+  },
+  {
+    "displayName": "One Drive Number of Users",
+    "access": "one_drive_number_of_users",
+    "type": "string"
+  },
+  {
+    "displayName": "Box",
+    "access": "box",
+    "type": "string"
+  },
+  {
+    "displayName": "Box Number of Users",
+    "access": "box_number_of_users",
+    "type": "string"
+  },
+  {
+    "displayName": "Bloomberg",
+    "access": "bloomberg",
+    "type": "string"
+  },
+  {
+    "displayName": "Bloomberg Number of Users",
+    "access": "bloomberg_number_of_users",
+    "type": "string"
+  },
+  {
+    "displayName": "Yammer",
+    "access": "yammer",
+    "type": "string"
+  },
+  {
+    "displayName": "Yammer Number of Users",
+    "access": "yammer_number_of_users",
+    "type": "string"
+  },
+  {
+    "displayName": "Jive",
+    "access": "jive",
+    "type": "string"
+  },
+  {
+    "displayName": "Jive Number of Users",
+    "access": "jive_number_of_users",
+    "type": "string"
+  },
+  {
+    "displayName": "Chatter",
+    "access": "chatter",
+    "type": "string"
+  },
+  {
+    "displayName": "Chatter Number of Users",
+    "access": "chatter_number_of_users",
+    "type": "string"
+  },
+  {
+    "displayName": "Slack",
+    "access": "slack",
+    "type": "string"
+  },
+  {
+    "displayName": "Slack Number of Users",
+    "access": "slack_number_of_users",
+    "type": "string"
+  },
+  {
+    "displayName": "Symphony",
+    "access": "symphony",
+    "type": "string"
+  },
+  {
+    "displayName": "Symphony Number of Users",
+    "access": "symphony_number_of_users",
+    "type": "string"
+  },
+  {
+    "displayName": "Comments",
+    "access": "comments",
+    "type": "string"
+  }
+]

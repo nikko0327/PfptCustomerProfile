@@ -1,0 +1,57 @@
+[
+  {
+    "displayName": "Customer Name",
+    "access": "name",
+    "type": "string"
+  },
+  {
+    "displayName": "Is the POC sandbox or production? (Sandbox, Production)",
+    "access": "poc_type",
+    "type": "string"
+  },
+  {
+    "displayName": "What will be tested in the POC?",
+    "access": "poc_tests",
+    "type": "string"
+  },
+  {
+    "displayName": "Has the customer agreed to Success Criteria? (Yes, No)",
+    "access": "agreed_to_success_criteria",
+    "type": "string"
+  },
+  {
+    "displayName": "Environments needed (POC, UAT)? (POC, UAT)",
+    "access": "envs_needed",
+    "type": "string"
+  },
+  {
+    "displayName": "How long do you need them for?",
+    "access": "how_long_needed",
+    "type": "string"
+  },
+  {
+    "displayName": "How to convert the environment and/or data to PROD?",
+    "access": "how_to_convert_env",
+    "type": "string"
+  },
+  {
+    "displayName": "Will you be installing appliances in production or in a lab? (Production, Lab)",
+    "access": "installing_in_production_or_lab",
+    "type": "string"
+  },
+  {
+    "displayName": "For PROD, how many environments are needed and locations?",
+    "access": "how_many_envs",
+    "type": "string"
+  },
+  {
+    "displayName": "How many mailboxes will you journal into the POC?",
+    "access": "how_many_mailboxes",
+    "type": "string"
+  },
+  {
+    "displayName": "Comments",
+    "access": "comments",
+    "type": "string"
+  }
+]

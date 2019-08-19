@@ -6,61 +6,25 @@ var import_schema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    need_to_migrate_legacy_data: {
-        type: String,
-        default: ""
+    source_archive: {
+      type: String,
+      default: ""
     },
-    is_existing_archive: {
-        type: String,
-        default: ""
+    data_volume: {
+      type: String,
+      default: ""
     },
-    amount_of_data_to_migrate: {
-        type: String,
-        default: ""
+    extraction_vendor: {
+      type: String,
+      default: ""
     },
-    expected_timeline: {
-        type: String,
-        default: ""
-    },
-    extraction_agent: {
-        type: String,
-        default: ""
-    },
-    service_brief: {
-        type: String,
-        default: ""
-    },
-    storage: {
-        type: String,
-        default: ""
-    },
-    format: {
-        type: String,
-        default: ""
+    data_format: {
+      type: String,
+      default: ""
     },
     retention_policy: {
-        type: String,
-        default: ""
-    },
-    encryption_type: {
-        type: String,
-        default: ""
-    },
-    oldest_data: {
-        type: String,
-        default: ""
-    },
-    employee_records: {
-        type: String,
-        default: ""
-    },
-    jira: {
-        type: String,
-        default: ""
-    },
-    rfe: {
-        type: String,
-        default: ""
+      type: String,
+      default: ""
     },
     comments: {
         type: String,

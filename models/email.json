@@ -1,0 +1,112 @@
+[
+  {
+    "displayName": "Customer Name",
+    "access": "name",
+    "type": "string"
+  },
+  {
+    "displayName": "Where is mail journaled?",
+    "access": "exchange_details[journaling_location]",
+    "type": "string"
+  },
+  {
+    "displayName": "Number of users per journaling location?",
+    "access": "exchange_details[users_per_location]",
+    "type": "string"
+  },
+  {
+    "displayName": "What versions of Exchange are you running?",
+    "access": "exchange_details[exchange_version]",
+    "type": "string"
+  },
+  {
+    "displayName": "How many locations are mailbox servers deployed?",
+    "access": "exchange_details[number_of_mail_servers]",
+    "type": "string"
+  },
+  {
+    "displayName": "Do you have an Enterprise CAL? (Yes, No)",
+    "access": "exchange_details[has_enterprise_CAL]",
+    "type": "string"
+  },
+  {
+    "displayName": "Are you replicating Exchange and AD to a secondary data center? (Yes, No)",
+    "access": "exchange_details[is_replicating_exchange_and_AD]",
+    "type": "string"
+  },
+  {
+    "displayName": "No. of journal mailboxes",
+    "access": "exchange_details[number_of_inboxes]",
+    "type": "string"
+  },
+  {
+    "displayName": "Are journal mailboxes on their own DB? (Yes, No)",
+    "access": "exchange_details[is_journal_in_own_DB]",
+    "type": "string"
+  },
+  {
+    "displayName": "How much extra storage is available on the Journaling Mailbox Databases?",
+    "access": "exchange_details[number_of_extra_storage]",
+    "type": "string"
+  },
+  {
+    "displayName": "Are you using RMS? (Yes, No)",
+    "access": "exchange_details[is_using_RMS]",
+    "type": "string"
+  },
+  {
+    "displayName": "Is Enable Journal Decryption set to True / False? (Yes, No)",
+    "access": "exchange_details[is_journal_decryption_enabled]",
+    "type": "string"
+  },
+  {
+    "displayName": "How are your journal rules defined (hub transport or database)? (Hub transport, Database)",
+    "access": "exchange_details[journal_rules]",
+    "type": "string"
+  },
+  {
+    "displayName": "How many AD forest do you have?",
+    "access": "active_directory_details[number_of_forests]",
+    "type": "string"
+  },
+  {
+    "displayName": "Are you using multi-domains? (Yes, No)",
+    "access": "active_directory_details[is_using_multi_domains]",
+    "type": "string"
+  },
+  {
+    "displayName": "If yes, what is the structure of multi-domain architecture / their relationships?",
+    "access": "active_directory_details[structure]",
+    "type": "string"
+  },
+  {
+    "displayName": "Total count of objects in AD?",
+    "access": "O365_version[AD_size]",
+    "type": "string"
+  },
+  {
+    "displayName": "What O365 license level do you have? (e1, e2, e3, e4, e5)",
+    "access": "O365_version[O365_version]",
+    "type": "string"
+  },
+  {
+    "displayName": "Are you maintaining AD on-prem? (Yes, No)",
+    "access": "O365_version[is_maintaining_on_prem_AD]",
+    "type": "string"
+  },
+  {
+    "displayName": "Are you maintaining AD in Azure? (Yes, No)",
+    "access": "O365_version[is_maintaining_azure]",
+    "type": "string"
+  },
+  {
+    "displayName": "When you create and admin mailboxes, do you do that in the on-prem AD, or in Azure? (On-prem AD, Azure)",
+    "access": "O365_version[is_admin_in_AD_or_azure]",
+    "type": "string"
+  },
+  {
+    "displayName": "Comments",
+    "access": "comments",
+    "type": "string"
+  }
+]

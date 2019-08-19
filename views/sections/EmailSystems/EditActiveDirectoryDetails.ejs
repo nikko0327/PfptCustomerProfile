@@ -1,0 +1,27 @@
+<div id="editActiveDirectoryDetails">
+    <h5 style="color: mediumvioletred">Active Directory Details</h5>
+    <div class="row">
+        <div class="form-group col-4 response-cell">
+            <label>How many AD forest do you have?</label>
+            <input type="text" class="form-control number_of_forests" placeholder="No response set" value="<%= email_questions.active_directory_details.number_of_forests %>"
+                name="email_questions[active_directory_details][number_of_forests]">
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>Are you using multi-domains?</label>
+            <%- make_custom_dropdown("email_questions[active_directory_details][is_using_multi_domains]",
+                    email_questions.active_directory_details.is_using_multi_domains, ["Yes", "No"], "is_using_multi_domains") %>
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>If yes, what is the structure of multi-domain architecture / their relationships?
+            </label>
+            <input type="text" class="form-control structure" placeholder="No response set" value="<%= email_questions.active_directory_details.structure %>"
+                name="email_questions[active_directory_details][structure]">
+        </div>
+        <div class="form-group col-4 response-cell">
+            <label>Total count of objects in AD?</label>
+            <input type="text" class="form-control AD_size" placeholder="No response set" value="<%= email_questions.active_directory_details.AD_size %>"
+                name="email_questions[active_directory_details][AD_size]">
+        </div>
+    </div>
+</div>
+<hr>

@@ -6,15 +6,7 @@ var CustomerSchema = new mongoose.Schema({
         unique: true,
         required: true
     },
-    solutionArchitect: {
-        type: String,
-        default: ""
-    },
     salesRep: {
-        type: String,
-        default: ""
-    },
-    status: {
         type: String,
         default: ""
     },
@@ -26,14 +18,6 @@ var CustomerSchema = new mongoose.Schema({
         type: String,
         default: ""
     },
-    location: {
-        type: String,
-        default: ""
-    },
-    supervision: {
-        type: String,
-        default: ""
-    },
     tpm: {
         type: String,
         default: ""
@@ -42,16 +26,11 @@ var CustomerSchema = new mongoose.Schema({
         type: String,
         default: ""
     },
-    natIp: {
+    solutionArchitect: {
         type: String,
         default: ""
     },
-    contacts: [],
-    createdBy: {
-      type: String,
-      default: ""
-    },
-    incumbentSolution: {
+    supervisionConsultant: {
         type: String,
         default: ""
     },
@@ -59,7 +38,19 @@ var CustomerSchema = new mongoose.Schema({
         type: String,
         default: ""
     },
-    comments: {
+    location: {
+        type: String,
+        default: ""
+    },
+    status: {
+        type: String,
+        default: ""
+    },
+    natIp: {
+        type: String,
+        default: ""
+    },
+    incumbentSolution: {
         type: String,
         default: ""
     },
@@ -75,14 +66,6 @@ var CustomerSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    is_using_DAG: {
-        type: String,
-        default: ""
-    },
-    describe_HA_DR: {
-        type: String,
-        default: ""
-    },
     pso: {
         ticket: {
             type: String,
@@ -96,6 +79,31 @@ var CustomerSchema = new mongoose.Schema({
     shipreq: {
         type: String,
         default: ""
+    },
+    ps_opportunity: {
+      type: String,
+      default: ""
+    },
+    messaging_system: {
+      type: String,
+      default: ""
+    },
+    hybrid_or_hosted: {
+      type: String,
+      default: ""
+    },
+    virtual_or_physical: {
+      type: String,
+      default: ""
+    },
+    contacts: [],
+    comments: {
+        type: String,
+        default: ""
+    },
+    createdBy: {
+      type: String,
+      default: ""
     },
     updatedBy: {
       type: String,

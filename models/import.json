@@ -1,0 +1,37 @@
+[
+  {
+    "displayName": "Customer Name",
+    "access": "name",
+    "type": "string"
+  },
+  {
+    "displayName": "Source Archive",
+    "access": "source_archive",
+    "type": "string"
+  },
+  {
+    "displayName": "Data Volume in GB/TB",
+    "access": "data_volume",
+    "type": "string"
+  },
+  {
+    "displayName": "Extraction Vendor",
+    "access": "extraction_vendor",
+    "type": "string"
+  },
+  {
+    "displayName": "Data Format (EML, PST)",
+    "access": "data_format",
+    "type": "string"
+  },
+  {
+    "displayName": "Retention Policy for Import Data",
+    "access": "retention_policy",
+    "type": "string"
+  },
+  {
+    "displayName": "Comments",
+    "access": "comments",
+    "type": "string"
+  }
+]

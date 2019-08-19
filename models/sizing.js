@@ -1,44 +1,44 @@
 var mongoose = require("mongoose");
 
-var poc_schema = new mongoose.Schema({
+var sizing_schema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
         unique: true
     },
-    poc_type: {
+    messages_per_day: {
         type: String,
         default: ""
     },
-    poc_tests: {
+    avg_message_size: {
         type: String,
         default: ""
     },
-    agreed_to_success_criteria: {
+    number_of_mailboxes: {
         type: String,
         default: ""
     },
-    envs_needed: {
+    exports_per_month: {
         type: String,
         default: ""
     },
-    how_long_needed: {
+    avg_export_size: {
         type: String,
         default: ""
     },
-    how_to_convert_env: {
+    appliance_preference: {
         type: String,
         default: ""
     },
-    installing_in_production_or_lab: {
+    has_vmware_env: {
         type: String,
         default: ""
     },
-    how_many_envs: { // Number
+    number_of_appliance_recommended: {
         type: String,
         default: ""
     },
-    how_many_mailboxes: { // Number
+    mail_system_HA_DR_footprint: {
         type: String,
         default: ""
     },
@@ -47,15 +47,15 @@ var poc_schema = new mongoose.Schema({
         default: ""
     }
 });
-var poc_versions_schema = new mongoose.Schema({
+var sizing_versions_schema = new mongoose.Schema({
   refId: mongoose.Schema.Types.ObjectId,
-  versions: [poc_schema]
+  versions: [sizing_schema]
 });
 
-var POCQuestions = mongoose.model("POCQuestions", poc_schema);
-var POCQuestionsVersions = mongoose.model("POCQuestionsVersions", poc_versions_schema);
+var SizingQuestions = mongoose.model("SizingQuestions", sizing_schema);
+var SizingQuestionsVersions = mongoose.model("SizingQuestionsVersions", sizing_versions_schema);
 
-// var sample = new POCQuestions({
+// var sample = new ApplianceQuestions({
 //     _id: "Tesla"
 // });
 //
@@ -63,8 +63,8 @@ var POCQuestionsVersions = mongoose.model("POCQuestionsVersions", poc_versions_s
 //     if (error) {
 //         console.log(error);
 //     } else {
-//         console.log("Successfully inserted POC questions for customer: " + result["_id"]);
+//         console.log("Successfully created appliance questions for customer: " + result["_id"]);
 //     }
 // });
 
-module.exports = {POCQuestions, POCQuestionsVersions};
+module.exports = {SizingQuestions, SizingQuestionsVersions};

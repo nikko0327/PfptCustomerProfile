@@ -2,16 +2,36 @@ $(document).ready(function() {
   $("#myTable").DataTable({
     dom: 'Bfrtip',
     buttons: [
-        {
-            extend: 'collection',
-            text: 'Export',
-            buttons: [
-                'excel',
-                'csv',
-                'pdf',
-                'print'
-            ]
-        }
+      {
+        extend: 'collection',
+        text: 'Export',
+        buttons: [
+          {
+            extend: 'excel',
+            exportOptions: {
+              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+            }
+          },
+          {
+            extend: 'csv',
+            exportOptions: {
+              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+            }
+          },
+          {
+            extend: 'pdf',
+            exportOptions: {
+              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+            }
+          },
+          {
+            extend: 'print',
+            exportOptions: {
+              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+            }
+          }
+        ]
+      }
     ]
   });
 
