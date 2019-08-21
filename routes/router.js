@@ -244,12 +244,11 @@ router.post("/new", authenticate_session, function (req, res) {
             SupervisionQuestionsVersions.create({ refId: customer._id, versions: [questions] });
           })
 
-          //sending emails does not work
           // var transporter = nodemailer.createTransport({
-          //   host: 'smtp.us.proofpoint.com',
-          //   port: 25,
+          //   service: 'outlook',
           //   auth: {
-          //     user: 'DriveTracking@proofpoint.com'
+          //     user: process.env.USER,
+          //     pass: process.env.PASS
           //   }
           // });
           // var mailOptions = {
@@ -416,12 +415,11 @@ router.put("/index/:id", authenticate_session, function (req, res) {
               customer.updatedBy = req.session.user;
               customer.save();
 
-              //sending emails does not work
               // var transporter = nodemailer.createTransport({
-              //   host: 'smtp.us.proofpoint.com',
-              //   port: 25,
+              //   service: 'outlook',
               //   auth: {
-              //     user: 'DriveTracking@proofpoint.com'
+              //     user: process.env.USER,
+              //     pass: process.env.PASS
               //   }
               // });
               // var mailOptions = {
