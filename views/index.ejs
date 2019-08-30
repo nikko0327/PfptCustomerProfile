@@ -118,22 +118,18 @@
                               <%= customer.updatedBy %>
                             </td>
                             <td>
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#<%= customer.name %>-editModal"><i class="fa fa-pencil-square-o"></i></button>
-                                <a href="./index/<%= encodeURIComponent(customer.name) %>">
-                                    <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block"><i class="fa fa-info"></i></button>
-                                </a>
-
-                                &nbsp;
-
-                                <!-- This escape is borked. Need to fix if someone puts """ into customer name. Need to escape.
-                     If \"\"\", DB will delete """ because it would cause the string to be properly escaped. Becareful of backslashes -->
-
-                                <% if(user == 'anchen' || user == 'nlee' || user == 'vrathee' || user == 'sprokai') { %>
-                                    <button class="btn btn-danger" onclick='delete_customer("<%= customer.name %>")'><i class="fa fa-trash"></i></button>
-                                <% } %>
-                                <a href="./history/<%= encodeURIComponent(customer.name) %>">
-                                    <button class="btn btn-primary"><i class="fa fa-history"></i></button>
-                                </a>
+                                <div class="btn-group" role="group">
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#<%= customer.name %>-editModal"><i class="fa fa-pencil-square-o"></i></button>
+                                    <a href="./index/<%= encodeURIComponent(customer.name) %>">
+                                        <button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block"><i class="fa fa-info"></i></button>
+                                    </a>
+                                    <% if(user == 'anchen' || user == 'nlee' || user == 'vrathee' || user == 'sprokai') { %>
+                                        <button class="btn btn-danger" onclick='delete_customer("<%= customer.name %>")'><i class="fa fa-trash"></i></button>
+                                    <% } %>
+                                    <a href="./history/<%= encodeURIComponent(customer.name) %>">
+                                        <button class="btn btn-primary"><i class="fa fa-history"></i></button>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                         <!-- line modal -->
