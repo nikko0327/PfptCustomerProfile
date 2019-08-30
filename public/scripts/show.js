@@ -1,7 +1,7 @@
-let expanded = false;
-let sync_forms = true;
+var expanded = false;
+var sync_forms = true;
 
-let row_count = 1;
+var row_count = 1;
 
 // \u2022 is a bullet point
 
@@ -20,8 +20,8 @@ function sync_email_systems_forms() {
     }
 }
 
-function add_post_listeners(flag, link, qform, fieldset, message) {
-    $(link).click(function () {
+function add_post_listeners(flag, edit, cancel, qform, fieldset, message) {
+    $(edit).click(function () {
         let customer_name = $("#unique-customer-name").val();
         if (flag == true && customer_name) {
             // END EDITING
@@ -46,6 +46,7 @@ function add_post_listeners(flag, link, qform, fieldset, message) {
             // Locks the form's fieldset
             $(fieldset).prop('disabled', true);
             $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
+            $(this).next().remove();
         } else if (flag == false) {
             // BEGIN EDITING
             flag = true;
@@ -53,6 +54,16 @@ function add_post_listeners(flag, link, qform, fieldset, message) {
             // Unlocks the form's fieldset
             $(fieldset).prop('disabled', false);
             $(this).first().html('<i style="color: deeppink;" class="fa fa-save" aria-hidden="true"> Save</i>');
+            $(this).first().after(`<a href="#/" id="${cancel.substring(1)}" aria-hidden="true" data-toggle="modal"><i style="color: deeppink;" class="fa fa-times" aria-hidden="true"> Cancel</i></a>`);
+            $(cancel).click(function() {
+              if (confirm("Are you sure?")) {
+                $(qform)[0].reset();
+                $(fieldset).prop('disabled', true);
+                editing_customer = false;
+                $(edit).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
+                $(edit).next().remove();
+              }
+            })
         } else {
             alert("Customer name is empty.");
         }
@@ -92,9 +103,9 @@ $(document).ready(() => {
     row_count = $('#contacts_table > tbody > tr').length;
 
     window.addEventListener("beforeunload", function (e) {
-        if (editing_customer || editing_email_systems_se || editing_appliances || editing_design_summary
-            || editing_desktop_network || editing_email_systems_ps || editing_import || editing_journaling
-            || editing_other_data_sources || editing_POC || editing_RFE || editing_usage) {
+        if (editing_customer || editing_email_systems || editing_sizing
+            || editing_desktop_network || editing_import
+            || editing_connector_platform || editing_POC || editing_RFE || editing_usage) {
             let confirmationMessage = "You have unsaved changes.";
             e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
             return confirmationMessage;
@@ -233,14 +244,9 @@ $(document).ready(() => {
                                 alert('No files updated.\nEither a server error has occurred or an improper request was sent.')
                             }
                             location.href = "../index/" + encodeURIComponent(new_customer);
-
-                            // Locks the form's fieldset
-                            $("#customerFormFieldset").prop('disabled', true);
-                            editing_customer = false;
-                            $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
                         },
                         error: function (xhr, status, error) {
-                            alert("Error updating files uploaded.");
+                            console.log("Error updating files uploaded.");
                         }
                     });
                 },
@@ -257,10 +263,24 @@ $(document).ready(() => {
 
             // POST here.
             $.ajax(json);
-
+            // Locks the form's fieldset
+            $("#customerFormFieldset").prop('disabled', true);
+            editing_customer = false;
+            $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
+            $(this).next().remove();
         } else if (editing_customer == false) {
             // BEGIN EDITING
             $(this).first().html('<i style="color: deeppink;" class="fa fa-save" aria-hidden="true"> Save</i>');
+            $(this).first().after('<a href="#/" id="cancelCustomerLink" aria-hidden="true" data-toggle="modal"><i style="color: deeppink;" class="fa fa-times" aria-hidden="true"> Cancel</i></a>');
+            $("#cancelCustomerLink").click(function() {
+              if (confirm("Are you sure?")) {
+                $("#customerForm")[0].reset();
+                $("#customerFormFieldset").prop('disabled', true);
+                editing_customer = false;
+                $("#editCustomerLink").first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
+                $("#editCustomerLink").next().remove();
+              }
+            })
 
             // Unlocks the form's fieldset
             $("#customerFormFieldset").prop('disabled', false);
@@ -271,14 +291,14 @@ $(document).ready(() => {
         }
     });
 
-    let editing_email_systems_se = false;
-    $('#editEmailSystemSELink').click(function () {
+    let editing_email_systems = false;
+    $('#editEmailSystemLink').click(function () {
         let customer_name = $("#unique-customer-name").val();
-        if (editing_email_systems_se == true && customer_name) {
+        if (editing_email_systems == true && customer_name) {
             // END EDITING
-            editing_email_systems_se = false;
+            editing_email_systems = false;
 
-            let form = $("#emailSystemSEForm");
+            let form = $("#emailSystemForm");
 
             let json = {
                 type: "POST",
@@ -286,9 +306,9 @@ $(document).ready(() => {
                 url: form.attr('action'),
                 data: form.serialize(),
                 success: function (res) {
-                    if (sync_forms && editing_email_systems_ps) {
-                        $('#editEmailSystemPSLink').click();
-                    }
+                    // if (sync_forms && editing_email_systems_ps) {
+                    //     $('#editEmailSystemPSLink').click();
+                    // }
                     alert("Email SE Questions saved.")
                 }
             };
@@ -298,90 +318,190 @@ $(document).ready(() => {
             $.ajax(json);
 
             // Locks the form's fieldset
-            $("#emailSystemSEFormFieldset").prop('disabled', true);
+            $("#emailSystemFormFieldset").prop('disabled', true);
             $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
-        } else if (editing_email_systems_se == false) {
+            $(this).next().remove();
+        } else if (editing_email_systems == false) {
             // BEGIN EDITING
-            editing_email_systems_se = true;
+            editing_email_systems = true;
 
             // Unlocks the form's fieldset
-            $("#emailSystemSEFormFieldset").prop('disabled', false);
-            if (sync_forms && !editing_email_systems_ps) {
-                $('#editEmailSystemPSLink').click();
-            }
+            $("#emailSystemFormFieldset").prop('disabled', false);
+            // if (sync_forms && !editing_email_systems_ps) {
+            //     $('#editEmailSystemPSLink').click();
+            // }
             $(this).first().html('<i style="color: deeppink;" class="fa fa-save" aria-hidden="true"> Save</i>');
-        } else {
-            alert("Customer name is empty.");
-        }
-    });
-
-    let editing_email_systems_ps = false;
-    $('#editEmailSystemPSLink').click(function () {
-        let customer_name = $("#unique-customer-name").val();
-        if (editing_email_systems_ps == true && customer_name) {
-            // END EDITING
-            editing_email_systems_ps = false;
-
-            let form = $("#emailSystemPSForm");
-
-            let json = {
-                type: "POST",
-                timeout: 3000,
-                url: form.attr('action'),
-                data: form.serialize(),
-                success: function (res) {
-                    if (sync_forms && editing_email_systems_se) {
-                        $('#editEmailSystemSELink').click();
-                    }
-
-                    alert("Email PS Questions saved.");
-                }
-            };
-            //console.log(json);
-
-            // POST here.
-            $.ajax(json);
-
-            // Locks the form's fieldset
-            $("#emailSystemPSFormFieldset").prop('disabled', true);
-            $(this).first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
-
-        } else if (editing_email_systems_ps == false) {
-            // BEGIN EDITING
-            editing_email_systems_ps = true;
-
-            // Unlocks the form's fieldset
-            $("#emailSystemPSFormFieldset").prop('disabled', false);
-            if (sync_forms && !editing_email_systems_se) {
-                $('#editEmailSystemSELink').click();
-            }
-            $(this).first().html('<i style="color: deeppink;" class="fa fa-save" aria-hidden="true"> Save</i>');
+            $(this).first().after('<a href="#/" id="cancelEmailSystemLink" aria-hidden="true" data-toggle="modal"><i style="color: deeppink;" class="fa fa-times" aria-hidden="true"> Cancel</i></a>');
+            $("#cancelEmailSystemLink").click(function() {
+              if (confirm("Are you sure?")) {
+                $("#emailSystemForm")[0].reset();
+                $("#emailSystemFormFieldset").prop('disabled', true);
+                editing_email_systems = false;
+                $("#editEmailSystemLink").first().html('<i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>');
+                $("#editEmailSystemLink").next().remove();
+              }
+            })
         } else {
             alert("Customer name is empty.");
         }
     });
 
 
-    let editing_journaling = false;
-    let editing_appliances = false;
-    let editing_other_data_sources = false;
+    let editing_sizing = false;
+    let editing_connector_platform = false;
     let editing_desktop_network = false;
     let editing_usage = false;
     let editing_import = false;
     let editing_POC = false;
     let editing_RFE = false;
-    let editing_design_summary = false;
-    let editing_finserv_supervision = false;
-    add_post_listeners(editing_journaling, '#editJournalingLink', "#journalingForm", "#journalingFormFieldset", "Journaling Questions saved.");
-    add_post_listeners(editing_appliances, '#editAppliancesLink', "#appliancesForm", "#appliancesFormFieldset", "Appliances Questions saved.");
-    add_post_listeners(editing_other_data_sources, '#editOtherDataSourcesLink', "#otherDataSourcesForm", "#otherDataSourcesFormFieldset", "Other Data Sources Questions saved.");
-    add_post_listeners(editing_desktop_network, '#editDesktopNetworkLink', "#desktopNetworkForm", "#desktopNetworkFormFieldset", "Desktop Network Questions saved.");
-    add_post_listeners(editing_usage, '#editUsageLink', "#usageForm", "#usageFormFieldset", "Usage Questions saved.");
-    add_post_listeners(editing_import, '#editImportLink', "#importForm", "#importFormFieldset", "Import Questions saved.");
-    add_post_listeners(editing_POC, '#editPOCLink', "#pocForm", "#pocFormFieldset", "POC Questions saved.");
-    add_post_listeners(editing_RFE, '#editRFELink', "#rfeForm", "#rfeFormFieldset", "RFE Questions saved.");
-    add_post_listeners(editing_design_summary, '#editDesignSummaryLink', "#designSummaryForm", "#designSummaryFormFieldset", "Design Summary Questions saved.");
-    add_post_listeners(editing_finserv_supervision, '#editFinservSupervisionLink', "#finservSupervisionForm", "#finservSupervisionFormFieldset", "Finserv Supervision Questions saved.");
+    let editing_supervision = false;
+    add_post_listeners(editing_sizing, '#editSizingLink', '#cancelSizingLink', "#sizingForm", "#sizingFormFieldset", "Sizing Questions saved.");
+    add_post_listeners(editing_connector_platform, '#editConnectorPlatformLink', '#cancelConnectorPlatformLink', "#connectorPlatformForm", "#connectorPlatformFormFieldset", "Connect to Platform Questions saved.");
+    add_post_listeners(editing_desktop_network, '#editDesktopNetworkLink', '#cancelDesktopNetworkLink', "#desktopNetworkForm", "#desktopNetworkFormFieldset", "Desktop Network Questions saved.");
+    add_post_listeners(editing_usage, '#editUsageLink', '#cancelUsageLink', "#usageForm", "#usageFormFieldset", "Usage Questions saved.");
+    add_post_listeners(editing_import, '#editImportLink', '#cancelImportLink', "#importForm", "#importFormFieldset", "Import Questions saved.");
+    add_post_listeners(editing_POC, '#editPOCLink', '#cancelPOCLink', "#pocForm", "#pocFormFieldset", "POC Questions saved.");
+    add_post_listeners(editing_RFE, '#editRFELink', '#cancelRFELink', "#rfeForm", "#rfeFormFieldset", "RFE Questions saved.");
+    add_post_listeners(editing_supervision, '#editSupervisionLink', '#cancelSupervisionLink', "#supervisionForm", "#supervisionFormFieldset", "Supervision Questions saved.");
+
+    $("#sidebar-button").click(function() {
+      $("#sidebar").toggle();
+      $(".page-content").toggleClass("toggled");
+    });
+
+    function hideDropdowns() {
+      $("#emailsystems-dropdown").hide();
+      $("#usage-dropdown").hide();
+      $("#supervision-dropdown").hide();
+      $("#editSupervisionOverview-dropdown").hide();
+    }
+
+    hideDropdowns();
+
+    $("a[href='#general-content']").click(function() {
+      hideDropdowns();
+    })
+
+    $("a[href='#emailsystems-content']").click(function() {
+      hideDropdowns();
+      $("#emailsystems-dropdown").toggle();
+      $("#editExchangeDetails").collapse("hide");
+      $("#editActiveDirectoryDetails").collapse("hide");
+      $("#editO365Details").collapse("hide");
+    })
+
+    $("a[href='#sizing-content']").click(function() {
+      hideDropdowns();
+    })
+
+    $("a[href='#connectorplatform-content']").click(function() {
+      hideDropdowns();
+    })
+
+    $("a[href='#usage-content']").click(function() {
+      hideDropdowns();
+      $("#usage-dropdown").toggle();
+      $("#editUsage-Supervision-dropdown").hide();
+      $("#editUsage-Legal").collapse("hide");
+      $("#editusage-export").collapse("hide");
+    })
+
+    $("a[href='#import-content']").click(function() {
+      hideDropdowns();
+    })
+
+    $("a[href='#poc-content']").click(function() {
+      hideDropdowns();
+    })
+
+    $("a[href='#rfe-content']").click(function() {
+      hideDropdowns();
+    })
+
+    $("a[href='#supervision-content']").click(function() {
+      hideDropdowns();
+      $("#supervision-dropdown").toggle();
+      $("#editSupervisionOverview-dropdown").hide();
+      $("#editSupervisionOverview").collapse("hide");
+      $("#editSupervision-MessageProfile").collapse("hide");
+      $("#editSupervisoryWorkflow").collapse("hide");
+      $("#editAdministrativeFunctions").collapse("hide");
+      $("#editRuleLexiconMaintenance").collapse("hide");
+    })
+
+    $("a[href='#editSupervisionOverview']").click(function() {
+      $("#editSupervisionOverview-dropdown").toggle();
+      $("a[href='#editSupervisionOverview']").click();
+    })
+
+    $("#print-all-content").hide();
+    $("#print-general-content").hide();
+    $("#print-emailsystems-content").hide();
+    $("#print-sizing-content").hide();
+    $("#print-connectorplatform-content").hide();
+    $("#print-desktopnetwork-content").hide();
+    $("#print-usage-content").hide();
+    $("#print-import-content").hide();
+    $("#print-poc-content").hide();
+    $("#print-rfe-content").hide();
+    $("#print-supervision-content").hide();
+
+    function print(section) {
+      $(section).show();
+      var print = $(section).html();
+      var temp = $("body").html();
+      $("body").html(print);
+      $("button, a").remove();
+      window.print();
+      $("body").html(temp);
+      location.reload();
+    }
+
+    $("#print-all-button").click(function() {
+      print("#print-all-content");
+    })
+
+    $("#print-general-button").click(function() {
+      print("#print-general-content");
+    })
+
+    $("#print-emailsystems-button").click(function() {
+      print("#print-emailsystems-content");
+    })
+
+    $("#print-sizing-button").click(function() {
+      print("#print-sizing-content");
+    })
+
+    $("#print-connectorplatform-button").click(function() {
+      print("#print-connectorplatform-content");
+    })
+
+    $("#print-desktopnetwork-button").click(function() {
+      print("#print-desktopnetwork-content");
+    })
+
+    $("#print-usage-button").click(function() {
+      print("#print-usage-content");
+    })
+
+    $("#print-import-button").click(function() {
+      print("#print-import-content");
+    })
+
+    $("#print-poc-button").click(function() {
+      print("#print-poc-content");
+    })
+
+    $("#print-rfe-button").click(function() {
+      print("#print-rfe-content");
+    })
+
+    $("#print-supervision-button").click(function() {
+      print("#print-supervision-content");
+    })
+
+    $("#collapse-toggle").hide();
 });
 
 function delete_row(row) {
@@ -410,4 +530,3 @@ function delete_diagram(row, url) {
         $.ajax(json);
     }
 }
-

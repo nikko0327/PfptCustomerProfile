@@ -27,7 +27,12 @@ var rfe_schema = new mongoose.Schema({
         default: ""
     }
 });
+var rfe_versions_schema = new mongoose.Schema({
+  refId: mongoose.Schema.Types.ObjectId,
+  versions: [rfe_schema]
+});
 
 var RFEQuestions = mongoose.model("RFEQuestions", rfe_schema);
+var RFEQuestionsVersions = mongoose.model("RFEQuestionsVersions", rfe_versions_schema);
 
-module.exports = RFEQuestions;
+module.exports = {RFEQuestions, RFEQuestionsVersions};

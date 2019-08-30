@@ -1,0 +1,32 @@
+[
+  {
+    "displayName": "Customer Name",
+    "access": "name",
+    "type": "string"
+  },
+  {
+    "displayName": "Showstoppers (Will not buy w/o)",
+    "access": "showstoppers_buy",
+    "type": "string"
+  },
+  {
+    "displayName": "Showstoppers (Will not rollout w/o)",
+    "access": "showstoppers_rollout",
+    "type": "string"
+  },
+  {
+    "displayName": "Parity features",
+    "access": "parity_features",
+    "type": "string"
+  },
+  {
+    "displayName": "Nice to haves",
+    "access": "nice_to_haves",
+    "type": "string"
+  },
+  {
+    "displayName": "Comments",
+    "access": "comments",
+    "type": "string"
+  }
+]

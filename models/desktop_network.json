@@ -1,0 +1,82 @@
+[
+  {
+    "displayName": "Customer Name",
+    "access": "name",
+    "type": "string"
+  },
+  {
+    "displayName": "Do you want users to be able to access the user interface outside of your network? (Yes, No)",
+    "access": "allow_outside_access",
+    "type": "string"
+  },
+  {
+    "displayName": "NAT IP List",
+    "access": "nat_IP_list",
+    "type": "string"
+  },
+  {
+    "displayName": "Do you use SSO? (Yes, No)",
+    "access": "use_SSO",
+    "type": "string"
+  },
+  {
+    "displayName": "Do you have an IDP (Identity Provider) that supports SAML 2.0? (Yes, No)",
+    "access": "have_IDP",
+    "type": "string"
+  },
+  {
+    "displayName": "Where will the PFPT AD security groups be maintained? (On prem deployments require universal groups containing all users that need to log in, in the resource forest.)",
+    "access": "where_security_group",
+    "type": "string"
+  },
+  {
+    "displayName": "Service provider or IDP (Identity Provider) initiated? (We only support Service Provider initiated)",
+    "access": "initiated_IDP",
+    "type": "string"
+  },
+  {
+    "displayName": "Do you require request encryption? (We don't support it.) (Yes, No)",
+    "access": "require_request_encryption",
+    "type": "string"
+  },
+  {
+    "displayName": "Do you require response signing? (We support it.) (Yes, No)",
+    "access": "require_response_signing",
+    "type": "string"
+  },
+  {
+    "displayName": "Do you require response encryption? (We support it.) (Yes, No)",
+    "access": "require_response_encryption",
+    "type": "string"
+  },
+  {
+    "displayName": "If the response is to be encrypted, do you require a 3rd party cert or is a self-signed cert sufficient? (We support both.) (Yes, No)",
+    "access": "require_third_party_cert",
+    "type": "string"
+  },
+  {
+    "displayName": "What attribute will you be sending as part of the response? (We only support UPN, email, and SID.)",
+    "access": "response_attributes",
+    "type": "string"
+  },
+  {
+    "displayName": "Do you intend to deploy PFPT's remote authentication? (Yes, No)",
+    "access": "intend_to_deploy_remote_auth",
+    "type": "string"
+  },
+  {
+    "displayName": "Are all user accounts on trusted forests? (Yes, No)",
+    "access": "all_users_trusted",
+    "type": "string"
+  },
+  {
+    "displayName": "Are all domain controllers accessible on the same network as the server that Remote Auth will be installed? (Yes, No)",
+    "access": "domain_controllers",
+    "type": "string"
+  },
+  {
+    "displayName": "Comments",
+    "access": "comments",
+    "type": "string"
+  }
+]

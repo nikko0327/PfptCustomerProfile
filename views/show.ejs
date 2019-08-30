@@ -1,55 +1,172 @@
 <% include partials/show_header %>
 
-    <div class="container" style="border: .2px solid gray; padding-right:25px; padding-left:25px; padding-bottom: 25px">
-        <div id="customerHeader">
-            <h1 style="text-align: center; padding-top:15px; font-size: 70px;">
-                <%= customer.name %>
-            </h1>
-        </div>
-
-        <div id="content">
-            <div id="detail" class="display-header">
-                <h4>Project Details</h4>
-                <button type="button" value="Expand All" id="collapse-toggle" onclick="expand_collapse()" class="pull btn-primary">
-                    Expand All
-                </button>
-<!-- 
-                <button type="button" value="true" id="sync-forms" onclick="sync_email_systems_forms()" class="pull btn-primary">
-                    Unsync Forms
-                </button> -->
-            </div>
-            <hr class="rainbow">
-
-            <% include sections/01-General.ejs %>
-
-                <% include sections/02-EmailSystemsSE.ejs %>
-
-                    <% include sections/03-EmailSystemsPS.ejs %>
-
-                        <% include sections/04-Journaling.ejs %>
-
-                            <% include sections/05-Appliances.ejs %>
-
-                                <% include sections/06-OtherDataSources.ejs %>
-
-                                    <% include sections/07-DesktopNetwork.ejs %>
-
-                                        <% include sections/08-Usage.ejs %>
-
-                                            <% include sections/09-Import.ejs %>
-
-                                                <% include sections/10-POC.ejs %>
-
-                                                    <% include sections/11-RFE.ejs %>
-
-                                                        <% include sections/13-FinservSupervision.ejs %>
-
-                                                            <% include sections/12-DesignSummary.ejs %>
-
-        </div>
+<div class="page-wrapper">
+  <nav id="sidebar" class="sidebar-wrapper navbar navbar-dark bg-dark">
+    <div class="sidebar-content">
+      <div class="sidebar-menu">
+        <nav class="nav flex-column nav-pills" id="sidebar" role="tablist" aria-orientation="vertical">
+          <a class="nav-link ml-2 my-1 active" id="general-tab" data-toggle="pill" href="#general-content" role="tab" aria-controls="general-content" aria-selected="true">General</a>
+          <a class="nav-link ml-2 my-1 dropdown-toggle" id="emailsystems-tab" data-toggle="pill" href="#emailsystems-content" role="tab" aria-controls="emailsystems-content" aria-selected="true">Email Systems</a>
+          <nav class="nav flex-column nav-pills" id="emailsystems-dropdown">
+            <a class="nav-link ml-3 my-1" href="#editExchangeDetails" style="color: mediumvioletred">Exchange Details</a>
+            <a class="nav-link ml-3 my-1" href="#editActiveDirectoryDetails" style="color: mediumvioletred">Active Directory Details</a>
+            <a class="nav-link ml-3 my-1" href="#editO365Details" style="color: mediumvioletred">O365 Details</a>
+          </nav>
+          <a class="nav-link ml-2 my-1" id="sizing-tab" data-toggle="pill" href="#sizing-content" role="tab" aria-controls="sizing-content" aria-selected="true">Sizing</a>
+          <a class="nav-link ml-2 my-1" id="connectorplatform-tab" data-toggle="pill" href="#connectorplatform-content" role="tab" aria-controls="connectorplatform-content" aria-selected="true">Connector Platform</a>
+          <a class="nav-link ml-2 my-1" id="desktopnetwork-tab" data-toggle="pill" href="#desktopnetwork-content" role="tab" aria-controls="desktopnetwork-content" aria-selected="true">Desktop/Network/DR</a>
+          <a class="nav-link ml-2 my-1 dropdown-toggle" id="usage-tab" data-toggle="pill" href="#usage-content" role="tab" aria-controls="usage-content" aria-selected="true">Usage</a>
+          <nav class="nav flex-column nav-pills" id="usage-dropdown">
+            <a class="nav-link ml-3 my-1" href="#editUsage-Legal" style="color: mediumvioletred">Legal Holds</a>
+            <a class="nav-link ml-3 my-1" href="#editusage-export" style="color: mediumvioletred">Export</a>
+          </nav>
+          <a class="nav-link ml-2 my-1" id="import-tab" data-toggle="pill" href="#import-content" role="tab" aria-controls="import-content" aria-selected="false">Import</a>
+          <a class="nav-link ml-2 my-1" id="poc-tab" data-toggle="pill" href="#poc-content" role="tab" aria-controls="poc-content" aria-selected="true">POC</a>
+          <a class="nav-link ml-2 my-1" id="rfe-tab" data-toggle="pill" href="#rfe-content" role="tab" aria-controls="rfe-content" aria-selected="false">RFEs</a>
+          <a class="nav-link ml-2 my-1 dropdown-toggle" id="supervision-tab" data-toggle="pill" href="#supervision-content" role="tab" aria-controls="supervision-content" aria-selected="true">Supervision</a>
+          <nav class="nav flex-column nav-pills" id="supervision-dropdown">
+            <a class="nav-link ml-3 my-1 dropdown-toggle" href="#editSupervisionOverview" style="color: mediumvioletred">Current Supervision Overview – Digital Communication Review</a>
+            <nav class="nav flex-column nav-pills" id="editSupervisionOverview-dropdown">
+              <a class="nav-link ml-4 my-1" href="#editSupervision-MessageProfile" style="color: lightseagreen;">Message Sampling Profiles</a>
+            </nav>
+            <a class="nav-link ml-3 my-1" href="#editSupervisoryWorkflow" style="color: mediumvioletred">Supervisory Workflow</a>
+            <a class="nav-link ml-3 my-1" href="#editAdministrativeFunctions" style="color: mediumvioletred">Administrative Functions</a>
+            <a class="nav-link ml-3 my-1" href="#editRuleLexiconMaintenance" style="color: mediumvioletred">Rule/Lexicons Maintenance</a>
+          </nav>
+        </nav>
+      </div>
     </div>
+  </nav>
+  <main class="page-content toggled">
+    <div class="container-fluid">
+      <div class="container" style="border: .2px solid gray; padding-right:25px; padding-left:25px; padding-bottom: 25px">
+        <div class="tab-content" id="content">
+          <div id="customerHeader">
+              <h1 style="text-align: center; padding-top:15px; font-size: 70px;">
+                  <%= customer.name %>
+              </h1>
+          </div>
+          <div id="detail" class="display-header">
+              <h4>Project Details</h4>
+              <div class="row">
+                <div class="col d-flex justify-content-around">
+                  <div>
+                    <button class="btn btn-primary dropdown-toggle" id="print-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Print</button>
+                    <div class="dropdown-menu" aria-labelledby="print-button">
+                      <button class="dropdown-item" id="print-all-button">Print All</button>
+                      <button class="dropdown-item" id="print-general-button">Print General</button>
+                      <button class="dropdown-item" id="print-emailsystems-button">Print Email Systems</button>
+                      <button class="dropdown-item" id="print-sizing-button">Print Sizing</button>
+                      <button class="dropdown-item" id="print-connectorplatform-button">Print Connector Platform</button>
+                      <button class="dropdown-item" id="print-desktopnetwork-button">Print Desktop/Network/DR</button>
+                      <button class="dropdown-item" id="print-usage-button">Print Usage</button>
+                      <button class="dropdown-item" id="print-import-button">Print Import</button>
+                      <button class="dropdown-item" id="print-poc-button">Print POC</button>
+                      <button class="dropdown-item" id="print-rfe-button">Print RFEs</button>
+                      <button class="dropdown-item" id="print-supervision-button">Print Supervision</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col d-flex justify-content-around">
+                  <form class="form-inline" action="/import/<%= encodeURIComponent(customer.name) %>" method="POST" enctype="multipart/form-data">
+                    <input type="file" class="form-control-file" name="file" required>
+                    <button type="submit" class="btn btn-primary">Import</button>
+                  </form>
+                </div>
+                <div class="col d-flex justify-content-around">
+                  <form action="/export/<%= encodeURIComponent(customer.name) %>" method="POST">
+                    <button type="submit" class="btn btn-primary">Export</button>
+                  </form>
+                </div>
+              </div>
+              <button type="button" value="Expand All" id="collapse-toggle" onclick="expand_collapse()" class="pull btn btn-primary">
+                  Expand All
+              </button>
+    <!--
+              <button type="button" value="true" id="sync-forms" onclick="sync_email_systems_forms()" class="pull btn btn-primary">
+                  Unsync Forms
+              </button> -->
+          </div>
+          <hr class="rainbow">
+          <div class="tab-pane fade show active" id="general-content" role="tabpanel" aria-labelledby="general-tab">
+            <% include sections/01-General.ejs %>
+          </div>
+          <div class="tab-pane fade" id="emailsystems-content" role="tabpanel" aria-labelledby="emailsystems-tab">
+            <% include sections/02-EmailSystems.ejs %>
+          </div>
+          <div class="tab-pane fade" id="sizing-content" role="tabpanel" aria-labelledby="sizing-tab">
+            <% include sections/03-Sizing.ejs %>
+          </div>
+          <div class="tab-pane fade" id="connectorplatform-content" role="tabpanel" aria-labelledby="connectorplatform-tab">
+            <% include sections/04-ConnectorPlatform.ejs %>
+          </div>
+          <div class="tab-pane fade" id="desktopnetwork-content" role="tabpanel" aria-labelledby="desktopnetwork-tab">
+            <% include sections/05-DesktopNetwork.ejs %>
+          </div>
+          <div class="tab-pane fade" id="usage-content" role="tabpanel" aria-labelledby="usage-tab">
+            <% include sections/06-Usage.ejs %>
+          </div>
+          <div class="tab-pane fade" id="import-content" role="tabpanel" aria-labelledby="import-tab">
+            <% include sections/07-Import.ejs %>
+          </div>
+          <div class="tab-pane fade" id="poc-content" role="tabpanel" aria-labelledby="poc-tab">
+            <% include sections/08-POC.ejs %>
+          </div>
+          <div class="tab-pane fade" id="rfe-content" role="tabpanel" aria-labelledby="rfe-tab">
+            <% include sections/09-RFE.ejs %>
+          </div>
+          <div class="tab-pane fade" id="supervision-content" role="tabpanel" aria-labelledby="supervision-tab">
+            <% include sections/10-Supervision.ejs %>
+          </div>
+          <div id="print-all-content">
+            <% include sections/01-General.ejs %>
+            <% include sections/02-EmailSystems.ejs %>
+            <% include sections/03-Sizing.ejs %>
+            <% include sections/04-ConnectorPlatform.ejs %>
+            <% include sections/05-DesktopNetwork.ejs %>
+            <% include sections/06-Usage.ejs %>
+            <% include sections/07-Import.ejs %>
+            <% include sections/08-POC.ejs %>
+            <% include sections/09-RFE.ejs %>
+            <% include sections/10-Supervision.ejs %>
+          </div>
+          <div id="print-general-content">
+            <% include sections/01-General.ejs %>
+          </div>
+          <div id="print-emailsystems-content">
+            <% include sections/02-EmailSystems.ejs %>
+          </div>
+          <div id="print-sizing-content">
+            <% include sections/03-Sizing.ejs %>
+          </div>
+          <div id="print-connectorplatform-content">
+            <% include sections/04-ConnectorPlatform.ejs %>
+          </div>
+          <div id="print-desktopnetwork-content">
+            <% include sections/05-DesktopNetwork.ejs %>
+          </div>
+          <div id="print-usage-content">
+            <% include sections/06-Usage.ejs %>
+          </div>
+          <div id="print-import-content">
+            <% include sections/07-Import.ejs %>
+          </div>
+          <div id="print-poc-content">
+            <% include sections/08-POC.ejs %>
+          </div>
+          <div id="print-rfe-content">
+            <% include sections/09-RFE.ejs %>
+          </div>
+          <div id="print-supervision-content">
+            <% include sections/10-Supervision.ejs %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
 
-    <script type="text/javascript" src="../scripts/show.js"></script>
-    <script type="text/javascript" src="../scripts/sync_inputs.js"></script>
+    <script type="text/javascript" src="/scripts/show.js"></script>
+    <script type="text/javascript" src="/scripts/sync_inputs.js"></script>
 
     <% include partials/footer %>

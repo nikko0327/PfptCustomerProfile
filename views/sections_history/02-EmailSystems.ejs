@@ -1,0 +1,30 @@
+<!-- Displaying Email Systems questions -->
+<div id="emailSystem" class="display-header">
+    <div id="emailContainer">
+        <div class="edit pull-right" style="float: right;">
+            <a href="#/" id="editEmailSystemLink" aria-hidden="true" data-toggle="modal">
+                <i class="fa fa-pencil-square-o"> Edit</i>
+            </a>
+        </div>
+        <br>
+
+        <form autocomplete="off" id="emailSystemForm" action="../index/<%= encodeURIComponent(customer.name) %>?_method=PUT" method="POST" enctype="multipart/form-data">
+            <fieldset id="emailSystemFormFieldset" disabled>
+                <div class="form-group col-4 response-cell" hidden>
+                    <label>Customer Name</label>
+                    <input type="text" readonly class="form-control" placeholder="No response set" value="<%= customer.name %>" name="email_questions[name]">
+                </div>
+
+                <% include EmailSystems/EditExchangeDetails.ejs %>
+                <% include EmailSystems/EditActiveDirectoryDetails.ejs %>
+                <% include EmailSystems/EditO365Details.ejs %>
+
+                <div class="form-group">
+                    <label>Comments</label>
+                    <textarea class="form-control" maxlength="5000" rows="5" name="email_questions[comments]" placeholder="5000 characters max" form="emailSystemForm"><%= email_questions.comments %></textarea>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<hr class="rainbow">

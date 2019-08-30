@@ -1,5 +1,5 @@
 <style type="text/css">
-    
+
     @charset "utf-8";
 
 
@@ -38,7 +38,7 @@ width:100%;
 }
 
 body {
-   
+
     color: #606468;
   font: 87.5%/1.5em 'Open Sans', sans-serif;
   margin: 0;
@@ -121,6 +121,10 @@ font-size:50px;
     width: 50px;
 }
 
+span.fa-eye, span.fa-eye-slash {
+    float: right !important;
+}
+
 #login form input {
     height: 50px;
 }
@@ -139,6 +143,10 @@ fieldset{
     width: 200px;
 }
 
+#password {
+    width: 150px !important;
+}
+
 #login form input[type="submit"] {
   border-radius: 3px;
   -moz-border-radius: 3px;
@@ -153,7 +161,7 @@ fieldset{
 }
 
 #login form input[type="submit"]:hover {
-    background-color: #d44179;
+    background-color: #0264d6;
 }
 
 #login > p {
@@ -168,92 +176,36 @@ fieldset{
   width: 600px;
 }
 </style>
-
-<!--     <div class="container" style="display: flex; flex-flow: column wrap; align-items: center; text-align: center;">
-        <fieldset>
-            <form action="./login" method="post">
-                <br>
-                <h2>Customer Profile Dashboard</h2>
-                <br>
-
-                <div class="control-group">
-                    <label class="control-label" style="text-align: center;">Username</label>
-                    <div class="controls">
-                        <input type="text" style="text-align: center; align: center;" id="username" name="login[username]" placeholder="Username"
-                            required>
-                    </div>
-                </div>
-                <br>
-
-                <div class="control-group">
-                    <label class="control-label" style="text-align: center;">Password</label>
-                    <div class="controls">
-                        <input style="text-align: center; align: center;" type="password" id="password" name="login[password]" placeholder="Password"
-                            required>
-                    </div>
-                </div>
-                <br>
-
-                <% if(fail) { %>
-                    <p id="error-message" class="text-error" style="color: red;">Invalid login credentials. Please try again.</p>
-                    <% } %>
-
-                        <div class="control-group">
-                            <div class="controls">
-                                <button type="submit" class="btn btn-primary" id="sign_in">Login</button>
-                            </div>
-                            <br>
-                        </div>
-                        <div id="spinner" hidden>
-                            <center>
-                                <i class="icon-spinner icon-spin icon-3x"></i>
-                            </center>
-                        </div>
-            </form>
-        </fieldset>
-        <hr>
-        <div>Note: If you are using Firefox, parts of certain pages may not work properly.</div>
-    </div> -->
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="./scripts/login.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <div class="main">
-    
-    
     <div class="container">
-<center>
-<div class="middle">
-      <div id="login">
-
-        <form action="./login" method="post">
-
-          <fieldset class="clearfix">
-
-            <p ><span class="fa fa-user"></span><input id="username" name="login[username]" type="text"  Placeholder="Username" required ></p> <!-- JS because of IE support; better: placeholder="Username" -->
-            <p><span class="fa fa-lock"></span><input id="password" name="login[password]" type="password"  Placeholder="Password" required></p> <!-- JS because of IE support; better: placeholder="Password" -->
-            
-             <div>
-                                <span style="width:50%; text-align:right;  display: inline-block;"><input type="submit" value="Sign In"></span>
+        <center>
+            <div class="middle">
+                <div id="login">
+                    <form action="/login" method="post">
+                        <fieldset class="clearfix">
+                            <p><span class="fa fa-user"></span><input id="username" name="login[username]" type="text" placeholder="Username" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
+                            <p><span class="fa fa-lock"></span><input id="password" name="login[password]" type="password" placeholder="Password" required><span id="show_password" class="fa fa-eye"></span></p> <!-- JS because of IE support; better: placeholder="Password" -->
+                            <div>
+                                <span><input type="submit" value="Sign In"></span>
                             </div>
-
-          </fieldset>
-<div class="clearfix"></div>
-        </form>
-
-        <div class="clearfix"></div>
-
-      </div> <!-- end login -->
-      <div class="logo">proofpoint
-          
-          <div class="clearfix"></div>
-      </div>
-      
-      </div>
-</center>
+                            Register <a href="/register">here</a> if you do not already have an account.
+                        </fieldset>
+                        <div class="clearfix"></div>
+                    </form>
+                    <div class="clearfix"></div>
+                </div> <!-- end login -->
+                <div class="logo">proofpoint
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </center>
     </div>
-
 </div>
-    <% include partials/footer %>
+<% include partials/footer %>

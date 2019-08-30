@@ -1,0 +1,217 @@
+[
+  {
+    "displayName": "Customer Name",
+    "access": "name",
+    "type": "string"
+  },
+  {
+    "displayName": "What supervision solution are you currently using for digital communication review?",
+    "access": "digital_comm_current",
+    "type": "string"
+  },
+  {
+    "displayName": "What current pain points do you have with your process and/or supervision solution?",
+    "access": "pain_points",
+    "type": "string"
+  },
+  {
+    "displayName": "What feature/functionality needs do you not have in current supervision solution?",
+    "access": "not_haves",
+    "type": "string"
+  },
+  {
+    "displayName": "Which regulatory body/ies oversee your business practices?",
+    "access": "regulator",
+    "type": "string"
+  },
+  {
+    "displayName": "Number of Monitored Users",
+    "access": "digital_comm[monitored_users]",
+    "type": "string"
+  },
+  {
+    "displayName": "Number of Reviewers",
+    "access": "digital_comm[reviewers]",
+    "type": "string"
+  },
+  {
+    "displayName": "Number of Administrators",
+    "access": "digital_comm[admins]",
+    "type": "string"
+  },
+  {
+    "displayName": "Number of Rules and Lexicons",
+    "access": "digital_comm[rules_lexicons]",
+    "type": "string"
+  },
+  {
+    "displayName": "Number of Whitelist/SPAM Rules",
+    "access": "digital_comm[whitelist_rules]",
+    "type": "string"
+  },
+  {
+    "displayName": "Number of Business Units/Divisions using Supervision",
+    "access": "digital_comm[units_using_supervision]",
+    "type": "string"
+  },
+  {
+    "displayName": "Do your Business Units/Divisions have different supervisory requirements?",
+    "access": "digital_comm[different_reqs]",
+    "type": "string"
+  },
+  {
+    "displayName": "Heightened Supervision",
+    "access": "message_sampling_profiles[heightened_supervision]",
+    "type": "string"
+  },
+  {
+    "displayName": "Flagged Messages",
+    "access": "message_sampling_profiles[flagged_messages]",
+    "type": "string"
+  },
+  {
+    "displayName": "Clean",
+    "access": "message_sampling_profiles[clean]",
+    "type": "string"
+  },
+  {
+    "displayName": "Content Type",
+    "access": "message_sampling_profiles[content_type]",
+    "type": "string"
+  },
+  {
+    "displayName": "Internal Messages",
+    "access": "message_sampling_profiles[internal_messages]",
+    "type": "string"
+  },
+  {
+    "displayName": "External Messages",
+    "access": "message_sampling_profiles[external_messages]",
+    "type": "string"
+  },
+  {
+    "displayName": "Heightened Supervision sampling rate",
+    "access": "message_sampling_profiles[heightened_supervision_rate]",
+    "type": "string"
+  },
+  {
+    "displayName": "Flagged Messages sampling rate",
+    "access": "message_sampling_profiles[flagged_messages_rate]",
+    "type": "string"
+  },
+  {
+    "displayName": "Clean sampling rate",
+    "access": "message_sampling_profiles[clean_rate]",
+    "type": "string"
+  },
+  {
+    "displayName": "Content Type sampling rate",
+    "access": "message_sampling_profiles[content_type_rate]",
+    "type": "string"
+  },
+  {
+    "displayName": "Internal Messages sampling rate",
+    "access": "message_sampling_profiles[internal_messages_rate]",
+    "type": "string"
+  },
+  {
+    "displayName": "External Messages sampling rate",
+    "access": "message_sampling_profiles[external_messages_rate]",
+    "type": "string"
+  },
+  {
+    "displayName": "What status do you use for message without issues?",
+    "access": "supervisory_workflow[issue_status]",
+    "type": "string"
+  },
+  {
+    "displayName": "How do you handle messages with potential violations?",
+    "access": "supervisory_workflow[violation_handling]",
+    "type": "string"
+  },
+  {
+    "displayName": "What type of Escalation Path do you have in place?",
+    "access": "supervisory_workflow[escalation_path]",
+    "type": "string"
+  },
+  {
+    "displayName": "What documentation within the solution is required?",
+    "access": "supervisory_workflow[potential_violation_doc]",
+    "type": "string"
+  },
+  {
+    "displayName": "How are messages closed when violations have been substantiated?",
+    "access": "supervisory_workflow[messages_closed]",
+    "type": "string"
+  },
+  {
+    "displayName": "What status is used?",
+    "access": "supervisory_workflow[status_used]",
+    "type": "string"
+  },
+  {
+    "displayName": "What documentation within the solution is required?",
+    "access": "supervisory_workflow[substantiated_violation_doc]",
+    "type": "string"
+  },
+  {
+    "displayName": "How do you notify individuals of message violations?",
+    "access": "supervisory_workflow[notify_message_violation]",
+    "type": "string"
+  },
+  {
+    "displayName": "How many Administrators do you currently have in your supervision solution?",
+    "access": "administrative_functions[admin_count]",
+    "type": "string"
+  },
+  {
+    "displayName": "What type of oversight do the Administrators provide (if applicable)?",
+    "access": "administrative_functions[admin_oversight]",
+    "type": "string"
+  },
+  {
+    "displayName": "Aging Reviews (Are reviews current and up-to-date?)",
+    "access": "administrative_functions[aging_reviews]",
+    "type": "string"
+  },
+  {
+    "displayName": "Evidence of Supervision (Are reviewers current with their reviews?)",
+    "access": "administrative_functions[evidence_of_supervision]",
+    "type": "string"
+  },
+  {
+    "displayName": "Quality Review (Are Processes being followed?)",
+    "access": "administrative_functions[quality_review]",
+    "type": "string"
+  },
+  {
+    "displayName": "How often do you to update/fine-tune lexicons?",
+    "access": "rule_lexicon_maintenance[update_frequency]",
+    "type": "string"
+  },
+  {
+    "displayName": "Whitelist/Spam rule updating",
+    "access": "rule_lexicon_maintenance[whitelist_spam_updating]",
+    "type": "string"
+  },
+  {
+    "displayName": "Lexicon Updating - False Positives",
+    "access": "rule_lexicon_maintenance[false_positives]",
+    "type": "string"
+  },
+  {
+    "displayName": "Lexicon Updating - New Regulations",
+    "access": "rule_lexicon_maintenance[new_regulations]",
+    "type": "string"
+  },
+  {
+    "displayName": "Lexicon Updating - New Risks",
+    "access": "rule_lexicon_maintenance[new_risks]",
+    "type": "string"
+  },
+  {
+    "displayName": "Comments",
+    "access": "comments",
+    "type": "string"
+  }
+]

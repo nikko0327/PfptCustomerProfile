@@ -1,22 +1,12 @@
 var mongoose = require("mongoose");
 
-// Can't use joins in NoSQL, can't use foreign keys. Feelsbadman.
-
 var CustomerSchema = new mongoose.Schema({
     name: {
         type: String,
         unique: true,
         required: true
     },
-    impSpecialist: {
-        type: String,
-        default: ""
-    },
     salesRep: {
-        type: String,
-        default: ""
-    },
-    status: {
         type: String,
         default: ""
     },
@@ -28,15 +18,7 @@ var CustomerSchema = new mongoose.Schema({
         type: String,
         default: ""
     },
-    location: {
-        type: String,
-        default: ""
-    },
-    supervision: {
-        type: String,
-        default: ""
-    },
-    tem: {
+    tpm: {
         type: String,
         default: ""
     },
@@ -44,24 +26,31 @@ var CustomerSchema = new mongoose.Schema({
         type: String,
         default: ""
     },
+    solutionArchitect: {
+        type: String,
+        default: ""
+    },
+    supervisionConsultant: {
+        type: String,
+        default: ""
+    },
+    numberOfMailboxes: {
+        type: String,
+        default: ""
+    },
+    location: {
+        type: String,
+        default: ""
+    },
+    status: {
+        type: String,
+        default: ""
+    },
     natIp: {
         type: String,
         default: ""
     },
-    contacts: [],
-    created: {
-        type: Date,
-        default: Date.now
-    },
     incumbentSolution: {
-        type: String,
-        default: ""
-    },
-    numberOfUsers: {
-        type: String,
-        default: ""
-    },
-    comments: {
         type: String,
         default: ""
     },
@@ -77,14 +66,6 @@ var CustomerSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    is_using_DAG: {
-        type: String,
-        default: ""
-    },
-    describe_HA_DR: {
-        type: String,
-        default: ""
-    },
     pso: {
         ticket: {
             type: String,
@@ -98,10 +79,47 @@ var CustomerSchema = new mongoose.Schema({
     shipreq: {
         type: String,
         default: ""
+    },
+    ps_opportunity: {
+      type: String,
+      default: ""
+    },
+    messaging_system: {
+      type: String,
+      default: ""
+    },
+    hybrid_or_hosted: {
+      type: String,
+      default: ""
+    },
+    virtual_or_physical: {
+      type: String,
+      default: ""
+    },
+    contacts: [],
+    comments: {
+        type: String,
+        default: ""
+    },
+    createdBy: {
+      type: String,
+      default: ""
+    },
+    updatedBy: {
+      type: String,
+      default: ""
     }
+},
+{
+  timestamps: true
+});
+var CustomerVersionsSchema = new mongoose.Schema({
+  refId: mongoose.Schema.Types.ObjectId,
+  versions: [CustomerSchema]
 });
 
 var Customer = mongoose.model("Customer", CustomerSchema);
+var CustomerVersions = mongoose.model("CustomerVersions", CustomerVersionsSchema);
 
 // Customer.create({
 //     name: "Kearney",
@@ -127,4 +145,4 @@ var Customer = mongoose.model("Customer", CustomerSchema);
 //     }
 // });
 
-module.exports = Customer;
+module.exports = {Customer, CustomerVersions};
