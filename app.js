@@ -31,7 +31,7 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 
 app.enable('trust proxy');
 
-var databaseUrl = "mongodb://localhost/customerProfile";
+var databaseUrl = "mongodb://localhost/NewCustomerProfile";
 //mongoose.Promise = require('bluebird');
 mongoose.connect(databaseUrl, { useMongoClient: true }).then(
     () => {
