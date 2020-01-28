@@ -1,4 +1,4 @@
-/* Table css Start */
+/*/* Table css Start */
 
 a.del {
     background: #d9534f;
@@ -22,15 +22,11 @@ a.edit {
 }
 
 table {
-    border-bottom: 8px solid #448aff;
+    border: 0;
 }
 
 td.check {
     text-align: center;
-}
-
-.table-striped > tbody > tr:nth-of-type(odd) {
-    background: #F0F2F2 !important;
 }
 
 a.btn-danger:hover {
@@ -129,16 +125,6 @@ footer p {
     box-shadow: 0 1px 0 #B4B3B3;
 }
 
-.container {
-    /*width: 3000px !important;*/
-    max-width: 90%;
-    background-color: white;
-    border: .2px solid gray;
-    padding-right:25px;
-    padding-left:25px;
-    padding-bottom: 25px;
-}
-
 .col-4 {
     -ms-flex: 0 0 100% !important;
     flex: 0 0 100% !important;
@@ -218,10 +204,6 @@ all {
     padding-top: 6px;
 }
 
-body {
-    background-color: lightgray;
-}
-
 #contacts_table th {
     font-size: 12px;
 }
@@ -299,3 +281,4 @@ ul {
   list-style-type: none;
   padding: 0px;
 }
+*/

@@ -1,53 +1,52 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
-    <title>Proofpoint Customer Profile</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- <link href="./favicon.ico" type="image/x-icon" rel="icon" /> -->
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Exo:700&display=swap" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <title>Proofpoint - Customer Profile</title>
 
-    <!-- local scripts & styles -->
-    <link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
-    <script type="text/javascript" src="/scripts/app.js"></script>
+  <style media="screen">
+    .navbar-brand {
+      color: white;
+    }
+
+    .navbar {
+      background-color: #343A40;
+    }
+
+    .custab {
+      border: 1px solid #cccccc;
+      padding: 5px;
+      margin-top: 2%;
+      box-shadow: 0.5px 0.5px 0.5px #cccccc;
+      transition: 0.5s;
+    }
+
+    .custab:hover {
+      box-shadow: 3px 3px 0px transparent;
+      transition: 0.5s;
+    }
+
+    .container {
+      max-width: 90%;
+    }
+  </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Proofpoint</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="./">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <!--<li class="nav-item active">-->
-                <!--<a class="nav-link" href="./register">Register (Remove me in the header) <span class="sr-only">(current)-->
-                <!--</span></a>-->
-                <!--</li>-->
-            </ul>
-
-            <% if (user) { %>
-                <div class="general" style="color: white; margin-right: 15px; margin-bottom: 5px; font-size: 16px;">
-                    Welcome,
-                    <%= user %>
-                </div>
-            <% } %>
-            <form action="./logout" method="POST">
-                <button class="btn btn-primary float-right">Logout</button>
-            </form>
-        </div>
-    </nav>
-    <br>
+  <!-- As a link -->
+  <nav class="navbar">
+    <a class="navbar-brand" href="/index" style="font-family: 'Exo', sans-serif; font-size: 150%">Proofpoint</a>
+    <% if (user) { %>
+    <p class="my-2 my-sm-0" style="color: white;">Welcome, <%= user %>
+    <% } %>
+      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Logout</button>
+    </p>
+  </nav>

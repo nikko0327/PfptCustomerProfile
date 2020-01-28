@@ -134,6 +134,7 @@ router.post("/login", function (req, res) {
             url: "ldap://ldap.corp.proofpoint.com"
             // url: "ldaps://ldaps.corp.proofpoint.com"
         });
+        console.log("CLIENT: " + client)
 
         var domain_name = "uid=" + req.body.login["username"] + ",ou=People,dc=extreme-email,dc=com";
 
@@ -143,7 +144,7 @@ router.post("/login", function (req, res) {
             rejectUnauthorized: false
         };
 
-        //console.log("Domain info: " + domain_name);
+        console.log("Domain info: " + domain_name);
 
         // Make the ldap secure, even though we need a secure network, additional safeguard.
         client.starttls(options, [], (error) => {
@@ -163,6 +164,7 @@ router.post("/login", function (req, res) {
                         User.findOne({username: req.body.login["username"]}).then((result) => {
                             if (result == null) {
                                 res.render("login", {fail: true});
+                                console.log("ERROR AUTEHN")
                             } else {
                                 bcrypt.compare(req.body.login["password"], result["password"], function (err, validated) {
                                     if (validated) {
@@ -178,6 +180,7 @@ router.post("/login", function (req, res) {
                         }).catch((error) => {
                             if (error) {
                                 res.render("login", {fail: true});
+                                console.log("Login Failed")
                             }
                         });
                     } else {

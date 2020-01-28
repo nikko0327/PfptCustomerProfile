@@ -1,5 +1,6 @@
 <!-- Displaying customer data -->
-<div id="generalInfo" class="display-header">
+<div class="container">
+    <div id="generalInfo" class="display-header">
     <div id="generalInfoHeader">
         <div class="title">
             <h5 style="color: mediumvioletred">General Information</h5>
@@ -15,71 +16,71 @@
     <form id="customerForm" autocomplete="off" action="../index/<%= encodeURIComponent(customer.name) %>?_method=PUT" method="POST">
         <fieldset id="customerFormFieldset" disabled>
             <div class="row">
-                <div class="form-group general_info response-cell">
+                <div class="col-md-4 mb-3 form-group general_info response-cell">
                     <label style="text-align: center !important;">Customer Name </label>
                     <input id="unique-customer-name" required disabled type="text" class="form-control" placeholder="No response set" value="<%= customer.name %>"
                         name="customer[name]">
                 </div>
 
-                <div class="form-group general_info response-cell">
+                <div class="col-md-4 mb-3 form-group general_info response-cell">
                     <label style="text-align: center !important;">Sales Rep.</label>
                     <input type="text" class="form-control" placeholder="No response set" id="salesRep" value="<%= customer.salesRep %>" name="customer[salesRep]">
                 </div>
 
-                <div class="form-group general_info response-cell">
+                <div class="col-md-4 mb-3 form-group general_info response-cell">
                     <label style="text-align: center !important;">Archiving SE </label>
                     <%- make_custom_dropdown("customer[archivingSe]", customer.archivingSe, ["Ben Chapman", "Brad Cope", "Coleem Chestnut", "Davin Stilson", "Jason Colvin", "Micah Wyenn", "Mike Fenili", "Terry McMahon"]) %>
                 </div>
 
-                <div class="form-group general_info response-cell">
+                <div class="col-md-4 mb-3 form-group general_info response-cell">
                     <label style="text-align: center !important;">Acc. Manager </label>
                     <input type="text" class="form-control" placeholder="No response set" id="accManager" value="<%= customer.accManager %>"
                         name="customer[accManager]">
                 </div>
 
-                <div class="form-group general_info response-cell">
+                <div class="col-md-4 mb-3 form-group general_info response-cell">
                     <label style="text-align: center !important;">TPM </label>
                     <%- make_custom_dropdown("customer[tpm]", customer.tpm, ["Jama Parikh", "Joan Noble", "Khoj Ladha", "Lorraine Lamb", "Sara Lints", "Aimee Wheelon"]) %>
                 </div>
 
-                <div class="form-group general_info response-cell">
+                <div class="col-md-4 mb-3form-group general_info response-cell">
                     <label style="text-align: center !important;">TAM </label>
                     <%- make_custom_dropdown("customer[tam]", customer.tam, ["Drew Fox", "Eric Pfefferie", "Jason Medina", "Jeremy Wagner", "Liliana Valdivia", "Nicole Dawson", "Wolfgang Rebhan"]) %>
                 </div>
 
-                <div class="form-group general_info response-cell">
+                <div class="col-md-4 mb-3 form-group general_info response-cell">
                     <label style="text-align: center !important;">Solution Architect </label>
                     <%- make_custom_dropdown("customer[solutionArchitect]", customer.solutionArchitect, ["Robert Kreuscher"]) %>
                 </div>
 
-                <div class="form-group general_info response-cell">
+                <div class="col-md-4 mb-3 form-group general_info response-cell">
                     <label style="text-align: center !important;">Supervision Consultant </label>
                     <%- make_custom_dropdown("customer[supervisionConsultant]", customer.supervisionConsultant, ["Ray McGrath", "Alex Boyd", "Regina Rodriguez"]) %>
                 </div>
 
-                <div class="form-group general_info response-cell">
+                <div class="col-md-4 mb-3 form-group general_info response-cell">
                     <label style="text-align: center !important;">Number of Mailboxes </label>
                     <input type="text" class="form-control" placeholder="No response set" id="numberOfMailboxes" value="<%= customer.numberOfMailboxes %>"
                         name="customer[numberOfMailboxes]">
                 </div>
 
-                <div class="form-group general_info response-cell">
+                <div class="col-md-4 mb-3 form-group general_info response-cell">
                     <label style="text-align: center !important;">Location </label>
                     <input type="text" class="form-control" placeholder="No response set" id="location" value="<%= customer.location %>" name="customer[location]">
                 </div>
 
-                <div class="form-group general_info response-cell">
+                <div class="col-md-4 mb-3 form-group general_info response-cell">
                     <label style="text-align: center !important;">Status </label>
                     <%- make_custom_dropdown("customer[status]", customer.status,
                     ["Waiting for PDQ", "Waiting for sales", "Waiting for finance", "Waiting for ops", "Waiting for customer", "Waiting for scheduling", "Deployment started", "Deployment complete/in production"]) %>
                 </div>
 
-                <div class="form-group general_info response-cell">
+                <div class="col-md-4 mb-3 form-group general_info response-cell">
                     <label style="text-align: center !important;">NAT IP </label>
                     <input type="text" class="form-control" placeholder="No response set" id="natIp" value="<%= customer.natIp %>" name="customer[natIp]">
                 </div>
 
-                <div class="form-group general_info response-cell">
+                <div class="col-md-4 mb-3 form-group general_info response-cell">
                     <label style="text-align: center !important;">Incumbent Solution </label>
                     <input type="text" class="form-control" placeholder="No response set" id="incumbentSolution" value="<%= customer.incumbentSolution %>"
                         name="customer[incumbentSolution]">
@@ -89,34 +90,34 @@
 
 
             <div class="row">
-                <div class="form-group col-4 response-cell">
-                    <h5>Is the customer an:</h5>
+                <div class="col-md-4 mb-3 form-group col-4 response-cell">
+                    <p>Is the customer an:</p>
                     <div class="col-4, response-checkbox">
-                        <p>
+                        <!-- <p> -->
                             <input type="checkbox" name="customer[existing_archive_prospect]" <%- customer.existing_archive_prospect ? "checked" : ""
                                 %> />
-                            <b> Archiving Prospect</b>
-                        </p>
+                            <span> Archiving Prospect</span>
+                        <!-- </p> -->
                     </div>
                     <div class="col-4, response-checkbox">
-                        <p>
+                        <!-- <p> -->
                             <input type="checkbox" name="customer[existing_archive_customer]" <%- customer.existing_archive_customer ? "checked" : ""
                                 %> />
-                            <b> Existing Archiving Customer</b>
-                        </p>
+                            <span> Existing Archiving Customer</span>
+                        <!-- </p> -->
                     </div>
                     <div class="col-4, response-checkbox">
-                        <p>
+                        <!-- <p> -->
                             <input type="checkbox" name="customer[existing_security_customer]" <%- customer.existing_security_customer ? "checked" :
                                 "" %> />
-                            <b> Existing Proofpoint Security Customer</b>
-                        </p>
+                            <span> Existing Security Customer</span>
+                        <!-- </p> -->
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="form-group col response-cell">
+                 <div class="col-6 form-group col response-cell">
                     <label>
                         <a href="#" onclick="window.open( (($('#pso_ticket_location').val() == 'CTS') ? 'https://support.proofpoint.com/show_call.cgi?id=' : 'https://na33.salesforce.com/')  + $('#pso').val());">
                             PSO
@@ -127,21 +128,25 @@
                             <option>Salesforce</option>
                             <option value="CTS" <% if (customer.pso.location == 'CTS') { %>selected<% } %>>CTS</option>
                         </select>
-                        <input id="pso" type="text" class="form-control" placeholder="No response set" value="<%= customer.pso.ticket %>" name="customer[pso][ticket]">
+                        <input id="pso" type="text" class="form-control" placeholder="PSO" value="<%= customer.pso.ticket %>" name="customer[pso][ticket]">
                     </div>
-                </div>
-                <div class="form-group col response-cell">
+                </div>               
+            </div>
+
+            <div class="row">
+
+                <div class="col-6 col-md-4 form-group col response-cell">
                     <label>
                         <a href="#" onclick="window.open('https://cts-pp.proofpoint.com/show_call.cgi?id=' + $('#shipreq').val());">
                             Shipment request
                         </a>
                     </label>
-                    <input type="text" id="shipreq" class="form-control" placeholder="No response set" value="<%= customer.shipreq %>" name="customer[shipreq]">
+                    <input type="text" id="shipreq" class="form-control" placeholder="Shipment Request" value="<%= customer.shipreq %>" name="customer[shipreq]">
                 </div>
             </div>
 
             <div class="row">
-                <div class="form-group col response-cell">
+                <div class="col-md-4 mb-3 form-group col response-cell">
                     <label>
                         PS Opportunity
                     </label>
@@ -153,17 +158,17 @@
                     </div>
                 </div>
 
-                <div class="form-group col response-cell">
+                <div class="col-md-4 mb-3 form-group col response-cell">
                     <label>Messaging System</label>
                     <%- make_custom_dropdown("customer[messaging_system]", customer.messaging_system, ["Exchange On-Prem", "O365", "Mixed Mode"]) %>
                 </div>
 
-                <div class="form-group col response-cell">
+                <div class="col-md-4 mb-3 form-group col response-cell">
                     <label>Hybrid or Hosted</label>
                     <%- make_custom_dropdown("customer[hybrid_or_hosted]", customer.hybrid_or_hosted, ["Hybrid", "Hosted"]) %>
                 </div>
 
-                <div class="form-group col response-cell">
+                <div class="col-6 col-md-4 form-group col response-cell">
                     <label>Virtual or Physical</label>
                     <%- make_custom_dropdown("customer[virtual_or_physical]", customer.virtual_or_physical, ["Virtual", "Physical"]) %>
                 </div>
@@ -302,3 +307,4 @@
     </div>
 </div>
 <hr class="rainbow">
+</div>
