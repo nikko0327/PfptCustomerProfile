@@ -1,42 +1,74 @@
 <% include partials/header %>
+<style>
+.sidebar-wrapper {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+  border-right: 1px solid #CCCCCC;
+}
 
+.sidebar-wrapper a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  display: block;
+  color: black;
+}
+
+.sidebar-wrapper a:hover {
+}
+
+.page-content {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidebar-wrapper {padding-top: 15px;}
+  .sidebar-wrapper a {font-size: 18px;}
+}
+</style>
 <div class="page-wrapper">
-  <!-- <nav id="sidebar" class="sidebar-wrapper navbar navbar-dark bg-dark">
+  <div id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-menu">
         <nav class="nav flex-column nav-pills" id="sidebar" role="tablist" aria-orientation="vertical">
           <a class="nav-link ml-2 my-1 active" id="general-tab" data-toggle="pill" href="#general-content" role="tab" aria-controls="general-content" aria-selected="true">General</a>
           <a class="nav-link ml-2 my-1 dropdown-toggle" id="emailsystems-tab" data-toggle="pill" href="#emailsystems-content" role="tab" aria-controls="emailsystems-content" aria-selected="true">Email Systems</a>
           <nav class="nav flex-column nav-pills" id="emailsystems-dropdown">
-            <a class="nav-link ml-3 my-1" href="#editExchangeDetails" style="color: mediumvioletred">Exchange Details</a>
-            <a class="nav-link ml-3 my-1" href="#editActiveDirectoryDetails" style="color: mediumvioletred">Active Directory Details</a>
-            <a class="nav-link ml-3 my-1" href="#editO365Details" style="color: mediumvioletred">O365 Details</a>
+            <a class="nav-link ml-3 my-1" href="#editExchangeDetails">Exchange Details</a>
+            <a class="nav-link ml-3 my-1" href="#editActiveDirectoryDetails">Active Directory Details</a>
+            <a class="nav-link ml-3 my-1" href="#editO365Details">O365 Details</a>
           </nav>
           <a class="nav-link ml-2 my-1" id="sizing-tab" data-toggle="pill" href="#sizing-content" role="tab" aria-controls="sizing-content" aria-selected="true">Sizing</a>
           <a class="nav-link ml-2 my-1" id="connectorplatform-tab" data-toggle="pill" href="#connectorplatform-content" role="tab" aria-controls="connectorplatform-content" aria-selected="true">Connector Platform</a>
           <a class="nav-link ml-2 my-1" id="desktopnetwork-tab" data-toggle="pill" href="#desktopnetwork-content" role="tab" aria-controls="desktopnetwork-content" aria-selected="true">Desktop/Network/DR</a>
           <a class="nav-link ml-2 my-1 dropdown-toggle" id="usage-tab" data-toggle="pill" href="#usage-content" role="tab" aria-controls="usage-content" aria-selected="true">Usage</a>
           <nav class="nav flex-column nav-pills" id="usage-dropdown">
-            <a class="nav-link ml-3 my-1" href="#editUsage-Legal" style="color: mediumvioletred">Legal Holds</a>
-            <a class="nav-link ml-3 my-1" href="#editusage-export" style="color: mediumvioletred">Export</a>
+            <a class="nav-link ml-3 my-1" href="#editUsage-Legal">Legal Holds</a>
+            <a class="nav-link ml-3 my-1" href="#editusage-export">Export</a>
           </nav>
           <a class="nav-link ml-2 my-1" id="import-tab" data-toggle="pill" href="#import-content" role="tab" aria-controls="import-content" aria-selected="false">Import</a>
           <a class="nav-link ml-2 my-1" id="poc-tab" data-toggle="pill" href="#poc-content" role="tab" aria-controls="poc-content" aria-selected="true">POC</a>
           <a class="nav-link ml-2 my-1" id="rfe-tab" data-toggle="pill" href="#rfe-content" role="tab" aria-controls="rfe-content" aria-selected="false">RFEs</a>
           <a class="nav-link ml-2 my-1 dropdown-toggle" id="supervision-tab" data-toggle="pill" href="#supervision-content" role="tab" aria-controls="supervision-content" aria-selected="true">Supervision</a>
           <nav class="nav flex-column nav-pills" id="supervision-dropdown">
-            <a class="nav-link ml-3 my-1 dropdown-toggle" href="#editSupervisionOverview" style="color: mediumvioletred">Current Supervision Overview – Digital Communication Review</a>
+            <a class="nav-link ml-3 my-1 dropdown-toggle" href="#editSupervisionOverview">Current Supervision Overview – Digital Communication Review</a>
             <nav class="nav flex-column nav-pills" id="editSupervisionOverview-dropdown">
               <a class="nav-link ml-4 my-1" href="#editSupervision-MessageProfile" style="color: lightseagreen;">Message Sampling Profiles</a>
             </nav>
-            <a class="nav-link ml-3 my-1" href="#editSupervisoryWorkflow" style="color: mediumvioletred">Supervisory Workflow</a>
-            <a class="nav-link ml-3 my-1" href="#editAdministrativeFunctions" style="color: mediumvioletred">Administrative Functions</a>
-            <a class="nav-link ml-3 my-1" href="#editRuleLexiconMaintenance" style="color: mediumvioletred">Rule/Lexicons Maintenance</a>
+            <a class="nav-link ml-3 my-1" href="#editSupervisoryWorkflow">Supervisory Workflow</a>
+            <a class="nav-link ml-3 my-1" href="#editAdministrativeFunctions">Administrative Functions</a>
+            <a class="nav-link ml-3 my-1" href="#editRuleLexiconMaintenance">Rule/Lexicons Maintenance</a>
           </nav>
         </nav>
       </div>
     </div>
-  </nav> -->
+  </div>
   <main class="page-content toggled">
     <div class="container-fluid">
       <div class="row">
