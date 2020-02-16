@@ -271,10 +271,10 @@ app.get('/files/:filename', authenticate_session, (req, res) => {
 // @route DELETE /files/:id
 // @desc  Delete file
 app.delete('/files/:id', (req, res) => {
-    //console.log('delete reached')
-    //console.log(`'${req.params.id}'`);
+    console.log('delete reached')
+    console.log(`'${req.params.id}'`);
     if (req.body.delete_customer) {
-        //console.log('Wiping customer ' + req.params.id)
+        console.log('Wiping customer ' + req.params.id)
         gfs.files.find({ "metadata.customer": req.params.id }).toArray((err, files) => {
             files.forEach(file => {
                 gfs.remove({ _id: file._id, root: 'uploads' }, (err, gridStore) => {
