@@ -1,45 +1,70 @@
 <% include partials/header %>
-  <div class="continer">
-    <div class="row">
-      <div class="col-xl-8 mx-auto text-center">
-        <div class="section-title">
-          <br>
-          <p style="font-size: 180%">Customers</p>
-        </div>
+<div class="continer">
+  <div class="row">
+    <div class="col-xl-8 mx-auto text-center">
+      <div class="section-title">
+        <br>
+        <p style="font-size: 180%">Customers</p>
       </div>
-    </div>
-    <div class="row">
-      <div class="container">
-        <input class="form-control" style="display: inline-block; width:20%" type="text" placeholder="Search" aria-label="Search">
-        <a href="./new/" class="btn btn-primary btn-xs float-right"><b>+</b> New Customer</a>
-      </div>
-    </div>
-    <div class="container">
-      <table class="table table-striped custab">
-        <thead>
-          <tr>
-            <th>Customer Name</th>
-            <th>Sales Rep</th>
-            <th>Archiving SE</th>
-            <th>Acc Mgr</th>
-            <th>Status</th>
-            <th class="text-center">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-            <% customers.forEach(function (customer) { %>
-            <tr>
-              <td><a href="./index/<%= encodeURIComponent(customer.name) %>"><%= customer.name %></a></td>
-              <td><%= customer.salesRep %></td>
-              <td><%= customer.archivingSe %></td>
-              <td><%= customer.accManager %></td>
-              <td><%= customer.status %></td>
-              <td class="text-center"><a href=""><i class="fa fa-trash-o"></i></a></td>
-            </tr>
-            <% }); %>
-        </tbody>
-      </table>
     </div>
   </div>
+  <div class="row">
+    <div class="container">
+      <input class="form-control" id="myInput" onkeyup="myFunction()" style="display: inline-block; width:20%" type="text" placeholder="Search for names..." aria-label="Search">
+      <a href="./new/" class="btn btn-primary btn-xs float-right"><b>+</b> New Customer</a>
+    </div>
+  </div>
+  <div class="container">
+    <table id="myTable" class="table table-striped custab">
+      <thead>
+        <tr>
+          <th>Customer Name</th>
+          <th>Sales Rep</th>
+          <th>Archiving SE</th>
+          <th>Acc Mgr</th>
+          <th>Status</th>
+          <th class="text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% customers.forEach(function (customer) { %>
+        <tr>
+          <td><a href="./index/<%= encodeURIComponent(customer.name) %>"><%= customer.name %></a></td>
+          <td><%= customer.salesRep %></td>
+          <td><%= customer.archivingSe %></td>
+          <td><%= customer.accManager %></td>
+          <td><%= customer.status %></td>
+          <td class="text-center">
+            <% if(user == 'anchen' || user == 'nlee' || user == 'vrathee' || user == 'sprokai') { %>
+            <button class="btn btn-danger" onclick='delete_customer("<%= customer.name %>")'><i class="fa fa-trash"></i></button>
+            <% } %>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-    <% include partials/footer %>
+<script>
+  function myFunction() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+</script>
+
+<% include partials/footer %>

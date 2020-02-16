@@ -1,5 +1,5 @@
 <div id="editExchangeDetails">
-    <h5 style="color: mediumvioletred">Exchange Details</h5>
+    <p>Email Systems</p>
     <div class="row">
         <div class="form-group col-4 response-cell">
             <label>Where is mail journaled?</label>
@@ -27,7 +27,7 @@
                     email_questions.exchange_details.has_enterprise_CAL, ["Yes", "No"], "has_enterprise_CAL") %>
         </div>
         <div class="form-group col-4 response-cell">
-            <label style="color: red;">Are you replicating Exchange and AD to a secondary data center?
+            <label>Are you replicating Exchange and AD to a secondary data center?
             </label>
             <%- make_custom_dropdown("email_questions[exchange_details][is_replicating_exchange_and_AD]",
                     email_questions.exchange_details.is_replicating_exchange_and_AD, ["Yes", "No"]) %>
