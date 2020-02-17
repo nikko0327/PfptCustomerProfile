@@ -5,7 +5,7 @@
   width: 250px;
   position: fixed;
   z-index: 1;
-  top: 0;
+
   left: 0;
   overflow-x: hidden;
   padding-top: 20px;
@@ -31,10 +31,22 @@
   .sidebar-wrapper {padding-top: 15px;}
   .sidebar-wrapper a {font-size: 18px;}
 }
+
+.jumbotron{
+  background: white;
+  position: fixed;
+  display: block;
+}
+
+.subnav{
+  margin-top: 3%;
+  background: none;
+}
 </style>
 <div class="page-wrapper">
-  <div id="sidebar" class="sidebar-wrapper">
+  <nav id="" class="sidebar-wrapper">
     <div class="sidebar-content">
+      <a class="navbar-brand" href="#"><h3><%= customer.name %></h3></a>
       <div class="sidebar-menu">
         <nav class="nav flex-column nav-pills" id="sidebar" role="tablist" aria-orientation="vertical">
           <a class="nav-link ml-2 my-1 active" id="general-tab" data-toggle="pill" href="#general-content" role="tab" aria-controls="general-content" aria-selected="true">General</a>
@@ -59,7 +71,7 @@
           <nav class="nav flex-column nav-pills" id="supervision-dropdown">
             <a class="nav-link ml-3 my-1 dropdown-toggle" href="#editSupervisionOverview">Current Supervision Overview – Digital Communication Review</a>
             <nav class="nav flex-column nav-pills" id="editSupervisionOverview-dropdown">
-              <a class="nav-link ml-4 my-1" href="#editSupervision-MessageProfile" style="color: lightseagreen;">Message Sampling Profiles</a>
+              <a class="nav-link ml-4 my-1" href="#editSupervision-MessageProfile" >Message Sampling Profiles</a>
             </nav>
             <a class="nav-link ml-3 my-1" href="#editSupervisoryWorkflow">Supervisory Workflow</a>
             <a class="nav-link ml-3 my-1" href="#editAdministrativeFunctions">Administrative Functions</a>
@@ -68,24 +80,11 @@
         </nav>
       </div>
     </div>
-  </div>
+  </nav>
   <main class="page-content toggled">
     <div class="container-fluid">
-      <div class="row">
-        <div class="col">
-          <p style="padding-top: 1%; font-size: 27px;">Tim's Property Management Corp</p>
-        </div>
-          <div class="col picks">
-            <button style="margin-top: 2%; margin-right: 0%;" class="btn btn-primary float-right" styletype="submit">Edit</button>
-            <button style="margin-top: 2%; margin-right: 2%;" class="btn btn-outline-dark float-right" type="submit">Export</button>
-            <button style="margin-top: 2%; margin-right: 2%;" class="btn btn-outline-dark float-right" type="submit">Import</button>
-            <button style="margin-top: 2%; margin-right: 2%;" class="btn btn-outline-dark float-right" type="submit">Print</button>
-            <button style="margin-top: 2%; margin-right: 2%;" class="btn btn-outline-dark float-right" type="submit">History</button>
-          </div>
-        </div>
-          </div>
-
-          <hr class="rainbow">
+      <div class="container">
+        <div class="tab-content" id="content">
           <div class="tab-pane fade show active" id="general-content" role="tabpanel" aria-labelledby="general-tab">
             <% include sections/01-General.ejs %>
           </div>
@@ -116,7 +115,7 @@
           <div class="tab-pane fade" id="supervision-content" role="tabpanel" aria-labelledby="supervision-tab">
             <% include sections/10-Supervision.ejs %>
           </div>
-           <div id="print-all-content">
+          <div id="print-all-content">
             <% include sections/01-General.ejs %>
             <% include sections/02-EmailSystems.ejs %>
             <% include sections/03-Sizing.ejs %>
