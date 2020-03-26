@@ -33,10 +33,9 @@
           <th onclick="sortTable(0)">Customer Name</th>
           <th>Sales Rep</th>
           <th>Archiving SE</th>
-          <th>Acc Mgr</th>
+          <th>AM</th>
           <th>Status</th>
-          <th>Creator</th>
-          <th>Update</th>
+          <th>Updated Date</th>
           <th class="text-center">Action</th>
         </tr>
       </thead>
@@ -48,8 +47,7 @@
           <td><%= customer.archivingSe %></td>
           <td><%= customer.accManager %></td>
           <td><%= customer.status %></td>
-          <td><%= customer.createdBy %></td>
-          <td><%= customer.updatedAt %></td>
+          <td><%= customer.updatedAt.getMonth() + 1 %>/<%= customer.updatedAt.getDate() %>/<%= customer.updatedAt.getFullYear() %></td>
           <td class="text-center">
             <% if(user == 'mengineer' || user == 'nlee' || user == 'vrathee' || user == 'sprokai') { %>
             <button class="btn" onclick='delete_customer("<%= customer.name %>")'><i class="fa fa-trash"></i></button>
