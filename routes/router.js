@@ -127,71 +127,32 @@ router.get("/login", function (req, res) {
 
 // POST LOGIN
 router.post("/login", function (req, res) {
-    if (!req.body.login || req.body.login == null) {
+      // Check the  form fields
+      if (!req.body.login || req.body.login == null) {
         res.render("login", { fail: true });
-    } else {
-        var client = ldap_auth.createClient({
-            url: "ldap://ldap.corp.proofpoint.com"
-            // url: "ldaps://ldaps.corp.proofpoint.com"
-        });
-        console.log("CLIENT: " + client)
-
-        var domain_name = "uid=" + req.body.login["username"] + ",ou=People,dc=extreme-email,dc=com";
-
-        // rejectUnauthorized is needed with client.starttls unless we can verify certs
-        var options = {
-            //ca: [fs.readFileSync('cert.pem')]
-            rejectUnauthorized: false
-        };
-
-        console.log("Domain info: " + domain_name);
-
-        // Make the ldap secure, even though we need a secure network, additional safeguard.
-        client.starttls(options, [], (error) => {
-            if (error) {
-                console.log("starttls error:\n" + error);
-            } else {
-                client.bind(domain_name, req.body.login["password"], (error) => {
-
-                    // Close the connection
-                    client.unbind(function (error) {
-                        if (error) {
-                            console.log("-- LDAP unbinding error:\n" + error)
-                        }
-                    });
-
-                    if (error) {
-                        User.findOne({username: req.body.login["username"]}).then((result) => {
-                            if (result == null) {
-                                res.render("login", {fail: true});
-                                console.log("ERROR AUTEHN")
-                            } else {
-                                bcrypt.compare(req.body.login["password"], result["password"], function (err, validated) {
-                                    if (validated) {
-                                        // Do auth/sessions here
-                                        console.log("Logged in: " + req.body.login["username"]);
-                                        req.session.user = req.body.login["username"];
-                                        res.redirect( append + "/index");
-                                    } else {
-                                        res.render("login", {fail: true});
-                                    }
-                                });
-                            }
-                        }).catch((error) => {
-                            if (error) {
-                                res.render("login", {fail: true});
-                                console.log("Login Failed")
-                            }
-                        });
-                    } else {
-                        console.log("Logged in: " + req.body.login["username"]);
-                        req.session.user = req.body.login["username"];
-                        res.redirect(append + "/index");
-                    }
-                });
-            }
-        });
-    }
+        return;
+      }
+    
+      // Create an LDAPJS Client Object
+      console.log("Connecting to: " + process.env.LDAP)
+      var client = ldap_auth.createClient({
+          url: process.env.LDAP});
+      
+      // Get the User details from the Form
+      const username = req.body.login["username"] + "@" + process.env.DOMAIN
+      const password = req.body.login["password"]
+     
+      // Attempt to bind with the credentials
+      client.bind(username, password, function(err) {
+        if (err) {
+          res.send("Bind failed " + err);
+          return;
+        }
+        // else login was successful
+        console.log("Logged in: " + req.body.login["username"]);
+        req.session.user = req.body.login["username"];
+        res.redirect(append + "/index");
+      }); // client.bind     
 });
 
 //CREATE ROUTE
