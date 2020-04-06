@@ -70,9 +70,25 @@ var connector_platform_schema = new mongoose.Schema({
       type: String,
       default: ""
     },
+    sharepoint: {
+      type: Boolean,
+      default: false
+    },
+    sharepoint_number_of_users: {
+      type: String,
+      default: ""
+    },
     lync_on_prem: {
         type: Boolean,
         default: false
+    },
+    teams: {
+      type: Boolean,
+      default: false
+    },
+    teams_number_of_users: {
+      type: String,
+      default: ""
     },
     lync_on_prem_number_of_users: {
       type: String,
