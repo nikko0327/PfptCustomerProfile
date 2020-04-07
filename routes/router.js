@@ -476,9 +476,29 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         });
     }
 
-    // Updating Other Data Sources Questions
+    // Updating Connector Platform Questions
     if (req.body.connector_platform_questions != undefined && req.body.connector_platform_questions != null) {
-        console.log("- Attempting to update Other Data Sources Questions...");
+        console.log("[+] Update - Connector Platform - " + req.params.id);
+        name = "connector_platform_questions[facebook_number_of_users]"
+        
+        // Need to determine if each HTML Checkbox is "on" or "undefined"
+        const connector_platform_chk_box_names = ["facebook", "linkedin", "twitter", "google", "youtube", "files", "skype_in_cloud", "skype_on_prem", "lync_on_prem", "one_drive", "box", "bloomberg", "yammer", "jive", "chatter", "slack", "symphony", "teams", "sharepoint"];
+        connector_platform_chk_box_names.forEach(function(chk_box_name){
+          let checkedValue = req.body.connector_platform_questions[chk_box_name];
+            if(checkedValue) { 
+              // Runs if the box is not undefined
+              // console.log("[+] The " + chk_box_name + " box was checked")
+          } else { 
+            // console.log("[+] The " + chk_box_name + " box was NOT checked")
+            // if the HTML Checkbox is undefined, then add it to req.body.connector_platform_questions
+            req.body.connector_platform_questions[chk_box_name] = "false"
+          }
+        })
+
+        // console.log(JSON.stringify(req.body.connector_platform_questions))
+        
+        
+
         ConnectorPlatformQuestions.findOneAndUpdate({ name: req.params.id }, req.body.connector_platform_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             console.log("Done");
