@@ -1,10 +1,12 @@
 # Sales App
 Proofpoint Sales Website to track new clients.
 
-### Setup
+### Requirements
+1. Docker
+
+### Steps to Run
 1. Clone the code from the git repo.
    * `git clone https://github.com/nikko0327/NewPfptCustomerProfile.git`
-2. Install NPM dependancies by running.
-   * `npm install`
-3. Run the local dev server.
-   * `npm run dev`
+2. Run the App with Mongo and Mongo-Express
+   * `sudo docker-compose up`
+
