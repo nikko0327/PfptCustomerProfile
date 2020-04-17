@@ -1,19 +1,56 @@
-version: '3'
+version: "3"
 
 services:
-    mongo:
-        image: "mongo"
-        container_name: mongo-database
-        volumes:
-            - mongodata:/data/db
-        ports:
-          - "27017:27017"
-        networks:
-              - app-network
+  nodejs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pcp:1.0
+    container_name: pcp
+    deploy:
+      restart_policy:
+        condition: any
+        delay: 5s
+        window: 10s
+    env_file: .env
+    links:
+      - mongo
+    ports:
+      - "80:80"
+    volumes:
+      - .:/home/node/app
+    networks:
+      - app-network
+    command: node app.js
+
+  mongo:
+    image: "mongo"
+    container_name: mongo-database
+    volumes:
+        - mongodata:/data/db
+    env_file: .env
+    ports:
+      - "27017:27017"
+    networks:
+          - app-network
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    env_file: .env
+    environment:
+        - ME_CONFIG_MONGODB_SERVER=mongo
+        - ME_CONFIG_MONGODB_PORT=$MONGO_PORT
+    depends_on:
+        - mongo
+    networks:
+        - app-network
+    ports:
+        - "8081:8081"
 
 networks:
-    app-network:
-        driver: bridge
+  app-network:
+    driver: bridge
 
 volumes:
-    mongodata:
+  mongodata:
