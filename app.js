@@ -31,7 +31,7 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 
 app.enable('trust proxy');
 
-var databaseUrl = "mongodb://localhost/NewCustomerProfile";
+var databaseUrl = process.env.MONGO_DB_URL || "mongodb://mongo/NewCustomerProfile";
 //mongoose.Promise = require('bluebird');
 mongoose.connect(databaseUrl, { useMongoClient: true }).then(
     () => {
@@ -314,7 +314,7 @@ app.use(function (err, req, res, next) {
     res.send(err.message);
 });
 
-var port = process.env.PORT || 8001;
+var port = process.env.PORT || 80;
 
 app.listen(port, function () {
     console.log(`App is running on ${port}.`);
