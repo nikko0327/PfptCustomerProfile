@@ -1,14 +1,20 @@
-FROM node:alpine3.10
-RUN mkdir -p /usr/src/app
+# Use the official image as a parent image.
+FROM node:current-slim
+
+# Set the working directory.
 WORKDIR /usr/src/app
-COPY package.json package.json
-RUN apk add --no-cache --virtual .gyp \
-        python \
-        make \
-        g++ \
-    && npm install \
-	&& npm cache clean --force \
-    && apk del .gyp
+
+# Copy the file from your host to your current location.
+COPY package.json .
+
+# Run the command inside your image filesystem.
+RUN npm install
+
+# Inform Docker that the container is listening on the specified port at runtime.
+EXPOSE 80
+
+# Run the specified command within the container.
+CMD [ "npm", "run", "dev" ]
+
+# Copy the rest of your app's source code from your host to your image filesystem.
 COPY . .
-EXPOSE 3001
-CMD [ "node", "app.js" ]

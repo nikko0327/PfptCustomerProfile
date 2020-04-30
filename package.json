@@ -52,10 +52,7 @@
   },
   "homepage": "https://github.com/nikko0327/PfptCustomerProfile#readme",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "dev": "env-cmd -f .env nodemon app.js"
+    "start": "env-cmd -f .env node app.js",
+    "dev": "env-cmd -f .env nodemon --legacy-watch app.js"
   }
 }

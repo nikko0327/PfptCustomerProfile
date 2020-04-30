@@ -98,7 +98,6 @@ app.use(session({
     })
 }));
 
-
 // Used in update
 app.locals.make_custom_dropdown = function (name, value, list, classname) {
     if (!classname) {

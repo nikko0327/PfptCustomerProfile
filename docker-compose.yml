@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: pcp:1.0
+    image: pcp:1.2
     container_name: pcp
     deploy:
       restart_policy:
@@ -21,7 +21,7 @@ services:
       - .:/home/node/app
     networks:
       - app-network
-    command: node app.js
+    command: npm run dev
 
   mongo:
     image: "mongo"
