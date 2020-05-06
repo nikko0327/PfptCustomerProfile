@@ -31,7 +31,8 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 
 app.enable('trust proxy');
 
-var databaseUrl = process.env.MONGO_DB_URL || "mongodb://mongo/NewCustomerProfile";
+var databaseUrl = process.env.MONGO_DB_URL || "mongodb://localhost:27017/NewCustomerProfile";
+console.log("[+] Connecting to DB: " + databaseUrl)
 //mongoose.Promise = require('bluebird');
 mongoose.connect(databaseUrl, { useMongoClient: true }).then(
     () => {

@@ -1,31 +1,15 @@
-version: "3"
-
+version: "3.3"
 services:
-  nodejs:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: pcp:1.2
-    container_name: pcp
-    deploy:
-      restart_policy:
-        condition: any
-        delay: 5s
-        window: 10s
-    env_file: .env
-    links:
-      - mongo
-    ports:
-      - "80:80"
-    volumes:
-      - .:/home/node/app
-    networks:
-      - app-network
-    command: npm run dev
+  web:
+    image: node_dev
+    container_name: node_dev
+    volumes: 
+      - C:\git\NewPfptCustomerProfile:/usr/src/app
+    command: nodemon app/app.js
 
-  mongo:
+  mongodb:
     image: "mongo"
-    container_name: mongo-database
+    container_name: mongodb
     volumes:
         - mongodata:/data/db
     env_file: .env
@@ -33,20 +17,6 @@ services:
       - "27017:27017"
     networks:
           - app-network
-
-  mongo-express:
-    image: mongo-express
-    container_name: mongo-express
-    env_file: .env
-    environment:
-        - ME_CONFIG_MONGODB_SERVER=mongo
-        - ME_CONFIG_MONGODB_PORT=$MONGO_PORT
-    depends_on:
-        - mongo
-    networks:
-        - app-network
-    ports:
-        - "8081:8081"
 
 networks:
   app-network:

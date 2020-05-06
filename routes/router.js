@@ -141,15 +141,16 @@ router.post("/login", function (req, res) {
       // Get the User details from the Form
       const username = req.body.login["username"] + "@" + process.env.DOMAIN
       const password = req.body.login["password"]
+      console.log("[+] " + username + " attempting to login to: " + process.env.DOMAIN)
      
       // Attempt to bind with the credentials
       client.bind(username, password, function(err) {
         if (err) {
-          res.send("Bind failed " + err);
+          res.send("Login failed " + err);
           return;
         }
         // else login was successful
-        console.log("Logged in: " + req.body.login["username"]);
+        console.log("[+] Logged in: " + req.body.login["username"]);
         req.session.user = req.body.login["username"];
         res.redirect(append + "/index");
       }); // client.bind     
@@ -251,124 +252,10 @@ router.put("/index/:id", authenticate_session, function (req, res) {
 
     // For updating name, make a ton of promises and execute them, THEN render the page.
     if (req.body.customer != undefined && req.body.customer != null) {
-        console.log("- Attempting to update customer information...");
-        //console.log(req.body.customer.contacts);
-
-        // Make a bunch of await calls and wait for the queries to finish.
+        console.log("[+] Attempting to update customer: " + req.params.id);
         async function updateID() {
             await Customer.findOneAndUpdate({ name: req.params.id }, req.body.customer).exec();
-            // await SizingQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
-            // await DesktopNetworkQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
-            // await EmailQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
-            // await ImportQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
-            // await ConnectorPlatformQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
-            // await POCQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
-            // await RFEQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
-            // await UsageQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
-            // await SupervisionQuestions.findOneAndUpdate({ name: req.params.id }, { "name": req.body.customer["name"] }).exec();
-            // if (req.params.id != req.body.customer["name"]) {
-            //   Customer.findOne({ name: req.body.customer["name"] })
-            //   .then(customer => {
-            //     //update the version array in the versioned collection
-            //     CustomerVersions.findOne({ refId: customer._id })
-            //     .then(version => {
-            //       version.versions.forEach(version => {
-            //         version.name = req.body.customer["name"];
-            //       })
-            //       version.save();
-            //     })
-            //     SizingQuestions.findOne({ name: req.body.customer["name"] })
-            //     .then(questions => {
-            //       SizingQuestionsVersions.findOne({ refId: customer._id })
-            //       .then(version => {
-            //         version.versions.forEach(version => {
-            //           version.name = req.body.customer["name"];
-            //         })
-            //         version.save();
-            //       })
-            //     })
-            //     DesktopNetworkQuestions.findOne({ name: req.body.customer["name"] })
-            //     .then(questions => {
-            //       DesktopNetworkQuestionsVersions.findOne({ refId: customer._id })
-            //       .then(version => {
-            //         version.versions.forEach(version => {
-            //           version.name = req.body.customer["name"];
-            //         })
-            //         version.save();
-            //       })
-            //     })
-            //     EmailQuestions.findOne({ name: req.body.customer["name"] })
-            //     .then(questions => {
-            //       EmailQuestionsVersions.findOne({ refId: customer._id })
-            //       .then(version => {
-            //         version.versions.forEach(version => {
-            //           version.name = req.body.customer["name"];
-            //         })
-            //         version.save();
-            //       })
-            //     })
-            //     ImportQuestions.findOne({ name: req.body.customer["name"] })
-            //     .then(questions => {
-            //       ImportQuestionsVersions.findOne({ refId: customer._id })
-            //       .then(version => {
-            //         version.versions.forEach(version => {
-            //           version.name = req.body.customer["name"];
-            //         })
-            //         version.save();
-            //       })
-            //     })
-            //     ConnectorPlatformQuestions.findOne({ name: req.body.customer["name"] })
-            //     .then(questions => {
-            //       ConnectorPlatformQuestionsVersions.findOne({ refId: customer._id })
-            //       .then(version => {
-            //         version.versions.forEach(version => {
-            //           version.name = req.body.customer["name"];
-            //         })
-            //         version.save();
-            //       })
-            //     })
-            //     POCQuestions.findOne({ name: req.body.customer["name"] })
-            //     .then(questions => {
-            //       POCQuestionsVersions.findOne({ refId: customer._id })
-            //       .then(version => {
-            //         version.versions.forEach(version => {
-            //           version.name = req.body.customer["name"];
-            //         })
-            //         version.save();
-            //       })
-            //     })
-            //     RFEQuestions.findOne({ name: req.body.customer["name"] })
-            //     .then(questions => {
-            //       RFEQuestionsVersions.findOne({ refId: customer._id })
-            //       .then(version => {
-            //         version.versions.forEach(version => {
-            //           version.name = req.body.customer["name"];
-            //         })
-            //         version.save();
-            //       })
-            //     })
-            //     UsageQuestions.findOne({ name: req.body.customer["name"] })
-            //     .then(questions => {
-            //       UsageQuestionsVersions.findOne({ refId: customer._id })
-            //       .then(version => {
-            //         version.versions.forEach(version => {
-            //           version.name = req.body.customer["name"];
-            //         })
-            //         version.save();
-            //       })
-            //     })
-            //     SupervisionQuestions.findOne({ name: req.body.customer["name"] })
-            //     .then(questions => {
-            //       SupervisionQuestionsVersions.findOne({ refId: customer._id })
-            //       .then(version => {
-            //         version.versions.forEach(version => {
-            //           version.name = req.body.customer["name"];
-            //         })
-            //         version.save();
-            //       })
-            //     })
-            //   })
-            // }
+            console.log("[+] Updated..." + req.params.id);
         }
 
         // Only if all the queries finish, redirect the page to the new customer name.

@@ -7,11 +7,11 @@
     "babyparse": "^0.4.6",
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
-    "env-cmd": "^10.1.0",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^2.0.3",
     "dotenv": "^8.2.0",
     "ejs": "^2.7.4",
+    "env-cmd": "^10.1.0",
     "express": "^4.17.1",
     "express-sanitizer": "^1.0.5",
     "express-session": "^1.17.0",
@@ -41,10 +41,7 @@
   "devDependencies": {
     "nodemon": "^2.0.2"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nikko0327/PfptCustomerProfile.git"
-  },
+  "repository": "git+https://github.com/nikko0327/PfptCustomerProfile.git",
   "author": "Nikko Lee",
   "license": "ISC",
   "bugs": {
@@ -52,7 +49,6 @@
   },
   "homepage": "https://github.com/nikko0327/PfptCustomerProfile#readme",
   "scripts": {
-    "start": "env-cmd -f .env node app.js",
-    "dev": "env-cmd -f .env nodemon --legacy-watch app.js"
+    "dev": "env-cmd -f .env nodemon --legacy-watch app.js",
   }
 }
