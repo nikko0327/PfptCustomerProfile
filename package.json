@@ -49,6 +49,6 @@
   },
   "homepage": "https://github.com/nikko0327/PfptCustomerProfile#readme",
   "scripts": {
-    "dev": "env-cmd -f .env nodemon --legacy-watch app.js",
+    "dev": "env-cmd -f .env nodemon --legacy-watch app.js"
   }
 }
