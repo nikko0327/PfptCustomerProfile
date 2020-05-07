@@ -24,9 +24,11 @@ $(document).ready((() => {
         }
     });
 
+    /*
     $("#submit").click(function() {
       return confirm("The name of the customer cannot be changed.");
     })
+    */
 
     $("#reset").click(function() {
       return confirm("Are you sure?");

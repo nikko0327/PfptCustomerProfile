@@ -16,29 +16,30 @@
                             <b>New Customer</b>
                         </h5>
                     </div>
-                    <form class="" action="../new" method="POST">
+                    <form action="../new" method="POST" class="needs-validation">
                         <div class="row">
                             <div class="col">
                                 <label for="customerName">Customer Name</label>
-                                <input type="text" required class="form-control" id="customerName" placeholder="Customer Name" name="customer[name]">
+                                <input type="text" class="form-control" id="customerName" placeholder="Customer Name" name="customer[name]" required>
                             </div>
                             <div class="col">
                                 <label for="salesRep">Sales Rep.</label>
-                                <input type="text" class="form-control" id="salesRep" placeholder="Sales Rep." name="customer[salesRep]">
+                                <input type="text" class="form-control" id="salesRep" placeholder="Sales Rep." name="customer[salesRep]" required>
                             </div>
                             <div class="col">
                                 <label for="archivingSe">Archiving SE</label>
-                                <input type="text" class="form-control" id="archivingSe" placeholder="Archiving SE" name="customer[archivingSe]">
+                                <input type="text" class="form-control" id="archivingSe" placeholder="Archiving SE" name="customer[archivingSe]" required>
                             </div>
                         </div>
+                
                         <div class="row">
                             <div class="col">
                                 <label for="accManager">Acc. Manager</label>
-                                <input type="text" class="form-control" id="accManager" placeholder="Acc. Manager" name="customer[accManager]">
+                                <input type="text" class="form-control" id="accManager" placeholder="Acc. Manager" name="customer[accManager]" required>
                             </div>
                             <div class="col">
                                 <label for="exampleFormControlSelect1">TEM</label>
-                                <select class="form-control" id="exampleFormControlSelect1" name="customer[tem]">
+                                <select class="form-control" id="exampleFormControlSelect1" name="customer[tem]" required>
                                   <option>TEM</option>
                                   <option>Aimee Wheelon</option>
                                   <option>Khoj Ladha</option>
@@ -51,7 +52,7 @@
                             </div>
                             <div class="col">
                                 <label for="archivingSe">TAM</label>
-                                <input type="text" class="form-control" id="tam" placeholder="TAM" name="customer[tam]">
+                                <input type="text" class="form-control" id="tam" placeholder="TAM" name="customer[tam]" required>
                             </div>
                         </div>
                         <div class="row">

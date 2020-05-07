@@ -22,21 +22,22 @@
   </div>
   <div class="row">
     <div class="container">
-      <input class="form-control" id="myInput" onkeyup="myFunction()" style="display: inline-block; width:20%" type="text" placeholder="Search for names..." aria-label="Search">
+      <input class="form-control" id="txtFilter" onkeyup="filterTable()" style="display: inline-block; width:20%" type="text" placeholder="Search for names..." aria-label="Search">
       <a href="./new/" class="btn btn-primary btn-xs float-right"><b>+</b> New Customer</a>
     </div>
   </div>
   <div class="container">
-    <table id="myTable" class="table table-striped custab">
-      <thead>
+    
+    <table id="tblCustomers" class="table table-striped custab">
+      <thead class="thead-dark">
         <tr>
-          <th onclick="sortTable(0)">Customer Name</th>
-          <th onclick="sortTable(1)">Sales Rep</th>
-          <th onclick="sortTable(2)">Archiving SE</th>
-          <th onclick="sortTable(3)">AM</th>
-          <th onclick="sortTable(4)">Status</th>
-          <th onclick="sortTable(5)">Updated Date</th>
-          <th class="text-center">Action</th>
+          <th onclick="sortTable(0)">Customer Name <i class="fa fa-fw fa-sort"></i></th>
+          <th onclick="sortTable(1)">Sales Rep<i class="fa fa-fw fa-sort"></i></th>
+          <th onclick="sortTable(2)">Archiving SE<i class="fa fa-fw fa-sort"></i></th>
+          <th onclick="sortTable(3)">AM<i class="fa fa-fw fa-sort"></i></th>
+          <th onclick="sortTable(4)">Status<i class="fa fa-fw fa-sort"></i></th>
+          <th onclick="sortTable(5)">Updated Date<i class="fa fa-fw fa-sort"></i></th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -61,11 +62,11 @@
 </div>
 
 <script>
-  function myFunction() {
+  function filterTable() {
     var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("myInput");
+    input = document.getElementById("txtFilter");
     filter = input.value.toUpperCase();
-    table = document.getElementById("myTable");
+    table = document.getElementById("tblCustomers");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
       td = tr[i].getElementsByTagName("td")[0];
@@ -82,7 +83,7 @@
 
     function sortTable(n) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    table = document.getElementById("myTable");
+    table = document.getElementById("tblCustomers");
     switching = true;
     //Set the sorting direction to ascending:
     dir = "asc"; 
