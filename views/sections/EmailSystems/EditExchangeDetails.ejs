@@ -1,11 +1,7 @@
 <div id="editExchangeDetails">
-    <p><b>Email Systems</b></p>
+    <p><b>On Premises Exchange</b></p>
     <div class="row">
-        <div class="form-group col-4 response-cell">
-            <label>Where is mail journaled?</label>
-            <input type="text" class="form-control" placeholder="No response set" value="<%= email_questions.exchange_details.journaling_location %>"
-                name="email_questions[exchange_details][journaling_location]">
-        </div>
+
         <div class="form-group col-4 response-cell">
             <label>Number of users per journaling location?</label>
             <input type="text" class="form-control" placeholder="No response set" value="<%= email_questions.exchange_details.users_per_location %>"
@@ -13,7 +9,7 @@
         </div>
         <div class="form-group col-4 response-cell">
             <label>What versions of Exchange are you running?</label>
-            <input type="text" class="form-control exchange_version" placeholder="No response set" value="<%= email_questions.exchange_details.exchange_version %>"
+            <input type="text" class="form-control exchange_version required" placeholder="No response set" value="<%= email_questions.exchange_details.exchange_version %>"
                 name="email_questions[exchange_details][exchange_version]">
         </div>
         <div class="form-group col-4 response-cell">

@@ -30,8 +30,8 @@
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Do you use SSO?</label>
-                            <%- make_custom_dropdown("desktop_network_questions[use_SSO]",
-                                    desktop_network_questions.use_SSO, ["Yes", "No"]) %>
+                            <input type="text" class="form-control required" placeholder="No response set" value="<%= desktop_network_questions.use_SSO %>"
+                                name="desktop_network_questions[use_SSO]">
                         </div>
                         <div class="form-group col-4 response-cell">
                             <label>Do you have an IDP (Identity Provider) that supports SAML 2.0? </label>

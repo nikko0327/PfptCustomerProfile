@@ -18,13 +18,13 @@
             <div class="row">
                 <div class="col-md-4 mb-3 form-group general_info response-cell">
                     <label style="text-align: center !important;">Customer Name </label>
-                    <input id="unique-customer-name" required disabled type="text" class="form-control" placeholder="No response set" value="<%= customer.name %>"
+                    <input id="unique-customer-name" required disabled type="text" class="form-control required" placeholder="No response set" value="<%= customer.name %>"
                         name="customer[name]">
                 </div>
 
                 <div class="col-md-4 mb-3 form-group general_info response-cell">
                     <label style="text-align: center !important;">Sales Rep.</label>
-                    <input type="text" class="form-control" placeholder="No response set" id="salesRep" value="<%= customer.salesRep %>" name="customer[salesRep]">
+                    <input type="text" class="form-control required" placeholder="No response set" id="salesRep" value="<%= customer.salesRep %>" name="customer[salesRep]">
                 </div>
 
                 <div class="col-md-4 mb-3 form-group general_info response-cell">
@@ -34,7 +34,7 @@
 
                 <div class="col-md-4 mb-3 form-group general_info response-cell">
                     <label style="text-align: center !important;">Acc. Manager </label>
-                    <input type="text" class="form-control" placeholder="No response set" id="accManager" value="<%= customer.accManager %>"
+                    <input type="text" class="form-control required" placeholder="No response set" id="accManager" value="<%= customer.accManager %>"
                         name="customer[accManager]">
                 </div>
 
@@ -60,13 +60,13 @@
 
                 <div class="col-md-4 mb-3 form-group general_info response-cell">
                     <label style="text-align: center !important;">Number of Mailboxes </label>
-                    <input type="text" class="form-control" placeholder="No response set" id="numberOfMailboxes" value="<%= customer.numberOfMailboxes %>"
+                    <input type="text" class="form-control required" placeholder="No response set" id="numberOfMailboxes" value="<%= customer.numberOfMailboxes %>"
                         name="customer[numberOfMailboxes]">
                 </div>
 
                 <div class="col-md-4 mb-3 form-group general_info response-cell">
                     <label style="text-align: center !important;">Location </label>
-                    <input type="text" class="form-control" placeholder="No response set" id="location" value="<%= customer.location %>" name="customer[location]">
+                    <input type="text" class="form-control required" placeholder="No response set" id="location" value="<%= customer.location %>" name="customer[location]">
                 </div>
 
                 <div class="col-md-4 mb-3 form-group general_info response-cell">
@@ -82,7 +82,7 @@
 
                 <div class="col-md-4 mb-3 form-group general_info response-cell">
                     <label style="text-align: center !important;">Incumbent Solution </label>
-                    <input type="text" class="form-control" placeholder="No response set" id="incumbentSolution" value="<%= customer.incumbentSolution %>"
+                    <input type="text" class="form-control required" placeholder="No response set" id="incumbentSolution" value="<%= customer.incumbentSolution %>"
                         name="customer[incumbentSolution]">
                 </div>
             </div>
@@ -128,7 +128,7 @@
                             <option>Salesforce</option>
                             <option value="CTS" <% if (customer.pso.location == 'CTS') { %>selected<% } %>>CTS</option>
                         </select>
-                        <input id="pso" type="text" class="form-control" placeholder="PSO" value="<%= customer.pso.ticket %>" name="customer[pso][ticket]">
+                        <input id="pso" type="text" class="form-control required" placeholder="PSO" value="<%= customer.pso.ticket %>" name="customer[pso][ticket]">
                     </div>
                 </div>               
             </div>
@@ -262,7 +262,6 @@
             <label style="font-size: 12px; text-align: center;">On-prem Exchange(On-prem Appliance)</label>
             <div>
                 <div id="diagram1">
-
                 </div>
                 <form action="../uploads" method="POST" enctype="multipart/form-data" id="upload1">
                     <input type="text" hidden readonly value="<%= customer.name %>" name="customername">
@@ -276,7 +275,6 @@
             <label style="font-size: 12px; text-align: center;">On-prem Exchange + O365(On-prem Appliance)</label>
             <div>
                 <div id="diagram2">
-
                 </div>
                 <form action="../uploads" method="POST" enctype="multipart/form-data" id="upload2">
                     <input type="text" hidden readonly value="<%= customer.name %>" name="customername">
