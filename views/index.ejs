@@ -28,9 +28,8 @@
           <th onclick="sortTable(0)">Customer Name <i class="fa fa-fw fa-sort"></i></th>
           <th onclick="sortTable(1)">Sales Rep<i class="fa fa-fw fa-sort"></i></th>
           <th onclick="sortTable(2)">Archiving SE<i class="fa fa-fw fa-sort"></i></th>
-          <th onclick="sortTable(3)">AM<i class="fa fa-fw fa-sort"></i></th>
-          <th onclick="sortTable(4)">Status<i class="fa fa-fw fa-sort"></i></th>
-          <th onclick="sortTable(5)">Updated Date<i class="fa fa-fw fa-sort"></i></th>
+          <th onclick="sortTable(3)">Status<i class="fa fa-fw fa-sort"></i></th>
+          <th onclick="sortTable(4)">Updated Date<i class="fa fa-fw fa-sort"></i></th>
           <th>Action</th>
         </tr>
       </thead>
@@ -40,7 +39,6 @@
           <td><a href="./index/<%= encodeURIComponent(customer.name) %>"><%= customer.name %></a></td>
           <td><%= customer.salesRep %></td>
           <td><%= customer.archivingSe %></td>
-          <td><%= customer.accManager %></td>
           <td><%= customer.status %></td>
           <td><%= customer.updatedAt.getMonth() + 1 %>/<%= customer.updatedAt.getDate() %>/<%= customer.updatedAt.getFullYear() %></td>
           <td class="text-center">
