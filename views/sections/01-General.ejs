@@ -50,7 +50,8 @@
 
                 <div class="col-md-4 mb-3 form-group general_info response-cell">
                     <label style="text-align: center !important;">Solution Architect </label>
-                    <%- make_custom_dropdown("customer[solutionArchitect]", customer.solutionArchitect, ["Robert Kreuscher"]) %>
+                    <input type="text" class="form-control required" placeholder="No response set" id="solutionArchitect" value="<%= customer.solutionArchitect %>"
+                        name="customer[solutionArchitect]">
                 </div>
 
                 <div class="col-md-4 mb-3 form-group general_info response-cell">
