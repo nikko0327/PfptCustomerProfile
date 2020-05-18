@@ -175,6 +175,16 @@
     "type": "string"
   },
   {
+    "displayName": "Zoom",
+    "access": "zoom",
+    "type": "string"
+  },
+  {
+    "displayName": "Zoom Number of Users",
+    "access": "Zoom_number_of_users",
+    "type": "string"
+  },
+  {
     "displayName": "Comments",
     "access": "comments",
     "type": "string"

@@ -158,6 +158,14 @@ var connector_platform_schema = new mongoose.Schema({
       type: String,
       default: ""
     },
+    zoom: {
+      type: Boolean,
+      default: false
+    },
+    zoom_number_of_users: {
+      type: String,
+      default: ""
+    },
     comments: {
         type: String,
         default: ""
