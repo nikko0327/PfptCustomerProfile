@@ -6,25 +6,56 @@ function delete_customer(customer_name) {
                 url: "./index/" + encodeURIComponent(customer_name) + "?_method=DELETE",
                 data: {},
                 success: function () {
-                    document.getElementById("toast-header").innerHTML = "Delete Customer";
-                    document.getElementById("toast-body").innerHTML = "Successfully Deleted: " + customer_name;
+                    // Show an alert
+                    var alert = document.createElement("div");
+                    alert.className = "alert alert-success";
+                    var closeButton = document.createElement("button");
+                    closeButton.className = "close"
+                    closeButton.setAttribute("data-dismiss", "alert")
+                    closeButton.innerHTML = "&times;";
+                    var body = document.createElement("p");
+                    var node = document.createTextNode("Deleted customer: " + customer_name);
+                    body.appendChild(node);
+                    alert.appendChild(closeButton);
+                    alert.appendChild(body);
+                    var element = document.getElementById("alert-list");
+                    element.appendChild(alert);
                     // Delete the row for this customer
                     var rowNum = document.getElementById(customer_name);
                     document.getElementById("tblCustomers").deleteRow(rowNum.rowIndex);
                 },
                 error: function () {
-                   document.getElementById("toast-header").innerHTML = "Error Deleting Customer";
-                   document.getElementById("toast-body").innerHTML = "Failed to delete: " + customer_name;
+                    var alert = document.createElement("div");
+                    alert.className = "alert alert-danger";
+                    var closeButton = document.createElement("button");
+                    closeButton.className = "close"
+                    closeButton.setAttribute("data-dismiss", "alert")
+                    closeButton.innerHTML = "&times;";
+                    var body = document.createElement("p");
+                    var node = document.createTextNode("Error - Unable to delete customer: " + customer_name);
+                    body.appendChild(node);
+                    alert.appendChild(closeButton);
+                    alert.appendChild(body);
+                    var element = document.getElementById("alert-list");
+                    element.appendChild(alert);
+ 
+
                 }
             });
         } else {
-            document.getElementById("toast-header").innerHTML = "Cannot Delete Customer";
-            document.getElementById("toast-body").innerHTML = "Invalid Customer Name";
-        }
-
+            var alert = document.createElement("div");
+            alert.className = "alert alert-danger";
+            var closeButton = document.createElement("button");
+            closeButton.className = "close"
+            closeButton.setAttribute("data-dismiss", "alert")
+            closeButton.innerHTML = "&times;";
+            var body = document.createElement("p");
+            var node = document.createTextNode("Delete Failed - you did not type the customer name correctly");
+            body.appendChild(node);
+            alert.appendChild(closeButton);
+            alert.appendChild(body);
+            var element = document.getElementById("alert-list");
+            element.appendChild(alert);
+        }    
     
-    $('.toast').toast('show');
- 
-    // No need to reload the entire page with AJAX
-    // window.location.reload();
 }

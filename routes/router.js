@@ -161,7 +161,7 @@ router.post("/new", authenticate_session, function (req, res) {
     if (req == undefined || req == null) {
         console.log("req is empty");
     } else {
-        console.log("- Trying to create new customer...");
+        console.log("[+] Trying to create new customer...");
 
         Customer.create(req.body.customer)
         .then(customer => {
@@ -232,7 +232,7 @@ router.post("/new", authenticate_session, function (req, res) {
           // });
 
           res.redirect(append + "/index");
-          console.log("Creation of customer '" + req.body.customer["name"] + "' successful.");
+          console.log("[+] Created customer '" + req.body.customer["name"]);
         })
         .catch(error => {
           if (error["code"] == 11000) {
@@ -565,7 +565,7 @@ router.get("/index", authenticate_session, function (req, res) {
 // URL: /index/:id
 // AUTH: Token
 router.delete("/index/:id", authenticate_session, function (req, res) {
-    console.log("[+] Attemping to delete customer " + req.params.id);
+    console.log("[+] Deleting customer " + req.params.id);
 
     async function delete_customer(search_term) {
         var refId = await Customer.findOne({ name: req.params.id });
