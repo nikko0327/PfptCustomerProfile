@@ -1,5 +1,5 @@
 function delete_customer(customer_name) {
-        if (prompt("Please type: " + customer_name) == customer_name) {
+        if (confirm("Are you sure you want to delete " + customer_name + "?")) {
             $.ajax({
                 type: 'POST',   
                 timeout: 3000,
@@ -44,13 +44,13 @@ function delete_customer(customer_name) {
             });
         } else {
             var alert = document.createElement("div");
-            alert.className = "alert alert-danger";
+            alert.className = "alert alert-warning";
             var closeButton = document.createElement("button");
             closeButton.className = "close"
             closeButton.setAttribute("data-dismiss", "alert")
             closeButton.innerHTML = "&times;";
             var body = document.createElement("p");
-            var node = document.createTextNode("Delete Failed - you did not type the customer name correctly");
+            var node = document.createTextNode("Did not delete " + customer_name);
             body.appendChild(node);
             alert.appendChild(closeButton);
             alert.appendChild(body);
