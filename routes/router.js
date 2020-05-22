@@ -65,7 +65,7 @@ router.post("/logout", function (req, res) {
     var user = req.session.user;
     req.session.destroy(() => {
         if (user) {
-            console.log("Logging out: " + user);
+            console.log("[+] Logging out: " + user);
         }
     });
 
@@ -134,7 +134,7 @@ router.post("/login", function (req, res) {
       }
     
       // Create an LDAPJS Client Object
-      console.log("Connecting to: " + process.env.LDAP)
+      console.log("[+] Connecting to: " + process.env.LDAP)
       var client = ldap_auth.createClient({
           url: process.env.LDAP});
       
@@ -561,8 +561,11 @@ router.get("/index", authenticate_session, function (req, res) {
 });
 
 // Delete a customer profile
+// Type: DELETE
+// URL: /index/:id
+// AUTH: Token
 router.delete("/index/:id", authenticate_session, function (req, res) {
-    console.log("-- Attemping to delete customer " + req.params.id);
+    console.log("[+] Attemping to delete customer " + req.params.id);
 
     async function delete_customer(search_term) {
         var refId = await Customer.findOne({ name: req.params.id });

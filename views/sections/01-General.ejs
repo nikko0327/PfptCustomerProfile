@@ -1,304 +1,312 @@
 <!-- Displaying customer data -->
-<div class="container">
-    <div id="generalInfo" class="display-header">
-    <div id="generalInfoHeader">
-        <div class="title">
-            <a><b>General Information</b></p>
+<div class="container-fluid">
+    <!-- New Form-->
+    <div class="row">
+        <div class="col-sm-12" style="background-color:white">
+            <div class="edit pull-right">
+                <a href="#/" id="editCustomerLink" aria-hidden="true" data-toggle="modal">
+                    <i class="fa fa-pencil-square-o"> Edit</i>
+                </a>
+            </div>
         </div>
-        <div class="edit pull-right">
-            <a href="#/" id="editCustomerLink" aria-hidden="true" data-toggle="modal">
-                <i class="fa fa-pencil-square-o"> Edit</i>
-            </a>
+
+    </div>
+
+    <!-- Row 1 -->
+    <div class="row">
+        <div class="col-xl-6 pt-2" style="background-color:white;">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Customer Information</h4>
+                </div>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label form-control-label">Customer Name</label>
+                        <div class="col-lg-8">
+                            <input id="unique-customer-name" required disabled type="text" class="form-control required" placeholder="No response set" value="<%= customer.name %>"
+                        name="customer[name]">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label form-control-label">Number of Mailboxes</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control required" placeholder="No response set" id="numberOfMailboxes" value="<%= customer.numberOfMailboxes %>"
+                        name="customer[numberOfMailboxes]">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label form-control-label">Location</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control required" placeholder="No response set" id="location" value="<%= customer.location %>" name="customer[location]">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label form-control-label">Status</label>
+                        <div class="col-lg-8">
+                            <%- make_custom_dropdown("customer[status]", customer.status, ["Waiting for PDQ", "Waiting for sales", "Waiting for finance", "Waiting for ops", "Waiting for customer", "Waiting for scheduling", "Deployment started", "Deployment complete/in production"]) %>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label form-control-label">NAT IP</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" placeholder="No response set" id="natIp" value="<%= customer.natIp %>" name="customer[natIp]">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label form-control-label">Incumbent Solution</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control required" placeholder="No response set" id="incumbentSolution" value="<%= customer.incumbentSolution %>"
+                            name="customer[incumbentSolution]">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label form-control-label">Archiving Prospect</label>
+                        <div class="col-lg-8">
+                            <input type="checkbox" name="customer[existing_archive_prospect]" <%- customer.existing_archive_prospect ? "checked" : "" %> />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label form-control-label">Existing Archiving Customer</label>
+                        <div class="col-lg-8">
+                            <input type="checkbox" name="customer[existing_archive_customer]" <%- customer.existing_archive_customer ? "checked" : ""%> />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label form-control-label">Existing Security Customer</label>
+                        <div class="col-lg-8">
+                            <input type="checkbox" name="customer[existing_archive_prospect]" <%- customer.existing_archive_prospect ? "checked" : ""%> />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 pt-2" style="background-color:white;">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Proofpoint Team</h4>
+                </div>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label form-control-label">Sales Representative</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control required" placeholder="No response set" id="salesRep" value="<%= customer.salesRep %>" name="customer[salesRep]">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label form-control-label">Archiving Sales Engineer</label>
+                        <div class="col-lg-8">
+                            <%- make_custom_dropdown("customer[archivingSe]", customer.archivingSe, ["Ben Chapman", "Brad Cope", "Coleem Chestnut", "Davin Stilson", "Frank Beck", "Jason Colvin", "Micah Wyenn", "Mike Fenili", "Robert Kreusher", "Shane Sauer", "Terry McMahon"]) %>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label form-control-label">Account Manager</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control required" placeholder="No response set" id="accManager" value="<%= customer.accManager %>" name="customer[accManager]">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label form-control-label">TPM</label>
+                        <div class="col-lg-8">
+                            <%- make_custom_dropdown("customer[tpm]", customer.tpm, ["Jama Parikh", "Joan Noble", "Khoj Ladha", "Lorraine Lamb", "Sara Lints", "Aimee Wheelon"]) %>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label form-control-label">TAM</label>
+                        <div class="col-lg-8">
+                            <%- make_custom_dropdown("customer[tam]", customer.tam, ["Drew Fox", "Eric Pfefferie", "Jason Medina", "Jeremy Wagner", "Liliana Valdivia", "Nicole Dawson", "Wolfgang Rebhan"]) %>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label form-control-label">Solution Architect</label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control required" placeholder="No response set" id="solutionArchitect" value="<%= customer.solutionArchitect %>"
+                        name="customer[solutionArchitect]">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label form-control-label">Supervision Consultant</label>
+                        <div class="col-lg-8">
+                            <%- make_custom_dropdown("customer[supervisionConsultant]", customer.supervisionConsultant, ["Ray McGrath", "Alex Boyd", "Regina Rodriguez"]) %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Row 2 -->
+    <div class="row">
+        <div class="col-xl-6 pt-5" style="background-color:white;">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Shipment Information</h4>
+                </div>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label form-control-label">
+                            <a href="#" onclick="window.open( (($('#pso_ticket_location').val() == 'CTS') ? 'https://support.proofpoint.com/show_call.cgi?id=' : 'https://na33.salesforce.com/')  + $('#pso').val());">
+                                PSO
+                            </a>
+                        </label>
+                        <div class="col-lg-8">
+                            <div class="input-group">
+                                <select name="customer[pso][location]" id="pso_ticket_location">
+                                    <option>Salesforce</option>
+                                    <option value="CTS" <% if (customer.pso.location == 'CTS') { %>selected<% } %>>CTS</option>
+                                </select>
+                                <input id="pso" type="text" class="form-control required" placeholder="PSO" value="<%= customer.pso.ticket %>" name="customer[pso][ticket]">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label form-control-label">
+                            <a href="#" onclick="window.open('https://cts-pp.proofpoint.com/show_call.cgi?id=' + $('#shipreq').val());">
+                                Shipment request
+                            </a>
+                        </label>
+                        <div class="col-lg-8">
+                            <input type="text" id="shipreq" class="form-control" placeholder="Shipment Request" value="<%= customer.shipreq %>" name="customer[shipreq]">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label form-control-label">
+                            PS Opportunity
+                        </label>
+                        <div class="col-lg-8">
+                            <input id="ps_opportunity" type="text" class="form-control" placeholder="No response set" value="<%= customer.ps_opportunity %>" name="customer[ps_opportunity]">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label form-control-label">
+                            Messaging System
+                        </label>
+                        <div class="col-lg-8">
+                            <%- make_custom_dropdown("customer[messaging_system]", customer.messaging_system, ["Exchange On-Prem", "O365", "Mixed Mode"]) %>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label form-control-label">
+                            Hybrid or Hosted
+                        </label>
+                        <div class="col-lg-8">
+                            <%- make_custom_dropdown("customer[hybrid_or_hosted]", customer.hybrid_or_hosted, ["Hybrid", "Hosted"]) %>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label form-control-label">
+                           Virtual or Physical
+                        </label>
+                        <div class="col-lg-8">
+                            <%- make_custom_dropdown("customer[virtual_or_physical]", customer.virtual_or_physical, ["Virtual", "Physical"]) %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 pt-5" style="background-color:white;">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Comments</h4>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <textarea class="form-control" maxlength="5000" rows="5" name="customer[comments]" placeholder="5000 characters max" form="customerForm"><%= customer.comments %></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <br>
 
-    <form id="customerForm" autocomplete="off" action="../index/<%= encodeURIComponent(customer.name) %>?_method=PUT" method="POST">
-        <fieldset id="customerFormFieldset" disabled>
-            <div class="row">
-                <div class="col-md-4 mb-3 form-group general_info response-cell">
-                    <label style="text-align: center !important;">Customer Name </label>
-                    <input id="unique-customer-name" required disabled type="text" class="form-control required" placeholder="No response set" value="<%= customer.name %>"
-                        name="customer[name]">
+    <!-- Row 3-->
+    <div class="row">
+        <div class="col-xl-12 pt-5" style="background-color:white;">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row"><h4 class="mb-0">Client Contacts</h4></div>
+                    <div class="row"><button id="add_row" type="button" class="btn btn-sm btn-primary pull-right">Add New Contact +</button></div>
                 </div>
-
-                <div class="col-md-4 mb-3 form-group general_info response-cell">
-                    <label style="text-align: center !important;">Sales Rep.</label>
-                    <input type="text" class="form-control required" placeholder="No response set" id="salesRep" value="<%= customer.salesRep %>" name="customer[salesRep]">
-                </div>
-
-                <div class="col-md-4 mb-3 form-group general_info response-cell">
-                    <label style="text-align: center !important;">Archiving SE </label>
-                    <%- make_custom_dropdown("customer[archivingSe]", customer.archivingSe, ["Ben Chapman", "Brad Cope", "Coleem Chestnut", "Davin Stilson", "Frank Beck", "Jason Colvin", "Micah Wyenn", "Mike Fenili", "Robert Kreusher", "Shane Sauer", "Terry McMahon"]) %>
-                </div>
-
-                <div class="col-md-4 mb-3 form-group general_info response-cell">
-                    <label style="text-align: center !important;">Acc. Manager </label>
-                    <input type="text" class="form-control required" placeholder="No response set" id="accManager" value="<%= customer.accManager %>"
-                        name="customer[accManager]">
-                </div>
-
-                <div class="col-md-4 mb-3 form-group general_info response-cell">
-                    <label style="text-align: center !important;">TPM </label>
-                    <%- make_custom_dropdown("customer[tpm]", customer.tpm, ["Jama Parikh", "Joan Noble", "Khoj Ladha", "Lorraine Lamb", "Sara Lints", "Aimee Wheelon"]) %>
-                </div>
-
-                <div class="col-md-4 mb-3form-group general_info response-cell">
-                    <label style="text-align: center !important;">TAM </label>
-                    <%- make_custom_dropdown("customer[tam]", customer.tam, ["Drew Fox", "Eric Pfefferie", "Jason Medina", "Jeremy Wagner", "Liliana Valdivia", "Nicole Dawson", "Wolfgang Rebhan"]) %>
-                </div>
-
-                <div class="col-md-4 mb-3 form-group general_info response-cell">
-                    <label style="text-align: center !important;">Solution Architect </label>
-                    <input type="text" class="form-control required" placeholder="No response set" id="solutionArchitect" value="<%= customer.solutionArchitect %>"
-                        name="customer[solutionArchitect]">
-                </div>
-
-                <div class="col-md-4 mb-3 form-group general_info response-cell">
-                    <label style="text-align: center !important;">Supervision Consultant </label>
-                    <%- make_custom_dropdown("customer[supervisionConsultant]", customer.supervisionConsultant, ["Ray McGrath", "Alex Boyd", "Regina Rodriguez"]) %>
-                </div>
-
-                <div class="col-md-4 mb-3 form-group general_info response-cell">
-                    <label style="text-align: center !important;">Number of Mailboxes </label>
-                    <input type="text" class="form-control required" placeholder="No response set" id="numberOfMailboxes" value="<%= customer.numberOfMailboxes %>"
-                        name="customer[numberOfMailboxes]">
-                </div>
-
-                <div class="col-md-4 mb-3 form-group general_info response-cell">
-                    <label style="text-align: center !important;">Location </label>
-                    <input type="text" class="form-control required" placeholder="No response set" id="location" value="<%= customer.location %>" name="customer[location]">
-                </div>
-
-                <div class="col-md-4 mb-3 form-group general_info response-cell">
-                    <label style="text-align: center !important;">Status </label>
-                    <%- make_custom_dropdown("customer[status]", customer.status,
-                    ["Waiting for PDQ", "Waiting for sales", "Waiting for finance", "Waiting for ops", "Waiting for customer", "Waiting for scheduling", "Deployment started", "Deployment complete/in production"]) %>
-                </div>
-
-                <div class="col-md-4 mb-3 form-group general_info response-cell">
-                    <label style="text-align: center !important;">NAT IP </label>
-                    <input type="text" class="form-control" placeholder="No response set" id="natIp" value="<%= customer.natIp %>" name="customer[natIp]">
-                </div>
-
-                <div class="col-md-4 mb-3 form-group general_info response-cell">
-                    <label style="text-align: center !important;">Incumbent Solution </label>
-                    <input type="text" class="form-control required" placeholder="No response set" id="incumbentSolution" value="<%= customer.incumbentSolution %>"
-                        name="customer[incumbentSolution]">
-                </div>
-            </div>
-            <br>
-
-
-            <div class="row">
-                <div class="col-md-4 mb-3 form-group col-4 response-cell">
-                    <p>Is the customer an:</p>
-                    <div class="col-4, response-checkbox">
-                        <!-- <p> -->
-                            <input type="checkbox" name="customer[existing_archive_prospect]" <%- customer.existing_archive_prospect ? "checked" : ""
-                                %> />
-                            <span> Archiving Prospect</span>
-                        <!-- </p> -->
-                    </div>
-                    <div class="col-4, response-checkbox">
-                        <!-- <p> -->
-                            <input type="checkbox" name="customer[existing_archive_customer]" <%- customer.existing_archive_customer ? "checked" : ""
-                                %> />
-                            <span> Existing Archiving Customer</span>
-                        <!-- </p> -->
-                    </div>
-                    <div class="col-4, response-checkbox">
-                        <!-- <p> -->
-                            <input type="checkbox" name="customer[existing_security_customer]" <%- customer.existing_security_customer ? "checked" :
-                                "" %> />
-                            <span> Existing Security Customer</span>
-                        <!-- </p> -->
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                 <div class="col-6 form-group col response-cell">
-                    <label>
-                        <a href="#" onclick="window.open( (($('#pso_ticket_location').val() == 'CTS') ? 'https://support.proofpoint.com/show_call.cgi?id=' : 'https://na33.salesforce.com/')  + $('#pso').val());">
-                            PSO
-                        </a>
-                    </label>
-                    <div class="input-group">
-                        <select name="customer[pso][location]" id="pso_ticket_location">
-                            <option>Salesforce</option>
-                            <option value="CTS" <% if (customer.pso.location == 'CTS') { %>selected<% } %>>CTS</option>
-                        </select>
-                        <input id="pso" type="text" class="form-control required" placeholder="PSO" value="<%= customer.pso.ticket %>" name="customer[pso][ticket]">
-                    </div>
-                </div>               
-            </div>
-
-            <div class="row">
-
-                <div class="col-6 col-md-4 form-group col response-cell">
-                    <label>
-                        <a href="#" onclick="window.open('https://cts-pp.proofpoint.com/show_call.cgi?id=' + $('#shipreq').val());">
-                            Shipment request
-                        </a>
-                    </label>
-                    <input type="text" id="shipreq" class="form-control" placeholder="Shipment Request" value="<%= customer.shipreq %>" name="customer[shipreq]">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4 mb-3 form-group col response-cell">
-                    <label>
-                        PS Opportunity
-                    </label>
-                    <div class="input-group">
-                        <select>
-                            <option>Salesforce</option>
-                        </select>
-                        <input id="ps_opportunity" type="text" class="form-control" placeholder="No response set" value="<%= customer.ps_opportunity %>" name="customer[ps_opportunity]">
-                    </div>
-                </div>
-
-                <div class="col-md-4 mb-3 form-group col response-cell">
-                    <label>Messaging System</label>
-                    <%- make_custom_dropdown("customer[messaging_system]", customer.messaging_system, ["Exchange On-Prem", "O365", "Mixed Mode"]) %>
-                </div>
-
-                <div class="col-md-4 mb-3 form-group col response-cell">
-                    <label>Hybrid or Hosted</label>
-                    <%- make_custom_dropdown("customer[hybrid_or_hosted]", customer.hybrid_or_hosted, ["Hybrid", "Hosted"]) %>
-                </div>
-
-                <div class="col-6 col-md-4 form-group col response-cell">
-                    <label>Virtual or Physical</label>
-                    <%- make_custom_dropdown("customer[virtual_or_physical]", customer.virtual_or_physical, ["Virtual", "Physical"]) %>
-                </div>
-            </div>
-
-            <hr>
-
-            <div class="title">
-                <p>Contacts<button id="add_row" type="button" class="btn btn-sm btn-primary pull-right">Add New Contact +</button></p>
-            </div>
-
-
-            <br>
-            <br>
-
-            <table id="contacts_table" class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Contact name</th>
-                        <th>Title</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Primary contact</th>
-                        <th></th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <% if(customer.contacts && customer.contacts.length) {
-                        for(let i = 0; i < customer.contacts.length; i++) { %>
-                        <tr>
-                            <td>
-                                <input type="text" class="form-control" placeholder="Contact Name" name="customer[contacts][<%= i %>][name]" value="<%= customer.contacts[i].name %>"
-                                />
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" placeholder="Contact Title" name="customer[contacts][<%= i %>][title]" value="<%= customer.contacts[i].title%>"
-                                />
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" placeholder="Contact Email" name="customer[contacts][<%= i %>][email]" value="<%= customer.contacts[i].email %>"
-                                />
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" placeholder="Contact Phone" name="customer[contacts][<%= i %>][phone]" value="<%= customer.contacts[i].phone %>"
-                                />
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" placeholder="Primary Contact" name="customer[contacts][<%= i %>][primary_contact]"
-                                    value="<%= customer.contacts[i].primary_contact %>" />
-                            </td>
-                            <td>
-                                <i class="fa fa-trash" aria-hidden="true" onclick='delete_row(this);'></i>
-                            </td>
-                        </tr>
-                        <% } } else { %>
+                <div class="card-body">
+                    <table id="contacts_table" class="table table-bordered">
+                        <thead>
                             <tr>
-                                <td>
-                                    <input type="text" class="form-control" placeholder="Contact Name" name="customer[contacts][0][name]" value="" />
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" placeholder="Contact Title" name="customer[contacts][0][title]" value="" />
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" placeholder="Contact Email" name="customer[contacts][0][email]" value="" />
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" placeholder="Contact Phone" name="customer[contacts][0][phone]" value="" />
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" name="customer[contacts][0][primary_contact]" value="" />
-                                </td>
-                                <td>
-                                    <i class="fa fa-trash" aria-hidden="true" onclick='delete_row(this);'></i>
-                                </td>
+                                <th>Contact name</th>
+                                <th>Title</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Primary contact</th>
+                                <th></th>
                             </tr>
-                            <% } %>
-                </tbody>
-            </table>
+                        </thead>
+        
+                        <tbody>
+                            <% if(customer.contacts && customer.contacts.length) {
+                                for(let i = 0; i < customer.contacts.length; i++) { %>
+                                <tr>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="Contact Name" name="customer[contacts][<%= i %>][name]" value="<%= customer.contacts[i].name %>"
+                                        />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="Contact Title" name="customer[contacts][<%= i %>][title]" value="<%= customer.contacts[i].title%>"
+                                        />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="Contact Email" name="customer[contacts][<%= i %>][email]" value="<%= customer.contacts[i].email %>"
+                                        />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="Contact Phone" name="customer[contacts][<%= i %>][phone]" value="<%= customer.contacts[i].phone %>"
+                                        />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="Primary Contact" name="customer[contacts][<%= i %>][primary_contact]"
+                                            value="<%= customer.contacts[i].primary_contact %>" />
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-trash" aria-hidden="true" onclick='delete_row(this);'></i>
+                                    </td>
+                                </tr>
+                                <% } } else { %>
+                                    <tr>
+                                        <td>
+                                            <input type="text" class="form-control" placeholder="Contact Name" name="customer[contacts][0][name]" value="" />
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" placeholder="Contact Title" name="customer[contacts][0][title]" value="" />
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" placeholder="Contact Email" name="customer[contacts][0][email]" value="" />
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" placeholder="Contact Phone" name="customer[contacts][0][phone]" value="" />
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" name="customer[contacts][0][primary_contact]" value="" />
+                                        </td>
+                                        <td>
+                                            <i class="fa fa-trash" aria-hidden="true" onclick='delete_row(this);'></i>
+                                        </td>
+                                    </tr>
+                                    <% } %>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
 
-            <div class="form-group">
-                <label>Comments</label>
-                <textarea class="form-control" maxlength="5000" rows="5" name="customer[comments]" placeholder="5000 characters max" form="customerForm"><%= customer.comments %></textarea>
-            </div>
-        </fieldset>
+          
+
+
+
+
     </form>
 
-<!--     <p>Diagrams for Exchange infrastructure and AD details<p>
-    <div class="row">
-        <div class="form-group general_info response-cell">
-            <label style="font-size: 12px; text-align: center;">On-prem Exchange(On-prem Appliance)</label>
-            <div>
-                <div id="diagram1">
-                </div>
-                <form action="../uploads" method="POST" enctype="multipart/form-data" id="upload1">
-                    <input type="text" hidden readonly value="<%= customer.name %>" name="customername">
-                    <input type="text" hidden readonly value="1" name="diagram">
-                    <input type="file" name="file" required>
-                    <button class="btn btn-outline-secondary" type="submit">Upload</button>
-                </form>
-            </div>
-        </div>
-        <div class="form-group general_info response-cell">
-            <label style="font-size: 12px; text-align: center;">On-prem Exchange + O365(On-prem Appliance)</label>
-            <div>
-                <div id="diagram2">
-                </div>
-                <form action="../uploads" method="POST" enctype="multipart/form-data" id="upload2">
-                    <input type="text" hidden readonly value="<%= customer.name %>" name="customername">
-                    <input type="text" hidden readonly value="2" name="diagram">
-                    <input type="file" name="file" required>
-                    <button class="btn btn-outline-secondary" type="submit">Upload</button>
-                </form>
-            </div>
-        </div>
-        <div class="form-group general_info response-cell">
-            <label style="font-size: 12px; text-align: center;">On-prem Exchange + O365(Hosted Appliance)</label>
-            <div>
-                <div id="diagram3">
-                </div>
-                <form action="../uploads" method="POST" enctype="multipart/form-data" id="upload3">
-                    <input type="text" hidden readonly value="<%= customer.name %>" name="customername">
-                    <input type="text" hidden readonly value="3" name="diagram">
-                    <input type="file" name="file" required>
-                    <button class="btn btn-outline-secondary" type="submit">Upload</button>
-                </form>
-            </div>
-        </div>
-    </div> -->
+
 </div>
-<hr class="rainbow">
+
 </div>

@@ -13,7 +13,19 @@
     <div class="col-sm-2" style="background-color:white;">
       <input class="form-control" id="txtFilter" onkeyup="filterTable()" style="display: inline-block;" type="text" placeholder="Search for names..." aria-label="Search">
     </div>
-    <div class="col-sm-6" style="background-color:white;"></div>
+    <div class="col-sm-6" style="background-color:white;">
+
+      <div class="toast" data-autohide="false">
+        <div class="toast-header" >
+          <strong class="mr-auto text-primary" id="toast-header">Toast Header</strong>
+          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+        </div>
+        <div class="toast-body" id="toast-body">
+          Some text inside the toast body
+        </div>
+       </div>
+
+    </div>
     <div class="col-sm-2" style="background-color:white;">  
       <a href="./new/" class="btn btn-primary btn-xs float-right"><b>+</b> New Customer</a>
     </div>
@@ -34,7 +46,7 @@
       </thead>
       <tbody>
         <% customers.forEach(function (customer) { %>
-        <tr>
+        <tr id="<%= customer.name %>">
           <td><a href="./index/<%= encodeURIComponent(customer.name) %>"><%= customer.name %></a></td>
           <td><%= customer.salesRep %></td>
           <td><%= customer.archivingSe %></td>

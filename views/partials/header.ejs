@@ -60,10 +60,14 @@
     input.required:placeholder-shown {
       border: 1px solid red;
     }
-
-    select:has(option:checked[value='']) {
+    select {
       border: 1px solid red;
     }
+
+    select:has(option:selection[value=""]) {
+      border: 1px solid red;
+    }
+
 
 
 

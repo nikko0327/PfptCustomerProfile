@@ -1,38 +1,30 @@
 function delete_customer(customer_name) {
-
-    if (confirm("Delete entry for " + customer_name + "?")) {
-        if (prompt("Please type in the customer's name you're trying to delete: ") == customer_name) {
+        if (prompt("Please type: " + customer_name) == customer_name) {
             $.ajax({
-                type: 'POST',
+                type: 'POST',   
                 timeout: 3000,
                 url: "./index/" + encodeURIComponent(customer_name) + "?_method=DELETE",
                 data: {},
                 success: function () {
-                    alert("Customer " + customer_name + " deleted.");
+                    document.getElementById("toast-header").innerHTML = "Delete Customer";
+                    document.getElementById("toast-body").innerHTML = "Successfully Deleted: " + customer_name;
+                    // Delete the row for this customer
+                    var rowNum = document.getElementById(customer_name);
+                    document.getElementById("tblCustomers").deleteRow(rowNum.rowIndex);
                 },
                 error: function () {
-                    alert("Error deleting profile for customer " + customer_name);
-                }
-            });
-
-            $.ajax({
-                type: 'POST',
-                timeout: 3000,
-                url: "./files/" + encodeURIComponent(customer_name) + "?_method=DELETE",
-                data: {
-                    delete_customer: true
-                },
-                success: function () {
-                    alert("Uploaded files for customer " + customer_name + " deleted.");
-                },
-                error: function () {
-                    alert("Error deleting files for customer " + customer_name);
+                   document.getElementById("toast-header").innerHTML = "Error Deleting Customer";
+                   document.getElementById("toast-body").innerHTML = "Failed to delete: " + customer_name;
                 }
             });
         } else {
-            alert('Incorrect customer name.')
+            document.getElementById("toast-header").innerHTML = "Cannot Delete Customer";
+            document.getElementById("toast-body").innerHTML = "Invalid Customer Name";
         }
-    }
 
-    window.location.reload();
+    
+    $('.toast').toast('show');
+ 
+    // No need to reload the entire page with AJAX
+    // window.location.reload();
 }

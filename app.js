@@ -36,7 +36,7 @@ console.log("[+] Connecting to DB: " + databaseUrl)
 //mongoose.Promise = require('bluebird');
 mongoose.connect(databaseUrl, { useMongoClient: true }).then(
     () => {
-        console.log('Database is connected');
+        console.log('[+] Database is connected');
     },
     err => {
         console.log('Can not connect to the database' + err);
@@ -47,7 +47,7 @@ mongoose.connect(databaseUrl, { useMongoClient: true }).then(
 var db = mongoose.connection;
 
 //handling mongo error
-db.on("error", console.error.bind(console, "Connection Error: "));
+db.on("error", console.error.bind(console, "[+] DB Connection Error - "));
 
 var gfs;
 db.once("open", function () {
@@ -317,5 +317,5 @@ app.use(function (err, req, res, next) {
 var port = process.env.PORT || 80;
 
 app.listen(port, function () {
-    console.log(`App is running on ${port}.`);
+    console.log(`[+] App is running on ${port}.`);
 });
