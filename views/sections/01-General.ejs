@@ -1,3 +1,6 @@
+
+<div class="godown-60" id="godown"></div>
+
 <!-- Displaying customer data -->
 <div class="container-fluid">
     <!-- New Form-->
@@ -12,6 +15,9 @@
 
     </div>
 
+
+    <form id="customerForm" autocomplete="off" action="../index/<%= encodeURIComponent(customer.name) %>?_method=PUT" method="POST">
+    <fieldset id="customerFormFieldset" disabled>
     <!-- Row 1 -->
     <div class="row">
         <div class="col-xl-6 pt-2" style="background-color:white;">
@@ -298,15 +304,7 @@
                 </div>
         </div>
     </div>
-
-          
-
-
-
-
+    </fieldset>
     </form>
-
-
 </div>
-
 </div>

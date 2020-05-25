@@ -51,7 +51,10 @@ var {SupervisionQuestions} = require("../models/supervision");
 var {SupervisionQuestionsVersions} = require("../models/supervision");
 var User = require("../models/user");
 
+
+// ======================================================
 // For authenticating cookies/sessions.
+// ======================================================
 function authenticate_session(req, res, next) {
     if (req.session.user) {
         next();
@@ -60,35 +63,61 @@ function authenticate_session(req, res, next) {
     }
 }
 
-// LOGOUT AND KILL SESSION
+
+// ======================================================
+// Logout the current user
+// ======================================================
 router.post("/logout", function (req, res) {
-    var user = req.session.user;
+    var user = req.session.user
     req.session.destroy(() => {
         if (user) {
-            console.log("[+] Logging out: " + user);
+            console.log('[+] Logout: ' + user)
         }
-    });
+    })
+    res.redirect("/login")
+})
 
-    res.redirect(append + "/login");
-});
 
+// ======================================================
+// Logout current user
+// ======================================================
+router.get('/logout', (req, res) => {
+  console.log('[+] Logout: ' + req.session.user)
+  req.session.destroy()
+  res.redirect('/login')
+})
+
+
+// ======================================================
+// Returns the Currently Logged in User
+// ======================================================
+router.get('/CurrentUser', (req, res) => {
+  var user = req.session.user
+  res.send({
+    user
+  })
+})
+
+
+// ======================================================
 //Entry point for the app startup
+// ======================================================
 router.get("/", function (req, res) {
     res.redirect(append + "/index");
 });
 
-//NEW ROUTE
-router.get("/new", authenticate_session, function (req, res) {
-    res.render("new", { error_message: undefined });
-});
 
-
+// ======================================================
 // REGISTER
+// ======================================================
 router.get("/register", function (req, res) {
     res.render("register", {error_message: undefined});
 });
 
+
+// ======================================================
 // POST REGISTER
+// ======================================================
 router.post("/register", function (req, res) {
     if (!req.body.registration_info["username"] || !req.body.registration_info["password"] || !req.body.registration_info["confirm_password"]) {
         res.render("register", {error_message: "Please enter all fields."});
@@ -120,12 +149,18 @@ router.post("/register", function (req, res) {
     }
 });
 
+
+// ======================================================
 // LOGIN
+// ======================================================
 router.get("/login", function (req, res) {
     res.render("login", { fail: false });
 });
 
+
+// ======================================================
 // POST LOGIN
+// ======================================================
 router.post("/login", function (req, res) {
       // Check the  form fields
       if (!req.body.login || req.body.login == null) {
@@ -156,10 +191,21 @@ router.post("/login", function (req, res) {
       }); // client.bind     
 });
 
-//CREATE ROUTE
+
+// ======================================================
+// Display the New Customer Page
+// ======================================================
+router.get("/new", authenticate_session, function (req, res) {
+  res.render("new", { error_message: undefined });
+});
+
+
+// ======================================================
+// Save the New Customer
+// ======================================================
 router.post("/new", authenticate_session, function (req, res) {
     if (req == undefined || req == null) {
-        console.log("req is empty");
+        console.log('[+] Cannot create new customer.  The req is empty.');
     } else {
         console.log("[+] Trying to create new customer...");
 
@@ -208,29 +254,6 @@ router.post("/new", authenticate_session, function (req, res) {
           .then(questions => {
             SupervisionQuestionsVersions.create({ refId: customer._id, versions: [questions] });
           })
-
-          // var transporter = nodemailer.createTransport({
-          //   service: 'outlook',
-          //   auth: {
-          //     user: process.env.USER,
-          //     pass: process.env.PASS
-          //   }
-          // });
-          // var mailOptions = {
-          //   from: 'DriveTracking@proofpoint.com',
-          //   to: 'anchen@proofpoint.com, nlee@proofpoint.com',
-          //   subject: 'Customer Created',
-          //   text: `Customer Name: ${customer.name}, Created At: ${customer.createdAt}, Created By: ${customer.createdBy}`
-          // };
-          // transporter.sendMail(mailOptions, function(error, info) {
-          //   if (error) {
-          //     console.log(error);
-          //   }
-          //   else {
-          //     console.log(info.response);
-          //   }
-          // });
-
           res.redirect(append + "/index");
           console.log("[+] Created customer '" + req.body.customer["name"]);
         })
@@ -246,10 +269,11 @@ router.post("/new", authenticate_session, function (req, res) {
     }
 });
 
-//UPDATE ROUTE
-router.put("/index/:id", authenticate_session, function (req, res) {
-    // Considering changing to else ifs
 
+// ======================================================
+// Updates a customer profile
+// ======================================================
+router.put("/index/:id", authenticate_session, function (req, res) {
     // For updating name, make a ton of promises and execute them, THEN render the page.
     if (req.body.customer != undefined && req.body.customer != null) {
         console.log("[+] Attempting to update customer: " + req.params.id);
@@ -265,41 +289,18 @@ router.put("/index/:id", authenticate_session, function (req, res) {
               //update the updated by field
               customer.updatedBy = req.session.user;
               customer.save();
-
-              // var transporter = nodemailer.createTransport({
-              //   service: 'outlook',
-              //   auth: {
-              //     user: process.env.USER,
-              //     pass: process.env.PASS
-              //   }
-              // });
-              // var mailOptions = {
-              //   from: 'DriveTracking@proofpoint.com',
-              //   to: 'anchen@proofpoint.com, nlee@proofpoint.com',
-              //   subject: 'Customer Updated',
-              //   text: `Customer Name: ${customer.name}, Updated At: ${customer.updatedAt}, Updated By: ${customer.updatedBy}`
-              // };
-              // transporter.sendMail(mailOptions, function(error, info) {
-              //   if (error) {
-              //     console.log(error);
-              //   }
-              //   else {
-              //     console.log(info.response);
-              //   }
-              // });
             })
             .catch(e => {
               console.log(e);
             })
-            //console.log("Going to " + "/index/" + encodeURIComponent(req.body.customer["name"]));
             res.redirect(append + "/index/" + encodeURIComponent(req.body.customer["name"]));
         }).catch((error) => {
             //console.log(error);
             // If an error occurs, catch the error.
             if (error["code"] == 11000) { // Dupe ID
-                console.log("-- Duplicate key for customer: " + req.body.customer["name"]);
+                console.log("[+] Duplicate key for customer: " + req.body.customer["name"]);
                 res.status(409);
-                res.send("Dupe primary key, customer already exists.");
+                res.send("This customer name already exists.");
             } else {
                 console.log(error.error_message + "\n---");
             }
@@ -308,7 +309,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
 
     // Updating sizing questions
     if (req.body.sizing_questions != undefined && req.body.sizing_questions != null) {
-        console.log("- Attempting to update Sizing Questions...");
+        console.log("[+] Attempting to update Sizing Questions...");
         SizingQuestions.findOneAndUpdate({ name: req.params.id }, req.body.sizing_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             console.log("Done");
@@ -322,7 +323,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
 
     // Updating desktop network questions
     if (req.body.desktop_network_questions != undefined && req.body.desktop_network_questions != null) {
-        console.log("- Attempting to update Desktop Network Questions...");
+        console.log("[+] Attempting to update Desktop Network Questions...");
         DesktopNetworkQuestions.findOneAndUpdate({ name: req.params.id }, req.body.desktop_network_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             console.log("Done");
@@ -336,7 +337,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
 
     // Updating Email Questions
     if (req.body.email_questions != undefined && req.body.email_questions != null) {
-        console.log("- Attempting to update Email Systems Questions...");
+        console.log("[+] Attempting to update Email Systems Questions...");
         EmailQuestions.findOneAndUpdate({ "name": req.params.id }, req.body.email_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             //console.log(req.body.email_questions);
@@ -351,7 +352,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
 
     // Updating Import Questions
     if (req.body.import_questions != undefined && req.body.import_questions != null) {
-        console.log("- Attempting to update Import information...");
+        console.log("[+] Attempting to update Import information...");
         ImportQuestions.findOneAndUpdate({ "name": req.params.id }, req.body.import_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             console.log("Done");
@@ -399,7 +400,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
 
     // Updating POC Questions
     if (req.body.poc_questions != undefined && req.body.poc_questions != null) {
-        console.log("- Attempting to update POC information...");
+        console.log("[+] Attempting to update POC information...");
         POCQuestions.findOneAndUpdate({ name: req.params.id }, req.body.poc_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             console.log("Done");
@@ -413,7 +414,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
 
     // Updating RFE Questions
     if (req.body.rfe_questions != undefined && req.body.rfe_questions != null) {
-        console.log("- Attempting to update RFE information...");
+        console.log("[+] Attempting to update RFE information...");
         RFEQuestions.findOneAndUpdate({ name: req.params.id }, req.body.rfe_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             console.log("Done");
@@ -427,7 +428,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
 
     // Updating Usage Questions
     if (req.body.usage_questions != undefined && req.body.usage_questions != null) {
-        console.log("- Attempting to update Usage Questions...");
+        console.log("[+] Attempting to update Usage Questions...");
         UsageQuestions.findOneAndUpdate({ name: req.params.id }, req.body.usage_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             console.log("Done");
@@ -441,7 +442,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
 
     // Updating Finserv Supervision Questions
     if (req.body.supervision_questions != undefined && req.body.supervision_questions != null) {
-        console.log("- Attempting to update Finserv Supervision Questions...");
+        console.log("[+] Attempting to update Finserv Supervision Questions...");
         SupervisionQuestions.findOneAndUpdate({ name: req.params.id }, req.body.supervision_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             console.log("Done");
@@ -540,30 +541,23 @@ router.put("/index/:id", authenticate_session, function (req, res) {
     updateVersions({ name: req.params.id });
 });
 
-//INDEX ROUTE
-router.get("/index", authenticate_session, function (req, res) {
 
+// ======================================================
+// Render the Customer List
+// ======================================================
+router.get("/index", authenticate_session, function (req, res) {
     Customer.find({}).then((customers) => {
         res.render("index", { customers: customers });
     }).catch((error) => {
         console.log("An error has occurred.");
         console.log(error);
     });
-
-    // Customer.find({}, function (err, customers) {
-    //     if (err) {
-    //         console.log("An error has occurred.");
-    //         console.log(err);
-    //     } else {
-    //         res.render("index", {customers: customers});
-    //     }
-    // });
 });
 
+
+// ======================================================
 // Delete a customer profile
-// Type: DELETE
-// URL: /index/:id
-// AUTH: Token
+// ======================================================
 router.delete("/index/:id", authenticate_session, function (req, res) {
     console.log("[+] Deleting customer " + req.params.id);
 
@@ -599,7 +593,10 @@ router.delete("/index/:id", authenticate_session, function (req, res) {
     });
 });
 
+
+// ======================================================
 // SHOW ROUTE
+// ======================================================
 router.get("/index/:id", authenticate_session, function (req, res) {
     //delete files created by import
     fse.emptyDir("./public/files", function(err) {
@@ -667,6 +664,10 @@ router.get("/index/:id", authenticate_session, function (req, res) {
     });
 });
 
+
+// ======================================================
+// Import files for a customer
+// ======================================================
 router.post("/import/:id", authenticate_session, upload.single("file"), function (req, res) {
   //convert Excel spreadsheets to MongoDB data
   function convertData(collection, section) {
@@ -737,6 +738,10 @@ router.post("/import/:id", authenticate_session, upload.single("file"), function
   res.redirect(`/index/${req.params.id}`);
 })
 
+
+// ======================================================
+// Export Customer Data in Excel format
+// ======================================================
 router.post("/export/:id", authenticate_session, function (req, res) {
   //find MongoDB data
   async function query() {
@@ -835,6 +840,10 @@ router.post("/export/:id", authenticate_session, function (req, res) {
   })
 })
 
+
+// ======================================================
+// Get Customer History
+// ======================================================
 router.get("/history/:id", authenticate_session, function (req, res) {
   Customer.findOne({ name: req.params.id })
   .then(customer => {
@@ -851,6 +860,10 @@ router.get("/history/:id", authenticate_session, function (req, res) {
   })
 });
 
+
+// ======================================================
+// Get Customer History
+// ======================================================
 router.get("/history/:id/:version", authenticate_session, function (req, res) {
   async function query() {
     var questionnaire = {};
