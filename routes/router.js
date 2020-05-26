@@ -98,6 +98,13 @@ router.get('/CurrentUser', (req, res) => {
   })
 })
 
+router.get('/getCustomer/:id', (req, res) => {
+  console.log("Getting customer " + req.param.id)
+    const customer = Customer.findOne({ name: req.params.id }, req.body.customer).exec();
+    req.send(customer)
+  
+})
+
 
 // ======================================================
 //Entry point for the app startup
@@ -201,7 +208,7 @@ router.get("/new", authenticate_session, function (req, res) {
 
 
 // ======================================================
-// Save the New Customer
+// Save the Customer
 // ======================================================
 router.post("/new", authenticate_session, function (req, res) {
     if (req == undefined || req == null) {
@@ -274,38 +281,48 @@ router.post("/new", authenticate_session, function (req, res) {
 // Updates a customer profile
 // ======================================================
 router.put("/index/:id", authenticate_session, function (req, res) {
-    // For updating name, make a ton of promises and execute them, THEN render the page.
-    if (req.body.customer != undefined && req.body.customer != null) {
-        console.log("[+] Attempting to update customer: " + req.params.id);
-        async function updateID() {
-            await Customer.findOneAndUpdate({ name: req.params.id }, req.body.customer).exec();
-            console.log("[+] Updated..." + req.params.id);
+  
+  // Update General Questions
+  if (req.body.customer != undefined && req.body.customer != null) {
+      console.log("[+] Attempting to update General questions: " + req.params.id);
+      // Determine if each HTML Checkbox is "on" or "undefined"
+      const customer_info_chk_box_names = ["existing_archive_prospect", "existing_archive_customer", "existing_security_customer"];
+      customer_info_chk_box_names.forEach(function(chk_box_name){
+        if(!req.body.customer[chk_box_name])
+        {
+          // if it's undefined, then set it to false
+          req.body.customer[chk_box_name] = "false"
         }
+      })
 
-        // Only if all the queries finish, redirect the page to the new customer name.
-        updateID().then(() => {
-            Customer.findOne({ name: req.params.id })
-            .then(customer => {
-              //update the updated by field
-              customer.updatedBy = req.session.user;
-              customer.save();
-            })
-            .catch(e => {
-              console.log(e);
-            })
-            res.redirect(append + "/index/" + encodeURIComponent(req.body.customer["name"]));
-        }).catch((error) => {
-            //console.log(error);
-            // If an error occurs, catch the error.
-            if (error["code"] == 11000) { // Dupe ID
-                console.log("[+] Duplicate key for customer: " + req.body.customer["name"]);
-                res.status(409);
-                res.send("This customer name already exists.");
-            } else {
-                console.log(error.error_message + "\n---");
-            }
-        });
-    }
+
+      async function updateID() {
+          await Customer.findOneAndUpdate({ name: req.params.id }, req.body.customer).exec();
+          console.log("[+] Updated: " + req.params.id);
+      }
+
+      // Redirect
+      updateID().then(() => {
+          Customer.findOne({ name: req.params.id })
+          .then(customer => {
+            customer.updatedBy = req.session.user;
+            customer.save();
+          })
+          .catch(e => {
+            console.log(e);
+          })
+          res.redirect(append + "/index/" + encodeURIComponent(req.body.customer["name"]));
+      }).catch((error) => {
+          console.log(error);
+          if (error["code"] == 11000) { // Dupe ID
+              console.log("[+] Duplicate key for customer: " + req.body.customer["name"]);
+              res.status(409);
+              res.send("This customer name already exists.");
+          } else {
+              console.log(error.error_message + "\n---");
+          }
+      });
+  }
 
     // Updating sizing questions
     if (req.body.sizing_questions != undefined && req.body.sizing_questions != null) {
@@ -382,11 +399,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
             req.body.connector_platform_questions[chk_box_name] = "false"
           }
         })
-
         // console.log(JSON.stringify(req.body.connector_platform_questions))
-        
-        
-
         ConnectorPlatformQuestions.findOneAndUpdate({ name: req.params.id }, req.body.connector_platform_questions).then(() => {
             //res.redirect( append + "/index/" + encodeURIComponent(req.params.id));
             console.log("Done");
@@ -454,6 +467,7 @@ router.put("/index/:id", authenticate_session, function (req, res) {
         });
     }
 
+    // Update Versions
     function updateVersions(search_term) {
       Customer.findOne(search_term)
       .then(customer => {
