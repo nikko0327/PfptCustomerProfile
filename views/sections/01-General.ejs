@@ -20,8 +20,8 @@
     <fieldset id="customerFormFieldset" disabled>
     <!-- Row 1 -->
     <div class="row">
-        <div class="col-xl-6 pt-2" style="background-color:white;">
-            <div class="card">
+        <div class="col-xl-6 mt-2" style="background-color:white;">
+            <div class="card h-100">
                 <div class="card-header">
                     <h4 class="mb-0">Customer Information</h4>
                 </div>
@@ -86,8 +86,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-6 pt-2" style="background-color:white;">
-            <div class="card">
+        <div class="col-xl-6 mt-2" style="background-color:white;">
+            <div class="card h-100">
                 <div class="card-header">
                     <h4 class="mb-0">Proofpoint Team</h4>
                 </div>
@@ -143,8 +143,8 @@
 
     <!-- Row 2 -->
     <div class="row">
-        <div class="col-xl-6 pt-5" style="background-color:white;">
-            <div class="card">
+        <div class="col-xl-6 mt-2" style="background-color:white;">
+            <div class="card h-100">
                 <div class="card-header">
                     <h4 class="mb-0">Shipment Information</h4>
                 </div>
@@ -212,17 +212,17 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-6 pt-5" style="background-color:white;">
-            <div class="card">
+        <div class="col-xl-6 mt-2" style="background-color:white;">
+            <div class="card h-100">
                 <div class="card-header">
                     <h4 class="mb-0">Comments</h4>
                 </div>
                 <div class="card-body">
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <textarea class="form-control" maxlength="5000" rows="5" name="customer[comments]" placeholder="5000 characters max" form="customerForm"><%= customer.comments %></textarea>
+                    <div class="col h-100">
+                        <div class="h-100">
+                          <textarea class="form-control form-control-md h-100" maxlength="5000" name="customer[comments]" placeholder="5000 characters max" form="customerForm"><%= customer.comments %></textarea>
                         </div>
-                    </div>
+                      </div>
                 </div>
             </div>
         </div>
@@ -230,13 +230,16 @@
 
     <!-- Row 3-->
     <div class="row">
-        <div class="col-xl-12 pt-5" style="background-color:white;">
+        <div class="col-xl-6 mt-2" style="background-color:white;">
             <div class="card">
                 <div class="card-header">
-                    <div class="row"><h4 class="mb-0">Client Contacts</h4></div>
-                    <div class="row"><button id="add_row" type="button" class="btn btn-sm btn-primary pull-right">Add New Contact +</button></div>
+                    <div class="row">
+                        <div class="col"><h4 class="mb-0">Client Contacts</h4></div>
+                        <div class="col"><button id="add_row" type="button" class="btn btn-sm btn-primary pull-right">Add New Contact +</button></div>
+                    </div>
                 </div>
                 <div class="card-body">
+                    
                     <table id="contacts_table" class="table table-bordered">
                         <thead>
                             <tr>
@@ -302,9 +305,10 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
         </div>
     </div>
-    </fieldset>
+        </fieldset>
     </form>
-</div>
+
 </div>
